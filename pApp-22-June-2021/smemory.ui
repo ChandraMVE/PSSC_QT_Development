@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sMemory</class>
+ <widget class="QWidget" name="sMemory">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QPushButton" name="pbTransfer">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>670</y>
+     <width>125</width>
+     <height>44</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(194, 194, 194);
+border-width: 2px;
+border-color: rgb(194, 194, 194);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Transfer</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbDelete">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>670</y>
+     <width>125</width>
+     <height>44</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(194, 194, 194);
+border-width: 2px;
+border-color: rgb(194, 194, 194);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbPrint">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>670</y>
+     <width>125</width>
+     <height>44</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+background-color: rgb(51, 204, 0);
+border-width: 2px;
+border-color: rgb(51, 204, 0);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="GeneralSetupTab">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>581</width>
+     <height>641</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTabWidget::pane { /* The tab widget frame */
+    position: absolute;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+	border: 0px solid #C4C4C3;
+	border-bottom-color: #C2C7CB; /* same as the pane color */
+   	border-bottom-left-radius: 30px;
+   	border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+QTabWidget::tab-bar {
+    alignment: left;
+}
+
+/* Style the tab using the tab sub-control. Note that
+    it reads QTabBar _not_ QTabWidget */
+QTabBar::tab {
+
+    border: 1px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    padding: 0px;
+    height:0px;
+	border-width: 0px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+
+	font: 75 16pt &quot;Roboto Medium&quot;;
+	color: rgb(0, 0, 0);
+	
+
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	background-color: rgb(190, 190, 190);
+}
+
+QTabBar::tab:selected {
+    border-color: #9B9B9B;
+    border-bottom-color: #C2C7CB; /* same as pane color */
+ border: 0px
+}
+</string>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>User Setup</string>
+    </attribute>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>581</width>
+       <height>641</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 0px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 30;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto&quot;;</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QTableView" name="wTableView">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>24</y>
+        <width>541</width>
+        <height>595</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+   color: rgb(0, 0, 0);
+   Background-color : white;
+   alternate-background-color: rgb(245,245,245);
+   Selection-color: white; /* The text color of the selected area*/
+   Selection-background-color:  rgb(21, 100, 192);
+   border: 0px groove gray;
+   border-radius: 10px;
+   padding: 2px 4px;
+   font: 75 16pt &quot;Roboto Medium&quot;;
+   padding:5px;
+   outline: 0px;
+}
+
+QHeaderView::section {
+	background-color: white; /* red  rgb(182, 182, 182); */
+    color: white;
+    border: 1px solid #6c6c6c;
+    height: 50px;
+    font: 75 16pt &quot;Roboto Medium&quot;;
+}
+
+QScrollBar:horizontal {
+    background:  rgb(230,230,230);
+    height:41px;
+    margin: 0px 50px 0 50px;
+    border-top: 2px solid  rgb(182, 182, 182);
+    border-radius: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background:  rgb(182, 182, 182);
+    min-width: 20px;
+}
+
+QScrollBar::add-line:horizontal {
+    border: 0px solid grey;
+    background: rgb(230,230,230);
+    width: 50px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+    border: 0px solid grey;
+    background:  rgb(230,230,230);
+    width: 50px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
+
+QScrollBar:left-arrow:horizontal  {
+    width: 50px;
+    height: 41px;
+	background-image: url(:/images/icons/cleftarrow.png);
+}
+
+QScrollBar::right-arrow:horizontal {
+   width: 50px;
+   height: 41px;
+   background-image: url(:/images/icons/crightarrow.png);
+}
+
+ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+     background: none;
+ }
+
+/*  vertical */
+QScrollBar:vertical {
+     border: 0px solid  rgb(21, 100, 192);
+     background:  rgb(230,230,230);
+     width: 41px;
+	 margin: 50px 0 50px 0;
+     border-left: 2px solid  rgb(182, 182, 182);
+     border-radius: 0px;
+ }
+
+ QScrollBar::handle:vertical {
+     background:  rgb(182, 182, 182);
+     min-height: 20px;
+ }
+
+ QScrollBar::add-line:vertical {
+     border: 0px solid grey;
+     background:  rgb(230,230,230);
+     height: 50px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line:vertical {
+     border: 0px solid grey;
+     background:  rgb(230,230,230);
+     height: 50px;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::up-arrow:vertical {
+     width: 41px;
+     height: 50px;
+     background-image: url(:/images/icons/cuparrow.png);
+}
+
+QScrollBar::down-arrow:vertical {
+     width: 41px;
+      height: 50px;
+      background-image: url(:/images/icons/cdownarrow.png);
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+      background: none;
+ }
+
+QTableView::item {
+    padding: 2px 4px;
+    outline: 0px;
+}</string>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QTableView" name="wTableViewHeader">
+      <property name="geometry">
+       <rect>
+        <x>21</x>
+        <y>30</y>
+        <width>493</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView {
+   color: rgb(255, 255, 255);
+   Background-color :  rgb(190, 190, 190);
+   alternate-background-color: rgb(245,245,245);
+   Selection-color: white; /* The text color of the selected area*/
+   Selection-background-color:   rgb(190, 190, 190);
+   border: 0px groove gray;
+   border-radius: 5px;
+   /*padding: 2px 4px;*/
+   font: 75 16pt &quot;Roboto Medium&quot;;
+   outline: 0;
+   margin-left: 4px;
+   gridline-color: gray;
+
+}
+
+QHeaderView {
+	background-color: rgb(182, 182, 182);
+    color: white;
+    border: 0px solid #6c6c6c;
+    height: 35px;
+    font: 75 16pt &quot;Roboto Medium&quot;;
+	border-radius: 10px;
+}
+
+QHeaderView::section {
+	background-color: rgb(182, 182, 182);
+    color: white;
+    border-left: 1px solid #6c6c6c;
+    border-right: 1px solid #6c6c6c;
+    height: 35px;
+    font: 75 16pt &quot;Roboto Medium&quot;;
+	border-radius: 5px;
+}
+
+QTableView::item {
+	background-color: rgb(182, 182, 182);
+    color: white;
+    border: 0px solid #6c6c6c;
+    height: 52px;
+    font: 75 16pt &quot;Roboto Medium&quot;;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+
+</string>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pbExit">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>670</y>
+     <width>125</width>
+     <height>44</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(194, 194, 194);
+border-width: 2px;
+border-color: rgb(194, 194, 194);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
