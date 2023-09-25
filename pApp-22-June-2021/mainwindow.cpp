@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsScene *scene = new QGraphicsScene();
     QGraphicsView *view = new QGraphicsView(parent);
 
-    view->setGeometry(0,0,600,800);
+    view->setGeometry(0,0,768,1024);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setLists();
     setMeasuring();
 
-    ui->wCheckPass->resize(600, 652+92-10);
+    ui->wCheckPass->resize(768, 652+92-10);
     ui->wCheckPass->move(0, 148-92+20);
     ui->wCheckPass->hide();
 
@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wCheckPass, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wCheckPass, SIGNAL(Confirmed(int, bool)), this, SLOT(onConfirmed(int, bool)));
 
-    ui->wError->resize(600, 652+92-10);
+    ui->wError->resize(768, 652+92-10);
     ui->wError->move(0, 148-92+20);
     ui->wError->hide();
 
@@ -42,25 +42,25 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wError, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wError, SIGNAL(Confirmed(int, bool)), this, SLOT(onConfirmed(int, bool)));
 
-    ui->wMenuBar->resize(600, 56);
+    ui->wMenuBar->resize(768, 56);
     ui->wMenuBar->move(0,92);
 
-    ui->wMeasuring1->resize(600, 652);
+    ui->wMeasuring1->resize(768, 652);
     ui->wMeasuring1->move(0, 148);
     ui->wMeasuring1->setMethods(qslMethods);
     ui->wMeasuring1->readOperatorsFile();
     ui->wMeasuring1->readSampleIdsFile();
     ui->wMeasuring1->Show();
 
-    ui->wMeasuring2->resize(600, 652);
+    ui->wMeasuring2->resize(768, 652);
     ui->wMeasuring2->move(0, 148);
     ui->wMeasuring2->hide();
 
-    ui->wCleaning->resize(600, 652);
+    ui->wCleaning->resize(768, 652);
     ui->wCleaning->move(0, 148);
     ui->wCleaning->hide();
 
-    ui->wMemory->resize(600, 652+92-10);
+    ui->wMemory->resize(768, 652+92-10);
     ui->wMemory->move(0, 148-92+10);
     ui->wMemory->hide();
 
@@ -74,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->wMemory->readTests();
 
-    ui->wUserSetup->resize(600, 652+92-10);
+    ui->wUserSetup->resize(768, 652+92-10);
     ui->wUserSetup->move(0, 148-92+10);
     ui->wUserSetup->hide();
 
@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wUserSetup->saveFile();
     }
 
-    ui->wGeneralSetup->resize(600, 652+92-10);
+    ui->wGeneralSetup->resize(768, 652+92-10);
     ui->wGeneralSetup->move(0, 148-92+10);
     ui->wGeneralSetup->hide();
     ui->wGeneralSetup->setDateFormat(qslDateFormat);
@@ -111,7 +111,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wGeneralSetup->saveFile();
     }
 
-    ui->wMethodSetup->resize(600, 652+92-10);
+    ui->wMethodSetup->resize(768, 652+92-10);
     ui->wMethodSetup->move(0, 148-92+10);
     ui->wMethodSetup->setMethods(qslMethods);
     ui->wMethodSetup->setD5191(qslFormulaD5191);
@@ -129,7 +129,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wMethodSetup->saveFile();
     }
 
-    ui->wServiceSetup->resize(600, 652+92-10);
+    ui->wServiceSetup->resize(768, 652+92-10);
     ui->wServiceSetup->move(0, 148-92+10);
     ui->wServiceSetup->hide();
 
@@ -142,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->wServiceSetup->readErrorLogFile();
 
-    ui->wCalibrationSetup->resize(600, 652+92-10);
+    ui->wCalibrationSetup->resize(768, 652+92-10);
     ui->wCalibrationSetup->move(0, 148-92+10);
     ui->wCalibrationSetup->hide();
     if(!ui->wCalibrationSetup->readFile())
@@ -154,11 +154,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->listSetupMenu->hide();
 
-    ui->wKeypad->resize(600, 800);
+    ui->wKeypad->resize(768, 1024);
     ui->wKeypad->move(0, 0);
     ui->wKeypad->hide();
 
-    ui->wFileSelect->resize(600, 800);
+    ui->wFileSelect->resize(768, 1024);
     ui->wFileSelect->move(0, 0);
     ui->wFileSelect->hide();
 
@@ -382,8 +382,8 @@ void MainWindow::setLists()
     qslEmulation.insert(1, "USB");
 
     qslBaudRate.insert(0, "2400");
-    qslBaudRate.insert(1, "4800");
-    qslBaudRate.insert(2, "9600");
+    qslBaudRate.insert(1, "41024");
+    qslBaudRate.insert(2, "9768");
     qslBaudRate.insert(3, "19200");
 
     qslParity.insert(0, "None");
