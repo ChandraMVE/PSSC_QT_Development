@@ -19,49 +19,49 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsProxyWidget *proxy = scene->addWidget(this);
     view->setScene(scene);
     view->show();
-    view->rotate(90);
+// view->rotate(90);
 
     ui->setupUi(this);
 
     setLists();
     setMeasuring();
 
-    ui->wCheckPass->resize(768, 652+92-10);
-    ui->wCheckPass->move(0, 148-92+20);
+    ui->wCheckPass->resize(768, 876+92-10);
+    ui->wCheckPass->move(0, 180-92+20);
     ui->wCheckPass->hide();
 
-    connect(ui->wCheckPass, SIGNAL(SendData(QString, QString, int, int)), this, SLOT(onPassDataReceived(QString, QString, int, int)));
-    connect(ui->wCheckPass, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
+   connect(ui->wCheckPass, SIGNAL(SendData(QString, QString, int, int)), this, SLOT(onPassDataReceived(QString, QString, int, int)));
+   connect(ui->wCheckPass, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wCheckPass, SIGNAL(Confirmed(int, bool)), this, SLOT(onConfirmed(int, bool)));
 
-    ui->wError->resize(768, 652+92-10);
-    ui->wError->move(0, 148-92+20);
+   ui->wError->resize(768, 876+92-10);
+    ui->wError->move(0, 180-92+20);
     ui->wError->hide();
 
     connect(ui->wError, SIGNAL(SendData(QString, QString, int, int)), this, SLOT(onPassDataReceived(QString, QString, int, int)));
     connect(ui->wError, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wError, SIGNAL(Confirmed(int, bool)), this, SLOT(onConfirmed(int, bool)));
 
-    ui->wMenuBar->resize(768, 56);
+    ui->wMenuBar->resize(768, 86);
     ui->wMenuBar->move(0,92);
 
-    ui->wMeasuring1->resize(768, 652);
-    ui->wMeasuring1->move(0, 148);
+    ui->wMeasuring1->resize(768, 876);
+    ui->wMeasuring1->move(0, 180);
     ui->wMeasuring1->setMethods(qslMethods);
     ui->wMeasuring1->readOperatorsFile();
     ui->wMeasuring1->readSampleIdsFile();
     ui->wMeasuring1->Show();
 
-    ui->wMeasuring2->resize(768, 652);
-    ui->wMeasuring2->move(0, 148);
+    ui->wMeasuring2->resize(768, 876);
+    ui->wMeasuring2->move(0, 180);
     ui->wMeasuring2->hide();
 
-    ui->wCleaning->resize(768, 652);
-    ui->wCleaning->move(0, 148);
+    ui->wCleaning->resize(768, 876);
+    ui->wCleaning->move(0, 180);
     ui->wCleaning->hide();
 
-    ui->wMemory->resize(768, 652+92-10);
-    ui->wMemory->move(0, 148-92+10);
+    ui->wMemory->resize(768, 876+92-10);
+    ui->wMemory->move(0, 180-92+10);
     ui->wMemory->hide();
 
     QString errlist;
@@ -74,8 +74,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->wMemory->readTests();
 
-    ui->wUserSetup->resize(768, 652+92-10);
-    ui->wUserSetup->move(0, 148-92+10);
+    ui->wUserSetup->resize(768, 876+92-10);
+    ui->wUserSetup->move(0, 180-92+10);
     ui->wUserSetup->hide();
 
     if(!ui->wUserSetup->readFile())
@@ -84,8 +84,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wUserSetup->saveFile();
     }
 
-    ui->wGeneralSetup->resize(768, 652+92-10);
-    ui->wGeneralSetup->move(0, 148-92+10);
+    ui->wGeneralSetup->resize(768, 876+92-10);
+    ui->wGeneralSetup->move(0, 180-92+10);
     ui->wGeneralSetup->hide();
     ui->wGeneralSetup->setDateFormat(qslDateFormat);
     ui->wGeneralSetup->setTimeFormat(qslTimeFormat);
@@ -111,8 +111,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wGeneralSetup->saveFile();
     }
 
-    ui->wMethodSetup->resize(768, 652+92-10);
-    ui->wMethodSetup->move(0, 148-92+10);
+    ui->wMethodSetup->resize(768, 876+92-10);
+    ui->wMethodSetup->move(0, 180-92+10);
     ui->wMethodSetup->setMethods(qslMethods);
     ui->wMethodSetup->setD5191(qslFormulaD5191);
     ui->wMethodSetup->setD6378(qslFormulaD6378);
@@ -129,8 +129,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wMethodSetup->saveFile();
     }
 
-    ui->wServiceSetup->resize(768, 652+92-10);
-    ui->wServiceSetup->move(0, 148-92+10);
+    ui->wServiceSetup->resize(768, 876+92-10);
+    ui->wServiceSetup->move(0, 180-92+10);
     ui->wServiceSetup->hide();
 
     if(!ui->wServiceSetup->readFile())
@@ -142,8 +142,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->wServiceSetup->readErrorLogFile();
 
-    ui->wCalibrationSetup->resize(768, 652+92-10);
-    ui->wCalibrationSetup->move(0, 148-92+10);
+    ui->wCalibrationSetup->resize(768, 876+92-10);
+    ui->wCalibrationSetup->move(0, 180-92+10);
     ui->wCalibrationSetup->hide();
     if(!ui->wCalibrationSetup->readFile())
     {
@@ -176,7 +176,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wServiceSetup, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wCalibrationSetup, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
 
-    connect(ui->wMemory, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
+   connect(ui->wMemory, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
     connect(ui->wMemory, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
     connect(ui->wMemory, SIGNAL(showStatusBox(QString,QString)), this, SLOT(onShowStatusBox(QString, QString)));
 
@@ -247,9 +247,9 @@ MainWindow::MainWindow(QWidget *parent) :
     cCRFlag = false;
     cCRTimeout = CONTINUOUS_RUN_TIMEOUT;
 
-    serial = new QSerialPort(this);
-    connect(serial, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerial(QSerialPort::SerialPortError)));
-    connect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
+   serial = new QSerialPort(this);
+   connect(serial, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerial(QSerialPort::SerialPortError)));
+   connect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
 
     cDateTime = QDateTime::currentDateTime().addSecs(ui->wUserSetup->getGMTSeconds()); 
 
@@ -263,27 +263,29 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::onLoad()
+ void MainWindow::onLoad()
 {
     this->show();
+#if 0 //commenting this winndow,to stop the communication error
 
     cInitDone = false;
     cInitSuccess = false;
-    cStageTimeOut = 12*60; 
+    cStageTimeOut = 12*60;
     cFrameReceived = true;
     cFrameTimeOut = 0;
     cFrameErrorShown = false;
 
     startTimer(1000);
     qApp->installEventFilter(this);
-    openSerial("/dev/ttymxc1");
+   openSerial("/dev/ttymxc1");
 
-    int tc = cSettings.getTemperatureCount(20); 
+    int tc = cSettings.getTemperatureCount(20);
     onSendCommand(cProtocol.sendMeasuring(1, tc));
 
     onShowStatusBox(tr("Information"), tr("Initializing...\nPlease wait..."));
-
+#endif
 }
+
 
 void MainWindow::setLists()
 {
@@ -900,8 +902,8 @@ void MainWindow::readSerial(void)
 void MainWindow::handleErrorSerial(QSerialPort::SerialPortError error)
 {
 
-    if (error == QSerialPort::ResourceError) 
-	{
+    if (error == QSerialPort::ResourceError)
+    {
         closeSerial();
     }
 }
@@ -915,7 +917,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
     ui->lblDate->setText(cDateTime.toString(cSettings.getDateFormat()));
     ui->lblTime->setText(cDateTime.toString(cSettings.getTimeFormat()));
 
-    checkCommError();
+//    checkCommError();
 
     if(!cInitDone)
     {
@@ -2146,10 +2148,9 @@ void MainWindow::checkCommError()
         if(cFrameTimeOut > M_COMMUNICATION_TIME_OUT)
         {
 
-            if(!cFrameErrorShown && (!ui->wError->isVisible())) 
+            if(!cFrameErrorShown && (!ui->wError->isVisible()))
             {
-                ui->wError->Show_ErrorMessage(tr("Error"), tr("Communication Error!")); 
-
+                 ui->wError->Show_ErrorMessage(tr("Error"), tr("Communication Error!"));
                 cStage = 0;
                 cFrameErrorShown = true;
 
@@ -2180,7 +2181,10 @@ void MainWindow::checkCommError()
                     ui->wServiceSetup->testDone();
                 }
             }
+
+
         }
+
         else
             cFrameTimeOut++;
     }
@@ -3265,4 +3269,5 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
             }
         break;
     }
+
 }
