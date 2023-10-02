@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>800</height>
+    <width>768</width>
+    <height>1024</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,7 +32,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>600</width>
+      <width>768</width>
       <height>92</height>
      </rect>
     </property>
@@ -98,7 +98,7 @@
     <widget class="QLabel" name="lblDate">
      <property name="geometry">
       <rect>
-       <x>465</x>
+       <x>615</x>
        <y>10</y>
        <width>120</width>
        <height>20</height>
@@ -126,7 +126,7 @@
     <widget class="QLabel" name="lblTime">
      <property name="geometry">
       <rect>
-       <x>465</x>
+       <x>615</x>
        <y>30</y>
        <width>120</width>
        <height>22</height>
@@ -155,7 +155,7 @@
    <widget class="sMeasuring" name="wMeasuring1" native="true">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>190</y>
       <width>120</width>
       <height>41</height>
@@ -235,7 +235,7 @@
    <widget class="QListWidget" name="listSetupMenu">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>590</x>
       <y>60</y>
       <width>151</width>
       <height>151</height>
