@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>768</width>
     <height>873</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>40</x>
      <y>80</y>
-     <width>511</width>
+     <width>660</width>
      <height>281</height>
     </rect>
    </property>
@@ -99,7 +99,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>
@@ -311,7 +311,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>40</x>
      <y>380</y>
-     <width>511</width>
+     <width>660</width>
      <height>231</height>
     </rect>
    </property>
@@ -336,8 +336,8 @@ background-color: rgb(241, 241, 241);
    <widget class="QLabel" name="lblMessage">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
+      <x>70</x>
+      <y>60</y>
       <width>451</width>
       <height>81</height>
      </rect>
@@ -362,7 +362,7 @@ Enter valid password &amp; try again!</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>
@@ -455,7 +455,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>40</x>
      <y>630</y>
-     <width>511</width>
+     <width>660</width>
      <height>231</height>
     </rect>
    </property>
@@ -505,7 +505,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>

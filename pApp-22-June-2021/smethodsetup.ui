@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>722</height>
+    <width>768</width>
+    <height>946</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QPushButton" name="pbSave">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>365</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -80,10 +80,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbExit">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>560</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -146,8 +146,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>641</height>
+     <width>749</width>
+     <height>780</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -221,8 +221,8 @@ QTabBar::tab:selected {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>732</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -251,7 +251,7 @@ border-color:  rgb(190, 190, 190);
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>541</width>
+        <width>709</width>
         <height>81</height>
        </rect>
       </property>
@@ -275,9 +275,9 @@ border-color:  rgb(200, 200, 200);
        <property name="geometry">
         <rect>
          <x>230</x>
-         <y>20</y>
+         <y>12</y>
          <width>271</width>
-         <height>41</height>
+         <height>55</height>
         </rect>
        </property>
        <property name="font">
@@ -452,7 +452,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
        <rect>
         <x>20</x>
         <y>120</y>
-        <width>539</width>
+        <width>709</width>
         <height>449</height>
        </rect>
       </property>
@@ -543,7 +543,7 @@ QFrame {
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>539</width>
+          <width>709</width>
           <height>402</height>
          </rect>
         </property>
@@ -570,8 +570,8 @@ border-color:  rgb(190, 190, 190);
           <rect>
            <x>20</x>
            <y>50</y>
-           <width>501</width>
-           <height>41</height>
+           <width>660</width>
+           <height>55</height>
           </rect>
          </property>
          <property name="font">
@@ -660,7 +660,7 @@ background-color: rgb(255, 255, 255);
           <rect>
            <x>20</x>
            <y>120</y>
-           <width>501</width>
+           <width>660</width>
            <height>141</height>
           </rect>
          </property>
@@ -702,7 +702,7 @@ QGroupBox::title {
          <widget class="QLabel" name="label_65">
           <property name="geometry">
            <rect>
-            <x>180</x>
+            <x>250</x>
             <y>50</y>
             <width>31</width>
             <height>41</height>
@@ -718,7 +718,7 @@ QGroupBox::title {
          <widget class="QLabel" name="label_66">
           <property name="geometry">
            <rect>
-            <x>340</x>
+            <x>480</x>
             <y>50</y>
             <width>31</width>
             <height>41</height>
@@ -736,8 +736,8 @@ QGroupBox::title {
            <rect>
             <x>60</x>
             <y>50</y>
-            <width>101</width>
-            <height>41</height>
+            <width>130</width>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">
@@ -777,10 +777,10 @@ border-color: rgb(21, 100, 192);
          <widget class="sQLEExtend" name="leConst2">
           <property name="geometry">
            <rect>
-            <x>220</x>
+            <x>290</x>
             <y>50</y>
-            <width>101</width>
-            <height>41</height>
+            <width>130</width>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">
@@ -820,10 +820,10 @@ border-color: rgb(21, 100, 192);
          <widget class="sQLEExtend" name="leConst3">
           <property name="geometry">
            <rect>
-            <x>370</x>
+            <x>510</x>
             <y>50</y>
-            <width>101</width>
-            <height>41</height>
+            <width>130</width>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">
@@ -872,7 +872,7 @@ border-color: rgb(21, 100, 192);
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>539</width>
+          <width>709</width>
           <height>402</height>
          </rect>
         </property>
@@ -898,8 +898,8 @@ border-color:  rgb(190, 190, 190);</string>
           <rect>
            <x>20</x>
            <y>20</y>
-           <width>501</width>
-           <height>281</height>
+           <width>660</width>
+           <height>350</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1170,7 +1170,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>539</width>
+          <width>709</width>
           <height>402</height>
          </rect>
         </property>
@@ -1196,7 +1196,7 @@ border-color:  rgb(190, 190, 190);</string>
           <rect>
            <x>20</x>
            <y>20</y>
-           <width>501</width>
+           <width>660</width>
            <height>101</height>
           </rect>
          </property>
@@ -1282,7 +1282,7 @@ border-color: rgb(21, 100, 192);
           <rect>
            <x>20</x>
            <y>130</y>
-           <width>501</width>
+           <width>660</width>
            <height>131</height>
           </rect>
          </property>
@@ -1488,7 +1488,7 @@ border-color: rgb(21, 100, 192);
           <rect>
            <x>20</x>
            <y>280</y>
-           <width>501</width>
+           <width>660</width>
            <height>101</height>
           </rect>
          </property>
@@ -1580,7 +1580,7 @@ border-color: rgb(21, 100, 192);
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>539</width>
+          <width>709</width>
           <height>402</height>
          </rect>
         </property>
@@ -1609,9 +1609,9 @@ border-color:  rgb(190, 190, 190);
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>140</y>
-           <width>501</width>
-           <height>121</height>
+           <y>181</y>
+           <width>660</width>
+           <height>150</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1674,7 +1674,7 @@ QGroupBox::title {
             <x>110</x>
             <y>50</y>
             <width>141</width>
-            <height>41</height>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">
@@ -1717,7 +1717,7 @@ border-color: rgb(21, 100, 192);
             <x>340</x>
             <y>50</y>
             <width>141</width>
-            <height>41</height>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">
@@ -1760,8 +1760,8 @@ border-color: rgb(21, 100, 192);
           <rect>
            <x>20</x>
            <y>10</y>
-           <width>501</width>
-           <height>121</height>
+           <width>660</width>
+           <height>150</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1789,7 +1789,7 @@ QGroupBox::title {
             <x>440</x>
             <y>50</y>
             <width>41</width>
-            <height>41</height>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">
@@ -1874,7 +1874,7 @@ QCheckBox::indicator:indeterminate:pressed {
             <x>130</x>
             <y>50</y>
             <width>41</width>
-            <height>41</height>
+            <height>55</height>
            </rect>
           </property>
           <property name="focusPolicy">

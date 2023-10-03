@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>720</height>
+    <width>768</width>
+    <height>944</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QPushButton" name="pbExit">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>560</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -80,10 +80,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbSave">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>365</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -146,8 +146,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>641</height>
+     <width>749</width>
+     <height>790</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -207,7 +207,7 @@ QTabBar::tab:selected {
 </string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -218,8 +218,8 @@ QTabBar::tab:selected {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>732</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -247,9 +247,9 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>90</y>
-        <width>541</width>
-        <height>101</height>
+        <y>118</y>
+        <width>709</width>
+        <height>120</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -476,9 +476,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>310</y>
-        <width>541</width>
-        <height>151</height>
+        <y>376</y>
+        <width>709</width>
+        <height>170</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -731,9 +731,9 @@ QCheckBox::indicator:indeterminate:pressed {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>470</y>
-        <width>541</width>
-        <height>101</height>
+        <y>561</y>
+        <width>709</width>
+        <height>120</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -983,9 +983,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>0</y>
-        <width>541</width>
-        <height>81</height>
+        <y>5</y>
+        <width>709</width>
+        <height>100</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1094,9 +1094,9 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>200</y>
-        <width>541</width>
-        <height>101</height>
+        <y>246</y>
+        <width>709</width>
+        <height>120</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1278,8 +1278,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1307,9 +1307,9 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>345</y>
-        <width>541</width>
-        <height>161</height>
+        <y>425</y>
+        <width>709</width>
+        <height>200</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1374,7 +1374,7 @@ QGroupBox::title {
         <rect>
          <x>380</x>
          <y>35</y>
-         <width>131</width>
+         <width>167</width>
          <height>41</height>
         </rect>
        </property>
@@ -1438,7 +1438,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
         <rect>
          <x>380</x>
          <y>100</y>
-         <width>131</width>
+         <width>167</width>
          <height>41</height>
         </rect>
        </property>
@@ -1502,9 +1502,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>0</y>
-        <width>541</width>
-        <height>81</height>
+        <y>5</y>
+        <width>709</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1613,9 +1613,9 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>85</y>
-        <width>541</width>
-        <height>151</height>
+        <y>141</y>
+        <width>709</width>
+        <height>171</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1791,9 +1791,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <widget class="QGroupBox" name="groupBox_12">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>240</y>
-        <width>271</width>
+        <x>373</x>
+        <y>319</y>
+        <width>354</width>
         <height>101</height>
        </rect>
       </property>
@@ -1898,8 +1898,8 @@ QCheckBox::indicator:indeterminate:pressed {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>240</y>
-        <width>271</width>
+        <y>319</y>
+        <width>354</width>
         <height>101</height>
        </rect>
       </property>
@@ -2004,9 +2004,9 @@ QCheckBox::indicator:indeterminate:pressed {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>530</y>
-        <width>541</width>
-        <height>41</height>
+        <y>660</y>
+        <width>709</width>
+        <height>60</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2031,8 +2031,8 @@ color: rgb(193, 193, 193);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2061,8 +2061,8 @@ border-color:  rgb(190, 190, 190);
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>541</width>
-        <height>101</height>
+        <width>709</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2089,8 +2089,8 @@ QGroupBox::title {
         <rect>
          <x>60</x>
          <y>40</y>
-         <width>125</width>
-         <height>44</height>
+         <width>121</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="focusPolicy">
@@ -2153,8 +2153,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
         <rect>
          <x>350</x>
          <y>40</y>
-         <width>125</width>
-         <height>44</height>
+         <width>121</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="focusPolicy">
@@ -2216,9 +2216,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>130</y>
-        <width>541</width>
-        <height>441</height>
+        <y>143</y>
+        <width>709</width>
+        <height>560</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -2359,8 +2359,8 @@ QScrollBar::down-arrow:vertical {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2389,8 +2389,8 @@ border-color:  rgb(190, 190, 190);
        <rect>
         <x>20</x>
         <y>23</y>
-        <width>541</width>
-        <height>541</height>
+        <width>709</width>
+        <height>675</height>
        </rect>
       </property>
       <property name="sizePolicy">

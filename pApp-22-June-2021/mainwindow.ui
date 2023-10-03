@@ -235,10 +235,10 @@
    <widget class="QListWidget" name="listSetupMenu">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>565</x>
       <y>60</y>
-      <width>151</width>
-      <height>151</height>
+      <width>200</width>
+      <height>170</height>
      </rect>
     </property>
     <property name="focusPolicy">

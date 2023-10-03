@@ -147,7 +147,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <x>10</x>
      <y>10</y>
      <width>759</width>
-     <height>810</height>
+     <height>763</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -181,7 +181,7 @@ QTabBar::tab {
 
     padding: 2px;
     height:41px;
-   	width: 180px;
+   	width: 240px;
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
@@ -208,7 +208,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -223,7 +223,7 @@ QTabBar::tab:selected {
        <x>0</x>
        <y>0</y>
        <width>749</width>
-       <height>740</height>
+       <height>716</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1440,7 +1440,7 @@ QTabBar::tab {
 
     padding: 2px;
     height:41px;
-   width: 270px;
+   width: 330px;
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
@@ -1464,7 +1464,7 @@ QTabBar::tab:selected {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabPrinter">
       <attribute name="title">
@@ -1476,7 +1476,7 @@ QTabBar::tab:selected {
          <x>0</x>
          <y>0</y>
          <width>749</width>
-         <height>688</height>
+         <height>665</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -1505,8 +1505,8 @@ border-color:  rgb(190, 190, 190);
          <rect>
           <x>20</x>
           <y>5</y>
-          <width>541</width>
-          <height>371</height>
+          <width>709</width>
+          <height>380</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -2423,9 +2423,9 @@ QScrollBar::down-arrow:vertical {
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>380</y>
-          <width>541</width>
-          <height>141</height>
+          <y>401</y>
+          <width>709</width>
+          <height>200</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -2857,8 +2857,8 @@ QScrollBar::down-arrow:vertical {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>581</width>
-         <height>539</height>
+         <width>749</width>
+         <height>665</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -2886,9 +2886,9 @@ border-color:  rgb(190, 190, 190);
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>110</y>
-          <width>541</width>
-          <height>321</height>
+          <y>144</y>
+          <width>709</width>
+          <height>400</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -3234,8 +3234,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
          <rect>
           <x>20</x>
           <y>20</y>
-          <width>541</width>
-          <height>81</height>
+          <width>709</width>
+          <height>100</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -3328,8 +3328,8 @@ border-color: rgb(21, 100, 192);
       <rect>
        <x>0</x>
        <y>5</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>763</height>
       </rect>
      </property>
      <property name="focusPolicy">
@@ -3368,7 +3368,7 @@ QTabBar::tab {
 
     padding: 2px;
     height:41px;
-   width: 270px;
+   width: 330px;
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
@@ -3392,7 +3392,7 @@ QTabBar::tab:selected {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabDateTime">
       <attribute name="title">
@@ -3403,8 +3403,8 @@ QTabBar::tab:selected {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>581</width>
-         <height>539</height>
+         <width>749</width>
+         <height>660</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -3432,9 +3432,9 @@ border-color:  rgb(190, 190, 190);
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>10</y>
-          <width>541</width>
-          <height>141</height>
+          <y>17</y>
+          <width>709</width>
+          <height>230</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -4107,9 +4107,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>160</y>
-          <width>541</width>
-          <height>151</height>
+          <y>291</y>
+          <width>709</width>
+          <height>230</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -4698,8 +4698,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>581</width>
-         <height>539</height>
+         <width>749</width>
+         <height>660</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -4727,9 +4727,9 @@ border-color:  rgb(190, 190, 190);
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>10</y>
-          <width>541</width>
-          <height>301</height>
+          <y>16</y>
+          <width>709</width>
+          <height>420</height>
          </rect>
         </property>
         <property name="styleSheet">

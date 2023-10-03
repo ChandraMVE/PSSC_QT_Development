@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>720</height>
+    <width>768</width>
+    <height>944</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QPushButton" name="pbExit">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>560</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -80,10 +80,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbSave">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>365</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -146,8 +146,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>641</height>
+     <width>749</width>
+     <height>790</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -213,7 +213,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="tabTemperature">
     <attribute name="title">
@@ -224,8 +224,8 @@ QTabBar::tab:selected {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -253,9 +253,9 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>170</y>
-        <width>541</width>
-        <height>331</height>
+        <y>242</y>
+        <width>709</width>
+        <height>351</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -836,7 +836,7 @@ border-color: rgb(21, 100, 192);
         <rect>
          <x>0</x>
          <y>95</y>
-         <width>541</width>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -849,7 +849,7 @@ border-color: rgb(21, 100, 192);
         <rect>
          <x>0</x>
          <y>225</y>
-         <width>541</width>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -887,9 +887,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>0</y>
-        <width>541</width>
-        <height>86</height>
+        <y>5</y>
+        <width>709</width>
+        <height>110</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1060,9 +1060,9 @@ QScrollBar::down-arrow:vertical {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>495</y>
-        <width>541</width>
-        <height>81</height>
+        <y>604</y>
+        <width>709</width>
+        <height>110</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1218,9 +1218,9 @@ border-color: rgb(21, 100, 192);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>80</y>
-        <width>541</width>
-        <height>86</height>
+        <y>118</y>
+        <width>709</width>
+        <height>110</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1296,8 +1296,8 @@ QGroupBox::title {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1325,9 +1325,9 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>10</y>
-        <width>541</width>
-        <height>101</height>
+        <y>15</y>
+        <width>709</width>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1562,9 +1562,9 @@ border-color: rgb(21, 100, 192);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
-        <width>541</width>
-        <height>471</height>
+        <y>152</y>
+        <width>709</width>
+        <height>491</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1815,7 +1815,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
         <rect>
          <x>0</x>
          <y>220</y>
-         <width>541</width>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -1972,7 +1972,7 @@ border-color: rgb(21, 100, 192);
         <rect>
          <x>0</x>
          <y>330</y>
-         <width>541</width>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -2095,7 +2095,7 @@ border-color: rgb(21, 100, 192);
         <rect>
          <x>0</x>
          <y>80</y>
-         <width>541</width>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -2287,7 +2287,7 @@ QScrollBar::down-arrow:vertical {
         <rect>
          <x>0</x>
          <y>405</y>
-         <width>541</width>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -2307,8 +2307,8 @@ QScrollBar::down-arrow:vertical {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2337,8 +2337,8 @@ border-color:  rgb(190, 190, 190);
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>541</width>
-        <height>551</height>
+        <width>709</width>
+        <height>680</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -3073,8 +3073,8 @@ Pressure</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -3103,8 +3103,8 @@ border-color:  rgb(190, 190, 190);
        <rect>
         <x>20</x>
         <y>0</y>
-        <width>541</width>
-        <height>571</height>
+        <width>709</width>
+        <height>704</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -3130,7 +3130,7 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>30</y>
+         <y>36</y>
          <width>141</width>
          <height>41</height>
         </rect>
@@ -3146,7 +3146,7 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>170</x>
-         <y>30</y>
+         <y>36</y>
          <width>101</width>
          <height>41</height>
         </rect>
@@ -3172,7 +3172,7 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>400</x>
-         <y>30</y>
+         <y>36</y>
          <width>101</width>
          <height>41</height>
         </rect>
@@ -3198,7 +3198,7 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>290</x>
-         <y>30</y>
+         <y>36</y>
          <width>101</width>
          <height>41</height>
         </rect>
@@ -3214,8 +3214,8 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>85</y>
-         <width>541</width>
+         <y>103</y>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -3227,7 +3227,7 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>165</y>
+         <y>191</y>
          <width>211</width>
          <height>41</height>
         </rect>
@@ -3243,7 +3243,7 @@ QGroupBox::title {
        <property name="geometry">
         <rect>
          <x>240</x>
-         <y>165</y>
+         <y>191</y>
          <width>131</width>
          <height>41</height>
         </rect>
@@ -3307,7 +3307,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
        <property name="geometry">
         <rect>
          <x>390</x>
-         <y>165</y>
+         <y>191</y>
          <width>131</width>
          <height>41</height>
         </rect>
@@ -3371,7 +3371,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>100</y>
+         <y>122</y>
          <width>111</width>
          <height>41</height>
         </rect>
@@ -3387,7 +3387,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
        <property name="geometry">
         <rect>
          <x>270</x>
-         <y>100</y>
+         <y>122</y>
          <width>111</width>
          <height>41</height>
         </rect>
@@ -3403,7 +3403,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
        <property name="geometry">
         <rect>
          <x>240</x>
-         <y>225</y>
+         <y>256</y>
          <width>131</width>
          <height>41</height>
         </rect>
@@ -3467,7 +3467,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>225</y>
+         <y>256</y>
          <width>211</width>
          <height>41</height>
         </rect>
@@ -3483,7 +3483,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
        <property name="geometry">
         <rect>
          <x>130</x>
-         <y>100</y>
+         <y>122</y>
          <width>121</width>
          <height>41</height>
         </rect>
@@ -3696,7 +3696,7 @@ QScrollBar::down-arrow:vertical {
        <property name="geometry">
         <rect>
          <x>390</x>
-         <y>100</y>
+         <y>122</y>
          <width>131</width>
          <height>41</height>
         </rect>
@@ -3903,9 +3903,9 @@ QScrollBar::down-arrow:vertical {
       <widget class="QLabel" name="lblAutoCalibStatus">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>290</y>
-         <width>481</width>
+         <x>20</x>
+         <y>340</y>
+         <width>671</width>
          <height>41</height>
         </rect>
        </property>
@@ -3923,9 +3923,9 @@ QScrollBar::down-arrow:vertical {
        <property name="geometry">
         <rect>
          <x>5</x>
-         <y>366</y>
-         <width>531</width>
-         <height>201</height>
+         <y>442</y>
+         <width>701</width>
+         <height>251</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -4652,9 +4652,9 @@ Pressure</string>
       <widget class="QLabel" name="lblAutoCalibSubStatus">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>331</y>
-         <width>481</width>
+         <x>20</x>
+         <y>390</y>
+         <width>671</width>
          <height>31</height>
         </rect>
        </property>
@@ -4673,8 +4673,8 @@ font: 75 14pt &quot;Roboto Medium&quot;;</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>285</y>
-         <width>541</width>
+         <y>322</y>
+         <width>709</width>
          <height>2</height>
         </rect>
        </property>
@@ -4694,8 +4694,8 @@ font: 75 14pt &quot;Roboto Medium&quot;;</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>730</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -4722,9 +4722,9 @@ border-color:  rgb(190, 190, 190);
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>150</y>
-        <width>451</width>
+        <x>-3</x>
+        <y>240</y>
+        <width>747</width>
         <height>41</height>
        </rect>
       </property>
@@ -4741,10 +4741,10 @@ border-color:  rgb(190, 190, 190);
      <widget class="QPushButton" name="pbTouchCalibrate">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>260</y>
-        <width>261</width>
-        <height>41</height>
+        <x>220</x>
+        <y>365</y>
+        <width>301</width>
+        <height>80</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -4809,7 +4809,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>660</y>
+     <y>820</y>
      <width>101</width>
      <height>41</height>
     </rect>
