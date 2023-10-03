@@ -850,7 +850,7 @@ void sMeasuring::setRunning(bool state)
                 setRunState(!checkValidInputs());
 
                 ui->lblMessage->setText(tr("Select new parameters OR\nPress Run to Start"));
-                ui->lblMessage->resize(471, 171);
+                ui->lblMessage->resize(680,70);
                 ui->lblAutoCount->hide();
                 ui->lblStatus->hide();
                 ui->lblStatus->setText("");

@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsProxyWidget *proxy = scene->addWidget(this);
     view->setScene(scene);
     view->show();
-// view->rotate(90);
+   // view->rotate(90);
 
     ui->setupUi(this);
 

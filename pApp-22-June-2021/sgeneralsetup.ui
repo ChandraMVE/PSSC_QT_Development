@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>720</height>
+    <width>768</width>
+    <height>944</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QPushButton" name="pbExit">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>365</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -80,10 +80,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbSave">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>560</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -146,8 +146,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>591</width>
-     <height>641</height>
+     <width>759</width>
+     <height>810</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -208,7 +208,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -222,8 +222,8 @@ QTabBar::tab:selected {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>740</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1388,9 +1388,21 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <rect>
        <x>0</x>
        <y>5</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>760</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>749</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>749</width>
+       <height>16777215</height>
+      </size>
      </property>
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
@@ -1463,8 +1475,8 @@ QTabBar::tab:selected {
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>581</width>
-         <height>539</height>
+         <width>749</width>
+         <height>688</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -3380,7 +3392,7 @@ QTabBar::tab:selected {
 </string>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabDateTime">
       <attribute name="title">

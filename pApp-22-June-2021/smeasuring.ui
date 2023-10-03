@@ -244,7 +244,7 @@ font: 75 16pt &quot;Roboto&quot;;</string>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>65</x>
+        <x>120</x>
         <y>25</y>
         <width>141</width>
         <height>41</height>
@@ -261,7 +261,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>65</x>
+        <x>120</x>
         <y>88</y>
         <width>141</width>
         <height>61</height>
@@ -281,7 +281,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>65</x>
+        <x>120</x>
         <y>157</y>
         <width>141</width>
         <height>61</height>
@@ -301,10 +301,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbMethod">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>25</y>
-        <width>271</width>
-        <height>41</height>
+        <width>310</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="font">
@@ -713,10 +713,10 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="sQLEExtend" name="leSampleId">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>98</y>
-        <width>224</width>
-        <height>41</height>
+        <width>306</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -757,10 +757,10 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbSampleId">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>550</x>
         <y>98</y>
-        <width>47</width>
-        <height>41</height>
+        <width>40</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -788,9 +788,9 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbOperator">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>540</x>
         <y>170</y>
-        <width>47</width>
+        <width>53</width>
         <height>41</height>
        </rect>
       </property>
@@ -819,9 +819,9 @@ border-color: rgb(21, 100, 192);
      <widget class="sQLEExtend" name="leOperator">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>170</y>
-        <width>224</width>
+        <width>263</width>
         <height>41</height>
        </rect>
       </property>
@@ -863,9 +863,9 @@ border-color: rgb(21, 100, 192);
      <widget class="QListWidget" name="lwOperator">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>212</y>
-        <width>271</width>
+        <width>263</width>
         <height>16</height>
        </rect>
       </property>
@@ -1016,9 +1016,9 @@ QScrollBar::down-arrow:vertical {
      <widget class="QListWidget" name="lwSampleId">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>140</y>
-        <width>271</width>
+        <width>310</width>
         <height>16</height>
        </rect>
       </property>

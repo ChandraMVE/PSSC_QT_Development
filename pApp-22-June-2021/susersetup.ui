@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>720</height>
+    <width>768</width>
+    <height>944</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QPushButton" name="pbSave">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>365</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -80,10 +80,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbExit">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>670</y>
-     <width>125</width>
-     <height>44</height>
+     <x>560</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -146,8 +146,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>641</height>
+     <width>749</width>
+     <height>770</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -218,8 +218,8 @@ QTabBar::tab:selected {
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>581</width>
-       <height>591</height>
+       <width>749</width>
+       <height>725</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -247,9 +247,9 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
-        <width>541</width>
-        <height>101</height>
+        <y>40</y>
+        <width>709</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -350,9 +350,9 @@ QSlider::sub-page:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>260</y>
-        <width>541</width>
-        <height>101</height>
+        <y>320</y>
+        <width>709</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -758,9 +758,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>140</y>
-        <width>541</width>
-        <height>101</height>
+        <y>180</y>
+        <width>709</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -862,9 +862,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>380</y>
-        <width>541</width>
-        <height>101</height>
+        <y>460</y>
+        <width>709</width>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
