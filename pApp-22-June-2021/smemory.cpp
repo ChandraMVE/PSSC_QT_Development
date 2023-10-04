@@ -73,7 +73,7 @@ sMemory::sMemory(QWidget *parent) :
 
     ui->wTableViewHeader->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed); 
 
-    ui->wTableViewHeader->setRowHeight(0, 50);
+    ui->wTableViewHeader->setRowHeight(0, 68);
 
     QObject::connect(ui->wTableView->horizontalScrollBar(), SIGNAL(valueChanged(int)), ui->wTableViewHeader->horizontalScrollBar(), SLOT(setValue(int)));
     QObject::connect(ui->wTableViewHeader->horizontalScrollBar(), SIGNAL(valueChanged(int)), ui->wTableView->horizontalScrollBar(), SLOT(setValue(int)));

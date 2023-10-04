@@ -155,7 +155,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     position: absolute;
 
 	color: rgb(0, 0, 0);
-	font: 75 16pt &quot;Roboto Medium&quot;;
+	font: 75 20pt &quot;Roboto Medium&quot;;
 
 	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
@@ -247,10 +247,16 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>20</y>
         <width>709</width>
         <height>121</height>
        </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>709</width>
+        <height>0</height>
+       </size>
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 2px;
@@ -272,14 +278,14 @@ border-color:  rgb(200, 200, 200);
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>30</y>
-         <width>171</width>
+         <y>40</y>
+         <width>211</width>
          <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Alarm Volume</string>
@@ -288,11 +294,17 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <widget class="QSlider" name="hsAlarmVolme">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>300</x>
          <y>30</y>
+         <width>341</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
          <width>241</width>
          <height>51</height>
-        </rect>
+        </size>
        </property>
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
@@ -350,7 +362,7 @@ QSlider::sub-page:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>320</y>
+        <y>300</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -374,10 +386,10 @@ border-color:  rgb(200, 200, 200);
       <widget class="QComboBox" name="cbGMT">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>300</x>
          <y>30</y>
-         <width>241</width>
-         <height>41</height>
+         <width>310</width>
+         <height>50</height>
         </rect>
        </property>
        <property name="font">
@@ -740,14 +752,14 @@ QScrollBar::down-arrow:vertical {
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>30</y>
-         <width>111</width>
+         <y>40</y>
+         <width>138</width>
          <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Time Zone</string>
@@ -758,7 +770,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>180</y>
+        <y>160</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -782,7 +794,7 @@ border-color:  rgb(200, 200, 200);
       <widget class="QCheckBox" name="cbEBEnable">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>300</x>
          <y>30</y>
          <width>41</width>
          <height>41</height>
@@ -843,15 +855,15 @@ QCheckBox::indicator:indeterminate:pressed {
       <widget class="QLabel" name="label_16">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>30</y>
-         <width>211</width>
+         <width>258</width>
          <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Error Buzzer Enable</string>
@@ -862,7 +874,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>460</y>
+        <y>450</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -887,14 +899,14 @@ border-color:  rgb(200, 200, 200);
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>20</y>
+         <y>30</y>
          <width>201</width>
          <height>51</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Number of Rinse
@@ -904,10 +916,10 @@ Cycles</string>
       <widget class="QComboBox" name="cbRinseCycles">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>300</x>
          <y>20</y>
-         <width>241</width>
-         <height>41</height>
+         <width>310</width>
+         <height>50</height>
         </rect>
        </property>
        <property name="font">

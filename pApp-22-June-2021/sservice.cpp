@@ -7,8 +7,8 @@ sService::sService(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->twErrorLog->setColumnWidth(0, 368);
-    ui->twErrorLog->setColumnWidth(1, 165+100);
+    ui->twErrorLog->setColumnWidth(0, 400);
+    ui->twErrorLog->setColumnWidth(1, 165+189);
 
     connect(ui->leTemperature, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->leTemperature, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));

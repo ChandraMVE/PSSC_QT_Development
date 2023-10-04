@@ -401,7 +401,7 @@ void sMethodSetup::showD5191()
     ui->lePara3->show();
     ui->lblPara3->show();
 
-    ui->frPara1->resize(501, 211);
+    ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
 

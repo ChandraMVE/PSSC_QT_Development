@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>580</height>
+    <width>768</width>
+    <height>729</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>560</height>
+     <width>749</width>
+     <height>709</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,8 +44,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <rect>
       <x>29</x>
       <y>69</y>
-      <width>531</width>
-      <height>421</height>
+      <width>699</width>
+      <height>570</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -71,8 +71,8 @@ font: 75 16pt &quot;Roboto&quot;;
      <rect>
       <x>20</x>
       <y>80</y>
-      <width>528</width>
-      <height>421</height>
+      <width>702</width>
+      <height>570</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -452,7 +452,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>500</y>
+      <y>650</y>
       <width>471</width>
       <height>51</height>
      </rect>

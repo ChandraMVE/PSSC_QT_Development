@@ -245,7 +245,7 @@ font: 75 16pt &quot;Roboto&quot;;</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>25</y>
+        <y>30</y>
         <width>141</width>
         <height>41</height>
        </rect>
@@ -513,7 +513,7 @@ font: 75 16pt &quot;Roboto&quot;;
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>90</y>
+         <y>100</y>
          <width>680</width>
          <height>71</height>
         </rect>
@@ -521,15 +521,15 @@ font: 75 16pt &quot;Roboto&quot;;
        <property name="font">
         <font>
          <family>Roboto Medium</family>
-         <pointsize>24</pointsize>
-         <weight>9</weight>
+         <pointsize>28</pointsize>
+         <weight>6</weight>
          <italic>false</italic>
          <bold>false</bold>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 24pt &quot;Roboto Medium&quot;;</string>
+font: 50 28pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Select new parameters OR
@@ -563,7 +563,7 @@ Press Run to Start</string>
        <widget class="QLabel" name="lblTemperature">
         <property name="geometry">
          <rect>
-          <x>340</x>
+          <x>310</x>
           <y>70</y>
           <width>340</width>
           <height>70</height>
@@ -571,7 +571,7 @@ Press Run to Start</string>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>37.12</string>
@@ -591,7 +591,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>100.05</string>
@@ -603,7 +603,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>340</x>
+          <x>310</x>
           <y>5</y>
           <width>340</width>
           <height>70</height>
@@ -611,7 +611,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 80 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Temperature</string>
@@ -624,14 +624,14 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>5</y>
+          <y>10</y>
           <width>340</width>
           <height>70</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 80 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Pressure</string>
@@ -653,7 +653,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
        <property name="font">
         <font>
          <family>Roboto Medium</family>
-         <pointsize>20</pointsize>
+         <pointsize>23</pointsize>
          <weight>9</weight>
          <italic>false</italic>
          <bold>false</bold>
@@ -661,7 +661,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+font: 79 23pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Auto Repeats: -/-</string>
@@ -685,7 +685,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
        <property name="font">
         <font>
          <family>Roboto Medium</family>
-         <pointsize>20</pointsize>
+         <pointsize>22</pointsize>
          <weight>9</weight>
          <italic>false</italic>
          <bold>false</bold>
@@ -693,7 +693,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+font: 79 22pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Temperature Stabilizing @ 37.8 C</string>
@@ -715,7 +715,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
        <rect>
         <x>281</x>
         <y>98</y>
-        <width>306</width>
+        <width>263</width>
         <height>50</height>
        </rect>
       </property>
@@ -757,9 +757,9 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbSampleId">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>540</x>
         <y>98</y>
-        <width>40</width>
+        <width>53</width>
         <height>50</height>
        </rect>
       </property>
@@ -791,7 +791,7 @@ border-color: rgb(21, 100, 192);
         <x>540</x>
         <y>170</y>
         <width>53</width>
-        <height>41</height>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -822,7 +822,7 @@ border-color: rgb(21, 100, 192);
         <x>281</x>
         <y>170</y>
         <width>263</width>
-        <height>41</height>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -865,7 +865,7 @@ border-color: rgb(21, 100, 192);
        <rect>
         <x>281</x>
         <y>212</y>
-        <width>263</width>
+        <width>310</width>
         <height>16</height>
        </rect>
       </property>
@@ -1168,13 +1168,13 @@ QScrollBar::down-arrow:vertical {
      <zorder>cbMethod</zorder>
      <zorder>frame_2</zorder>
      <zorder>frame_3</zorder>
-     <zorder>leSampleId</zorder>
      <zorder>pbSampleId</zorder>
      <zorder>pbOperator</zorder>
      <zorder>leOperator</zorder>
      <zorder>lwOperator</zorder>
      <zorder>lwSampleId</zorder>
      <zorder>label_3</zorder>
+     <zorder>leSampleId</zorder>
     </widget>
    </widget>
   </widget>
@@ -1211,15 +1211,15 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>sQLEExtend</class>
-   <extends>QLineEdit</extends>
-   <header location="global">sqleextend.h</header>
-  </customwidget>
-  <customwidget>
    <class>sMeasuring2</class>
    <extends>QWidget</extends>
    <header location="global">smeasuring2.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>sQLEExtend</class>
+   <extends>QLineEdit</extends>
+   <header location="global">sqleextend.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

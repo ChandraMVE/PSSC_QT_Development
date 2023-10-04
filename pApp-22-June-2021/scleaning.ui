@@ -292,15 +292,15 @@ font: 75 16pt &quot;Roboto&quot;;
         <property name="font">
          <font>
           <family>Roboto Medium</family>
-          <pointsize>24</pointsize>
-          <weight>9</weight>
+          <pointsize>28</pointsize>
+          <weight>10</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">border-width: 0px;
-font: 75 24pt &quot;Roboto Medium&quot;;</string>
+font: 80 28pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Rinsing of cell</string>
@@ -334,14 +334,14 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>340</x>
-           <y>70</y>
+           <y>80</y>
            <width>340</width>
            <height>70</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 80 23pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>37.12</string>
@@ -354,14 +354,14 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>70</y>
+           <y>75</y>
            <width>340</width>
            <height>70</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 80 23pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>100.05</string>
@@ -381,7 +381,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 80 20pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>Temperature</string>
@@ -394,14 +394,14 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>5</y>
+           <y>10</y>
            <width>340</width>
            <height>70</height>
           </rect>
          </property>
          <property name="styleSheet">
           <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 80 20pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>Pressure</string>
@@ -423,15 +423,15 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         <property name="font">
          <font>
           <family>Roboto Medium</family>
-          <pointsize>20</pointsize>
-          <weight>9</weight>
+          <pointsize>24</pointsize>
+          <weight>10</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+font: 80 24pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Current Cycle: -/-</string>

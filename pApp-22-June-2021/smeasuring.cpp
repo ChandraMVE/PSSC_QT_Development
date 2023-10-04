@@ -867,7 +867,7 @@ void sMeasuring::setRunning(bool state)
                 setRunState(true);
 
                 ui->lblMessage->setText(tr("Measurement in progress"));
-                ui->lblMessage->resize(471, 71);
+                ui->lblMessage->resize(680, 70);
                 ui->lblAutoCount->hide(); 
                 ui->lblStatus->show();
 

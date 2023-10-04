@@ -214,14 +214,14 @@ void sGeneralSetup::Show(QString type)
         ui->lblOldPassword->show();
         ui->leOldPassword->show();
 
-        ui->lblOldPassword->move(40, 110);
-        ui->leOldPassword->move(240, 110);
+        ui->lblOldPassword->move(40, 130);
+        ui->leOldPassword->move(280, 130);
 
-        ui->lblNewPassword->move(40, 170);
-        ui->leNewPassword->move(240, 170);
+        ui->lblNewPassword->move(40, 230);
+        ui->leNewPassword->move(280, 230);
 
-        ui->lblConfirmPassword->move(40, 230);
-        ui->leConfirmPassword->move(240, 230);
+        ui->lblConfirmPassword->move(40, 330);
+        ui->leConfirmPassword->move(280, 330);
 
     }
     else if(cType == "service")

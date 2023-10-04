@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>948</height>
+    <width>768</width>
+    <height>1200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>40</x>
      <y>100</y>
-     <width>511</width>
-     <height>571</height>
+     <width>660</width>
+     <height>720</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -45,7 +45,7 @@ background-color: rgb(241, 241, 241);
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>
@@ -73,7 +73,7 @@ border-width:0px;
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>510</y>
+      <y>650</y>
       <width>125</width>
       <height>44</height>
      </rect>
@@ -137,7 +137,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>510</y>
+      <y>650</y>
       <width>125</width>
       <height>44</height>
      </rect>
@@ -202,8 +202,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <rect>
       <x>30</x>
       <y>90</y>
-      <width>451</width>
-      <height>381</height>
+      <width>600</width>
+      <height>530</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -296,8 +296,8 @@ QScrollBar::down-arrow:vertical {
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>700</y>
-     <width>511</width>
+     <y>980</y>
+     <width>660</width>
      <height>231</height>
     </rect>
    </property>
@@ -348,7 +348,7 @@ Reconnect USB Pen Drive &amp; try again!</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>
