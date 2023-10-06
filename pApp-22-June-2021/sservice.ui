@@ -2651,7 +2651,7 @@ QTableView::item {
         <string>Description</string>
        </property>
        <property name="textAlignment">
-        <set>AlignCenter</set>
+        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
        </property>
       </column>
       <column>
@@ -2669,6 +2669,12 @@ QTableView::item {
    <class>sQLEExtend</class>
    <extends>QLineEdit</extends>
    <header location="global">sqleextend.h</header>
+</customwidget>
+  <customwidget>
+   <class>slabel</class>
+   <extends>QWidget</extends>
+   <header location="global">slabel.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

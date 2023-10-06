@@ -214,27 +214,38 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     </property>
     <property name="styleSheet">
      <string notr="true">QListWidget {
- border: 2px solid white;
- border-radius: 10px;
- padding: 0;
- background-color: rgb(255, 255, 255);
- border-color: rgb(21, 100, 192);
- color: rgb(0, 0, 0);
- font: 75 16pt &quot;Roboto Medium&quot;;
- padding-left: 15px;
- selection-background-color:  rgb(21, 100, 192);
+  border: 2px solid rgb(21, 100, 192);
+   border-radius: 15px;
+   background-color: rgb(255, 255, 255);
+   color: rgb(0, 0, 0);
+   font: 75 16pt &quot;Roboto Medium&quot;;
+   /*border-bottom-right-radius: 15px;*/
+
+}
+QListWidget QAbstractItemView {
+   border: 2px solid darkgray;
+   font: 75 16pt &quot;Roboto Medium&quot;;
+   border-radius: 5px;
+   background-color: rgb(255, 255, 255);
+
+}
+QListWidget::item {
+ height:41px;
 }
 
-QListWidget QAbstractItemView {
-border: 2px solid darkgray;
-font: 75 16pt &quot;Roboto Medium&quot;;
-border-radius: 5px;
-background-color: rgb(255, 255, 255);
-selection-background-color:  rgb(21, 100, 192);
+QListWidget::item::selected {
+   background-color:  rgb(21, 100, 192);
+   color:  rgb(255, 255, 255);
+}
+
+QListWidget::item::hover {
+   background-color:  rgb(21, 100, 192);
+   color:  rgb(255, 255, 255);
+
 }
 
 /*  vertical */
-QScrollBar:vertical {
+QListWidget QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
      background:  rgb(230,230,230);
      width: 41px;
@@ -243,12 +254,12 @@ QScrollBar:vertical {
      border-radius: 0px;
  }
 
- QScrollBar::handle:vertical {
+QListWidget QScrollBar::handle:vertical {
      background:  rgb(182, 182, 182);
      min-height: 20px;
  }
 
- QScrollBar::add-line:vertical {
+QListWidget QScrollBar::add-line:vertical {
      border: 0px solid grey;
      background:  rgb(230,230,230);
      height: 50px;
@@ -256,7 +267,7 @@ QScrollBar:vertical {
      subcontrol-origin: margin;
  }
 
- QScrollBar::sub-line:vertical {
+QListWidget QScrollBar::sub-line:vertical {
      border: 0px solid grey;
      background:  rgb(230,230,230);
      height: 50px;
@@ -264,19 +275,19 @@ QScrollBar:vertical {
      subcontrol-origin: margin;
  }
 
- QScrollBar::up-arrow:vertical {
+QListWidget QScrollBar::up-arrow:vertical {
      width: 41px;
      height: 50px;
      background-image: url(:/images/icons/cuparrow.png);
 }
 
-QScrollBar::down-arrow:vertical {
+QListWidget QScrollBar::down-arrow:vertical {
      width: 41px;
       height: 50px;
       background-image: url(:/images/icons/cdownarrow.png);
  }
 
- QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+QListWidget QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
       background: none;
  }
 </string>

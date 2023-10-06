@@ -27,16 +27,16 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-background-color: rgb(241, 241, 241);
+background-color: red;
 border-width: 2px;
-border-color: rgb(21, 100, 192);
+border-color: red;
 border-style: solid;
 border-radius: 10;
-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
 font: 75 16pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(204, 244, 198);
+background-color: rgb(255, 174, 171);
 border-width: 2px;
 border-color: rgb(127, 143, 127);
 border-style: solid;
@@ -45,9 +45,9 @@ color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
+background-color: rgb(194, 54, 11);
 border-width: 2px;
-border-color: rgb(194, 194, 194);
+border-color: rgb(194, 54, 11);
 border-style: solid;
 border-radius: 10;
 color: rgb(255, 255, 255);
@@ -70,11 +70,10 @@ border-style: solid;
 border-radius: 10;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
-}
-</string>
+}</string>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>Home</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pbSave">
@@ -1392,18 +1391,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
        <height>760</height>
       </rect>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>749</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>749</width>
-       <height>16777215</height>
-      </size>
-     </property>
+   
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -4140,6 +4128,12 @@ QGroupBox::title {
            <height>50</height>
           </rect>
          </property>
+<property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <family>Roboto Medium</family>
@@ -4246,6 +4240,9 @@ QScrollBar::down-arrow:vertical {
       background:  rgb(241, 241, 241);
  }
 </string>
+         </property>
+ <property name="maxVisibleItems">
+          <number>8</number>
          </property>
          <property name="frame">
           <bool>true</bool>

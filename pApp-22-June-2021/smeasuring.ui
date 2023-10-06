@@ -412,6 +412,12 @@ QScrollBar::down-arrow:vertical {
  }
 </string>
       </property>
+ <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
+      </property>
       <property name="frame">
        <bool>true</bool>
       </property>
@@ -528,12 +534,22 @@ font: 75 16pt &quot;Roboto&quot;;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 50 28pt &quot;Roboto Medium&quot;;</string>
+            
+ <string notr="true">QFrame, QLabel {
+   font: 75 24pt &quot;Roboto Medium&quot;;
+   border-width:0px;
+   border-radius: 0px;
+   border-color: rgb(255, 255, 255);
+}
+</string>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
        </property>
        <property name="text">
         <string>Select new parameters OR
 Press Run to Start</string>
+
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -552,13 +568,22 @@ Press Run to Start</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;</string>
+ <string notr="true">QFrame, QLabel {
+   border-width:0px;
+   border-radius: 0px;
+   border-color: rgb(255, 255, 255);
+}</string>
+
+
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
+       </property>
+<property name="lineWidth">
+        <number>0</number>
        </property>
        <widget class="QLabel" name="lblTemperature">
         <property name="geometry">
@@ -576,9 +601,6 @@ font: 80 23pt &quot;Roboto Medium&quot;;</string>
         <property name="text">
          <string>37.12</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
        </widget>
        <widget class="QLabel" name="lblPressure">
         <property name="geometry">
@@ -595,9 +617,7 @@ font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>100.05</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+       
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
@@ -616,9 +636,7 @@ font: 80 20pt &quot;Roboto Medium&quot;;</string>
         <property name="text">
          <string>Temperature</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
+       
        </widget>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
@@ -636,9 +654,7 @@ font: 80 20pt &quot;Roboto Medium&quot;;</string>
         <property name="text">
          <string>Pressure</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
+       
        </widget>
       </widget>
       <widget class="QLabel" name="lblAutoCount">
@@ -660,9 +676,15 @@ font: 80 20pt &quot;Roboto Medium&quot;;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 79 23pt &quot;Roboto Medium&quot;;</string>
+        <string notr="true">QFrame, QLabel {
+border-width: 0px;
+font: 75 20pt &quot;Roboto Medium&quot;;
+}
+</string>
        </property>
+       <property name="lineWidth">
+        <number>0</number>
+           </property>
        <property name="text">
         <string>Auto Repeats: -/-</string>
        </property>
@@ -692,8 +714,14 @@ font: 79 23pt &quot;Roboto Medium&quot;;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 79 22pt &quot;Roboto Medium&quot;;</string>
+       
+ <string notr="true">QLabel {
+border-width: 0px;
+font: 75 20pt &quot;Roboto Medium&quot;;
+}</string>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
        </property>
        <property name="text">
         <string>Temperature Stabilizing @ 37.8 C</string>
@@ -705,10 +733,7 @@ font: 79 22pt &quot;Roboto Medium&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
-      <zorder>lblMessage</zorder>
-      <zorder>frLiveData</zorder>
-      <zorder>lblStatus</zorder>
-      <zorder>lblAutoCount</zorder>
+     
      </widget>
      <widget class="sQLEExtend" name="leSampleId">
       <property name="geometry">
@@ -891,6 +916,9 @@ QListWidget QAbstractItemView {
    border-radius: 5px;
    background-color: rgb(255, 255, 255);
 }
+QListWidget::item {
+ height:41px;
+}
 
 QListWidget::item::selected {
    background-color:  rgb(21, 100, 192);
@@ -1043,6 +1071,8 @@ QListWidget QAbstractItemView {
    font: 75 16pt &quot;Roboto Medium&quot;;
    border-radius: 5px;
    background-color: rgb(255, 255, 255);
+QListWidget::item {
+ height:41px;
 }
 
 QListWidget::item::selected {
@@ -1163,22 +1193,11 @@ QScrollBar::down-arrow:vertical {
        </property>
       </item>
      </widget>
-     <zorder>label</zorder>
-     <zorder>label_2</zorder>
-     <zorder>cbMethod</zorder>
-     <zorder>frame_2</zorder>
-     <zorder>frame_3</zorder>
-     <zorder>pbSampleId</zorder>
-     <zorder>pbOperator</zorder>
-     <zorder>leOperator</zorder>
-     <zorder>lwOperator</zorder>
-     <zorder>lwSampleId</zorder>
-     <zorder>label_3</zorder>
-     <zorder>leSampleId</zorder>
+   
     </widget>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pbStop_2">
+  <widget class="QLabel" name="lblIdleTimer">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -1187,27 +1206,31 @@ QScrollBar::down-arrow:vertical {
      <height>80</height>
     </rect>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
+   
    <property name="styleSheet">
-    <string notr="true">background-color:white;
-border-width: 0px;
-border-color: rgb(21, 100, 192);
-border-style: solid;
-border-radius: 10;
-color: rgb(250, 250, 250);
+       <string notr="true">border-width: 0px;
+
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
    </property>
    <property name="text">
+     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pbStop_2">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>590</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+   
     <string>Result</string>
    </property>
   </widget>
-  <zorder>twMeasuring</zorder>
-  <zorder>wResult</zorder>
-  <zorder>pbRun</zorder>
-  <zorder>pbStop</zorder>
-  <zorder>pbStop_2</zorder>
+  
  </widget>
  <customwidgets>
   <customwidget>
