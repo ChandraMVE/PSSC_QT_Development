@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sFileSelect</class>
+ <widget class="QWidget" name="sFileSelect">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>768</width>
+    <height>1200</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="frFileSelect">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>100</y>
+     <width>660</width>
+     <height>720</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width: 3px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 30px;
+
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+
+background-color: rgb(241, 241, 241);
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblCaption">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>660</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 16pt &quot;Roboto Medium&quot;;
+background-color: rgb(21, 100, 192);
+color: rgb(255, 255, 255);
+border-radius : 0px;
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
+border-width:0px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Firmware Upgrade Select File</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbSelected">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>650</y>
+      <width>125</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color: rgb(51, 204, 0);
+border-width: 2px;
+border-color: rgb(51, 204, 0);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>OK</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbCancel">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>650</y>
+      <width>125</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(194, 194, 194);
+border-width: 2px;
+border-color: rgb(194, 194, 194);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="lwFiles">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>600</width>
+      <height>530</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget {
+ border: 2px solid white;
+ border-radius: 10px;
+ padding: 0;
+ background-color: rgb(255, 255, 255);
+ border-color: rgb(21, 100, 192);
+ color: rgb(0, 0, 0);
+ font: 75 16pt &quot;Roboto Medium&quot;;
+ padding-left: 15px;
+ selection-background-color:  rgb(21, 100, 192);
+}
+
+QListWidget QAbstractItemView {
+border: 2px solid darkgray;
+font: 75 16pt &quot;Roboto Medium&quot;;
+border-radius: 5px;
+background-color: rgb(255, 255, 255);
+selection-background-color:  rgb(21, 100, 192);
+}
+
+/*  vertical */
+QScrollBar:vertical {
+     border: 0px solid  rgb(21, 100, 192);
+     background:  rgb(230,230,230);
+     width: 41px;
+	 margin: 50px 0 50px 0;
+     border-left: 2px solid  rgb(182, 182, 182);
+     border-radius: 0px;
+ }
+
+ QScrollBar::handle:vertical {
+     background:  rgb(182, 182, 182);
+     min-height: 20px;
+ }
+
+ QScrollBar::add-line:vertical {
+     border: 0px solid grey;
+     background:  rgb(230,230,230);
+     height: 50px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::sub-line:vertical {
+     border: 0px solid grey;
+     background:  rgb(230,230,230);
+     height: 50px;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+
+ QScrollBar::up-arrow:vertical {
+     width: 41px;
+     height: 50px;
+     background-image: url(:/images/icons/cuparrow.png);
+}
+
+QScrollBar::down-arrow:vertical {
+     width: 41px;
+      height: 50px;
+      background-image: url(:/images/icons/cdownarrow.png);
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+      background: none;
+ }
+</string>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="isWrapping" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frMessage">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>870</y>
+     <width>660</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width: 3px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 30px;
+
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+
+background-color: rgb(241, 241, 241);
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblMessage">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>70</y>
+      <width>451</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>No USB Pen Drive Found!
+Reconnect USB Pen Drive &amp; try again!</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblMCaption">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>660</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 16pt &quot;Roboto Medium&quot;;
+background-color: rgb(21, 100, 192);
+color: rgb(255, 255, 255);
+border-radius : 0px;
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
+border-width:0px;
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>Firmware Upgrade Select File</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbOK">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>160</y>
+      <width>125</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-color: rgb(51, 204, 0);
+border-width: 2px;
+border-color: rgb(51, 204, 0);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Ok</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

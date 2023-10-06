@@ -1,0 +1,3040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sKeypad</class>
+ <widget class="QWidget" name="sKeypad">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>3300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="frEnglishAlpha">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>749</width>
+     <height>450</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	 border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-radius: 30px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+background-color: rgb(21, 100, 192);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="pbQ">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Q</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbW">
+    <property name="geometry">
+     <rect>
+      <x>82</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>W</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbE">
+    <property name="geometry">
+     <rect>
+      <x>155</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>E</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbR">
+    <property name="geometry">
+     <rect>
+      <x>228</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>R</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbT">
+    <property name="geometry">
+     <rect>
+      <x>302</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>T</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbY">
+    <property name="geometry">
+     <rect>
+      <x>376</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbU">
+    <property name="geometry">
+     <rect>
+      <x>449</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>U</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbI">
+    <property name="geometry">
+     <rect>
+      <x>522</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>I</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbO">
+    <property name="geometry">
+     <rect>
+      <x>595</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>O</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbP">
+    <property name="geometry">
+     <rect>
+      <x>668</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>P</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbA">
+    <property name="geometry">
+     <rect>
+      <x>39</x>
+      <y>219</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>A</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbS">
+    <property name="geometry">
+     <rect>
+      <x>113</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>S</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbD">
+    <property name="geometry">
+     <rect>
+      <x>187</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>D</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbF">
+    <property name="geometry">
+     <rect>
+      <x>261</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>F</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbG">
+    <property name="geometry">
+     <rect>
+      <x>336</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>G</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbH">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>H</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbJ">
+    <property name="geometry">
+     <rect>
+      <x>484</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>J</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbK">
+    <property name="geometry">
+     <rect>
+      <x>558</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>K</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbL">
+    <property name="geometry">
+     <rect>
+      <x>633</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>L</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbZ">
+    <property name="geometry">
+     <rect>
+      <x>111</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Z</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbX">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbC">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>C</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbV">
+    <property name="geometry">
+     <rect>
+      <x>334</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>V</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbB">
+    <property name="geometry">
+     <rect>
+      <x>409</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>B</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN">
+    <property name="geometry">
+     <rect>
+      <x>484</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>N</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbM">
+    <property name="geometry">
+     <rect>
+      <x>558</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>M</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbCap">
+    <property name="geometry">
+     <rect>
+      <x>17</x>
+      <y>290</y>
+      <width>90</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Caps</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbCancel">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbSpace">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>360</y>
+      <width>491</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Space</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbEnter">
+    <property name="geometry">
+     <rect>
+      <x>624</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Enter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb123">
+    <property name="geometry">
+     <rect>
+      <x>632</x>
+      <y>290</y>
+      <width>90</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>#123</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbBack">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>15</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leInput">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>15</y>
+      <width>391</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>85</y>
+      <width>581</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frNum">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>2190</y>
+     <width>381</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	 border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-radius: 30px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+background-color: rgb(21, 100, 192);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="pbN1">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>220</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN3">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>220</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>160</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN5">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>160</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN6">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>160</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>6</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN7">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>7</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN8">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>100</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>8</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN9">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>100</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>9</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN0">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>280</y>
+      <width>161</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNdot">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>220</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>.</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNplus">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>100</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNminus">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>160</y>
+      <width>61</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNcancel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNenter">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>100</y>
+      <width>61</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Enter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNback">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>15</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leNinput">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>15</y>
+      <width>221</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>80</y>
+      <width>581</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frNumSpecial">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1610</y>
+     <width>581</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	 border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-radius: 30px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+background-color: rgb(21, 100, 192);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="pbN1SP">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN2SP">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN3SP">
+    <property name="geometry">
+     <rect>
+      <x>125</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN4SP">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN5SP">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN6SP">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>6</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN7SP">
+    <property name="geometry">
+     <rect>
+      <x>345</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>7</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN8SP">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>8</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN9SP">
+    <property name="geometry">
+     <rect>
+      <x>455</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>9</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN0SP">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>100</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNdotSP">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>.</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNplusSP">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNminusSP">
+    <property name="geometry">
+     <rect>
+      <x>125</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNastricsSP">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNunderSP">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>_</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNequalSP">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>=</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNhashSP">
+    <property name="geometry">
+     <rect>
+      <x>345</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>#</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNpercentageSP">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>%</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNopenbracketSP">
+    <property name="geometry">
+     <rect>
+      <x>455</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>(</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNclosebracketSP">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>160</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNcancelSP">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNspaceSP">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>220</y>
+      <width>261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Space</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNenterSP">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>220</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Enter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNabcSP">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>220</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>ABC</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbNbackSP">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>15</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leNinputSP">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>15</y>
+      <width>391</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>80</y>
+      <width>581</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frOtherAlpha">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>490</y>
+     <width>749</width>
+     <height>450</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">	 border: 2px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-radius: 30px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+background-color: rgb(21, 100, 192);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="pbQ_3">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Q</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbW_3">
+    <property name="geometry">
+     <rect>
+      <x>83</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>W</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbE_3">
+    <property name="geometry">
+     <rect>
+      <x>156</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>E</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbR_3">
+    <property name="geometry">
+     <rect>
+      <x>229</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>R</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbT_3">
+    <property name="geometry">
+     <rect>
+      <x>302</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>T</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbY_3">
+    <property name="geometry">
+     <rect>
+      <x>375</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbU_3">
+    <property name="geometry">
+     <rect>
+      <x>449</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>U</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbI_3">
+    <property name="geometry">
+     <rect>
+      <x>523</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>I</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbO_3">
+    <property name="geometry">
+     <rect>
+      <x>596</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>O</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbP_6">
+    <property name="geometry">
+     <rect>
+      <x>669</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>P</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbA_3">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>A</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbS_3">
+    <property name="geometry">
+     <rect>
+      <x>83</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>S</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbD_3">
+    <property name="geometry">
+     <rect>
+      <x>156</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>D</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbF_3">
+    <property name="geometry">
+     <rect>
+      <x>229</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>F</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbG_3">
+    <property name="geometry">
+     <rect>
+      <x>302</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>G</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbH_3">
+    <property name="geometry">
+     <rect>
+      <x>376</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>H</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbJ_3">
+    <property name="geometry">
+     <rect>
+      <x>449</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>J</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbK_3">
+    <property name="geometry">
+     <rect>
+      <x>523</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>K</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbL_3">
+    <property name="geometry">
+     <rect>
+      <x>596</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>L</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbZ_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Z</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbX_2">
+    <property name="geometry">
+     <rect>
+      <x>106</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbC_2">
+    <property name="geometry">
+     <rect>
+      <x>182</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>C</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbV_2">
+    <property name="geometry">
+     <rect>
+      <x>258</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>V</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbB_2">
+    <property name="geometry">
+     <rect>
+      <x>334</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>B</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbN_2">
+    <property name="geometry">
+     <rect>
+      <x>409</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>N</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbM_2">
+    <property name="geometry">
+     <rect>
+      <x>485</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>M</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbCap_2">
+    <property name="geometry">
+     <rect>
+      <x>134</x>
+      <y>360</y>
+      <width>73</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Caps</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbCancel_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbSpace_3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>360</y>
+      <width>323</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Space</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbEnter_4">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Enter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb123_3">
+    <property name="geometry">
+     <rect>
+      <x>212</x>
+      <y>360</y>
+      <width>73</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>#123</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbBack_4">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>15</y>
+      <width>174</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="leInput_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>15</y>
+      <width>501</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>50</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>102</y>
+      <width>748</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbP_7">
+    <property name="geometry">
+     <rect>
+      <x>669</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>P</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbP_8">
+    <property name="geometry">
+     <rect>
+      <x>562</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>P</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pbP_9">
+    <property name="geometry">
+     <rect>
+      <x>638</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color:  rgb(51, 204, 255);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+    </property>
+    <property name="text">
+     <string>P</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
