@@ -234,7 +234,7 @@ font: 75 16pt &quot;Roboto&quot;;</string>
         <x>29</x>
         <y>55</y>
         <width>683</width>
-        <height>526</height>
+        <height>600</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -259,8 +259,8 @@ font: 75 16pt &quot;Roboto&quot;;
         <rect>
          <x>-3</x>
          <y>10</y>
-         <width>680</width>
-         <height>526</height>
+         <width>670</width>
+         <height>595</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -284,7 +284,7 @@ font: 75 16pt &quot;Roboto&quot;;
         <property name="geometry">
          <rect>
           <x>7</x>
-          <y>93</y>
+          <y>160</y>
           <width>668</width>
           <height>70</height>
          </rect>
@@ -316,9 +316,9 @@ font: 80 28pt &quot;Roboto Medium&quot;;</string>
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>275</y>
+          <y>390</y>
           <width>680</width>
-          <height>140</height>
+          <height>180</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -334,7 +334,7 @@ font: 80 28pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>340</x>
-           <y>80</y>
+           <y>130</y>
            <width>340</width>
            <height>70</height>
           </rect>
@@ -354,7 +354,7 @@ font: 80 23pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>75</y>
+           <y>130</y>
            <width>340</width>
            <height>70</height>
           </rect>
@@ -374,7 +374,7 @@ font: 80 23pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>340</x>
-           <y>5</y>
+           <y>60</y>
            <width>340</width>
            <height>70</height>
           </rect>
@@ -394,7 +394,7 @@ font: 80 20pt &quot;Roboto Medium&quot;;</string>
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>10</y>
+           <y>65</y>
            <width>340</width>
            <height>70</height>
           </rect>
@@ -410,12 +410,16 @@ font: 80 20pt &quot;Roboto Medium&quot;;</string>
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
+        <zorder>lblPressure</zorder>
+        <zorder>lblTemperature</zorder>
+        <zorder>label_10</zorder>
+        <zorder>label_8</zorder>
        </widget>
        <widget class="QLabel" name="lblCountDown">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>172</y>
+          <y>250</y>
           <width>661</width>
           <height>70</height>
          </rect>

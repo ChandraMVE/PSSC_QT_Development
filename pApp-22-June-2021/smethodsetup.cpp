@@ -461,7 +461,7 @@ void sMethodSetup::showD6377()
 
     ui->lePara3->show();
     ui->lblPara3->show();
-    ui->frPara1->resize(501, 281);
+    ui->frPara1->resize(660,350);
     
     dvPara4->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
     ui->lePara4->setText(cSettings.getShakerSpeed(stdD6377.shaker_speed));
@@ -566,7 +566,7 @@ void sMethodSetup::showD6378()
     ui->lblPara3->show();
     ui->lePara3->show();
 
-    ui->frPara1->resize(501, 211);
+    ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
 
@@ -627,7 +627,7 @@ void sMethodSetup::showD5188()
     ui->lblPara3->show();
     ui->lePara3->show();
 
-    ui->frPara1->resize(501, 211);
+    ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
 

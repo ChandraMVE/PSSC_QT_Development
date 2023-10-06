@@ -1211,15 +1211,15 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
  </widget>
  <customwidgets>
   <customwidget>
+   <class>sQLEExtend</class>
+   <extends>QLineEdit</extends>
+   <header location="global">sqleextend.h</header>
+  </customwidget>
+  <customwidget>
    <class>sMeasuring2</class>
    <extends>QWidget</extends>
    <header location="global">smeasuring2.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>sQLEExtend</class>
-   <extends>QLineEdit</extends>
-   <header location="global">sqleextend.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

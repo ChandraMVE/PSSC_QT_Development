@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QGraphicsProxyWidget *proxy = scene->addWidget(this);
     view->setScene(scene);
     view->show();
- //  view->rotate(90);
+   //view->rotate(90);
 
     ui->setupUi(this);
 
@@ -2874,8 +2874,8 @@ void MainWindow::onMenuClicked(int menu)
         ui->listSetupMenu->hide();
     }
 
-    if(cMenu < M_MEMORY) ui->listSetupMenu->move(440,60+96);
-    else ui->listSetupMenu->move(440,60);
+    if(cMenu < M_MEMORY) ui->listSetupMenu->move(545,90+96);
+    else ui->listSetupMenu->move(545,90);
 
     switch (menu) {
     case M_MEASURING:

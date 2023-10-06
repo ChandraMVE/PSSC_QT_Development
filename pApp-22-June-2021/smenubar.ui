@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>22</y>
+     <y>19</y>
      <width>768</width>
      <height>85</height>
     </rect>
@@ -36,7 +36,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>8</y>
+     <y>5</y>
      <width>167</width>
      <height>74</height>
     </rect>
@@ -100,7 +100,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>207</x>
-     <y>8</y>
+     <y>5</y>
      <width>167</width>
      <height>74</height>
     </rect>
@@ -164,7 +164,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>394</x>
-     <y>8</y>
+     <y>5</y>
      <width>167</width>
      <height>74</height>
     </rect>
@@ -228,7 +228,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>581</x>
-     <y>8</y>
+     <y>5</y>
      <width>167</width>
      <height>74</height>
     </rect>

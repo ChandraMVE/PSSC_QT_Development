@@ -183,7 +183,7 @@ QTabBar::tab {
 
     padding: 2px;
     height:41px;
-   width: 135px; /*180*/
+   width: 176px; /*180*/
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
@@ -207,7 +207,7 @@ QTabBar::tab:selected {
 </string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">

@@ -235,10 +235,10 @@
    <widget class="QListWidget" name="listSetupMenu">
     <property name="geometry">
      <rect>
-      <x>565</x>
+      <x>545</x>
       <y>60</y>
-      <width>200</width>
-      <height>170</height>
+      <width>191</width>
+      <height>182</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -250,7 +250,7 @@
    border-radius: 10px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
-   font: 75 16pt &quot;Roboto Medium&quot;;
+   font: 75 18pt &quot;Roboto Medium&quot;;
    padding: 5px 5px 5px 5px;
 }
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>1448</height>
+    <width>800</width>
+    <height>3300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>351</height>
+     <width>749</width>
+     <height>450</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -39,10 +39,10 @@ background-color: rgb(21, 100, 192);</string>
    <widget class="QPushButton" name="pbQ">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>9</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -64,10 +64,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbW">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>82</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -89,10 +89,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbE">
     <property name="geometry">
      <rect>
-      <x>125</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>155</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -114,10 +114,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbR">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>228</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -139,10 +139,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbT">
     <property name="geometry">
      <rect>
-      <x>235</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>302</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -164,10 +164,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbY">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>376</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -189,10 +189,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbU">
     <property name="geometry">
      <rect>
-      <x>345</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>449</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -214,10 +214,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbI">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>522</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -239,10 +239,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbO">
     <property name="geometry">
      <rect>
-      <x>455</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>595</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -264,10 +264,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbP">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>668</x>
+      <y>148</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -289,10 +289,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbA">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>39</x>
+      <y>219</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -314,10 +314,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbS">
     <property name="geometry">
      <rect>
-      <x>95</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>113</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -339,10 +339,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbD">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>187</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -364,10 +364,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbF">
     <property name="geometry">
      <rect>
-      <x>205</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>261</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -389,10 +389,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbG">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>336</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -414,10 +414,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbH">
     <property name="geometry">
      <rect>
-      <x>315</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>410</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -439,10 +439,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbJ">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>484</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -464,10 +464,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbK">
     <property name="geometry">
      <rect>
-      <x>425</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>558</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -489,10 +489,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbL">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>633</x>
+      <y>220</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -514,10 +514,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbZ">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>111</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -539,10 +539,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbX">
     <property name="geometry">
      <rect>
-      <x>155</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>185</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -564,10 +564,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbC">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>260</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -589,10 +589,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbV">
     <property name="geometry">
      <rect>
-      <x>265</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>334</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -614,10 +614,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbB">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>409</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -639,10 +639,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbN">
     <property name="geometry">
      <rect>
-      <x>375</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>484</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -664,10 +664,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbM">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>558</x>
+      <y>290</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -689,10 +689,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbCap">
     <property name="geometry">
      <rect>
-      <x>25</x>
-      <y>220</y>
-      <width>71</width>
-      <height>51</height>
+      <x>17</x>
+      <y>290</y>
+      <width>90</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -714,10 +714,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbCancel">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
-      <width>91</width>
-      <height>51</height>
+      <x>16</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -739,10 +739,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbSpace">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>280</y>
-      <width>341</width>
-      <height>51</height>
+      <x>130</x>
+      <y>360</y>
+      <width>491</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -764,10 +764,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbEnter">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>280</y>
-      <width>91</width>
-      <height>51</height>
+      <x>624</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -789,10 +789,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pb123">
     <property name="geometry">
      <rect>
-      <x>485</x>
-      <y>220</y>
-      <width>71</width>
-      <height>51</height>
+      <x>632</x>
+      <y>290</y>
+      <width>90</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -897,7 +897,7 @@ border-color: rgb(21, 100, 192);
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>680</y>
+     <y>2190</y>
      <width>381</width>
      <height>351</height>
     </rect>
@@ -1377,7 +1377,7 @@ border-color: rgb(21, 100, 192);
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>370</y>
+     <y>1610</y>
      <width>581</width>
      <height>291</height>
     </rect>
@@ -2082,9 +2082,9 @@ border-color: rgb(21, 100, 192);
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>1070</y>
-     <width>581</width>
-     <height>351</height>
+     <y>490</y>
+     <width>749</width>
+     <height>450</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -2104,10 +2104,10 @@ background-color: rgb(21, 100, 192);</string>
    <widget class="QPushButton" name="pbQ_3">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>9</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2129,10 +2129,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbW_3">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>83</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2154,10 +2154,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbE_3">
     <property name="geometry">
      <rect>
-      <x>125</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>156</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2179,10 +2179,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbR_3">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>229</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2204,10 +2204,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbT_3">
     <property name="geometry">
      <rect>
-      <x>235</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>302</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2229,10 +2229,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbY_3">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>375</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2254,10 +2254,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbU_3">
     <property name="geometry">
      <rect>
-      <x>345</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>449</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2279,10 +2279,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbI_3">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>523</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2304,10 +2304,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbO_3">
     <property name="geometry">
      <rect>
-      <x>455</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>596</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2329,10 +2329,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbP_6">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>100</y>
-      <width>51</width>
-      <height>51</height>
+      <x>669</x>
+      <y>120</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2354,10 +2354,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbA_3">
     <property name="geometry">
      <rect>
-      <x>15</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>9</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2379,10 +2379,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbS_3">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>83</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2404,10 +2404,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbD_3">
     <property name="geometry">
      <rect>
-      <x>125</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>156</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2429,10 +2429,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbF_3">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>229</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2454,10 +2454,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbG_3">
     <property name="geometry">
      <rect>
-      <x>235</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>302</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2479,10 +2479,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbH_3">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>376</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2504,10 +2504,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbJ_3">
     <property name="geometry">
      <rect>
-      <x>345</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>449</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2529,10 +2529,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbK_3">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>523</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2554,10 +2554,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbL_3">
     <property name="geometry">
      <rect>
-      <x>455</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>596</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2579,10 +2579,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbZ_3">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>30</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2604,10 +2604,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbX_2">
     <property name="geometry">
      <rect>
-      <x>95</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>106</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2629,10 +2629,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbC_2">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>182</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2654,10 +2654,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbV_2">
     <property name="geometry">
      <rect>
-      <x>205</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>258</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2679,10 +2679,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbB_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>334</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2704,10 +2704,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbN_2">
     <property name="geometry">
      <rect>
-      <x>315</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>409</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2729,10 +2729,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbM_2">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>485</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2754,10 +2754,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbCap_2">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>280</y>
-      <width>71</width>
-      <height>51</height>
+      <x>134</x>
+      <y>360</y>
+      <width>73</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2779,10 +2779,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbCancel_4">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>280</y>
-      <width>91</width>
-      <height>51</height>
+      <x>20</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2804,10 +2804,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbSpace_3">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>280</y>
-      <width>191</width>
-      <height>51</height>
+      <x>290</x>
+      <y>360</y>
+      <width>323</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2829,10 +2829,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbEnter_4">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>280</y>
-      <width>91</width>
-      <height>51</height>
+      <x>620</x>
+      <y>360</y>
+      <width>110</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2854,10 +2854,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pb123_3">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>280</y>
-      <width>71</width>
-      <height>51</height>
+      <x>212</x>
+      <y>360</y>
+      <width>73</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2879,10 +2879,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbBack_4">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>550</x>
       <y>15</y>
-      <width>131</width>
-      <height>51</height>
+      <width>174</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2906,8 +2906,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <rect>
       <x>20</x>
       <y>15</y>
-      <width>391</width>
-      <height>51</height>
+      <width>501</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2949,8 +2949,8 @@ border-color: rgb(21, 100, 192);
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>85</y>
-      <width>581</width>
+      <y>102</y>
+      <width>748</width>
       <height>3</height>
      </rect>
     </property>
@@ -2961,10 +2961,10 @@ border-color: rgb(21, 100, 192);
    <widget class="QPushButton" name="pbP_7">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>160</y>
-      <width>51</width>
-      <height>51</height>
+      <x>669</x>
+      <y>200</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -2986,10 +2986,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbP_8">
     <property name="geometry">
      <rect>
-      <x>425</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>562</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -3011,10 +3011,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QPushButton" name="pbP_9">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>220</y>
-      <width>51</width>
-      <height>51</height>
+      <x>638</x>
+      <y>280</y>
+      <width>70</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="focusPolicy">

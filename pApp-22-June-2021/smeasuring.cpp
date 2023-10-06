@@ -43,7 +43,7 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lwSampleId->resize(271, 171);
     ui->lwOperator->resize(271, 171);
 
-    ui->lblMessage->resize(680,71);
+    ui->lblMessage->resize(680,141);
     ui->lblAutoCount->hide();
     ui->lblStatus->hide();
 
