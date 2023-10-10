@@ -16,7 +16,7 @@ struct USER_SETUP {
     int error_buzzer_enable;
     int gmt;
     int rinse_cycle;
-  int auto_print;
+    int auto_print;
 
     friend QDataStream &operator<< (QDataStream &out, const USER_SETUP &tmp)
     {
@@ -38,7 +38,7 @@ namespace Ui {
 class sUserSetup;
 }
 
-class sUserSetup : public QWidget,  public sAccessWidget
+class sUserSetup : public QWidget, public sAccessWidget
 {
     Q_OBJECT
 
@@ -48,7 +48,7 @@ public:
     void Show();
     int getGMTSeconds(void);
     void sendBuzAndVol(void);
-QString getBuzAndVol(void);
+    QString getBuzAndVol(void);
 
     void setDefaults();
     bool readFile();
@@ -56,11 +56,12 @@ QString getBuzAndVol(void);
     void showUserSetup();
     void updateUserSetup();
 
- void setWaitACKStatus(bool tmp);
+    void setWaitACKStatus(bool tmp);
     bool getWaitACKStatus(void);
     void hideAfterACK(bool tmp);
     bool getHideAfterACK();
     bool isSwitchEnabled(int tmp);
+
 signals:
     void showHome(bool);
     void getConfirmation(int, int);
@@ -75,7 +76,7 @@ private:
     Ui::sUserSetup *ui;
     QStringList qslGMTSeconds;
     bool cParasChanged;
- sProtocol cProtocol;
+    sProtocol cProtocol;
     bool cHide;
     bool cEnSwitch;
 

@@ -254,18 +254,18 @@ font: 75 16pt &quot;Roboto&quot;;
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      
-      <widget class="QFrame" name="frame_3">
-       <property name="geometry">
-        <rect>
-         <x>-3</x>
-         <y>10</y>
-         <width>670</width>
-         <height>595</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);
+     </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>-3</x>
+        <y>10</y>
+        <width>670</width>
+        <height>595</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
 border-width: 0px;
 border-color: rgb(21, 100, 192);
 border-style: solid;
@@ -274,7 +274,7 @@ color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 
 </string>
-</property>
+      </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
       </property>
@@ -335,7 +335,7 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-    <widget class="QLabel" name="lblTemperature">
+       <widget class="QLabel" name="lblTemperature">
         <property name="geometry">
          <rect>
           <x>7</x>
@@ -350,9 +350,9 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
 font: 80 28pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-          <string>--.--</string>
+         <string>--.--</string>
         </property>
- </widget>
+       </widget>
        <widget class="QLabel" name="lblPressure">
         <property name="geometry">
          <rect>
@@ -380,13 +380,12 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          </rect>
         </property>
         <property name="styleSheet">
-  <string notr="true">color: rgb(77, 155, 232);
-  font: 75 16pt &quot;Roboto Medium&quot;;</string>
+         <string notr="true">color: rgb(77, 155, 232);
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Temperature</string>
         </property>
-      
        </widget>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
@@ -407,7 +406,7 @@ font: 80 24pt &quot;Roboto Medium&quot;;</string>
    
         </property>
        </widget>
- </widget>
+      </widget>
       <widget class="QLabel" name="lblCountDown">
        <property name="geometry">
         <rect>

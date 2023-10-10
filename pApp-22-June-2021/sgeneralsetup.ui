@@ -207,7 +207,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-   <number>0</number>
+    <number>0</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -4128,7 +4128,7 @@ QGroupBox::title {
            <height>50</height>
           </rect>
          </property>
-<property name="maximumSize">
+         <property name="maximumSize">
           <size>
            <width>16777215</width>
            <height>16777215</height>
@@ -4241,7 +4241,7 @@ QScrollBar::down-arrow:vertical {
  }
 </string>
          </property>
- <property name="maxVisibleItems">
+         <property name="maxVisibleItems">
           <number>8</number>
          </property>
          <property name="frame">
@@ -4438,11 +4438,11 @@ QScrollBar::down-arrow:vertical {
       background:  rgb(241, 241, 241);
  }
 </string>
-   </property>
+         </property>
          <property name="maxVisibleItems">
           <number>8</number>
-         </property>      
-            <property name="frame">
+         </property>
+         <property name="frame">
           <bool>true</bool>
          </property>
          <item>

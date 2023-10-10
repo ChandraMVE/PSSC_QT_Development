@@ -302,7 +302,6 @@ bool sTestModel::AppendRecord(int selValue, QString noperator, QString sampleID,
 bool sTestModel::TransferRecords(QString fname)
 {
 
-  
     //fname = QApplication::applicationDirPath() + "/" + fname;
     fname = FF_USB + fname;
 
@@ -413,11 +412,11 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
 
     if(!cSettings.checkFileExists("/dev/usb/lp0"))
     {
-       return SerialPrinter(precords);
+        return SerialPrinter(precords);
     }
     else
     {
-          if(precords) emit showStatusBox(tr("Memory Print"), tr("Wait..."), true);
+        if(precords) emit showStatusBox(tr("Memory Print"), tr("Wait..."), true);
         else emit showStatusBox(tr("Test Result Print"), tr("Wait..."), true);
 
         QString str = "usb-devices | grep Product";
@@ -457,7 +456,7 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
 
                 if(m_fd < 0)
                 {
-                   if(precords) emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
+                    if(precords) emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
                     else emit showMsgBox(tr("Test Result Print"), tr("Printer not found!"));
                    //emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
 
@@ -481,7 +480,7 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
 
                         while(timeout.elapsed() < 3000) QCoreApplication::processEvents();
 
-                      if((cPrinterError==1) || timeout.elapsed()>3000)
+                        if((cPrinterError==1) || timeout.elapsed()>3000)
                         {
                             if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Printing!"));
                             else emit showMsgBox(tr("Test Result Print"), tr("Error Printing!"));
@@ -490,8 +489,8 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
                         {
                             if(precords) emit showStatusBox(tr("Memory Print"), tr("Printing..."), true);
                             else emit showStatusBox(tr("Test Result Print"), tr("Printing..."), true);
-                        }                   
-                         }
+                        }
+                    }
 
                     while( cPrinterError ==2)
                     {
@@ -510,10 +509,10 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
 
                             if(ret <0)
                             {
-
                                 if(precords) emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
                                 else emit showMsgBox(tr("Test Result Print"), tr("Error 1 Printing!"));
-                   cPrinterError=1;
+
+                                cPrinterError=1;
                                 break;
                             }
                         }
@@ -538,13 +537,13 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
 
                         if(cPrinterError==2)
                         {
-                           if(precords) emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
+                            if(precords) emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
                             else emit showStatusBox(tr("Test Result Print"), tr("Printing done!"), false);
 
                             return true;
                         }
-                        else 
-                        return false;
+                        else
+                            return false;
                     }
 
                 } 
@@ -552,7 +551,6 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
              }
              else
              {
-                
                 if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
                 else emit showMsgBox(tr("Test Result Print"), tr("Error Spooling!"));
                  return false;
@@ -570,7 +568,8 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
             {
                 CreateSingleDeskjet(precords);
             }
-             e  if(precords) emit showMsgBox(tr("Memory Print"), tr("Send to Printer!"));
+
+            if(precords) emit showMsgBox(tr("Memory Print"), tr("Send to Printer!"));
             else emit showStatusBox(tr("Test Result Print"), tr("Send to Printer!"), false);
 
              return true;
@@ -582,6 +581,7 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
     }
 
 #endif
+ 
 }
 
 bool sTestModel::SerialPrinter(bool precords)
@@ -611,7 +611,8 @@ bool sTestModel::SerialPrinter(bool precords)
 
                    QFile file(fname);
                    file.open(QIODevice::ReadOnly);
- emit showStatusBox(tr("Memory Print"), tr("Printing..."), true);
+
+                   emit showStatusBox(tr("Memory Print"), tr("Printing..."), true);
 
                    /*
                    if(precords)
@@ -624,6 +625,7 @@ bool sTestModel::SerialPrinter(bool precords)
                         emit showStatusBox(tr("Test Result Print"), ss); //tr("Printing.1." + file.size()));
                    }
                    */
+
                    cPrinterError = 2;
 
                    while( cPrinterError == 2)
@@ -649,8 +651,8 @@ bool sTestModel::SerialPrinter(bool precords)
                            if(ret <0)
                            {
                                emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
-                       
-                   /*
+
+                               /*
                                if(precords)
                                {
                                    emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
@@ -660,6 +662,7 @@ bool sTestModel::SerialPrinter(bool precords)
                                    emit showMsgBox(tr("Test Result Print"), tr("Error 1 Printing!"));
                                }
                                */
+
                                cPrinterError=1;
                                break;
                            }
@@ -683,14 +686,16 @@ bool sTestModel::SerialPrinter(bool precords)
 
                        if(cPrinterError==2)
                        {
-                       if(precords)
+                           if(precords)
                            {
                                emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
                            }
                            else
                            {
                                emit showStatusBox(tr("Memory Print"), tr("Printing done!"), false);
-                           }                           return true;
+                           }
+
+                           return true;
                        }
                        else return false;
                    }
@@ -699,7 +704,7 @@ bool sTestModel::SerialPrinter(bool precords)
 
             }
             else
-           {
+            {
                 emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
 
 
@@ -716,14 +721,14 @@ bool sTestModel::SerialPrinter(bool precords)
                 return false;
             }
 
-
         }
         else
         {
             cSerialPrinter->close();
+
             emit showMsgBox(tr("Memory Print"), cSerialPrinter->errorString());
 
- /*if(precords)
+            /*if(precords)
             {
                 emit showMsgBox(tr("Memory Print"), cSerialPrinter->errorString());
             }
@@ -731,7 +736,8 @@ bool sTestModel::SerialPrinter(bool precords)
             {
                 emit showMsgBox(tr("Test Result Print"), cSerialPrinter->errorString());
             }
-            */            
+            */
+
             return false;
     }
 }
@@ -753,7 +759,8 @@ int sTestModel::PrinterStatus(int fd)
     }
 
 #endif
-turn status;
+
+    return status;
 }
 
 int sTestModel::PrintData(int fd, char dtmp)
@@ -821,7 +828,7 @@ bool sTestModel::CreateSingleDeskjet(bool precords)
 
     QPainter painter(&printer); 
 	
-   if(precords)
+    if(precords)
     {
         for(int tmp=0; tmp < listTestRecord.count(); tmp++)
         {
@@ -1279,9 +1286,10 @@ bool sTestModel::CreateSingleDeskjet(bool precords)
     QString output = process.readAllStandardOutput();
     QString err = process.readAllStandardError();
 
- #ifndef Q_OS_WIN32
+#ifndef Q_OS_WIN32
     cSettings.removeTmpFiles();
 #endif
+
     return true;
 
 }
@@ -1755,7 +1763,9 @@ bool sTestModel::CreateMultilineDeskjet()
     QString output = process.readAllStandardOutput();
     QString err = process.readAllStandardError();
 
-    //cSettings.removeTmpFiles();
+#ifndef Q_OS_WIN32
+    cSettings.removeTmpFiles();
+#endif
 
     return true;
 }
@@ -1771,7 +1781,6 @@ bool sTestModel::CreatePrintSpool(bool precords)
     {
         QTextStream save(&out);
 
-     
         if(precords)
         {
             for(int tmp=0; tmp < listTestRecord.count(); tmp++)

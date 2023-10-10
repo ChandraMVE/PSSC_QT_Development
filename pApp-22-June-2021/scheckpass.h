@@ -6,6 +6,7 @@
 #include "defines.h"
 
 #include "saccesswidget.h"
+
 namespace Ui {
 class sCheckPass;
 }
@@ -20,13 +21,14 @@ public:
     void Show_CheckPass(int, bool);
     void Show_ShowMessage(int, int);
     void Show_Message(QString title, QString msg);
-   void Show_MessageWithAck(QString title, QString msg);
+    void Show_MessageWithAck(QString title, QString msg);
     void Show_Status(QString title, QString msg, bool show);
     void Show_ErrorMessage(QString title, QString msg);
     void setWaitACKStatus(bool tmp);
     bool getWaitACKStatus(void);
     void hideAfterACK(bool tmp);
     bool getHideAfterACK();
+
     bool isErrorVisible();
     void Show_Confirmation(int, int);
 

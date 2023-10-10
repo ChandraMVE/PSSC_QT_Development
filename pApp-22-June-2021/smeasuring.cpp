@@ -59,7 +59,6 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lblAutoCount->hide();
     ui->lblStatus->hide();
     cRunState = false;
-
 }
 
 sMeasuring::~sMeasuring()
@@ -82,7 +81,7 @@ void sMeasuring::Show()
 
     ui->lwOperator->hide();
     ui->lwSampleId->hide();
-   // ui->cbMethod->setCurrentIndex(0);
+    //ui->cbMethod->setCurrentIndex(0);
 
     this->show();
 
@@ -123,6 +122,7 @@ void sMeasuring::setIdleTimer(int tmp)
     else ui->lblIdleTimer->setText("");
 }
 */
+
 void sMeasuring::setStatus(QString tmp)
 {
     if(ui->wResult->isVisible()) 
@@ -368,10 +368,11 @@ void sMeasuring::readLastIdsFile()
             ui->leSampleId->setText(last_ids.sample_id);
         }
 
- if(last_ids.test_id.length())
+        if(last_ids.test_id.length())
         {
             ui->cbMethod->setCurrentText(last_ids.test_id);
         }
+
         in.close();
     }
 
@@ -864,7 +865,8 @@ void sMeasuring::ontextChanged(QString tmp)
 
 void sMeasuring::setRunning(bool state)
 {
- cRunState = state;
+    cRunState = state;
+
     switch(state)
     {
         case 0: 
@@ -930,6 +932,7 @@ bool sMeasuring::getHideAfterACK()
 {
     return false;
 }
+
 void sMeasuring::on_pbRun_clicked()
 {
     emit runClicked(MS_TEST_RUN, true);
@@ -940,8 +943,8 @@ void sMeasuring::on_pbStop_clicked()
 
     setRunning(0); 
     emit runClicked(MS_TEST_STOP, false);
-
 }
+
 
 void sMeasuring::on_pbStop_2_clicked()
 {
@@ -1188,7 +1191,8 @@ void sMeasuring::on_pbStop_2_clicked()
         method = "Free 4";
         break;
     }
- /*
+
+    /*
     for(int tmp =0; tmp <990; tmp++)
     {
 
@@ -1202,6 +1206,7 @@ void sMeasuring::on_pbStop_2_clicked()
     }
     */
 }
+
 
 void sMeasuring::on_pbSampleId_clicked()
 {

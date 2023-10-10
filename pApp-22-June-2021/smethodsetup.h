@@ -124,7 +124,7 @@ public:
     void updateFree2(void);
     void updateFree3(void);
     void updateFree4(void);
- bool isSwitchEnabled(int tmp);
+    bool isSwitchEnabled(int tmp);
     void checkExit(int tmp);
 
 signals:

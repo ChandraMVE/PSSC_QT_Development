@@ -8,7 +8,6 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     ui->setupUi(this);
     ui->gbConstants->hide();
 
-
     QListView *view1 = new QListView(ui->cbMethod);
     view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
@@ -25,6 +24,7 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
                         QListView::item{height: 41px}");
 
     ui->cbFormula->setView(view2);
+
     cWidgetFormula = ui->tabFormula;
     cStringFormula = ui->twMethodSetup->tabText(0);
 
@@ -140,7 +140,7 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     setDefaults();
     cPrevMethod = 0;
     cParasChanged = false;
- cEnSwitch = true;
+    cEnSwitch = true;
 
 }
 
@@ -290,7 +290,7 @@ bool sMethodSetup::readFile()
     QString fname = QApplication::applicationDirPath() + FN_METHOD_SETUP;
 
     QFile in(fname);
- cEnSwitch = true;
+    cEnSwitch = true;
 
     if(in.open(QIODevice::ReadOnly))
     {
@@ -340,11 +340,11 @@ void sMethodSetup::saveFile()
 
         out.close();
         cParasChanged = false;
-   cEnSwitch = true;
+        cEnSwitch = true;
     }
     else
     {
-cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("Method Setup"), tr("Error Saving File!"));
     }
 
@@ -1380,6 +1380,7 @@ void sMethodSetup::checkExit(int tmp)
         emit showHome(false);
     }
 }
+
 void sMethodSetup::on_cbMethod_currentIndexChanged(int index)
 {
     if(!isVisible()) return; 
@@ -1525,10 +1526,11 @@ void sMethodSetup::on_pbSave_clicked()
             case M_METHOD_FREE4: updateFree4(); break;
         }
     }
+
     saveFile();
 }
 
 void sMethodSetup::on_pbExit_clicked()
 {
-  checkExit(M_MEASURING);  
+    checkExit(M_MEASURING);
 }

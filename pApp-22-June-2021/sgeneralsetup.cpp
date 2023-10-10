@@ -7,6 +7,7 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     QListView *view1 = new QListView(ui->cbDateFormat);
     view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
@@ -179,6 +180,8 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
                         QListView::item{height: 41px}");
 
     ui->cbAMPM->setView(view21);
+
+
     setDefaults();
 
     connect(ui->leCompany, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
@@ -218,7 +221,7 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     cPrevTab = -1;
     cPrevDeviceTab = -1;
     cPrevOtherTab = -1;
- cEnSwitch = true;
+    cEnSwitch = true;
 
     ui->cbDay->clear();
     for(int tmp=1; tmp <=31; tmp++)
@@ -475,7 +478,8 @@ bool sGeneralSetup::readFile()
 
     QString fname = QApplication::applicationDirPath() + FN_GENERAL_SETUP;
 
-cEnSwitch = true;
+    cEnSwitch = true;
+
     QFile in(fname);
 
     if(in.open(QIODevice::ReadOnly))
@@ -515,7 +519,7 @@ bool sGeneralSetup::saveFile()
     }
     else
     {
-  cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
         return false;
     }
@@ -544,11 +548,11 @@ void sGeneralSetup::saveNetworkFile()
 
         out.close();
         cParasChanged = false;
-cEnSwitch = true;
+        cEnSwitch = true;
     }
     else
     {
- cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
     }
 }
@@ -565,11 +569,11 @@ void sGeneralSetup::saveHostnameFile()
         save << general_setup.network_name;
         out.close();
         cParasChanged = false;
-cEnSwitch = tru
+        cEnSwitch = true;
     }
     else
     {
- cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
     }
 }
@@ -620,7 +624,7 @@ void sGeneralSetup::showGeneralSetup()
 
 void sGeneralSetup::updateGeneralSetup()
 {
-    //sncParasChanged = false;
+    //sn cParasChanged = false;
 
     if(general_setup.date_format != ui->cbDateFormat->currentIndex()) cParasChanged = true;
     general_setup.date_format = ui->cbDateFormat->currentIndex();
@@ -842,6 +846,7 @@ void sGeneralSetup::on_pbExit_clicked()
 
     //this->hide();
     //emit showHome(false);
+
 }
 
 void sGeneralSetup::on_cbNEnable_clicked()
@@ -949,6 +954,7 @@ bool sGeneralSetup::isSwitchEnabled(int tmp)
 
     return cEnSwitch;
 }
+
 void sGeneralSetup::on_twGeneralSetup_currentChanged(int index)
 {
     if(!isVisible()) return;

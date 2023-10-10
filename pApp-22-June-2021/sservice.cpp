@@ -82,7 +82,6 @@ sService::sService(QWidget *parent) :
     cDebug = false;
 }
 
-
 sService::~sService()
 {
     delete ui;
@@ -105,11 +104,12 @@ void sService::Show()
     ui->twService->setCurrentIndex(0);
 
     ui->wFirmware->setFirmware(cVerFW + "\n" + cVerMCU);
+
     this->show();
     cHide = false;
-    setWaitACKStatus(true);
 
-    emit sendCommand(cProtocol.sendMeasuring(1, 0),this);
+    setWaitACKStatus(true);
+    emit sendCommand(cProtocol.sendMeasuring(1, 0), this);
 
 }
 
@@ -202,11 +202,11 @@ void sService::saveFile()
         save << service_setup;
         out.close();
         cParasChanged = false;
-  cEnSwitch = true;
+        cEnSwitch = true;
     }
     else
     {
- cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("Service Setup"), tr("Error Saving File!"));
     }
 }
@@ -373,7 +373,7 @@ void sService::on_pbSave_clicked()
 
 void sService::on_pbExit_clicked()
 {
-	 checkExit(M_MEASURING);
+    checkExit(M_MEASURING);
 
     if(!cParasChanged)
     {
@@ -415,7 +415,7 @@ void sService::ontextChanged(QString tmp)
 
 void sService::on_pbSVSet_clicked()
 {
-	 setWaitACKStatus(true);
+    setWaitACKStatus(true);
     emit sendCommand(cProtocol.sendValvePosition(ui->cbSelectorValve->currentIndex()), this);
 }
 
@@ -425,11 +425,11 @@ void sService::on_pbTSet_clicked()
     {
         double tm = ui->leTemperature->text().toDouble();
 
-    setWaitACKStatus(true);
+        setWaitACKStatus(true);
         int tmp = cSettings.getTemperatureCount(tm);
         emit sendCommand(cProtocol.sendTemperature(tmp), this);
 
-}
+    }
 }
 
 void sService::on_pbRunReset_clicked()
@@ -439,7 +439,7 @@ void sService::on_pbRunReset_clicked()
 
 void sService::on_pbPPSet_clicked()
 {
-     if(ui->lePistonPosition->hasAcceptableInput())
+    if(ui->lePistonPosition->hasAcceptableInput())
     {
         int pp = ui->lePistonPosition->text().toDouble() * 100;
 
@@ -451,7 +451,7 @@ void sService::on_pbPPSet_clicked()
 
 void sService::on_pbRPMSet_clicked()
 {
-     if(ui->leRPM->hasAcceptableInput())
+    if(ui->leRPM->hasAcceptableInput())
     {
         setWaitACKStatus(true);
         int tmp = ui->leRPM->text().toDouble();
@@ -519,11 +519,13 @@ bool sService::logData()
     {
         if(!cSettings.checkFolderExists(USB_LOG_FOLDER))
         {
+
 #ifdef Q_OS_WIN32
             QDir dir("c:/");
 #else
             QDir dir("/");
 #endif
+
             dir.mkpath(USB_LOG_FOLDER);
         }
 
@@ -580,10 +582,10 @@ void sService::testDone()
 
     ui->pbRun->setEnabled(true);
     ui->pbStop->setEnabled(false);
- ui->pbExit->setEnabled(true);
+    ui->pbExit->setEnabled(true);
 
     cDiagnosticMode = false;
-      cEnSwitch = true;
+    cEnSwitch = true;
 }
 
 void sService::setWaitACKStatus(bool tmp)
@@ -777,7 +779,7 @@ void sService::on_cbSMEnable_clicked()
     ui->leRPM->setReadOnly(!ui->cbSMEnable->isChecked());
     ui->pbRPMSet->setEnabled(ui->cbSMEnable->isChecked());
 
-  if(!ui->cbSMEnable->isChecked())
+    if(!ui->cbSMEnable->isChecked())
     {
         setWaitACKStatus(true);
         emit sendCommand(cProtocol.sendShakerSpeed(0, 0), this);
@@ -791,15 +793,14 @@ void sService::on_pbFileSelect_clicked()
 
 void sService::on_pbFWUpdate_clicked()
 {
-
-
     QString fname1 =  FF_FIRMWARE_FOLDER;
     fname1.append("/");
     fname1.append(ui->lblFileSelected->text());
 
     QString fname2 = QApplication::applicationDirPath() + FN_UPDATE_FIRMWARE;
 
-{
+
+    {
         ui->pbFWUpdate->setEnabled(false);
 
         emit showStatusBox(tr("Service Setup"), tr("Updating Firmware...\nPlease Wait..."), true);
@@ -814,9 +815,11 @@ void sService::on_pbFWUpdate_clicked()
 
     QFile::remove(fname2);  //24-May-2022
 
+
+
     if(QFile::copy( fname1, fname2))
     {
- //23-May-2022 emit showMsgBox(tr("Service Setup"), tr("Firmware Copied\nRestart Machine to reflect changes!"));
+        //23-May-2022 emit showMsgBox(tr("Service Setup"), tr("Firmware Copied\nRestart Machine to reflect changes!"));
         //added below lines to confimr file size is greater than 0
 
         QFileInfo fi(fname2);
@@ -828,13 +831,14 @@ void sService::on_pbFWUpdate_clicked()
             if (fi.isFile()) QFile::remove(fname2);
 
             emit showMsgBox(tr("Service Setup"), tr("Error Saving Firmware File!"));
-        } 
-           }
+        }
+    }
     else
     {
         emit showMsgBox(tr("Service Setup"), tr("Error Saving Firmware File!"));
     }
-ui->pbFWUpdate->setEnabled(true);
+
+    ui->pbFWUpdate->setEnabled(true);
 }
 
 void sService::on_twService_currentChanged(int index)
@@ -852,7 +856,7 @@ void sService::on_twService_currentChanged(int index)
             updateServiceSetup();
 
             if(cParasChanged)
-                emit getConfirmation(M_CONFIRM_SERVICE_SWITCH, M_MEASURING );
+                emit getConfirmation(M_CONFIRM_SERVICE_SWITCH, M_MEASURING);
         }
 
         cPrevTab = index;
@@ -861,13 +865,13 @@ void sService::on_twService_currentChanged(int index)
     if(index == 1) ui->pbSave->show();
     else ui->pbSave->hide();
 
-   // if(index <= 1)
-     //   showServiceSetup();
+    //if(index <= 1)
+    //    showServiceSetup();
 
     if(index == 2)
     {
-   setWaitACKStatus(true);
-       int tc = cSettings.getTemperatureCount(20); 
+        setWaitACKStatus(true);
+        int tc = cSettings.getTemperatureCount(20); 
         emit sendCommand(cProtocol.sendMeasuring(0, tc), this);
     }
     else if(index == 0)
@@ -881,6 +885,7 @@ void sService::on_twService_currentChanged(int index)
         showServiceSetup();
 
 }
+
 void sService::on_pbRun_clicked()
 {
     ui->twService->setTabEnabled(0, false);
@@ -889,10 +894,10 @@ void sService::on_pbRun_clicked()
 
     ui->pbRun->setEnabled(false);
     ui->pbStop->setEnabled(true);
- ui->pbExit->setEnabled(false);
+    ui->pbExit->setEnabled(false);
 
     cDiagnosticMode = true;
- cEnSwitch = false;
+    cEnSwitch = false;
 
     emit runClicked(MS_DIAGNOSTIC_RUN, false);
 
@@ -906,7 +911,7 @@ void sService::on_pbStop_clicked()
 
     ui->pbRun->setEnabled(true);
     ui->pbStop->setEnabled(false);
-   ui->pbExit->setEnabled(true);
+    ui->pbExit->setEnabled(true);
 
     cDiagnosticMode = false;
     cEnSwitch = true;
@@ -914,8 +919,6 @@ void sService::on_pbStop_clicked()
     emit runClicked(MS_DIAGNOSTIC_STOP, false);
 
 }
-
-
 
 void sService::onFirmwareClicked()
 {

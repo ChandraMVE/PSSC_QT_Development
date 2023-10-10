@@ -76,14 +76,15 @@ public:
                     double result,
                     double t_time, double vlratio, double para_measured);
 
-  bool printResult(struct TestStruct *test);
+    bool printResult(struct TestStruct *test);
+
     int getMemoryCount(void);
- bool isSwitchEnabled(int tmp);
+    bool isSwitchEnabled(int tmp);
 
 signals:
     void showHome(bool);
     void showMsgBox(QString title, QString msg);
-     void showStatusBox(QString title, QString msg, bool show);
+    void showStatusBox(QString title, QString msg, bool show);
     void getConfirmation(int, int);
 
 private slots:
@@ -95,6 +96,7 @@ private slots:
     void on_pbPrint_clicked();
     void onShowMsgBox(QString title, QString msg);
     void onShowStatusBox(QString title, QString msg, bool show);
+
 private:
     Ui::sMemory *ui;
 

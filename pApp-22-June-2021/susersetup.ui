@@ -251,7 +251,6 @@ border-color:  rgb(190, 190, 190);
         <height>121</height>
        </rect>
       </property>
-     
       <property name="styleSheet">
        <string notr="true">border-width: 2px;
 border-style: solid;
@@ -289,7 +288,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
        <property name="geometry">
         <rect>
          <x>300</x>
-      
+         <y>30</y>
          <width>241</width>
          <height>51</height>
           </rect>
@@ -487,7 +486,7 @@ QScrollBar::down-arrow:vertical {
  }
 </string>
        </property>
- <property name="maxVisibleItems">
+       <property name="maxVisibleItems">
         <number>8</number>
        </property>
        <property name="frame">
@@ -1071,7 +1070,7 @@ QScrollBar::down-arrow:vertical {
          <string>9</string>
         </property>
        </item>
-</widget>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_9">
       <property name="geometry">

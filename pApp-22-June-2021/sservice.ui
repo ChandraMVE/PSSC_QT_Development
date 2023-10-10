@@ -869,7 +869,7 @@ QScrollBar::down-arrow:vertical {
  }
 </string>
        </property>
-  <property name="maxVisibleItems">
+       <property name="maxVisibleItems">
         <number>2</number>
        </property>
        <property name="frame">
@@ -1047,8 +1047,8 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
- <string/>       
- </property>
+        <string/>
+       </property>
       </widget>
       <widget class="QLabel" name="label_22">
        <property name="geometry">
@@ -1088,7 +1088,7 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-           <string/>
+        <string/>
        </property>
       </widget>
      </widget>
@@ -1566,7 +1566,7 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-       <string/>
+        <string/>
        </property>
       </widget>
       <widget class="QLabel" name="label_28">
@@ -1607,7 +1607,7 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-           <string/>
+        <string/>
        </property>
       </widget>
      </widget>
@@ -2001,7 +2001,7 @@ QCheckBox::indicator:indeterminate:pressed {
         <string/>
        </property>
       </widget>
-    </widget>
+     </widget>
      <widget class="slabel" name="wFirmware" native="true">
       <property name="geometry">
        <rect>
@@ -2011,7 +2011,6 @@ QCheckBox::indicator:indeterminate:pressed {
         <height>60</height>
        </rect>
       </property>
-    
      </widget>
     </widget>
    </widget>
@@ -2662,7 +2661,7 @@ QTableView::item {
    <class>sQLEExtend</class>
    <extends>QLineEdit</extends>
    <header location="global">sqleextend.h</header>
-</customwidget>
+  </customwidget>
   <customwidget>
    <class>slabel</class>
    <extends>QWidget</extends>

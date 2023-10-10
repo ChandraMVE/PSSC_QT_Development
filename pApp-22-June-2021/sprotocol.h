@@ -8,7 +8,7 @@ class sProtocol
 public:
     sProtocol();
     QString sendMeasuring(int ed, int tmp);
-  QString sendMeasuringStart(int ed, int tmp);
+    QString sendMeasuringStart(int ed, int tmp);
     QString sendTemperature(int tmp);
     QString sendPressure(int tmp);
     QString sendValvePosition(int tmp);
@@ -16,11 +16,12 @@ public:
     QString sendShakerSpeed(int ed, int tmp);
     QString sendClearError(int tmp);
     QString sendAckError(void);
- QString sendAbortDiagnostic(void);
+    QString sendAbortDiagnostic(void);
+
     QString sendAlertBuzzer(int tmp);
     QString sendErrorBuzzer(int tmp);
     QString sendTimeOutError(int tmp);
-QString sendBuzAndVol(int en, int vol);
+    QString sendBuzAndVol(int en, int vol);
     unsigned char calcCRC(QString tmp);
 
 };

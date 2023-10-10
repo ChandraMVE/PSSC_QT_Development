@@ -54,7 +54,7 @@ struct LAST_IDS {
 
     QString operator_name;
     QString sample_id;
-  QString test_id;
+    QString test_id;
 
     friend QDataStream &operator<< (QDataStream &out, const LAST_IDS &tmp)
     {

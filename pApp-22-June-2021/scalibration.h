@@ -115,16 +115,17 @@ public:
     void setLivePrTable(void);
     int getLinerizationCount(void);
 
- void setWaitACKStatus(bool tmp);
+    void setWaitACKStatus(bool tmp);
     bool getWaitACKStatus(void);
     void hideAfterACK(bool tmp);
     bool getHideAfterACK();
     bool isSwitchEnabled(int tmp);
     void checkExit(int tmp);
+
 signals:
     void showKeypad(QObject *, int, bool);
     void showHome(bool);
-   void getConfirmation(int, int);
+    void getConfirmation(int, int);
     //void sendCommand(QString cmd);
     void sendCommand(QString cmd, sAccessWidget *sa);
     void runClicked(int state, bool init);
@@ -180,6 +181,7 @@ private slots:
 
 
     void on_pbPCSVSet_clicked();
+
 private:
     Ui::sCalibration *ui;
     bool cParasChanged;

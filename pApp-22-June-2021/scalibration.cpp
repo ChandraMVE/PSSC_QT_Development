@@ -7,7 +7,7 @@ sCalibration::sCalibration(QWidget *parent) :
 {
     ui->setupUi(this);
 
-  QListView *view1 = new QListView(ui->cbTCalibMethod);
+    QListView *view1 = new QListView(ui->cbTCalibMethod);
     view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
                         QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
@@ -38,6 +38,7 @@ sCalibration::sCalibration(QWidget *parent) :
                         QListView::item{height: 41px}");
 
     ui->cbPCTFinal->setView(view4);
+
     connect(ui->leTCTemperature, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
     connect(ui->leTCTemperature, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
 
@@ -253,7 +254,8 @@ bool sCalibration::readFile()
 
     QFile in(fname);
 
-   cEnSwitch = true;
+    cEnSwitch = true;
+
     if(in.open(QIODevice::ReadOnly))
     {
         in.read((char *)&cCalibTm, sizeof(cCalibTm));
@@ -297,12 +299,12 @@ bool sCalibration::saveFile()
 
         out.close();
         cParasChanged = false;
-  cEnSwitch = true;
+        cEnSwitch = true;
         return true;
     }
     else
     {
-    cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("Calibration Setup"), tr("Error Saving File!"));
         return false;
     }
@@ -423,7 +425,8 @@ void sCalibration::showPressureCalib()
     ui->cbPCTEnable->setChecked(CALIB_DEFAULT_TEMPERATURE_T_CONTROL_ENABLE);
     ui->lePCTemperature->setText(getTemperatureCS(CALIB_DEFAULT_TEMPERATURE_T));
 
- ui->pbPCSVSet->setEnabled(true);
+    ui->pbPCSVSet->setEnabled(true);
+
     ui->lePCTemperature->setReadOnly(true); 
     ui->pbPCTSet->setEnabled(ui->cbPCTEnable->isChecked());
 
@@ -917,7 +920,6 @@ void sCalibration::setPressureTabReadOnly(bool tmp)
 
 void sCalibration::setPRLRunning(int tmp)
 {
-    
     if(tmp==1)
     {
 
@@ -944,11 +946,12 @@ void sCalibration::setPRLRunning(int tmp)
         ui->tvLivePrTable->model()->removeRows(0, ui->tvLivePrTable->rowCount());
         ui->tvLivePrTable->show();
 
-  cEnSwitch = false;
+        cEnSwitch = false;
         qDebug() << "wCalibR:" << cEnSwitch;
 
         ui->twCalibration->setTabEnabled(0, false);
         ui->twCalibration->setTabEnabled(2, false);
+
     }
     else if(tmp==2) //error
     {
@@ -965,14 +968,15 @@ void sCalibration::setPRLRunning(int tmp)
 
         ui->pbSave->setEnabled(true);
         ui->pbExit->setEnabled(true);
-qDebug() << "wCalibE:" << cEnSwitch;
+        qDebug() << "wCalibE:" << cEnSwitch;
 
         ui->twCalibration->setTabEnabled(0, true);
         ui->twCalibration->setTabEnabled(2, true);
     }
     else
     {
- cEnSwitch = true;
+        cEnSwitch = true;
+
         ui->cbPCTFirst->setEnabled(true);
         ui->cbPCTFinal->setEnabled(true);
         ui->pbPCTableShow->setEnabled(true);
@@ -989,6 +993,7 @@ qDebug() << "wCalibE:" << cEnSwitch;
 
         ui->twCalibration->setTabEnabled(0, true);
         ui->twCalibration->setTabEnabled(2, true);
+
     }
 }
 
@@ -1190,6 +1195,7 @@ bool sCalibration::isSwitchEnabled(int tmp)
     checkExit(tmp);
     return cEnSwitch;
 }
+
 void sCalibration::onShowKeypad(int tmp)
 {
     emit showKeypad(QObject::sender(), KAYPAD_NUMERIC, false);
@@ -1200,10 +1206,9 @@ void sCalibration::on_pbSave_clicked()
     updateTemperatureCalib();
     updatePressureCalib();
 
-
     if(saveFile())
     {
-         if(ui->twCalibration->currentWidget() == ui->tabTemperature)
+        if(ui->twCalibration->currentWidget() == ui->tabTemperature)
         {
             emit showMsgBox(tr("Calibration Setup"), tr("Temperature Calibration Saved!"));
         }
@@ -1239,7 +1244,7 @@ void sCalibration::checkExit(int tmp)
 
     if(ui->pbExit->text() == tr("Back"))
     {
-                {
+        {
             if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
             {
                qDebug() << "cWidgetPrLinearzation";
@@ -1289,14 +1294,13 @@ void sCalibration::checkExit(int tmp)
             setWaitACKStatus(false);
         }
 
-  }
+    }
     else //Exit
     {
         if(cParasChanged)
         {
-        	cEnSwitch = false;
-			emit getConfirmation(M_CONFIRM_CALIBRATION);
-
+            cEnSwitch = false;
+            emit getConfirmation(M_CONFIRM_CALIBRATION, tmp);
         }
 
         if(!cParasChanged)
@@ -1332,7 +1336,6 @@ void sCalibration::on_pbExit_clicked()
         emit showHome(false);
     }
     */
-    
 }
 
 void sCalibration::on_pbPCPCal_clicked()
@@ -1440,7 +1443,8 @@ void sCalibration::on_pbTCTSet_clicked()
     {
         double tm = ui->leTCTemperature->text().toDouble();
         int tmp = getTemperatureCount(tm);
-          setWaitACKStatus(true);
+
+        setWaitACKStatus(true);
         emit sendCommand(cProtocol.sendTemperature(tmp), this);
     }
 }
@@ -1450,11 +1454,13 @@ void sCalibration::on_cbTCTEnable_clicked()
     ui->leTCTemperature->setReadOnly(!ui->cbTCTEnable->isChecked());
     ui->pbTCTSet->setEnabled(ui->cbTCTEnable->isChecked());
     ui->cbTCalibMethod->setEnabled(!ui->cbTCTEnable->isChecked());
-   if(!ui->cbTCTEnable->isChecked())
+
+    if(!ui->cbTCTEnable->isChecked())
     {
         setWaitACKStatus(true);
         emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
-    }}
+    }
+}
 
 void sCalibration::on_cbTCalibMethod_currentIndexChanged(int index)
 {
@@ -1504,19 +1510,19 @@ void sCalibration::on_cbPCTEnable_clicked()
 {
     ui->lePCTemperature->setReadOnly(true); 
     ui->pbPCTSet->setEnabled(ui->cbPCTEnable->isChecked());
-   if(!ui->cbPCTEnable->isChecked())
+
+    if(!ui->cbPCTEnable->isChecked())
     {
         setWaitACKStatus(true);
         emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
     }
-    }
+}
 
 void sCalibration::on_pbPCTSet_clicked()
 {
     if(ui->lePCTemperature->hasAcceptableInput())
     {
         double tm = ui->lePCTemperature->text().toDouble();
-
 
         setWaitACKStatus(true);
         int tmp = getTemperatureCount(tm);
@@ -1527,7 +1533,7 @@ void sCalibration::on_pbPCTSet_clicked()
 
 void sCalibration::on_pbTouchCalibrate_clicked()
 {
-      QProcess process;
+    QProcess process;
     //process.start("/usr/bin/ts_calibrate -r 1");
     process.start("/usr/bin/ts_calibrate");
     process.waitForFinished();

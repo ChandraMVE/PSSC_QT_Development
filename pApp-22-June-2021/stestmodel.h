@@ -22,6 +22,7 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+
 #ifndef Q_OS_WIN32
 #include <sys/ioctl.h>
 #endif
@@ -111,7 +112,8 @@ private:
     QFile *pfile;
     int cPrinterError;
     QSerialPort *cSerialPrinter;
- struct TestStruct *cPrintRecord;
+
+    struct TestStruct *cPrintRecord;
 
 };
 

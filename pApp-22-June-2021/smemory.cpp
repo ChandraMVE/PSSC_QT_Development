@@ -103,6 +103,7 @@ void sMemory::Show()
 
     ui->wTableView->update(); 
     ui->wTableView->resizeRowsToContents();
+
 }
 
 void sMemory::setDefaults()
@@ -228,12 +229,13 @@ bool sMemory::deleteTests()
     ui->wTableView->resizeRowsToContents();
 
     cEnSwitch = true;
+
     return ret;
 }
 
 bool sMemory::transferTests(QString fname)
 {
-   bool tmp = MemoryModel->TransferRecords(fname);
+    bool tmp = MemoryModel->TransferRecords(fname);
     cEnSwitch = true;
     return tmp;
 }
@@ -247,11 +249,11 @@ bool sMemory::printResult(struct TestStruct *test)
 {
     return MemoryModel->PrintRecords(false, test);
 }
+
 int sMemory::getMemoryCount()
 {
     return MemoryModel->rowCount();
 }
-
 
 bool sMemory::isSwitchEnabled(int tmp)
 {
@@ -265,6 +267,7 @@ bool sMemory::isSwitchEnabled(int tmp)
 
     return cEnSwitch;
 }
+
 void sMemory::on_wTableViewHeader_clicked(const QModelIndex &index)
 {
 

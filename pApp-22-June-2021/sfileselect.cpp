@@ -47,9 +47,8 @@ void sFileSelect::Show()
 	{
 	    ui->lwFiles->setCurrentRow(0);
             ui->frFileSelect->show();
-	}    
-	
 	}
+    }
     else
     {
         ui->lblMessage->setText(tr("No USB Pen Drive Found!\nReconnect USB Pen Drive & try again!"));

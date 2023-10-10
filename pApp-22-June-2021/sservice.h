@@ -83,7 +83,7 @@ public:
     void addStatus(QString tmp);
     void updateStatus(QString tmp);
     void testDone(void);
- void setWaitACKStatus(bool tmp);
+    void setWaitACKStatus(bool tmp);
     bool getWaitACKStatus(void);
     void hideAfterACK(bool tmp);
     bool getHideAfterACK();
@@ -97,7 +97,7 @@ protected:
     void timerEvent(QTimerEvent *e);
 
 signals:
-     void showKeypad( QObject *,int,bool);
+    void showKeypad( QObject *,int,bool);
     //void showHome(bool);
     //void sendCommand(QString cmd);
     void sendCommand(QString cmd, sAccessWidget *sa);

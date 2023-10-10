@@ -6,7 +6,8 @@ sMenuBar::sMenuBar(QWidget *parent) :
     ui(new Ui::sMenuBar)
 {
     ui->setupUi(this);
- ui->wmMeasuring->setText("Measuring");
+
+    ui->wmMeasuring->setText("Measuring");
     ui->wmMeasuring->setEnabled(true);
     ui->wmMeasuring->setSelected(false);
 
@@ -56,7 +57,6 @@ void sMenuBar::setSelectedMenu(int menu)
         case M_MEMORY: ui->wmMemory->setSelected(true); break;
 
         case M_SETUP: ui->wmSetup->setSelected(true); break;
-
     }
 
    pMenu = menu;
@@ -64,7 +64,7 @@ void sMenuBar::setSelectedMenu(int menu)
 
 void sMenuBar::setRunningMenu(int menu)
 {
- ui->wmMeasuring->setEnabled(false);
+    ui->wmMeasuring->setEnabled(false);
     ui->wmCleaning->setEnabled(false);
     ui->wmMemory->setEnabled(false);
     ui->wmSetup->setEnabled(false);
@@ -97,8 +97,5 @@ void sMenuBar::onMemoryClicked()
 
 void sMenuBar::onSetupClicked()
 {
-  
-}
-
     emit MenuClicked(M_SETUP);
 }

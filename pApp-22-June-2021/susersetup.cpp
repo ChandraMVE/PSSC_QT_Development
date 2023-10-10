@@ -22,9 +22,10 @@ sUserSetup::sUserSetup(QWidget *parent) :
                         QListView::item{height: 41px}");
 
     ui->cbRinseCycles->setView(view2);
+
     setDefaults();
     cParasChanged = false;
-   cHide = false;
+    cHide = false;
     cEnSwitch = true;
 }
 
@@ -37,7 +38,7 @@ void sUserSetup::Show()
 {
     showUserSetup();
     this->show();
-cHide = false;
+    cHide = false;
 }
 
 int sUserSetup::getGMTSeconds()
@@ -47,12 +48,12 @@ int sUserSetup::getGMTSeconds()
 
 void sUserSetup::sendBuzAndVol()
 {
-
-   /* QString str = "#Q" + QString::number(user_setup.error_buzzer_enable ? 1:0) +
+    /*QString str = "#Q" + QString::number(user_setup.error_buzzer_enable ? 1:0) +
                   "," + QString::number(user_setup.alarm_vol) +
                   "$";
-*/
- QString str = cProtocol.sendBuzAndVol(user_setup.error_buzzer_enable ? 1:0, user_setup.alarm_vol);
+    */
+
+    QString str = cProtocol.sendBuzAndVol(user_setup.error_buzzer_enable ? 1:0, user_setup.alarm_vol);
 
     emit sendCommand(str,this);
 }
@@ -70,6 +71,7 @@ void sUserSetup::setDefaults()
     user_setup.gmt = DEFAULT_USER_GMT;
     user_setup.rinse_cycle = DEFAULT_RINSE_CYCLES;
     user_setup.auto_print = DEFAULT_AUTO_PRINT_ENABLE;
+
 }
 
 bool sUserSetup::readFile()
@@ -79,7 +81,8 @@ bool sUserSetup::readFile()
 
     QFile in(fname);
 
-  cEnSwitch = true;
+    cEnSwitch = true;
+
     if(in.open(QIODevice::ReadOnly))
     {
         QDataStream save(&in);
@@ -110,11 +113,11 @@ void sUserSetup::saveFile()
         save << user_setup;
         out.close();
         cParasChanged = false;
- cEnSwitch = true;
+        cEnSwitch = true;
     }
     else
     {
-cEnSwitch = false;
+        cEnSwitch = false;
         emit showMsgBox(tr("User Setup"), tr("Error Saving File!"));
     }
 }
@@ -125,7 +128,7 @@ void sUserSetup::showUserSetup()
     ui->cbEBEnable->setChecked(user_setup.error_buzzer_enable);
     ui->cbGMT->setCurrentIndex(user_setup.gmt);
     ui->cbRinseCycles->setCurrentIndex(user_setup.rinse_cycle);
- ui->cbAutoPrintEnable->setChecked(user_setup.auto_print);
+    ui->cbAutoPrintEnable->setChecked(user_setup.auto_print);
 
     ui->pbSave->setEnabled(true);
     ui->pbExit->setEnabled(true);
@@ -133,9 +136,10 @@ void sUserSetup::showUserSetup()
 
 void sUserSetup::updateUserSetup()
 {
-    //qDebug() << "updateUserSetup";
+   //qDebug() << "updateUserSetup";
 
    // cParasChanged = false;
+
     if(user_setup.alarm_vol != ui->hsAlarmVolme->value()) cParasChanged = true;
     user_setup.alarm_vol = ui->hsAlarmVolme->value();
 
@@ -148,7 +152,7 @@ void sUserSetup::updateUserSetup()
     if(user_setup.rinse_cycle != ui->cbRinseCycles->currentIndex()) cParasChanged = true;
     user_setup.rinse_cycle = ui->cbRinseCycles->currentIndex();
 
-if(user_setup.auto_print!= ui->cbAutoPrintEnable->checkState()) cParasChanged = true;
+    if(user_setup.auto_print!= ui->cbAutoPrintEnable->checkState()) cParasChanged = true;
     user_setup.auto_print = ui->cbAutoPrintEnable->checkState();
 
 }

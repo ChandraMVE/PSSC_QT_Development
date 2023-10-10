@@ -83,4 +83,3 @@ void slabel::mousePressEvent(QMouseEvent *evt)
         emit clicked();
 
 }
-

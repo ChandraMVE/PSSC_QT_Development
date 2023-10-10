@@ -25,6 +25,7 @@
 
 #define STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE        tr("Temperature Stabilizing @ ")
 #define STRING_MEASURING_WAITING_PRESSURE_STABILIZE           tr("Pressure Stabilizing @ ")
+
 #define STRING_MEASURING_TEMPERATURE_STABILIZING        tr("Temperature Stabilizing")
 #define STRING_MEASURING_PRESSURE_STABILIZING           tr("Pressure Stabilizing")
 

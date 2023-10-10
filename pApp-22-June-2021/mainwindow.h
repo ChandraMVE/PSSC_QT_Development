@@ -9,12 +9,16 @@
 #include <QTime>
 #include <QMouseEvent>
 #include <QStringList>
+
 #include <QtSerialPort/QSerialPort>
 
 #include "ssettings.h"
 #include "sprotocol.h"
 #include "saccesswidget.h"
+
 #include "define_strings.h"
+
+
 
 namespace Ui {
 class MainWindow;
@@ -70,6 +74,7 @@ private slots:
     void onSendCommand(QString cmd);
     void onSendCommand(QString cmd, sAccessWidget *sa);
 
+
     bool onSaveResult(double p_tot, double p_gas, double p_abs,
                       QString method, QString formula,
                       double aconst, double bconst, double cconst,
@@ -87,7 +92,7 @@ private slots:
     void onUpdateMainWindow(void);
     void onGetConfirmation(int tmp, int);
     void onShowMsgBox(QString title, QString msg);
-   void onShowStatusBox(QString title, QString msg, bool show);
+    void onShowStatusBox(QString title, QString msg, bool show);
     void onConfirmed(int, bool, int);
 
     void on_pushButton_clicked();
@@ -137,8 +142,8 @@ private:
     bool cUACKReceived;
 
     int  cNAKCount;
-    
-    
+
+
     bool cParasUpdated;
     bool cInitDone;
     bool cInitSuccess;
@@ -219,7 +224,7 @@ public:
     int cCurrentUCError;
     int cErrorPos;
     int cStrringErrorCount;
- sAccessWidget *cAccessWidget;
+    sAccessWidget *cAccessWidget;
     struct TestStruct *cTest;
 
 };

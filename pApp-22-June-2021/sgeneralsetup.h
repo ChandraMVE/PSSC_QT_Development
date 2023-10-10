@@ -111,7 +111,7 @@ public:
 
     void SaveRTC();
     void SavePassword();
-  bool isSwitchEnabled(int tmp);
+    bool isSwitchEnabled(int tmp);
 
 signals:
     void showKeypad( QObject *, int, bool);
@@ -142,7 +142,7 @@ private:
     int cPrevTab;
     int cPrevDeviceTab;
     int cPrevOtherTab;
-bool cEnSwitch;
+    bool cEnSwitch;
 
 public:
     struct GENERAL_SETUP general_setup;
