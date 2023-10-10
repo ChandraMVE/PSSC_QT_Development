@@ -6,11 +6,26 @@ sMenuBar::sMenuBar(QWidget *parent) :
     ui(new Ui::sMenuBar)
 {
     ui->setupUi(this);
+ ui->wmMeasuring->setText("Measuring");
+    ui->wmMeasuring->setEnabled(true);
+    ui->wmMeasuring->setSelected(false);
 
-    ui->pbMeasuring->setDown(true);
-    ui->pbCleaning->setDown(true);
-    ui->pbMemory->setDown(true);
-    ui->pbSetup->setDown(true);
+    ui->wmCleaning->setText("Rinsing");
+    ui->wmCleaning->setEnabled(true);
+    ui->wmCleaning->setSelected(false);
+
+    ui->wmMemory->setText("Memory");
+    ui->wmMemory->setEnabled(true);
+    ui->wmMemory->setSelected(false);
+
+    ui->wmSetup->setText("Setup");
+    ui->wmSetup->setEnabled(true);
+    ui->wmSetup->setSelected(false);
+
+    connect(ui->wmMeasuring, SIGNAL(clicked()), this , SLOT(onMeasuringClicked()));
+    connect(ui->wmCleaning, SIGNAL(clicked()), this , SLOT(onCleaningClicked()));
+    connect(ui->wmMemory, SIGNAL(clicked()), this , SLOT(onMemoryClicked()));
+    connect(ui->wmSetup, SIGNAL(clicked()), this , SLOT(onSetupClicked()));
 
     pMenu = -1;
 }
@@ -23,37 +38,25 @@ sMenuBar::~sMenuBar()
 void sMenuBar::setSelectedMenu(int menu)
 {
 
-    ui->pbMeasuring->setDown(false);
-    ui->pbCleaning->setDown(false);
-    ui->pbMemory->setDown(false);
-    ui->pbSetup->setDown(false);
+    ui->wmMeasuring->setEnabled(true);
+    ui->wmMeasuring->setSelected(false);
+    ui->wmCleaning->setEnabled(true);
+    ui->wmCleaning->setSelected(false);
+    ui->wmMemory->setEnabled(true);
+    ui->wmMemory->setSelected(false);
+    ui->wmSetup->setEnabled(true);
+    ui->wmSetup->setSelected(false);
 
-    ui->pbMeasuring->setEnabled(false);
-    ui->pbCleaning->setEnabled(false);
-    ui->pbMemory->setEnabled(false);
-    ui->pbSetup->setEnabled(false);
+    switch (menu)
+    {
+        case M_MEASURING: ui->wmMeasuring->setSelected(true); break;
 
-    switch (menu) {
-        case M_MEASURING:
-        ui->pbMeasuring->setDown(true);
+        case M_CLEANING: ui->wmCleaning->setSelected(true); break;
 
-        ui->pbCleaning->setEnabled(true);
-        ui->pbMemory->setEnabled(true);
-        ui->pbSetup->setEnabled(true);
+        case M_MEMORY: ui->wmMemory->setSelected(true); break;
 
-        break;
+        case M_SETUP: ui->wmSetup->setSelected(true); break;
 
-        case M_CLEANING:
-        ui->pbCleaning->setDown(true);
-        break;
-
-        case M_MEMORY:
-        ui->pbMemory->setDown(true);
-        break;
-
-        case M_SETUP:
-        ui->pbSetup->setDown(true);
-        break;
     }
 
    pMenu = menu;
@@ -61,40 +64,41 @@ void sMenuBar::setSelectedMenu(int menu)
 
 void sMenuBar::setRunningMenu(int menu)
 {
+ ui->wmMeasuring->setEnabled(false);
+    ui->wmCleaning->setEnabled(false);
+    ui->wmMemory->setEnabled(false);
+    ui->wmSetup->setEnabled(false);
 
-    if(menu == M_MEASURING)
+    switch (menu)
     {
-        ui->pbMeasuring->setDown(true);
-        ui->pbCleaning->setEnabled(false);
+        case M_MEASURING: ui->wmMeasuring->setRunning(); break;
+        case M_CLEANING: ui->wmCleaning->setRunning(); break;
+        case M_MEMORY: ui->wmMemory->setRunning(); break;
+        case M_SETUP: ui->wmSetup->setRunning(); break;
     }
-    else if(menu == M_CLEANING)
-    {
-        ui->pbMeasuring->setEnabled(false);
-        ui->pbCleaning->setDown(true);
-    }
-
-    ui->pbMemory->setEnabled(false);
-    ui->pbSetup->setEnabled(false);
 
     pMenu = menu;
 }
 
-void sMenuBar::on_pbMeasuring_clicked()
+void sMenuBar::onMeasuringClicked()
 {
     emit MenuClicked(M_MEASURING);
 }
 
-void sMenuBar::on_pbCleaning_clicked()
+void sMenuBar::onCleaningClicked()
 {
     emit MenuClicked(M_CLEANING);
 }
 
-void sMenuBar::on_pbMemory_clicked()
+void sMenuBar::onMemoryClicked()
 {
     emit MenuClicked(M_MEMORY);
 }
 
-void sMenuBar::on_pbSetup_clicked()
+void sMenuBar::onSetupClicked()
 {
+  
+}
+
     emit MenuClicked(M_SETUP);
 }

@@ -3,13 +3,16 @@
 
 #include <QWidget>
 #include <QDir>
+#include <QFileInfo>
 #include <QProcess>
 #include <QBasicTimer>
+#include <QElapsedTimer>
 
 #include <defines.h>
 #include <defaults_service.h>
 #include <ssettings.h>
 #include <sprotocol.h>
+#include "saccesswidget.h"
 
 struct SERVICE_SETUP {
     quint32 total_count;
@@ -53,7 +56,7 @@ namespace Ui {
 class sService;
 }
 
-class sService : public QWidget
+class sService : public QWidget, public sAccessWidget
 {
     Q_OBJECT
 
@@ -80,18 +83,31 @@ public:
     void addStatus(QString tmp);
     void updateStatus(QString tmp);
     void testDone(void);
+ void setWaitACKStatus(bool tmp);
+    bool getWaitACKStatus(void);
+    void hideAfterACK(bool tmp);
+    bool getHideAfterACK();
+    bool isSwitchEnabled(int tmp);
+    void checkExit(int tmp);
+    void setDebug();
+    int getDebug();
+    void setVersion(QString tmp);
 
 protected:
     void timerEvent(QTimerEvent *e);
 
 signals:
-    void showKeypad( QObject *,int,bool);
-    void showHome(bool);
-    void sendCommand(QString cmd);
+     void showKeypad( QObject *,int,bool);
+    //void showHome(bool);
+    //void sendCommand(QString cmd);
+    void sendCommand(QString cmd, sAccessWidget *sa);
     void showFileSelect(void);
     void showMsgBox(QString title, QString msg);
+    void showStatusBox(QString title, QString msg, bool show);
     void runClicked(int state, bool init);
-    void getConfirmation(int);
+    void getConfirmation(int, int);
+    void showHome(bool);
+    void getPass(void);
 
 private slots:
     void onShowKeypad(int tmp);
@@ -116,6 +132,7 @@ private slots:
 
     void on_pbStop_clicked();
 
+  void onFirmwareClicked();
 private:
     Ui::sService *ui;
     struct SERVICE_SETUP service_setup;
@@ -125,6 +142,8 @@ private:
     int cLogStage;
     int cUsbLogTimeout;
     bool cDiagnosticMode;
+    bool cHide;
+    bool cEnSwitch;
 
     QBasicTimer timer;
     int cvp;
@@ -138,6 +157,8 @@ private:
     bool cLiveDataUpdated;
     QFile *cLogFile;
     sProtocol cProtocol;
+    bool cDebug;
+    QString cVerFW, cVerMCU;
 
 };
 

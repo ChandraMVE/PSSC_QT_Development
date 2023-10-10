@@ -7,6 +7,37 @@ sCalibration::sCalibration(QWidget *parent) :
 {
     ui->setupUi(this);
 
+  QListView *view1 = new QListView(ui->cbTCalibMethod);
+    view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbTCalibMethod->setView(view1);
+
+    QListView *view2 = new QListView(ui->cbPCSelectorValve);
+    view2->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbPCSelectorValve->setView(view2);
+
+    QListView *view3 = new QListView(ui->cbPCTFirst);
+    view3->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbPCTFirst->setView(view3);
+
+    QListView *view4 = new QListView(ui->cbPCTFinal);
+    view4->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbPCTFinal->setView(view4);
     connect(ui->leTCTemperature, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
     connect(ui->leTCTemperature, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
 
@@ -56,6 +87,7 @@ sCalibration::sCalibration(QWidget *parent) :
 
     setDefaults();
     cParasChanged = false;
+    cEnSwitch = true;
 
     QDoubleValidator* tempValidator = new QDoubleValidator(RANGE_CALIB_TEMPERATURE_MIN, RANGE_CALIB_TEMPERATURE_MAX, RANGE_CALIB_TEMPERATURE_DECIMAL_PLACES);
     tempValidator->setNotation(QDoubleValidator::StandardNotation);
@@ -124,7 +156,10 @@ void sCalibration::Show()
     ui->tvPressure->clearContents();
     ui->tvPressure->model()->removeRows(0, ui->tvPressure->rowCount());
 
-    emit sendCommand(cProtocol.sendMeasuring(1, 0));
+    cHide = false;
+
+    setWaitACKStatus(true);
+    emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
 
     this->show();
 }
@@ -218,6 +253,7 @@ bool sCalibration::readFile()
 
     QFile in(fname);
 
+   cEnSwitch = true;
     if(in.open(QIODevice::ReadOnly))
     {
         in.read((char *)&cCalibTm, sizeof(cCalibTm));
@@ -261,10 +297,12 @@ bool sCalibration::saveFile()
 
         out.close();
         cParasChanged = false;
+  cEnSwitch = true;
         return true;
     }
     else
     {
+    cEnSwitch = false;
         emit showMsgBox(tr("Calibration Setup"), tr("Error Saving File!"));
         return false;
     }
@@ -385,6 +423,7 @@ void sCalibration::showPressureCalib()
     ui->cbPCTEnable->setChecked(CALIB_DEFAULT_TEMPERATURE_T_CONTROL_ENABLE);
     ui->lePCTemperature->setText(getTemperatureCS(CALIB_DEFAULT_TEMPERATURE_T));
 
+ ui->pbPCSVSet->setEnabled(true);
     ui->lePCTemperature->setReadOnly(true); 
     ui->pbPCTSet->setEnabled(ui->cbPCTEnable->isChecked());
 
@@ -905,6 +944,11 @@ void sCalibration::setPRLRunning(int tmp)
         ui->tvLivePrTable->model()->removeRows(0, ui->tvLivePrTable->rowCount());
         ui->tvLivePrTable->show();
 
+  cEnSwitch = false;
+        qDebug() << "wCalibR:" << cEnSwitch;
+
+        ui->twCalibration->setTabEnabled(0, false);
+        ui->twCalibration->setTabEnabled(2, false);
     }
     else if(tmp==2) //error
     {
@@ -921,10 +965,14 @@ void sCalibration::setPRLRunning(int tmp)
 
         ui->pbSave->setEnabled(true);
         ui->pbExit->setEnabled(true);
+qDebug() << "wCalibE:" << cEnSwitch;
 
+        ui->twCalibration->setTabEnabled(0, true);
+        ui->twCalibration->setTabEnabled(2, true);
     }
     else
     {
+ cEnSwitch = true;
         ui->cbPCTFirst->setEnabled(true);
         ui->cbPCTFinal->setEnabled(true);
         ui->pbPCTableShow->setEnabled(true);
@@ -937,6 +985,10 @@ void sCalibration::setPRLRunning(int tmp)
 
         if(!tmp) on_pbPCTableShow_clicked();
 
+        qDebug() << "wCalib:" << cEnSwitch;
+
+        ui->twCalibration->setTabEnabled(0, true);
+        ui->twCalibration->setTabEnabled(2, true);
     }
 }
 
@@ -1016,6 +1068,128 @@ int sCalibration::getLinerizationCount()
     return 0;
 }
 
+void sCalibration::setWaitACKStatus(bool tmp)
+{
+
+    qDebug() << "Calib setWaitACKStatus:" << tmp;
+
+    if(ui->twCalibration->currentWidget() == ui->tabTemperature)
+    {
+
+        if(tmp)
+        {
+            ui->cbTCTEnable->setEnabled(false);
+            ui->pbTCTSet->setEnabled(false);
+            ui->twCalibration->setTabEnabled(1, false);
+            ui->twCalibration->setTabEnabled(2, false);
+            ui->pbExit->setEnabled(false);
+        }
+        else
+        {
+            ui->cbTCTEnable->setEnabled(true);
+            ui->pbTCTSet->setEnabled(ui->cbTCTEnable->isChecked());
+
+            if(cEnSwitch)
+            {
+                ui->twCalibration->setTabEnabled(1, true);
+                ui->twCalibration->setTabEnabled(2, true);
+            }
+            ui->pbExit->setEnabled(true);
+        }
+
+        //qDebug() << "tabTemperature";
+
+    }
+    else if(ui->twCalibration->currentWidget() == cWidgetPressure)
+    {
+        if(tmp)
+        {
+            ui->cbPCTEnable->setEnabled(false);
+            ui->pbPCTSet->setEnabled(false);
+            ui->pbPCSVSet->setEnabled(false);
+            ui->twCalibration->setTabEnabled(0, false);
+            ui->twCalibration->setTabEnabled(2, false);
+            ui->pbPCPCal->setEnabled(false);
+            ui->pbExit->setEnabled(false);
+        }
+        else
+        {
+            ui->cbPCTEnable->setEnabled(true);
+            ui->pbPCTSet->setEnabled(ui->cbPCTEnable->isChecked());
+            ui->pbPCSVSet->setEnabled(true);
+            if(cEnSwitch)
+            {
+                ui->twCalibration->setTabEnabled(0, true);
+                ui->twCalibration->setTabEnabled(2, true);
+            }
+            ui->pbPCPCal->setEnabled(true);
+            ui->pbExit->setEnabled(true);
+        }
+
+        //qDebug() << "cWidgetPressure";
+    }
+    else if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
+    {
+        if(tmp)
+        {
+            //ui->pbPCAutoStart->setEnabled(false);
+            //ui->pbPCAutoStop->setEnabled(false);
+
+            ui->twCalibration->setTabEnabled(0, false);
+            ui->twCalibration->setTabEnabled(2, false);
+            ui->pbExit->setEnabled(false);
+        }
+        else
+        {
+            //ui->pbPCAutoStart->setEnabled(true);
+            //ui->pbPCAutoStop->setEnabled(true);
+            if(cEnSwitch)
+            {
+                ui->twCalibration->setTabEnabled(0, true);
+                ui->twCalibration->setTabEnabled(2, true);
+            }
+            ui->pbExit->setEnabled(true);
+        }
+
+        //qDebug() << "cWidgetPrLinearzation";
+    }
+    /*
+    else if(ui->twCalibration->currentWidget() == cWidgetPrLinear)
+    {
+        qDebug() << "cWidgetPrLinear";
+    }
+    */
+}
+
+bool sCalibration::getWaitACKStatus()
+{
+    return true;
+}
+
+void sCalibration::hideAfterACK(bool tmp)
+{
+    qDebug() << "hideAfterACK:" << tmp;
+
+    if(!tmp)
+    {
+        cHide = false;
+        //3-May-2023 this->hide();
+    }
+    else cHide = true;
+}
+
+bool sCalibration::getHideAfterACK()
+{
+    return cHide;
+}
+
+bool sCalibration::isSwitchEnabled(int tmp)
+{
+    if(cStage) return false;    //13-May-2023
+
+    checkExit(tmp);
+    return cEnSwitch;
+}
 void sCalibration::onShowKeypad(int tmp)
 {
     emit showKeypad(QObject::sender(), KAYPAD_NUMERIC, false);
@@ -1029,12 +1203,18 @@ void sCalibration::on_pbSave_clicked()
 
     if(saveFile())
     {
-        if(ui->twCalibration->currentWidget() == ui->tabTemperature)
+         if(ui->twCalibration->currentWidget() == ui->tabTemperature)
+        {
             emit showMsgBox(tr("Calibration Setup"), tr("Temperature Calibration Saved!"));
+        }
         else if(ui->twCalibration->currentWidget() == cWidgetPressure)
+        {
             emit showMsgBox(tr("Calibration Setup"), tr("Pressure Calibration Saved!"));
+        }
         else if(ui->twCalibration->currentWidget() == cWidgetPrLinear)
+        {
             emit showMsgBox(tr("Calibration Setup"), tr("Linear Table Saved!"));
+        }
     }
 
     if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
@@ -1046,12 +1226,12 @@ void sCalibration::on_pbSave_clicked()
         ui->twCalibration->setCurrentIndex(1);
 
         ui->pbSave->show();
-        ui->pbExit->setText(tr("Exit"));
+        ui->pbExit->setText(tr("Home"));
     }
 
 }
 
-void sCalibration::on_pbExit_clicked()
+void sCalibration::checkExit(int tmp)
 {
     updateTemperatureCalib();
 
@@ -1059,57 +1239,100 @@ void sCalibration::on_pbExit_clicked()
 
     if(ui->pbExit->text() == tr("Back"))
     {
-        if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
-        {
-            ui->twCalibration->setEnabled(false); 
-            ui->twCalibration->removeTab(1);
-            ui->twCalibration->insertTab(1, cWidgetPressure, cStringPressure);
-            ui->twCalibration->setEnabled(true); 
-            ui->twCalibration->setCurrentIndex(1);
-
-            ui->pbSave->show();
-            ui->pbExit->setText(tr("Exit"));
-
-            ui->twCalibration->setTabEnabled(0, true);
-            ui->twCalibration->setTabEnabled(1, true);
-            ui->twCalibration->setTabEnabled(2, true);
-
-        }
-        else if(ui->twCalibration->currentWidget() == cWidgetPrLinear)
-        {
-            ui->twCalibration->setEnabled(false); 
-            ui->twCalibration->removeTab(1);
-            ui->twCalibration->insertTab(1, cWidgetPrLinearzation, cStringPrLinearzation);
-            ui->twCalibration->setCurrentIndex(1);
-            ui->twCalibration->setEnabled(true);
-
-            ui->twCalibration->setTabEnabled(0, false);
-            ui->twCalibration->setTabEnabled(2, false);
-
-            ui->pbSave->hide();
-            ui->pbExit->setText(tr("Back"));
-
-            if(cParasChanged)
+                {
+            if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
             {
-                emit getConfirmation(M_CONFIRM_CALIBRATION);
+               qDebug() << "cWidgetPrLinearzation";
+
+               if(cEnSwitch)
+               {
+                    ui->twCalibration->setEnabled(false);
+                    ui->twCalibration->removeTab(1);
+                    ui->twCalibration->insertTab(1, cWidgetPressure, cStringPressure);
+                    ui->twCalibration->setEnabled(true);
+                    ui->twCalibration->setCurrentIndex(1);
+
+                    ui->pbSave->show();
+                    ui->pbExit->setText(tr("Home"));
+
+                    ui->twCalibration->setTabEnabled(0, true);
+                    ui->twCalibration->setTabEnabled(1, true);
+                    ui->twCalibration->setTabEnabled(2, true);
+               }
+
             }
+            else if(ui->twCalibration->currentWidget() == cWidgetPrLinear)
+            {
+                qDebug() << "cWidgetPrLinear";
+
+                if(!cParasChanged)
+                {
+                    ui->twCalibration->setEnabled(false);
+                    ui->twCalibration->removeTab(1);
+                    ui->twCalibration->insertTab(1, cWidgetPrLinearzation, cStringPrLinearzation);
+                    ui->twCalibration->setCurrentIndex(1);
+                    ui->twCalibration->setEnabled(true);
+
+                    ui->twCalibration->setTabEnabled(0, false);
+                    ui->twCalibration->setTabEnabled(2, false);
+
+                    ui->pbSave->hide();
+                    ui->pbExit->setText(tr("Back"));
+                }
+                else
+                {
+                    cEnSwitch = false;
+                    emit getConfirmation(M_CONFIRM_CALIBRATION, tmp);
+                }
+            }
+
+            setWaitACKStatus(false);
         }
-    }
+
+  }
     else //Exit
     {
         if(cParasChanged)
         {
+        	cEnSwitch = false;
 			emit getConfirmation(M_CONFIRM_CALIBRATION);
+
         }
 
+        if(!cParasChanged)
         {
-            int tc = getTemperatureCount(20); 
-            emit sendCommand(cProtocol.sendMeasuring(0, tc));
+            hideAfterACK(true);
+            int tc = getTemperatureCount(20);
+            emit sendCommand(cProtocol.sendMeasuring(0, tc), this);
         }
 
+
+        if(!cParasChanged)
+        {
+
+
+            this->hide();
+            emit showHome(false);
+        }
+
+    }
+}
+
+void sCalibration::on_pbExit_clicked()
+{
+
+    checkExit(M_MEASURING);
+
+    /*
+    if(ui->pbExit->text() != tr("Back"))
+
+    if(!cParasChanged)
+    {
         this->hide();
         emit showHome(false);
     }
+    */
+    
 }
 
 void sCalibration::on_pbPCPCal_clicked()
@@ -1217,8 +1440,8 @@ void sCalibration::on_pbTCTSet_clicked()
     {
         double tm = ui->leTCTemperature->text().toDouble();
         int tmp = getTemperatureCount(tm);
-
-        emit sendCommand(cProtocol.sendTemperature(tmp));
+          setWaitACKStatus(true);
+        emit sendCommand(cProtocol.sendTemperature(tmp), this);
     }
 }
 
@@ -1227,7 +1450,11 @@ void sCalibration::on_cbTCTEnable_clicked()
     ui->leTCTemperature->setReadOnly(!ui->cbTCTEnable->isChecked());
     ui->pbTCTSet->setEnabled(ui->cbTCTEnable->isChecked());
     ui->cbTCalibMethod->setEnabled(!ui->cbTCTEnable->isChecked());
-}
+   if(!ui->cbTCTEnable->isChecked())
+    {
+        setWaitACKStatus(true);
+        emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
+    }}
 
 void sCalibration::on_cbTCalibMethod_currentIndexChanged(int index)
 {
@@ -1277,7 +1504,12 @@ void sCalibration::on_cbPCTEnable_clicked()
 {
     ui->lePCTemperature->setReadOnly(true); 
     ui->pbPCTSet->setEnabled(ui->cbPCTEnable->isChecked());
-}
+   if(!ui->cbPCTEnable->isChecked())
+    {
+        setWaitACKStatus(true);
+        emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
+    }
+    }
 
 void sCalibration::on_pbPCTSet_clicked()
 {
@@ -1285,16 +1517,19 @@ void sCalibration::on_pbPCTSet_clicked()
     {
         double tm = ui->lePCTemperature->text().toDouble();
 
+
+        setWaitACKStatus(true);
         int tmp = getTemperatureCount(tm);
-        emit sendCommand(cProtocol.sendTemperature(tmp));
+        emit sendCommand(cProtocol.sendTemperature(tmp), this);
 
     }
 }
 
 void sCalibration::on_pbTouchCalibrate_clicked()
 {
-    QProcess process;
-    process.start("/usr/bin/ts_calibrate -r 1"); 
+      QProcess process;
+    //process.start("/usr/bin/ts_calibrate -r 1");
+    process.start("/usr/bin/ts_calibrate");
     process.waitForFinished();
     QString output = process.readAllStandardOutput();
     QString err = process.readAllStandardError();
@@ -1305,6 +1540,8 @@ void sCalibration::on_pbTouchCalibrate_clicked()
 
 void sCalibration::on_twCalibration_currentChanged(int index)
 {
+    bool sc = false;
+
     if(!isVisible()) return;
 
     if(index==2) ui->pbSave->hide();
@@ -1313,7 +1550,9 @@ void sCalibration::on_twCalibration_currentChanged(int index)
     if(ui->twCalibration->isEnabled() && (index < 2)  &&
        ui->twCalibration->currentWidget() != cWidgetPrLinear)
     {
-        emit sendCommand(cProtocol.sendMeasuring(1, 0));
+        sc = true;
+        //emit sendCommand(cProtocol.sendMeasuring(1, 0));
+        emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
     }
 
     if(cPrevTab!=index)
@@ -1323,14 +1562,18 @@ void sCalibration::on_twCalibration_currentChanged(int index)
             updateTemperatureCalib();
 
             if(cParasChanged)
-                emit getConfirmation(M_CONFIRM_CALIBRATION_SWITCH);
+            {
+                emit getConfirmation(M_CONFIRM_CALIBRATION_SWITCH, M_MEASURING);
+            }
         }
         else
         {
             updatePressureCalib();
 
             if(cParasChanged)
-                emit getConfirmation(M_CONFIRM_CALIBRATION_SWITCH);
+            {
+                emit getConfirmation(M_CONFIRM_CALIBRATION_SWITCH, M_MEASURING);
+            }
         }
 
         cPrevTab = index;
@@ -1340,11 +1583,13 @@ void sCalibration::on_twCalibration_currentChanged(int index)
     if(!index) showTemperatureCalib();
     else if(index==1)showPressureCalib();
 
+    if(sc) setWaitACKStatus(true);
+
 }
 
 void sCalibration::on_pbPCAutoStart_clicked()
 {
-    emit runClicked(MS_LINEARIZATION_RUN, false);
+     emit runClicked(MS_LINEARIZATION_RUN, false);
 }
 
 void sCalibration::on_pbPCAutoStop_clicked()
@@ -1356,7 +1601,7 @@ void sCalibration::on_cbPCSelectorValve_currentIndexChanged(int index)
 {
     if(!ui->tabPressure->isVisible()) return;
 
-    emit sendCommand(cProtocol.sendValvePosition(ui->cbPCSelectorValve->currentIndex()));
+    //emit sendCommand(cProtocol.sendValvePosition(ui->cbPCSelectorValve->currentIndex()));
 }
 
 void sCalibration::on_pbPCTableShow_clicked()
@@ -1413,4 +1658,10 @@ void sCalibration::on_pbPCTableShow_clicked()
             ui->tvPressure->item(0, 4)->setTextAlignment(Qt::AlignRight);
         }
     }
+}
+
+void sCalibration::on_pbPCSVSet_clicked()
+{
+    setWaitACKStatus(true);
+    emit sendCommand(cProtocol.sendValvePosition(ui->cbPCSelectorValve->currentIndex()), this);
 }

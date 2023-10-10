@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
+ <ui version="4.0">
  <class>sGeneralSetup</class>
  <widget class="QWidget" name="sGeneralSetup">
   <property name="geometry">
@@ -207,7 +207,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+   <number>0</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -4438,8 +4438,11 @@ QScrollBar::down-arrow:vertical {
       background:  rgb(241, 241, 241);
  }
 </string>
-         </property>
-         <property name="frame">
+   </property>
+         <property name="maxVisibleItems">
+          <number>8</number>
+         </property>      
+            <property name="frame">
           <bool>true</bool>
          </property>
          <item>

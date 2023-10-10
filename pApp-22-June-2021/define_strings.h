@@ -8,6 +8,8 @@
 #define STRING_MEASURING_MOVING_PISTON_0_25_ML      tr("Filling 0.25 ml of Sample")  
 #define STRING_MEASURING_MOVING_PISTON_1_ML         tr("Filling 1 ml of Sample") 
 
+#define STRING_MEASURING_FILLING         tr("Filling")
+
 #define STRING_MEASURING_MOVING_PISTON_1_7_ML       tr("Moving Piston to 1.7 ml") //V1
 #define STRING_MEASURING_MOVING_PISTON_2_5_ML       tr("Moving Piston to 2.5 ml") //V2
 #define STRING_MEASURING_MOVING_PISTON_5_ML         tr("Moving Piston to 5 ml")   //V3
@@ -19,9 +21,12 @@
 #define STRING_MEASURING_MOVING_VALVE_CLOSE         tr("Closing Valve")
 
 #define STRING_MEASURING_COOLING                    tr("Cooling to ")
+#define STRING_MEASURING_COOL                       tr("Cooling")
 
 #define STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE        tr("Temperature Stabilizing @ ")
 #define STRING_MEASURING_WAITING_PRESSURE_STABILIZE           tr("Pressure Stabilizing @ ")
+#define STRING_MEASURING_TEMPERATURE_STABILIZING        tr("Temperature Stabilizing")
+#define STRING_MEASURING_PRESSURE_STABILIZING           tr("Pressure Stabilizing")
 
 #define STRING_MEASURING_WAITING_FOR                tr("Waiting for ")
 

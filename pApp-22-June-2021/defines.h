@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#include <QDebug>
 #define M_MEASURING         1
 #define M_CLEANING          2
 #define M_MEMORY            3

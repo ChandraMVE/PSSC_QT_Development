@@ -78,9 +78,10 @@ sMemory::sMemory(QWidget *parent) :
     QObject::connect(ui->wTableView->horizontalScrollBar(), SIGNAL(valueChanged(int)), ui->wTableViewHeader->horizontalScrollBar(), SLOT(setValue(int)));
     QObject::connect(ui->wTableViewHeader->horizontalScrollBar(), SIGNAL(valueChanged(int)), ui->wTableView->horizontalScrollBar(), SLOT(setValue(int)));
     QObject::connect(ui->wTableView->model(), SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
-    QObject::connect(ui->wTableView->model(), SIGNAL(showStatusBox(QString, QString)), this, SLOT(onShowStatusBox(QString, QString)));
+    QObject::connect(ui->wTableView->model(), SIGNAL(showStatusBox(QString, QString, bool)), this, SLOT(onShowStatusBox(QString, QString, bool)));
 
     cParasChanged = false;
+    cEnSwitch = true;
 
 }
 
@@ -226,25 +227,44 @@ bool sMemory::deleteTests()
     bool ret = MemoryModel->RemoveRecord();
     ui->wTableView->resizeRowsToContents();
 
+    cEnSwitch = true;
     return ret;
 }
 
 bool sMemory::transferTests(QString fname)
 {
-    return MemoryModel->TransferRecords(fname);
+   bool tmp = MemoryModel->TransferRecords(fname);
+    cEnSwitch = true;
+    return tmp;
 }
 
 bool sMemory::saveResult(QString noperator, QString sampleID, QString datetime, double p_tot, double p_gas, double p_abs, QString method, QString formula, double aconst, double bconst, double cconst, double result, double t_time, double vlratio, double para_measured)
 {
-    MemoryModel->AppendRecord(1, noperator, sampleID, datetime, p_tot, p_gas, p_abs, method, formula, aconst, bconst, cconst, result, t_time, vlratio, para_measured);
-    return true;
+    return MemoryModel->AppendRecord(1, noperator, sampleID, datetime, p_tot, p_gas, p_abs, method, formula, aconst, bconst, cconst, result, t_time, vlratio, para_measured);
 }
 
+bool sMemory::printResult(struct TestStruct *test)
+{
+    return MemoryModel->PrintRecords(false, test);
+}
 int sMemory::getMemoryCount()
 {
     return MemoryModel->rowCount();
 }
 
+
+bool sMemory::isSwitchEnabled(int tmp)
+{
+    ui->pbPrint->setEnabled(true);
+    ui->pbTransfer->setEnabled(true);
+    ui->pbDelete->setEnabled(true);
+
+    updateMemorySetup();
+
+    if(cParasChanged) saveFile();
+
+    return cEnSwitch;
+}
 void sMemory::on_wTableViewHeader_clicked(const QModelIndex &index)
 {
 
@@ -269,32 +289,45 @@ void sMemory::on_pbExit_clicked()
     ui->pbDelete->setEnabled(true);
 
     updateMemorySetup();
+
     if(cParasChanged) saveFile();
 
-    this->hide();
-    emit showHome(false);
+    {
+        this->hide();
+        emit showHome(false);
+    }
 }
 
 void sMemory::on_pbDelete_clicked()
 {
+    cEnSwitch = false;
+
     ui->pbDelete->setEnabled(false);
 
     if(MemoryModel->getSelectedCount() > 0)
-        emit getConfirmation(M_CONFIRM_DELETE);
+        emit getConfirmation(M_CONFIRM_DELETE, M_MEMORY);
     else
+    {
         emit showMsgBox(tr("Memory Delete"), tr("Select  tests/columns!"));
+        cEnSwitch = true;
+    }
 
     ui->pbDelete->setEnabled(true);
 }
 
 void sMemory::on_pbTransfer_clicked()
 {
+    cEnSwitch = false;
+
     ui->pbTransfer->setEnabled(false);
 
     if(MemoryModel->getSelectedCount() > 0)
-        emit getConfirmation(M_CONFIRM_TRANSFER);
+        emit getConfirmation(M_CONFIRM_TRANSFER, M_MEMORY);
     else
+    {
         emit showMsgBox(tr("Memory Transfer"), tr("Select  tests/columns!"));
+        cEnSwitch = true;
+    }
 
     ui->pbTransfer->setEnabled(true);
 }
@@ -302,14 +335,20 @@ void sMemory::on_pbTransfer_clicked()
 void sMemory::on_pbPrint_clicked()
 {
 
+    cEnSwitch = false;
+
     ui->pbPrint->setEnabled(false);
 	
     if(MemoryModel->getSelectedCount() > 0)
     {
-            MemoryModel->PrintRecords();
+            MemoryModel->PrintRecords(true, NULL);
+            cEnSwitch = true;
     }
     else
+    {
         emit showMsgBox(tr("Memory Print"), tr("Select  tests/columns!"));
+        cEnSwitch = true;
+    }
 
     ui->pbPrint->setEnabled(true);
 }
@@ -319,7 +358,7 @@ void sMemory::onShowMsgBox(QString title, QString msg)
     emit showMsgBox(title, msg);
 }
 
-void sMemory::onShowStatusBox(QString title, QString msg)
+void sMemory::onShowStatusBox(QString title, QString msg, bool show)
 {
-    emit showStatusBox(title, msg);
+    emit showStatusBox(title, msg, show);
 }

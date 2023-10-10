@@ -9,6 +9,7 @@ sCleaning::sCleaning(QWidget *parent) :
 
     ui->pbRun->setEnabled(true);
 
+ cRunState = false;
 }
 
 sCleaning::~sCleaning()
@@ -37,12 +38,14 @@ void sCleaning::Show()
 
 void sCleaning::setRunning(bool tmp)
 {
+  cRunState = tmp;
     switch(tmp)
     {
         case 0:
                 ui->pbRun->setEnabled(true);
-                ui->pbStop->setEnabled(true);
-                break;
+                ui->pbStop->setEnabled(false);
+                ui->lblCountDown->hide();              
+                  break;
         case 1:
                 ui->pbRun->setEnabled(false);
                 ui->pbStop->setEnabled(true);
@@ -59,6 +62,25 @@ void sCleaning::updateStatus(int current, int total)
     ui->lblCountDown->show();
 }
 
+void sCleaning::setWaitACKStatus(bool tmp)
+{
+    if(!cRunState) ui->pbRun->setEnabled(!tmp);
+}
+
+bool sCleaning::getWaitACKStatus()
+{
+    return true;
+}
+
+void sCleaning::hideAfterACK(bool tmp)
+{
+
+}
+
+bool sCleaning::getHideAfterACK()
+{
+    return false;
+}
 void sCleaning::on_pbRun_clicked()
 {
     emit runClicked(MS_RINSING_RUN, false);
@@ -67,7 +89,6 @@ void sCleaning::on_pbRun_clicked()
 void sCleaning::on_pbStop_clicked()
 {
     emit runClicked(MS_RINSING_STOP, false);
-
-    this->hide();
-    emit showHome(false);
+  // 18-Apr-2023 this->hide();
+    // 18-Apr-2023 emit showHome(false);
 }

@@ -254,6 +254,7 @@ font: 75 16pt &quot;Roboto&quot;;
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      
       <widget class="QFrame" name="frame_3">
        <property name="geometry">
         <rect>
@@ -334,7 +335,7 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QLabel" name="lblMessage">
+    <widget class="QLabel" name="lblTemperature">
         <property name="geometry">
          <rect>
           <x>7</x>
@@ -345,11 +346,11 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
         </property>
         
         <property name="styleSheet">
-         <string notr="true">border-width: 0px;
+         <string notr="true">color: rgb(75, 225, 0);
 font: 80 28pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-         <string>Rinsing of cell</string>
+          <string>--.--</string>
         </property>
  </widget>
        <widget class="QLabel" name="lblPressure">
@@ -369,7 +370,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          <string>---.--</string>
         </property>
        </widget>
-       <widget class="QFrame" name="frLiveData">
+       <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -379,15 +380,15 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-width: 0px;</string>
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+  <string notr="true">color: rgb(77, 155, 232);
+  font: 75 16pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Temperature</string>
         </property>
       
        </widget>
-       <widget class="QLabel" name="lblCountDown">
+       <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -398,11 +399,11 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         </property>
         
         <property name="styleSheet">
-         <string notr="true">border-width: 0px;
+          <string notr="true">color: rgb(77, 155, 232);
 font: 80 24pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-         <string>Current Cycle: -/-</string>
+         <string>Pressure</string>
    
         </property>
        </widget>

@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,9 +31,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->wCheckPass->move(0, 180-92+20);
     ui->wCheckPass->hide();
 
-   connect(ui->wCheckPass, SIGNAL(SendData(QString, QString, int, int)), this, SLOT(onPassDataReceived(QString, QString, int, int)));
-   connect(ui->wCheckPass, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
-    connect(ui->wCheckPass, SIGNAL(Confirmed(int, bool)), this, SLOT(onConfirmed(int, bool)));
+    connect(ui->wCheckPass, SIGNAL(SendData(QString, QString, int, int)), this, SLOT(onPassDataReceived(QString, QString, int, int)));
+    connect(ui->wCheckPass, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
+    connect(ui->wCheckPass, SIGNAL(Confirmed(int, bool, int)), this, SLOT(onConfirmed(int, bool, int)));
 
    ui->wError->resize(768, 876+92-10);
     ui->wError->move(0, 180-92+20);
@@ -40,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->wError, SIGNAL(SendData(QString, QString, int, int)), this, SLOT(onPassDataReceived(QString, QString, int, int)));
     connect(ui->wError, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
-    connect(ui->wError, SIGNAL(Confirmed(int, bool)), this, SLOT(onConfirmed(int, bool)));
+    connect(ui->wError, SIGNAL(Confirmed(int, bool, int)), this, SLOT(onConfirmed(int, bool, int)));
 
     ui->wMenuBar->resize(768, 86);
     ui->wMenuBar->move(0,92);
@@ -176,47 +177,54 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wServiceSetup, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wCalibrationSetup, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
 
-   connect(ui->wMemory, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
+    connect(ui->wMemory, SIGNAL(getConfirmation(int, int)), this, SLOT(onGetConfirmation(int, int)));
     connect(ui->wMemory, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
-    connect(ui->wMemory, SIGNAL(showStatusBox(QString,QString)), this, SLOT(onShowStatusBox(QString, QString)));
+    connect(ui->wMemory, SIGNAL(showStatusBox(QString,QString,bool)), this, SLOT(onShowStatusBox(QString, QString, bool)));
 
-    connect(ui->wUserSetup, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
+    connect(ui->wUserSetup, SIGNAL(getConfirmation(int, int)), this, SLOT(onGetConfirmation(int, int)));
     connect(ui->wUserSetup, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
-    connect(ui->wGeneralSetup, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
+    connect(ui->wGeneralSetup, SIGNAL(getConfirmation(int, int)), this, SLOT(onGetConfirmation(int, int)));
     connect(ui->wGeneralSetup, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
 
-    connect(ui->wMethodSetup, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
-    connect(ui->wServiceSetup, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
-    connect(ui->wCalibrationSetup, SIGNAL(getConfirmation(int)), this, SLOT(onGetConfirmation(int)));
+    connect(ui->wMethodSetup, SIGNAL(getConfirmation(int, int)), this, SLOT(onGetConfirmation(int, int)));
+    connect(ui->wServiceSetup, SIGNAL(getConfirmation(int, int)), this, SLOT(onGetConfirmation(int, int)));
+    connect(ui->wCalibrationSetup, SIGNAL(getConfirmation(int, int)), this, SLOT(onGetConfirmation(int, int)));
 
+    connect(ui->wServiceSetup, SIGNAL(getPass()), this, SLOT(onGetPass()));
     connect(ui->wCleaning, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wMemory, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wUserSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wGeneralSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wMethodSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
+    connect(ui->wCalibrationSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
 
     connect(ui->wServiceSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wServiceSetup, SIGNAL(showFileSelect()), this, SLOT(onShowFileSelect()));
     connect(ui->wServiceSetup, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
+    connect(ui->wServiceSetup, SIGNAL(showStatusBox(QString, QString, bool)), this, SLOT(onShowStatusBox(QString, QString, bool)));
 
-    connect(ui->wMethodSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
-    connect(ui->wCalibrationSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
+   
 
     connect(ui->wMeasuring1, SIGNAL(runClicked(int, bool)), this, SLOT(onRunClicked(int, bool)));
     connect(ui->wMeasuring1, SIGNAL(saveResult(double, double, double, QString, QString, double, double, double, double, double, double, double)), this, SLOT(onSaveResult(double, double, double, QString, QString, double, double, double, double, double, double, double)));
 
     connect(ui->wCleaning, SIGNAL(runClicked(int, bool)), this, SLOT(onRunClicked(int, bool)));
     connect(ui->wServiceSetup, SIGNAL(runClicked(int, bool)), this, SLOT(onRunClicked(int, bool)));
+    //connect(ui->wUserSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
+    connect(ui->wUserSetup, SIGNAL(sendCommand(QString, sAccessWidget *)), this, SLOT(onSendCommand(QString, sAccessWidget *)));
+    //connect(ui->wServiceSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
+    connect(ui->wServiceSetup, SIGNAL(sendCommand(QString, sAccessWidget *)), this, SLOT(onSendCommand(QString, sAccessWidget *)));
 
-    connect(ui->wUserSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
-    connect(ui->wServiceSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
-    connect(ui->wCalibrationSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
+
+    //connect(ui->wCalibrationSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
+    connect(ui->wCalibrationSetup, SIGNAL(sendCommand(QString, sAccessWidget *)), this, SLOT(onSendCommand(QString, sAccessWidget *)));
     connect(ui->wCalibrationSetup, SIGNAL(runClicked(int, bool)), this, SLOT(onRunClicked(int, bool)));
     connect(ui->wCalibrationSetup, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
-    connect(ui->wCalibrationSetup, SIGNAL(showStatusBox(QString,QString)), this, SLOT(onShowStatusBox(QString, QString)));
+    //connect(ui->wCalibrationSetup, SIGNAL(showStatusBox(QString,QString, bool)), this, SLOT(onShowStatusBox(QString, QString, bool)));
     connect(ui->wCalibrationSetup, SIGNAL(updateMainWindow(void)), this, SLOT(onUpdateMainWindow(void)));
 
     cWidget = ui->wMeasuring1;
+    cAccessWidget = ui->wMeasuring1;
 
     ui->wMenuBar->setSelectedMenu(M_MEASURING);
     cMenu = M_MEASURING;
@@ -227,7 +235,10 @@ MainWindow::MainWindow(QWidget *parent) :
     cRawCTemperature = -1;
     cRawCPressure = -1;
     cStepperSpeed = -1;
-    cParasUpdated = true;
+    cParasUpdated = false; //true;
+    cDiagErrorHandle = false;
+
+    cPrCount = 0;
 
     cFrameReceived = 0;
     cFrameErrorShown = false;
@@ -244,12 +255,15 @@ MainWindow::MainWindow(QWidget *parent) :
     cTimeOutError = 0;
     cStrringErrorCount = 0;
 
-    cCRFlag = false;
+    cTest = new TestStruct();
+    
+     cCRFlag = false;
     cCRTimeout = CONTINUOUS_RUN_TIMEOUT;
 
-   serial = new QSerialPort(this);
-   connect(serial, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerial(QSerialPort::SerialPortError)));
-   connect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
+   
+    serial = new QSerialPort(this);
+    connect(serial, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerial(QSerialPort::SerialPortError)));
+    connect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
 
     cDateTime = QDateTime::currentDateTime().addSecs(ui->wUserSetup->getGMTSeconds()); 
 
@@ -266,24 +280,71 @@ MainWindow::~MainWindow()
  void MainWindow::onLoad()
 {
     this->show();
-#if 0 //commenting this winndow,to stop the communication error
+    
+#ifdef Q_OS_WIN32
+
+    cRawCTemperature = cSettings.getTemperatureCount(20);
+    cValvePosition = M_VALVE_POSITION_EXHAUST;
+    //cPistonPosition = 5; //0;  //14-July-2022 for testing changed to 5
+    cPistonPosition = 0;  //14-July-2022 for testing changed to 5
+
+    cIdleTimeout = 0;
+    cStartTimeoutFlag = false;
 
     cInitDone = false;
     cInitSuccess = false;
-    cStageTimeOut = 12*60;
+
+    cStageTimeOut = 2; //3; //10;
+
     cFrameReceived = true;
     cFrameTimeOut = 0;
     cFrameErrorShown = false;
 
     startTimer(1000);
     qApp->installEventFilter(this);
-   openSerial("/dev/ttymxc1");
+    openSerial("COM26");
 
-    int tc = cSettings.getTemperatureCount(20);
-    onSendCommand(cProtocol.sendMeasuring(1, tc));
+#else
 
-    onShowStatusBox(tr("Information"), tr("Initializing...\nPlease wait..."));
+    ui->pushButton->hide();
+    ui->pushButton_2->hide();
+
+    cIdleTimeout = 0;
+    cStartTimeoutFlag = false;
+
+    cInitDone = false;
+    cInitSuccess = false;
+
+    cStageTimeOut = 12*60; //3-Sept-2021 //240; //3; //10;
+
+    cFrameReceived = true;
+    cFrameTimeOut = 0;
+    cFrameErrorShown = false;
+
+    startTimer(1000);
+    qApp->installEventFilter(this);
+    openSerial("/dev/ttymxc1");
+
 #endif
+
+    cNAKCount = 0;
+
+    //cACKReceived = true;
+    cWaitForACK = true;
+    cACKReceived = false;
+    cNACKReceived = false;
+    cUACKReceived = false;
+
+    int tc = cSettings.getTemperatureCount(20); 
+
+    //onSendCommand(cProtocol.sendMeasuring(1, tc));
+    //cPCMD = cProtocol.sendMeasuring(1, tc);
+
+    //sendPara(cProtocol.sendMeasuring(1, tc), 1, cStageTimeOut);
+
+
+    sendPara(cProtocol.sendMeasuringStart(1, tc), 1, cStageTimeOut);
+    onShowStatusBox(tr("Information"), tr("Initializing...\nPlease wait..."), true);
 }
 
 
@@ -384,8 +445,8 @@ void MainWindow::setLists()
     qslEmulation.insert(1, "USB");
 
     qslBaudRate.insert(0, "2400");
-    qslBaudRate.insert(1, "41024");
-    qslBaudRate.insert(2, "9768");
+    qslBaudRate.insert(1, "4800");
+    qslBaudRate.insert(2, "9600");
     qslBaudRate.insert(3, "19200");
 
     qslParity.insert(0, "None");
@@ -597,10 +658,121 @@ void MainWindow::closeSerial()
 
 void MainWindow::checkInit()
 {
+if(cWaitForACK && !cACKReceived) return;
+    cWaitForACK = false;
+
+    qDebug() << "CI";
+
+    switch(cStage)
+    {
+        case 1:
+                //if(cACKReceived) sendPara(ui->wUserSetup->getBuzAndVol(), 2, 5);
+
+                #ifdef Q_OS_WIN32
+                    sendPara(ui->wUserSetup->getBuzAndVol(), 2, 10);
+                #else
+                    //sendPara(ui->wUserSetup->getBuzAndVol(), 2, 12*60);
+                    sendPara(ui->wUserSetup->getBuzAndVol(), 2, 20*60);
+                #endif
+
+                break;
+
+        case 2: //if(cACKReceived)
+                cStage++;
+                break;
+
+        case 3:
+                {
+
+                    #ifdef Q_OS_WIN32
+                        //cParasUpdated = true;
+                        cParasUpdated = false;
+                    #else
+                        cParasUpdated = false;
+                    #endif
+
+                    double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                    if((cValvePosition == M_VALVE_POSITION_EXHAUST && cPistonPosition == 0) &&
+                       ((ctmp >= (20 - M_INIT_TEMPERATURE_TOLERANCE ))
+                       && (ctmp <= (20 + M_INIT_TEMPERATURE_TOLERANCE ))))
+                    {
+
+                        //ui->wUserSetup->sendBuzAndVol();
+
+                        onShowMsgBox(tr("Initial"), tr("Initial test done!"));
+                        cInitSuccess = true;
+                        cInitDone = true;
+
+                        qDebug() << "TMO Reset";
+
+                        cStage = -2; //0;
+                        cIdleTimeout = 0;
+                        cStageTimeOut = 60*12;
+
+                        //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+
+                    }
+                    else
+                    {
+                        if(!cStageTimeOut)
+                        {
+
+                            if(cValvePosition != M_VALVE_POSITION_EXHAUST)
+                            {
+                                cTimeOutError |= (1<<M_ERROR_VALVE_MOTOR);
+                            }
+
+                            if(cPistonPosition != 0)
+                            {
+                                cTimeOutError |= (1<<M_ERROR_PISTON_POSITION);
+                            }
+
+                            if((ctmp < (20 - M_INIT_TEMPERATURE_TOLERANCE))
+                                || (ctmp > (20 + M_INIT_TEMPERATURE_TOLERANCE)))
+                            {
+                                cTimeOutError |= (1<<M_ERROR_TEMPERATURE);
+                            }
+
+                            ui->wCheckPass->hide();
+
+                            //cStage  = 0;      //4-July-2022
+                            cInitSuccess = false;
+                            cInitDone = true;
+
+                            //ui->wUserSetup->sendBuzAndVol();
+
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+                            cStageTimeOut = 60*12;
+
+                            //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+
+                        }
+                        else
+                            cStageTimeOut--;
+                    }
+
+                }
+                break;
+
+    }
+
+}
+
+/*
+void MainWindow::checkInit()
+{
     if(cParasUpdated)
     {
 
+#ifdef Q_OS_WIN32
+       //cParasUpdated = true;
         cParasUpdated = false;
+#else
+        cParasUpdated = false;
+#endif
 
         double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
@@ -614,6 +786,13 @@ void MainWindow::checkInit()
             onShowMsgBox(tr("Initial"), tr("Initial test done!"));
             cInitSuccess = true;
             cInitDone = true;
+qDebug() << "TMO Reset";
+
+            cStage = -2; //0;
+            cIdleTimeout = 0;
+            cStageTimeOut = 60*12;
+
+            //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
         }
         else
         {
@@ -635,23 +814,82 @@ void MainWindow::checkInit()
                     cTimeOutError |= (1<<M_ERROR_TEMPERATURE);
                 }
 
-                cStage  = 0;
+               // cStage  = 0; //4-july-2022
                 cInitSuccess = false;
                 cInitDone = true;
 
                 ui->wUserSetup->sendBuzAndVol(); 
 
+ qDebug() << "TMO Reset";
+                cStage = -1; //0;
+                cIdleTimeout = 0;
+                cStageTimeOut = 60*12;
+
+                ui->wMeasuring1->setIdleTimer(cIdleTimeout);
             }
             else cStageTimeOut--;
         }
     }
 }
+*/
 
 void MainWindow::handleRinsing()
 {
     switch(cStage)
     {
+      case -2: {
+                    cParasUpdated = false;
+
+                    qDebug() << "TR";
+
+                    cIdleTimeout = 0;
+                    cStage = -1;
+
+                    /* //30-July-2022
+
+                    double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                    if((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
+                        && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE)))
+                    {
+                            cStage = -1;
+                            qDebug() << "TR -1";
+                    }
+
+
+                    else
+                    {
+                        if(!cStageTimeOut) { setError(M_ERROR_TEMPERATURE); }
+                        else cStageTimeOut--;
+                    }
+                    */
+
+                 }
+        break;
+
+        case -1:
+                    //qDebug() << "TMO";
+
+                    if(cIdleTimeout > M_IDLE_TIME_OUT)
+                    {
+                        cIdleTimeout = 0;
+                        cStartTimeoutFlag = false;
+                        qDebug() << "Idle 0C Send";
+                        //onSendCommand();
+
+                        sendPara(cProtocol.sendMeasuring(1, 0), 0, 0);
+                        //cStage = 0;
+
+                    }
+                    else
+                    {
+                        //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+                        cIdleTimeout++;
+                    }
+
+        break;
         case 0:
+                    qDebug() << "TMO>>";
 
         break;
 
@@ -664,9 +902,26 @@ void MainWindow::handleRinsing()
                     if((cValvePosition == M_VALVE_POSITION_EXHAUST) &&
                        (cPistonPosition == 0) && ((ctmp >= (20 - M_RINSING_TEMPERATURE_TOLERANCE )) && (ctmp <= (20 + M_RINSING_TEMPERATURE_TOLERANCE ))))
                     {
-                        sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_IN), 3, 60);
-                        if(ui->wMeasuring1->isVisible())
-                            ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_IN);
+    #ifdef Q_OS_WIN32
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_IN), 3, 10);
+                        #else
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_IN), 3, 60);
+                        #endif
+
+			if(ui->wMeasuring1->isVisible())
+                        {
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_IN);
+                            else
+                            {
+                                QString str = tr("Rinsing of cell: ")
+                                + tr("Current Cycle:") + QString::number(cRinseCycles + 1)
+                                + "/"
+                                + QString::number(ui->wUserSetup->user_setup.rinse_cycle + 1);
+
+                                ui->wMeasuring1->setStatus(str);
+                            }
+                        }                      
                     }
                     else
                     {
@@ -703,7 +958,8 @@ void MainWindow::handleRinsing()
                         sendPara(cProtocol.sendPistonPosition(250), 4, 60);
 
                         if(ui->wMeasuring1->isVisible())
-                            ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
+if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
                     }
                     else
                     {
@@ -726,8 +982,8 @@ void MainWindow::handleRinsing()
                         sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST), 5, 60);
 
                         if(ui->wMeasuring1->isVisible())
-                            ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
-                    }
+             if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);                    }
                     else
                     {
                         if(!cStageTimeOut)
@@ -747,8 +1003,9 @@ void MainWindow::handleRinsing()
                     {
                         sendPara(cProtocol.sendPistonPosition(0), 6, 60);	
 
-                        if(ui->wMeasuring1->isVisible())
-                            ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
+                                if(ui->wMeasuring1->isVisible())
+			    if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
                     }
                     else
                     {
@@ -777,13 +1034,25 @@ void MainWindow::handleRinsing()
                         else
                         {
                             if(ui->wCleaning->isVisible()) cStage = 0;
+                              {
+                                //cStage = 0;
+
+                                cIdleTimeout = 0;
+                                qDebug() << "TMO Reset";
+                                cStage = -2; //0;
+                                cIdleTimeout = 0;
+
+                                ui->wCleaning->setRunning(false); //18-Apr-2023
+                                ui->wMenuBar->setSelectedMenu(M_CLEANING); //18-Apr-2023
+                            }
                             else
                             {
                                 sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_IN), 7, 60);
 
                                 if(ui->wMeasuring1->isVisible())
-                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_IN);
-                            }
+if(ui->wServiceSetup->getDebug())
+                                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_IN);                            }
+                    }
                         }
                     }
                     else
@@ -815,8 +1084,17 @@ void MainWindow::readSerial(void)
     for(count=0; count<data.length(); count++)
     {
         if(!dcount && data[count] == '#') dcount++;
+{
+            rdata[dcount] = '#';
+            dcount++;
+        }
         else if(dcount>=1 && dcount < 100)
         {
+ //"#YC4096,A262144,B262144,F700,D1,H210,E1234$
+
+            //"#YC4096,A262144,B262144,F700,D1,H210,E1234,W123$
+            //"#YC4096,A262144,B262144,F700,D1,H210,E1234,Z06,W123$   //ack
+            //"#YC4096,A262144,B262144,F700,D1,H210,E1234,Z21,W123$     //nack
             rdata[dcount] =  data[count];
 
             if(rdata[dcount] == '$')
@@ -824,17 +1102,41 @@ void MainWindow::readSerial(void)
 
                 if(rdata[1] == 'Y')
                 {
+              cFrameError = false;
 
-                    if(rdata[2] != 'C') cFrameError = true; 
-                    if(rdata[8] != 'A') cFrameError = true; 
-                    if(rdata[16] != 'B') cFrameError = true; 
-                    if(rdata[24] != 'F') cFrameError = true; 
-                    if(rdata[29] != 'D') cFrameError = true; 
-                    if(rdata[32] != 'H') cFrameError = true; 
-                    if(rdata[37] != 'E') cFrameError = true; 
+                    if(rdata[2] != 'C') cFrameError = true;     //4
+                    if(rdata[8] != 'A') cFrameError = true;     //6
+                    if(rdata[16] != 'B') cFrameError = true;    //6
+                    if(rdata[24] != 'F') cFrameError = true;    //4
+                    if(rdata[29] != 'D') cFrameError = true;    //1
+                    if(rdata[32] != 'H') cFrameError = true;    //3
+                    if(rdata[37] != 'E') cFrameError = true;    //4
+
+                    if(rdata[43] != 'W' && rdata[43] != 'Z') cFrameError = true;
+                    if(rdata[43] == 'Z' && rdata[47] != 'W') cFrameError = true;
 
                     if(!cFrameError)
                     {
+ 
+                        int count = dcount - 4, pcount = 0;
+                        unsigned char  crc = 0, crcPoly = 0x07, i;
+
+                        while (count-- > 0)
+                        {
+                            crc = crc ^ rdata[pcount];
+
+                            i = 8;
+
+                            pcount++;
+
+                            do
+                            {
+                                if (crc & 0x80) crc = crc << 1 ^ crcPoly;
+                                else crc = crc << 1;
+
+                            } while(--i);
+
+                        }
                         rdata[7] = 0;
                         int  cVal = atoi((const char *)&rdata[3]);
 
@@ -856,36 +1158,143 @@ void MainWindow::readSerial(void)
                         rdata[42] = 0;
                         int  eVal = atoi((const char *)&rdata[38]);
 
-                        cValvePosition = dVal;
-                        cPistonPosition = fVal;
-                        cRawATemperature = cVal;  
-                        cRawCTemperature = aVal;  
-                        cRawCPressure = bVal;
-                        cStepperSpeed = hVal;
-                        cCurrentUCError = eVal;
+                   //"#YC4096,A262144,B262144,F700,D1,H210,E1234,W123$
+                        //"#YC4096,A262144,B262144,F700,D1,H210,E1234,Z06,W123$   //ack
+                        //"#YC4096,A262144,B262144,F700,D1,H210,E1234,Z21,W123$     //nack
 
-                        if(ui->wServiceSetup->isVisible())
-                            ui->wServiceSetup->onLiveData(cValvePosition, cPistonPosition,
-                                    cRawATemperature, cRawCTemperature,
-                                    cRawCPressure, cStepperSpeed, cCurrentUCError);
+                        int zVal = 0;
+                        int  crcVal = 0;
 
-                        else if(ui->wCalibrationSetup->isVisible())
-                            ui->wCalibrationSetup->onLiveData(cValvePosition,
-                                       cRawCTemperature, cRawCPressure, cCurrentUCError);
+                        if(rdata[43] == 'Z')
+                        {
+                            rdata[46] = 0;
+                            zVal = atoi((const char *)&rdata[44]);
 
-                        if(ui->wCleaning->isVisible())
-                            ui->wCleaning->onLiveData(cRawCTemperature, cRawCPressure);
+                            rdata[51] = 0;
+                            crcVal = atoi((const char *)&rdata[48]);
+                        }
+                        else
+                        {
+                            rdata[47] = 0;
+                            crcVal = atoi((const char *)&rdata[44]);
+                        }
 
-                        if(ui->wServiceSetup->getUSBLogEnabled())
-                            ui->wServiceSetup->onLogData(cValvePosition, cPistonPosition,
-                                    cRawATemperature, cRawCTemperature,
-                                    cRawCPressure, cStepperSpeed, cCurrentUCError);
+                        {
+                            QString str = QString::number(crc).rightJustified(3, '0')
+                                  + "," + QString::number(crcVal).rightJustified(3, '0')
+                                  + "," + QString::number(zVal).rightJustified(2, '0');
 
-                        cParasUpdated = true;
-                        cFrameReceived = true;
+                            //ui->label_2->setText(str);
+                        }
 
+                        if(crc == crcVal)
+                        {
+                            cValvePosition = dVal;
+                            cPistonPosition = fVal;
+                            cRawATemperature = cVal;
+                            cRawCTemperature = aVal;
+                            cRawCPressure = bVal;
+                            cStepperSpeed = hVal;
+                            cCurrentUCError = eVal;
+
+                            if(ui->wServiceSetup->isVisible())
+                                ui->wServiceSetup->onLiveData(cValvePosition, cPistonPosition,
+                                        cRawATemperature, cRawCTemperature,
+                                        cRawCPressure, cStepperSpeed, cCurrentUCError);
+
+                            else if(ui->wCalibrationSetup->isVisible())
+                                ui->wCalibrationSetup->onLiveData(cValvePosition,
+                                           cRawCTemperature, cRawCPressure, cCurrentUCError);
+
+                            if(ui->wCleaning->isVisible())
+                                ui->wCleaning->onLiveData(cRawCTemperature, cRawCPressure);
+
+                            if(ui->wServiceSetup->getUSBLogEnabled())
+                                ui->wServiceSetup->onLogData(cValvePosition, cPistonPosition,
+                                        cRawATemperature, cRawCTemperature,
+                                        cRawCPressure, cStepperSpeed, cCurrentUCError);
+
+
+                            if(zVal == 6)
+                            {
+                                cACKReceived = true;
+                                cNACKReceived = false;
+                                cUACKReceived = true;
+                            }
+
+                            if(zVal == 21)
+                            {
+                                cACKReceived = false;
+                                cNACKReceived = true;
+                            }
+
+                            cParasUpdated = true;
+                            cFrameReceived = true;
+
+                        }//crc
+
+                    }// cFrameReceived
+
+                }
+                else if(rdata[1] == 'Z')
+                {
+                    if(rdata[2] == '0' && rdata[3] == '6')  //ack
+                    {
+                        cACKReceived = true;
+                        cNACKReceived = false;
+                        cUACKReceived = true;
+                    }
+                    else if(rdata[2] == '2' && rdata[3] == '1') //nack
+                    {
+                        cACKReceived = false;
+                        cNACKReceived = true;
                     }
                 }
+                else if(rdata[1] == 'V')
+                {
+                    //#Vxxyyzz,<CRC>$
+
+                    int count = dcount - 3, pcount = 0;
+                    unsigned char  crc = 0, crcPoly = 0x07, i;
+
+                    while (count-- > 0)
+                    {
+                        crc = crc ^ rdata[pcount];
+
+                        i = 8;
+
+                        pcount++;
+
+                        do
+                        {
+                            if (crc & 0x80) crc = crc << 1 ^ crcPoly;
+                            else crc = crc << 1;
+
+                        } while(--i);
+                    }
+
+
+                    rdata[12] = 0;
+                    int  cCrc = atoi((const char *)&rdata[9]);
+
+                    rdata[8] = 0;
+                    int  czz = atoi((const char *)&rdata[6]);
+
+                    rdata[6] = 0;
+                    int  cyy = atoi((const char *)&rdata[4]);
+
+                    rdata[4] = 0;
+                    int  cxx = atoi((const char *)&rdata[2]);
+
+		    if(crc == cCrc)
+                    {
+                        QString str = QString::number(cxx)
+                                + "." + QString::number(cyy)
+                                + "." + QString::number(czz);
+                        ui->wServiceSetup->setVersion(str);
+                    }
+                }
+             
                 dcount = 0;
             }
             else
@@ -917,8 +1326,51 @@ void MainWindow::timerEvent(QTimerEvent *e)
     ui->lblDate->setText(cDateTime.toString(cSettings.getDateFormat()));
     ui->lblTime->setText(cDateTime.toString(cSettings.getTimeFormat()));
 
-//    checkCommError();
+  //QString str = "T:" + QString::number(cStage).rightJustified(2, '0');
+    //ui->label_2->setText(str);
 
+#ifdef Q_OS_WIN32
+    cFrameReceived = true;  //9-July-2022 for testing
+#endif
+
+    if(cNACKReceived)
+    {
+        if(cNAKCount<=2)
+        {
+            cNAKCount++;
+            onSendCommand(cPCMD);
+            cNACKReceived = false;
+        }
+        else if(cNAKCount == 3)
+        {
+            cNAKCount = 4;
+            showCommError(1);
+        }
+    }
+
+    if(cACKReceived)
+    {
+        cNAKCount = 0;
+        cNACKReceived = false;
+
+        if(cUACKReceived)
+        {
+            cUACKReceived = false;
+
+            if(cAccessWidget)
+            {
+                if(cAccessWidget->getHideAfterACK())
+                {
+                    //3-May-2023 onShowHome(false);
+                    cAccessWidget->hideAfterACK(false);
+                }
+                else cAccessWidget->setWaitACKStatus(false);
+                //cAccessWidget = NULL;
+            }
+        }
+    }
+
+    checkCommError();
     if(!cInitDone)
     {
         checkInit();
@@ -929,23 +1381,66 @@ void MainWindow::timerEvent(QTimerEvent *e)
         {
             ui->wMeasuring1->onLiveData(cRawCTemperature, cRawCPressure);
 
-            if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
-                handleD5188();
-            else if(ui->wMeasuring1->getMethod() == M_METHOD_D6377)
-                    handleD6377();
+if(cWaitForACK)
+            {
+                if(cACKReceived)
+                {
+                    cWaitForACK = false;
+
+                    if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
+                        handleD5188();
+                    else if(ui->wMeasuring1->getMethod() == M_METHOD_D6377)
+                            handleD6377();
+                    else
+                        handleOther();
+                }
+            }
             else
-                handleOther();
+              {
+                if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
+                    handleD5188();
+                else if(ui->wMeasuring1->getMethod() == M_METHOD_D6377)
+                        handleD6377();
+                else
+                    handleOther();
+            }
 
         }
         else if(ui->wCleaning->isVisible())
         {
             ui->wCleaning->onLiveData(cRawCTemperature, cRawCPressure);
-            handleRinsing();
+             if(cWaitForACK)
+            {
+                if(cACKReceived)
+                {
+                    cWaitForACK = false;
+                    handleRinsing();
+                }
+            }
+            else handleRinsing();
         }
-        else if(ui->wServiceSetup->isVisible() && ui->wServiceSetup->isDiagnosticMode())
+    else if(ui->wServiceSetup->isVisible())
         {
-            handleDiagnostic();
-        }
+            if(ui->wServiceSetup->isDiagnosticMode()) //handleDiagnostic();
+            {
+                if(cWaitForACK)
+                {
+                    if(cACKReceived)
+                    {
+                        cWaitForACK = false;
+                        handleDiagnostic();
+                    }
+                }
+                else handleDiagnostic();
+            }
+        } 
+        else if(ui->wMemory->isVisible() || ui->wMethodSetup->isVisible() || ui->wGeneralSetup->isVisible())      
+        {
+          if(cWaitForACK)
+            {
+                if(cACKReceived) cWaitForACK = false;
+            }        
+            }
 
         if(ui->wCalibrationSetup->isVisible())
         {
@@ -954,14 +1449,27 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
         if(ui->wCalibrationSetup->isLinerzationVisible())
         {
-            handleCalibration();
-        }
+              //handleCalibration();
+
+            if(cWaitForACK)
+            {
+                if(cACKReceived)
+                {
+                    cWaitForACK = false;
+                    handleCalibration();
+                }
+            }
+            else handleCalibration(        }
 
     }
 
     if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) 
         showError();
-
+ else if(cDiagErrorHandle && (!cCurrentUCError))
+    {
+        cDiagErrorHandle = false;
+        showError();
+    }
 }
 
 void MainWindow::onRunClicked(int state, bool init)
@@ -980,7 +1488,7 @@ void MainWindow::onRunClicked(int state, bool init)
 
                 if(ui->wMemory->getMemoryCount() >= M_MEMORY_COUNT)
                 {
-                    onGetConfirmation(M_CONFIRM_MEASURE_WITHOUT_SAVING);
+                    onGetConfirmation(M_CONFIRM_MEASURE_WITHOUT_SAVING, M_MEASURING);
                     return;
                 }
             }
@@ -995,8 +1503,13 @@ void MainWindow::onRunClicked(int state, bool init)
 
             cRinseCycles = 0; 
             cStrringErrorCount = 0;
-            sendPara(cProtocol.sendMeasuring(0, tc), 2, 60*12); 
+            
+            cAccessWidget = ui->wMeasuring1;
+            cAccessWidget->setWaitACKStatus(true);
+            //sendPara(cProtocol.sendMeasuring(0, tc), 2, 60*12);
+            sendPara(cProtocol.sendMeasuringStart(0, tc), 2, 60*12);
 
+      
         }
         else
         {
@@ -1006,12 +1519,19 @@ void MainWindow::onRunClicked(int state, bool init)
 
         case MS_TEST_STOP:
 
-            cStage = 0;
+              qDebug() << "TMO Reset";
+
+            cIdleTimeout = 0;
             cStrringErrorCount = 0;
 
-            ui->wMenuBar->setSelectedMenu(M_MEASURING);
-            onSendCommand(cProtocol.sendMeasuring(0, tc));
+ //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
 
+            ui->wMenuBar->setSelectedMenu(M_MEASURING);
+            //onSendCommand(cProtocol.sendMeasuring(0, tc));
+
+            cAccessWidget = ui->wMeasuring1;
+            cAccessWidget->setWaitACKStatus(true);
+            sendPara(cProtocol.sendMeasuring(0, tc), -2, 60*12);
         break;
 
         case MS_RINSING_RUN:
@@ -1023,7 +1543,10 @@ void MainWindow::onRunClicked(int state, bool init)
 
             cRinseCycles = 0; 
             ui->wCleaning->updateStatus(cRinseCycles + 1, ui->wUserSetup->user_setup.rinse_cycle + 1);
-            sendPara(cProtocol.sendMeasuring(0, tc), 2, 60*12); 
+           cAccessWidget = ui->wCleaning;
+            cAccessWidget->setWaitACKStatus(true);
+
+            sendPara(cProtocol.sendMeasuringStart(0, tc), 2, 60*12);
 
         }
         else
@@ -1034,11 +1557,18 @@ void MainWindow::onRunClicked(int state, bool init)
         break;
 
         case MS_RINSING_STOP:
+    
+            qDebug() << "TMO Reset";
+            cIdleTimeout = 0;
 
-            cStage = 0;
+            //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+
             ui->wCleaning->setRunning(false);
             ui->wMenuBar->setSelectedMenu(M_CLEANING);
-            onSendCommand(cProtocol.sendMeasuring(0, tc));
+
+            cAccessWidget = ui->wCleaning;
+            cAccessWidget->setWaitACKStatus(true);
+            sendPara(cProtocol.sendMeasuring(0, tc), -2, 60*12);
 
         break;
 
@@ -1047,8 +1577,13 @@ void MainWindow::onRunClicked(int state, bool init)
             cStage = MS_DIAGNOSTIC_STAGE;
             cStrringErrorCount = 0;
             ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Started..."));
-            sendPara(cProtocol.sendMeasuring(0, tc), 25, 60*12); 
 
+            cAccessWidget = ui->wServiceSetup;
+            cAccessWidget->setWaitACKStatus(true);
+            sendPara(cProtocol.sendMeasuringStart(0, tc), 25, 60*12); 
+
+            cDiagTestSuccess = true;
+            cDiagErrorHandle = false;
         break;
 
         case MS_DIAGNOSTIC_STOP:
@@ -1056,10 +1591,12 @@ void MainWindow::onRunClicked(int state, bool init)
             cStage = 0;
             cStrringErrorCount = 0;
             ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Stopped..."));
+
+            cAccessWidget = ui->wServiceSetup;
+            ui->wServiceSetup->setWaitACKStatus(true);
             onSendCommand(cProtocol.sendMeasuring(0, tc));
 
         break;
-
         case MS_LINEARIZATION_RUN:
 
         if(cInitSuccess)
@@ -1082,6 +1619,8 @@ void MainWindow::onRunClicked(int state, bool init)
                     ui->wCalibrationSetup->setPRLRunning(1);
                     ui->wCalibrationSetup->setAutoCalibrationStatus(tr("Auto Calibration Started..."));
                     ui->wCalibrationSetup->setAutoCalibrationSubStatus("");
+ cAccessWidget = ui->wCalibrationSetup;
+                    cAccessWidget->setWaitACKStatus(true);
                     sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST), //closed
                                                  24, 60);
 
@@ -1108,25 +1647,95 @@ void MainWindow::onRunClicked(int state, bool init)
             ui->wCalibrationSetup->setPRLRunning(3);
             ui->wCalibrationSetup->setAutoCalibrationStatus(tr("Auto Calibration Stopped..."));
             ui->wCalibrationSetup->setAutoCalibrationSubStatus(tr(""));
+ 
+            cAccessWidget = ui->wCalibrationSetup;
+            cAccessWidget->setWaitACKStatus(true);
             onSendCommand(cProtocol.sendMeasuring(0, tc));
 
         break;
-
     }
+
+}
+
+void MainWindow::onGetPass()
+{
+    ui->wCheckPass->Show_CheckPass(M_PWD_DEBUG, false);
+}
+
+void MainWindow::onSendCommand(QString cmd)
+{
+
+    cWaitForACK = true;
+    cACKReceived = false;
+    cNACKReceived = false;
+    cPCMD = cmd;
+
+    QByteArray ba = cmd.toLocal8Bit();
+    char *c_str2 = ba.data();
+    writeSerial(&c_str2[0], ba.length());
+
+    qDebug() << "onSendCommand:" << cmd;
+
+    //QString str = "S:" + QString::number(cStage).rightJustified(2, '0');
+    //ui->label_2->setText(str);
+
+
+}
+
+void MainWindow::onSendCommand(QString cmd, sAccessWidget *sa)
+{
+      cWaitForACK = true;
+    cACKReceived = false;
+    cNACKReceived = false;
+    cPCMD = cmd;
+
+    QByteArray ba = cmd.toLocal8Bit();
+    char *c_str2 = ba.data();
+    writeSerial(&c_str2[0], ba.length());
+
+    qDebug() << "onSendCommand SA:" << cmd;
+
+    //ui->label_2->setText("S:" + cmd);
+
+    //QString str = "S:" + QString::number(cStage).rightJustified(2, '0');
+    //ui->label_2->setText(str);
+
+
+    cAccessWidget = sa;
 
 }
 
 void MainWindow::sendPara(QString tmp, int stage, int timeout)
 {
-    QByteArray ba = tmp.toLocal8Bit(); 
-    char *c_str2 = ba.data();
-    writeSerial(&c_str2[0], ba.length());
 
-    cParasUpdated = false;
-    cStage = stage;
-    cStageTimeOut = timeout;
+    //if(cACKReceived)
+    {
+        cWaitForACK = true;
+        cACKReceived = false;
+        cNACKReceived = false;
+        cNAKCount = 0;
+
+        QByteArray ba = tmp.toLocal8Bit();
+        char *c_str2 = ba.data();
+        writeSerial(&c_str2[0], ba.length());
+
+        cPCMD = tmp;
+
+        cParasUpdated = false;
+        cStage = stage;
+        cStageTimeOut = timeout;
+
+        qDebug() << "sendPara:" << tmp << "cStage:" << stage << "T:" << timeout;
+
+        //QString str = "P:" + QString::number(cStage).rightJustified(2, '0');
+        //ui->label_2->setText(str);
+
+    }
+
+    //qDebug() << "NACK sendPara:" << cPCMD << "nPara" << tmp << "cStage:" << stage;
 
 }
+
 
 void MainWindow::startLogging()
 {
@@ -1146,8 +1755,25 @@ void MainWindow::showError()
             {
                 lFound = true;
 
-                ui->wServiceSetup->addErrorLog(qslLogErrors.at(i), cDateTime.toString("dd/MM/yyyy hh:mm:ss"));
-                ui->wError->Show_ErrorMessage(tr("Error"), qslUCErrors.at(i)); 
+        
+                if(ui->wServiceSetup->isDiagnosticMode())
+                {
+                    //ui->wServiceSetup->addStatus(qslUCErrors.at(i) + QString::number(i));
+
+                    ui->wServiceSetup->addStatus(qslUCErrors.at(i));
+
+                    cDiagTestSuccess = false;
+                    cDiagErrorHandle = true;
+
+                    if(i==4) cStageTimeOut = 60;
+                    //else if(i == 5 || i == 6) cStageTimeOut = 5;
+
+                }
+                else
+                {
+                    ui->wServiceSetup->addErrorLog(qslLogErrors.at(i), cDateTime.toString("dd/MM/yyyy hh:mm:ss"));
+                    ui->wError->Show_ErrorMessage(tr("Error"), qslUCErrors.at(i));
+                }
 
                 if(i == 8)
                 {
@@ -1156,44 +1782,116 @@ void MainWindow::showError()
                    if(cStrringErrorCount >= 5)
                    {
                        cStrringErrorCount = 0;
-                       abortCurrentTask();
+                       if(!ui->wServiceSetup->isDiagnosticMode()) abortCurrentTask();
                    }
+
                 }
                 else
-                    abortCurrentTask();
+                {
+                    if(!ui->wServiceSetup->isDiagnosticMode()) abortCurrentTask();
+                }
 
                 cErrorPos = i + 1;
-                onSendCommand(cProtocol.sendClearError(( 1<< i))); 
+
+                //qDebug() << "cStage:" << cStage
+                //         << ", cACKReceived:" << cACKReceived
+                //         << ", cNACKReceived:" << cNACKReceived;
+
+                //ui->wError->SetErrorACKWait(true);
+
+                if(!ui->wServiceSetup->isDiagnosticMode())
+                {
+                    cAccessWidget = ui->wError;
+                    cAccessWidget->setWaitACKStatus(true);
+                    onSendCommand(cProtocol.sendClearError(( 1<< i)));
+                }
+                else
+                {
+                    cAccessWidget = ui->wServiceSetup;
+                    cAccessWidget->setWaitACKStatus(true);
+
+                    if((i>=2 && i <=4) || i==7)
+                    {
+                        onSendCommand(cProtocol.sendAbortDiagnostic());
+                        ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
+                        ui->wServiceSetup->testDone();
+                        cStage = 0;
+                    }
+                    else
+                        onSendCommand(cProtocol.sendAckError());
+                        //onSendCommand(cProtocol.sendClearError(( 1<< i)));
+
+                }
 
                 if(cErrorPos >=16) cErrorPos = 0;
                 break;
             }
         }
 
-        if(!lFound) 
+        if(!lFound)
         {
             for(int i = 0; i < cErrorPos; i++)
             {
                 if(cCurrentUCError & ( 1<< i))
                 {
-                    ui->wServiceSetup->addErrorLog(qslLogErrors.at(i), cDateTime.toString("dd/MM/yyyy hh:mm:ss"));
-                    ui->wError->Show_ErrorMessage(tr("Error"), qslUCErrors.at(i)); 
+                    if(ui->wServiceSetup->isDiagnosticMode())
+                    {
+                        //ui->wServiceSetup->addStatus(qslUCErrors.at(i) + QString::number(i));
+                        ui->wServiceSetup->addStatus(qslUCErrors.at(i));
+                        cDiagTestSuccess = false;
+                        cDiagErrorHandle = true;
 
+                        if(i==4) cStageTimeOut = 60;
+                        //else if(i == 5 || i == 6) cStageTimeOut = 5;
+
+                    }
+                    else
+                    {
+                        ui->wServiceSetup->addErrorLog(qslLogErrors.at(i), cDateTime.toString("dd/MM/yyyy hh:mm:ss"));
+                        ui->wError->Show_ErrorMessage(tr("Error"), qslUCErrors.at(i));
+                    }
                     if(i == 8)
                     {
                        cStrringErrorCount++;
 
                        if(cStrringErrorCount >= 5)
                        {
-                           cStrringErrorCount = 0;
-                           abortCurrentTask();
+                             cStrringErrorCount = 0;
+                           if(!ui->wServiceSetup->isDiagnosticMode()) abortCurrentTask();
                        }
                     }
                     else
-                        abortCurrentTask();
+                    {
+                        if(!ui->wServiceSetup->isDiagnosticMode()) abortCurrentTask();
+                    }
 
                     cErrorPos = i + 1;
-                    onSendCommand(cProtocol.sendClearError(( 1<< i)));
+     //qDebug() << "cStage:" << cStage
+                    //         << ", cACKReceived:" << cACKReceived
+                    //         << ", cNACKReceived:" << cNACKReceived;
+
+                    if(!ui->wServiceSetup->isDiagnosticMode())
+                    {
+                        cAccessWidget = ui->wError;
+                        cAccessWidget->setWaitACKStatus(true);
+                        onSendCommand(cProtocol.sendClearError(( 1<< i)));
+                    }
+                    else
+                    {
+                        cAccessWidget = ui->wServiceSetup;
+                        cAccessWidget->setWaitACKStatus(true);
+
+                        if((i>=2 && i <=4) || i==7)
+                        {
+                            onSendCommand(cProtocol.sendAbortDiagnostic());
+                            ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
+                            ui->wServiceSetup->testDone();
+                            cStage = 0;
+                        }
+                        else
+                            onSendCommand(cProtocol.sendAckError());
+                            //onSendCommand(cProtocol.sendClearError(( 1<< i)));
+                    }
 
                     if(cErrorPos >=16) cErrorPos = 0;
                     break;
@@ -1218,7 +1916,7 @@ void MainWindow::showError()
                     ui->wCalibrationSetup->abortCurrentProcess();
 
                 ui->wServiceSetup->addErrorLog(str + qslLogErrors.at(i), cDateTime.toString("dd/MM/yyyy hh:mm:ss"));
-                ui->wError->Show_ErrorMessage(str, qslUCErrors.at(i)); 
+                ui->wError->Show_ErrorMessage(str, qslUCErrors.at(i));
 
                 cTimeOutError = cTimeOutError - ( 1<< i);
 
@@ -1230,11 +1928,33 @@ void MainWindow::showError()
     }
     else
     {
+
+/*
+        qDebug() << "cStage:" << cStage
+                 << ", cACKReceived:" << cACKReceived
+                 << ", cNACKReceived:" << cNACKReceived;
+*/
+
+        //qDebug() << "cFrameErrorShown:" << cFrameErrorShown;
+
+        if(!ui->wServiceSetup->isDiagnosticMode())
+        {
+            cAccessWidget = ui->wError;
+            cAccessWidget->setWaitACKStatus(true);
+        }
+        else
+        {
+            cAccessWidget = ui->wServiceSetup;
+            cAccessWidget->setWaitACKStatus(true);
+        }
+
         onSendCommand(cProtocol.sendAckError());
-        ui->wError->hide(); 
+
+        if(!ui->wServiceSetup->isDiagnosticMode()) ui->wError->hide();
+
         cErrorPos = 0;
 
-        if(ui->wMeasuring1->isVisible() && (!cStrringErrorCount || cStrringErrorCount>=5))  
+        if(ui->wMeasuring1->isVisible() && (!cStrringErrorCount || cStrringErrorCount>=5))
         {
             cStrringErrorCount = 0; 
 
@@ -1253,12 +1973,17 @@ void MainWindow::showError()
 
 void MainWindow::abortCurrentTask()
 {
-    if(ui->wCalibrationSetup->isEnabled())
+   //if(ui->wCalibrationSetup->isEnabled())    //30-July-2022
+
+    if(ui->wCalibrationSetup->isEnabled() && ui->wCalibrationSetup->isVisible())
     {
-        cStage = 0;
+        qDebug() << "abortCurrentTask";
+        //cStage = 0;
+        cStage = -2; //30-July-2022
         ui->wCalibrationSetup->abortCurrentProcess();
     }
-  
+    //30-July-2022
+    else cStage = -2;
 }
 
 void MainWindow::handleOther(void)
@@ -1271,431 +1996,472 @@ void MainWindow::handleOther(void)
     {
 
         switch(cStage)
-    {
+  {
 
-        case 7:
-                {
-                    cParasUpdated = false;
-                    if(cValvePosition == M_VALVE_POSITION_IN)
+            case 7:
                     {
-                        sendPara(cProtocol.sendPistonPosition(100), 8, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            setError(M_ERROR_VALVE_MOTOR);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
+                            sendPara(cProtocol.sendPistonPosition(100), 8, 60);
 
-                break;
-
-        case 8:
-                {
-                    cParasUpdated = false;
-                    if((cPistonPosition <= 105) && (cPistonPosition >= 95))
-                    {
-                        sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
-                                 9, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
-                        {
-                            setError(M_ERROR_PISTON_POSITION);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 9:
-                {
-                    cParasUpdated = false;
-                    if(cValvePosition == M_VALVE_POSITION_CLOSED)
-                    {
-                        sendPara(cProtocol.sendPistonPosition(170), 10, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
-
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
-                        {
-                            setError(M_ERROR_VALVE_MOTOR);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 10:
-                {
-                    cParasUpdated = false;
-                    if((cPistonPosition <= 170+5) && (cPistonPosition >= 170-5))
-                    {
-                        switch(ui->wMeasuring1->getMethod())
-                        {
-                            case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
-                                                 cTmTest = ui->wMethodSetup->stdFree1.temperature;
-                            break;
-
-                            case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
-                                                 cTmTest = ui->wMethodSetup->stdFree2.temperature;
-                            break;
-
-                            case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
-                                                 cTmTest = ui->wMethodSetup->stdFree3.temperature;
-                            break;
-
-                            case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
-                                                 cTmTest = ui->wMethodSetup->stdFree4.temperature;
-                            break;
-
-                            default : cREqTime = 180;
-                                      cTmTest = 37.80;
-                            break;
-                        }
-
-                        int tc = cSettings.getTemperatureCount(cTmTest);
-
-                        sendPara(cProtocol.sendTemperature(tc),
-                                 11, cREqTime + M_EQUILIBRIUM_TIME_OUT);
-
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
-
-                        cEqTime = 0;
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
-                        {
-                            setError(M_ERROR_PISTON_POSITION);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 11:
-                {
-                    cParasUpdated = false;
-
-                    double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                    if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                        && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
-                    {
-                        cEqTime++;
-
-                        if(cEqTime >= cREqTime)
-                        {
-                            cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-                            sendPara(cProtocol.sendPistonPosition(250), 12, 60);
-
-                            ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_FILLING);
                         }
                         else
-                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
-                    }
-                    else
-                    {
-                        cEqTime = 0;
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
-                    }
-
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_TEMPERATURE);
-                    }
-                    else cStageTimeOut--;
-
-                }
-
-                break;
-
-    case 12:
-            {
-                cParasUpdated = false;
-
-                if((cPistonPosition <= 250+5) && (cPistonPosition >= 250-5))
-                {
-                    switch(ui->wMeasuring1->getMethod())
-                    {
-                        case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx2; break;
-                        case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx2; break;
-                        case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx2; break;
-                        case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx2; break;
-                        default : cREqTime = 60; break;
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
                     }
 
-                    cStage = 13;
-                    cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
-                    cEqTime = 0;
-                }
-                else
-                {
-                    if(!cStageTimeOut)
+                    break;
+
+            case 8:
                     {
-                            setError(M_ERROR_PISTON_POSITION);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
+                        cParasUpdated = false;
+                        if((cPistonPosition <= 105) && (cPistonPosition >= 95))
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
+                                     9, 60);
 
-            break;
-
-    case 13:
-            {
-                cParasUpdated = false;
-
-                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                    && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
-                {
-                    cEqTime++;
-
-                    if(cEqTime >= cREqTime)
-                    {
-                        cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-                        sendPara(cProtocol.sendPistonPosition(500), 14, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
-                    }
-                    else
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
-                }
-                else
-                {
-                    cEqTime = 0;
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
-                }
-
-                if(!cStageTimeOut)
-                {
-                    setError(M_ERROR_TEMPERATURE);
-                }
-                else cStageTimeOut--;
-
-            }
-
-            break;
-
-    case 14:
-            {
-                cParasUpdated = false;
-
-                if((cPistonPosition <= 500+5) && (cPistonPosition >= 500-5))
-                {
-                    switch(ui->wMeasuring1->getMethod())
-                    {
-                        case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx3; break;
-                        case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx3; break;
-                        case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx3; break;
-                        case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx3; break;
-                        default : cREqTime = 60; break;
-                    }
-
-                    cStage = 15;
-                    cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime) + " Sec");
-                    cEqTime = 0;
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_PISTON_POSITION);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-    case 15:
-            {
-                cParasUpdated = false;
-
-                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                    && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
-                {
-                    cEqTime++;
-
-                    if(cEqTime >= cREqTime)
-                    {
-                        cPrTpx3= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-
-                        ui->wMeasuring1->setStatus("");
-
-                        if(ui->wMeasuring1->getMethod() == M_METHOD_D5191)
-                            ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
-                        else if(ui->wMeasuring1->getMethod() == M_METHOD_D6378)
-                            ui->wMeasuring1->showResultD6378(cPrTpx1, cPrTpx2, cPrTpx3);
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
+                        }
                         else
-                            ui->wMeasuring1->showResultFree(cPrTpx1, cPrTpx2, cPrTpx3);
-
-                        ui->wServiceSetup->incrementCount();
-
-                        sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
-                                  16, 180);
-
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20)); 
-
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
                     }
-                    else
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
-                }
-                else
-                {
-                    cEqTime = 0;
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
-                }
 
-                if(!cStageTimeOut)
-                {
-                    setError(M_ERROR_TEMPERATURE);
-                }
-                else cStageTimeOut--;
+                    break;
 
-            }
-
-            break;
-
-    case 16:
-            {
-                cParasUpdated = false;
-
-                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if(((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
-                    && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE))) && cStageTimeOut <=56) 
-                {
-                    sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
-                             17, 60);
-
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
-                }
-                else
-                {
-                    if(!cStageTimeOut)
+            case 9:
                     {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_CLOSED)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(170), 10, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 10:
+                    {
+                        cParasUpdated = false;
+                        if((cPistonPosition <= 170+5) && (cPistonPosition >= 170-5))
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
+                                                     cTmTest = ui->wMethodSetup->stdFree1.temperature;
+                                break;
+
+                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
+                                                     cTmTest = ui->wMethodSetup->stdFree2.temperature;
+                                break;
+
+                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
+                                                     cTmTest = ui->wMethodSetup->stdFree3.temperature;
+                                break;
+
+                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
+                                                     cTmTest = ui->wMethodSetup->stdFree4.temperature;
+                                break;
+
+                                default : cREqTime = 180;
+                                          cTmTest = 37.80;
+                                break;
+                            }
+
+                            int tc = cSettings.getTemperatureCount(cTmTest);
+
+                            sendPara(cProtocol.sendTemperature(tc),
+                                     11, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 11:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+                                sendPara(cProtocol.sendPistonPosition(250), 12, 60);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
                             setError(M_ERROR_TEMPERATURE);
-                    }
-                    else cStageTimeOut--;
+                        }
+                        else cStageTimeOut--;
 
-                    if(cStageTimeOut == 58)
+                    }
+
+                    break;
+
+            case 12:
+                {
+                    cParasUpdated = false;
+
+                    if((cPistonPosition <= 250+5) && (cPistonPosition >= 250-5))
                     {
                         switch(ui->wMeasuring1->getMethod())
                         {
-                            case M_METHOD_D5191:
-                                if(ui->wMethodSetup->stdD5191.alarm_enabled)
-                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                            break;
-
-                            case M_METHOD_D6378:
-                                if(ui->wMethodSetup->stdD6378.alarm_enabled)
-                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                            break;
-
-                            case M_METHOD_FREE1:
-                                if(ui->wMethodSetup->stdFree1.alarm_enabled)
-                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                            break;
-
-                            case M_METHOD_FREE2:
-                                if(ui->wMethodSetup->stdFree2.alarm_enabled)
-                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                            break;
-
-                            case M_METHOD_FREE3:
-                                if(ui->wMethodSetup->stdFree3.alarm_enabled)
-                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                            break;
-
-                            case M_METHOD_FREE4:
-                                if(ui->wMethodSetup->stdFree4.alarm_enabled)
-                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                            break;
+                            case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx2; break;
+                            case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx2; break;
+                            case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx2; break;
+                            case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx2; break;
+                            default : cREqTime = 60; break;
                         }
-                    }
 
-                }
-            }
+                        cStage = 13;
+                        cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
 
-            break;
+                        if(ui->wServiceSetup->getDebug())
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                        else
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
 
-    case 17:
-            {
-                cParasUpdated = false;
-
-                if(cValvePosition == M_VALVE_POSITION_EXHAUST)
-                {
-                    sendPara(cProtocol.sendPistonPosition(0), 18, 60);
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_VALVE_MOTOR);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-    case 18:
-            {
-                cParasUpdated = false;
-
-                if(cPistonPosition == 0)
-                {
-                    cStage = 0;
-
-                    if(ui->wServiceSetup->getContinuousRunEnabled())
-                    {
-                        ui->wMeasuring1->hideResult(); 
-                        onRunClicked(MS_TEST_RUN, false);
+                        cEqTime = 0;
                     }
                     else
                     {
-                        cAutoCycles++;
-
-                        if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                        if(!cStageTimeOut)
                         {
-                            ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
+                                setError(M_ERROR_PISTON_POSITION);
+                        }
+                        else cStageTimeOut--;
+                    }
+                }
 
-                            ui->wMeasuring1->hideResult();
-                            onRunClicked(MS_TEST_RUN, false);
+                    break;
+
+            case 13:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+                                sendPara(cProtocol.sendPistonPosition(500), 14, 60);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
                         }
                         else
-                            ui->wMeasuring1->setStatus("");
-                    }
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_PISTON_POSITION);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
+                        {
+                            cEqTime = 0;
 
-            break;
-    }
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 14:
+                    {
+                        cParasUpdated = false;
+
+                        if((cPistonPosition <= 500+5) && (cPistonPosition >= 500-5))
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx3; break;
+                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx3; break;
+                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx3; break;
+                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx3; break;
+                                default : cREqTime = 60; break;
+                            }
+
+                            cStage = 15;
+                            cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime) + " Sec");
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 15:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx3= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                                ui->wMeasuring1->setStatus("");
+
+                                if(ui->wMeasuring1->getMethod() == M_METHOD_D5191)
+                                    ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_D6378)
+                                    ui->wMeasuring1->showResultD6378(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else
+                                    ui->wMeasuring1->showResultFree(cPrTpx1, cPrTpx2, cPrTpx3);
+
+                                ui->wServiceSetup->incrementCount();
+
+                                sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
+                                          16, 60*12);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                                else
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 16:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if(((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE))) && cStageTimeOut <=700)
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
+                                     17, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                    setError(M_ERROR_TEMPERATURE);
+                            }
+                            else cStageTimeOut--;
+
+                            if(cStageTimeOut == 710)
+                            {
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_D5191:
+                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
+                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                                    break;
+
+                                    case M_METHOD_D6378:
+                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
+                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                                    break;
+
+                                    case M_METHOD_FREE1:
+                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                                    break;
+
+                                    case M_METHOD_FREE2:
+                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                                    break;
+
+                                    case M_METHOD_FREE3:
+                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                                    break;
+
+                                    case M_METHOD_FREE4:
+                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                                    break;
+                                }
+                            }
+
+                        }
+                    }
+
+                    break;
+
+            case 17:
+                    {
+                        cParasUpdated = false;
+
+                        if(cValvePosition == M_VALVE_POSITION_EXHAUST)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(0), 18, 60);
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 18:
+                    {
+                        cParasUpdated = false;
+
+                        if(cPistonPosition == 0)
+                        {
+                            //cStage = 0;
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+
+                            if(ui->wServiceSetup->getContinuousRunEnabled())
+                            {
+                                ui->wMeasuring1->hideResult();
+                                onRunClicked(MS_TEST_RUN, false);
+                            }
+                            else
+                            {
+                                cAutoCycles++;
+
+                                if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                                {
+                                    ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
+
+                                    ui->wMeasuring1->hideResult();
+                                    onRunClicked(MS_TEST_RUN, false);
+                                }
+                                else
+                                    ui->wMeasuring1->setStatus("");
+                            }
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+        }
     }
 }
 
@@ -1707,11 +2473,16 @@ void MainWindow::handleDiagnostic()
         case 25:
         {
             cParasUpdated = false;
-            cDiagTestSuccess = true;
+
+            //cDiagTestSuccess = true;
+            //cDiagErrorHandle = false;
 
             double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-            if((cValvePosition == M_VALVE_POSITION_EXHAUST) &&
+            //QString str = QString::number(ctmp);
+            //ui->wServiceSetup->addStatus(str);
+
+            if(cDiagTestSuccess && (cValvePosition == M_VALVE_POSITION_EXHAUST) &&
                (cPistonPosition == 0) && ((ctmp >= (20 - M_TEMPERATURE_TOLERANCE )) && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE ))))
             {
                 ui->wServiceSetup->addStatus(tr("Valve Exhaust OK!"));
@@ -1724,9 +2495,26 @@ void MainWindow::handleDiagnostic()
                 cPrTpx1 = cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
 
                 sendPara(cProtocol.sendPistonPosition(500), 26, 60);
+
+            }
+            else if((!cDiagTestSuccess) && (ctmp >= (20 - M_TEMPERATURE_TOLERANCE )) && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE )))
+            {
+
+                if(cValvePosition == M_VALVE_POSITION_EXHAUST) ui->wServiceSetup->addStatus(tr("Valve Exhaust OK!"));
+                if(cPistonPosition == 0) ui->wServiceSetup->addStatus(tr("Piston Zero OK!"));
+
+                ui->wServiceSetup->addStatus(tr("Temperature OK!"));
+
+                ui->wServiceSetup->addStatus(tr("Pressure @20C:")
+                      + cSettings.getPressureLive(cRawCTemperature, cRawCPressure));
+
+                cPrTpx1 = cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                sendPara(cProtocol.sendPistonPosition(500), 26, 60);
+
             }
             else
-            {
+            //{
                 if(!cStageTimeOut)
                 {
                     if(cValvePosition != M_VALVE_POSITION_EXHAUST)
@@ -1734,22 +2522,66 @@ void MainWindow::handleDiagnostic()
                         ui->wServiceSetup->addStatus(tr("Valve Motor Error!"));
                         cDiagTestSuccess = false;
                     }
+                    else if(cValvePosition == M_VALVE_POSITION_EXHAUST)
+                    {
+                        ui->wServiceSetup->addStatus(tr("Valve Exhaust OK!"));
+                    }
 
                     if(cPistonPosition != 0)
                     {
                         ui->wServiceSetup->addStatus(tr("Piston Motor Error!"));
                         cDiagTestSuccess = false;
                     }
+                    else if(cPistonPosition == 0)
+                    {
+                        ui->wServiceSetup->addStatus(tr("Piston Zero OK!"));
+                    }
 
+
+                    /*
                     if(((ctmp < (20 - M_TEMPERATURE_TOLERANCE )) || (ctmp > (20 + M_TEMPERATURE_TOLERANCE ))))
                     {
                         ui->wServiceSetup->addStatus(tr("Temperature Error!"));
                         cDiagTestSuccess = false;
-                    }
+                        ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
+                        ui->wServiceSetup->testDone();
 
+                        int tc = cSettings.getTemperatureCount(20);
+                        onSendCommand(cProtocol.sendMeasuring(0, tc));
+
+                        cStage = 0;
+
+                    } else */
+
+                    if((ctmp >= (20 - M_TEMPERATURE_TOLERANCE )) && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE )))
+                    {
+                        ui->wServiceSetup->addStatus(tr("Temperature OK!"));
+
+                        ui->wServiceSetup->addStatus(tr("Pressure @20C:")
+                              + cSettings.getPressureLive(cRawCTemperature, cRawCPressure));
+
+                        cPrTpx1 = cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                        sendPara(cProtocol.sendPistonPosition(500), 26, 60);
+
+                    }
+                    else
+                    {
+                        ui->wServiceSetup->addStatus(tr("Temperature Error!"));
+
+                        cDiagTestSuccess = false;
+                        ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
+                        ui->wServiceSetup->testDone();
+
+                        int tc = cSettings.getTemperatureCount(20);
+                        onSendCommand(cProtocol.sendMeasuring(0, tc));
+
+                        cStage = 0;
+
+                    }
                 }
                 else cStageTimeOut--;
-            }
+            //}
         }
 
         break;
@@ -1780,7 +2612,7 @@ void MainWindow::handleDiagnostic()
 
                 cParasUpdated = false;
 
-                if(cPistonPosition == 0)
+                if(cPistonPosition == 0 && cStageTimeOut < 5)
                 {
                     ui->wServiceSetup->addStatus(tr("Piston 0ml OK!"));
                     sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
@@ -1834,7 +2666,7 @@ void MainWindow::handleDiagnostic()
                 if(cValvePosition == M_VALVE_POSITION_IN)
                 {
                     ui->wServiceSetup->addStatus(tr("Valve In OK!"));
-                    sendPara(cProtocol.sendShakerSpeed(1, 60), 30, 5);
+                    sendPara(cProtocol.sendShakerSpeed(1, 60), 30, 35);
                     cStrringErrorCount = 0;
                 }
                 else
@@ -1843,7 +2675,7 @@ void MainWindow::handleDiagnostic()
                     {
                         ui->wServiceSetup->addStatus(tr("Valve Motor Error!"));
                         cDiagTestSuccess = false;
-                        sendPara(cProtocol.sendShakerSpeed(1, 60), 30, 5);
+                        sendPara(cProtocol.sendShakerSpeed(1, 60), 30, 35);
                         cStrringErrorCount = 0;
                     }
                     else cStageTimeOut--;
@@ -1857,7 +2689,7 @@ void MainWindow::handleDiagnostic()
                 if(!cStageTimeOut)
                 {
                     cStage = 31;
-                    cStageTimeOut = 5;
+                    cStageTimeOut = 25;
                 }
                 else cStageTimeOut--;
 
@@ -1945,7 +2777,11 @@ void MainWindow::handleDiagnostic()
                         ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
 
                     ui->wServiceSetup->testDone();
+  int tc = cSettings.getTemperatureCount(20); 
+		    onSendCommand(cProtocol.sendMeasuring(0, tc));
+
                     cStage = 0;
+
                 }
                 else
                 {
@@ -1955,6 +2791,10 @@ void MainWindow::handleDiagnostic()
                         cDiagTestSuccess = false;
                         ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
                         ui->wServiceSetup->testDone();
+
+			int tc = cSettings.getTemperatureCount(20); 
+			onSendCommand(cProtocol.sendMeasuring(0, tc));
+
                         cStage = 0;
                     }
                     else cStageTimeOut--;
@@ -2132,59 +2972,41 @@ void MainWindow::handleCalibration()
 void MainWindow::setError(int tmp)
 {
     cTimeOutError |= (1<< tmp);
-    cStage = 0;
+   
+    cStage = -2; //0; //6-July-2022
+    cIdleTimeout = 0;
     
     ui->wMeasuring1->setStatus("");
 
     int tc = cSettings.getTemperatureCount(20);
-    onSendCommand(cProtocol.sendMeasuring(0, tc));
+    //onSendCommand(cProtocol.sendMeasuring(0, tc));
+
+    qDebug() << "ERROR";
+
+    cACKReceived = true;
+    cNACKReceived = false;
+
+    sendPara(cProtocol.sendMeasuring(0, tc), -2, 60*12);
 
 }
 
 void MainWindow::checkCommError()
 {
-    if(!cFrameReceived)
+    if(cWaitForACK && !cACKReceived)
     {
         if(cFrameTimeOut > M_COMMUNICATION_TIME_OUT)
         {
-
-            if(!cFrameErrorShown && (!ui->wError->isVisible()))
-            {
-                 ui->wError->Show_ErrorMessage(tr("Error"), tr("Communication Error!"));
-                cStage = 0;
-                cFrameErrorShown = true;
-
-                if(!cInitDone)
-                {
-                    cInitSuccess = false;
-                    cInitDone = true;
-                }
-                else if(ui->wMeasuring1->isVisible())
-                {
-                    ui->wMeasuring1->setRunning(false);
-                    ui->wMenuBar->setSelectedMenu(M_MEASURING);
-                }
-                else if(ui->wCleaning->isVisible())
-                {
-                    ui->wCleaning->setRunning(false);
-                    ui->wMenuBar->setSelectedMenu(M_CLEANING);
-                }
-                else if(ui->wCalibrationSetup->isVisible())
-                {
-                    ui->wCalibrationSetup->abortCurrentProcess();
-                }
-                else if(ui->wServiceSetup->isVisible() && ui->wServiceSetup->isDiagnosticMode())
-                {
-                    cDiagTestSuccess = false;
-                    ui->wServiceSetup->addStatus(tr("Communication Error!"));
-                    ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
-                    ui->wServiceSetup->testDone();
-                }
-            }
-
-
+            showCommError(2);
         }
-
+        else
+            cFrameTimeOut++;
+    }
+    else if(!cFrameReceived)
+    {
+        if(cFrameTimeOut > M_COMMUNICATION_TIME_OUT)
+        {
+            showCommError(3);
+        }
         else
             cFrameTimeOut++;
     }
@@ -2192,9 +3014,71 @@ void MainWindow::checkCommError()
     {
         cFrameReceived = false;
         cFrameTimeOut = 0;
-        cFrameErrorShown = false;
+        //sn cFrameErrorShown = false; //22-July-2022
     }
+}
 
+void MainWindow::showCommError(int tmp)
+{
+    if(!cFrameErrorShown) //sn 8-July-2022 && (!ui->wError->isVisible()))
+    {
+        if(cAccessWidget)
+        {
+            if(cAccessWidget->getHideAfterACK())
+            {
+                //3-May-2023 onShowHome(false);
+                cAccessWidget->hideAfterACK(false);
+            }
+            else cAccessWidget->setWaitACKStatus(false);
+
+            //cAccessWidget = NULL;
+        }
+
+        QString str = tr("Communication Error (") + QString::number(tmp) + ")!";
+
+        ui->wError->Show_ErrorMessage(tr("Error"), str);
+
+        cStage = 0;
+        cFrameErrorShown = true;
+        cWaitForACK = false;
+
+        if(!cInitDone)
+        {
+            cInitSuccess = false;
+            cInitDone = true;
+
+            ui->wCheckPass->hide();
+
+            qDebug() << "TMO Reset";
+            cStage = -1; //0;
+            cIdleTimeout = 0;
+            cStageTimeOut = 60*12;
+
+            //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+
+        }
+        else if(ui->wMeasuring1->isVisible())
+        {
+            ui->wMeasuring1->setRunning(false);
+            ui->wMenuBar->setSelectedMenu(M_MEASURING);
+        }
+        else if(ui->wCleaning->isVisible())
+        {
+            ui->wCleaning->setRunning(false);
+            ui->wMenuBar->setSelectedMenu(M_CLEANING);
+        }
+        else if(ui->wCalibrationSetup->isVisible())
+        {
+            ui->wCalibrationSetup->abortCurrentProcess();
+        }
+        else if(ui->wServiceSetup->isVisible() && ui->wServiceSetup->isDiagnosticMode())
+        {
+            cDiagTestSuccess = false;
+            ui->wServiceSetup->addStatus(tr("Communication Error!"));
+            ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
+            ui->wServiceSetup->testDone();
+        }
+    }
 }
 
 void MainWindow::handleD5188(void)
@@ -2207,417 +3091,116 @@ void MainWindow::handleD5188(void)
     else
     {
         switch(cStage)
-    {
-        case 7:
-                {
-                    cParasUpdated = false;
-                    if(cValvePosition == M_VALVE_POSITION_IN)
+        {
+            case 7:
                     {
-                        sendPara(cProtocol.sendPistonPosition(25), 8, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_25_ML);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                              setError(M_ERROR_VALVE_MOTOR);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
+                            sendPara(cProtocol.sendPistonPosition(25), 8, 60);
 
-                break;
-
-        case 8:
-                {
-                    cParasUpdated = false;
-                    if((cPistonPosition <= 25+5) && (cPistonPosition >= 25-5))
-                    {
-                        sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
-                                 9, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
-                        {
-                            setError(M_ERROR_PISTON_POSITION);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 9:
-                {
-                    cParasUpdated = false;
-                    if(cValvePosition == M_VALVE_POSITION_CLOSED)
-                    {
-                        sendPara(cProtocol.sendPistonPosition(525), 10, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_25_ML);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
-                        {
-                             setError(M_ERROR_VALVE_MOTOR);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 10:
-                {
-                    cParasUpdated = false;
-                    if((cPistonPosition <= 525+5) && (cPistonPosition >= 525-5))
-                    {
-                        sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD5188.shaker_speed), 11, 60);
-                        cStrringErrorCount = 0;
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
-                        {
-                            setError(M_ERROR_PISTON_POSITION);
-                        }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 11:  
-            {
-                cParasUpdated = false;
-
-                if(1)
-                {
-
-                    int tpr = cSettings.getPressureCount(101.3);
-                    cPrTpx1 = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                    sendPara(cProtocol.sendPressure(tpr), 12, 60*30);  
-
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_PRESSURE_STABILIZE + cSettings.getPressure(101.3));
-
-                    cREqTime = 0;
-                    cEqTime = 0;
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_SHAKER_MOTOR);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-        case 12:
-            {
-                cParasUpdated = false;
-
-                double dtpr1 = cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-
-                cPrTpx2 = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if( (abs(cPrTpx2 - cPrTpx1) >=0.25) || ((dtpr1 >= (101.3 - 0.3 )) && (dtpr1 <= (101.3 + 0.3))) ) 
-                {
-                    if(abs(cPrTpx2 - cPrTpx1) >=0.25)
-                    {
-                        cPrTpx1 = cPrTpx2;
-
-                        int tc = cSettings.getTemperatureCount(20); 
-
-                        double dtpr20 = cSettings.getPressurekPaMM(tc, cRawCPressure);
-                        int tc20 = cSettings.getPressureCount(101.3);
-
-                        double dtpr3 = cSettings.getPressurekPaMM(cRawCTemperature, tc20);
-
-                        int tpr = cSettings.getPressureCount(101.3 + (101.3-dtpr3));
-
-                        onSendCommand(cProtocol.sendPressure(tpr));
-
-                        cREqTime = 0;
-                        cEqTime = 0;
-                    }
-                }
-                else
-                {
-                    cREqTime = 0;
-                    cEqTime = 0;
-                }
-
-                cEqTime++;
-
-                if(cEqTime >= 60) 
-                {
-                    cEqTime = 0;
-
-                    if( (dtpr1 >= (101.3 - 0.3 )) && (dtpr1 <= (101.3 + 0.3))) 
-                    {
-                        cREqTime++;
-
-                        if(cREqTime >=3)
-                        {
-                            ui->wMeasuring1->setStatus("");
-
-                            ui->wMeasuring1->showResultD5188(cSettings.getTemperatureCelsius(cRawCTemperature));
-                            ui->wServiceSetup->incrementCount();
-                            sendPara(cProtocol.sendShakerSpeed(0, 0), 13, 60);
-                            cStrringErrorCount = 0;
-                        }
-
-                    }
-                    else
-                    {
-                        cREqTime = 0;
-                    }
-                }
-
-                if(!cStageTimeOut)
-                {
-                    setError(M_ERROR_PRESSURE_SENSOR);
-                }
-                else cStageTimeOut--;
-
-            }
-
-            break;
-
-    case 13:
-            {
-                cParasUpdated = false;
-
-                if((cStepperSpeed == 0) && (cStageTimeOut <=56))  
-                {
-                    sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
-                              14, 180+300);
-
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_SHAKER_MOTOR);
-                    }
-                    else cStageTimeOut--;
-
-                    if(ui->wMethodSetup->stdD5188.alarm_enabled && cStageTimeOut == 58)
-                        onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                }
-            }
-
-            break;
-
-    case 14:
-            {
-                cParasUpdated = false;
-
-                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
-                    && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE )))
-                {
-                    sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
-                             15, 60);
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
-
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_TEMPERATURE);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-    case 15:
-            {
-                cParasUpdated = false;
-
-                if(cValvePosition == M_VALVE_POSITION_EXHAUST)
-                {
-                    sendPara(cProtocol.sendPistonPosition(0), 16, 60);
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_VALVE_MOTOR);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-    case 16:
-            {
-                cParasUpdated = false;
-
-                if(cPistonPosition == 0)
-                {
-                    cStage = 0;
-
-                    if(ui->wServiceSetup->getContinuousRunEnabled())
-                    {
-                        ui->wMeasuring1->hideResult(); 
-                        onRunClicked(MS_TEST_RUN, false);
-                    }
-                    else
-                    {
-                        cAutoCycles++;
-
-                        if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
-                        {
-                            ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
-                            ui->wMeasuring1->hideResult(); 
-                            onRunClicked(MS_TEST_RUN, false);
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_25_ML);
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_FILLING);
                         }
                         else
-                            ui->wMeasuring1->setStatus("");
-                    }
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_PISTON_POSITION);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-        }
-    }
-}
-
-void MainWindow::handleD6377(void)
-{
-
-    if( cStage <= 6 )
-    {
-        handleRinsing();
-    }
-    else
-    {
-        switch(cStage)
-    {
-        case 7:
-                {
-                    cParasUpdated = false;
-                    if(cValvePosition == M_VALVE_POSITION_IN)
-                    {
-                        sendPara(cProtocol.sendPistonPosition(100), 8, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
                         {
-                            setError(M_ERROR_VALVE_MOTOR);
+                            if(!cStageTimeOut)
+                            {
+                                  setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
                         }
-                        else cStageTimeOut--;
                     }
-                }
 
-                break;
+                    break;
 
-        case 8:
-                {
-                    cParasUpdated = false;
-
-                    if((cPistonPosition <= 100+M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= 100-M_PISTON_POSITION_TOLERANCE))
+            case 8:
                     {
-                        sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
-                                 9, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
+                        cParasUpdated = false;
+                        if((cPistonPosition <= 25+5) && (cPistonPosition >= 25-5))
                         {
-                            setError(M_ERROR_PISTON_POSITION);
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
+                                     9, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
                         }
-                        else cStageTimeOut--;
-                    }
-                }
-
-                break;
-
-        case 9:
-                {
-                    cParasUpdated = false;
-                    if(cValvePosition == M_VALVE_POSITION_CLOSED)
-                    {
-                        int vl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
-                        sendPara(cProtocol.sendPistonPosition(vl), 10, 60);
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON + QString::number(vl/100, 'f', 2) + " ml");
-
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
+                        else
                         {
-                            setError(M_ERROR_VALVE_MOTOR);
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
                         }
-                        else cStageTimeOut--;
                     }
-                }
 
-                break;
+                    break;
 
-        case 10:
-                {
-                    cParasUpdated = false;
-
-                    int cvl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
-
-                    if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
+            case 9:
                     {
-                        sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD6377.shaker_speed), 11, 60);
-                        cStrringErrorCount = 0;
-                    }
-                    else
-                    {
-                        if(!cStageTimeOut)
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            setError(M_ERROR_PISTON_POSITION);
+                            sendPara(cProtocol.sendPistonPosition(525), 10, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_25_ML);
                         }
-                        else cStageTimeOut--;
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                 setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
                     }
-                }
 
-                break;
+                    break;
 
-        case 11:
+            case 10:
+                    {
+                        cParasUpdated = false;
+                        if((cPistonPosition <= 525+5) && (cPistonPosition >= 525-5))
+                        {
+                            sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD5188.shaker_speed), 11, 60);
+                            cStrringErrorCount = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 11:
                 {
                     cParasUpdated = false;
 
                     if(1)
                     {
-                        cREqTime = ui->wMethodSetup->stdD6377.time;
+                        //NNNNN
 
-                        int tc = cSettings.getTemperatureCount(37.8);
+                        cPrCount = cSettings.getPressureCount(101.3);
+                        //cPrTpx1 = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        sendPara(cProtocol.sendTemperature(tc),
-                                 12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+                        sendPara(cProtocol.sendPressure(cPrCount), 12, 60*30);
 
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
+                        if(ui->wServiceSetup->getDebug())
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_PRESSURE_STABILIZE + cSettings.getPressure(101.3));
+                        else
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_PRESSURE_STABILIZING);
 
+
+                        cREqTime = 0;
                         cEqTime = 0;
                     }
                     else
@@ -2632,200 +3215,534 @@ void MainWindow::handleD6377(void)
 
                 break;
 
-    case 12:
-            {
-                cParasUpdated = false;
-
-                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if( (ctmp >= (37.8 - M_TEMPERATURE_TOLERANCE))
-                    && (ctmp <= (37.8 + M_TEMPERATURE_TOLERANCE)))
+            case 12:
                 {
+                    cParasUpdated = false;
+
+                    double dtpr1 = cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                    if((cRawCPressure >= cPrCount-50) && (cRawCPressure <= cPrCount+50))
+                    {
+                        if(dtpr1 < (101.3 - 0.3))
+                        {
+                            cPrCount = cRawCPressure+50;
+                            onSendCommand(cProtocol.sendPressure(cPrCount));
+                            cREqTime = 0;
+                            cEqTime = 0;
+                        }
+                        else if(dtpr1 > (101.3 + 0.3))
+                        {
+                            cPrCount = cRawCPressure-50;
+                            onSendCommand(cProtocol.sendPressure(cPrCount));
+                            cREqTime = 0;
+                            cEqTime = 0;
+                        }
+                    }
+                    else
+                    {
+                        cREqTime = 0;
+                        cEqTime = 0;
+                    }
+
                     cEqTime++;
 
-                    if(cEqTime >= cREqTime) 
+                    if(cEqTime >= 60)
                     {
-                        cStage = 13;
                         cEqTime = 0;
-                        cREqTime = 0;
-                        cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
 
-                    }
-                    else
-                        ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
-                }
-                else
-                {
-                    cEqTime = 0;
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
-                }
-
-                if(!cStageTimeOut)
-                {
-                    setError(M_ERROR_TEMPERATURE);
-                }
-                else cStageTimeOut--;
-
-            }
-
-            break;
-
-    case 13:
-            {
-                cParasUpdated = false;
-
-                cEqTime++;
-
-                if(cEqTime >=60)
-                {
-                    cEqTime = 0;
-
-                    ui->wMeasuring1->setStatus("");
-
-                    ui->wMeasuring1->showResultD6377(cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure));
-                    ui->wServiceSetup->incrementCount();
-
-                    sendPara(cProtocol.sendShakerSpeed( 0, 0), 14, 60);
-                    cStrringErrorCount = 0;
-                }
-                else
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(60-cEqTime) + " Sec");
-
-                if(!cStageTimeOut)
-                {
-                    setError(M_ERROR_TEMPERATURE);
-                }
-                else cStageTimeOut--;
-
-            }
-
-            break;
-
-    case 14:
-            {
-                cParasUpdated = false;
-
-                if((cStepperSpeed == 0) && (cStageTimeOut <=56))  
-                {
-
-                   sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
-                             15, 180+180); 
-
-                   ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20)); 
-
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_SHAKER_MOTOR);
-                    }
-                    else cStageTimeOut--;
-
-                    if(ui->wMethodSetup->stdD6377.alarm_enabled && cStageTimeOut == 58)
-                        onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                }
-            }
-
-            break;
-
-    case 15:
-            {
-                cParasUpdated = false;
-
-                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-
-                if((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
-                    && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE )))
-                {
-                    sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
-                             16, 60);
-
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
-
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_TEMPERATURE);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-    case 16:
-            {
-                cParasUpdated = false;
-
-                if(cValvePosition == M_VALVE_POSITION_EXHAUST)
-                {
-                    sendPara(cProtocol.sendPistonPosition(0), 17, 60);
-                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
-                }
-                else
-                {
-                    if(!cStageTimeOut)
-                    {
-                        setError(M_ERROR_VALVE_MOTOR);
-                    }
-                    else cStageTimeOut--;
-                }
-            }
-
-            break;
-
-    case 17:
-            {
-                cParasUpdated = false;
-
-                if(cPistonPosition == 0)
-                {
-                    cStage = 0;
-
-                    if(ui->wServiceSetup->getContinuousRunEnabled())
-                    {
-                        ui->wMeasuring1->hideResult(); 
-                        onRunClicked(MS_TEST_RUN, false);
-                    }
-                    else
-                    {
-                        cAutoCycles++;
-
-                        if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                        if( (dtpr1 >= (101.3 - 0.3 )) && (dtpr1 <= (101.3 + 0.3)))
                         {
-                            ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
-                            ui->wMeasuring1->hideResult(); 
-                            onRunClicked(MS_TEST_RUN, false);
+                            cREqTime++;
+
+                            if(cREqTime >=3)
+                            {
+                                ui->wMeasuring1->setStatus("");
+
+                                ui->wMeasuring1->showResultD5188(cSettings.getTemperatureCelsius(cRawCTemperature));
+                                ui->wServiceSetup->incrementCount();
+                                sendPara(cProtocol.sendShakerSpeed(0, 0), 13, 60);
+                                cStrringErrorCount = 0;
+                            }
+
                         }
                         else
-                            ui->wMeasuring1->setStatus("");
+                        {
+                            cREqTime = 0;
+                        }
                     }
-                }
-                else
-                {
+
                     if(!cStageTimeOut)
                     {
-                        setError(M_ERROR_PISTON_POSITION);
+                        setError(M_ERROR_PRESSURE_SENSOR);
                     }
                     else cStageTimeOut--;
+
                 }
 
-            }
+                break;
 
-            break;
-    }
+            case 13:
+                    {
+                        cParasUpdated = false;
+
+                        if((cStepperSpeed == 0) && (cStageTimeOut <=56))
+                        {
+                            sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
+                                      14, 60*18); //180+300);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_SHAKER_MOTOR);
+                            }
+                            else cStageTimeOut--;
+
+                            if(ui->wMethodSetup->stdD5188.alarm_enabled && cStageTimeOut == 58)
+                                onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                        }
+                    }
+
+                    break;
+
+            case 14:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
+                                     15, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_TEMPERATURE);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 15:
+                    {
+                        cParasUpdated = false;
+
+                        if(cValvePosition == M_VALVE_POSITION_EXHAUST)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(0), 16, 60);
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 16:
+                    {
+                        cParasUpdated = false;
+
+                        if(cPistonPosition == 0)
+                        {
+                            //cStage = 0;
+
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+
+                            if(ui->wServiceSetup->getContinuousRunEnabled())
+                            {
+                                ui->wMeasuring1->hideResult();
+                                onRunClicked(MS_TEST_RUN, false);
+                            }
+                            else
+                            {
+                                cAutoCycles++;
+
+                                if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                                {
+                                    ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
+                                    ui->wMeasuring1->hideResult();
+                                    onRunClicked(MS_TEST_RUN, false);
+                                }
+                                else
+                                    ui->wMeasuring1->setStatus("");
+                            }
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+        }
     }
 }
 
-
-void MainWindow::onSendCommand(QString cmd)
+void MainWindow::handleD6377(void)
 {
-    QByteArray ba = cmd.toLocal8Bit();
-    char *c_str2 = ba.data();
-    writeSerial(&c_str2[0], ba.length());
+
+    if( cStage <= 6 )
+    {
+        handleRinsing();
+    }
+    else
+    {
+        switch(cStage)
+        {
+            case 7:
+                    {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_IN)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(100), 8, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_FILLING);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 8:
+                    {
+                        cParasUpdated = false;
+
+                        if((cPistonPosition <= 100+M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= 100-M_PISTON_POSITION_TOLERANCE))
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
+                                     9, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 9:
+                    {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_CLOSED)
+                        {
+                            int vl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
+                            sendPara(cProtocol.sendPistonPosition(vl), 10, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON + QString::number(vl/100, 'f', 2) + " ml");
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 10:
+                    {
+                        cParasUpdated = false;
+
+                        int cvl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
+
+                        if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD6377.shaker_speed), 11, 60);
+                            cStrringErrorCount = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 11:
+                    {
+                        cParasUpdated = false;
+
+                        if(1)
+                        {
+                            cREqTime = ui->wMethodSetup->stdD6377.time;
+
+                            int tc = cSettings.getTemperatureCount(37.8);
+
+                            sendPara(cProtocol.sendTemperature(tc),
+                                     12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_SHAKER_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 12:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( (ctmp >= (37.8 - M_TEMPERATURE_TOLERANCE))
+                            && (ctmp <= (37.8 + M_TEMPERATURE_TOLERANCE)))
+                        {
+                            cEqTime++;
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cStage = 13;
+                                cEqTime = 0;
+                                cREqTime = 0;
+                                cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 13:
+                    {
+                        cParasUpdated = false;
+
+                        cEqTime++;
+
+                        if(cEqTime >=60)
+                        {
+                            cEqTime = 0;
+
+                            ui->wMeasuring1->setStatus("");
+
+                            ui->wMeasuring1->showResultD6377(cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure));
+                            ui->wServiceSetup->incrementCount();
+
+                            sendPara(cProtocol.sendShakerSpeed( 0, 0), 14, 60);
+                            cStrringErrorCount = 0;
+                        }
+                        else
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(60-cEqTime) + " Sec");
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 14:
+                    {
+                        cParasUpdated = false;
+
+                        if((cStepperSpeed == 0) && (cStageTimeOut <=56))
+                        {
+
+                           sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
+                                     15, 60*12); //180+180);
+
+                           if(ui->wServiceSetup->getDebug())
+                               ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                           else
+                               ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_SHAKER_MOTOR);
+                            }
+                            else cStageTimeOut--;
+
+                            if(ui->wMethodSetup->stdD6377.alarm_enabled && cStageTimeOut == 58)
+                                onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                        }
+                    }
+
+                    break;
+
+            case 15:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if((ctmp >= (20 - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (20 + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
+                                     16, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_TEMPERATURE);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 16:
+                    {
+                        cParasUpdated = false;
+
+                        if(cValvePosition == M_VALVE_POSITION_EXHAUST)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(0), 17, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 17:
+                    {
+                        cParasUpdated = false;
+
+                        if(cPistonPosition == 0)
+                        {
+                            //cStage = 0;
+
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+
+                            if(ui->wServiceSetup->getContinuousRunEnabled())
+                            {
+                                ui->wMeasuring1->hideResult();
+                                onRunClicked(MS_TEST_RUN, false);
+                            }
+                            else
+                            {
+                                cAutoCycles++;
+
+                                if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                                {
+                                    ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
+                                    ui->wMeasuring1->hideResult();
+                                    onRunClicked(MS_TEST_RUN, false);
+                                }
+                                else
+                                    ui->wMeasuring1->setStatus("");
+                            }
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+
+                    }
+
+                    break;
+        }
+    }
 }
 
 bool MainWindow::onSaveResult(double p_tot, double p_gas, double p_abs,
@@ -2836,12 +3753,31 @@ bool MainWindow::onSaveResult(double p_tot, double p_gas, double p_abs,
                               double para_measured)
 {
 
+    QString noperator = ui->wMeasuring1->getOperator();
+    QString sampleID = ui->wMeasuring1->getSampleId();
+
+    cTest->sel = 0;
+    cTest->noperator = noperator;
+    cTest->sample_id = sampleID;
+    cTest->datetime = cDateTime.toString(STORAGE_DATETIME_FORMAT);
+    cTest->p_tot = p_tot;
+    cTest->p_gas = p_gas;
+    cTest->p_abs = p_abs;
+    cTest->method = method;
+    cTest->formula = formula;
+    cTest->aconst = aconst;
+    cTest->bconst = bconst;
+    cTest->cconst = cconst;
+    cTest->ttime = ttime;
+    cTest->vlratio = vlratio;
+    cTest->result = result;
+    cTest->para_measured = para_measured;
+
     if(ui->wMemory->getMemoryCount() < M_MEMORY_COUNT)
     {
-        QString noperator = ui->wMeasuring1->getOperator();
-        QString sampleID = ui->wMeasuring1->getSampleId();
 
-        ui->wMemory->saveResult( noperator, sampleID,
+
+        if(ui->wMemory->saveResult( noperator, sampleID,
                                  cDateTime.toString(STORAGE_DATETIME_FORMAT),
                                  p_tot, p_gas, p_abs,
                                  method, formula,
@@ -2849,10 +3785,19 @@ bool MainWindow::onSaveResult(double p_tot, double p_gas, double p_abs,
                                  result,
                                  ttime,
                                  vlratio,
-                                 para_measured);
+                                 para_measured))
+        {
+            if(ui->wUserSetup->user_setup.auto_print) ui->wMemory->printResult(cTest);
+        }
+
     }
     else
-        onShowMsgBox("Measuring!", "Test Results not saved!");
+    {
+       ui->wCheckPass->Show_MessageWithAck("Measuring!", "Test Results not saved!");
+    }
+
+
+
 
     return true;
 }
@@ -2860,7 +3805,35 @@ bool MainWindow::onSaveResult(double p_tot, double p_gas, double p_abs,
 void MainWindow::onMenuClicked(int menu)
 {
 
-    if(!ui->wMeasuring1->isVisible() && menu != M_MEASURING) return;
+   //18-Apr-2023 if(!ui->wMeasuring1->isVisible() && menu != M_MEASURING) return;
+    if(ui->wCheckPass->isVisible() || ui->wError->isVisible()) return;
+
+    switch (cMenu) {
+
+        case M_MEASURING:
+            if(ui->wMemory->isVisible()) ui->wMemory->hide();
+        break;
+
+        case M_CLEANING:
+            if(ui->wMemory->isVisible()) ui->wMemory->hide();
+        break;
+
+        case M_MEMORY:
+            if(ui->wMemory->isVisible() && !ui->wMemory->isSwitchEnabled(menu)) return;
+        break;
+
+        case M_SETUP:
+
+            if(ui->wMemory->isVisible()) ui->wMemory->hide();
+
+            if(ui->wUserSetup->isVisible() && !ui->wUserSetup->isSwitchEnabled(menu)) return;
+            if(ui->wGeneralSetup->isVisible() && !ui->wGeneralSetup->isSwitchEnabled(menu)) return;
+            if(ui->wMethodSetup->isVisible() && !ui->wMethodSetup->isSwitchEnabled(menu)) return;
+            if(ui->wServiceSetup->isVisible() && !ui->wServiceSetup->isSwitchEnabled(menu)) return;
+            if(ui->wCalibrationSetup->isVisible() && !ui->wCalibrationSetup->isSwitchEnabled(menu)) return;
+
+        break;
+    }
 
     if(menu != M_SETUP)
     {
@@ -2874,13 +3847,33 @@ void MainWindow::onMenuClicked(int menu)
         ui->listSetupMenu->hide();
     }
 
-    if(cMenu < M_MEMORY) ui->listSetupMenu->move(545,90+96);
-    else ui->listSetupMenu->move(545,90);
+    if(cMenu < M_MEMORY) ui->listSetupMenu->move(440,60+96);
+    else ui->listSetupMenu->move(440,60);
 
     switch (menu) {
+
     case M_MEASURING:
          ui->wMeasuring1->Show();
          ui->wMenuBar->setSelectedMenu(menu);
+
+//--------------- 8-May-2023 added below
+         //if(cWaitForACK)
+         {
+            cAccessWidget = ui->wMeasuring1;
+            cAccessWidget->setWaitACKStatus(cWaitForACK);
+         }
+//--------------------
+
+         if( cWidget == ui->wMeasuring1 || cWidget == ui->wCleaning ||
+             cWidget == ui->wUserSetup || cWidget == ui->wServiceSetup ||
+             cWidget == ui->wCalibrationSetup)
+         {
+             qDebug() << "TMO Reset";
+             cStage = -2; //0;
+             cIdleTimeout = 0;
+             cStageTimeOut = 60*12;
+         }
+
          cMenu = menu;
          cWidget = ui->wMeasuring1;
          break;
@@ -2888,6 +3881,14 @@ void MainWindow::onMenuClicked(int menu)
     case M_CLEANING:
          ui->wCleaning->Show();
          ui->wMenuBar->setSelectedMenu(menu);
+         //--------------- 8-May-2023 added below
+          //if(cWaitForACK)
+          {
+             cAccessWidget = ui->wCleaning;
+             cAccessWidget->setWaitACKStatus(cWaitForACK);
+          }
+         //--------------------
+
          cMenu = menu;
          cWidget = ui->wCleaning;
          break;
@@ -2899,7 +3900,7 @@ void MainWindow::onMenuClicked(int menu)
         ui->wMenuBar->move(0, 10);
 
          ui->wMemory->Show();
-         ui->wMenuBar->setSelectedMenu(menu);
+         ui->wMenuBar->setSelectedMenu(menu); //18-Apr-2023
          cMenu = menu;
          cWidget = ui->wMemory;
          break;
@@ -3027,6 +4028,18 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
             ui->wMenuBar->setSelectedMenu(cMenu);
 
         }
+        else if(rMenu==M_PWD_DEBUG &&
+                ((!QString::compare(rUser, "admin", Qt::CaseSensitive) &&
+                 !QString::compare(rPwd, ui->wGeneralSetup->general_setup.admin_password, Qt::CaseSensitive)) ||
+                (!QString::compare(rUser, "service", Qt::CaseSensitive) &&
+                 !QString::compare(rPwd, ui->wGeneralSetup->general_setup.service_password, Qt::CaseSensitive)) ||
+                (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
+                 !QString::compare(rPwd, "p", Qt::CaseSensitive))))
+        {
+            ui->wCheckPass->hide();
+            ui->wServiceSetup->setDebug();
+
+        }
         else
         {
             ui->wCheckPass->Show_ShowMessage(rMenu, M_PWD_WRONG);
@@ -3047,6 +4060,7 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
             case M_PWD_METHOD: ui->wCheckPass->Show_CheckPass(M_PWD_METHOD, true); break;
             case M_PWD_SERVICE: ui->wCheckPass->Show_CheckPass(M_PWD_SERVICE, true); break;
             case M_PWD_CALIBRATION: ui->wCheckPass->Show_CheckPass(M_PWD_CALIBRATION, true); break;
+            case M_PWD_DEBUG: ui->wCheckPass->Show_CheckPass(M_PWD_DEBUG, true); break;
         }
     }
 
@@ -3057,11 +4071,43 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
             cFrameReceived = false;
             cFrameTimeOut = 0;
             cFrameErrorShown = false;
-            ui->wError->hide(); 
+            ui->wError->hide();
+
+            qDebug() << "ERR-hide";
+
+            cAccessWidget->setWaitACKStatus(true);
+            onSendCommand(cProtocol.sendMeasuring(1, 0));
+
         }
         else
+        {
             showError();
+        }
+
+        if(!cInitDone)
+        {
+            cInitSuccess = false;
+            cInitDone = true;
+
+            ui->wCheckPass->hide();
+
+            qDebug() << "TMO Reset";
+            cStage = -1; //0;
+            cIdleTimeout = 0;
+            //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+        }
     }
+
+    if(rAction == M_MESSAGE_ACKNOWLEDGE)
+    {
+        ui->wCheckPass->hide();
+
+        if(ui->wUserSetup->user_setup.auto_print)
+        {
+            ui->wMemory->printResult(cTest);
+        }
+    }
+
 }
 
 void MainWindow::onShowKeypad(QObject *tobj, int tmp, bool zero)
@@ -3071,6 +4117,7 @@ void MainWindow::onShowKeypad(QObject *tobj, int tmp, bool zero)
 
 void MainWindow::onShowHome(bool tmp)
 {
+    //qDebug() << "onShowHome:" << tmp;
     onMenuClicked(M_MEASURING);
 }
 
@@ -3090,9 +4137,9 @@ void MainWindow::onShowFileSelect(void)
     ui->wFileSelect->Show();
 }
 
-void MainWindow::onGetConfirmation(int tmp)
+void MainWindow::onGetConfirmation(int tmp, int tmp1)
 {
-    ui->wCheckPass->Show_Confirmation(tmp);
+    ui->wCheckPass->Show_Confirmation(tmp, tmp1);
 }
 
 void MainWindow::onShowMsgBox(QString title, QString msg)
@@ -3100,12 +4147,12 @@ void MainWindow::onShowMsgBox(QString title, QString msg)
     ui->wCheckPass->Show_Message(title, msg);
 }
 
-void MainWindow::onShowStatusBox(QString title, QString msg)
+void MainWindow::onShowStatusBox(QString title, QString msg, bool show)
 {
-    ui->wCheckPass->Show_Status(title, msg);
+    ui->wCheckPass->Show_Status(title, msg, show);
 }
 
-void MainWindow::onConfirmed(int ctype, bool tmp)
+void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
 {
     switch(ctype)
     {
@@ -3122,16 +4169,22 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
         break;
 
         case M_CONFIRM_USER:
+
             if(tmp)
             {
                ui->wUserSetup->readFile();
-               ui->wUserSetup->sendBuzAndVol();
+               ui->wUserSetup->hide();
+               //onShowHome(false);
+               onMenuClicked(cmenu);
             }
             else
             {
-               ui->wUserSetup->saveFile();
-               ui->wUserSetup->sendBuzAndVol();
+               //2-May-2023 ui->wUserSetup->saveFile();
+
+               //ui->wUserSetup->hideAfterACK(true);
+               //ui->wUserSetup->sendBuzAndVol();
             }
+
         break;
 
         case M_CONFIRM_GENERAL:
@@ -3139,34 +4192,37 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
              if(tmp)
              {
                 ui->wGeneralSetup->readFile();
+                //2-May-2023 added below
+                ui->wGeneralSetup->hide();
+                //onShowHome(false);
+                onMenuClicked(cmenu);
              }
              else
              {
-                ui->wGeneralSetup->saveFile();
+                //2-May-2023 ui->wGeneralSetup->saveFile();
              }
 
         break;
 
         case M_CONFIRM_GENERAL_SWITCH:
 
-             if(tmp)
-             {
-                ui->wGeneralSetup->saveFile();
-             }
-             else
-             {
-                ui->wGeneralSetup->readFile();
-             }
+             if(tmp) ui->wGeneralSetup->saveFile();
+             else ui->wGeneralSetup->readFile();
+
         break;
 
         case M_CONFIRM_METHOD:
             if(tmp)
             {
                ui->wMethodSetup->readFile();
+               //2-May-2023 added below
+               ui->wMethodSetup->hide();
+               //onShowHome(false);
+               onMenuClicked(cmenu);
             }
             else
             {
-               ui->wMethodSetup->saveFile();
+               //ui->wMethodSetup->saveFile();
             }
         break;
 
@@ -3186,10 +4242,14 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
             if(tmp)
             {
                ui->wServiceSetup->readFile();
+               //2-May-2023 added below
+               ui->wServiceSetup->hide();
+               //onShowHome(false);
+               onMenuClicked(cmenu);
             }
             else
             {
-               ui->wServiceSetup->saveFile();
+               //ui->wServiceSetup->saveFile();
             }
         break;
         case M_CONFIRM_SERVICE_SWITCH:
@@ -3209,14 +4269,20 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
              if(tmp)
              {
                 ui->wCalibrationSetup->readFile();
+                //2-May-2023 added below
+                ui->wCalibrationSetup->hide();
+                //onShowHome(false);
+                onMenuClicked(cmenu);
              }
              else
              {
-                ui->wCalibrationSetup->saveFile();
+                //ui->wCalibrationSetup->saveFile();
              }
         break;
 
         case M_CONFIRM_CALIBRATION_SWITCH:
+
+             qDebug() << "M_CONFIRM_CALIBRATION_SWITCH:" << tmp;
 
              if(tmp)
              {
@@ -3233,11 +4299,15 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
             if(tmp)
             {
 
+#ifndef Q_OS_WIN32
                 if(!cSettings.checkFolderExists(FF_USB))
                 {
                     ui->wCheckPass->Show_ShowMessage(ctype, M_MEMORY_TRANSFER_NO_USB);
                 }
                 else
+
+#endif
+
                 {
                     QString fname, fdate, ftime;
                     fdate = ui->lblDate->text();
@@ -3269,5 +4339,43 @@ void MainWindow::onConfirmed(int ctype, bool tmp)
             }
         break;
     }
+}
 
+void MainWindow::on_pushButton_clicked()
+{
+    cACKReceived = false;
+    cNACKReceived = true;
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    cACKReceived = true;
+    cNACKReceived = false;
+    cUACKReceived = true;
+
+/*
+    if(cAccessWidget)
+    {
+        if(cAccessWidget->getHideAfterACK())
+        {
+            onShowHome(false);
+            cAccessWidget->hideAfterACK(false);
+        }
+        else cAccessWidget->setWaitACKStatus(false);
+
+        //cAccessWidget = NULL;
+    }
+*/
+
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    cParasUpdated = true;
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    if(cCurrentUCError) cCurrentUCError = 0;
+    else cCurrentUCError = 1;
 }

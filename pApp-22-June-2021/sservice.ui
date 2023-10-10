@@ -27,16 +27,16 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-background-color: rgb(241, 241, 241);
+background-color: red;
 border-width: 2px;
-border-color: rgb(21, 100, 192);
+border-color: red;
 border-style: solid;
 border-radius: 10;
-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
 font: 75 16pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(204, 244, 198);
+background-color: rgb(255, 174, 171);
 border-width: 2px;
 border-color: rgb(127, 143, 127);
 border-style: solid;
@@ -45,9 +45,9 @@ color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
+background-color: rgb(194, 54, 11);
 border-width: 2px;
-border-color: rgb(194, 194, 194);
+border-color: rgb(194, 54, 11);
 border-style: solid;
 border-radius: 10;
 color: rgb(255, 255, 255);
@@ -70,20 +70,19 @@ border-style: solid;
 border-radius: 10;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
-}
-</string>
+}</string>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>Home</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pbSave">
    <property name="geometry">
     <rect>
-     <x>365</x>
-     <y>820</y>
-     <width>167</width>
-     <height>80</height>
+     <x>310</x>
+     <y>670</y>
+     <width>125</width>
+     <height>44</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -870,6 +869,9 @@ QScrollBar::down-arrow:vertical {
  }
 </string>
        </property>
+  <property name="maxVisibleItems">
+        <number>2</number>
+       </property>
        <property name="frame">
         <bool>true</bool>
        </property>
@@ -1045,8 +1047,8 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-        <string>100.00</string>
-       </property>
+ <string/>       
+ </property>
       </widget>
       <widget class="QLabel" name="label_22">
        <property name="geometry">
@@ -1086,7 +1088,7 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-        <string>101.3</string>
+           <string/>
        </property>
       </widget>
      </widget>
@@ -1564,7 +1566,7 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-        <string>100.00</string>
+       <string/>
        </property>
       </widget>
       <widget class="QLabel" name="label_28">
@@ -1605,7 +1607,7 @@ QGroupBox::title {
 </string>
        </property>
        <property name="text">
-        <string>101.3</string>
+           <string/>
        </property>
       </widget>
      </widget>
@@ -1758,7 +1760,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
 </string>
        </property>
        <property name="text">
-        <string>4294967295</string>
+        <string/>
        </property>
       </widget>
       <widget class="QLabel" name="lblSinceLastReset">
@@ -1999,8 +2001,8 @@ QCheckBox::indicator:indeterminate:pressed {
         <string/>
        </property>
       </widget>
-     </widget>
-     <widget class="QLabel" name="lblFirmware">
+    </widget>
+     <widget class="slabel" name="wFirmware" native="true">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -2009,16 +2011,7 @@ QCheckBox::indicator:indeterminate:pressed {
         <height>60</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">border-width: 0px;
-color: rgb(193, 193, 193);</string>
-      </property>
-      <property name="text">
-       <string>Current Version:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
+    
      </widget>
     </widget>
    </widget>

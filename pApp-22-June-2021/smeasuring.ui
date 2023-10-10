@@ -599,7 +599,7 @@ Press Run to Start</string>
 font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-         <string>37.12</string>
+          <string>--.--</string>
         </property>
        </widget>
        <widget class="QLabel" name="lblPressure">
@@ -616,8 +616,7 @@ font: 80 23pt &quot;Roboto Medium&quot;;</string>
 font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-         <string>100.05</string>
-       
+          <string>---.--</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
@@ -724,7 +723,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;
         <number>0</number>
        </property>
        <property name="text">
-        <string>Temperature Stabilizing @ 37.8 C</string>
+        <string>Rinsing of cell: Cycle 1/10</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -1071,6 +1070,7 @@ QListWidget QAbstractItemView {
    font: 75 16pt &quot;Roboto Medium&quot;;
    border-radius: 5px;
    background-color: rgb(255, 255, 255);
+  }
 QListWidget::item {
  height:41px;
 }

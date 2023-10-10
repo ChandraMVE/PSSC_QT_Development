@@ -4,12 +4,14 @@
 #include <QWidget>
 #include <QDoubleValidator>
 #include <QProcess>
+#include <QListView>
 
 #include <defines.h>
 #include <defaults_calibration.h>
 
 #include <ssettings.h>
 #include <sprotocol.h>
+#include "saccesswidget.h"
 
 namespace Ui {
 class sCalibration;
@@ -63,7 +65,7 @@ struct CALIB_PRESSURE {
 };
 
 
-class sCalibration : public QWidget
+class sCalibration : public QWidget, public sAccessWidget
 {
     Q_OBJECT
 
@@ -113,16 +115,22 @@ public:
     void setLivePrTable(void);
     int getLinerizationCount(void);
 
+ void setWaitACKStatus(bool tmp);
+    bool getWaitACKStatus(void);
+    void hideAfterACK(bool tmp);
+    bool getHideAfterACK();
+    bool isSwitchEnabled(int tmp);
+    void checkExit(int tmp);
 signals:
     void showKeypad(QObject *, int, bool);
     void showHome(bool);
-    void getConfirmation(int);
-    void sendCommand(QString cmd);
+   void getConfirmation(int, int);
+    //void sendCommand(QString cmd);
+    void sendCommand(QString cmd, sAccessWidget *sa);
     void runClicked(int state, bool init);
     void showMsgBox(QString title, QString msg);
-    void showStatusBox(QString title, QString msg);
+    //void showStatusBox(QString title, QString msg, bool show);
     void updateMainWindow(void);
-
 
 private slots:
     void onShowKeypad(int tmp);
@@ -171,6 +179,7 @@ private slots:
     void on_pbPCTableShow_clicked();
 
 
+    void on_pbPCSVSet_clicked();
 private:
     Ui::sCalibration *ui;
     bool cParasChanged;
@@ -207,6 +216,8 @@ private:
 
     sProtocol cProtocol;
     int cPrevTab;
+    bool cHide;
+    bool cEnSwitch;
 
 public:
     struct CALIB_TEMPERATURE cCalibTm;

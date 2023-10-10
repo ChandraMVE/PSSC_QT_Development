@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QStringList>
 #include <QDateTime>
+#include <QListView>
 
 #include <defaults_general.h>
 #include <defines.h>
@@ -110,11 +111,12 @@ public:
 
     void SaveRTC();
     void SavePassword();
+  bool isSwitchEnabled(int tmp);
 
 signals:
     void showKeypad( QObject *, int, bool);
     void showHome(bool);
-    void getConfirmation(int);
+    void getConfirmation(int, int);
     void showMsgBox(QString title, QString msg);
 
 private slots:
@@ -140,6 +142,7 @@ private:
     int cPrevTab;
     int cPrevDeviceTab;
     int cPrevOtherTab;
+bool cEnSwitch;
 
 public:
     struct GENERAL_SETUP general_setup;

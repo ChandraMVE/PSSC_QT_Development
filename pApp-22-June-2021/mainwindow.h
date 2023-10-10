@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QListWidgetItem>
 #include <QMouseEvent>
+#include <QTranslator>
 #include <QDate>
 #include <QTime>
 #include <QMouseEvent>
@@ -12,6 +13,7 @@
 
 #include "ssettings.h"
 #include "sprotocol.h"
+#include "saccesswidget.h"
 #include "define_strings.h"
 
 namespace Ui {
@@ -37,6 +39,7 @@ public:
 
     void sendRequest(int stage);
     void checkInit(void);
+    void handleError(void);
     void handleRinsing(void);
     void handleD5188(void);
     void handleD6377(void);
@@ -46,6 +49,7 @@ public:
     void handleDiagCommError(void);
     void setError(int tmp);
     void checkCommError(void);
+    void showCommError(int tmp);
 
     void startLogging(void);
     void showError(void);
@@ -64,6 +68,7 @@ private slots:
     void on_listSetupMenu_itemClicked(QListWidgetItem *item);
 
     void onSendCommand(QString cmd);
+    void onSendCommand(QString cmd, sAccessWidget *sa);
 
     bool onSaveResult(double p_tot, double p_gas, double p_abs,
                       QString method, QString formula,
@@ -73,16 +78,25 @@ private slots:
                       double para_measured);
 
     void onRunClicked(int state, bool init);
+    void onGetPass(void);
     void onPassDataReceived(QString, QString, int, int);
     void onShowKeypad(QObject *tobj, int tmp, bool);
     void onShowHome(bool);
     void onShowFileSelect(void);
     void onFileSelected(QString fs);
     void onUpdateMainWindow(void);
-    void onGetConfirmation(int tmp);
+    void onGetConfirmation(int tmp, int);
     void onShowMsgBox(QString title, QString msg);
-    void onShowStatusBox(QString title, QString msg);
-    void onConfirmed(int, bool);
+   void onShowStatusBox(QString title, QString msg, bool show);
+    void onConfirmed(int, bool, int);
+
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
 
 signals:
     void liveData(int vp, int pp, int atm, int ctm, int pr, int ss);
@@ -94,6 +108,9 @@ private:
 
     void (*benchFunc)(void);
 
+    QTranslator translatorLa;
+    QTranslator translatorDe;
+    QTranslator translatorFr;
     QString dateFormat;
     QString timeFormat;
 
@@ -113,9 +130,20 @@ private:
     int  cStageTimeOut;
     int  cTimeOutError;
 
+    QString cPCMD;
+    bool cACKReceived;
+    bool cNACKReceived;
+    bool cWaitForACK;
+    bool cUACKReceived;
+
+    int  cNAKCount;
+    
+    
     bool cParasUpdated;
     bool cInitDone;
     bool cInitSuccess;
+    bool cStartTimeoutFlag;
+    int  cIdleTimeout;
 
     int  cValvePosition;
     int  cPistonPosition;
@@ -135,8 +163,10 @@ private:
     double cPrTpx1;
     double cPrTpx2;
     double cPrTpx3;
+    int    cPrCount;
 
     bool cDiagTestSuccess;
+    bool cDiagErrorHandle;
 
 public:
     QStringList qslDateFormat;
@@ -189,6 +219,8 @@ public:
     int cCurrentUCError;
     int cErrorPos;
     int cStrringErrorCount;
+ sAccessWidget *cAccessWidget;
+    struct TestStruct *cTest;
 
 };
 

@@ -8,6 +8,23 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     ui->setupUi(this);
     ui->gbConstants->hide();
 
+
+    QListView *view1 = new QListView(ui->cbMethod);
+    view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbMethod->setView(view1);
+
+
+    QListView *view2 = new QListView(ui->cbFormula);
+    view2->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbFormula->setView(view2);
     cWidgetFormula = ui->tabFormula;
     cStringFormula = ui->twMethodSetup->tabText(0);
 
@@ -123,6 +140,7 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     setDefaults();
     cPrevMethod = 0;
     cParasChanged = false;
+ cEnSwitch = true;
 
 }
 
@@ -272,6 +290,7 @@ bool sMethodSetup::readFile()
     QString fname = QApplication::applicationDirPath() + FN_METHOD_SETUP;
 
     QFile in(fname);
+ cEnSwitch = true;
 
     if(in.open(QIODevice::ReadOnly))
     {
@@ -321,9 +340,11 @@ void sMethodSetup::saveFile()
 
         out.close();
         cParasChanged = false;
+   cEnSwitch = true;
     }
     else
     {
+cEnSwitch = false;
         emit showMsgBox(tr("Method Setup"), tr("Error Saving File!"));
     }
 
@@ -1324,6 +1345,41 @@ void sMethodSetup::updateFree4()
     stdFree4.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
 }
 
+bool sMethodSetup::isSwitchEnabled(int tmp)
+{
+    checkExit(tmp);
+    return cEnSwitch;
+}
+
+void sMethodSetup::checkExit(int tmp)
+{
+    if(cPrevMethod == ui->cbMethod->currentIndex())
+    {
+        switch (cPrevMethod) {
+
+            case M_METHOD_D5191: updateD5191(); break;
+            case M_METHOD_D6377: updateD6377(); break;
+            case M_METHOD_D6378: updateD6378(); break;
+            case M_METHOD_D5188: updateD5188(); break;
+
+            case M_METHOD_FREE1: updateFree1(); break;
+            case M_METHOD_FREE2: updateFree2(); break;
+            case M_METHOD_FREE3: updateFree3(); break;
+            case M_METHOD_FREE4: updateFree4(); break;
+        }
+    }
+
+    if(cParasChanged)
+    {
+        cEnSwitch = false;
+        emit getConfirmation(M_CONFIRM_METHOD, tmp);
+    }
+    else
+    {
+        this->hide();
+        emit showHome(false);
+    }
+}
 void sMethodSetup::on_cbMethod_currentIndexChanged(int index)
 {
     if(!isVisible()) return; 
@@ -1353,7 +1409,7 @@ void sMethodSetup::on_cbMethod_currentIndexChanged(int index)
     }
 
     if(cParasChanged)
-        emit getConfirmation(M_CONFIRM_METHOD_SWITCH);
+        emit getConfirmation(M_CONFIRM_METHOD_SWITCH, M_MEASURING);
 
     cPrevMethod = index;
 
@@ -1474,29 +1530,5 @@ void sMethodSetup::on_pbSave_clicked()
 
 void sMethodSetup::on_pbExit_clicked()
 {
-    if(cPrevMethod == ui->cbMethod->currentIndex())
-    {
-        switch (cPrevMethod) {
-
-            case M_METHOD_D5191: updateD5191(); break;
-            case M_METHOD_D6377: updateD6377(); break;
-            case M_METHOD_D6378: updateD6378(); break;
-            case M_METHOD_D5188: updateD5188(); break;
-
-            case M_METHOD_FREE1: updateFree1(); break;
-            case M_METHOD_FREE2: updateFree2(); break;
-            case M_METHOD_FREE3: updateFree3(); break;
-            case M_METHOD_FREE4: updateFree4(); break;
-        }
-    }
-
-    if(cParasChanged)
-    {
-        emit getConfirmation(M_CONFIRM_METHOD);
-	}
-
-    {
-        this->hide();
-        emit showHome(false);
-    }
+  checkExit(M_MEASURING);  
 }

@@ -302,7 +302,11 @@ bool sTestModel::AppendRecord(int selValue, QString noperator, QString sampleID,
 bool sTestModel::TransferRecords(QString fname)
 {
 
-    fname = QApplication::applicationDirPath() + "/" + fname;
+  
+    //fname = QApplication::applicationDirPath() + "/" + fname;
+    fname = FF_USB + fname;
+
+    qDebug() << "fname:" << fname;
 
     QFile out(fname);
 
@@ -377,16 +381,44 @@ bool sTestModel::TransferRecords(QString fname)
     }
 }
 
-bool sTestModel::PrintRecords()
+bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
 {
 
-    if(!cSettings.checkFileExists("/dev/usb/lp0"))
+
+    if(!precords)
     {
-        return SerialPrinter();
+        cPrintRecord = test;
+    }
+
+
+#ifdef Q_OS_WIN32
+
+    CreatePrintSpool(precords);
+
+    /*
+    if(precords)
+    {
+        if(cSettings.getReportFormat()==0) CreateMultilineDeskjet();
+        else CreateSingleDeskjet(precords);
     }
     else
     {
-        emit showStatusBox(tr("Memory Print"), tr("Wait..."));
+        CreateSingleDeskjet(precords);
+    }
+    */
+
+    return true;
+
+#else
+
+    if(!cSettings.checkFileExists("/dev/usb/lp0"))
+    {
+       return SerialPrinter(precords);
+    }
+    else
+    {
+          if(precords) emit showStatusBox(tr("Memory Print"), tr("Wait..."), true);
+        else emit showStatusBox(tr("Test Result Print"), tr("Wait..."), true);
 
         QString str = "usb-devices | grep Product";
 
@@ -400,7 +432,7 @@ bool sTestModel::PrintRecords()
         if(output.contains("Product=SP712"))
         {
 
-             if(CreatePrintSpool()) 
+             if(CreatePrintSpool(precords)) //success
              {
                 pfile = new QFile("/dev/usb/lp0");
 
@@ -425,7 +457,10 @@ bool sTestModel::PrintRecords()
 
                 if(m_fd < 0)
                 {
-                   emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
+                   if(precords) emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
+                    else emit showMsgBox(tr("Test Result Print"), tr("Printer not found!"));
+                   //emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
+
                    return false;
                 }
                 else
@@ -446,9 +481,17 @@ bool sTestModel::PrintRecords()
 
                         while(timeout.elapsed() < 3000) QCoreApplication::processEvents();
 
-                        if((cPrinterError==1) || timeout.elapsed()>3000) emit showMsgBox(tr("Memory Print"), tr("Error Printing!"));
-                        else emit showStatusBox(tr("Memory Print"), tr("Printing..."));
-                    }
+                      if((cPrinterError==1) || timeout.elapsed()>3000)
+                        {
+                            if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Printing!"));
+                            else emit showMsgBox(tr("Test Result Print"), tr("Error Printing!"));
+                        }
+                        else
+                        {
+                            if(precords) emit showStatusBox(tr("Memory Print"), tr("Printing..."), true);
+                            else emit showStatusBox(tr("Test Result Print"), tr("Printing..."), true);
+                        }                   
+                         }
 
                     while( cPrinterError ==2)
                     {
@@ -467,8 +510,10 @@ bool sTestModel::PrintRecords()
 
                             if(ret <0)
                             {
-                                emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
-                                cPrinterError=1;
+
+                                if(precords) emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
+                                else emit showMsgBox(tr("Test Result Print"), tr("Error 1 Printing!"));
+                   cPrinterError=1;
                                 break;
                             }
                         }
@@ -493,10 +538,13 @@ bool sTestModel::PrintRecords()
 
                         if(cPrinterError==2)
                         {
-                            emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
+                           if(precords) emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
+                            else emit showStatusBox(tr("Test Result Print"), tr("Printing done!"), false);
+
                             return true;
                         }
-                        else return false;
+                        else 
+                        return false;
                     }
 
                 } 
@@ -504,27 +552,39 @@ bool sTestModel::PrintRecords()
              }
              else
              {
-                emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
+                
+                if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
+                else emit showMsgBox(tr("Test Result Print"), tr("Error Spooling!"));
                  return false;
              }
 
         }
         else if(output.contains("Product=HP LaserJet Pro M40"))
         {
-             if(cSettings.getReportFormat()==0) CreateMultilineDeskjet();
-             else CreateSingleDeskjet();
-
-             emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
+            if(precords)
+            {
+                 if(cSettings.getReportFormat()==0) CreateMultilineDeskjet();
+                 else CreateSingleDeskjet(precords);
+            }
+            else
+            {
+                CreateSingleDeskjet(precords);
+            }
+             e  if(precords) emit showMsgBox(tr("Memory Print"), tr("Send to Printer!"));
+            else emit showStatusBox(tr("Test Result Print"), tr("Send to Printer!"), false);
 
              return true;
         }
 
-        emit showMsgBox(tr("Memory Print"), tr("Error Printing!"));
+        if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Printing!"));
+        else emit showMsgBox(tr("Test Result Print"), tr("Error Printing!"));
 
     }
+
+#endif
 }
 
-bool sTestModel::SerialPrinter()
+bool sTestModel::SerialPrinter(bool precords)
 {
     if(cSerialPrinter->isOpen())
         cSerialPrinter->close();
@@ -540,7 +600,7 @@ bool sTestModel::SerialPrinter()
                 && cSerialPrinter->setFlowControl(cSettings.getFlowControl()))
         {
 
-            if(CreatePrintSpool()) 
+            if(CreatePrintSpool(precords))
             {
                 connect(cSerialPrinter, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerialPrinter(QSerialPort::SerialPortError)));
                 connect(cSerialPrinter, SIGNAL(readyRead()), this, SLOT(readSerialPrinter()));
@@ -551,12 +611,22 @@ bool sTestModel::SerialPrinter()
 
                    QFile file(fname);
                    file.open(QIODevice::ReadOnly);
+ emit showStatusBox(tr("Memory Print"), tr("Printing..."), true);
 
-                   emit showStatusBox(tr("Memory Print"), tr("Printing..."));
+                   /*
+                   if(precords)
+                   {
 
+                   }
+                   else
+                   {
+                       QString ss = "Printing.1..sz:" + QString::number(file.size());
+                        emit showStatusBox(tr("Test Result Print"), ss); //tr("Printing.1." + file.size()));
+                   }
+                   */
                    cPrinterError = 2;
 
-                   while( cPrinterError ==2)
+                   while( cPrinterError == 2)
                    {
                        QCoreApplication::processEvents();
 
@@ -579,6 +649,17 @@ bool sTestModel::SerialPrinter()
                            if(ret <0)
                            {
                                emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
+                       
+                   /*
+                               if(precords)
+                               {
+                                   emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
+                               }
+                               else
+                               {
+                                   emit showMsgBox(tr("Test Result Print"), tr("Error 1 Printing!"));
+                               }
+                               */
                                cPrinterError=1;
                                break;
                            }
@@ -598,12 +679,18 @@ bool sTestModel::SerialPrinter()
                        disconnect(cSerialPrinter, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerialPrinter(QSerialPort::SerialPortError)));
                        disconnect(cSerialPrinter, SIGNAL(readyRead()), this, SLOT(readSerialPrinter()));
 
-                       cSettings.removeTmpFiles();
+                       //sn cSettings.removeTmpFiles();
 
                        if(cPrinterError==2)
                        {
-                           emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
-                           return true;
+                       if(precords)
+                           {
+                               emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
+                           }
+                           else
+                           {
+                               emit showStatusBox(tr("Memory Print"), tr("Printing done!"), false);
+                           }                           return true;
                        }
                        else return false;
                    }
@@ -612,10 +699,23 @@ bool sTestModel::SerialPrinter()
 
             }
             else
-            {
-               emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
+           {
+                emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
+
+
+            /*if(precords)
+                {
+                    emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
+                }
+                else
+                {
+                    emit showMsgBox(tr("Test Result Print"), tr("Error Spooling!"));
+                }
+                */
+
                 return false;
             }
+
 
         }
         else
@@ -623,6 +723,15 @@ bool sTestModel::SerialPrinter()
             cSerialPrinter->close();
             emit showMsgBox(tr("Memory Print"), cSerialPrinter->errorString());
 
+ /*if(precords)
+            {
+                emit showMsgBox(tr("Memory Print"), cSerialPrinter->errorString());
+            }
+            else
+            {
+                emit showMsgBox(tr("Test Result Print"), cSerialPrinter->errorString());
+            }
+            */            
             return false;
     }
 }
@@ -636,12 +745,15 @@ int sTestModel::PrinterStatus(int fd)
 {
     char status;
 
+#ifndef Q_OS_WIN32
+
     if(::ioctl(fd, LPGETSTATUS, &status) < 0)
     {
         return 0;
     }
 
-    return status;
+#endif
+turn status;
 }
 
 int sTestModel::PrintData(int fd, char dtmp)
@@ -681,7 +793,7 @@ void sTestModel::setBrush(QPainter *painter, QBrush *brush, int row)
 
 }
 
-bool sTestModel::CreateSingleDeskjet()
+bool sTestModel::CreateSingleDeskjet(bool precords)
 {
     QPrinter printer(QPrinter::HighResolution); 
     QString psize;
@@ -709,235 +821,451 @@ bool sTestModel::CreateSingleDeskjet()
 
     QPainter painter(&printer); 
 	
-    for(int tmp=0; tmp < listTestRecord.count(); tmp++)
+   if(precords)
     {
-        sTestRecord cTestRecord  = listTestRecord.at(tmp);
-
-        if(cTestRecord.tm_sel)
+        for(int tmp=0; tmp < listTestRecord.count(); tmp++)
         {
-            struct TestStruct nRecord = TestStruct(cTestRecord.tm_sel,
-                    cTestRecord.tm_operator, cTestRecord.tm_sample_id,
-                    cTestRecord.tm_datetime,
-                    cTestRecord.tm_p_tot, cTestRecord.tm_p_gas, cTestRecord.tm_p_abs,
-                    cTestRecord.tm_method, cTestRecord.tm_formula,
-                    cTestRecord.tm_aconst, cTestRecord.tm_bconst,
-                    cTestRecord.tm_cconst,
-                    cTestRecord.tm_result,
-                    cTestRecord.tm_ttime, cTestRecord.tm_vlratio,
-                    cTestRecord.tm_para_measured);
+            sTestRecord cTestRecord  = listTestRecord.at(tmp);
 
-            if(tmp>0) printer.newPage();
-
-            int w = printer.width();
-            int h = printer.height();
-            int hw = w/2;
-            int dw = w/4;
-            int tw = w/4;
-            int vw = w-(w/4);
-
-            int tm = 30, bm=15, lm=15, rm=15;
-            int x=lm, y=tm;
-
-            int row=0;
-
-            QFont font_header = QFont("Arial", 20, QFont::Bold);
-            QFont font_datetime = QFont("Arial", 18, QFont::Normal);
-
-            QFont font_footer = QFont("Arial", 20,QFont::Bold, true);
-
-            QFont font_title = QFont("Arial", 18, QFont::Bold);
-            QFont font_value = QFont("Arial", 18, QFont::Normal);
-
-            QTextOption to_header;
-            to_header.setAlignment(Qt::AlignCenter);
-            to_header.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-
-            QTextOption to_footer;
-            to_footer.setAlignment(Qt::AlignLeft);
-            to_footer.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-
-            QTextOption to_title;
-            to_title.setAlignment(Qt::AlignLeft);
-            to_title.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-
-            QTextOption to_value;
-            to_value.setAlignment(Qt::AlignLeft);
-            to_value.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-
-            QBrush brush;
-            brush.setStyle(Qt::SolidPattern);
-
-            setBrush(&painter, &brush, row);
-
-            painter.drawRect(15, 30, printer.width(), printer.height());
-
-            painter.setFont(font_header);
-            drawData(&painter, x, y, hw, 800, "RVP Pro", &to_header);
-
-            painter.setFont(font_footer);
-            painter.drawText(x, h-15-30, "RVP Pro by PSSC");
-
-            row++;
-
-            if(cHeaderModel->getData(REPORT_DATE) || cHeaderModel->getData(REPORT_TIME))
+            if(cTestRecord.tm_sel)
             {
-                painter.setFont(font_datetime);
-                drawData(&painter, x+hw, y, dw, 800, "Date\n"+ cSettings.getDate(nRecord.datetime), &to_value);
-                drawData(&painter, x+hw+dw, y, dw, 800, "Time\n"+ cSettings.getTime(nRecord.datetime), &to_value);
-                y+=800;
-            }
+                struct TestStruct nRecord = TestStruct(cTestRecord.tm_sel,
+                        cTestRecord.tm_operator, cTestRecord.tm_sample_id,
+                        cTestRecord.tm_datetime,
+                        cTestRecord.tm_p_tot, cTestRecord.tm_p_gas, cTestRecord.tm_p_abs,
+                        cTestRecord.tm_method, cTestRecord.tm_formula,
+                        cTestRecord.tm_aconst, cTestRecord.tm_bconst,
+                        cTestRecord.tm_cconst,
+                        cTestRecord.tm_result,
+                        cTestRecord.tm_ttime, cTestRecord.tm_vlratio,
+                        cTestRecord.tm_para_measured);
 
-            if(cHeaderModel->getData(REPORT_TEST_METHOD))
-            {
+                if(tmp>0) printer.newPage();
+
+                int w = printer.width();
+                int h = printer.height();
+                int hw = w/2;
+                int dw = w/4;
+                int tw = w/4;
+                int vw = w-(w/4);
+
+                int tm = 30, bm=15, lm=15, rm=15;
+                int x=lm, y=tm;
+
+                int row=0;
+
+                QFont font_header = QFont("Arial", 20, QFont::Bold);
+                QFont font_datetime = QFont("Arial", 18, QFont::Normal);
+
+                QFont font_footer = QFont("Arial", 20,QFont::Bold, true);
+
+                QFont font_title = QFont("Arial", 18, QFont::Bold);
+                QFont font_value = QFont("Arial", 18, QFont::Normal);
+
+                QTextOption to_header;
+                to_header.setAlignment(Qt::AlignCenter);
+                to_header.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+                QTextOption to_footer;
+                to_footer.setAlignment(Qt::AlignLeft);
+                to_footer.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+                QTextOption to_title;
+                to_title.setAlignment(Qt::AlignLeft);
+                to_title.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+                QTextOption to_value;
+                to_value.setAlignment(Qt::AlignLeft);
+                to_value.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+                QBrush brush;
+                brush.setStyle(Qt::SolidPattern);
+
                 setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Test method", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cTestRecord.tm_method, &to_title);
-                y+=600;
+
+                painter.drawRect(15, 30, printer.width(), printer.height());
+
+                painter.setFont(font_header);
+                drawData(&painter, x, y, hw, 800, "RVP Pro", &to_header);
+
+                painter.setFont(font_footer);
+                painter.drawText(x, h-15-30, "RVP Pro by PSSC");
+
                 row++;
-            }
 
-            if(cHeaderModel->getData(REPORT_FORMULA))
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 800, "Correlation formula", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 800, cSettings.getFormula(nRecord.method, nRecord.formula,
-                                                                         nRecord.aconst, nRecord.bconst,
-                                                                         nRecord.cconst), &to_title);
-                y+=800;
-                row++;
-            }
+                if(cHeaderModel->getData(REPORT_DATE) || cHeaderModel->getData(REPORT_TIME))
+                {
+                    painter.setFont(font_datetime);
+                    drawData(&painter, x+hw, y, dw, 800, "Date\n"+ cSettings.getDate(nRecord.datetime), &to_value);
+                    drawData(&painter, x+hw+dw, y, dw, 800, "Time\n"+ cSettings.getTime(nRecord.datetime), &to_value);
+                    y+=800;
+                }
 
-            if(cHeaderModel->getData(REPORT_SAMPLE_ID))
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Sample id", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cTestRecord.tm_sample_id, &to_title);
-                y+=600;
-                row++;
-            }
-
-
-            if( cHeaderModel->getData(REPORT_RESULT) ||
-                cHeaderModel->getData(REPORT_P_TOT)  ||
-                cHeaderModel->getData(REPORT_P_GAS)  ||
-                cHeaderModel->getData(REPORT_P_ABS))
-            {
-                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                if(cHeaderModel->getData(REPORT_TEST_METHOD))
                 {
                     setBrush(&painter, &brush, row);
-
                     painter.setFont(font_title);
-                    drawData(&painter, x, y, tw, 1400, "Test result", &to_title);
-                    drawData(&painter, x+dw, y, vw, 600, cSettings.getResult(nRecord.method, nRecord.result), &to_value);
-
+                    drawData(&painter, x, y, tw, 600, "Test method", &to_title);
                     painter.setFont(font_value);
-                    drawData(&painter, x+dw, y+600, dw, 800, "Ptot\n" + cSettings.getPressure(nRecord.method, nRecord.p_tot), &to_value);
-                    drawData(&painter, x+dw+dw, y+600, dw, 800, "Pgas\n" + cSettings.getPressure(nRecord.method, nRecord.p_gas), &to_value);
-                    drawData(&painter, x+dw+dw+dw, y+600, dw, 800, "Pabs\n" + cSettings.getPressure(nRecord.method, nRecord.p_abs), &to_value);
-                    y+=1400;
+                    drawData(&painter, x+tw, y, vw, 600, cTestRecord.tm_method, &to_title);
+                    y+=600;
                     row++;
                 }
-                else
+
+                if(cHeaderModel->getData(REPORT_FORMULA))
                 {
                     setBrush(&painter, &brush, row);
                     painter.setFont(font_title);
-                    drawData(&painter, x, y, tw, 600, "Test result", &to_title);
-                    drawData(&painter, x+tw, y, vw, 600, cSettings.getResult(nRecord.method, nRecord.result), &to_value);
+                    drawData(&painter, x, y, tw, 800, "Correlation formula", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 800, cSettings.getFormula(nRecord.method, nRecord.formula,
+                                                                             nRecord.aconst, nRecord.bconst,
+                                                                             nRecord.cconst), &to_title);
+                    y+=800;
+                    row++;
+                }
+
+                if(cHeaderModel->getData(REPORT_SAMPLE_ID))
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "Sample id", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, cTestRecord.tm_sample_id, &to_title);
+                    y+=600;
+                    row++;
+                }
+
+
+                if( cHeaderModel->getData(REPORT_RESULT) ||
+                    cHeaderModel->getData(REPORT_P_TOT)  ||
+                    cHeaderModel->getData(REPORT_P_GAS)  ||
+                    cHeaderModel->getData(REPORT_P_ABS))
+                {
+                    if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                    {
+                        setBrush(&painter, &brush, row);
+
+                        painter.setFont(font_title);
+                        drawData(&painter, x, y, tw, 1400, "Test result", &to_title);
+                        drawData(&painter, x+dw, y, vw, 600, cSettings.getResult(nRecord.method, nRecord.result), &to_value);
+
+                        painter.setFont(font_value);
+                        drawData(&painter, x+dw, y+600, dw, 800, "Ptot\n" + cSettings.getPressure(nRecord.method, nRecord.p_tot), &to_value);
+                        drawData(&painter, x+dw+dw, y+600, dw, 800, "Pgas\n" + cSettings.getPressure(nRecord.method, nRecord.p_gas), &to_value);
+                        drawData(&painter, x+dw+dw+dw, y+600, dw, 800, "Pabs\n" + cSettings.getPressure(nRecord.method, nRecord.p_abs), &to_value);
+                        y+=1400;
+                        row++;
+                    }
+                    else
+                    {
+                        setBrush(&painter, &brush, row);
+                        painter.setFont(font_title);
+                        drawData(&painter, x, y, tw, 600, "Test result", &to_title);
+                        drawData(&painter, x+tw, y, vw, 600, cSettings.getResult(nRecord.method, nRecord.result), &to_value);
+                        y+=600;
+                        row++;
+                    }
+                }
+
+
+
+                if(cHeaderModel->getData(REPORT_TEST_TIME) && (cTestRecord.tm_method != "D5188"))
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "Test time", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, cSettings.getTestTime(nRecord.method, nRecord.ttime), &to_value);
+                    y+=600;
+                    row++;
+                }
+
+                if(cHeaderModel->getData(REPORT_VL_RATIO))
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "VL ratio", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, cSettings.getVLRatio(nRecord.vlratio), &to_value);
+                    y+=600;
+                    row++;
+                }
+
+                if(cHeaderModel->getData(REPORT_PARA_MEASURED))
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 800, "Para\nmeasured", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 800, cSettings.getParaMeasured(nRecord.method, nRecord.para_measured), &to_value);
+                    y+=800;
+                    row++;
+                }
+
+                if(cHeaderModel->getData(REPORT_OPERATOR_ID))
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "Operator", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, nRecord.noperator, &to_value);
+                    y+=600;
+                    row++;
+                }
+
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 1200, "Comments", &to_title);
+                    drawData(&painter, x+tw, y, vw, 1200, "", &to_title);
+                    y+=1200;
+                    row++;
+                }
+
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "Location", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, cSettings.getLocation(), &to_value);
+                    y+=600;
+                    row++;
+                }
+
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "Unit id", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, cSettings.getUnitId(), &to_value);
+                    y+=600;
+                    row++;
+                }
+
+                {
+                    setBrush(&painter, &brush, row);
+                    painter.setFont(font_title);
+                    drawData(&painter, x, y, tw, 600, "Serial no.", &to_title);
+                    painter.setFont(font_value);
+                    drawData(&painter, x+tw, y, vw, 600, cSettings.getSerialNo(), &to_value);
                     y+=600;
                     row++;
                 }
             }
+        }
+    }
+    else
+    {
+        int w = printer.width();
+        int h = printer.height();
+        int hw = w/2;
+        int dw = w/4;
+        int tw = w/4;
+        int vw = w-(w/4);
+
+        int tm = 30, bm=15, lm=15, rm=15;
+        int x=lm, y=tm;
+
+        int row=0;
+
+        QFont font_header = QFont("Arial", 20, QFont::Bold);
+        QFont font_datetime = QFont("Arial", 18, QFont::Normal);
+
+        QFont font_footer = QFont("Arial", 20,QFont::Bold, true);
+
+        QFont font_title = QFont("Arial", 18, QFont::Bold);
+        QFont font_value = QFont("Arial", 18, QFont::Normal);
+
+        QTextOption to_header;
+        to_header.setAlignment(Qt::AlignCenter);
+        to_header.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+        QTextOption to_footer;
+        to_footer.setAlignment(Qt::AlignLeft);
+        to_footer.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+        QTextOption to_title;
+        to_title.setAlignment(Qt::AlignLeft);
+        to_title.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+        QTextOption to_value;
+        to_value.setAlignment(Qt::AlignLeft);
+        to_value.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+
+        QBrush brush;
+        brush.setStyle(Qt::SolidPattern);
+
+        setBrush(&painter, &brush, row);
+
+        painter.drawRect(15, 30, printer.width(), printer.height());
+
+        painter.setFont(font_header);
+        drawData(&painter, x, y, hw, 800, "RVP Pro", &to_header);
+
+        painter.setFont(font_footer);
+        painter.drawText(x, h-15-30, "RVP Pro by PSSC");
+
+        row++;
+
+        if(cHeaderModel->getData(REPORT_DATE) || cHeaderModel->getData(REPORT_TIME))
+        {
+            painter.setFont(font_datetime);
+            drawData(&painter, x+hw, y, dw, 800, "Date\n"+ cSettings.getDate(cPrintRecord->datetime), &to_value);
+            drawData(&painter, x+hw+dw, y, dw, 800, "Time\n"+ cSettings.getTime(cPrintRecord->datetime), &to_value);
+            y+=800;
+        }
+
+        if(cHeaderModel->getData(REPORT_TEST_METHOD))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Test method", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cPrintRecord->method, &to_title);
+            y+=600;
+            row++;
+        }
+
+        if(cHeaderModel->getData(REPORT_FORMULA))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 800, "Correlation formula", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 800, cSettings.getFormula(cPrintRecord->method, cPrintRecord->formula,
+                                                                     cPrintRecord->aconst, cPrintRecord->bconst,
+                                                                     cPrintRecord->cconst), &to_title);
+            y+=800;
+            row++;
+        }
+
+        if(cHeaderModel->getData(REPORT_SAMPLE_ID))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Sample id", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cPrintRecord->sample_id, &to_title);
+            y+=600;
+            row++;
+        }
 
 
+        if( cHeaderModel->getData(REPORT_RESULT) ||
+            cHeaderModel->getData(REPORT_P_TOT)  ||
+            cHeaderModel->getData(REPORT_P_GAS)  ||
+            cHeaderModel->getData(REPORT_P_ABS))
+        {
+            if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188")
+            {
+                setBrush(&painter, &brush, row);
 
-            if(cHeaderModel->getData(REPORT_TEST_TIME) && (cTestRecord.tm_method != "D5188"))
+                painter.setFont(font_title);
+                drawData(&painter, x, y, tw, 1400, "Test result", &to_title);
+                drawData(&painter, x+dw, y, vw, 600, cSettings.getResult(cPrintRecord->method, cPrintRecord->result), &to_value);
+
+                painter.setFont(font_value);
+                drawData(&painter, x+dw, y+600, dw, 800, "Ptot\n" + cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_tot), &to_value);
+                drawData(&painter, x+dw+dw, y+600, dw, 800, "Pgas\n" + cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_gas), &to_value);
+                drawData(&painter, x+dw+dw+dw, y+600, dw, 800, "Pabs\n" + cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_abs), &to_value);
+                y+=1400;
+                row++;
+            }
+            else
             {
                 setBrush(&painter, &brush, row);
                 painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Test time", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cSettings.getTestTime(nRecord.method, nRecord.ttime), &to_value);
+                drawData(&painter, x, y, tw, 600, "Test result", &to_title);
+                drawData(&painter, x+tw, y, vw, 600, cSettings.getResult(cPrintRecord->method, cPrintRecord->result), &to_value);
                 y+=600;
                 row++;
             }
+        }
 
-            if(cHeaderModel->getData(REPORT_VL_RATIO))
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "VL ratio", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cSettings.getVLRatio(nRecord.vlratio), &to_value);
-                y+=600;
-                row++;
-            }
 
-            if(cHeaderModel->getData(REPORT_PARA_MEASURED))
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 800, "Para\nmeasured", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 800, cSettings.getParaMeasured(nRecord.method, nRecord.para_measured), &to_value);
-                y+=800;
-                row++;
-            }
 
-            if(cHeaderModel->getData(REPORT_OPERATOR_ID))
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Operator", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, nRecord.noperator, &to_value);
-                y+=600;
-                row++;
-            }
+        if(cHeaderModel->getData(REPORT_TEST_TIME) && (cPrintRecord->method != "D5188"))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Test time", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cSettings.getTestTime(cPrintRecord->method, cPrintRecord->ttime), &to_value);
+            y+=600;
+            row++;
+        }
 
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 1200, "Comments", &to_title);
-                drawData(&painter, x+tw, y, vw, 1200, "", &to_title);
-                y+=1200;
-                row++;
-            }
+        if(cHeaderModel->getData(REPORT_VL_RATIO))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "VL ratio", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cSettings.getVLRatio(cPrintRecord->vlratio), &to_value);
+            y+=600;
+            row++;
+        }
 
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Location", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cSettings.getLocation(), &to_value);
-                y+=600;
-                row++;
-            }
+        if(cHeaderModel->getData(REPORT_PARA_MEASURED))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 800, "Para\nmeasured", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 800, cSettings.getParaMeasured(cPrintRecord->method, cPrintRecord->para_measured), &to_value);
+            y+=800;
+            row++;
+        }
 
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Unit id", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cSettings.getUnitId(), &to_value);
-                y+=600;
-                row++;
-            }
+        if(cHeaderModel->getData(REPORT_OPERATOR_ID))
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Operator", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cPrintRecord->noperator, &to_value);
+            y+=600;
+            row++;
+        }
 
-            {
-                setBrush(&painter, &brush, row);
-                painter.setFont(font_title);
-                drawData(&painter, x, y, tw, 600, "Serial no.", &to_title);
-                painter.setFont(font_value);
-                drawData(&painter, x+tw, y, vw, 600, cSettings.getSerialNo(), &to_value);
-                y+=600;
-                row++;
-            }
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 1200, "Comments", &to_title);
+            drawData(&painter, x+tw, y, vw, 1200, "", &to_title);
+            y+=1200;
+            row++;
+        }
+
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Location", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cSettings.getLocation(), &to_value);
+            y+=600;
+            row++;
+        }
+
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Unit id", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cSettings.getUnitId(), &to_value);
+            y+=600;
+            row++;
+        }
+
+        {
+            setBrush(&painter, &brush, row);
+            painter.setFont(font_title);
+            drawData(&painter, x, y, tw, 600, "Serial no.", &to_title);
+            painter.setFont(font_value);
+            drawData(&painter, x+tw, y, vw, 600, cSettings.getSerialNo(), &to_value);
+            y+=600;
+            row++;
         }
     }
 
@@ -951,8 +1279,9 @@ bool sTestModel::CreateSingleDeskjet()
     QString output = process.readAllStandardOutput();
     QString err = process.readAllStandardError();
 
+ #ifndef Q_OS_WIN32
     cSettings.removeTmpFiles();
-
+#endif
     return true;
 
 }
@@ -1426,12 +1755,12 @@ bool sTestModel::CreateMultilineDeskjet()
     QString output = process.readAllStandardOutput();
     QString err = process.readAllStandardError();
 
-    cSettings.removeTmpFiles();
+    //cSettings.removeTmpFiles();
 
     return true;
 }
 
-bool sTestModel::CreatePrintSpool(void)
+bool sTestModel::CreatePrintSpool(bool precords)
 {
 
     QString fname = QApplication::applicationDirPath() + "/tmp/print.txt";
@@ -1442,69 +1771,122 @@ bool sTestModel::CreatePrintSpool(void)
     {
         QTextStream save(&out);
 
-        for(int tmp=0; tmp < listTestRecord.count(); tmp++)
+     
+        if(precords)
         {
-            sTestRecord cTestRecord  = listTestRecord.at(tmp);
-
-            if(cTestRecord.tm_sel)
+            for(int tmp=0; tmp < listTestRecord.count(); tmp++)
             {
-                struct TestStruct nRecord = TestStruct(cTestRecord.tm_sel,
-                        cTestRecord.tm_operator, cTestRecord.tm_sample_id,
-                        cTestRecord.tm_datetime,
-                        cTestRecord.tm_p_tot, cTestRecord.tm_p_gas, cTestRecord.tm_p_abs,
-                        cTestRecord.tm_method, cTestRecord.tm_formula,
-                        cTestRecord.tm_aconst, cTestRecord.tm_bconst,
-                        cTestRecord.tm_cconst,
-                        cTestRecord.tm_result,
-                        cTestRecord.tm_ttime, cTestRecord.tm_vlratio,
-                        cTestRecord.tm_para_measured);
+                sTestRecord cTestRecord  = listTestRecord.at(tmp);
 
-                save << "------------------------------------------" << endl;
-                save << cSettings.getCompany() << endl;
-                save << cSettings.getLocation() << endl;
-                save << cSettings.getUnitId()<< endl;
-                save << "SERIAL NO:" << cSettings.getSerialNo() << endl;
-                save << "------------------------------------------" << endl;
-
-                if(cHeaderModel->getData(8)) save << tr("Tested Method: ") << cTestRecord.tm_method << endl;
-
-                if(cHeaderModel->getData(3) || cHeaderModel->getData(4))
-                    save << tr("Date Time: ") << cSettings.getDate(nRecord.datetime) << " "
-                    << cSettings.getTime(nRecord.datetime) << endl;
-
-                if(cHeaderModel->getData(2)) save << tr("Sample Id: ") << nRecord.sample_id << endl;
-
-                if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.getResult(nRecord.method, nRecord.result) << endl;
-
-                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                if(cTestRecord.tm_sel)
                 {
-                    save << tr("Ptot: ") << cSettings.getPressure(nRecord.method, nRecord.p_tot) << endl;
-                    save << tr("Pgas: ") << cSettings.getPressure(nRecord.method, nRecord.p_gas) << endl;
-                    save << tr("Pabs: ") << cSettings.getPressure(nRecord.method, nRecord.p_abs) << endl;
+                    struct TestStruct nRecord = TestStruct(cTestRecord.tm_sel,
+                            cTestRecord.tm_operator, cTestRecord.tm_sample_id,
+                            cTestRecord.tm_datetime,
+                            cTestRecord.tm_p_tot, cTestRecord.tm_p_gas, cTestRecord.tm_p_abs,
+                            cTestRecord.tm_method, cTestRecord.tm_formula,
+                            cTestRecord.tm_aconst, cTestRecord.tm_bconst,
+                            cTestRecord.tm_cconst,
+                            cTestRecord.tm_result,
+                            cTestRecord.tm_ttime, cTestRecord.tm_vlratio,
+                            cTestRecord.tm_para_measured);
+
+                    save << "------------------------------------------" << endl;
+                    save << cSettings.getCompany() << endl;
+                    save << cSettings.getLocation() << endl;
+                    save << cSettings.getUnitId()<< endl;
+                    save << "SERIAL NO:" << cSettings.getSerialNo() << endl;
+                    save << "------------------------------------------" << endl;
+
+                    if(cHeaderModel->getData(8)) save << tr("Tested Method: ") << cTestRecord.tm_method << endl;
+
+                    if(cHeaderModel->getData(3) || cHeaderModel->getData(4))
+                        save << tr("Date Time: ") << cSettings.getDate(nRecord.datetime) << " "
+                        << cSettings.getTime(nRecord.datetime) << endl;
+
+                    if(cHeaderModel->getData(2)) save << tr("Sample Id: ") << nRecord.sample_id << endl;
+
+                    if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.getResult(nRecord.method, nRecord.result) << endl;
+
+                    if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                    {
+                        save << tr("Ptot: ") << cSettings.getPressure(nRecord.method, nRecord.p_tot) << endl;
+                        save << tr("Pgas: ") << cSettings.getPressure(nRecord.method, nRecord.p_gas) << endl;
+                        save << tr("Pabs: ") << cSettings.getPressure(nRecord.method, nRecord.p_abs) << endl;
+                    }
+
+                    if(cHeaderModel->getData(13))
+                        save << tr("Para Measured: ") << cSettings.getParaMeasured(nRecord.method, nRecord.para_measured) << endl;
+
+                    if(cHeaderModel->getData(9))
+                        save << tr("Correlation formula used: ") << endl
+                            << cSettings.getFormula(nRecord.method, nRecord.formula,
+                                          nRecord.aconst, nRecord.bconst,
+                                          nRecord.cconst) << endl;
+
+                    if(cHeaderModel->getData(11) && (cTestRecord.tm_method != "D5188"))
+                        save << tr("Test Time: ") << cSettings.getTestTime(nRecord.method, nRecord.ttime) << endl;
+                    if(cHeaderModel->getData(12)) save << tr("VL Ratio: ") << cSettings.getVLRatio(nRecord.vlratio) << endl;
+
+                    if(cHeaderModel->getData(1))
+                        save << tr("Operator: ")
+                             << nRecord.noperator << endl << endl;
+
+                    save << tr("Comment: ") << endl << endl << endl;
+
+                    save << endl << endl;
+
                 }
-
-                if(cHeaderModel->getData(13))
-                    save << tr("Para Measured: ") << cSettings.getParaMeasured(nRecord.method, nRecord.para_measured) << endl;
-
-                if(cHeaderModel->getData(9))
-                    save << tr("Correlation formula used: ") << endl
-                        << cSettings.getFormula(nRecord.method, nRecord.formula,
-                                      nRecord.aconst, nRecord.bconst,
-                                      nRecord.cconst) << endl;
-
-                if(cHeaderModel->getData(11) && (cTestRecord.tm_method != "D5188"))
-                    save << tr("Test Time: ") << cSettings.getTestTime(nRecord.method, nRecord.ttime) << endl;
-                if(cHeaderModel->getData(12)) save << tr("VL Ratio: ") << cSettings.getVLRatio(nRecord.vlratio) << endl;
-
-                if(cHeaderModel->getData(1))
-                    save << tr("Operator: ")
-                         << nRecord.noperator << endl << endl;
-
-                save << tr("Comment: ") << endl << endl << endl;
-
-                save << endl << endl;
-
             }
+        }
+        else
+        {
+
+            save << "------------------------------------------" << endl;
+            save << cSettings.getCompany() << endl;
+            save << cSettings.getLocation() << endl;
+            save << cSettings.getUnitId()<< endl;
+            save << "SERIAL NO:" << cSettings.getSerialNo() << endl;
+            save << "------------------------------------------" << endl;
+
+            if(cHeaderModel->getData(8)) save << tr("Tested Method: ") << cPrintRecord->method << endl;
+
+            if(cHeaderModel->getData(3) || cHeaderModel->getData(4))
+                save << tr("Date Time: ") << cSettings.getDate(cPrintRecord->datetime) << " "
+                << cSettings.getTime(cPrintRecord->datetime) << endl;
+
+            if(cHeaderModel->getData(2)) save << tr("Sample Id: ") << cPrintRecord->sample_id << endl;
+
+            if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.getResult(cPrintRecord->method, cPrintRecord->result) << endl;
+
+            if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188")
+            {
+                save << tr("Ptot: ") << cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_tot) << endl;
+                save << tr("Pgas: ") << cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_gas) << endl;
+                save << tr("Pabs: ") << cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_abs) << endl;
+            }
+
+            if(cHeaderModel->getData(13))
+                save << tr("Para Measured: ") << cSettings.getParaMeasured(cPrintRecord->method, cPrintRecord->para_measured) << endl;
+
+            if(cHeaderModel->getData(9))
+                save << tr("Correlation formula used: ") << endl
+                    << cSettings.getFormula(cPrintRecord->method, cPrintRecord->formula,
+                                  cPrintRecord->aconst, cPrintRecord->bconst,
+                                  cPrintRecord->cconst) << endl;
+
+            if(cHeaderModel->getData(11) && (cPrintRecord->method != "D5188"))
+                save << tr("Test Time: ") << cSettings.getTestTime(cPrintRecord->method, cPrintRecord->ttime) << endl;
+            if(cHeaderModel->getData(12)) save << tr("VL Ratio: ") << cSettings.getVLRatio(cPrintRecord->vlratio) << endl;
+
+            if(cHeaderModel->getData(1))
+                save << tr("Operator: ")
+                     << cPrintRecord->noperator << endl << endl;
+
+            save << tr("Comment: ") << endl << endl << endl;
+
+            save << endl << endl;
+
         }
 
         out.close();

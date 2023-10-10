@@ -6,6 +6,179 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     ui(new Ui::sGeneralSetup)
 {
     ui->setupUi(this);
+
+    QListView *view1 = new QListView(ui->cbDateFormat);
+    view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbDateFormat->setView(view1);
+
+
+    QListView *view2 = new QListView(ui->cbTimeFormat);
+    view2->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbTimeFormat->setView(view2);
+
+
+    QListView *view3 = new QListView(ui->cbLanguage);
+    view3->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbLanguage->setView(view3);
+
+    QListView *view4 = new QListView(ui->cbPressureScale);
+    view4->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbPressureScale->setView(view4);
+
+
+    QListView *view5 = new QListView(ui->cbTemperatureScale);
+    view5->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbTemperatureScale->setView(view5);
+
+
+    QListView *view6 = new QListView(ui->cbAutoMeasuring);
+    view6->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbAutoMeasuring->setView(view6);
+
+    QListView *view7 = new QListView(ui->cbEmulation);
+    view7->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbEmulation->setView(view7);
+
+    QListView *view8 = new QListView(ui->cbBaud);
+    view8->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbBaud->setView(view8);
+
+    QListView *view9 = new QListView(ui->cbParity);
+    view9->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbParity->setView(view9);
+
+    QListView *view10 = new QListView(ui->cbFlow);
+    view10->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbFlow->setView(view10);
+
+    QListView *view11 = new QListView(ui->cbStop);
+    view11->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbStop->setView(view11);
+
+    QListView *view12 = new QListView(ui->cbData);
+    view12->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbData->setView(view12);
+
+    QListView *view13 = new QListView(ui->cbPageSize);
+    view13->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbPageSize->setView(view13);
+
+    QListView *view14 = new QListView(ui->cbReportFormat);
+    view14->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbReportFormat->setView(view14);
+
+    QListView *view15 = new QListView(ui->cbUser);
+    view15->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbUser->setView(view15);
+
+
+    QListView *view16 = new QListView(ui->cbDay);
+    view16->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbDay->setView(view16);
+
+    QListView *view17 = new QListView(ui->cbMonth);
+    view17->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbMonth->setView(view17);
+
+    QListView *view18 = new QListView(ui->cbYear);
+    view18->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbYear->setView(view18);
+
+    QListView *view19 = new QListView(ui->cbHour);
+    view19->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbHour->setView(view19);
+
+    QListView *view20 = new QListView(ui->cbMinute);
+    view20->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbMinute->setView(view20);
+
+    QListView *view21 = new QListView(ui->cbAMPM);
+    view21->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbAMPM->setView(view21);
     setDefaults();
 
     connect(ui->leCompany, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
@@ -45,6 +218,7 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     cPrevTab = -1;
     cPrevDeviceTab = -1;
     cPrevOtherTab = -1;
+ cEnSwitch = true;
 
     ui->cbDay->clear();
     for(int tmp=1; tmp <=31; tmp++)
@@ -301,6 +475,7 @@ bool sGeneralSetup::readFile()
 
     QString fname = QApplication::applicationDirPath() + FN_GENERAL_SETUP;
 
+cEnSwitch = true;
     QFile in(fname);
 
     if(in.open(QIODevice::ReadOnly))
@@ -340,6 +515,7 @@ bool sGeneralSetup::saveFile()
     }
     else
     {
+  cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
         return false;
     }
@@ -368,9 +544,11 @@ void sGeneralSetup::saveNetworkFile()
 
         out.close();
         cParasChanged = false;
+cEnSwitch = true;
     }
     else
     {
+ cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
     }
 }
@@ -387,9 +565,11 @@ void sGeneralSetup::saveHostnameFile()
         save << general_setup.network_name;
         out.close();
         cParasChanged = false;
+cEnSwitch = tru
     }
     else
     {
+ cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
     }
 }
@@ -440,7 +620,7 @@ void sGeneralSetup::showGeneralSetup()
 
 void sGeneralSetup::updateGeneralSetup()
 {
-    cParasChanged = false;
+    //sncParasChanged = false;
 
     if(general_setup.date_format != ui->cbDateFormat->currentIndex()) cParasChanged = true;
     general_setup.date_format = ui->cbDateFormat->currentIndex();
@@ -650,12 +830,18 @@ void sGeneralSetup::on_pbExit_clicked()
 
     if(cParasChanged)
     {
-        emit getConfirmation(M_CONFIRM_GENERAL);
+        cEnSwitch = false;
+        emit getConfirmation(M_CONFIRM_GENERAL, M_MEASURING);
     }
 
-    this->hide();
-    emit showHome(false);
+    if(!cParasChanged)
+    {
+        this->hide();
+        emit showHome(false);
+    }
 
+    //this->hide();
+    //emit showHome(false);
 }
 
 void sGeneralSetup::on_cbNEnable_clicked()
@@ -751,6 +937,18 @@ void sGeneralSetup::SavePassword()
     }
 }
 
+bool sGeneralSetup::isSwitchEnabled(int tmp)
+{
+    updateGeneralSetup();
+
+    if(cParasChanged)
+    {
+        cEnSwitch = false;
+        emit getConfirmation(M_CONFIRM_GENERAL, tmp);
+    }
+
+    return cEnSwitch;
+}
 void sGeneralSetup::on_twGeneralSetup_currentChanged(int index)
 {
     if(!isVisible()) return;
@@ -763,7 +961,7 @@ void sGeneralSetup::on_twGeneralSetup_currentChanged(int index)
             case 1:
                     updateGeneralSetup();
                     if(cParasChanged)
-                        emit getConfirmation(M_CONFIRM_GENERAL_SWITCH);
+                        emit getConfirmation(M_CONFIRM_GENERAL_SWITCH, M_MEASURING);
 
                     break;
             case 2:
@@ -800,7 +998,7 @@ void sGeneralSetup::on_twDevice_currentChanged(int index)
 
         updateGeneralSetup();
         if(cParasChanged)
-            emit getConfirmation(M_CONFIRM_GENERAL_SWITCH);
+            emit getConfirmation(M_CONFIRM_GENERAL_SWITCH, M_MEASURING);
 
         cPrevDeviceTab = index;
     }
