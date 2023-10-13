@@ -212,7 +212,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tabTemperature">
     <attribute name="title">
@@ -1748,7 +1748,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="pbPCPCal">
        <property name="geometry">
         <rect>
-         <x>460</x>
+         <x>500</x>
          <y>453</y>
          <width>167</width>
          <height>51</height>
@@ -2124,9 +2124,9 @@ border-color: rgb(21, 100, 192);
       <widget class="QLabel" name="lblSelectorValve">
        <property name="geometry">
         <rect>
-         <x>470</x>
+         <x>550</x>
          <y>374</y>
-         <width>181</width>
+         <width>121</width>
          <height>51</height>
         </rect>
        </property>
@@ -2152,7 +2152,7 @@ border-color: rgb(21, 100, 192);
         <rect>
          <x>150</x>
          <y>374</y>
-         <width>251</width>
+         <width>200</width>
          <height>51</height>
         </rect>
        </property>
@@ -2297,10 +2297,10 @@ QScrollBar::down-arrow:vertical {
       <widget class="QPushButton" name="pbPCSVSet">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>355</y>
-         <width>131</width>
-         <height>41</height>
+         <x>369</x>
+         <y>374</y>
+         <width>167</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="focusPolicy">
@@ -2400,8 +2400,8 @@ border-color:  rgb(190, 190, 190);
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>709</width>
-        <height>680</height>
+        <width>721</width>
+        <height>691</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -2412,7 +2412,7 @@ border-color:  rgb(190, 190, 190);
       </property>
       <property name="minimumSize">
        <size>
-        <width>0</width>
+        <width>721</width>
         <height>0</height>
        </size>
       </property>
@@ -2502,7 +2502,7 @@ QScrollBar::right-arrow:horizontal {
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
      background:  rgb(230,230,230);
-     width: 41px;
+     width:51px;
 	 margin: 50px 0 50px 0;
      border-left: 2px solid  rgb(182, 182, 182);
      border-radius: 0px;
@@ -2579,11 +2579,20 @@ QTableView::item {
       <property name="cornerButtonEnabled">
        <bool>false</bool>
       </property>
+      <property name="rowCount">
+       <number>15</number>
+      </property>
       <attribute name="horizontalHeaderHighlightSections">
        <bool>false</bool>
       </attribute>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>33</number>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>31</number>
       </attribute>
       <row>
        <property name="text">
@@ -2665,7 +2674,7 @@ QTableView::item {
         <string>Temp</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </column>
       <column>
@@ -2697,7 +2706,7 @@ Pressure</string>
         <string>10</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="0" column="1">
@@ -2737,7 +2746,7 @@ Pressure</string>
         <string>15</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="1" column="1">
@@ -2765,7 +2774,7 @@ Pressure</string>
         <string>20</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="2" column="1">
@@ -2793,7 +2802,7 @@ Pressure</string>
         <string>25</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="3" column="1">
@@ -2821,7 +2830,7 @@ Pressure</string>
         <string>30</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="4" column="1">
@@ -2849,7 +2858,7 @@ Pressure</string>
         <string>35</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="5" column="1">
@@ -2877,7 +2886,7 @@ Pressure</string>
         <string>40</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="6" column="1">
@@ -2905,7 +2914,7 @@ Pressure</string>
         <string>45</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="7" column="1">
@@ -2933,7 +2942,7 @@ Pressure</string>
         <string>50</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="8" column="1">
@@ -2961,7 +2970,7 @@ Pressure</string>
         <string>55</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="9" column="1">
@@ -2989,7 +2998,7 @@ Pressure</string>
         <string>60</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="10" column="1">
@@ -3017,7 +3026,7 @@ Pressure</string>
         <string>65</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="11" column="1">
@@ -3045,7 +3054,7 @@ Pressure</string>
         <string>70</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="12" column="1">
@@ -3073,7 +3082,7 @@ Pressure</string>
         <string>75</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="13" column="1">
@@ -3101,7 +3110,7 @@ Pressure</string>
         <string>80</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </item>
       <item row="14" column="1">
@@ -4252,7 +4261,7 @@ QTableView::item {
          <string>Temp</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </column>
        <column>
@@ -4284,7 +4293,7 @@ Pressure</string>
          <string>10</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="0" column="1">
@@ -4324,7 +4333,7 @@ Pressure</string>
          <string>15</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="1" column="1">
@@ -4352,7 +4361,7 @@ Pressure</string>
          <string>20</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="2" column="1">
@@ -4380,7 +4389,7 @@ Pressure</string>
          <string>25</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="3" column="1">
@@ -4408,7 +4417,7 @@ Pressure</string>
          <string>30</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="4" column="1">
@@ -4436,7 +4445,7 @@ Pressure</string>
          <string>35</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="5" column="1">
@@ -4464,7 +4473,7 @@ Pressure</string>
          <string>40</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="6" column="1">
@@ -4492,7 +4501,7 @@ Pressure</string>
          <string>45</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="7" column="1">
@@ -4520,7 +4529,7 @@ Pressure</string>
          <string>50</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="8" column="1">
@@ -4548,7 +4557,7 @@ Pressure</string>
          <string>55</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="9" column="1">
@@ -4576,7 +4585,7 @@ Pressure</string>
          <string>60</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="10" column="1">
@@ -4604,7 +4613,7 @@ Pressure</string>
          <string>65</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="11" column="1">
@@ -4632,7 +4641,7 @@ Pressure</string>
          <string>70</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="12" column="1">
@@ -4660,7 +4669,7 @@ Pressure</string>
          <string>75</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="13" column="1">
@@ -4688,7 +4697,7 @@ Pressure</string>
          <string>80</string>
         </property>
         <property name="textAlignment">
-         <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+         <set>AlignCenter</set>
         </property>
        </item>
        <item row="14" column="1">
@@ -4871,8 +4880,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="sQLEExtend" name="lePrHidden">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>820</y>
+     <x>50</x>
+     <y>830</y>
      <width>121</width>
      <height>51</height>
     </rect>

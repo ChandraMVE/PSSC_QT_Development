@@ -291,7 +291,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          <y>30</y>
          <width>241</width>
          <height>51</height>
-          </rect>
+        </rect>
        </property>
        <property name="focusPolicy">
         <enum>Qt::ClickFocus</enum>
@@ -1076,8 +1076,8 @@ QScrollBar::down-arrow:vertical {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>460</y>
-        <width>541</width>
+        <y>594</y>
+        <width>709</width>
         <height>101</height>
        </rect>
       </property>
@@ -1100,7 +1100,7 @@ border-color:  rgb(200, 200, 200);
       <widget class="QCheckBox" name="cbAutoPrintEnable">
        <property name="geometry">
         <rect>
-         <x>260</x>
+         <x>300</x>
          <y>30</y>
          <width>41</width>
          <height>41</height>
@@ -1161,7 +1161,7 @@ QCheckBox::indicator:indeterminate:pressed {
       <widget class="QLabel" name="label_17">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>30</y>
          <width>211</width>
          <height>41</height>
@@ -1169,7 +1169,7 @@ QCheckBox::indicator:indeterminate:pressed {
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Auto Print</string>

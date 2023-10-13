@@ -80,7 +80,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbStop">
    <property name="geometry">
     <rect>
-     <x>560</x>
+     <x>552</x>
      <y>740</y>
      <width>167</width>
      <height>80</height>
@@ -146,7 +146,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <x>10</x>
      <y>10</y>
      <width>749</width>
-     <height>720</height>
+     <height>711</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -210,7 +210,7 @@ QTabBar::tab:selected {
        <x>0</x>
        <y>0</y>
        <width>749</width>
-       <height>700</height>
+       <height>851</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -258,8 +258,8 @@ font: 75 16pt &quot;Roboto&quot;;
      <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
-        <x>-3</x>
-        <y>10</y>
+        <x>30</x>
+        <y>59</y>
         <width>670</width>
         <height>595</height>
        </rect>
@@ -284,9 +284,9 @@ font: 75 16pt &quot;Roboto&quot;;
       <widget class="QLabel" name="lblMessage">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>10</x>
          <y>130</y>
-         <width>471</width>
+         <width>641</width>
          <height>51</height>
         </rect>
        </property>
@@ -316,10 +316,10 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
       <widget class="QFrame" name="frLiveData">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>380</y>
-         <width>491</width>
-         <height>81</height>
+         <x>70</x>
+         <y>390</y>
+         <width>531</width>
+         <height>141</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -338,16 +338,15 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
        <widget class="QLabel" name="lblTemperature">
         <property name="geometry">
          <rect>
-          <x>7</x>
-          <y>160</y>
-          <width>668</width>
-          <height>70</height>
+          <x>290</x>
+          <y>50</y>
+          <width>211</width>
+          <height>50</height>
          </rect>
         </property>
-        
         <property name="styleSheet">
          <string notr="true">color: rgb(75, 225, 0);
-font: 80 28pt &quot;Roboto Medium&quot;;</string>
+font: 75 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>--.--</string>
@@ -356,15 +355,15 @@ font: 80 28pt &quot;Roboto Medium&quot;;</string>
        <widget class="QLabel" name="lblPressure">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>40</y>
-          <width>191</width>
-          <height>31</height>
+          <x>50</x>
+          <y>50</y>
+          <width>211</width>
+          <height>50</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>        
+font: 75 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>---.--</string>
@@ -373,15 +372,15 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>0</x>
-          <y>390</y>
-          <width>680</width>
-          <height>180</height>
+          <x>280</x>
+          <y>5</y>
+          <width>211</width>
+          <height>50</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Temperature</string>
@@ -390,36 +389,34 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>250</y>
-          <width>661</width>
-          <height>70</height>
+          <x>40</x>
+          <y>5</y>
+          <width>211</width>
+          <height>50</height>
          </rect>
         </property>
-        
         <property name="styleSheet">
-          <string notr="true">color: rgb(77, 155, 232);
-font: 80 24pt &quot;Roboto Medium&quot;;</string>
+         <string notr="true">color: rgb(77, 155, 232);
+font: 75 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Pressure</string>
-   
         </property>
        </widget>
       </widget>
       <widget class="QLabel" name="lblCountDown">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>200</y>
-         <width>471</width>
+         <x>10</x>
+         <y>220</y>
+         <width>651</width>
          <height>51</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>Roboto Medium</family>
-         <pointsize>20</pointsize>
+         <pointsize>24</pointsize>
          <weight>9</weight>
          <italic>false</italic>
          <bold>false</bold>
@@ -427,7 +424,7 @@ font: 80 24pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+font: 75 24pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
         <string>Current Cycle: -/-</string>
@@ -439,6 +436,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
         <bool>true</bool>
        </property>
       </widget>
+      <zorder>lblMessage</zorder>
+      <zorder>lblCountDown</zorder>
+      <zorder>frLiveData</zorder>
      </widget>
     </widget>
    </widget>

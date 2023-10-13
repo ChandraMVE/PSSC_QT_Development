@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- <ui version="4.0">
+<ui version="4.0">
  <class>sGeneralSetup</class>
  <widget class="QWidget" name="sGeneralSetup">
   <property name="geometry">
@@ -207,7 +207,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -1391,7 +1391,6 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
        <height>760</height>
       </rect>
      </property>
-   
      <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
@@ -3380,7 +3379,7 @@ QTabBar::tab:selected {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabDateTime">
       <attribute name="title">

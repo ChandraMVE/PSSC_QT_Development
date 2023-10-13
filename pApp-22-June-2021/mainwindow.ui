@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
+    <width>868</width>
     <height>1024</height>
    </rect>
   </property>
@@ -98,23 +98,23 @@
     <widget class="QLabel" name="lblDate">
      <property name="geometry">
       <rect>
-       <x>615</x>
+       <x>626</x>
        <y>10</y>
        <width>120</width>
-       <height>20</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Roboto Medium</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
        <weight>9</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 14pt &quot;Roboto Medium&quot;;</string>
+      <string notr="true">font: 75 16pt &quot;Roboto Medium&quot;;</string>
      </property>
      <property name="text">
       <string>18/11/2020</string>
@@ -126,23 +126,23 @@
     <widget class="QLabel" name="lblTime">
      <property name="geometry">
       <rect>
-       <x>615</x>
-       <y>30</y>
+       <x>626</x>
+       <y>42</y>
        <width>120</width>
-       <height>22</height>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Roboto Medium</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
        <weight>9</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 75 14pt &quot;Roboto Medium&quot;;</string>
+      <string notr="true">font: 75 16pt &quot;Roboto Medium&quot;;</string>
      </property>
      <property name="text">
       <string>6:30 PM</string>
@@ -235,10 +235,10 @@
    <widget class="QListWidget" name="listSetupMenu">
     <property name="geometry">
      <rect>
-      <x>545</x>
-      <y>60</y>
+      <x>560</x>
+      <y>300</y>
       <width>191</width>
-      <height>182</height>
+      <height>241</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -261,7 +261,7 @@ QListWidget QAbstractItemView {
    background-color: rgb(255, 255, 255);
 }
 QListWidget::item {
- height:41px;
+ height:45px;
 }
 
 QListWidget::item::selected {
@@ -353,10 +353,10 @@ QListWidget::item::hover {
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>240</y>
-      <width>75</width>
-      <height>23</height>
+      <x>770</x>
+      <y>267</y>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -366,10 +366,10 @@ QListWidget::item::hover {
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>210</y>
-      <width>75</width>
-      <height>23</height>
+      <x>754</x>
+      <y>220</y>
+      <width>121</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="text">
@@ -379,10 +379,10 @@ QListWidget::item::hover {
    <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>270</y>
-      <width>75</width>
-      <height>23</height>
+      <x>770</x>
+      <y>300</y>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -392,10 +392,10 @@ QListWidget::item::hover {
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>300</y>
-      <width>75</width>
-      <height>23</height>
+      <x>770</x>
+      <y>340</y>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">

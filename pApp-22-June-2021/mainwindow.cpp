@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #ifdef Q_OS_WIN32
 
 #else
-    view->rotate(90);
+   view->rotate(90);
 #endif
 
     ui->setupUi(this);
@@ -3890,8 +3890,8 @@ void MainWindow::onMenuClicked(int menu)
         ui->listSetupMenu->hide();
     }
 
-    if(cMenu < M_MEMORY) ui->listSetupMenu->move(440,60+96);
-    else ui->listSetupMenu->move(440,60);
+    if(cMenu < M_MEMORY) ui->listSetupMenu->move(558,60+120);
+    else ui->listSetupMenu->move(558,60);
 
     switch (menu) {
 

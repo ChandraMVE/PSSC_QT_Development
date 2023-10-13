@@ -206,7 +206,7 @@ QTabBar::tab:selected {
 </string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -2643,7 +2643,7 @@ QTableView::item {
         <string>Description</string>
        </property>
        <property name="textAlignment">
-        <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+        <set>AlignCenter</set>
        </property>
       </column>
       <column>
@@ -2658,15 +2658,15 @@ QTableView::item {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>sQLEExtend</class>
-   <extends>QLineEdit</extends>
-   <header location="global">sqleextend.h</header>
-  </customwidget>
-  <customwidget>
    <class>slabel</class>
    <extends>QWidget</extends>
    <header location="global">slabel.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>sQLEExtend</class>
+   <extends>QLineEdit</extends>
+   <header location="global">sqleextend.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -306,7 +306,7 @@ QListWidget QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
   <widget class="QFrame" name="frMessage">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>45</x>
      <y>870</y>
      <width>660</width>
      <height>231</height>
