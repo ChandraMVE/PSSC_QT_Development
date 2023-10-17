@@ -803,7 +803,7 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbOperator">
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>544</x>
         <y>170</y>
         <width>53</width>
         <height>50</height>

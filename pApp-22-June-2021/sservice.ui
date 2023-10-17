@@ -2410,7 +2410,7 @@ border-color:  rgb(190, 190, 190);
    border: 0px groove gray;
    border-radius: 10px;
    padding: 2px 4px;
-   font: 75 16pt &quot;Roboto Medium&quot;;
+   font: 75 18pt &quot;Roboto Medium&quot;;
    padding:5px;
    outline: 0px;
 }
@@ -2420,7 +2420,7 @@ QHeaderView {
     color: white;
     border: 0px solid #6c6c6c;
     height: 35px;
-    font: 75 16pt &quot;Roboto Medium&quot;;
+    font: 75 18pt &quot;Roboto Medium&quot;;
 	border-radius: 10px;
 }
 
@@ -2430,7 +2430,7 @@ QHeaderView::section {
     border-left: 1px solid #6c6c6c;
     border-right: 1px solid #6c6c6c;
     height: 35px;
-    font: 75 16pt &quot;Roboto Medium&quot;;
+    font: 75 18pt &quot;Roboto Medium&quot;;
 	border-radius: 5px;
 }
 
@@ -2468,7 +2468,7 @@ QScrollBar::sub-line:horizontal {
 }
 
 QScrollBar:left-arrow:horizontal  {
-    width: 50px;
+    width: 40px;
     height: 41px;
 	background-image: url(:/images/icons/cleftarrow.png);
 }
@@ -2487,7 +2487,7 @@ QScrollBar::right-arrow:horizontal {
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
      background:  rgb(230,230,230);
-     width: 41px;
+     width: 51px;
 	 margin: 50px 0 50px 0;
      border-left: 2px solid  rgb(182, 182, 182);
      border-radius: 0px;
@@ -2658,15 +2658,15 @@ QTableView::item {
  </widget>
  <customwidgets>
   <customwidget>
+   <class>sQLEExtend</class>
+   <extends>QLineEdit</extends>
+   <header location="global">sqleextend.h</header>
+  </customwidget>
+  <customwidget>
    <class>slabel</class>
    <extends>QWidget</extends>
    <header location="global">slabel.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>sQLEExtend</class>
-   <extends>QLineEdit</extends>
-   <header location="global">sqleextend.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

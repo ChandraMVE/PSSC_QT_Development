@@ -686,8 +686,8 @@ QGroupBox::title {
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>50</y>
-            <width>21</width>
+            <y>55</y>
+            <width>31</width>
             <height>41</height>
            </rect>
           </property>
@@ -701,8 +701,8 @@ QGroupBox::title {
          <widget class="QLabel" name="label_65">
           <property name="geometry">
            <rect>
-            <x>250</x>
-            <y>50</y>
+            <x>246</x>
+            <y>55</y>
             <width>31</width>
             <height>41</height>
            </rect>
@@ -717,8 +717,8 @@ QGroupBox::title {
          <widget class="QLabel" name="label_66">
           <property name="geometry">
            <rect>
-            <x>480</x>
-            <y>50</y>
+            <x>475</x>
+            <y>55</y>
             <width>31</width>
             <height>41</height>
            </rect>
@@ -733,7 +733,7 @@ QGroupBox::title {
          <widget class="sQLEExtend" name="leConst1">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>57</x>
             <y>50</y>
             <width>140</width>
             <height>55</height>
@@ -776,7 +776,7 @@ border-color: rgb(21, 100, 192);
          <widget class="sQLEExtend" name="leConst2">
           <property name="geometry">
            <rect>
-            <x>290</x>
+            <x>279</x>
             <y>50</y>
             <width>140</width>
             <height>55</height>
@@ -819,7 +819,7 @@ border-color: rgb(21, 100, 192);
          <widget class="sQLEExtend" name="leConst3">
           <property name="geometry">
            <rect>
-            <x>510</x>
+            <x>503</x>
             <y>50</y>
             <width>140</width>
             <height>55</height>
@@ -1713,7 +1713,7 @@ border-color: rgb(21, 100, 192);
          <widget class="sQLEExtend" name="lePRPTo">
           <property name="geometry">
            <rect>
-            <x>430</x>
+            <x>423</x>
             <y>50</y>
             <width>200</width>
             <height>55</height>

@@ -15,8 +15,8 @@ sService::sService(QWidget *parent) :
 
     ui->cbSelectorValve->setView(view);
 
-    ui->twErrorLog->setColumnWidth(0, 368);
-    ui->twErrorLog->setColumnWidth(1, 165+100);
+    ui->twErrorLog->setColumnWidth(0, 567);
+    ui->twErrorLog->setColumnWidth(1, 165+300);
 
     connect(ui->wFirmware, SIGNAL(clicked()), this, SLOT(onFirmwareClicked()));
 

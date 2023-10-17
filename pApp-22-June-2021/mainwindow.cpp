@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
 #else
-    view->setGeometry(0,0,768,1024);
+   view->setGeometry(0,0,768,1024);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 #endif
