@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sMenuBar</class>
+ <widget class="QWidget" name="sMenuBar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>768</width>
+    <height>90</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>19</y>
+     <width>768</width>
+     <height>85</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="slabel" name="wmMeasuring" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>125</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="slabel" name="wmCleaning" native="true">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>0</y>
+      <width>125</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="slabel" name="wmMemory" native="true">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>0</y>
+      <width>125</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="slabel" name="wmSetup" native="true">
+    <property name="geometry">
+     <rect>
+      <x>455</x>
+      <y>0</y>
+      <width>125</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>6</y>
+      <width>600</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(21, 100, 192);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>wmCleaning</zorder>
+   <zorder>wmMeasuring</zorder>
+   <zorder>wmMemory</zorder>
+   <zorder>wmSetup</zorder>
+  </widget>
+ </widget>
+<customwidgets>
+  <customwidget>
+   <class>slabel</class>
+   <extends>QWidget</extends>
+   <header location="global">slabel.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

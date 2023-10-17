@@ -27,7 +27,7 @@ void sFileSelect::Show()
     {
         rootDir->setFilter(QDir::NoDotAndDotDot | QDir::AllEntries);
 
-        rootDir->setSorting(QDir::Name);
+        rootDir->setSorting(QDir::Time);
 
         QFileInfoList filesList = rootDir->entryInfoList();
 
@@ -44,7 +44,10 @@ void sFileSelect::Show()
             ui->frMessage->show();
         }
         else
+	{
+	    ui->lwFiles->setCurrentRow(0);
             ui->frFileSelect->show();
+	}
     }
     else
     {

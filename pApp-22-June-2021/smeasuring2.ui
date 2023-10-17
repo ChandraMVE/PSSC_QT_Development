@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>580</height>
+    <width>768</width>
+    <height>729</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>581</width>
-     <height>560</height>
+     <width>749</width>
+     <height>709</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -44,8 +44,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <rect>
       <x>29</x>
       <y>69</y>
-      <width>531</width>
-      <height>421</height>
+      <width>699</width>
+      <height>570</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -71,8 +71,8 @@ font: 75 16pt &quot;Roboto&quot;;
      <rect>
       <x>20</x>
       <y>80</y>
-      <width>528</width>
-      <height>421</height>
+      <width>702</width>
+      <height>570</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -95,8 +95,8 @@ font: 75 16pt &quot;Roboto&quot;;
     <widget class="QFrame" name="fr3Pr">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>300</y>
+       <x>100</x>
+       <y>335</y>
        <width>491</width>
        <height>80</height>
       </rect>
@@ -216,8 +216,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="lblResult">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>130</y>
+       <x>140</x>
+       <y>165</y>
        <width>381</width>
        <height>151</height>
       </rect>
@@ -246,8 +246,8 @@ font: 75 86pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="lblScale">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>220</y>
+       <x>530</x>
+       <y>255</y>
        <width>51</width>
        <height>31</height>
       </rect>
@@ -263,15 +263,15 @@ font: 75 16pt &quot;Roboto Black&quot;;</string>
     <widget class="QLabel" name="lblPassFail">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>385</y>
+       <x>140</x>
+       <y>440</y>
        <width>411</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
      </property>
      <property name="text">
       <string>Pass/Fail</string>
@@ -283,8 +283,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="lblMethod">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>20</y>
+       <x>145</x>
+       <y>55</y>
        <width>471</width>
        <height>41</height>
       </rect>
@@ -306,8 +306,8 @@ font: 75 26pt &quot;Roboto Medium&quot;;</string>
     <widget class="QFrame" name="frVLPr">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>280</y>
+       <x>100</x>
+       <y>315</y>
        <width>491</width>
        <height>80</height>
       </rect>
@@ -393,8 +393,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="lblFormula">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>70</y>
+       <x>145</x>
+       <y>105</y>
        <width>471</width>
        <height>51</height>
       </rect>
@@ -419,7 +419,7 @@ font: 75 15pt &quot;Roboto Medium&quot;;</string>
      <rect>
       <x>150</x>
       <y>15</y>
-      <width>381</width>
+      <width>451</width>
       <height>41</height>
      </rect>
     </property>
@@ -451,8 +451,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="QLabel" name="lblStatus">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>500</y>
+      <x>130</x>
+      <y>650</y>
       <width>471</width>
       <height>51</height>
      </rect>

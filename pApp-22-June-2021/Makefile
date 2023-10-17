@@ -322,6 +322,8 @@ DIST          = /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/
 		stestmodel.h \
 		stestmodelheader.h \
 		stestrecord.h \
+saccesswidget.h \
+		slabel.h \
 		susersetup.h main.cpp \
 		mainwindow.cpp \
 		scalibration.cpp \
@@ -342,16 +344,18 @@ DIST          = /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/
 		stestmodel.cpp \
 		stestmodelheader.cpp \
 		stestrecord.cpp \
+	saccesswidget.cpp \
+		slabel.cpp \
 		susersetup.cpp
-QMAKE_TARGET  = pApp-3-May-2022-2
+QMAKE_TARGET  = pApp-3-Nov-2022
 DESTDIR       = 
-TARGET        = pApp-3-May-2022-2
+TARGET        = pApp-3-Nov-2022
 
 
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h ui_scalibration.h ui_scheckpass.h ui_scleaning.h ui_sfileselect.h ui_sgeneralsetup.h ui_skeypad.h ui_smeasuring.h ui_smeasuring2.h ui_smemory.h ui_smenubar.h ui_smethodsetup.h ui_sservice.h ui_susersetup.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_scalibration.h ui_scheckpass.h ui_scleaning.h ui_sfileselect.h ui_sgeneralsetup.h ui_skeypad.h ui_smeasuring.h ui_smeasuring2.h ui_smemory.h ui_smenubar.h ui_smethodsetup.h ui_sservice.h ui_slabel.h ui_susersetup.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: pApp-22-June-2021.pro /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++/qmake.conf /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/features/spec_pre.prf \
@@ -721,10 +725,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents pRes.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents defaults_calibration.h defaults_general.h defaults_memory.h defaults_method.h defaults_service.h defaults_user.h define_strings.h defines.h mainwindow.h scalibration.h scheckpass.h scleaning.h sfileselect.h sgeneralsetup.h skeypad.h smeasuring.h smeasuring2.h smemory.h smenubar.h smethodsetup.h sprotocol.h sqleextend.h sservice.h ssettings.h stestmodel.h stestmodelheader.h stestrecord.h susersetup.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp scalibration.cpp scheckpass.cpp scleaning.cpp sfileselect.cpp sgeneralsetup.cpp skeypad.cpp smeasuring.cpp smeasuring2.cpp smemory.cpp smenubar.cpp smethodsetup.cpp sprotocol.cpp sqleextend.cpp sservice.cpp ssettings.cpp stestmodel.cpp stestmodelheader.cpp stestrecord.cpp susersetup.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui scalibration.ui scheckpass.ui scleaning.ui sfileselect.ui sgeneralsetup.ui skeypad.ui smeasuring.ui smeasuring2.ui smemory.ui smenubar.ui smethodsetup.ui sservice.ui susersetup.ui $(DISTDIR)/
-
+	$(COPY_FILE) --parents defaults_calibration.h defaults_general.h defaults_memory.h defaults_method.h defaults_service.h defaults_user.h define_strings.h defines.h mainwindow.h scalibration.h scheckpass.h scleaning.h sfileselect.h sgeneralsetup.h skeypad.h smeasuring.h smeasuring2.h smemory.h smenubar.h smethodsetup.h sprotocol.h sqleextend.h sservice.h ssettings.h stestmodel.h stestmodelheader.h stestrecord.h saccesswidget.h slabel.h susersetup.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp scalibration.cpp scheckpass.cpp scleaning.cpp sfileselect.cpp sgeneralsetup.cpp skeypad.cpp smeasuring.cpp smeasuring2.cpp smemory.cpp smenubar.cpp smethodsetup.cpp sprotocol.cpp sqleextend.cpp sservice.cpp ssettings.cpp stestmodel.cpp stestmodelheader.cpp stestrecord.cpp saccesswidget.cpp slabel.cpp susersetup.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui scalibration.ui scheckpass.ui scleaning.ui sfileselect.ui sgeneralsetup.ui skeypad.ui smeasuring.ui smeasuring2.ui smemory.ui smenubar.ui smethodsetup.ui sservice.ui slabel.ui susersetup.ui $(DISTDIR)/
 
 clean: compiler_clean 
 	-$(DEL_FILE) $(OBJECTS)
@@ -783,23 +786,24 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/features/data/dummy.cpp
 	arm-fslc-linux-gnueabi-g++  -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=hard --sysroot=/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi -pipe  -O2 -pipe -g -feliminate-unused-debug-types  --sysroot=/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi -O2 -Wall -W -dM -E -o moc_predefs.h /opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_scalibration.cpp moc_scheckpass.cpp moc_scleaning.cpp moc_sfileselect.cpp moc_sgeneralsetup.cpp moc_skeypad.cpp moc_smeasuring.cpp moc_smeasuring2.cpp moc_smemory.cpp moc_smenubar.cpp moc_smethodsetup.cpp moc_sqleextend.cpp moc_sservice.cpp moc_stestmodel.cpp moc_stestmodelheader.cpp moc_susersetup.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_scalibration.cpp moc_scheckpass.cpp moc_scleaning.cpp moc_sfileselect.cpp moc_sgeneralsetup.cpp moc_skeypad.cpp moc_smeasuring.cpp moc_smeasuring2.cpp moc_smemory.cpp moc_smenubar.cpp moc_smethodsetup.cpp moc_sqleextend.cpp moc_sservice.cpp moc_stestmodel.cpp moc_stestmodelheader.cpp moc_slabel.cpp moc_susersetup.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_scalibration.cpp moc_scheckpass.cpp moc_scleaning.cpp moc_sfileselect.cpp moc_sgeneralsetup.cpp moc_skeypad.cpp moc_smeasuring.cpp moc_smeasuring2.cpp moc_smemory.cpp moc_smenubar.cpp moc_smethodsetup.cpp moc_sqleextend.cpp moc_sservice.cpp moc_stestmodel.cpp moc_stestmodelheader.cpp moc_susersetup.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_scalibration.cpp moc_scheckpass.cpp moc_scleaning.cpp moc_sfileselect.cpp moc_sgeneralsetup.cpp moc_skeypad.cpp moc_smeasuring.cpp moc_smeasuring2.cpp moc_smemory.cpp moc_smenubar.cpp moc_smethodsetup.cpp moc_sqleextend.cpp moc_sservice.cpp moc_stestmodel.cpp moc_stestmodelheader.cpp moc_slabel.cpp moc_susersetup.cpp
 moc_mainwindow.cpp: ssettings.h \
 		sgeneralsetup.h \
 		defaults_general.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		define_strings.h \
 		mainwindow.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include mainwindow.h -o moc_mainwindow.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include mainwindow.h -o moc_mainwindow.cpp
 
 moc_scalibration.cpp: defines.h \
 		defaults_calibration.h \
@@ -808,18 +812,20 @@ moc_scalibration.cpp: defines.h \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
-		scalibration.h \
 		sprotocol.h \
+		saccesswidget.h \
+		scalibration.h \
 		scalibration.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include scalibration.h -o moc_scalibration.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include scalibration.h -o moc_scalibration.cpp
 
 moc_scheckpass.cpp: defines.h \
+		saccesswidget.h \
 		scheckpass.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include scheckpass.h -o moc_scheckpass.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include scheckpass.h -o moc_scheckpass.cpp
 
 moc_scleaning.cpp: ssettings.h \
 		sgeneralsetup.h \
@@ -827,32 +833,33 @@ moc_scleaning.cpp: ssettings.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		scleaning.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include scleaning.h -o moc_scleaning.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include scleaning.h -o moc_scleaning.cpp
 
 moc_sfileselect.cpp: defines.h \
 		sfileselect.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sfileselect.h -o moc_sfileselect.cpp
+		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sfileselect.h -o moc_sfileselect.cpp
 
 moc_sgeneralsetup.cpp: defaults_general.h \
 		defines.h \
 		sgeneralsetup.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sgeneralsetup.h -o moc_sgeneralsetup.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sgeneralsetup.h -o moc_sgeneralsetup.cpp
 
 moc_skeypad.cpp: defines.h \
 		skeypad.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include skeypad.h -o moc_skeypad.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include skeypad.h -o moc_skeypad.cpp
 
 moc_smeasuring.cpp: ssettings.h \
 		sgeneralsetup.h \
@@ -860,21 +867,23 @@ moc_smeasuring.cpp: ssettings.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+	sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
+		
 		smethodsetup.h \
 		defaults_method.h \
 		defaults_measuring.h \
 		smeasuring.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smeasuring.h -o moc_smeasuring.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smeasuring.h -o moc_smeasuring.cpp
 
 moc_smeasuring2.cpp: smeasuring2.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smeasuring2.h -o moc_smeasuring2.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smeasuring2.h -o moc_smeasuring2.cpp
 
 moc_smemory.cpp: defines.h \
 		defaults_memory.h \
@@ -884,21 +893,22 @@ moc_smemory.cpp: defines.h \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		stestmodelheader.h \
 		stestrecord.h \
 		smemory.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smemory.h -o moc_smemory.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smemory.h -o moc_smemory.cpp
 
 moc_smenubar.cpp: defines.h \
 		smenubar.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smenubar.h -o moc_smenubar.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smenubar.h -o moc_smenubar.cpp
 
 moc_smethodsetup.cpp: defines.h \
 		defaults_method.h \
@@ -907,18 +917,19 @@ moc_smethodsetup.cpp: defines.h \
 		ssettings.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		smethodsetup.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smethodsetup.h -o moc_smethodsetup.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include smethodsetup.h -o moc_smethodsetup.cpp
 
 moc_sqleextend.cpp: sqleextend.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sqleextend.h -o moc_sqleextend.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sqleextend.h -o moc_sqleextend.cpp
 
 moc_sservice.cpp: defines.h \
 		defaults_service.h \
@@ -927,13 +938,14 @@ moc_sservice.cpp: defines.h \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		sservice.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sservice.h -o moc_sservice.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include sservice.h -o moc_sservice.cpp
 
 moc_stestmodel.cpp: ssettings.h \
 		sgeneralsetup.h \
@@ -941,36 +953,44 @@ moc_stestmodel.cpp: ssettings.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		stestmodelheader.h \
 		stestrecord.h \
 		defaults_memory.h \
 		stestmodel.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include stestmodel.h -o moc_stestmodel.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include stestmodel.h -o moc_stestmodel.cpp
 
 moc_stestmodelheader.cpp: stestmodelheader.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include stestmodelheader.h -o moc_stestmodelheader.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include stestmodelheader.h -o moc_stestmodelheader.cpp
+
+moc_slabel.cpp: slabel.h \
+		moc_predefs.h \
+		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include slabel.h -o moc_slabel.cpp
 
 moc_susersetup.cpp: defines.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		susersetup.h \
 		moc_predefs.h \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc
-	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/home/swapnil/swapnil/handover-16-May-2022/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include susersetup.h -o moc_susersetup.cpp
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/moc $(DEFINES) --include /home/swapnil/swapnil/pApp-22-June-2021-handover/moc_predefs.h -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/lib/mkspecs/linux-oe-g++ -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/home/swapnil/swapnil/pApp-22-June-2021-handover -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtPrintSupport -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtWidgets -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtGui -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtSerialPort -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/QtCore -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0 -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/arm-fslc-linux-gnueabi -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include/c++/8.2.0/backward -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include -I/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/lib/arm-fslc-linux-gnueabi/gcc/arm-fslc-linux-gnueabi/8.2.0/include-fixed -I/opt/fslc-x11/2.6.2/sysroots/armv7at2hf-neon-fslc-linux-gnueabi/usr/include susersetup.h -o moc_susersetup.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_scalibration.h ui_scheckpass.h ui_scleaning.h ui_sfileselect.h ui_sgeneralsetup.h ui_skeypad.h ui_smeasuring.h ui_smeasuring2.h ui_smemory.h ui_smenubar.h ui_smethodsetup.h ui_sservice.h ui_susersetup.h
+compiler_uic_make_all: ui_mainwindow.h ui_scalibration.h ui_scheckpass.h ui_scleaning.h ui_sfileselect.h ui_sgeneralsetup.h ui_skeypad.h ui_smeasuring.h ui_smeasuring2.h ui_smemory.h ui_smenubar.h ui_smethodsetup.h ui_sservice.h ui_slabel.h ui_susersetup.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_scalibration.h ui_scheckpass.h ui_scleaning.h ui_sfileselect.h ui_sgeneralsetup.h ui_skeypad.h ui_smeasuring.h ui_smeasuring2.h ui_smemory.h ui_smenubar.h ui_smethodsetup.h ui_sservice.h ui_susersetup.h
+	-$(DEL_FILE) ui_mainwindow.h ui_scalibration.h ui_scheckpass.h ui_scleaning.h ui_sfileselect.h ui_sgeneralsetup.h ui_skeypad.h ui_smeasuring.h ui_smeasuring2.h ui_smemory.h ui_smenubar.h ui_smethodsetup.h ui_sservice.h ui_slabel.h ui_susersetup.h
 ui_mainwindow.h: mainwindow.ui \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic \
 		smeasuring2.h \
@@ -996,9 +1016,10 @@ ui_mainwindow.h: mainwindow.ui \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		stestmodelheader.h \
 		stestrecord.h \
 		defaults_general.h \
@@ -1010,9 +1031,10 @@ ui_mainwindow.h: mainwindow.ui \
 		ssettings.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		defines.h \
 		defaults_service.h \
 		ssettings.h \
@@ -1020,9 +1042,10 @@ ui_mainwindow.h: mainwindow.ui \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		defines.h \
 		defaults_calibration.h \
 		ssettings.h \
@@ -1030,32 +1053,38 @@ ui_mainwindow.h: mainwindow.ui \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
-		scalibration.h \
 		sprotocol.h \
+		saccesswidget.h \
+		scalibration.h \
 		ssettings.h \
 		sgeneralsetup.h \
 		defaults_general.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		ssettings.h \
 		sgeneralsetup.h \
 		defaults_general.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		smethodsetup.h \
 		defaults_method.h \
 		defaults_measuring.h \
 		defines.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		defines.h \
+		saccesswidget.h \		
 		defines.h
 	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic mainwindow.ui -o ui_mainwindow.h
 
@@ -1101,7 +1130,8 @@ ui_smemory.h: smemory.ui \
 	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic smemory.ui -o ui_smemory.h
 
 ui_smenubar.h: smenubar.ui \
-		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic \
+		slabel.h
 	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic smenubar.ui -o ui_smenubar.h
 
 ui_smethodsetup.h: smethodsetup.ui \
@@ -1113,6 +1143,10 @@ ui_sservice.h: sservice.ui \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic \
 		sqleextend.h
 	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic sservice.ui -o ui_sservice.h
+
+ui_slabel.h: slabel.ui \
+		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic
+	/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic slabel.ui -o ui_slabel.h
 
 ui_susersetup.h: susersetup.ui \
 		/opt/fslc-x11/2.6.2/sysroots/x86_64-fslcsdk-linux/usr/bin/uic
@@ -1135,9 +1169,10 @@ main.o: main.cpp mainwindow.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		define_strings.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -1148,9 +1183,10 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		define_strings.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
@@ -1164,11 +1200,13 @@ scalibration.o: scalibration.cpp scalibration.h \
 		susersetup.h \
 		defaults_user.h \
 		sprotocol.h \
+		saccesswidget.h \
 		ui_scalibration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scalibration.o scalibration.cpp
 
 scheckpass.o: scheckpass.cpp scheckpass.h \
 		defines.h \
+		saccesswidget.h \
 		ui_scheckpass.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scheckpass.o scheckpass.cpp
 
@@ -1179,9 +1217,10 @@ scleaning.o: scleaning.cpp scleaning.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		ui_scleaning.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scleaning.o scleaning.cpp
 
@@ -1208,9 +1247,10 @@ smeasuring.o: smeasuring.cpp smeasuring.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		smethodsetup.h \
 		defaults_method.h \
 		defaults_measuring.h \
@@ -1230,9 +1270,10 @@ smemory.o: smemory.cpp smemory.h \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		stestmodelheader.h \
 		stestrecord.h \
 		ui_smemory.h
@@ -1251,9 +1292,10 @@ smethodsetup.o: smethodsetup.cpp smethodsetup.h \
 		ssettings.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		ui_smethodsetup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o smethodsetup.o smethodsetup.cpp
 
@@ -1271,9 +1313,10 @@ sservice.o: sservice.cpp sservice.h \
 		defaults_general.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		ui_sservice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sservice.o sservice.cpp
 
@@ -1283,9 +1326,10 @@ ssettings.o: ssettings.cpp ssettings.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
-		defaults_calibration.h \
-		sprotocol.h
+		defaults_calibration.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ssettings.o ssettings.cpp
 
 stestmodel.o: stestmodel.cpp stestmodel.h \
@@ -1295,9 +1339,10 @@ stestmodel.o: stestmodel.cpp stestmodel.h \
 		defines.h \
 		susersetup.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		scalibration.h \
 		defaults_calibration.h \
-		sprotocol.h \
 		stestmodelheader.h \
 		stestrecord.h \
 		defaults_memory.h
@@ -1309,9 +1354,18 @@ stestmodelheader.o: stestmodelheader.cpp stestmodelheader.h
 stestrecord.o: stestrecord.cpp stestrecord.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o stestrecord.o stestrecord.cpp
 
+saccesswidget.o: saccesswidget.cpp saccesswidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o saccesswidget.o saccesswidget.cpp
+
+slabel.o: slabel.cpp slabel.h \
+		ui_slabel.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o slabel.o slabel.cpp
+
 susersetup.o: susersetup.cpp susersetup.h \
 		defines.h \
 		defaults_user.h \
+		sprotocol.h \
+		saccesswidget.h \
 		ui_susersetup.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o susersetup.o susersetup.cpp
 
@@ -1365,6 +1419,9 @@ moc_stestmodel.o: moc_stestmodel.cpp
 
 moc_stestmodelheader.o: moc_stestmodelheader.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_stestmodelheader.o moc_stestmodelheader.cpp
+
+moc_slabel.o: moc_slabel.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_slabel.o moc_slabel.cpp
 
 moc_susersetup.o: moc_susersetup.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_susersetup.o moc_susersetup.cpp

@@ -8,6 +8,7 @@ sCheckPass::sCheckPass(QWidget *parent) :
     ui->setupUi(this);
     cShowMessageType = 0;
     cConfirmType = 0;
+    cConfirmMenu = 0;
     cCheckPassType = 0;
 
     cCalls = 0;
@@ -40,32 +41,36 @@ void sCheckPass::Show_CheckPass(int cptype, bool again)
     switch(cptype)
     {
         case M_PWD_GENERAL: ui->lblCaption->setText(tr("General Setup Password"));
-
         if(!again) ui->leUser->setText("admin");
         ui->lePassword->setText("");
         ui->lePassword->setFocus();
-
         break;
+
         case M_PWD_METHOD: ui->lblCaption->setText(tr("Method Setup Password"));
 
         if(!again) ui->leUser->setText("admin"); 
         ui->lePassword->setText("");
         ui->lePassword->setFocus();
-
         break;
-        case M_PWD_SERVICE: ui->lblCaption->setText(tr("Service Password"));
 
+        case M_PWD_SERVICE: ui->lblCaption->setText(tr("Service Password"));
         if(!again) ui->leUser->setText("service");
         ui->lePassword->setText("");
         ui->lePassword->setFocus();
-
         break;
+
         case M_PWD_CALIBRATION: ui->lblCaption->setText(tr("Calibration Password"));
         if(!again) ui->leUser->setText("service");
         ui->lePassword->setText("");
         ui->lePassword->setFocus();
-
         break;
+
+        case M_PWD_DEBUG: ui->lblCaption->setText(tr("Debug Message Password"));
+        if(!again) ui->leUser->setText("pssc");
+        ui->lePassword->setText("");
+        ui->lePassword->setFocus();
+        break;
+
     }
 
     this->show();
@@ -95,6 +100,10 @@ void sCheckPass::Show_ShowMessage(int cptype, int mtype)
 
         case M_PWD_CALIBRATION:
         ui->lblMCaption->setText(tr("Calibration Password!"));
+        break;
+
+        case M_PWD_DEBUG:
+        ui->lblMCaption->setText(tr(" Debug Message Password!"));
         break;
 
         case M_MEMORY_DELETE:
@@ -142,19 +151,42 @@ void sCheckPass::Show_Message(QString title, QString msg)
     ui->lblMCaption->setText(title);
     ui->lblMessage->setText(msg);
     this->show();
+
+    qDebug() << "Show_Message:" << title << ", msg:" << msg;
 }
 
-void sCheckPass::Show_Status(QString title, QString msg)
+void sCheckPass::Show_MessageWithAck(QString title, QString msg)
 {
-    cShowMessageType = 0; 
+    cShowMessageType = M_MESSAGE_ACKNOWLEDGE;
 
     ui->frPassword->hide();
     ui->frConfirm->hide();
     ui->frMessage->show();
-    ui->pbOK->hide();
+    ui->pbOK->show();
     ui->lblMCaption->setText(title);
     ui->lblMessage->setText(msg);
     this->show();
+
+    qDebug() << "Show_MessageAck:" << title << ", msg:" << msg;
+}
+
+
+void sCheckPass::Show_Status(QString title, QString msg, bool show)
+{
+    cShowMessageType = 0; 
+
+    if(show)
+    {
+        ui->frPassword->hide();
+        ui->frConfirm->hide();
+        ui->frMessage->show();
+        ui->pbOK->hide();
+        ui->lblMCaption->setText(title);
+        ui->lblMessage->setText(msg);
+        this->show();
+    }
+    else
+        this->hide();
 }
 
 void sCheckPass::Show_ErrorMessage(QString title, QString msg)
@@ -165,9 +197,30 @@ void sCheckPass::Show_ErrorMessage(QString title, QString msg)
     ui->frConfirm->hide();
     ui->frMessage->show();
     ui->pbOK->show();
+    ui->pbOK->setEnabled(true); //8-July-2022
     ui->lblMCaption->setText(title);
     ui->lblMessage->setText(msg);
     this->show();
+}
+
+void sCheckPass::setWaitACKStatus(bool tmp)
+{
+    ui->pbOK->setEnabled(!tmp);
+}
+
+bool sCheckPass::getWaitACKStatus()
+{
+    return true;
+}
+
+void sCheckPass::hideAfterACK(bool tmp)
+{
+
+}
+
+bool sCheckPass::getHideAfterACK()
+{
+    return false;
 }
 
 bool sCheckPass::isErrorVisible()
@@ -175,9 +228,14 @@ bool sCheckPass::isErrorVisible()
    return (cShowMessageType == M_ERROR_ACKNOWLEDGE && ui->frMessage->isVisible()) ? true : false; 
 }
 
-void sCheckPass::Show_Confirmation(int ctype)
+void sCheckPass::Show_Confirmation(int ctype, int cmenu)
 {
+
+    qDebug() << "Show_Confirmation:" << ctype;
+
     cConfirmType = ctype;
+    cConfirmMenu = cmenu;
+
     ui->frPassword->hide();
     ui->frMessage->hide();
     ui->frConfirm->show();
@@ -280,6 +338,10 @@ void sCheckPass::on_pbOK_clicked()
     {
         emit SendData("", "", M_ERROR_ACKNOWLEDGE, M_ERROR_ACKNOWLEDGE);
     }
+    else if(cShowMessageType == M_MESSAGE_ACKNOWLEDGE)
+    {
+        emit SendData("", "", M_MESSAGE_ACKNOWLEDGE, M_MESSAGE_ACKNOWLEDGE);
+    }
     else
         this->hide();
 
@@ -293,11 +355,11 @@ void sCheckPass::on_pbCan_clicked()
 void sCheckPass::on_pbYes_clicked()
 {
     this->hide();
-    emit Confirmed(cConfirmType, true);
+    emit Confirmed(cConfirmType, true, cConfirmMenu);
 }
 
 void sCheckPass::on_pbNo_clicked()
 {
     this->hide();
-    emit Confirmed(cConfirmType, false);
+    emit Confirmed(cConfirmType, false, cConfirmMenu);
 }

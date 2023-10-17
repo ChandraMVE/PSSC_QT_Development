@@ -5,6 +5,7 @@
 
 #include <ssettings.h>
 #include <smethodsetup.h>
+#include "saccesswidget.h"
 
 #include <QFile>
 #include <QString>
@@ -53,16 +54,17 @@ struct LAST_IDS {
 
     QString operator_name;
     QString sample_id;
+    QString test_id;
 
     friend QDataStream &operator<< (QDataStream &out, const LAST_IDS &tmp)
     {
-        out << tmp.operator_name << tmp.sample_id;
+        out << tmp.operator_name << tmp.sample_id << tmp.test_id;
         return out;
     }
 
     friend QDataStream &operator>> (QDataStream &in, LAST_IDS &tmp)
     {
-        in >> tmp.operator_name >> tmp.sample_id;
+        in >> tmp.operator_name >> tmp.sample_id >> tmp.test_id;
         return in;
     }
 };
@@ -71,7 +73,7 @@ namespace Ui {
 class sMeasuring;
 }
 
-class sMeasuring : public QWidget
+class sMeasuring : public QWidget, public sAccessWidget
 {
     Q_OBJECT
 
@@ -82,6 +84,7 @@ public:
     void setMethods(const QStringList tmp);
     void setMessage(QString tmp);
     void setAutoCount(int current, int total);
+    //void setIdleTimer(int tmp);
     void setStatus(QString tmp);
 
     void setTmPrScale(int tmScaleIndex, QString tmScale, int tmDP, QString prScale, double prMultiplier, int prDP);
@@ -116,6 +119,11 @@ public:
     bool checkValidInputs(void);
     void setRunning(bool);
 
+    void setWaitACKStatus(bool tmp);
+    bool getWaitACKStatus(void);
+    void hideAfterACK(bool tmp);
+    bool getHideAfterACK();
+
 
 signals:
     void showKeypad( QObject *, int, bool);
@@ -137,7 +145,6 @@ private slots:
     void ontextChanged(QString tmp);
     void on_pbRun_clicked();
     void on_pbStop_clicked();
-    void on_pbStop_2_clicked();
 
     void on_pbSampleId_clicked();
     void onClickSampleId();
@@ -153,6 +160,8 @@ private slots:
     void on_leSampleId_returnPressed();
     void on_leOperator_returnPressed();
 
+    void on_pbStop_2_clicked();
+
 private:
     Ui::sMeasuring *ui;
 
@@ -162,6 +171,7 @@ private:
 
     QString cPrevOperator;
     QString cPrevSampleId;
+    bool cRunState;
 
 public:
     struct GENERAL_SETUP *cgs;

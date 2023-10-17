@@ -25,13 +25,10 @@ signals:
     void MenuClicked(int menu);
 
 private slots:
-    void on_pbMeasuring_clicked();
-
-    void on_pbCleaning_clicked();
-
-    void on_pbMemory_clicked();
-
-    void on_pbSetup_clicked();
+    void onMeasuringClicked();
+    void onCleaningClicked();
+    void onMemoryClicked();
+    void onSetupClicked();
 
 private:
     Ui::sMenuBar *ui;

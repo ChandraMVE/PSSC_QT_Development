@@ -22,7 +22,10 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+
+#ifndef Q_OS_WIN32
 #include <sys/ioctl.h>
+#endif
 
 #include <errno.h>
 
@@ -72,17 +75,17 @@ public:
                       double para_measured);
 
     bool TransferRecords(QString fname);
-    bool PrintRecords(void);
-    bool SerialPrinter(void);
+    bool PrintRecords(bool precords, struct TestStruct *test);
+    bool SerialPrinter(bool precords);
     int writeSerialPrinter(const QByteArray &data, int len);
 
     void drawData(QPainter *painter, int x, int y, int width, int height, QString str, QTextOption *textoption);
     void setBrush(QPainter *painter, QBrush *brush, int row);
 
-    bool CreateSingleDeskjet(void);
+    bool CreateSingleDeskjet(bool precords);
     bool CreateMultilineDeskjet(void);
 
-    bool CreatePrintSpool(void);
+    bool CreatePrintSpool(bool precords);
     int PrinterStatus(int);
     int PrintData(int, char);
 
@@ -91,7 +94,7 @@ public:
     bool ClosePrinter(void);
 
 signals:
-    void showStatusBox(QString title, QString msg);
+    void showStatusBox(QString title, QString msg, bool show);
     void showMsgBox(QString title, QString msg);
 
 private slots:
@@ -109,6 +112,8 @@ private:
     QFile *pfile;
     int cPrinterError;
     QSerialPort *cSerialPrinter;
+
+    struct TestStruct *cPrintRecord;
 
 };
 
