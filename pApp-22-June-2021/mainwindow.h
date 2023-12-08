@@ -60,6 +60,7 @@ public:
     void abortCurrentTask();
 
 protected:
+    void changeEvent(QEvent*);
     void timerEvent(QTimerEvent *e);
 
 private slots:

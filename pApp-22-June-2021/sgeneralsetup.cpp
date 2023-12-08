@@ -505,20 +505,24 @@ bool sGeneralSetup::saveFile()
 {
     QString fname = QApplication::applicationDirPath() + FN_GENERAL_SETUP;
 
+    qDebug()<<"Save File location: "<<fname; //naveen
     QFile out(fname);
 
     if(out.open(QIODevice::WriteOnly))
     {
+        qDebug()<<"File Opened "; //naveen
         QDataStream save(&out);
         save << general_setup;
         out.close();
         cParasChanged = false;
         saveHostnameFile();
         saveNetworkFile();
+        qDebug()<<"Opened Operation is done"; //naveen
         return true;
     }
     else
     {
+        qDebug()<<"Why is this coming"; //naveen
         cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
         return false;
@@ -527,8 +531,10 @@ bool sGeneralSetup::saveFile()
 
 void sGeneralSetup::saveNetworkFile()
 {
-    QString fname = NETWORK_FILE_NAME;
+    //QString fname = NETWORK_FILE_NAME;
+    QString fname = QApplication::applicationDirPath() + NETWORK_FILE_NAME; //naveen
 
+    qDebug()<<"Save Network File location: "<<fname; //naveen
     QFile out(fname);
 
     if(out.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -553,14 +559,17 @@ void sGeneralSetup::saveNetworkFile()
     else
     {
         cEnSwitch = false;
+        qDebug()<<"saveNetworkFile Error"; //Naveen
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
     }
 }
 
 void sGeneralSetup::saveHostnameFile()
 {
-    QString fname = HOST_FILE_NAME;
+    //QString fname = HOST_FILE_NAME;
+    QString fname = QApplication::applicationDirPath() + HOST_FILE_NAME; //naveen
 
+    qDebug()<<"Host File location: "<<fname; //naveen
     QFile out(fname);
 
     if(out.open(QIODevice::WriteOnly | QIODevice::Text))

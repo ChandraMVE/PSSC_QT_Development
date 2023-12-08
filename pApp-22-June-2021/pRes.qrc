@@ -24,4 +24,9 @@
         <file>cursors/textselection.png</file>
         <file>logo/splash.bmp</file>
     </qresource>
+    <qresource prefix="/">
+        <file>languages/pApp_de.qm</file>
+        <file>languages/pApp_fr.qm</file>
+        <file>languages/pApp_la.qm</file>
+    </qresource>
 </RCC>

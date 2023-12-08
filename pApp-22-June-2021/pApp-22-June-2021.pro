@@ -90,3 +90,4 @@ SOURCES += main.cpp \
            slabel.cpp \
            susersetup.cpp
 RESOURCES += pRes.qrc
+TRANSLATIONS += languages/pApp_de.ts languages/pApp_fr.ts languages/pApp_la.ts

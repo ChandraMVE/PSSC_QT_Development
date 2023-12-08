@@ -37,6 +37,43 @@ MainWindow::MainWindow(QWidget *parent) :
    view->rotate(90);
 #endif
 
+   /*
+    * Language Setting by Naveen
+    */
+
+   QString path = QApplication::applicationDirPath(); //Naveen
+
+   qDebug()<<"Path Checking: "<<path;
+
+   path.append("/languages/");
+
+   switch(setLanguage())
+   {
+       case 0: break;
+
+       case 1: if(translatorLa.load(path + "/pApp_la.qm"))
+               {
+                   qDebug()<<"successfully load pApp_la file.";
+                   qApp->installTranslator(&translatorLa);
+               }
+               break;
+
+       case 2: if(translatorDe.load(path + "/pApp_de.qm"))
+               {
+                   qDebug()<<"successfully load pApp_de file.";
+                   qApp->installTranslator(&translatorDe);
+               }
+               break;
+
+       case 3: if(translatorFr.load(path + "/pApp_fr.qm"))
+               {
+                   qDebug()<<"successfully load pApp_fr file.";
+                   qApp->installTranslator(&translatorFr);
+               }
+               break;
+   }
+
+
     ui->setupUi(this);
 
     setLists();
@@ -534,6 +571,18 @@ void MainWindow::setLists()
     qslFormulaFree3.insert(0, "Free 3 = a x Ptot – b x Pgas – c");
     qslFormulaFree4.insert(0, "Free 4 = a x Ptot – b x Pgas – c");
 
+}
+
+void MainWindow::changeEvent(QEvent* event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+        qDebug() << "QEvent::LanguageChange";
+
+        ui->retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }
 
 bool MainWindow::eventFilter(QObject *w, QEvent *e)
