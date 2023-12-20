@@ -135,6 +135,7 @@ QSerialPort::DataBits sSettings::getDataBits()
     }
 }
 
+
 QString sSettings::getDateFormat() const
 {
     return qslShowDateFormat->at(cgs->date_format);
@@ -538,7 +539,7 @@ bool sSettings::removeTmpFiles()
         }
 
     }
-	
     return result;
 }
+
 

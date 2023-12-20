@@ -38,10 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
    /*
-    * Language Setting by Naveen
+    * Language Settings by Naveen
     */
 
-   QString path = QApplication::applicationDirPath(); //Naveen
+   QString path = QApplication::applicationDirPath();
 
    qDebug()<<"Path Checking: "<<path;
 
@@ -1545,8 +1545,9 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
     }
 
-    if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) 
+    if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) {
         showError();
+        }
     else if(cDiagErrorHandle && (!cCurrentUCError))
     {
         cDiagErrorHandle = false;
