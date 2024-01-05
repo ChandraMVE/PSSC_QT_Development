@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
    /*
-    * Language Settings by Naveen
+    * Language Setting
     */
 
    QString path = QApplication::applicationDirPath();
@@ -1545,9 +1545,8 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
     }
 
-    if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) {
+    if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) 
         showError();
-        }
     else if(cDiagErrorHandle && (!cCurrentUCError))
     {
         cDiagErrorHandle = false;

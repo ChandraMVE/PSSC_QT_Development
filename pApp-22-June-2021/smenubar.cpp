@@ -1,25 +1,31 @@
 #include "smenubar.h"
 #include "ui_smenubar.h"
 
+#include "sgeneralsetup.h"
+
 sMenuBar::sMenuBar(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::sMenuBar)
 {
     ui->setupUi(this);
 
-    ui->wmMeasuring->setText("Measuring");
+    QString measu = (getLanguage()==0)?"Measuring":(getLanguage()==1)?"Medición":(getLanguage()==2)?"Messung":"Mesure";
+    ui->wmMeasuring->setText(measu);
     ui->wmMeasuring->setEnabled(true);
     ui->wmMeasuring->setSelected(false);
 
-    ui->wmCleaning->setText("Rinsing");
+    QString rins=(getLanguage()==0)?"Rinsing":(getLanguage()==1)?"Enjuague":(getLanguage()==2)?"Spülen":"Rinçage";
+    ui->wmCleaning->setText(rins);
     ui->wmCleaning->setEnabled(true);
     ui->wmCleaning->setSelected(false);
 
-    ui->wmMemory->setText("Memory");
+    QString mem=(getLanguage()==0)?"Memory":(getLanguage()==1)?"Memoria":(getLanguage()==2)?"Erinnerung":"Mémoire";
+    ui->wmMemory->setText(mem);
     ui->wmMemory->setEnabled(true);
     ui->wmMemory->setSelected(false);
 
-    ui->wmSetup->setText("Setup");
+    QString setu=(getLanguage()==0)?"Setup":(getLanguage()==1)?"Preparar":(getLanguage()==2)?"Installieren":"Installer";
+    ui->wmSetup->setText(setu);
     ui->wmSetup->setEnabled(true);
     ui->wmSetup->setSelected(false);
 
@@ -29,6 +35,26 @@ sMenuBar::sMenuBar(QWidget *parent) :
     connect(ui->wmSetup, SIGNAL(clicked()), this , SLOT(onSetupClicked()));
 
     pMenu = -1;
+}
+
+int sMenuBar::getLanguage(){
+    struct GENERAL_SETUP general_setup;
+
+    QString fname = QApplication::applicationDirPath() + FN_GENERAL_SETUP;
+
+    QFile in(fname);
+
+    if(in.open(QIODevice::ReadOnly))
+    {
+        QDataStream save(&in);
+        save >> general_setup;
+        in.close();
+        return general_setup.language;
+    }
+    else
+    {
+       return 0;
+    }
 }
 
 sMenuBar::~sMenuBar()

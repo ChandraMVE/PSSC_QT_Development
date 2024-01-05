@@ -20,6 +20,7 @@ public:
 
     void setSelectedMenu(int menu);
     void setRunningMenu(int menu);
+    int getLanguage();
 
 signals:
     void MenuClicked(int menu);

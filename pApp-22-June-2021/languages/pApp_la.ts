@@ -1249,7 +1249,7 @@ Perform Test without saving?</source>
     <message>
         <location filename="../scleaning.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../scleaning.ui" line="77"/>
@@ -1360,7 +1360,7 @@ Reconnect USB Pen Drive &amp; try again!</source>
     <message>
         <location filename="../sgeneralsetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1844,7 +1844,7 @@ Ciclos</translation>
     <message>
         <location filename="../sgeneralsetup.ui" line="76"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hogar</translation>
     </message>
     <message>
         <location filename="../sgeneralsetup.ui" line="3567"/>
@@ -2109,7 +2109,7 @@ Ciclos</translation>
     <message>
         <location filename="../skeypad.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../skeypad.ui" line="61"/>
@@ -2429,7 +2429,7 @@ Ciclos</translation>
         <location filename="../skeypad.ui" line="2021"/>
         <location filename="../skeypad.ui" line="2901"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Atrás</translation>
     </message>
 </context>
 <context>
@@ -2444,7 +2444,7 @@ Ciclos</translation>
     <message>
         <location filename="../smeasuring.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../smeasuring.ui" line="218"/>
@@ -2605,7 +2605,7 @@ Ciclos</translation>
     <message>
         <location filename="../smeasuring.ui" line="1230"/>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Resultado</translation>
     </message>
     <message>
         <location filename="../smeasuring.ui" line="548"/>
@@ -2651,7 +2651,7 @@ Pulse Ejecutar para iniciar</translation>
         <location filename="../smeasuring.cpp" line="345"/>
         <location filename="../smeasuring.cpp" line="401"/>
         <source>Error Saving File!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">¡Error al guardar el archivo!</translation>
     </message>
     <message>
         <location filename="../smeasuring.cpp" line="442"/>
@@ -2766,7 +2766,7 @@ Pulse Ejecutar para iniciar</translation>
     <message>
         <location filename="../smeasuring2.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <source>Run</source>
@@ -2927,19 +2927,19 @@ Pulse Ejecutar para iniciar</translation>
     </message>
     <message>
         <source>Measuring</source>
-        <translation type="obsolete">Medición</translation>
+        <translation type="vanished">Medición</translation>
     </message>
     <message>
         <source>Rinsing</source>
-        <translation type="obsolete">Enjuague</translation>
+        <translation type="vanished">Enjuague</translation>
     </message>
     <message>
         <source>Memory</source>
-        <translation type="obsolete">Memoria</translation>
+        <translation type="vanished">Memoria</translation>
     </message>
     <message>
         <source>Setup</source>
-        <translation type="obsolete">Preparar</translation>
+        <translation type="vanished">Preparar</translation>
     </message>
 </context>
 <context>
@@ -2947,7 +2947,7 @@ Pulse Ejecutar para iniciar</translation>
     <message>
         <location filename="../smethodsetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../smethodsetup.ui" line="77"/>
@@ -2982,7 +2982,7 @@ Pulse Ejecutar para iniciar</translation>
     <message>
         <location filename="../smethodsetup.ui" line="140"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hogar</translation>
     </message>
     <message>
         <location filename="../smethodsetup.ui" line="407"/>
@@ -3170,7 +3170,7 @@ Pulse Ejecutar para iniciar</translation>
     <message>
         <location filename="../smethodsetup.cpp" line="348"/>
         <source>Error Saving File!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">¡Error al guardar el archivo!</translation>
     </message>
     <message>
         <location filename="../smethodsetup.cpp" line="625"/>
@@ -3236,7 +3236,7 @@ Valve</source>
     <message>
         <location filename="../sservice.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -3849,7 +3849,7 @@ Restart Machine to reflect changes!</source>
     <message>
         <location filename="../susersetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Forma</translation>
     </message>
     <message>
         <location filename="../susersetup.ui" line="77"/>
@@ -3873,7 +3873,7 @@ Restart Machine to reflect changes!</source>
     <message>
         <location filename="../susersetup.ui" line="140"/>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hogar</translation>
     </message>
     <message>
         <location filename="../susersetup.ui" line="213"/>

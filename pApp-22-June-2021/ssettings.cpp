@@ -322,7 +322,7 @@ QString sSettings::getPressureLiveSS(int tm, int pr)
     
     double tpr = calculatePressure(tm, pr);
 
-    return (QString::number(tpr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', qslPressureDP->at(cgs->pressure_scale).toInt()));
+    return (QString::number(tpr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', RANGE_CALIB_PRESSURE_PRECISION));
 }
 
 QString sSettings::getTemperatureCS(double tm) const

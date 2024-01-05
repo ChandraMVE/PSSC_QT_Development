@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QProcess>
 #include <QSerialPort>
+#include "defaults_calibration.h"
 
 #include <sgeneralsetup.h>
 #include <susersetup.h>

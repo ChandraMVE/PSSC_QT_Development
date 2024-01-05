@@ -314,6 +314,7 @@ void sCalibration::showTemperatureCalib()
 {
     setTempTabReadOnly(false);
 
+    ui->label_12->setVisible(false);
     ui->cbTCalibMethod->setCurrentIndex(cCalibTm.method);
 
     ui->cbTCTEnable->setChecked(CALIB_DEFAULT_TEMPERATURE_T_CONTROL_ENABLE);
@@ -328,7 +329,8 @@ void sCalibration::showTemperatureCalib()
     ui->leTCTLow->setText(getTemperatureCS(cCalibTm.tlow));
     ui->leTCTHigh->setText(getTemperatureCS(cCalibTm.thigh));
     ui->leTCTOffset->setText(getTemperatureCS(cCalibTm.toffset));
-    ui->pbTCTOffset->setText(getTemperatureCS(cCalibTm.toffset));
+    //ui->pbTCTOffset->setText(getTemperatureCS(cCalibTm.toffset));
+    ui->pbTCTOffset->hide();
 
     ui->lblTCZero->setText(getTemperatureCS(cCalibTm.tlow));
     ui->lblTCGain->setText(QString::number(cCalibTm.slope, 'f', 6));
