@@ -314,7 +314,17 @@ void sCalibration::showTemperatureCalib()
 {
     setTempTabReadOnly(false);
 
-    ui->label_12->setVisible(false);
+    if(IS_ADMIN_USER){
+        QString OffsetLang = (IsLanguage==0)?"Offset":(IsLanguage==1)?"Compensar":(IsLanguage==2)?"Versatz":"Compenser";
+        ui->label_12->setVisible(true);
+        ui->label_12->setText(OffsetLang);
+        ui->pbTCTOffset->setText(getTemperatureCS(cCalibTm.toffset));
+        ui->pbTCTOffset->setVisible(true);
+    }else{
+        ui->label_12->setVisible(false);
+        ui->pbTCTOffset->hide();
+    }
+    //ui->label_12->setVisible(false);
     ui->cbTCalibMethod->setCurrentIndex(cCalibTm.method);
 
     ui->cbTCTEnable->setChecked(CALIB_DEFAULT_TEMPERATURE_T_CONTROL_ENABLE);
@@ -330,7 +340,7 @@ void sCalibration::showTemperatureCalib()
     ui->leTCTHigh->setText(getTemperatureCS(cCalibTm.thigh));
     ui->leTCTOffset->setText(getTemperatureCS(cCalibTm.toffset));
     //ui->pbTCTOffset->setText(getTemperatureCS(cCalibTm.toffset));
-    ui->pbTCTOffset->hide();
+    //ui->pbTCTOffset->hide();
 
     ui->lblTCZero->setText(getTemperatureCS(cCalibTm.tlow));
     ui->lblTCGain->setText(QString::number(cCalibTm.slope, 'f', 6));

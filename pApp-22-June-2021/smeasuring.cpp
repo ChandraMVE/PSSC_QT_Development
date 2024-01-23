@@ -772,17 +772,17 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
     QString str;
     QString formula;
 
-    str = tr("Free ") + fn + "= " +
+    str = tr("Free ") + QString::number(fn) + "= " +
                         cSettings.getFormulaConstantsAB(aconstant) +
                         " x Ptot - " +
                         cSettings.getFormulaConstantsAB(bconstant) +
                         " x Pgas - " +
                         cSettings.getPressureFormula(cconstant);
 
-    ui->wResult->setMethodFormula(tr("<B>Free ") + fn + tr(" </B>Results"), str);
+    ui->wResult->setMethodFormula(tr("<B>Free ") + QString::number(fn) + tr(" </B>Results"), str);
 
-    formula = "Free " + fn;
-    method =  "Free " + fn;
+    formula = "Free " + QString::number(fn);
+    method =  "Free " + QString::number(fn);
 
     ui->wResult->setSampleId(ui->leSampleId->text());
 

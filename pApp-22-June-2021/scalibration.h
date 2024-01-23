@@ -222,6 +222,10 @@ private:
     bool cEnSwitch;
 
 public:
+    int IS_ADMIN_USER;
+    int IsLanguage;
+
+public:
     struct CALIB_TEMPERATURE cCalibTm;
     struct CALIB_PRESSURE cCalibPr;
 

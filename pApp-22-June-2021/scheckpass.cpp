@@ -128,7 +128,8 @@ void sCheckPass::Show_ShowMessage(int cptype, int mtype)
         case M_MEMORY_DELETED: ui->lblMessage->setText(tr("Selected Memory Deleted!")); break;
         case M_MEMORY_DELETE_ERROR: ui->lblMessage->setText(tr("Error Deleting Memory!")); break;
 
-        case M_MEMORY_TRANSFEFRED: ui->lblMessage->setText(tr("Selected Memory Transferred!\nUSB Logging is Active\nDo not remove USB Pen Drive!")); break;
+        //case M_MEMORY_TRANSFEFRED: ui->lblMessage->setText(tr("Selected Memory Transferred!\nUSB Logging is Active\nDo not remove USB Pen Drive!")); break;
+        case M_MEMORY_TRANSFEFRED: ui->lblMessage->setText(tr("Selected Memory Transferred!")); break;
         case M_MEMORY_TRANSFER_ERROR: ui->lblMessage->setText(tr("Error Transferring Memory!")); break;
         case M_MEMORY_TRANSFER_NO_USB: ui->lblMessage->setText(tr("No USB Pen Drive Found!\nReconnect USB Pen Drive & try again!")); break;
 

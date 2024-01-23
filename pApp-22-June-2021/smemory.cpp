@@ -235,7 +235,9 @@ bool sMemory::deleteTests()
 
 bool sMemory::transferTests(QString fname)
 {
+    onShowStatusBox("Memory Transfer","Transferring...",true);
     bool tmp = MemoryModel->TransferRecords(fname);
+    onShowMsgBox("Memory Transfer","Transferred!");
     cEnSwitch = true;
     return tmp;
 }

@@ -76,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
+    ui->wCalibrationSetup->IsLanguage = setLanguage();
     setLists();
     setMeasuring();
 
@@ -399,48 +400,138 @@ void MainWindow::onLoad()
 
 
     sendPara(cProtocol.sendMeasuringStart(1, tc), 1, cStageTimeOut);
-    onShowStatusBox(tr("Information"), tr("Initializing...\nPlease wait..."), true);
+    QString info = (setLanguage()==0)?"Information":(setLanguage()==1)?"Información":(setLanguage()==2)?"Information":"Information";
+    QString initial = (setLanguage()==0)?"Initializing...\nPlease wait...":(setLanguage()==1)?"Inicializando...\nPor favor espere...":(setLanguage()==2)?"Initialisierung wird durchgeführt...\nBitte warten...":"Initialisation...\nVeuillez patienter...";
+    onShowStatusBox(info, initial, true);
 
 }
 
 
 void MainWindow::setLists()
 {
-    qslUCErrors.insert(0, "Check Piston Motor");
-    qslUCErrors.insert(1, "Check Piston Motor");
-    qslUCErrors.insert(2, "Pressure Limit Exceded");
-    qslUCErrors.insert(3, "Device Temp Excedded");
-    qslUCErrors.insert(4, "Check Heating Element");
-    qslUCErrors.insert(5, "Check Valve Motor");
-    qslUCErrors.insert(6, "Check Valve Motor");
-    qslUCErrors.insert(7, "Check Pressure Sensor");
-    qslUCErrors.insert(8, "Check Stirring Motor");
+    QString CheckPistonMotor;
+    QString PressureLimitExceeded;
+    QString DeviceTempExceeded;
+    QString CheckHeatingElement;
+    QString CheckValveMotor;
+    QString CheckPressureSensor;
+    QString CheckStirringMotor;
+    QString Err;
+    QString PistonMotorFault;
+    QString PistonPositionFault;
+    QString PressureHighFault;
+    QString TECfailureFault;
+    QString ValveMotorFault;
+    QString ValveSwitchesFault;
+    QString PressureReadingFault;
+    QString StiringMotorFault;
+    if(setLanguage()==0){
+        CheckPistonMotor = "Check Piston Motor";
+        PressureLimitExceeded = "Pressure Limit Exceeded";
+        DeviceTempExceeded = "Device Temp Exceeded";
+        CheckHeatingElement = "Check Heating Element";
+        CheckValveMotor = "Check Valve Motor";
+        CheckPressureSensor = "Check Pressure Sensor";
+        CheckStirringMotor = "Check Stirring Motor";
+        Err = "Error";
+        PistonMotorFault = "Piston Motor Fault";
+        PistonPositionFault = "Piston Position Fault";
+        PressureHighFault = "Pressure High Fault";
+        TECfailureFault = "TEC failure Fault";
+        ValveMotorFault = "Valve Motor Fault";
+        ValveSwitchesFault = "Valve Switches Fault";
+        PressureReadingFault = "Pressure reading Fault";
+        StiringMotorFault = "Stiring Motor Fault";
+    }
+    else if(setLanguage()==1){
+        CheckPistonMotor = "Revisar el motor de pistón";
+        PressureLimitExceeded = "Límite de presión excedido";
+        DeviceTempExceeded = "Temperatura del dispositivo excedida";
+        CheckHeatingElement = "Comprobar el elemento calefactor";
+        CheckValveMotor = "Motor de válvula de retención";
+        CheckPressureSensor = "Comprobar el sensor de presión";
+        CheckStirringMotor = "Comprobar el motor de agitación";
+        Err = "Error";
+        PistonMotorFault = "Falla del motor de pistón";
+        PistonPositionFault = "Fallo de posición del pistón";
+        PressureHighFault = "Fallo de presión alta";
+        TECfailureFault = "Fallo TEC Fallo";
+        ValveMotorFault = "Fallo del motor de la válvula";
+        ValveSwitchesFault = "Fallo de los interruptores de válvula";
+        PressureReadingFault = "Fallo de lectura de presión";
+        StiringMotorFault = "Fallo del motor de agitación";
+    }
+    else if(setLanguage()==2){
+        CheckPistonMotor = "Kolbenmotor prüfen";
+        PressureLimitExceeded = "Druckgrenzwert überschritten";
+        DeviceTempExceeded = "Gerätetemperatur überschritten";
+        CheckHeatingElement = "Heizelement prüfen";
+        CheckValveMotor = "Ventilmotor prüfen";
+        CheckPressureSensor = "Drucksensor prüfen";
+        CheckStirringMotor = "Überprüfen Sie den Rührmotor";
+        Err = "Fehler";
+        PistonMotorFault = "Kolbenmotorfehler";
+        PistonPositionFault = "Kolbenpositionsfehler";
+        PressureHighFault = "Fehler „Druck zu hoch“";
+        TECfailureFault = "TEC-Fehler Fehler";
+        ValveMotorFault = "Ventilmotorfehler";
+        ValveSwitchesFault = "Ventilschaltfehler";
+        PressureReadingFault = "Druckmessfehler";
+        StiringMotorFault = "Störung des Rührmotors";
+    }
+    else{
+        CheckPistonMotor = "Vérifier le moteur à piston";
+        PressureLimitExceeded = "Limite de pression dépassée";
+        DeviceTempExceeded = "Température de l'appareil dépassée";
+        CheckHeatingElement = "Vérifier l'élément chauffant";
+        CheckValveMotor = "Moteur de clapet anti-retour";
+        CheckPressureSensor = "Vérifier le capteur de pression";
+        CheckStirringMotor = "Vérifier le moteur d'agitation";
+        Err = "Erreur";
+        PistonMotorFault = "Défaut du moteur à piston";
+        PistonPositionFault = "Défaut de position du piston";
+        PressureHighFault = "Défaut de pression élevée";
+        TECfailureFault = "Défaillance TEC Défaut";
+        ValveMotorFault = "Défaut du moteur de vanne";
+        ValveSwitchesFault = "Défaut des interrupteurs de vanne";
+        PressureReadingFault = "Défaut de lecture de pression";
+        StiringMotorFault = "Défaut du moteur d'agitation";
+    }
+    qslUCErrors.insert(0, CheckPistonMotor);
+    qslUCErrors.insert(1, CheckPistonMotor);
+    qslUCErrors.insert(2, PressureLimitExceeded);
+    qslUCErrors.insert(3, DeviceTempExceeded);
+    qslUCErrors.insert(4, CheckHeatingElement);
+    qslUCErrors.insert(5, CheckValveMotor);
+    qslUCErrors.insert(6, CheckValveMotor);
+    qslUCErrors.insert(7, CheckPressureSensor);
+    qslUCErrors.insert(8, CheckStirringMotor);
 
-    qslUCErrors.insert(9, "Error 9");
-    qslUCErrors.insert(10, "Error 10");
-    qslUCErrors.insert(11, "Error 11");
-    qslUCErrors.insert(12, "Error 12");
-    qslUCErrors.insert(13, "Error 13");
-    qslUCErrors.insert(14, "Error 14");
-    qslUCErrors.insert(15, "Error 15");
+    qslUCErrors.insert(9, Err + " 9");
+    qslUCErrors.insert(10, Err + " 10");
+    qslUCErrors.insert(11, Err + " 11");
+    qslUCErrors.insert(12, Err + " 12");
+    qslUCErrors.insert(13, Err + " 13");
+    qslUCErrors.insert(14, Err + " 14");
+    qslUCErrors.insert(15, Err + " 15");
 
-    qslLogErrors.insert(0, "Piston Motor Fault");
-    qslLogErrors.insert(1, "Piston Position Fault");
-    qslLogErrors.insert(2, "Pressure High Fault");
-    qslLogErrors.insert(3, "Device Temp Excedded"); 
-    qslLogErrors.insert(4, "TEC failure Fault");
-    qslLogErrors.insert(5, "Valve Motor Fault");
-    qslLogErrors.insert(6, "Valve Switches Fault");
-    qslLogErrors.insert(7, "Pressure reading Fault");
-    qslLogErrors.insert(8, "Stiring Motor Fault");
+    qslLogErrors.insert(0, PistonMotorFault);
+    qslLogErrors.insert(1, PistonPositionFault);
+    qslLogErrors.insert(2, PressureHighFault);
+    qslLogErrors.insert(3, DeviceTempExceeded);
+    qslLogErrors.insert(4, TECfailureFault);
+    qslLogErrors.insert(5, ValveMotorFault);
+    qslLogErrors.insert(6, ValveSwitchesFault);
+    qslLogErrors.insert(7, PressureReadingFault);
+    qslLogErrors.insert(8, StiringMotorFault);
 
-    qslLogErrors.insert(9, "Error 9");
-    qslLogErrors.insert(10, "Error 10");
-    qslLogErrors.insert(11, "Error 11");
-    qslLogErrors.insert(12, "Error 12");
-    qslLogErrors.insert(13, "Error 13");
-    qslLogErrors.insert(14, "Error 14");
-    qslLogErrors.insert(15, "Error 15");
+    qslLogErrors.insert(9, Err + " 9");
+    qslLogErrors.insert(10, Err + " 10");
+    qslLogErrors.insert(11, Err + " 11");
+    qslLogErrors.insert(12, Err + " 12");
+    qslLogErrors.insert(13, Err + " 13");
+    qslLogErrors.insert(14, Err + " 14");
+    qslLogErrors.insert(15, Err + " 15");
 
     qslDateFormat.insert(0, "MM/DD/YYYY");
     qslDateFormat.insert(1, "MM/DD/YY");
@@ -3126,9 +3217,11 @@ void MainWindow::showCommError(int tmp)
             //cAccessWidget = NULL;
         }
 
-        QString str = tr("Communication Error (") + QString::number(tmp) + ")!";
+        QString CommunicationError = (setLanguage()==0)?"Communication Error":(setLanguage()==1)?"Error de comunicación":(setLanguage()==2)?"Kommunikationsfehler":"Erreur de communication";
+        QString str = CommunicationError + " (" + QString::number(tmp) + ")!";
 
-        ui->wError->Show_ErrorMessage(tr("Error"), str);
+        QString Err = (setLanguage()==0)?"Error":(setLanguage()==1)?"Error":(setLanguage()==2)?"Fehler":"Erreur";
+        ui->wError->Show_ErrorMessage(Err, str);
 
         cStage = 0;
         cFrameErrorShown = true;
@@ -4047,7 +4140,9 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
         if(rMenu >= M_PWD_SERVICE && rMenu<=M_PWD_CALIBRATION)
         {
 
-            if((!QString::compare(rUser, "service", Qt::CaseSensitive) &&
+            if((!QString::compare(rUser, "admin", Qt::CaseSensitive) &&
+                !QString::compare(rPwd, ui->wGeneralSetup->general_setup.admin_password, Qt::CaseSensitive)) ||
+               (!QString::compare(rUser, "service", Qt::CaseSensitive) &&
                 !QString::compare(rPwd, ui->wGeneralSetup->general_setup.service_password, Qt::CaseSensitive)) ||
                (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
                 !QString::compare(rPwd, "p", Qt::CaseSensitive)))
@@ -4064,6 +4159,12 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                                         break;
 
                     case M_PWD_CALIBRATION:  if(cWidget) cWidget->hide();
+                                            if(rUser == "admin") {
+                                                ui->wCalibrationSetup->IS_ADMIN_USER=1;
+                                            }
+                                            else {
+                                                ui->wCalibrationSetup->IS_ADMIN_USER=0;
+                                            }
                                             ui->wCalibrationSetup->Show();
                                             cMenu = M_SETUP;
                                             cWidget = ui->wCalibrationSetup;
@@ -4412,8 +4513,9 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
                             ui->wGeneralSetup->general_setup.unit_id
                             + ".csv";
 
-                    if(ui->wMemory->transferTests(fname))
-                        ui->wCheckPass->Show_ShowMessage(ctype, M_MEMORY_TRANSFEFRED);
+                    if(ui->wMemory->transferTests(fname)){
+                        //ui->wCheckPass->Show_ShowMessage(ctype, M_MEMORY_TRANSFEFRED);
+                    }
                     else
                         ui->wCheckPass->Show_ShowMessage(ctype, M_MEMORY_TRANSFER_ERROR);
                 }
