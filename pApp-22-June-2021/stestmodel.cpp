@@ -303,6 +303,7 @@ bool sTestModel::TransferRecords(QString fname)
 {
 
     //fname = QApplication::applicationDirPath() + "/" + fname;
+
     fname = FF_USB + fname;
 
     qDebug() << "fname:" << fname;

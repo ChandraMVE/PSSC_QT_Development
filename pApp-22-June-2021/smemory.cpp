@@ -1,6 +1,8 @@
 #include "smemory.h"
 #include "ui_smemory.h"
 #include <QScrollBar>
+#include <QEventLoop>
+#include <QTimer>
 
 sMemory::sMemory(QWidget *parent) :
     QWidget(parent),
@@ -235,9 +237,11 @@ bool sMemory::deleteTests()
 
 bool sMemory::transferTests(QString fname)
 {
-    onShowStatusBox("Memory Transfer","Transferring...",true);
+    emit showStatusBox("Memory Transfer","Selected Memory is Transferring...",true);
+    QEventLoop delay;
+    QTimer::singleShot(1000,&delay,&QEventLoop::quit);
+    delay.exec();
     bool tmp = MemoryModel->TransferRecords(fname);
-    onShowMsgBox("Memory Transfer","Transferred!");
     cEnSwitch = true;
     return tmp;
 }
