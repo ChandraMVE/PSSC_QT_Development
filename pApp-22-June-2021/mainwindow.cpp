@@ -4514,10 +4514,10 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
                             + ".csv";
 
                     if(ui->wMemory->transferTests(fname)){
-                        onShowMsgBox("Memory Transfer","Selected Memory Transferred!");
+                        onShowMsgBox(tr("Memory Transfer"),tr("Selected Memory Transferred!"));
                     }
                     else{
-                        onShowMsgBox("Memory Transfer","Error Transferring Memory!");
+                        onShowMsgBox(tr("Memory Transfer"),tr("Error Transferring Memory!"));
                     }
                 }
             }

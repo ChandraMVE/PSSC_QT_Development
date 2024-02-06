@@ -30,31 +30,31 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="279"/>
-        <location filename="../mainwindow.cpp" line="4011"/>
+        <location filename="../mainwindow.cpp" line="4104"/>
         <source>User</source>
         <translation>Benutzer</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="284"/>
-        <location filename="../mainwindow.cpp" line="4022"/>
+        <location filename="../mainwindow.cpp" line="4115"/>
         <source>General</source>
         <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="289"/>
-        <location filename="../mainwindow.cpp" line="4026"/>
+        <location filename="../mainwindow.cpp" line="4119"/>
         <source>Method</source>
         <translation>Methode</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="294"/>
-        <location filename="../mainwindow.cpp" line="4030"/>
+        <location filename="../mainwindow.cpp" line="4123"/>
         <source>Service</source>
         <translation>Bedienung</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="299"/>
-        <location filename="../mainwindow.cpp" line="4034"/>
+        <location filename="../mainwindow.cpp" line="4127"/>
         <source>Calibration</source>
         <translation>Kalibrierung</translation>
     </message>
@@ -79,213 +79,225 @@
         <translation>Fehler 1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="771"/>
+        <location filename="../mainwindow.cpp" line="862"/>
         <source>Initial</source>
         <translation>Anfänglich</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="771"/>
+        <location filename="../mainwindow.cpp" line="862"/>
         <source>Initial test done!</source>
         <translation>Erster Test durchgeführt!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1662"/>
+        <location filename="../mainwindow.cpp" line="1753"/>
         <source>Diagnostic Cycle Started...</source>
         <translation>Diagnosezyklus gestartet...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1677"/>
+        <location filename="../mainwindow.cpp" line="1768"/>
         <source>Diagnostic Cycle Stopped...</source>
         <translation>Diagnosezyklus gestoppt...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1705"/>
+        <location filename="../mainwindow.cpp" line="1796"/>
         <source>Auto Calibration Started...</source>
         <translation>Automatische Kalibrierung gestartet...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1713"/>
+        <location filename="../mainwindow.cpp" line="1804"/>
         <source>Moving Valve to Exhaust Position</source>
         <translation>Ventil in Auslassposition bringen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1734"/>
-        <location filename="../mainwindow.cpp" line="2922"/>
-        <location filename="../mainwindow.cpp" line="2930"/>
-        <location filename="../mainwindow.cpp" line="2980"/>
-        <location filename="../mainwindow.cpp" line="3017"/>
+        <location filename="../mainwindow.cpp" line="1825"/>
+        <location filename="../mainwindow.cpp" line="3013"/>
+        <location filename="../mainwindow.cpp" line="3021"/>
+        <location filename="../mainwindow.cpp" line="3071"/>
+        <location filename="../mainwindow.cpp" line="3108"/>
         <source>Auto Calibration Stopped...</source>
         <translation>Automatische Kalibrierung gestoppt...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1863"/>
-        <location filename="../mainwindow.cpp" line="1939"/>
-        <location filename="../mainwindow.cpp" line="3131"/>
+        <location filename="../mainwindow.cpp" line="1954"/>
+        <location filename="../mainwindow.cpp" line="2030"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2003"/>
+        <location filename="../mainwindow.cpp" line="2094"/>
         <source>Initial </source>
         <translation>Anfänglich </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2004"/>
+        <location filename="../mainwindow.cpp" line="2095"/>
         <source>TimeOut </source>
         <translation>Auszeit </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2579"/>
-        <location filename="../mainwindow.cpp" line="2594"/>
-        <location filename="../mainwindow.cpp" line="2618"/>
+        <location filename="../mainwindow.cpp" line="2670"/>
+        <location filename="../mainwindow.cpp" line="2685"/>
+        <location filename="../mainwindow.cpp" line="2709"/>
         <source>Valve Exhaust OK!</source>
         <translation>Ventilauslass OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2580"/>
-        <location filename="../mainwindow.cpp" line="2595"/>
-        <location filename="../mainwindow.cpp" line="2628"/>
+        <location filename="../mainwindow.cpp" line="2671"/>
+        <location filename="../mainwindow.cpp" line="2686"/>
+        <location filename="../mainwindow.cpp" line="2719"/>
         <source>Piston Zero OK!</source>
         <translation>Kolbennullpunkt OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2581"/>
-        <location filename="../mainwindow.cpp" line="2597"/>
-        <location filename="../mainwindow.cpp" line="2649"/>
+        <location filename="../mainwindow.cpp" line="2672"/>
+        <location filename="../mainwindow.cpp" line="2688"/>
+        <location filename="../mainwindow.cpp" line="2740"/>
         <source>Temperature OK!</source>
         <translation>Temperatur ok!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2583"/>
-        <location filename="../mainwindow.cpp" line="2599"/>
-        <location filename="../mainwindow.cpp" line="2651"/>
+        <location filename="../mainwindow.cpp" line="2674"/>
+        <location filename="../mainwindow.cpp" line="2690"/>
+        <location filename="../mainwindow.cpp" line="2742"/>
         <source>Pressure @20C:</source>
         <translation>Druck bei 20 °C:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2613"/>
-        <location filename="../mainwindow.cpp" line="2742"/>
-        <location filename="../mainwindow.cpp" line="2767"/>
-        <location filename="../mainwindow.cpp" line="2923"/>
-        <location filename="../mainwindow.cpp" line="2981"/>
-        <location filename="../mainwindow.cpp" line="3019"/>
+        <location filename="../mainwindow.cpp" line="2704"/>
+        <location filename="../mainwindow.cpp" line="2833"/>
+        <location filename="../mainwindow.cpp" line="2858"/>
+        <location filename="../mainwindow.cpp" line="3014"/>
+        <location filename="../mainwindow.cpp" line="3072"/>
+        <location filename="../mainwindow.cpp" line="3110"/>
         <source>Valve Motor Error!</source>
         <translation>Ventilmotorfehler!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2623"/>
-        <location filename="../mainwindow.cpp" line="2693"/>
-        <location filename="../mainwindow.cpp" line="2716"/>
-        <location filename="../mainwindow.cpp" line="2931"/>
+        <location filename="../mainwindow.cpp" line="2714"/>
+        <location filename="../mainwindow.cpp" line="2784"/>
+        <location filename="../mainwindow.cpp" line="2807"/>
+        <location filename="../mainwindow.cpp" line="3022"/>
         <source>Piston Motor Error!</source>
         <translation>Kolbenmotorfehler!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2686"/>
+        <location filename="../mainwindow.cpp" line="2777"/>
         <source>Piston 5ml OK!</source>
         <translation>Kolben 5ml OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2708"/>
+        <location filename="../mainwindow.cpp" line="2799"/>
         <source>Piston 0ml OK!</source>
         <translation>Kolben 0ml OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2733"/>
+        <location filename="../mainwindow.cpp" line="2824"/>
         <source>Valve Closed OK!</source>
         <translation>Ventil geschlossen OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2759"/>
+        <location filename="../mainwindow.cpp" line="2850"/>
         <source>Valve In OK!</source>
         <translation>Ventil rein OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2795"/>
+        <location filename="../mainwindow.cpp" line="2886"/>
         <source>Shaker Motor 60rpm OK!</source>
         <translation>Schüttelmotor 60 U/min OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2804"/>
-        <location filename="../mainwindow.cpp" line="2833"/>
+        <location filename="../mainwindow.cpp" line="2895"/>
+        <location filename="../mainwindow.cpp" line="2924"/>
         <source>Shaker Motor Error!</source>
         <translation>Fehler im Rüttlermotor!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2823"/>
+        <location filename="../mainwindow.cpp" line="2914"/>
         <source>Shaker Motor Stopped OK!</source>
         <translation>Schüttelmotor ist gestoppt, OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2851"/>
+        <location filename="../mainwindow.cpp" line="2942"/>
         <source>Temperature 30C OK!</source>
         <translation>Temperatur 30°C OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2853"/>
+        <location filename="../mainwindow.cpp" line="2944"/>
         <source>Pressure @30C:</source>
         <translation>Druck bei 30 °C:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2860"/>
+        <location filename="../mainwindow.cpp" line="2951"/>
         <source>Pressure Test Successful</source>
         <translation>Drucktest erfolgreich</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2866"/>
+        <location filename="../mainwindow.cpp" line="2957"/>
         <source>Diagnostic Cycle Successsfully Completed!</source>
         <translation>Diagnosezyklus erfolgreich abgeschlossen!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1904"/>
-        <location filename="../mainwindow.cpp" line="1977"/>
-        <location filename="../mainwindow.cpp" line="2664"/>
-        <location filename="../mainwindow.cpp" line="2868"/>
-        <location filename="../mainwindow.cpp" line="2884"/>
-        <location filename="../mainwindow.cpp" line="3170"/>
+        <location filename="../mainwindow.cpp" line="4517"/>
+        <location filename="../mainwindow.cpp" line="4520"/>
+        <source>Memory Transfer</source>
+        <translation>Speicherübertragung</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="4517"/>
+        <source>Selected Memory Transferred!</source>
+        <translation>Ausgewählter Speicher übertragen!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="4520"/>
+        <source>Error Transferring Memory!</source>
+        <translation>Fehler beim Übertragen des Speichers!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="1995"/>
+        <location filename="../mainwindow.cpp" line="2068"/>
+        <location filename="../mainwindow.cpp" line="2755"/>
+        <location filename="../mainwindow.cpp" line="2959"/>
+        <location filename="../mainwindow.cpp" line="2975"/>
+        <location filename="../mainwindow.cpp" line="3263"/>
         <source>Diagnostic Cycle Failed!</source>
         <translation>Diagnosezyklus fehlgeschlagen!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation type="vanished">Information</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="402"/>
         <source>Initializing...
 Please wait...</source>
-        <translation>Initialisierung...
+        <translation type="vanished">Initialisierung...
 Bitte warten...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="989"/>
+        <location filename="../mainwindow.cpp" line="1080"/>
         <source>Rinsing of cell: </source>
         <translation>Spülen der Zelle: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="990"/>
+        <location filename="../mainwindow.cpp" line="1081"/>
         <source>Current Cycle:</source>
         <translation>Aktueller Zyklus:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3050"/>
+        <location filename="../mainwindow.cpp" line="3141"/>
         <source>Auto Calibration Done...</source>
         <translation>Automatische Kalibrierung abgeschlossen...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3129"/>
         <source>Communication Error (</source>
-        <translation>Kommunikationsfehler (</translation>
+        <translation type="vanished">Kommunikationsfehler (</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3169"/>
+        <location filename="../mainwindow.cpp" line="3262"/>
         <source>Communication Error!</source>
         <translation>Kommunikationsfehler!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2661"/>
-        <location filename="../mainwindow.cpp" line="2882"/>
+        <location filename="../mainwindow.cpp" line="2752"/>
+        <location filename="../mainwindow.cpp" line="2973"/>
         <source>Temperature Error!</source>
         <translation>Temperaturfehler!</translation>
     </message>
@@ -704,18 +716,18 @@ Druck</translation>
         <location filename="../scalibration.ui" line="1649"/>
         <location filename="../scalibration.ui" line="1745"/>
         <location filename="../scalibration.ui" line="2358"/>
-        <location filename="../scalibration.cpp" line="343"/>
-        <location filename="../scalibration.cpp" line="344"/>
-        <location filename="../scalibration.cpp" line="448"/>
-        <location filename="../scalibration.cpp" line="449"/>
-        <location filename="../scalibration.cpp" line="637"/>
-        <location filename="../scalibration.cpp" line="661"/>
-        <location filename="../scalibration.cpp" line="686"/>
-        <location filename="../scalibration.cpp" line="709"/>
-        <location filename="../scalibration.cpp" line="729"/>
-        <location filename="../scalibration.cpp" line="730"/>
-        <location filename="../scalibration.cpp" line="736"/>
-        <location filename="../scalibration.cpp" line="737"/>
+        <location filename="../scalibration.cpp" line="355"/>
+        <location filename="../scalibration.cpp" line="356"/>
+        <location filename="../scalibration.cpp" line="460"/>
+        <location filename="../scalibration.cpp" line="461"/>
+        <location filename="../scalibration.cpp" line="649"/>
+        <location filename="../scalibration.cpp" line="673"/>
+        <location filename="../scalibration.cpp" line="698"/>
+        <location filename="../scalibration.cpp" line="721"/>
+        <location filename="../scalibration.cpp" line="741"/>
+        <location filename="../scalibration.cpp" line="742"/>
+        <location filename="../scalibration.cpp" line="748"/>
+        <location filename="../scalibration.cpp" line="749"/>
         <source>Set</source>
         <translation>Einstellen</translation>
     </message>
@@ -747,8 +759,8 @@ Druck</translation>
     </message>
     <message>
         <location filename="../scalibration.ui" line="76"/>
-        <location filename="../scalibration.cpp" line="1234"/>
-        <location filename="../scalibration.cpp" line="1261"/>
+        <location filename="../scalibration.cpp" line="1246"/>
+        <location filename="../scalibration.cpp" line="1273"/>
         <source>Home</source>
         <translation>Heim</translation>
     </message>
@@ -910,9 +922,9 @@ Valve</source>
     </message>
     <message>
         <location filename="../scalibration.cpp" line="308"/>
-        <location filename="../scalibration.cpp" line="1213"/>
-        <location filename="../scalibration.cpp" line="1217"/>
-        <location filename="../scalibration.cpp" line="1221"/>
+        <location filename="../scalibration.cpp" line="1225"/>
+        <location filename="../scalibration.cpp" line="1229"/>
+        <location filename="../scalibration.cpp" line="1233"/>
         <source>Calibration Setup</source>
         <translation>Kalibrierungs-Setup</translation>
     </message>
@@ -922,45 +934,45 @@ Valve</source>
         <translation>Fehler beim Speichern der Datei!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="630"/>
-        <location filename="../scalibration.cpp" line="654"/>
-        <location filename="../scalibration.cpp" line="679"/>
-        <location filename="../scalibration.cpp" line="702"/>
+        <location filename="../scalibration.cpp" line="642"/>
+        <location filename="../scalibration.cpp" line="666"/>
+        <location filename="../scalibration.cpp" line="691"/>
+        <location filename="../scalibration.cpp" line="714"/>
         <source>Done</source>
         <translation>Erledigt</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="743"/>
+        <location filename="../scalibration.cpp" line="755"/>
         <source>Auto Calibration Stopped...</source>
         <translation>Automatische Kalibrierung gestoppt...</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1213"/>
+        <location filename="../scalibration.cpp" line="1225"/>
         <source>Temperature Calibration Saved!</source>
         <translation>Temperatur kalibrierung gespeichert!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1217"/>
+        <location filename="../scalibration.cpp" line="1229"/>
         <source>Pressure Calibration Saved!</source>
         <translation>Druckkalibrierung gespeichert!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1221"/>
+        <location filename="../scalibration.cpp" line="1233"/>
         <source>Linear Table Saved!</source>
         <translation>Lineare Tabelle gespeichert!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1245"/>
-        <location filename="../scalibration.cpp" line="1285"/>
-        <location filename="../scalibration.cpp" line="1354"/>
+        <location filename="../scalibration.cpp" line="1257"/>
+        <location filename="../scalibration.cpp" line="1297"/>
+        <location filename="../scalibration.cpp" line="1366"/>
         <source>Back</source>
         <translation>Zurück</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1393"/>
-        <location filename="../scalibration.cpp" line="1404"/>
-        <location filename="../scalibration.cpp" line="1415"/>
-        <location filename="../scalibration.cpp" line="1430"/>
+        <location filename="../scalibration.cpp" line="1405"/>
+        <location filename="../scalibration.cpp" line="1416"/>
+        <location filename="../scalibration.cpp" line="1427"/>
+        <location filename="../scalibration.cpp" line="1442"/>
         <source>Wait</source>
         <translation>Warten</translation>
     </message>
@@ -1113,42 +1125,47 @@ Geben Sie einen gültigen Benutzer ein und versuchen Sie es erneut!</translation
         <translation>Ausgewählter Speicher gelöscht!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="246"/>
-        <location filename="../scheckpass.cpp" line="251"/>
+        <location filename="../scheckpass.cpp" line="132"/>
+        <source>Selected Memory Transferred!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../scheckpass.cpp" line="247"/>
+        <location filename="../scheckpass.cpp" line="252"/>
         <source>Measuring!</source>
         <translation>Messung!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="247"/>
+        <location filename="../scheckpass.cpp" line="248"/>
         <source>Do you want to Stop Test?</source>
         <translation>Möchten Sie den Test stoppen?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="256"/>
+        <location filename="../scheckpass.cpp" line="257"/>
         <source>Rinsing!</source>
         <translation>Spülen!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="257"/>
+        <location filename="../scheckpass.cpp" line="258"/>
         <source>Do you want to Stop Rinsing?</source>
         <translation>Möchten Sie mit dem Spülen aufhören?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="266"/>
-        <location filename="../scheckpass.cpp" line="271"/>
+        <location filename="../scheckpass.cpp" line="267"/>
+        <location filename="../scheckpass.cpp" line="272"/>
         <source>General Setup!</source>
         <translation>Allgemeine Einrichtung!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="277"/>
-        <location filename="../scheckpass.cpp" line="287"/>
-        <location filename="../scheckpass.cpp" line="297"/>
+        <location filename="../scheckpass.cpp" line="278"/>
+        <location filename="../scheckpass.cpp" line="288"/>
+        <location filename="../scheckpass.cpp" line="298"/>
         <source>Do you want to Exit without saving?</source>
         <translation>Möchten Sie den Vorgang beenden, ohne zu speichern?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="276"/>
-        <location filename="../scheckpass.cpp" line="281"/>
+        <location filename="../scheckpass.cpp" line="277"/>
+        <location filename="../scheckpass.cpp" line="282"/>
         <source>Method Setup!</source>
         <translation>Methoden-Setup!</translation>
     </message>
@@ -1158,88 +1175,87 @@ Geben Sie einen gültigen Benutzer ein und versuchen Sie es erneut!</translation
         <translation>Fehler beim Löschen des Speichers!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="131"/>
         <source>Selected Memory Transferred!
 USB Logging is Active
 Do not remove USB Pen Drive!</source>
-        <translation>Ausgewählter Speicher übertragen!
+        <translation type="vanished">Ausgewählter Speicher übertragen!
 Die USB-Protokollierung ist aktiv
 Entfernen Sie den USB-Stick nicht!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="132"/>
+        <location filename="../scheckpass.cpp" line="133"/>
         <source>Error Transferring Memory!</source>
         <translation>Fehler beim Übertragen des Speichers!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="133"/>
+        <location filename="../scheckpass.cpp" line="134"/>
         <source>No USB Pen Drive Found!
 Reconnect USB Pen Drive &amp; try again!</source>
         <translation>Kein USB-Stick gefunden!
 Schließen Sie den USB-Stick erneut an und versuchen Sie es erneut!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="135"/>
         <location filename="../scheckpass.cpp" line="136"/>
         <location filename="../scheckpass.cpp" line="137"/>
+        <location filename="../scheckpass.cpp" line="138"/>
         <source>Select  tests/columns!</source>
         <translation>Wählen Sie Tests/Spalten aus!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="252"/>
+        <location filename="../scheckpass.cpp" line="253"/>
         <source>Memory Full!
 Perform Test without saving?</source>
         <translation>Speicher voll!
 Test ohne Speichern durchführen?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="261"/>
+        <location filename="../scheckpass.cpp" line="262"/>
         <source>User Setup!</source>
         <translation>Benutzereinrichtung!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="262"/>
-        <location filename="../scheckpass.cpp" line="267"/>
+        <location filename="../scheckpass.cpp" line="263"/>
+        <location filename="../scheckpass.cpp" line="268"/>
         <source>Do you want to Leave without saving?</source>
         <translation>Möchten Sie gehen, ohne zu speichern?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="272"/>
-        <location filename="../scheckpass.cpp" line="282"/>
-        <location filename="../scheckpass.cpp" line="292"/>
-        <location filename="../scheckpass.cpp" line="302"/>
+        <location filename="../scheckpass.cpp" line="273"/>
+        <location filename="../scheckpass.cpp" line="283"/>
+        <location filename="../scheckpass.cpp" line="293"/>
+        <location filename="../scheckpass.cpp" line="303"/>
         <source>Save before switch?</source>
         <translation>Vor dem Wechsel speichern?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="286"/>
-        <location filename="../scheckpass.cpp" line="291"/>
+        <location filename="../scheckpass.cpp" line="287"/>
+        <location filename="../scheckpass.cpp" line="292"/>
         <source>Service Setup!</source>
         <translation>Service-Setup!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="296"/>
-        <location filename="../scheckpass.cpp" line="301"/>
+        <location filename="../scheckpass.cpp" line="297"/>
+        <location filename="../scheckpass.cpp" line="302"/>
         <source>Calibration Setup!</source>
         <translation>Kalibrierungs-Setup!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="306"/>
+        <location filename="../scheckpass.cpp" line="307"/>
         <source>Memory Transfer!</source>
         <translation>Speicherübertragung!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="307"/>
+        <location filename="../scheckpass.cpp" line="308"/>
         <source>Do you want to transfer!</source>
         <translation>Möchten Sie wechseln!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="311"/>
+        <location filename="../scheckpass.cpp" line="312"/>
         <source>Memory Delete!</source>
         <translation>Speicher löschen!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="312"/>
+        <location filename="../scheckpass.cpp" line="313"/>
         <source>Do you want to delete!</source>
         <translation>Möchten Sie löschen!</translation>
     </message>
@@ -1368,7 +1384,7 @@ Schließen Sie den USB-Stick erneut an und versuchen Sie es erneut!</translation
     </message>
     <message>
         <location filename="../sgeneralsetup.ui" line="140"/>
-        <location filename="../sgeneralsetup.cpp" line="991"/>
+        <location filename="../sgeneralsetup.cpp" line="984"/>
         <source>Save</source>
         <translation>Sparen</translation>
     </message>
@@ -2055,51 +2071,51 @@ Fahrräder</translation>
         <translation>Passwort</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="527"/>
-        <location filename="../sgeneralsetup.cpp" line="563"/>
-        <location filename="../sgeneralsetup.cpp" line="586"/>
-        <location filename="../sgeneralsetup.cpp" line="886"/>
-        <location filename="../sgeneralsetup.cpp" line="908"/>
-        <location filename="../sgeneralsetup.cpp" line="926"/>
-        <location filename="../sgeneralsetup.cpp" line="930"/>
-        <location filename="../sgeneralsetup.cpp" line="943"/>
+        <location filename="../sgeneralsetup.cpp" line="523"/>
+        <location filename="../sgeneralsetup.cpp" line="557"/>
+        <location filename="../sgeneralsetup.cpp" line="579"/>
+        <location filename="../sgeneralsetup.cpp" line="879"/>
+        <location filename="../sgeneralsetup.cpp" line="901"/>
+        <location filename="../sgeneralsetup.cpp" line="919"/>
+        <location filename="../sgeneralsetup.cpp" line="923"/>
+        <location filename="../sgeneralsetup.cpp" line="936"/>
         <source>General Setup</source>
         <translation>Allgemeine Einrichtung</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="527"/>
-        <location filename="../sgeneralsetup.cpp" line="563"/>
-        <location filename="../sgeneralsetup.cpp" line="586"/>
+        <location filename="../sgeneralsetup.cpp" line="523"/>
+        <location filename="../sgeneralsetup.cpp" line="557"/>
+        <location filename="../sgeneralsetup.cpp" line="579"/>
         <source>Error Saving File!</source>
         <translation>Fehler beim Speichern der Datei!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="886"/>
+        <location filename="../sgeneralsetup.cpp" line="879"/>
         <source>Select Valid Date!</source>
         <translation>Wählen Sie ein gültiges Datum!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="908"/>
+        <location filename="../sgeneralsetup.cpp" line="901"/>
         <source>Date Time Updated!</source>
         <translation>Datum und Uhrzeit aktualisiert!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="926"/>
+        <location filename="../sgeneralsetup.cpp" line="919"/>
         <source>Invalid Old Password!</source>
         <translation>Ungültiges altes Passwort!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="931"/>
+        <location filename="../sgeneralsetup.cpp" line="924"/>
         <source>New &amp; Confirm Password mismatch!</source>
         <translation>Neues und bestätigtes Passwort stimmen nicht überein!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="944"/>
+        <location filename="../sgeneralsetup.cpp" line="937"/>
         <source>Password Updated!</source>
         <translation>Passwort aktualisiert!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="993"/>
+        <location filename="../sgeneralsetup.cpp" line="986"/>
         <source>Update</source>
         <translation>Aktualisieren</translation>
     </message>
@@ -2896,24 +2912,30 @@ Drücken Sie Run to Start</translation>
         <translation type="vanished">Ausgang</translation>
     </message>
     <message>
-        <location filename="../smemory.cpp" line="314"/>
+        <location filename="../smemory.cpp" line="320"/>
         <source>Memory Delete</source>
         <translation>Speicher löschen</translation>
     </message>
     <message>
-        <location filename="../smemory.cpp" line="314"/>
-        <location filename="../smemory.cpp" line="331"/>
-        <location filename="../smemory.cpp" line="352"/>
+        <location filename="../smemory.cpp" line="320"/>
+        <location filename="../smemory.cpp" line="337"/>
+        <location filename="../smemory.cpp" line="358"/>
         <source>Select  tests/columns!</source>
         <translation>Wählen Sie Tests/Spalten aus!</translation>
     </message>
     <message>
-        <location filename="../smemory.cpp" line="331"/>
+        <location filename="../smemory.cpp" line="240"/>
+        <location filename="../smemory.cpp" line="337"/>
         <source>Memory Transfer</source>
         <translation>Speicherübertragung</translation>
     </message>
     <message>
-        <location filename="../smemory.cpp" line="352"/>
+        <location filename="../smemory.cpp" line="240"/>
+        <source>Selected Memory is Transferring...</source>
+        <translation>Ausgewählter Speicher wird übertragen...</translation>
+    </message>
+    <message>
+        <location filename="../smemory.cpp" line="358"/>
         <source>Memory Print</source>
         <translation>Speicherdruck</translation>
     </message>
@@ -3570,233 +3592,233 @@ Starten Sie die Maschine neu, um die Änderungen zu übernehmen!</translation>
 <context>
     <name>sTestModel</name>
     <message>
-        <location filename="../stestmodel.cpp" line="317"/>
+        <location filename="../stestmodel.cpp" line="318"/>
         <source>Operator</source>
         <translation>Operator</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="318"/>
+        <location filename="../stestmodel.cpp" line="319"/>
         <source>Sample Id</source>
         <translation>Beispiel-ID</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="319"/>
+        <location filename="../stestmodel.cpp" line="320"/>
         <source>Date</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="320"/>
+        <location filename="../stestmodel.cpp" line="321"/>
         <source>Time</source>
         <translation>Zeit</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="321"/>
+        <location filename="../stestmodel.cpp" line="322"/>
         <source>Ptot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="322"/>
+        <location filename="../stestmodel.cpp" line="323"/>
         <source>Pgas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="323"/>
+        <location filename="../stestmodel.cpp" line="324"/>
         <source>Pabs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="324"/>
+        <location filename="../stestmodel.cpp" line="325"/>
         <source>Method</source>
         <translation>Methode</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="325"/>
+        <location filename="../stestmodel.cpp" line="326"/>
         <source>Formula</source>
         <translation>Formel</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="326"/>
+        <location filename="../stestmodel.cpp" line="327"/>
         <source>Result</source>
         <translation>Ergebnis</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="327"/>
+        <location filename="../stestmodel.cpp" line="328"/>
         <source>Test Time</source>
         <translation>Testzeit</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="328"/>
+        <location filename="../stestmodel.cpp" line="329"/>
         <source>V/L Ratio</source>
         <translation>V / L-Verhältnis</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="329"/>
+        <location filename="../stestmodel.cpp" line="330"/>
         <source>Para Measured</source>
         <translation>Para gemessen</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="419"/>
-        <location filename="../stestmodel.cpp" line="459"/>
-        <location filename="../stestmodel.cpp" line="485"/>
-        <location filename="../stestmodel.cpp" line="490"/>
-        <location filename="../stestmodel.cpp" line="512"/>
-        <location filename="../stestmodel.cpp" line="540"/>
-        <location filename="../stestmodel.cpp" line="554"/>
-        <location filename="../stestmodel.cpp" line="572"/>
-        <location filename="../stestmodel.cpp" line="578"/>
-        <location filename="../stestmodel.cpp" line="615"/>
-        <location filename="../stestmodel.cpp" line="653"/>
-        <location filename="../stestmodel.cpp" line="691"/>
-        <location filename="../stestmodel.cpp" line="695"/>
-        <location filename="../stestmodel.cpp" line="708"/>
-        <location filename="../stestmodel.cpp" line="729"/>
-        <location filename="../stestmodel.cpp" line="1974"/>
+        <location filename="../stestmodel.cpp" line="420"/>
+        <location filename="../stestmodel.cpp" line="460"/>
+        <location filename="../stestmodel.cpp" line="486"/>
+        <location filename="../stestmodel.cpp" line="491"/>
+        <location filename="../stestmodel.cpp" line="513"/>
+        <location filename="../stestmodel.cpp" line="541"/>
+        <location filename="../stestmodel.cpp" line="555"/>
+        <location filename="../stestmodel.cpp" line="573"/>
+        <location filename="../stestmodel.cpp" line="579"/>
+        <location filename="../stestmodel.cpp" line="616"/>
+        <location filename="../stestmodel.cpp" line="654"/>
+        <location filename="../stestmodel.cpp" line="692"/>
+        <location filename="../stestmodel.cpp" line="696"/>
+        <location filename="../stestmodel.cpp" line="709"/>
+        <location filename="../stestmodel.cpp" line="730"/>
+        <location filename="../stestmodel.cpp" line="1975"/>
         <source>Memory Print</source>
         <translation>Speicherdruck</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="419"/>
         <location filename="../stestmodel.cpp" line="420"/>
+        <location filename="../stestmodel.cpp" line="421"/>
         <source>Wait...</source>
         <translation>Warten...</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="420"/>
-        <location filename="../stestmodel.cpp" line="460"/>
-        <location filename="../stestmodel.cpp" line="486"/>
-        <location filename="../stestmodel.cpp" line="491"/>
-        <location filename="../stestmodel.cpp" line="513"/>
-        <location filename="../stestmodel.cpp" line="541"/>
-        <location filename="../stestmodel.cpp" line="555"/>
-        <location filename="../stestmodel.cpp" line="573"/>
-        <location filename="../stestmodel.cpp" line="579"/>
+        <location filename="../stestmodel.cpp" line="421"/>
+        <location filename="../stestmodel.cpp" line="461"/>
+        <location filename="../stestmodel.cpp" line="487"/>
+        <location filename="../stestmodel.cpp" line="492"/>
+        <location filename="../stestmodel.cpp" line="514"/>
+        <location filename="../stestmodel.cpp" line="542"/>
+        <location filename="../stestmodel.cpp" line="556"/>
+        <location filename="../stestmodel.cpp" line="574"/>
+        <location filename="../stestmodel.cpp" line="580"/>
         <source>Test Result Print</source>
         <translation>Testergebnis drucken</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="459"/>
         <location filename="../stestmodel.cpp" line="460"/>
+        <location filename="../stestmodel.cpp" line="461"/>
         <source>Printer not found!</source>
         <translation>Drucker nicht gefunden!</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="485"/>
         <location filename="../stestmodel.cpp" line="486"/>
-        <location filename="../stestmodel.cpp" line="578"/>
+        <location filename="../stestmodel.cpp" line="487"/>
         <location filename="../stestmodel.cpp" line="579"/>
+        <location filename="../stestmodel.cpp" line="580"/>
         <source>Error Printing!</source>
         <translation>Fehler beim Drucken!</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="490"/>
         <location filename="../stestmodel.cpp" line="491"/>
-        <location filename="../stestmodel.cpp" line="615"/>
+        <location filename="../stestmodel.cpp" line="492"/>
+        <location filename="../stestmodel.cpp" line="616"/>
         <source>Printing...</source>
         <translation>Drucken...</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="512"/>
         <location filename="../stestmodel.cpp" line="513"/>
-        <location filename="../stestmodel.cpp" line="653"/>
+        <location filename="../stestmodel.cpp" line="514"/>
+        <location filename="../stestmodel.cpp" line="654"/>
         <source>Error 1 Printing!</source>
         <translation>Fehler 1 beim Drucken!</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="540"/>
         <location filename="../stestmodel.cpp" line="541"/>
-        <location filename="../stestmodel.cpp" line="691"/>
-        <location filename="../stestmodel.cpp" line="695"/>
+        <location filename="../stestmodel.cpp" line="542"/>
+        <location filename="../stestmodel.cpp" line="692"/>
+        <location filename="../stestmodel.cpp" line="696"/>
         <source>Printing done!</source>
         <translation>Druck fertig!</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="554"/>
         <location filename="../stestmodel.cpp" line="555"/>
-        <location filename="../stestmodel.cpp" line="708"/>
+        <location filename="../stestmodel.cpp" line="556"/>
+        <location filename="../stestmodel.cpp" line="709"/>
         <source>Error Spooling!</source>
         <translation>Fehler beim Spoolen!</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="572"/>
         <location filename="../stestmodel.cpp" line="573"/>
+        <location filename="../stestmodel.cpp" line="574"/>
         <source>Send to Printer!</source>
         <translation>An Drucker senden!</translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1810"/>
-        <location filename="../stestmodel.cpp" line="1861"/>
+        <location filename="../stestmodel.cpp" line="1811"/>
+        <location filename="../stestmodel.cpp" line="1862"/>
         <source>Tested Method: </source>
         <translation>Getestete Methode: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1813"/>
-        <location filename="../stestmodel.cpp" line="1864"/>
+        <location filename="../stestmodel.cpp" line="1814"/>
+        <location filename="../stestmodel.cpp" line="1865"/>
         <source>Date Time: </source>
         <translation>Terminzeit: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1816"/>
-        <location filename="../stestmodel.cpp" line="1867"/>
+        <location filename="../stestmodel.cpp" line="1817"/>
+        <location filename="../stestmodel.cpp" line="1868"/>
         <source>Sample Id: </source>
         <translation>Proben-ID: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1818"/>
-        <location filename="../stestmodel.cpp" line="1869"/>
+        <location filename="../stestmodel.cpp" line="1819"/>
+        <location filename="../stestmodel.cpp" line="1870"/>
         <source>TEST RESULT: </source>
         <translation>TESTERGEBNIS: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1822"/>
-        <location filename="../stestmodel.cpp" line="1873"/>
-        <source>Ptot: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../stestmodel.cpp" line="1823"/>
         <location filename="../stestmodel.cpp" line="1874"/>
-        <source>Pgas: </source>
+        <source>Ptot: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../stestmodel.cpp" line="1824"/>
         <location filename="../stestmodel.cpp" line="1875"/>
+        <source>Pgas: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../stestmodel.cpp" line="1825"/>
+        <location filename="../stestmodel.cpp" line="1876"/>
         <source>Pabs: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1828"/>
-        <location filename="../stestmodel.cpp" line="1879"/>
+        <location filename="../stestmodel.cpp" line="1829"/>
+        <location filename="../stestmodel.cpp" line="1880"/>
         <source>Para Measured: </source>
         <translation>Para gemessen: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1831"/>
-        <location filename="../stestmodel.cpp" line="1882"/>
+        <location filename="../stestmodel.cpp" line="1832"/>
+        <location filename="../stestmodel.cpp" line="1883"/>
         <source>Correlation formula used: </source>
         <translation>Verwendete Korrelations formel: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1837"/>
-        <location filename="../stestmodel.cpp" line="1888"/>
+        <location filename="../stestmodel.cpp" line="1838"/>
+        <location filename="../stestmodel.cpp" line="1889"/>
         <source>Test Time: </source>
         <translation>Testzeit: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1838"/>
-        <location filename="../stestmodel.cpp" line="1889"/>
+        <location filename="../stestmodel.cpp" line="1839"/>
+        <location filename="../stestmodel.cpp" line="1890"/>
         <source>VL Ratio: </source>
         <translation>VL-Verhältnis: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1841"/>
-        <location filename="../stestmodel.cpp" line="1892"/>
+        <location filename="../stestmodel.cpp" line="1842"/>
+        <location filename="../stestmodel.cpp" line="1893"/>
         <source>Operator: </source>
         <translation>Operator: </translation>
     </message>
     <message>
-        <location filename="../stestmodel.cpp" line="1844"/>
-        <location filename="../stestmodel.cpp" line="1895"/>
+        <location filename="../stestmodel.cpp" line="1845"/>
+        <location filename="../stestmodel.cpp" line="1896"/>
         <source>Comment: </source>
         <translation>Kommentar: </translation>
     </message>

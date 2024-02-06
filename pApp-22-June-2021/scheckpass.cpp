@@ -83,6 +83,7 @@ void sCheckPass::Show_ShowMessage(int cptype, int mtype)
     ui->frPassword->hide();
     ui->frConfirm->hide();
     ui->frMessage->show();
+    ui->pbOK->show();
 
     switch(cptype)
     {

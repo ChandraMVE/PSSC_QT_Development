@@ -237,7 +237,7 @@ bool sMemory::deleteTests()
 
 bool sMemory::transferTests(QString fname)
 {
-    emit showStatusBox("Memory Transfer","Selected Memory is Transferring...",true);
+    emit showStatusBox(tr("Memory Transfer"),tr("Selected Memory is Transferring..."),true);
     QEventLoop delay;
     QTimer::singleShot(1000,&delay,&QEventLoop::quit);
     delay.exec();
