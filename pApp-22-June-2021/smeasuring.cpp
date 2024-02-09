@@ -1221,10 +1221,15 @@ void sMeasuring::on_pbSampleId_clicked()
         }
         else
         {
-            ui->lwSampleId->setCurrentItem(ui->lwSampleId->findItems(ui->leSampleId->text(), Qt::MatchExactly).at(0));
-            ui->lwSampleId->scrollToItem(ui->lwSampleId->currentItem());
-            ui->lwSampleId->show();
-            ui->lwSampleId->setFocus();
+            QList<QListWidgetItem *> items = ui->lwSampleId->findItems(ui->leSampleId->text(), Qt::MatchExactly);
+            if(!(items.isEmpty())){
+                ui->lwSampleId->setCurrentItem(ui->lwSampleId->findItems(ui->leSampleId->text(), Qt::MatchExactly).at(0));
+                ui->lwSampleId->scrollToItem(ui->lwSampleId->currentItem());
+                ui->lwSampleId->show();
+                ui->lwSampleId->setFocus();
+            }else{
+                ui->lwSampleId->show();
+            }
         }
     }
     else
@@ -1296,10 +1301,16 @@ void sMeasuring::on_pbOperator_clicked()
         }
         else
         {
-            ui->lwOperator->setCurrentItem(ui->lwOperator->findItems(ui->leOperator->text(), Qt::MatchExactly).at(0));
-            ui->lwOperator->scrollToItem(ui->lwOperator->currentItem());
-            ui->lwOperator->show();
-            ui->lwOperator->setFocus();
+            QList<QListWidgetItem *> items = ui->lwOperator->findItems(ui->leOperator->text(), Qt::MatchExactly);
+            if(!(items.isEmpty())){
+                ui->lwOperator->setCurrentItem(ui->lwOperator->findItems(ui->leOperator->text(), Qt::MatchExactly).at(0));
+                ui->lwOperator->scrollToItem(ui->lwOperator->currentItem());
+                ui->lwOperator->show();
+                ui->lwOperator->setFocus();
+            }
+            else{
+                ui->lwOperator->show();
+            }
         }
     }
     else
