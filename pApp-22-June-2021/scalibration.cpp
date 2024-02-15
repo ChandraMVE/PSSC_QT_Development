@@ -10,7 +10,6 @@ sCalibration::sCalibration(QWidget *parent) :
     QListView *view1 = new QListView(ui->cbTCalibMethod);
     view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
 
     ui->cbTCalibMethod->setView(view1);
@@ -18,7 +17,6 @@ sCalibration::sCalibration(QWidget *parent) :
     QListView *view2 = new QListView(ui->cbPCSelectorValve);
     view2->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
 
     ui->cbPCSelectorValve->setView(view2);
@@ -26,7 +24,6 @@ sCalibration::sCalibration(QWidget *parent) :
     QListView *view3 = new QListView(ui->cbPCTFirst);
     view3->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
 
     ui->cbPCTFirst->setView(view3);
@@ -34,7 +31,6 @@ sCalibration::sCalibration(QWidget *parent) :
     QListView *view4 = new QListView(ui->cbPCTFinal);
     view4->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
 
     ui->cbPCTFinal->setView(view4);

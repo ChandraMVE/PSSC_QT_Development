@@ -158,6 +158,7 @@ private:
     int cPrevMethod;
     bool cParasChanged;
     bool cEnSwitch;
+    bool exitClicked;
 
     QDoubleValidator *dvaConst;
     QDoubleValidator *dvbConst;

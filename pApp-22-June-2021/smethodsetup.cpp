@@ -141,7 +141,7 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     cPrevMethod = 0;
     cParasChanged = false;
     cEnSwitch = true;
-
+    exitClicked = false;
 }
 
 sMethodSetup::~sMethodSetup()
@@ -1374,10 +1374,14 @@ void sMethodSetup::checkExit(int tmp)
         cEnSwitch = false;
         emit getConfirmation(M_CONFIRM_METHOD, tmp);
     }
-    else
+    else if(exitClicked)
     {
+        exitClicked = false;
         this->hide();
         emit showHome(false);
+    }
+    else{
+
     }
 }
 
@@ -1532,5 +1536,6 @@ void sMethodSetup::on_pbSave_clicked()
 
 void sMethodSetup::on_pbExit_clicked()
 {
+    exitClicked = true;
     checkExit(M_MEASURING);
 }

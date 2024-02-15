@@ -10,7 +10,6 @@ sService::sService(QWidget *parent) :
     QListView *view = new QListView(ui->cbSelectorValve);
     view->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
 
     ui->cbSelectorValve->setView(view);

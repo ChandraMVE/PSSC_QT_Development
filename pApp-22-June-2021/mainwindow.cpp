@@ -1636,8 +1636,9 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
     }
 
-    if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) 
+    if((cCurrentUCError || cTimeOutError) && (!ui->wError->isErrorVisible())) {
         showError();
+    }
     else if(cDiagErrorHandle && (!cCurrentUCError))
     {
         cDiagErrorHandle = false;
@@ -4025,7 +4026,7 @@ void MainWindow::onMenuClicked(int menu)
       if(cInitSuccess && cWidget) cWidget->hide();
     }
 
-    if(menu < M_MEMORY)
+    if(menu <= M_MEMORY)
     {
         ui->wMenuBar->move(0,92);
         ui->fTitle->show();
@@ -4033,6 +4034,7 @@ void MainWindow::onMenuClicked(int menu)
     }
 
     if(cMenu < M_MEMORY) ui->listSetupMenu->move(558,60+120);
+    else if(cMenu == M_MEMORY) ui->listSetupMenu->move(558,60+40);
     else ui->listSetupMenu->move(558,60);
 
     switch (menu) {

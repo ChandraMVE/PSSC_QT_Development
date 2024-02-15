@@ -197,11 +197,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
 
 }
 
-QTabBar::tab:selected, QTabBar::tab:hover {
-	background-color: rgb(190, 190, 190);
-}
-
 QTabBar::tab:selected {
+	background-color: rgb(190, 190, 190);
     border-color: #9B9B9B;
     border-bottom-color: #C2C7CB; /* same as pane color */
  border: 0px
