@@ -1,0 +1,8 @@
+For creating the .exe file for windows, need to follow below steps
+	1. Need to go to below location for windeployqt
+		a. C:\Qt\Qt5.9.4\5.9.4\mingw53_32\bin
+	2. After that open the powershell window by pressing shift + right click on mouse
+	3. Execute the below cammand
+		a. PS C:\Qt\Qt5.9.4\5.9.4\mingw53_32\bin> .\windeployqt.exe "C:\Users\Admin\OneDrive\Desktop\WindowRelease\PSSC Window Deploy\pApp-3-Nov-2022.exe"
+	4. In the place of "C:\Users\Admin\OneDrive\Desktop\WindowRelease\PSSC Window Deploy\pApp-3-Nov-2022.exe" need to place where the exe has to be created but the .exe has to present in the folder which was taken by the release debug on QT
+	5. Go to "D:\PSSC\Window Release" where exetest folder will be present and copy all the files execuding the "pApp-3-Nov-2022.exe" and paste it in the folder where you have done the above steps.
