@@ -443,6 +443,69 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
     </widget>
    </widget>
   </widget>
+  <widget class="QPushButton" name="pbHome">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>740</y>
+     <width>167</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::ClickFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+background-color: red;
+border-width: 2px;
+border-color: red;
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(255, 174, 171);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(194, 54, 11);
+border-width: 2px;
+border-color: rgb(194, 54, 11);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}</string>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

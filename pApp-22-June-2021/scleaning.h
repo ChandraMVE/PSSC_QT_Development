@@ -33,6 +33,8 @@ private slots:
     void on_pbRun_clicked();
     void on_pbStop_clicked();
 
+    void on_pbHome_clicked();
+
 private:
     Ui::sCleaning *ui;
     bool cRunState;

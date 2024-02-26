@@ -96,3 +96,9 @@ void sCleaning::on_pbStop_clicked()
     // 18-Apr-2023 this->hide();
     // 18-Apr-2023 emit showHome(false);
 }
+
+void sCleaning::on_pbHome_clicked()
+{
+    this->hide();
+    emit showHome(false);
+}

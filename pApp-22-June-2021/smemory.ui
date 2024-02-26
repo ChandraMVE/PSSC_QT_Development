@@ -459,7 +459,7 @@ QTableView::item {
         <x>21</x>
         <y>30</y>
         <width>661</width>
-        <height>70</height>
+        <height>51</height>
        </rect>
       </property>
       <property name="sizePolicy">
