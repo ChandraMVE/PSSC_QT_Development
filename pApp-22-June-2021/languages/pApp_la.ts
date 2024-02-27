@@ -30,31 +30,31 @@
     </message>
     <message>
         <location filename="../mainwindow.ui" line="279"/>
-        <location filename="../mainwindow.cpp" line="4104"/>
+        <location filename="../mainwindow.cpp" line="4106"/>
         <source>User</source>
         <translation>Usuario</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="284"/>
-        <location filename="../mainwindow.cpp" line="4115"/>
+        <location filename="../mainwindow.cpp" line="4117"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="289"/>
-        <location filename="../mainwindow.cpp" line="4119"/>
+        <location filename="../mainwindow.cpp" line="4121"/>
         <source>Method</source>
         <translation>Método</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="294"/>
-        <location filename="../mainwindow.cpp" line="4123"/>
+        <location filename="../mainwindow.cpp" line="4125"/>
         <source>Service</source>
         <translation>Servicio</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="299"/>
-        <location filename="../mainwindow.cpp" line="4127"/>
+        <location filename="../mainwindow.cpp" line="4129"/>
         <source>Calibration</source>
         <translation>Calibración</translation>
     </message>
@@ -89,175 +89,175 @@
         <translation>¡Prueba inicial realizada!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1753"/>
+        <location filename="../mainwindow.cpp" line="1754"/>
         <source>Diagnostic Cycle Started...</source>
         <translation>Ciclo de diagnóstico iniciado...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1768"/>
+        <location filename="../mainwindow.cpp" line="1769"/>
         <source>Diagnostic Cycle Stopped...</source>
         <translation>Ciclo de diagnóstico detenido...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1796"/>
+        <location filename="../mainwindow.cpp" line="1797"/>
         <source>Auto Calibration Started...</source>
         <translation>Calibración automática iniciada...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1804"/>
+        <location filename="../mainwindow.cpp" line="1805"/>
         <source>Moving Valve to Exhaust Position</source>
         <translation>Mover la válvula a la posición de escape</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1825"/>
-        <location filename="../mainwindow.cpp" line="3013"/>
-        <location filename="../mainwindow.cpp" line="3021"/>
-        <location filename="../mainwindow.cpp" line="3071"/>
-        <location filename="../mainwindow.cpp" line="3108"/>
+        <location filename="../mainwindow.cpp" line="1826"/>
+        <location filename="../mainwindow.cpp" line="3014"/>
+        <location filename="../mainwindow.cpp" line="3022"/>
+        <location filename="../mainwindow.cpp" line="3072"/>
+        <location filename="../mainwindow.cpp" line="3109"/>
         <source>Auto Calibration Stopped...</source>
         <translation>Calibración automática detenida...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1954"/>
-        <location filename="../mainwindow.cpp" line="2030"/>
+        <location filename="../mainwindow.cpp" line="1955"/>
+        <location filename="../mainwindow.cpp" line="2031"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2094"/>
+        <location filename="../mainwindow.cpp" line="2095"/>
         <source>Initial </source>
         <translation>Inicial </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2095"/>
+        <location filename="../mainwindow.cpp" line="2096"/>
         <source>TimeOut </source>
         <translation>Se acabó el tiempo </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2670"/>
-        <location filename="../mainwindow.cpp" line="2685"/>
-        <location filename="../mainwindow.cpp" line="2709"/>
+        <location filename="../mainwindow.cpp" line="2671"/>
+        <location filename="../mainwindow.cpp" line="2686"/>
+        <location filename="../mainwindow.cpp" line="2710"/>
         <source>Valve Exhaust OK!</source>
         <translation>¡Válvula de escape OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2671"/>
-        <location filename="../mainwindow.cpp" line="2686"/>
-        <location filename="../mainwindow.cpp" line="2719"/>
+        <location filename="../mainwindow.cpp" line="2672"/>
+        <location filename="../mainwindow.cpp" line="2687"/>
+        <location filename="../mainwindow.cpp" line="2720"/>
         <source>Piston Zero OK!</source>
         <translation>Pistón cero ¡OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2672"/>
-        <location filename="../mainwindow.cpp" line="2688"/>
-        <location filename="../mainwindow.cpp" line="2740"/>
+        <location filename="../mainwindow.cpp" line="2673"/>
+        <location filename="../mainwindow.cpp" line="2689"/>
+        <location filename="../mainwindow.cpp" line="2741"/>
         <source>Temperature OK!</source>
         <translation>¡Temperatura OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2674"/>
-        <location filename="../mainwindow.cpp" line="2690"/>
-        <location filename="../mainwindow.cpp" line="2742"/>
+        <location filename="../mainwindow.cpp" line="2675"/>
+        <location filename="../mainwindow.cpp" line="2691"/>
+        <location filename="../mainwindow.cpp" line="2743"/>
         <source>Pressure @20C:</source>
         <translation>Presión @20C:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2704"/>
-        <location filename="../mainwindow.cpp" line="2833"/>
-        <location filename="../mainwindow.cpp" line="2858"/>
-        <location filename="../mainwindow.cpp" line="3014"/>
-        <location filename="../mainwindow.cpp" line="3072"/>
-        <location filename="../mainwindow.cpp" line="3110"/>
+        <location filename="../mainwindow.cpp" line="2705"/>
+        <location filename="../mainwindow.cpp" line="2834"/>
+        <location filename="../mainwindow.cpp" line="2859"/>
+        <location filename="../mainwindow.cpp" line="3015"/>
+        <location filename="../mainwindow.cpp" line="3073"/>
+        <location filename="../mainwindow.cpp" line="3111"/>
         <source>Valve Motor Error!</source>
         <translation>¡Error del motor de la válvula!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2714"/>
-        <location filename="../mainwindow.cpp" line="2784"/>
-        <location filename="../mainwindow.cpp" line="2807"/>
-        <location filename="../mainwindow.cpp" line="3022"/>
+        <location filename="../mainwindow.cpp" line="2715"/>
+        <location filename="../mainwindow.cpp" line="2785"/>
+        <location filename="../mainwindow.cpp" line="2808"/>
+        <location filename="../mainwindow.cpp" line="3023"/>
         <source>Piston Motor Error!</source>
         <translation>¡Error del motor del pistón!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2777"/>
+        <location filename="../mainwindow.cpp" line="2778"/>
         <source>Piston 5ml OK!</source>
         <translation>¡Pistón 5ml bien!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2799"/>
+        <location filename="../mainwindow.cpp" line="2800"/>
         <source>Piston 0ml OK!</source>
         <translation>Pistón 0ml ¡OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2824"/>
+        <location filename="../mainwindow.cpp" line="2825"/>
         <source>Valve Closed OK!</source>
         <translation>Válvula cerrada ¡Bien!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2850"/>
+        <location filename="../mainwindow.cpp" line="2851"/>
         <source>Valve In OK!</source>
         <translation>¡Válvula en OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2886"/>
+        <location filename="../mainwindow.cpp" line="2887"/>
         <source>Shaker Motor 60rpm OK!</source>
         <translation>Motor agitador 60 rpm ¡OK!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2895"/>
-        <location filename="../mainwindow.cpp" line="2924"/>
+        <location filename="../mainwindow.cpp" line="2896"/>
+        <location filename="../mainwindow.cpp" line="2925"/>
         <source>Shaker Motor Error!</source>
         <translation>¡Error del motor del agitador!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2914"/>
+        <location filename="../mainwindow.cpp" line="2915"/>
         <source>Shaker Motor Stopped OK!</source>
         <translation>¡El motor del agitador se detuvo correctamente!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2942"/>
+        <location filename="../mainwindow.cpp" line="2943"/>
         <source>Temperature 30C OK!</source>
         <translation>Temperatura 30C ¡Bien!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2944"/>
+        <location filename="../mainwindow.cpp" line="2945"/>
         <source>Pressure @30C:</source>
         <translation>Presión @30C:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2951"/>
+        <location filename="../mainwindow.cpp" line="2952"/>
         <source>Pressure Test Successful</source>
         <translation>Prueba de presión exitosa</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2957"/>
+        <location filename="../mainwindow.cpp" line="2958"/>
         <source>Diagnostic Cycle Successsfully Completed!</source>
         <translation>¡Ciclo de diagnóstico completado con éxito!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4517"/>
-        <location filename="../mainwindow.cpp" line="4520"/>
+        <location filename="../mainwindow.cpp" line="4519"/>
+        <location filename="../mainwindow.cpp" line="4522"/>
         <source>Memory Transfer</source>
         <translation>Transferencia de memoria</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4517"/>
+        <location filename="../mainwindow.cpp" line="4519"/>
         <source>Selected Memory Transferred!</source>
         <translation>¡Memoria seleccionada transferida!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="4520"/>
+        <location filename="../mainwindow.cpp" line="4522"/>
         <source>Error Transferring Memory!</source>
         <translation>¡Error al transferir memoria!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1995"/>
-        <location filename="../mainwindow.cpp" line="2068"/>
-        <location filename="../mainwindow.cpp" line="2755"/>
-        <location filename="../mainwindow.cpp" line="2959"/>
-        <location filename="../mainwindow.cpp" line="2975"/>
-        <location filename="../mainwindow.cpp" line="3263"/>
+        <location filename="../mainwindow.cpp" line="1996"/>
+        <location filename="../mainwindow.cpp" line="2069"/>
+        <location filename="../mainwindow.cpp" line="2756"/>
+        <location filename="../mainwindow.cpp" line="2960"/>
+        <location filename="../mainwindow.cpp" line="2976"/>
+        <location filename="../mainwindow.cpp" line="3264"/>
         <source>Diagnostic Cycle Failed!</source>
         <translation>¡Falló el ciclo de diagnóstico!</translation>
     </message>
@@ -282,7 +282,7 @@ Espere por favor...</translation>
         <translation>Ciclo actual:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3141"/>
+        <location filename="../mainwindow.cpp" line="3142"/>
         <source>Auto Calibration Done...</source>
         <translation>Calibración automática realizada...</translation>
     </message>
@@ -291,13 +291,13 @@ Espere por favor...</translation>
         <translation type="vanished">Error de comunicación (</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="3262"/>
+        <location filename="../mainwindow.cpp" line="3263"/>
         <source>Communication Error!</source>
         <translation>¡Error de comunicación!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2752"/>
-        <location filename="../mainwindow.cpp" line="2973"/>
+        <location filename="../mainwindow.cpp" line="2753"/>
+        <location filename="../mainwindow.cpp" line="2974"/>
         <source>Temperature Error!</source>
         <translation>¡Error de temperatura!</translation>
     </message>
@@ -319,558 +319,558 @@ Espere por favor...</translation>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="219"/>
-        <location filename="../scalibration.ui" line="1257"/>
-        <location filename="../scalibration.ui" line="1349"/>
-        <location filename="../scalibration.ui" line="2021"/>
-        <location filename="../scalibration.ui" line="3214"/>
+        <location filename="../scalibration.ui" line="216"/>
+        <location filename="../scalibration.ui" line="1254"/>
+        <location filename="../scalibration.ui" line="1346"/>
+        <location filename="../scalibration.ui" line="2018"/>
+        <location filename="../scalibration.ui" line="3211"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="292"/>
-        <location filename="../scalibration.ui" line="1513"/>
+        <location filename="../scalibration.ui" line="289"/>
+        <location filename="../scalibration.ui" line="1510"/>
         <source>ON</source>
         <translation>En</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="332"/>
-        <location filename="../scalibration.ui" line="1553"/>
+        <location filename="../scalibration.ui" line="329"/>
+        <location filename="../scalibration.ui" line="1550"/>
         <source>20.00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="484"/>
-        <location filename="../scalibration.ui" line="1364"/>
+        <location filename="../scalibration.ui" line="481"/>
+        <location filename="../scalibration.ui" line="1361"/>
         <source>T =</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="564"/>
+        <location filename="../scalibration.ui" line="561"/>
         <source>T Low</source>
         <translation>T Bajo</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="604"/>
+        <location filename="../scalibration.ui" line="601"/>
         <source>60.00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="687"/>
+        <location filename="../scalibration.ui" line="684"/>
         <source>T High</source>
         <translation>T Alto</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2366"/>
+        <location filename="../scalibration.ui" line="2363"/>
         <source>Linear Table</source>
         <translation>Mesa lineal</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2599"/>
-        <location filename="../scalibration.ui" line="2706"/>
-        <location filename="../scalibration.ui" line="3673"/>
-        <location filename="../scalibration.ui" line="4186"/>
-        <location filename="../scalibration.ui" line="4293"/>
+        <location filename="../scalibration.ui" line="2596"/>
+        <location filename="../scalibration.ui" line="2703"/>
+        <location filename="../scalibration.ui" line="3670"/>
+        <location filename="../scalibration.ui" line="4183"/>
+        <location filename="../scalibration.ui" line="4290"/>
         <source>10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2604"/>
-        <location filename="../scalibration.ui" line="2746"/>
-        <location filename="../scalibration.ui" line="3678"/>
-        <location filename="../scalibration.ui" line="3886"/>
-        <location filename="../scalibration.ui" line="4191"/>
-        <location filename="../scalibration.ui" line="4333"/>
+        <location filename="../scalibration.ui" line="2601"/>
+        <location filename="../scalibration.ui" line="2743"/>
+        <location filename="../scalibration.ui" line="3675"/>
+        <location filename="../scalibration.ui" line="3883"/>
+        <location filename="../scalibration.ui" line="4188"/>
+        <location filename="../scalibration.ui" line="4330"/>
         <source>15</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2609"/>
-        <location filename="../scalibration.ui" line="2774"/>
-        <location filename="../scalibration.ui" line="3683"/>
-        <location filename="../scalibration.ui" line="3891"/>
-        <location filename="../scalibration.ui" line="4196"/>
-        <location filename="../scalibration.ui" line="4361"/>
+        <location filename="../scalibration.ui" line="2606"/>
+        <location filename="../scalibration.ui" line="2771"/>
+        <location filename="../scalibration.ui" line="3680"/>
+        <location filename="../scalibration.ui" line="3888"/>
+        <location filename="../scalibration.ui" line="4193"/>
+        <location filename="../scalibration.ui" line="4358"/>
         <source>20</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2614"/>
-        <location filename="../scalibration.ui" line="2802"/>
-        <location filename="../scalibration.ui" line="3688"/>
-        <location filename="../scalibration.ui" line="3896"/>
-        <location filename="../scalibration.ui" line="4201"/>
-        <location filename="../scalibration.ui" line="4389"/>
+        <location filename="../scalibration.ui" line="2611"/>
+        <location filename="../scalibration.ui" line="2799"/>
+        <location filename="../scalibration.ui" line="3685"/>
+        <location filename="../scalibration.ui" line="3893"/>
+        <location filename="../scalibration.ui" line="4198"/>
+        <location filename="../scalibration.ui" line="4386"/>
         <source>25</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2619"/>
-        <location filename="../scalibration.ui" line="2830"/>
-        <location filename="../scalibration.ui" line="3693"/>
-        <location filename="../scalibration.ui" line="3901"/>
-        <location filename="../scalibration.ui" line="4206"/>
-        <location filename="../scalibration.ui" line="4417"/>
+        <location filename="../scalibration.ui" line="2616"/>
+        <location filename="../scalibration.ui" line="2827"/>
+        <location filename="../scalibration.ui" line="3690"/>
+        <location filename="../scalibration.ui" line="3898"/>
+        <location filename="../scalibration.ui" line="4203"/>
+        <location filename="../scalibration.ui" line="4414"/>
         <source>30</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2624"/>
-        <location filename="../scalibration.ui" line="2858"/>
-        <location filename="../scalibration.ui" line="3698"/>
-        <location filename="../scalibration.ui" line="3906"/>
-        <location filename="../scalibration.ui" line="4211"/>
-        <location filename="../scalibration.ui" line="4445"/>
+        <location filename="../scalibration.ui" line="2621"/>
+        <location filename="../scalibration.ui" line="2855"/>
+        <location filename="../scalibration.ui" line="3695"/>
+        <location filename="../scalibration.ui" line="3903"/>
+        <location filename="../scalibration.ui" line="4208"/>
+        <location filename="../scalibration.ui" line="4442"/>
         <source>35</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2629"/>
-        <location filename="../scalibration.ui" line="2886"/>
-        <location filename="../scalibration.ui" line="3703"/>
-        <location filename="../scalibration.ui" line="3911"/>
-        <location filename="../scalibration.ui" line="4216"/>
-        <location filename="../scalibration.ui" line="4473"/>
+        <location filename="../scalibration.ui" line="2626"/>
+        <location filename="../scalibration.ui" line="2883"/>
+        <location filename="../scalibration.ui" line="3700"/>
+        <location filename="../scalibration.ui" line="3908"/>
+        <location filename="../scalibration.ui" line="4213"/>
+        <location filename="../scalibration.ui" line="4470"/>
         <source>40</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2634"/>
-        <location filename="../scalibration.ui" line="2914"/>
-        <location filename="../scalibration.ui" line="3708"/>
-        <location filename="../scalibration.ui" line="3916"/>
-        <location filename="../scalibration.ui" line="4221"/>
-        <location filename="../scalibration.ui" line="4501"/>
+        <location filename="../scalibration.ui" line="2631"/>
+        <location filename="../scalibration.ui" line="2911"/>
+        <location filename="../scalibration.ui" line="3705"/>
+        <location filename="../scalibration.ui" line="3913"/>
+        <location filename="../scalibration.ui" line="4218"/>
+        <location filename="../scalibration.ui" line="4498"/>
         <source>45</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2639"/>
-        <location filename="../scalibration.ui" line="2942"/>
-        <location filename="../scalibration.ui" line="3713"/>
-        <location filename="../scalibration.ui" line="3921"/>
-        <location filename="../scalibration.ui" line="4226"/>
-        <location filename="../scalibration.ui" line="4529"/>
+        <location filename="../scalibration.ui" line="2636"/>
+        <location filename="../scalibration.ui" line="2939"/>
+        <location filename="../scalibration.ui" line="3710"/>
+        <location filename="../scalibration.ui" line="3918"/>
+        <location filename="../scalibration.ui" line="4223"/>
+        <location filename="../scalibration.ui" line="4526"/>
         <source>50</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2644"/>
-        <location filename="../scalibration.ui" line="2970"/>
-        <location filename="../scalibration.ui" line="3718"/>
-        <location filename="../scalibration.ui" line="3926"/>
-        <location filename="../scalibration.ui" line="4231"/>
-        <location filename="../scalibration.ui" line="4557"/>
+        <location filename="../scalibration.ui" line="2641"/>
+        <location filename="../scalibration.ui" line="2967"/>
+        <location filename="../scalibration.ui" line="3715"/>
+        <location filename="../scalibration.ui" line="3923"/>
+        <location filename="../scalibration.ui" line="4228"/>
+        <location filename="../scalibration.ui" line="4554"/>
         <source>55</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2649"/>
-        <location filename="../scalibration.ui" line="2998"/>
-        <location filename="../scalibration.ui" line="3723"/>
-        <location filename="../scalibration.ui" line="3931"/>
-        <location filename="../scalibration.ui" line="4236"/>
-        <location filename="../scalibration.ui" line="4585"/>
+        <location filename="../scalibration.ui" line="2646"/>
+        <location filename="../scalibration.ui" line="2995"/>
+        <location filename="../scalibration.ui" line="3720"/>
+        <location filename="../scalibration.ui" line="3928"/>
+        <location filename="../scalibration.ui" line="4233"/>
+        <location filename="../scalibration.ui" line="4582"/>
         <source>60</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2654"/>
-        <location filename="../scalibration.ui" line="3026"/>
-        <location filename="../scalibration.ui" line="3728"/>
-        <location filename="../scalibration.ui" line="3936"/>
-        <location filename="../scalibration.ui" line="4241"/>
-        <location filename="../scalibration.ui" line="4613"/>
+        <location filename="../scalibration.ui" line="2651"/>
+        <location filename="../scalibration.ui" line="3023"/>
+        <location filename="../scalibration.ui" line="3725"/>
+        <location filename="../scalibration.ui" line="3933"/>
+        <location filename="../scalibration.ui" line="4238"/>
+        <location filename="../scalibration.ui" line="4610"/>
         <source>65</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2659"/>
-        <location filename="../scalibration.ui" line="3054"/>
-        <location filename="../scalibration.ui" line="3733"/>
-        <location filename="../scalibration.ui" line="3941"/>
-        <location filename="../scalibration.ui" line="4246"/>
-        <location filename="../scalibration.ui" line="4641"/>
+        <location filename="../scalibration.ui" line="2656"/>
+        <location filename="../scalibration.ui" line="3051"/>
+        <location filename="../scalibration.ui" line="3730"/>
+        <location filename="../scalibration.ui" line="3938"/>
+        <location filename="../scalibration.ui" line="4243"/>
+        <location filename="../scalibration.ui" line="4638"/>
         <source>70</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2664"/>
-        <location filename="../scalibration.ui" line="3082"/>
-        <location filename="../scalibration.ui" line="3738"/>
-        <location filename="../scalibration.ui" line="3946"/>
-        <location filename="../scalibration.ui" line="4251"/>
-        <location filename="../scalibration.ui" line="4669"/>
+        <location filename="../scalibration.ui" line="2661"/>
+        <location filename="../scalibration.ui" line="3079"/>
+        <location filename="../scalibration.ui" line="3735"/>
+        <location filename="../scalibration.ui" line="3943"/>
+        <location filename="../scalibration.ui" line="4248"/>
+        <location filename="../scalibration.ui" line="4666"/>
         <source>75</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2669"/>
-        <location filename="../scalibration.ui" line="3110"/>
-        <location filename="../scalibration.ui" line="3743"/>
-        <location filename="../scalibration.ui" line="3951"/>
-        <location filename="../scalibration.ui" line="4256"/>
-        <location filename="../scalibration.ui" line="4697"/>
+        <location filename="../scalibration.ui" line="2666"/>
+        <location filename="../scalibration.ui" line="3107"/>
+        <location filename="../scalibration.ui" line="3740"/>
+        <location filename="../scalibration.ui" line="3948"/>
+        <location filename="../scalibration.ui" line="4253"/>
+        <location filename="../scalibration.ui" line="4694"/>
         <source>80</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2674"/>
-        <location filename="../scalibration.ui" line="4261"/>
+        <location filename="../scalibration.ui" line="2671"/>
+        <location filename="../scalibration.ui" line="4258"/>
         <source>Temp</source>
         <translation>Temperatura</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2682"/>
-        <location filename="../scalibration.ui" line="4269"/>
+        <location filename="../scalibration.ui" line="2679"/>
+        <location filename="../scalibration.ui" line="4266"/>
         <source>Zero
 Correction</source>
         <translation>Cero
 Corrección</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2688"/>
-        <location filename="../scalibration.ui" line="4275"/>
+        <location filename="../scalibration.ui" line="2685"/>
+        <location filename="../scalibration.ui" line="4272"/>
         <source>Ambient
 Correction</source>
         <translation>Ambiente
 Corrección</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2694"/>
-        <location filename="../scalibration.ui" line="4281"/>
+        <location filename="../scalibration.ui" line="2691"/>
+        <location filename="../scalibration.ui" line="4278"/>
         <source>Zero
 Pressure</source>
         <translation>Cero
 Presión</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2700"/>
-        <location filename="../scalibration.ui" line="4287"/>
+        <location filename="../scalibration.ui" line="2697"/>
+        <location filename="../scalibration.ui" line="4284"/>
         <source>Ambient
 Pressure</source>
         <translation>Ambiente
 Presión</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2722"/>
-        <location filename="../scalibration.ui" line="2754"/>
-        <location filename="../scalibration.ui" line="2810"/>
-        <location filename="../scalibration.ui" line="2866"/>
-        <location filename="../scalibration.ui" line="2922"/>
-        <location filename="../scalibration.ui" line="2978"/>
-        <location filename="../scalibration.ui" line="3034"/>
-        <location filename="../scalibration.ui" line="3090"/>
-        <location filename="../scalibration.ui" line="4309"/>
-        <location filename="../scalibration.ui" line="4341"/>
-        <location filename="../scalibration.ui" line="4397"/>
-        <location filename="../scalibration.ui" line="4453"/>
-        <location filename="../scalibration.ui" line="4509"/>
-        <location filename="../scalibration.ui" line="4565"/>
-        <location filename="../scalibration.ui" line="4621"/>
-        <location filename="../scalibration.ui" line="4677"/>
+        <location filename="../scalibration.ui" line="2719"/>
+        <location filename="../scalibration.ui" line="2751"/>
+        <location filename="../scalibration.ui" line="2807"/>
+        <location filename="../scalibration.ui" line="2863"/>
+        <location filename="../scalibration.ui" line="2919"/>
+        <location filename="../scalibration.ui" line="2975"/>
+        <location filename="../scalibration.ui" line="3031"/>
+        <location filename="../scalibration.ui" line="3087"/>
+        <location filename="../scalibration.ui" line="4306"/>
+        <location filename="../scalibration.ui" line="4338"/>
+        <location filename="../scalibration.ui" line="4394"/>
+        <location filename="../scalibration.ui" line="4450"/>
+        <location filename="../scalibration.ui" line="4506"/>
+        <location filename="../scalibration.ui" line="4562"/>
+        <location filename="../scalibration.ui" line="4618"/>
+        <location filename="../scalibration.ui" line="4674"/>
         <source>0.01</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2738"/>
-        <location filename="../scalibration.ui" line="4325"/>
+        <location filename="../scalibration.ui" line="2735"/>
+        <location filename="../scalibration.ui" line="4322"/>
         <source>101.20</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2764"/>
-        <location filename="../scalibration.ui" line="2820"/>
-        <location filename="../scalibration.ui" line="2876"/>
-        <location filename="../scalibration.ui" line="2932"/>
-        <location filename="../scalibration.ui" line="2988"/>
-        <location filename="../scalibration.ui" line="3044"/>
-        <location filename="../scalibration.ui" line="3100"/>
-        <location filename="../scalibration.ui" line="4351"/>
-        <location filename="../scalibration.ui" line="4407"/>
-        <location filename="../scalibration.ui" line="4463"/>
-        <location filename="../scalibration.ui" line="4519"/>
-        <location filename="../scalibration.ui" line="4575"/>
-        <location filename="../scalibration.ui" line="4631"/>
-        <location filename="../scalibration.ui" line="4687"/>
+        <location filename="../scalibration.ui" line="2761"/>
+        <location filename="../scalibration.ui" line="2817"/>
+        <location filename="../scalibration.ui" line="2873"/>
+        <location filename="../scalibration.ui" line="2929"/>
+        <location filename="../scalibration.ui" line="2985"/>
+        <location filename="../scalibration.ui" line="3041"/>
+        <location filename="../scalibration.ui" line="3097"/>
+        <location filename="../scalibration.ui" line="4348"/>
+        <location filename="../scalibration.ui" line="4404"/>
+        <location filename="../scalibration.ui" line="4460"/>
+        <location filename="../scalibration.ui" line="4516"/>
+        <location filename="../scalibration.ui" line="4572"/>
+        <location filename="../scalibration.ui" line="4628"/>
+        <location filename="../scalibration.ui" line="4684"/>
         <source>-0.10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2769"/>
-        <location filename="../scalibration.ui" line="2797"/>
-        <location filename="../scalibration.ui" line="2825"/>
-        <location filename="../scalibration.ui" line="2853"/>
-        <location filename="../scalibration.ui" line="2881"/>
-        <location filename="../scalibration.ui" line="2909"/>
-        <location filename="../scalibration.ui" line="2937"/>
-        <location filename="../scalibration.ui" line="2965"/>
-        <location filename="../scalibration.ui" line="2993"/>
-        <location filename="../scalibration.ui" line="3021"/>
-        <location filename="../scalibration.ui" line="3049"/>
-        <location filename="../scalibration.ui" line="3077"/>
-        <location filename="../scalibration.ui" line="3105"/>
-        <location filename="../scalibration.ui" line="3133"/>
-        <location filename="../scalibration.ui" line="4356"/>
-        <location filename="../scalibration.ui" line="4384"/>
-        <location filename="../scalibration.ui" line="4412"/>
-        <location filename="../scalibration.ui" line="4440"/>
-        <location filename="../scalibration.ui" line="4468"/>
-        <location filename="../scalibration.ui" line="4496"/>
-        <location filename="../scalibration.ui" line="4524"/>
-        <location filename="../scalibration.ui" line="4552"/>
-        <location filename="../scalibration.ui" line="4580"/>
-        <location filename="../scalibration.ui" line="4608"/>
-        <location filename="../scalibration.ui" line="4636"/>
-        <location filename="../scalibration.ui" line="4664"/>
-        <location filename="../scalibration.ui" line="4692"/>
-        <location filename="../scalibration.ui" line="4720"/>
+        <location filename="../scalibration.ui" line="2766"/>
+        <location filename="../scalibration.ui" line="2794"/>
+        <location filename="../scalibration.ui" line="2822"/>
+        <location filename="../scalibration.ui" line="2850"/>
+        <location filename="../scalibration.ui" line="2878"/>
+        <location filename="../scalibration.ui" line="2906"/>
+        <location filename="../scalibration.ui" line="2934"/>
+        <location filename="../scalibration.ui" line="2962"/>
+        <location filename="../scalibration.ui" line="2990"/>
+        <location filename="../scalibration.ui" line="3018"/>
+        <location filename="../scalibration.ui" line="3046"/>
+        <location filename="../scalibration.ui" line="3074"/>
+        <location filename="../scalibration.ui" line="3102"/>
+        <location filename="../scalibration.ui" line="3130"/>
+        <location filename="../scalibration.ui" line="4353"/>
+        <location filename="../scalibration.ui" line="4381"/>
+        <location filename="../scalibration.ui" line="4409"/>
+        <location filename="../scalibration.ui" line="4437"/>
+        <location filename="../scalibration.ui" line="4465"/>
+        <location filename="../scalibration.ui" line="4493"/>
+        <location filename="../scalibration.ui" line="4521"/>
+        <location filename="../scalibration.ui" line="4549"/>
+        <location filename="../scalibration.ui" line="4577"/>
+        <location filename="../scalibration.ui" line="4605"/>
+        <location filename="../scalibration.ui" line="4633"/>
+        <location filename="../scalibration.ui" line="4661"/>
+        <location filename="../scalibration.ui" line="4689"/>
+        <location filename="../scalibration.ui" line="4717"/>
         <source>101.10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3141"/>
+        <location filename="../scalibration.ui" line="3138"/>
         <source>Linearization</source>
         <translation>Linealización</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3311"/>
+        <location filename="../scalibration.ui" line="3308"/>
         <source>Auto Calibration</source>
         <translation>Calibración automática</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3375"/>
+        <location filename="../scalibration.ui" line="3372"/>
         <source>Start</source>
         <translation>Comenzar</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3439"/>
+        <location filename="../scalibration.ui" line="3436"/>
         <source>Stop</source>
         <translation>Detener</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3455"/>
+        <location filename="../scalibration.ui" line="3452"/>
         <source>T First</source>
         <translation>T primero</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3471"/>
+        <location filename="../scalibration.ui" line="3468"/>
         <source>T Final</source>
         <translation>T final</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3535"/>
+        <location filename="../scalibration.ui" line="3532"/>
         <source>Show</source>
         <translation>Espectáculo</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3551"/>
+        <location filename="../scalibration.ui" line="3548"/>
         <source>Linearization Table</source>
         <translation>Tabla de linealización</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3748"/>
-        <location filename="../scalibration.ui" line="3956"/>
+        <location filename="../scalibration.ui" line="3745"/>
+        <location filename="../scalibration.ui" line="3953"/>
         <source>85</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3753"/>
-        <location filename="../scalibration.ui" line="3961"/>
+        <location filename="../scalibration.ui" line="3750"/>
+        <location filename="../scalibration.ui" line="3958"/>
         <source>90</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3758"/>
-        <location filename="../scalibration.ui" line="3966"/>
+        <location filename="../scalibration.ui" line="3755"/>
+        <location filename="../scalibration.ui" line="3963"/>
         <source>95</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3763"/>
-        <location filename="../scalibration.ui" line="3971"/>
+        <location filename="../scalibration.ui" line="3760"/>
+        <location filename="../scalibration.ui" line="3968"/>
         <source>100</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="3988"/>
+        <location filename="../scalibration.ui" line="3985"/>
         <source>Auto Calibration Started...</source>
         <translation>Calibración automática iniciada...</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="4738"/>
+        <location filename="../scalibration.ui" line="4735"/>
         <source>Raising Temperature</source>
         <translation>Aumento de temperatura</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="4874"/>
+        <location filename="../scalibration.ui" line="4871"/>
         <source>Click to Calibrate</source>
         <translation>Haga clic para calibrar</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="468"/>
-        <location filename="../scalibration.ui" line="548"/>
-        <location filename="../scalibration.ui" line="671"/>
-        <location filename="../scalibration.ui" line="1153"/>
-        <location filename="../scalibration.ui" line="1428"/>
-        <location filename="../scalibration.ui" line="1649"/>
-        <location filename="../scalibration.ui" line="1745"/>
-        <location filename="../scalibration.ui" line="2358"/>
-        <location filename="../scalibration.cpp" line="355"/>
-        <location filename="../scalibration.cpp" line="356"/>
-        <location filename="../scalibration.cpp" line="460"/>
-        <location filename="../scalibration.cpp" line="461"/>
-        <location filename="../scalibration.cpp" line="649"/>
-        <location filename="../scalibration.cpp" line="673"/>
-        <location filename="../scalibration.cpp" line="698"/>
-        <location filename="../scalibration.cpp" line="721"/>
-        <location filename="../scalibration.cpp" line="741"/>
-        <location filename="../scalibration.cpp" line="742"/>
-        <location filename="../scalibration.cpp" line="748"/>
-        <location filename="../scalibration.cpp" line="749"/>
+        <location filename="../scalibration.ui" line="465"/>
+        <location filename="../scalibration.ui" line="545"/>
+        <location filename="../scalibration.ui" line="668"/>
+        <location filename="../scalibration.ui" line="1150"/>
+        <location filename="../scalibration.ui" line="1425"/>
+        <location filename="../scalibration.ui" line="1646"/>
+        <location filename="../scalibration.ui" line="1742"/>
+        <location filename="../scalibration.ui" line="2355"/>
+        <location filename="../scalibration.cpp" line="351"/>
+        <location filename="../scalibration.cpp" line="352"/>
+        <location filename="../scalibration.cpp" line="456"/>
+        <location filename="../scalibration.cpp" line="457"/>
+        <location filename="../scalibration.cpp" line="645"/>
+        <location filename="../scalibration.cpp" line="669"/>
+        <location filename="../scalibration.cpp" line="694"/>
+        <location filename="../scalibration.cpp" line="717"/>
+        <location filename="../scalibration.cpp" line="737"/>
+        <location filename="../scalibration.cpp" line="738"/>
+        <location filename="../scalibration.cpp" line="744"/>
+        <location filename="../scalibration.cpp" line="745"/>
         <source>Set</source>
         <translation>Conjunto</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="277"/>
+        <location filename="../scalibration.ui" line="274"/>
         <source>Temperature Control</source>
         <translation>Control de temperatura</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1212"/>
+        <location filename="../scalibration.ui" line="1209"/>
         <source>T Offset</source>
         <translation>Compensación T</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1054"/>
+        <location filename="../scalibration.ui" line="1051"/>
         <source>Calibration</source>
         <translation>Calibración</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="804"/>
-        <location filename="../scalibration.ui" line="1940"/>
+        <location filename="../scalibration.ui" line="801"/>
+        <location filename="../scalibration.ui" line="1937"/>
         <source>Zero</source>
         <translation>Cero</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="746"/>
+        <location filename="../scalibration.ui" line="743"/>
         <source>Offset</source>
         <translation>Compensar</translation>
     </message>
     <message>
         <location filename="../scalibration.ui" line="76"/>
-        <location filename="../scalibration.cpp" line="1246"/>
-        <location filename="../scalibration.cpp" line="1273"/>
+        <location filename="../scalibration.cpp" line="1242"/>
+        <location filename="../scalibration.cpp" line="1269"/>
         <source>Home</source>
         <translation>Hogar</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="727"/>
-        <location filename="../scalibration.ui" line="1862"/>
+        <location filename="../scalibration.ui" line="724"/>
+        <location filename="../scalibration.ui" line="1859"/>
         <source>0.0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="772"/>
-        <location filename="../scalibration.ui" line="830"/>
-        <location filename="../scalibration.ui" line="881"/>
-        <location filename="../scalibration.ui" line="1193"/>
-        <location filename="../scalibration.ui" line="1966"/>
-        <location filename="../scalibration.ui" line="2005"/>
-        <location filename="../scalibration.ui" line="2714"/>
-        <location filename="../scalibration.ui" line="2730"/>
-        <location filename="../scalibration.ui" line="2759"/>
-        <location filename="../scalibration.ui" line="2782"/>
-        <location filename="../scalibration.ui" line="2787"/>
-        <location filename="../scalibration.ui" line="2792"/>
-        <location filename="../scalibration.ui" line="2815"/>
-        <location filename="../scalibration.ui" line="2838"/>
-        <location filename="../scalibration.ui" line="2843"/>
-        <location filename="../scalibration.ui" line="2848"/>
-        <location filename="../scalibration.ui" line="2871"/>
-        <location filename="../scalibration.ui" line="2894"/>
-        <location filename="../scalibration.ui" line="2899"/>
-        <location filename="../scalibration.ui" line="2904"/>
-        <location filename="../scalibration.ui" line="2927"/>
-        <location filename="../scalibration.ui" line="2950"/>
-        <location filename="../scalibration.ui" line="2955"/>
-        <location filename="../scalibration.ui" line="2960"/>
-        <location filename="../scalibration.ui" line="2983"/>
-        <location filename="../scalibration.ui" line="3006"/>
-        <location filename="../scalibration.ui" line="3011"/>
-        <location filename="../scalibration.ui" line="3016"/>
-        <location filename="../scalibration.ui" line="3039"/>
-        <location filename="../scalibration.ui" line="3062"/>
-        <location filename="../scalibration.ui" line="3067"/>
-        <location filename="../scalibration.ui" line="3072"/>
-        <location filename="../scalibration.ui" line="3095"/>
-        <location filename="../scalibration.ui" line="3118"/>
-        <location filename="../scalibration.ui" line="3123"/>
-        <location filename="../scalibration.ui" line="3128"/>
-        <location filename="../scalibration.ui" line="4301"/>
-        <location filename="../scalibration.ui" line="4317"/>
-        <location filename="../scalibration.ui" line="4346"/>
-        <location filename="../scalibration.ui" line="4369"/>
-        <location filename="../scalibration.ui" line="4374"/>
-        <location filename="../scalibration.ui" line="4379"/>
-        <location filename="../scalibration.ui" line="4402"/>
-        <location filename="../scalibration.ui" line="4425"/>
-        <location filename="../scalibration.ui" line="4430"/>
-        <location filename="../scalibration.ui" line="4435"/>
-        <location filename="../scalibration.ui" line="4458"/>
-        <location filename="../scalibration.ui" line="4481"/>
-        <location filename="../scalibration.ui" line="4486"/>
-        <location filename="../scalibration.ui" line="4491"/>
-        <location filename="../scalibration.ui" line="4514"/>
-        <location filename="../scalibration.ui" line="4537"/>
-        <location filename="../scalibration.ui" line="4542"/>
-        <location filename="../scalibration.ui" line="4547"/>
-        <location filename="../scalibration.ui" line="4570"/>
-        <location filename="../scalibration.ui" line="4593"/>
-        <location filename="../scalibration.ui" line="4598"/>
-        <location filename="../scalibration.ui" line="4603"/>
-        <location filename="../scalibration.ui" line="4626"/>
-        <location filename="../scalibration.ui" line="4649"/>
-        <location filename="../scalibration.ui" line="4654"/>
-        <location filename="../scalibration.ui" line="4659"/>
-        <location filename="../scalibration.ui" line="4682"/>
-        <location filename="../scalibration.ui" line="4705"/>
-        <location filename="../scalibration.ui" line="4710"/>
-        <location filename="../scalibration.ui" line="4715"/>
-        <location filename="../scalibration.ui" line="4917"/>
+        <location filename="../scalibration.ui" line="769"/>
+        <location filename="../scalibration.ui" line="827"/>
+        <location filename="../scalibration.ui" line="878"/>
+        <location filename="../scalibration.ui" line="1190"/>
+        <location filename="../scalibration.ui" line="1963"/>
+        <location filename="../scalibration.ui" line="2002"/>
+        <location filename="../scalibration.ui" line="2711"/>
+        <location filename="../scalibration.ui" line="2727"/>
+        <location filename="../scalibration.ui" line="2756"/>
+        <location filename="../scalibration.ui" line="2779"/>
+        <location filename="../scalibration.ui" line="2784"/>
+        <location filename="../scalibration.ui" line="2789"/>
+        <location filename="../scalibration.ui" line="2812"/>
+        <location filename="../scalibration.ui" line="2835"/>
+        <location filename="../scalibration.ui" line="2840"/>
+        <location filename="../scalibration.ui" line="2845"/>
+        <location filename="../scalibration.ui" line="2868"/>
+        <location filename="../scalibration.ui" line="2891"/>
+        <location filename="../scalibration.ui" line="2896"/>
+        <location filename="../scalibration.ui" line="2901"/>
+        <location filename="../scalibration.ui" line="2924"/>
+        <location filename="../scalibration.ui" line="2947"/>
+        <location filename="../scalibration.ui" line="2952"/>
+        <location filename="../scalibration.ui" line="2957"/>
+        <location filename="../scalibration.ui" line="2980"/>
+        <location filename="../scalibration.ui" line="3003"/>
+        <location filename="../scalibration.ui" line="3008"/>
+        <location filename="../scalibration.ui" line="3013"/>
+        <location filename="../scalibration.ui" line="3036"/>
+        <location filename="../scalibration.ui" line="3059"/>
+        <location filename="../scalibration.ui" line="3064"/>
+        <location filename="../scalibration.ui" line="3069"/>
+        <location filename="../scalibration.ui" line="3092"/>
+        <location filename="../scalibration.ui" line="3115"/>
+        <location filename="../scalibration.ui" line="3120"/>
+        <location filename="../scalibration.ui" line="3125"/>
+        <location filename="../scalibration.ui" line="4298"/>
+        <location filename="../scalibration.ui" line="4314"/>
+        <location filename="../scalibration.ui" line="4343"/>
+        <location filename="../scalibration.ui" line="4366"/>
+        <location filename="../scalibration.ui" line="4371"/>
+        <location filename="../scalibration.ui" line="4376"/>
+        <location filename="../scalibration.ui" line="4399"/>
+        <location filename="../scalibration.ui" line="4422"/>
+        <location filename="../scalibration.ui" line="4427"/>
+        <location filename="../scalibration.ui" line="4432"/>
+        <location filename="../scalibration.ui" line="4455"/>
+        <location filename="../scalibration.ui" line="4478"/>
+        <location filename="../scalibration.ui" line="4483"/>
+        <location filename="../scalibration.ui" line="4488"/>
+        <location filename="../scalibration.ui" line="4511"/>
+        <location filename="../scalibration.ui" line="4534"/>
+        <location filename="../scalibration.ui" line="4539"/>
+        <location filename="../scalibration.ui" line="4544"/>
+        <location filename="../scalibration.ui" line="4567"/>
+        <location filename="../scalibration.ui" line="4590"/>
+        <location filename="../scalibration.ui" line="4595"/>
+        <location filename="../scalibration.ui" line="4600"/>
+        <location filename="../scalibration.ui" line="4623"/>
+        <location filename="../scalibration.ui" line="4646"/>
+        <location filename="../scalibration.ui" line="4651"/>
+        <location filename="../scalibration.ui" line="4656"/>
+        <location filename="../scalibration.ui" line="4679"/>
+        <location filename="../scalibration.ui" line="4702"/>
+        <location filename="../scalibration.ui" line="4707"/>
+        <location filename="../scalibration.ui" line="4712"/>
+        <location filename="../scalibration.ui" line="4914"/>
         <source>0.00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="788"/>
-        <location filename="../scalibration.ui" line="1924"/>
+        <location filename="../scalibration.ui" line="785"/>
+        <location filename="../scalibration.ui" line="1921"/>
         <source>Gain</source>
         <translation>Ganancia</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1032"/>
+        <location filename="../scalibration.ui" line="1029"/>
         <source>Method 1</source>
         <translation>Método 1</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1037"/>
+        <location filename="../scalibration.ui" line="1034"/>
         <source>Method 2</source>
         <translation>Método 2</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1291"/>
-        <location filename="../scalibration.ui" line="2089"/>
-        <location filename="../scalibration.ui" line="3282"/>
+        <location filename="../scalibration.ui" line="1288"/>
+        <location filename="../scalibration.ui" line="2086"/>
+        <location filename="../scalibration.ui" line="3279"/>
         <source>Pressure</source>
         <translation>Presión</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1665"/>
+        <location filename="../scalibration.ui" line="1662"/>
         <source>P Low</source>
         <translation>P Bajo</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1681"/>
+        <location filename="../scalibration.ui" line="1678"/>
         <source>P High</source>
         <translation>P Alto</translation>
     </message>
@@ -880,99 +880,99 @@ Valve</source>
         <translation type="obsolete">Válvula selectora</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1809"/>
+        <location filename="../scalibration.ui" line="1806"/>
         <source>P Cal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="1905"/>
+        <location filename="../scalibration.ui" line="1902"/>
         <source>101.22</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2118"/>
+        <location filename="../scalibration.ui" line="2115"/>
         <source>Selector Valve</source>
         <translation>Válvula selectora</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2147"/>
-        <location filename="../scalibration.ui" line="2275"/>
+        <location filename="../scalibration.ui" line="2144"/>
+        <location filename="../scalibration.ui" line="2272"/>
         <source>In</source>
         <translation>En</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2280"/>
+        <location filename="../scalibration.ui" line="2277"/>
         <source>Out</source>
         <translation>Out</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="2270"/>
+        <location filename="../scalibration.ui" line="2267"/>
         <source>Closed</source>
         <translation>Cerrado</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="4762"/>
+        <location filename="../scalibration.ui" line="4759"/>
         <source>Touch Screen</source>
         <translation>Pantalla táctil</translation>
     </message>
     <message>
-        <location filename="../scalibration.ui" line="4807"/>
+        <location filename="../scalibration.ui" line="4804"/>
         <source>TouchScreen Calibration</source>
         <translation>Calibración de pantalla táctil</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="308"/>
+        <location filename="../scalibration.cpp" line="304"/>
+        <location filename="../scalibration.cpp" line="1221"/>
         <location filename="../scalibration.cpp" line="1225"/>
         <location filename="../scalibration.cpp" line="1229"/>
-        <location filename="../scalibration.cpp" line="1233"/>
         <source>Calibration Setup</source>
         <translation>Configuración de calibración</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="308"/>
+        <location filename="../scalibration.cpp" line="304"/>
         <source>Error Saving File!</source>
         <translation>¡Error al guardar el archivo!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="642"/>
-        <location filename="../scalibration.cpp" line="666"/>
-        <location filename="../scalibration.cpp" line="691"/>
-        <location filename="../scalibration.cpp" line="714"/>
+        <location filename="../scalibration.cpp" line="638"/>
+        <location filename="../scalibration.cpp" line="662"/>
+        <location filename="../scalibration.cpp" line="687"/>
+        <location filename="../scalibration.cpp" line="710"/>
         <source>Done</source>
         <translation>Hecho</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="755"/>
+        <location filename="../scalibration.cpp" line="751"/>
         <source>Auto Calibration Stopped...</source>
         <translation>Calibración automática detenida...</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1225"/>
+        <location filename="../scalibration.cpp" line="1221"/>
         <source>Temperature Calibration Saved!</source>
         <translation>¡Calibración de temperatura guardada!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1229"/>
+        <location filename="../scalibration.cpp" line="1225"/>
         <source>Pressure Calibration Saved!</source>
         <translation>¡Calibración de presión guardada!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1233"/>
+        <location filename="../scalibration.cpp" line="1229"/>
         <source>Linear Table Saved!</source>
         <translation>¡Tabla lineal guardada!</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1257"/>
-        <location filename="../scalibration.cpp" line="1297"/>
-        <location filename="../scalibration.cpp" line="1366"/>
+        <location filename="../scalibration.cpp" line="1253"/>
+        <location filename="../scalibration.cpp" line="1293"/>
+        <location filename="../scalibration.cpp" line="1362"/>
         <source>Back</source>
         <translation>Atrás</translation>
     </message>
     <message>
-        <location filename="../scalibration.cpp" line="1405"/>
-        <location filename="../scalibration.cpp" line="1416"/>
-        <location filename="../scalibration.cpp" line="1427"/>
-        <location filename="../scalibration.cpp" line="1442"/>
+        <location filename="../scalibration.cpp" line="1401"/>
+        <location filename="../scalibration.cpp" line="1412"/>
+        <location filename="../scalibration.cpp" line="1423"/>
+        <location filename="../scalibration.cpp" line="1438"/>
         <source>Wait</source>
         <translation>Esperar</translation>
     </message>
@@ -1016,7 +1016,7 @@ Valve</source>
     </message>
     <message>
         <location filename="../scheckpass.ui" line="350"/>
-        <location filename="../scheckpass.cpp" line="125"/>
+        <location filename="../scheckpass.cpp" line="126"/>
         <source>Wrong Password!
 Enter valid password &amp; try again!</source>
         <translation>¡Contraseña incorrecta!
@@ -1034,7 +1034,7 @@ Introduzca una contraseña válida e inténtelo de nuevo</translation>
     </message>
     <message>
         <location filename="../scheckpass.ui" line="525"/>
-        <location filename="../scheckpass.cpp" line="110"/>
+        <location filename="../scheckpass.cpp" line="111"/>
         <source>Memory Delete</source>
         <translation>Borrar memoria</translation>
     </message>
@@ -1078,99 +1078,99 @@ Introduzca una contraseña válida e inténtelo de nuevo</translation>
         <translation>Contraseña del mensaje de depuración</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="90"/>
+        <location filename="../scheckpass.cpp" line="91"/>
         <source>General Setup Password!</source>
         <translation>¡Contraseña de configuración general!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="94"/>
+        <location filename="../scheckpass.cpp" line="95"/>
         <source>Method Setup Password!</source>
         <translation>¡Contraseña de configuración del método!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="98"/>
+        <location filename="../scheckpass.cpp" line="99"/>
         <source>Service Password!</source>
         <translation>¡Contraseña de servicio!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="102"/>
+        <location filename="../scheckpass.cpp" line="103"/>
         <source>Calibration Password!</source>
         <translation>¡Contraseña de calibración!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="106"/>
+        <location filename="../scheckpass.cpp" line="107"/>
         <source> Debug Message Password!</source>
         <translation> ¡Contraseña del mensaje de depuración!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="114"/>
+        <location filename="../scheckpass.cpp" line="115"/>
         <source>Memory Transfer</source>
         <translation>Transferencia de memoria</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="118"/>
+        <location filename="../scheckpass.cpp" line="119"/>
         <source>Memory Print</source>
         <translation>Impresión de memoria</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="126"/>
+        <location filename="../scheckpass.cpp" line="127"/>
         <source>Wrong User!
 Enter valid user &amp; try again!</source>
         <translation>Usuario equivocado!
 Ingrese un usuario válido e inténtelo nuevamente!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="128"/>
+        <location filename="../scheckpass.cpp" line="129"/>
         <source>Selected Memory Deleted!</source>
         <translation>¡Memoria seleccionada eliminada!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="132"/>
+        <location filename="../scheckpass.cpp" line="133"/>
         <source>Selected Memory Transferred!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">¡Memoria seleccionada transferida!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="247"/>
-        <location filename="../scheckpass.cpp" line="252"/>
+        <location filename="../scheckpass.cpp" line="248"/>
+        <location filename="../scheckpass.cpp" line="253"/>
         <source>Measuring!</source>
         <translation>¡Medición!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="248"/>
+        <location filename="../scheckpass.cpp" line="249"/>
         <source>Do you want to Stop Test?</source>
         <translation>¿Quieres detener la prueba?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="257"/>
+        <location filename="../scheckpass.cpp" line="258"/>
         <source>Rinsing!</source>
         <translation>¡Enjuague!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="258"/>
+        <location filename="../scheckpass.cpp" line="259"/>
         <source>Do you want to Stop Rinsing?</source>
         <translation>¿Quieres dejar de enjuagar?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="267"/>
-        <location filename="../scheckpass.cpp" line="272"/>
+        <location filename="../scheckpass.cpp" line="268"/>
+        <location filename="../scheckpass.cpp" line="273"/>
         <source>General Setup!</source>
         <translation>¡Configuración general!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="278"/>
-        <location filename="../scheckpass.cpp" line="288"/>
-        <location filename="../scheckpass.cpp" line="298"/>
+        <location filename="../scheckpass.cpp" line="279"/>
+        <location filename="../scheckpass.cpp" line="289"/>
+        <location filename="../scheckpass.cpp" line="299"/>
         <source>Do you want to Exit without saving?</source>
         <translation>¿Quieres salir sin guardar?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="277"/>
-        <location filename="../scheckpass.cpp" line="282"/>
+        <location filename="../scheckpass.cpp" line="278"/>
+        <location filename="../scheckpass.cpp" line="283"/>
         <source>Method Setup!</source>
         <translation>¡Configuración del método!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="129"/>
+        <location filename="../scheckpass.cpp" line="130"/>
         <source>Error Deleting Memory!</source>
         <translation>¡Error al eliminar la memoria!</translation>
     </message>
@@ -1183,79 +1183,79 @@ El registro USB está activo
 ¡No retire el pendrive USB!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="133"/>
+        <location filename="../scheckpass.cpp" line="134"/>
         <source>Error Transferring Memory!</source>
         <translation>¡Error al transferir memoria!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="134"/>
+        <location filename="../scheckpass.cpp" line="135"/>
         <source>No USB Pen Drive Found!
 Reconnect USB Pen Drive &amp; try again!</source>
         <translation>¡No se encontró ninguna memoria USB!
 ¡Vuelva a conectar el Pen Drive USB e inténtelo de nuevo!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="136"/>
         <location filename="../scheckpass.cpp" line="137"/>
         <location filename="../scheckpass.cpp" line="138"/>
+        <location filename="../scheckpass.cpp" line="139"/>
         <source>Select  tests/columns!</source>
         <translation>¡Seleccione pruebas/columnas!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="253"/>
+        <location filename="../scheckpass.cpp" line="254"/>
         <source>Memory Full!
 Perform Test without saving?</source>
         <translation>¡Memoria llena!
 ¿Realizar prueba sin guardar?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="262"/>
+        <location filename="../scheckpass.cpp" line="263"/>
         <source>User Setup!</source>
         <translation>Configuración de usuario!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="263"/>
-        <location filename="../scheckpass.cpp" line="268"/>
+        <location filename="../scheckpass.cpp" line="264"/>
+        <location filename="../scheckpass.cpp" line="269"/>
         <source>Do you want to Leave without saving?</source>
         <translation>¿Quieres salir sin guardar?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="273"/>
-        <location filename="../scheckpass.cpp" line="283"/>
-        <location filename="../scheckpass.cpp" line="293"/>
-        <location filename="../scheckpass.cpp" line="303"/>
+        <location filename="../scheckpass.cpp" line="274"/>
+        <location filename="../scheckpass.cpp" line="284"/>
+        <location filename="../scheckpass.cpp" line="294"/>
+        <location filename="../scheckpass.cpp" line="304"/>
         <source>Save before switch?</source>
         <translation>¿Guardar antes de cambiar?</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="287"/>
-        <location filename="../scheckpass.cpp" line="292"/>
+        <location filename="../scheckpass.cpp" line="288"/>
+        <location filename="../scheckpass.cpp" line="293"/>
         <source>Service Setup!</source>
         <translation>¡Configuración del servicio!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="297"/>
-        <location filename="../scheckpass.cpp" line="302"/>
+        <location filename="../scheckpass.cpp" line="298"/>
+        <location filename="../scheckpass.cpp" line="303"/>
         <source>Calibration Setup!</source>
         <translation>¡Configuración de calibración!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="307"/>
+        <location filename="../scheckpass.cpp" line="308"/>
         <source>Memory Transfer!</source>
         <translation>¡Transferencia de memoria!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="308"/>
+        <location filename="../scheckpass.cpp" line="309"/>
         <source>Do you want to transfer!</source>
         <translation>¿Quieres transferir!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="312"/>
+        <location filename="../scheckpass.cpp" line="313"/>
         <source>Memory Delete!</source>
         <translation>¡Eliminación de memoria!</translation>
     </message>
     <message>
-        <location filename="../scheckpass.cpp" line="313"/>
+        <location filename="../scheckpass.cpp" line="314"/>
         <source>Do you want to delete!</source>
         <translation>¡Quieres borrar!</translation>
     </message>
@@ -1311,6 +1311,11 @@ Perform Test without saving?</source>
         <location filename="../scleaning.ui" line="430"/>
         <source>Current Cycle: -/-</source>
         <translation>Ciclo actual: -/-</translation>
+    </message>
+    <message>
+        <location filename="../scleaning.ui" line="506"/>
+        <source>Home</source>
+        <translation>Hogar</translation>
     </message>
     <message>
         <source>Pass/Fail</source>
@@ -1384,134 +1389,134 @@ Reconnect USB Pen Drive &amp; try again!</source>
     </message>
     <message>
         <location filename="../sgeneralsetup.ui" line="140"/>
-        <location filename="../sgeneralsetup.cpp" line="984"/>
+        <location filename="../sgeneralsetup.cpp" line="963"/>
         <source>Save</source>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="217"/>
+        <location filename="../sgeneralsetup.ui" line="214"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="369"/>
+        <location filename="../sgeneralsetup.ui" line="366"/>
         <source>MM/DD/YYYY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="374"/>
+        <location filename="../sgeneralsetup.ui" line="371"/>
         <source>MM/DD/YY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="379"/>
+        <location filename="../sgeneralsetup.ui" line="376"/>
         <source>DD/MM/YYYY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="384"/>
+        <location filename="../sgeneralsetup.ui" line="381"/>
         <source>DD/MM/YY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="402"/>
-        <location filename="../sgeneralsetup.ui" line="3444"/>
+        <location filename="../sgeneralsetup.ui" line="399"/>
+        <location filename="../sgeneralsetup.ui" line="3435"/>
         <source>Date</source>
         <translation>Fecha</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="525"/>
+        <location filename="../sgeneralsetup.ui" line="522"/>
         <source>HH/MM/SS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="530"/>
+        <location filename="../sgeneralsetup.ui" line="527"/>
         <source>12 Hour AM/PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="535"/>
+        <location filename="../sgeneralsetup.ui" line="532"/>
         <source>24 Hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="553"/>
-        <location filename="../sgeneralsetup.ui" line="4119"/>
+        <location filename="../sgeneralsetup.ui" line="550"/>
+        <location filename="../sgeneralsetup.ui" line="4110"/>
         <source>Time</source>
         <translation>Hora</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="570"/>
+        <location filename="../sgeneralsetup.ui" line="567"/>
         <source>Location</source>
         <translation>Ubicación</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="587"/>
+        <location filename="../sgeneralsetup.ui" line="584"/>
         <source>Unit Id</source>
         <translation>ID de unidad</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="710"/>
+        <location filename="../sgeneralsetup.ui" line="707"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="715"/>
+        <location filename="../sgeneralsetup.ui" line="712"/>
         <source>Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="720"/>
+        <location filename="../sgeneralsetup.ui" line="717"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="725"/>
+        <location filename="../sgeneralsetup.ui" line="722"/>
         <source>French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="743"/>
+        <location filename="../sgeneralsetup.ui" line="740"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="760"/>
+        <location filename="../sgeneralsetup.ui" line="757"/>
         <source>Pressure Scale</source>
         <translation>Escala de presión</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="883"/>
+        <location filename="../sgeneralsetup.ui" line="880"/>
         <source>kPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="888"/>
+        <location filename="../sgeneralsetup.ui" line="885"/>
         <source>PSI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="893"/>
+        <location filename="../sgeneralsetup.ui" line="890"/>
         <source>hPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="898"/>
+        <location filename="../sgeneralsetup.ui" line="895"/>
         <source>ATM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="916"/>
+        <location filename="../sgeneralsetup.ui" line="913"/>
         <source>Temperature Scale</source>
         <translation>La escala de temperatura</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1039"/>
+        <location filename="../sgeneralsetup.ui" line="1036"/>
         <source>Celsius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1044"/>
+        <location filename="../sgeneralsetup.ui" line="1041"/>
         <source>Fahrenheit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1526,138 +1531,138 @@ Ciclos</translation>
         <translation type="vanished">Líneas</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2840"/>
+        <location filename="../sgeneralsetup.ui" line="2834"/>
         <source>Network</source>
         <translation>Red</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3002"/>
+        <location filename="../sgeneralsetup.ui" line="2996"/>
         <source>192.168.100.111</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3048"/>
+        <location filename="../sgeneralsetup.ui" line="3042"/>
         <source>255.255.255.0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3091"/>
-        <location filename="../sgeneralsetup.ui" line="3134"/>
+        <location filename="../sgeneralsetup.ui" line="3085"/>
+        <location filename="../sgeneralsetup.ui" line="3128"/>
         <source>192.168.100.1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3215"/>
+        <location filename="../sgeneralsetup.ui" line="3209"/>
         <source>Network Enable</source>
         <translation>Habilitar red</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3258"/>
+        <location filename="../sgeneralsetup.ui" line="3252"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4662"/>
+        <location filename="../sgeneralsetup.ui" line="4653"/>
         <source>AM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4667"/>
+        <location filename="../sgeneralsetup.ui" line="4658"/>
         <source>PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4959"/>
+        <location filename="../sgeneralsetup.ui" line="4950"/>
         <source>admin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4964"/>
+        <location filename="../sgeneralsetup.ui" line="4955"/>
         <source>service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="5097"/>
+        <location filename="../sgeneralsetup.ui" line="5088"/>
         <source>User</source>
         <translation>Usuario</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2911"/>
+        <location filename="../sgeneralsetup.ui" line="2905"/>
         <source>IP Address</source>
         <translation>Dirección IP</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1062"/>
+        <location filename="../sgeneralsetup.ui" line="1059"/>
         <source>Auto Measuring</source>
         <translation>Medición automática</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2271"/>
+        <location filename="../sgeneralsetup.ui" line="2265"/>
         <source>Flow Control</source>
         <translation>Control de flujo</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2399"/>
+        <location filename="../sgeneralsetup.ui" line="2393"/>
         <source>XON/XOFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2404"/>
+        <location filename="../sgeneralsetup.ui" line="2398"/>
         <source>DTR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2435"/>
+        <location filename="../sgeneralsetup.ui" line="2429"/>
         <source>Desktop Printer</source>
         <translation>Impresora de escritorio</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2681"/>
+        <location filename="../sgeneralsetup.ui" line="2675"/>
         <source>Letter</source>
         <translation>Carta</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2810"/>
+        <location filename="../sgeneralsetup.ui" line="2804"/>
         <source>Multiline</source>
         <translation>multilínea</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2815"/>
+        <location filename="../sgeneralsetup.ui" line="2809"/>
         <source>Single</source>
         <translation>Soltera</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2832"/>
+        <location filename="../sgeneralsetup.ui" line="2826"/>
         <source>Report Format</source>
         <translation>Formato de informe</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2928"/>
+        <location filename="../sgeneralsetup.ui" line="2922"/>
         <source>IP Mask</source>
         <translation>Máscara de IP</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2945"/>
+        <location filename="../sgeneralsetup.ui" line="2939"/>
         <source>Gateway</source>
         <translation>Puerta</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2962"/>
+        <location filename="../sgeneralsetup.ui" line="2956"/>
         <source>DNS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3298"/>
+        <location filename="../sgeneralsetup.ui" line="3292"/>
         <source>RVPPRO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3311"/>
+        <location filename="../sgeneralsetup.ui" line="3305"/>
         <source>Other</source>
         <translation>Otro</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3386"/>
+        <location filename="../sgeneralsetup.ui" line="3377"/>
         <source>Date Time</source>
         <translation>Fecha y hora</translation>
     </message>
@@ -1670,190 +1675,190 @@ Ciclos</translation>
         <translation type="vanished">Servicio</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1189"/>
-        <location filename="../sgeneralsetup.ui" line="1938"/>
-        <location filename="../sgeneralsetup.ui" line="3982"/>
+        <location filename="../sgeneralsetup.ui" line="1186"/>
+        <location filename="../sgeneralsetup.ui" line="1932"/>
+        <location filename="../sgeneralsetup.ui" line="3973"/>
         <source>1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1194"/>
-        <location filename="../sgeneralsetup.ui" line="1943"/>
-        <location filename="../sgeneralsetup.ui" line="3792"/>
-        <location filename="../sgeneralsetup.ui" line="3987"/>
-        <location filename="../sgeneralsetup.ui" line="4256"/>
-        <location filename="../sgeneralsetup.ui" line="4454"/>
+        <location filename="../sgeneralsetup.ui" line="1191"/>
+        <location filename="../sgeneralsetup.ui" line="1937"/>
+        <location filename="../sgeneralsetup.ui" line="3783"/>
+        <location filename="../sgeneralsetup.ui" line="3978"/>
+        <location filename="../sgeneralsetup.ui" line="4247"/>
+        <location filename="../sgeneralsetup.ui" line="4445"/>
         <source>2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1199"/>
-        <location filename="../sgeneralsetup.ui" line="3797"/>
-        <location filename="../sgeneralsetup.ui" line="3992"/>
-        <location filename="../sgeneralsetup.ui" line="4261"/>
-        <location filename="../sgeneralsetup.ui" line="4459"/>
+        <location filename="../sgeneralsetup.ui" line="1196"/>
+        <location filename="../sgeneralsetup.ui" line="3788"/>
+        <location filename="../sgeneralsetup.ui" line="3983"/>
+        <location filename="../sgeneralsetup.ui" line="4252"/>
+        <location filename="../sgeneralsetup.ui" line="4450"/>
         <source>3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1204"/>
-        <location filename="../sgeneralsetup.ui" line="3802"/>
-        <location filename="../sgeneralsetup.ui" line="3997"/>
-        <location filename="../sgeneralsetup.ui" line="4266"/>
-        <location filename="../sgeneralsetup.ui" line="4464"/>
+        <location filename="../sgeneralsetup.ui" line="1201"/>
+        <location filename="../sgeneralsetup.ui" line="3793"/>
+        <location filename="../sgeneralsetup.ui" line="3988"/>
+        <location filename="../sgeneralsetup.ui" line="4257"/>
+        <location filename="../sgeneralsetup.ui" line="4455"/>
         <source>4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1209"/>
-        <location filename="../sgeneralsetup.ui" line="2510"/>
-        <location filename="../sgeneralsetup.ui" line="3807"/>
-        <location filename="../sgeneralsetup.ui" line="4002"/>
-        <location filename="../sgeneralsetup.ui" line="4271"/>
-        <location filename="../sgeneralsetup.ui" line="4469"/>
+        <location filename="../sgeneralsetup.ui" line="1206"/>
+        <location filename="../sgeneralsetup.ui" line="2504"/>
+        <location filename="../sgeneralsetup.ui" line="3798"/>
+        <location filename="../sgeneralsetup.ui" line="3993"/>
+        <location filename="../sgeneralsetup.ui" line="4262"/>
+        <location filename="../sgeneralsetup.ui" line="4460"/>
         <source>5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1214"/>
-        <location filename="../sgeneralsetup.ui" line="2515"/>
-        <location filename="../sgeneralsetup.ui" line="3812"/>
-        <location filename="../sgeneralsetup.ui" line="4007"/>
-        <location filename="../sgeneralsetup.ui" line="4276"/>
-        <location filename="../sgeneralsetup.ui" line="4474"/>
+        <location filename="../sgeneralsetup.ui" line="1211"/>
+        <location filename="../sgeneralsetup.ui" line="2509"/>
+        <location filename="../sgeneralsetup.ui" line="3803"/>
+        <location filename="../sgeneralsetup.ui" line="3998"/>
+        <location filename="../sgeneralsetup.ui" line="4267"/>
+        <location filename="../sgeneralsetup.ui" line="4465"/>
         <source>6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1219"/>
-        <location filename="../sgeneralsetup.ui" line="2083"/>
-        <location filename="../sgeneralsetup.ui" line="2520"/>
-        <location filename="../sgeneralsetup.ui" line="3817"/>
-        <location filename="../sgeneralsetup.ui" line="4012"/>
-        <location filename="../sgeneralsetup.ui" line="4281"/>
-        <location filename="../sgeneralsetup.ui" line="4479"/>
+        <location filename="../sgeneralsetup.ui" line="1216"/>
+        <location filename="../sgeneralsetup.ui" line="2077"/>
+        <location filename="../sgeneralsetup.ui" line="2514"/>
+        <location filename="../sgeneralsetup.ui" line="3808"/>
+        <location filename="../sgeneralsetup.ui" line="4003"/>
+        <location filename="../sgeneralsetup.ui" line="4272"/>
+        <location filename="../sgeneralsetup.ui" line="4470"/>
         <source>7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1224"/>
-        <location filename="../sgeneralsetup.ui" line="2088"/>
-        <location filename="../sgeneralsetup.ui" line="2525"/>
-        <location filename="../sgeneralsetup.ui" line="3822"/>
-        <location filename="../sgeneralsetup.ui" line="4017"/>
-        <location filename="../sgeneralsetup.ui" line="4286"/>
-        <location filename="../sgeneralsetup.ui" line="4484"/>
+        <location filename="../sgeneralsetup.ui" line="1221"/>
+        <location filename="../sgeneralsetup.ui" line="2082"/>
+        <location filename="../sgeneralsetup.ui" line="2519"/>
+        <location filename="../sgeneralsetup.ui" line="3813"/>
+        <location filename="../sgeneralsetup.ui" line="4008"/>
+        <location filename="../sgeneralsetup.ui" line="4277"/>
+        <location filename="../sgeneralsetup.ui" line="4475"/>
         <source>8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1229"/>
-        <location filename="../sgeneralsetup.ui" line="3827"/>
-        <location filename="../sgeneralsetup.ui" line="4022"/>
-        <location filename="../sgeneralsetup.ui" line="4291"/>
-        <location filename="../sgeneralsetup.ui" line="4489"/>
+        <location filename="../sgeneralsetup.ui" line="1226"/>
+        <location filename="../sgeneralsetup.ui" line="3818"/>
+        <location filename="../sgeneralsetup.ui" line="4013"/>
+        <location filename="../sgeneralsetup.ui" line="4282"/>
+        <location filename="../sgeneralsetup.ui" line="4480"/>
         <source>9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1376"/>
+        <location filename="../sgeneralsetup.ui" line="1373"/>
         <source>Company</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1383"/>
+        <location filename="../sgeneralsetup.ui" line="1380"/>
         <source>Device</source>
         <translation>Dispositivo</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1458"/>
+        <location filename="../sgeneralsetup.ui" line="1452"/>
         <source>Printer</source>
         <translation>Impresor</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1516"/>
+        <location filename="../sgeneralsetup.ui" line="1510"/>
         <source>Ticket Printer</source>
         <translation>Impresora de tickets</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1638"/>
+        <location filename="../sgeneralsetup.ui" line="1632"/>
         <source>2400</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1643"/>
+        <location filename="../sgeneralsetup.ui" line="1637"/>
         <source>4800</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1653"/>
+        <location filename="../sgeneralsetup.ui" line="1647"/>
         <source>19200</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1809"/>
+        <location filename="../sgeneralsetup.ui" line="1803"/>
         <source>Serial</source>
         <translation>De serie</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1814"/>
+        <location filename="../sgeneralsetup.ui" line="1808"/>
         <source>USB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1670"/>
+        <location filename="../sgeneralsetup.ui" line="1664"/>
         <source>Emulation</source>
         <translation>Emulación</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1648"/>
+        <location filename="../sgeneralsetup.ui" line="1642"/>
         <source>9600</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1686"/>
+        <location filename="../sgeneralsetup.ui" line="1680"/>
         <source>Baud Rate</source>
         <translation>Tasa de baudios</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2239"/>
+        <location filename="../sgeneralsetup.ui" line="2233"/>
         <source>Parity</source>
         <translation>Paridad</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="1960"/>
+        <location filename="../sgeneralsetup.ui" line="1954"/>
         <source>Stop Bits</source>
         <translation>Bits de parada</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2255"/>
-        <location filename="../sgeneralsetup.ui" line="2542"/>
+        <location filename="../sgeneralsetup.ui" line="2249"/>
+        <location filename="../sgeneralsetup.ui" line="2536"/>
         <source>Data Bits</source>
         <translation>Bits de datos</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2558"/>
+        <location filename="../sgeneralsetup.ui" line="2552"/>
         <source>Page Size</source>
         <translation>Tamaño de página</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2686"/>
+        <location filename="../sgeneralsetup.ui" line="2680"/>
         <source>A4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2212"/>
-        <location filename="../sgeneralsetup.ui" line="2394"/>
+        <location filename="../sgeneralsetup.ui" line="2206"/>
+        <location filename="../sgeneralsetup.ui" line="2388"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2222"/>
+        <location filename="../sgeneralsetup.ui" line="2216"/>
         <source>Even</source>
         <translation>Incluso</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="2217"/>
+        <location filename="../sgeneralsetup.ui" line="2211"/>
         <source>Odd</source>
         <translation>Impair</translation>
     </message>
@@ -1863,176 +1868,176 @@ Ciclos</translation>
         <translation type="unfinished">Hogar</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3567"/>
+        <location filename="../sgeneralsetup.ui" line="3558"/>
         <source>2021</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3572"/>
+        <location filename="../sgeneralsetup.ui" line="3563"/>
         <source>2022</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3577"/>
+        <location filename="../sgeneralsetup.ui" line="3568"/>
         <source>2023</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3582"/>
+        <location filename="../sgeneralsetup.ui" line="3573"/>
         <source>2024</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3587"/>
+        <location filename="../sgeneralsetup.ui" line="3578"/>
         <source>2025</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3592"/>
+        <location filename="../sgeneralsetup.ui" line="3583"/>
         <source>2026</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3597"/>
+        <location filename="../sgeneralsetup.ui" line="3588"/>
         <source>2027</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3602"/>
+        <location filename="../sgeneralsetup.ui" line="3593"/>
         <source>2028</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3607"/>
+        <location filename="../sgeneralsetup.ui" line="3598"/>
         <source>2029</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3612"/>
+        <location filename="../sgeneralsetup.ui" line="3603"/>
         <source>2030</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3617"/>
+        <location filename="../sgeneralsetup.ui" line="3608"/>
         <source>2031</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3622"/>
+        <location filename="../sgeneralsetup.ui" line="3613"/>
         <source>2032</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3627"/>
+        <location filename="../sgeneralsetup.ui" line="3618"/>
         <source>2033</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3632"/>
+        <location filename="../sgeneralsetup.ui" line="3623"/>
         <source>2034</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3637"/>
+        <location filename="../sgeneralsetup.ui" line="3628"/>
         <source>2035</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3642"/>
+        <location filename="../sgeneralsetup.ui" line="3633"/>
         <source>2036</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3647"/>
+        <location filename="../sgeneralsetup.ui" line="3638"/>
         <source>2037</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3652"/>
+        <location filename="../sgeneralsetup.ui" line="3643"/>
         <source>2038</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3657"/>
+        <location filename="../sgeneralsetup.ui" line="3648"/>
         <source>2039</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3662"/>
+        <location filename="../sgeneralsetup.ui" line="3653"/>
         <source>2040</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3787"/>
-        <location filename="../sgeneralsetup.ui" line="3837"/>
-        <location filename="../sgeneralsetup.ui" line="4032"/>
-        <location filename="../sgeneralsetup.ui" line="4251"/>
-        <location filename="../sgeneralsetup.ui" line="4301"/>
-        <location filename="../sgeneralsetup.ui" line="4499"/>
+        <location filename="../sgeneralsetup.ui" line="3778"/>
+        <location filename="../sgeneralsetup.ui" line="3828"/>
+        <location filename="../sgeneralsetup.ui" line="4023"/>
+        <location filename="../sgeneralsetup.ui" line="4242"/>
+        <location filename="../sgeneralsetup.ui" line="4292"/>
+        <location filename="../sgeneralsetup.ui" line="4490"/>
         <source>11</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3832"/>
-        <location filename="../sgeneralsetup.ui" line="4027"/>
-        <location filename="../sgeneralsetup.ui" line="4296"/>
-        <location filename="../sgeneralsetup.ui" line="4494"/>
+        <location filename="../sgeneralsetup.ui" line="3823"/>
+        <location filename="../sgeneralsetup.ui" line="4018"/>
+        <location filename="../sgeneralsetup.ui" line="4287"/>
+        <location filename="../sgeneralsetup.ui" line="4485"/>
         <source>10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3842"/>
-        <location filename="../sgeneralsetup.ui" line="4037"/>
-        <location filename="../sgeneralsetup.ui" line="4306"/>
-        <location filename="../sgeneralsetup.ui" line="4504"/>
+        <location filename="../sgeneralsetup.ui" line="3833"/>
+        <location filename="../sgeneralsetup.ui" line="4028"/>
+        <location filename="../sgeneralsetup.ui" line="4297"/>
+        <location filename="../sgeneralsetup.ui" line="4495"/>
         <source>12</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3847"/>
-        <location filename="../sgeneralsetup.ui" line="4311"/>
+        <location filename="../sgeneralsetup.ui" line="3838"/>
+        <location filename="../sgeneralsetup.ui" line="4302"/>
         <source>13</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3852"/>
-        <location filename="../sgeneralsetup.ui" line="4316"/>
+        <location filename="../sgeneralsetup.ui" line="3843"/>
+        <location filename="../sgeneralsetup.ui" line="4307"/>
         <source>14</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="3857"/>
-        <location filename="../sgeneralsetup.ui" line="4321"/>
+        <location filename="../sgeneralsetup.ui" line="3848"/>
+        <location filename="../sgeneralsetup.ui" line="4312"/>
         <source>15</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4055"/>
+        <location filename="../sgeneralsetup.ui" line="4046"/>
         <source>Day</source>
         <translation>Día</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4072"/>
+        <location filename="../sgeneralsetup.ui" line="4063"/>
         <source>Month</source>
         <translation>Mes</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4089"/>
+        <location filename="../sgeneralsetup.ui" line="4080"/>
         <source>Year</source>
         <translation>Año</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4449"/>
+        <location filename="../sgeneralsetup.ui" line="4440"/>
         <source>59</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4522"/>
+        <location filename="../sgeneralsetup.ui" line="4513"/>
         <source>Hour</source>
         <translation>Hora</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4539"/>
+        <location filename="../sgeneralsetup.ui" line="4530"/>
         <source>Minute</source>
         <translation>Minuto</translation>
     </message>
@@ -2041,81 +2046,81 @@ Ciclos</translation>
         <translation type="vanished">Segundo</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4685"/>
+        <location filename="../sgeneralsetup.ui" line="4676"/>
         <source>AM/PM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4751"/>
+        <location filename="../sgeneralsetup.ui" line="4742"/>
         <source>Change Password</source>
         <translation>Cambiar contraseña</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4836"/>
+        <location filename="../sgeneralsetup.ui" line="4827"/>
         <source>Old Password</source>
         <translation>Contraseña antigua</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4982"/>
+        <location filename="../sgeneralsetup.ui" line="4973"/>
         <source>New Password</source>
         <translation>Nueva contraseña</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4767"/>
+        <location filename="../sgeneralsetup.ui" line="4758"/>
         <source>Confirm Password</source>
         <translation>Confirmar contraseña</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.ui" line="4693"/>
+        <location filename="../sgeneralsetup.ui" line="4684"/>
         <source>Password</source>
         <translation>Contraseña</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="523"/>
-        <location filename="../sgeneralsetup.cpp" line="557"/>
-        <location filename="../sgeneralsetup.cpp" line="579"/>
-        <location filename="../sgeneralsetup.cpp" line="879"/>
-        <location filename="../sgeneralsetup.cpp" line="901"/>
-        <location filename="../sgeneralsetup.cpp" line="919"/>
-        <location filename="../sgeneralsetup.cpp" line="923"/>
-        <location filename="../sgeneralsetup.cpp" line="936"/>
+        <location filename="../sgeneralsetup.cpp" line="502"/>
+        <location filename="../sgeneralsetup.cpp" line="536"/>
+        <location filename="../sgeneralsetup.cpp" line="558"/>
+        <location filename="../sgeneralsetup.cpp" line="858"/>
+        <location filename="../sgeneralsetup.cpp" line="880"/>
+        <location filename="../sgeneralsetup.cpp" line="898"/>
+        <location filename="../sgeneralsetup.cpp" line="902"/>
+        <location filename="../sgeneralsetup.cpp" line="915"/>
         <source>General Setup</source>
         <translation>Configuración general</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="523"/>
-        <location filename="../sgeneralsetup.cpp" line="557"/>
-        <location filename="../sgeneralsetup.cpp" line="579"/>
+        <location filename="../sgeneralsetup.cpp" line="502"/>
+        <location filename="../sgeneralsetup.cpp" line="536"/>
+        <location filename="../sgeneralsetup.cpp" line="558"/>
         <source>Error Saving File!</source>
         <translation>¡Error al guardar el archivo!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="879"/>
+        <location filename="../sgeneralsetup.cpp" line="858"/>
         <source>Select Valid Date!</source>
         <translation>¡Seleccione fecha válida!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="901"/>
+        <location filename="../sgeneralsetup.cpp" line="880"/>
         <source>Date Time Updated!</source>
         <translation>Fecha Hora ¡Actualizado!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="919"/>
+        <location filename="../sgeneralsetup.cpp" line="898"/>
         <source>Invalid Old Password!</source>
         <translation>¡Contraseña anterior no válida!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="924"/>
+        <location filename="../sgeneralsetup.cpp" line="903"/>
         <source>New &amp; Confirm Password mismatch!</source>
         <translation>Nuevo y confirmar contraseña no coincide!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="937"/>
+        <location filename="../sgeneralsetup.cpp" line="916"/>
         <source>Password Updated!</source>
         <translation>¡Contraseña actualiza!</translation>
     </message>
     <message>
-        <location filename="../sgeneralsetup.cpp" line="986"/>
+        <location filename="../sgeneralsetup.cpp" line="965"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
@@ -3270,117 +3275,117 @@ Valve</source>
         <translation>Salvar</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="210"/>
-        <location filename="../sservice.cpp" line="235"/>
-        <location filename="../sservice.cpp" line="546"/>
-        <location filename="../sservice.cpp" line="552"/>
-        <location filename="../sservice.cpp" line="729"/>
-        <location filename="../sservice.cpp" line="765"/>
-        <location filename="../sservice.cpp" line="806"/>
-        <location filename="../sservice.cpp" line="828"/>
-        <location filename="../sservice.cpp" line="833"/>
-        <location filename="../sservice.cpp" line="838"/>
+        <location filename="../sservice.cpp" line="209"/>
+        <location filename="../sservice.cpp" line="234"/>
+        <location filename="../sservice.cpp" line="545"/>
+        <location filename="../sservice.cpp" line="551"/>
+        <location filename="../sservice.cpp" line="728"/>
+        <location filename="../sservice.cpp" line="764"/>
+        <location filename="../sservice.cpp" line="805"/>
+        <location filename="../sservice.cpp" line="827"/>
+        <location filename="../sservice.cpp" line="832"/>
+        <location filename="../sservice.cpp" line="837"/>
         <source>Service Setup</source>
         <translation>Configuración del servicio</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="210"/>
+        <location filename="../sservice.cpp" line="209"/>
         <source>Error Saving File!</source>
         <translation>¡Error al guardar el archivo!</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="235"/>
+        <location filename="../sservice.cpp" line="234"/>
         <source>USB Log Disabled
 Safe to remove USB Pen Drive.</source>
         <translation>Registro USB deshabilitado
 Es seguro retirar el Pen Drive USB.</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="546"/>
+        <location filename="../sservice.cpp" line="545"/>
         <source>Error Creating Log File!</source>
         <translation>¡Error al crear el archivo de registro!</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="552"/>
+        <location filename="../sservice.cpp" line="551"/>
         <source>Error Creating Log Folder!</source>
         <translation>¡Error al crear la carpeta de registro!</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="729"/>
+        <location filename="../sservice.cpp" line="728"/>
         <source>To USB Log, No USB Pen Drive Found!
 Reconnect USB Pen Drive &amp; try again!</source>
         <translation>Al registro USB, ¡no se encontró ninguna unidad USB!
 ¡Vuelva a conectar el Pen Drive USB e inténtelo de nuevo!</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="765"/>
+        <location filename="../sservice.cpp" line="764"/>
         <source>Error Logging to USB Pen Drive!</source>
         <translation>¡Error al iniciar sesión en una memoria USB!</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="806"/>
+        <location filename="../sservice.cpp" line="805"/>
         <source>Updating Firmware...
 Please Wait...</source>
         <translation>Actualizando firmware...
 Espere por favor...</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="828"/>
+        <location filename="../sservice.cpp" line="827"/>
         <source>Firmware Copied
 Restart Machine to reflect changes!</source>
         <translation>Firmware copiado
 ¡Reinicie la máquina para reflejar los cambios!</translation>
     </message>
     <message>
-        <location filename="../sservice.cpp" line="833"/>
-        <location filename="../sservice.cpp" line="838"/>
+        <location filename="../sservice.cpp" line="832"/>
+        <location filename="../sservice.cpp" line="837"/>
         <source>Error Saving Firmware File!</source>
         <translation>¡Error al guardar el archivo de firmware!</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="286"/>
-        <location filename="../sservice.ui" line="664"/>
-        <location filename="../sservice.ui" line="1834"/>
-        <location filename="../sservice.ui" line="1940"/>
+        <location filename="../sservice.ui" line="283"/>
+        <location filename="../sservice.ui" line="661"/>
+        <location filename="../sservice.ui" line="1831"/>
+        <location filename="../sservice.ui" line="1937"/>
         <source>Enable</source>
         <translation>habilitar</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="470"/>
+        <location filename="../sservice.ui" line="467"/>
         <source>T =</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="271"/>
+        <location filename="../sservice.ui" line="268"/>
         <source>Temperature Control</source>
         <translation>Control de temperatura</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="454"/>
-        <location filename="../sservice.ui" line="606"/>
-        <location filename="../sservice.ui" line="980"/>
-        <location filename="../sservice.ui" line="1268"/>
+        <location filename="../sservice.ui" line="451"/>
+        <location filename="../sservice.ui" line="603"/>
+        <location filename="../sservice.ui" line="977"/>
+        <location filename="../sservice.ui" line="1265"/>
         <source>Set</source>
         <translation>Conjunto</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1160"/>
+        <location filename="../sservice.ui" line="1157"/>
         <source>1.00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1276"/>
+        <location filename="../sservice.ui" line="1273"/>
         <source>Data Control</source>
         <translation>Control de datos</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1365"/>
+        <location filename="../sservice.ui" line="1362"/>
         <source>---</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1640"/>
-        <location filename="../sservice.ui" line="2140"/>
+        <location filename="../sservice.ui" line="1637"/>
+        <location filename="../sservice.ui" line="2137"/>
         <source>Run</source>
         <translation>correr</translation>
     </message>
@@ -3389,130 +3394,130 @@ Restart Machine to reflect changes!</source>
         <translation type="obsolete">Cuenta total</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1719"/>
+        <location filename="../sservice.ui" line="1716"/>
         <source>Reset</source>
         <translation>Restablecer</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="500"/>
+        <location filename="../sservice.ui" line="497"/>
         <source>Shaker Motor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="213"/>
+        <location filename="../sservice.ui" line="210"/>
         <source>Service</source>
         <translation>Servicio</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="326"/>
+        <location filename="../sservice.ui" line="323"/>
         <source>100.00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="539"/>
+        <location filename="../sservice.ui" line="536"/>
         <source>90</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="622"/>
+        <location filename="../sservice.ui" line="619"/>
         <source>RPM =</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="755"/>
+        <location filename="../sservice.ui" line="752"/>
         <source>Selector Valve</source>
         <translation>Válvula selectora</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="885"/>
-        <location filename="../sservice.ui" line="916"/>
+        <location filename="../sservice.ui" line="882"/>
+        <location filename="../sservice.ui" line="913"/>
         <source>In</source>
         <translation>En</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="890"/>
+        <location filename="../sservice.ui" line="887"/>
         <source>Out</source>
         <translation>Out</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1819"/>
+        <location filename="../sservice.ui" line="1816"/>
         <source>USB Data Log</source>
         <translation>Registro de datos USB</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2019"/>
+        <location filename="../sservice.ui" line="2016"/>
         <source>Diagnostic</source>
         <translation>Diagnóstico</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2077"/>
+        <location filename="../sservice.ui" line="2074"/>
         <source>Diagnostic Cycle</source>
         <translation>Ciclo de Diagnóstico</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2203"/>
+        <location filename="../sservice.ui" line="2200"/>
         <source>Stop</source>
         <translation>Detener</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2319"/>
+        <location filename="../sservice.ui" line="2316"/>
         <source>Diagnostic Cycle Started</source>
         <translation>Ciclo de diagnóstico iniciado</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2324"/>
+        <location filename="../sservice.ui" line="2321"/>
         <source>Piston Test Done</source>
         <translation>Prueba de pistón realizada</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2329"/>
+        <location filename="../sservice.ui" line="2326"/>
         <source>Valve Test Done</source>
         <translation>Prueba de válvula realizada</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2334"/>
+        <location filename="../sservice.ui" line="2331"/>
         <source>Temperature Test Done</source>
         <translation>Prueba de temperatura realizada</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2339"/>
+        <location filename="../sservice.ui" line="2336"/>
         <source>Pressure Test Done</source>
         <translation>Prueba de presión realizada</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2347"/>
+        <location filename="../sservice.ui" line="2344"/>
         <source>Error Log</source>
         <translation>Registro de errores</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2651"/>
+        <location filename="../sservice.ui" line="2648"/>
         <source>Date Time</source>
         <translation>Fecha y hora</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="880"/>
+        <location filename="../sservice.ui" line="877"/>
         <source>Closed</source>
         <translation>Cerrado</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1025"/>
-        <location filename="../sservice.ui" line="1544"/>
+        <location filename="../sservice.ui" line="1022"/>
+        <location filename="../sservice.ui" line="1541"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1066"/>
-        <location filename="../sservice.ui" line="1585"/>
+        <location filename="../sservice.ui" line="1063"/>
+        <location filename="../sservice.ui" line="1582"/>
         <source>Pressure</source>
         <translation>Presión</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1925"/>
+        <location filename="../sservice.ui" line="1922"/>
         <source>Continuous run</source>
         <translation>Ejecución continua</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1121"/>
+        <location filename="../sservice.ui" line="1118"/>
         <source>Piston Motor</source>
         <translation>Motor de pistón</translation>
     </message>
@@ -3522,61 +3527,61 @@ Restart Machine to reflect changes!</source>
         <translation>Hogar</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1179"/>
+        <location filename="../sservice.ui" line="1176"/>
         <source>Position</source>
         <translation>Posición</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1334"/>
+        <location filename="../sservice.ui" line="1331"/>
         <source>Firmware update</source>
         <translation>Actualización de firmware</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1349"/>
+        <location filename="../sservice.ui" line="1346"/>
         <source>File</source>
         <translation>Archivo</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1435"/>
+        <location filename="../sservice.ui" line="1432"/>
         <source>Select</source>
         <translation>Seleccionar</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1499"/>
+        <location filename="../sservice.ui" line="1496"/>
         <source>Update</source>
         <translation>Actualizar</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1655"/>
+        <location filename="../sservice.ui" line="1652"/>
         <source>Total Count</source>
         <translation>Cuenta total</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="1735"/>
+        <location filename="../sservice.ui" line="1732"/>
         <source>Since Last Reset</source>
         <translation>Desde el último reinicio</translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2568"/>
-        <location filename="../sservice.ui" line="2573"/>
-        <location filename="../sservice.ui" line="2578"/>
-        <location filename="../sservice.ui" line="2583"/>
-        <location filename="../sservice.ui" line="2588"/>
-        <location filename="../sservice.ui" line="2593"/>
-        <location filename="../sservice.ui" line="2598"/>
-        <location filename="../sservice.ui" line="2603"/>
-        <location filename="../sservice.ui" line="2608"/>
-        <location filename="../sservice.ui" line="2613"/>
-        <location filename="../sservice.ui" line="2618"/>
-        <location filename="../sservice.ui" line="2623"/>
-        <location filename="../sservice.ui" line="2628"/>
-        <location filename="../sservice.ui" line="2633"/>
-        <location filename="../sservice.ui" line="2638"/>
+        <location filename="../sservice.ui" line="2565"/>
+        <location filename="../sservice.ui" line="2570"/>
+        <location filename="../sservice.ui" line="2575"/>
+        <location filename="../sservice.ui" line="2580"/>
+        <location filename="../sservice.ui" line="2585"/>
+        <location filename="../sservice.ui" line="2590"/>
+        <location filename="../sservice.ui" line="2595"/>
+        <location filename="../sservice.ui" line="2600"/>
+        <location filename="../sservice.ui" line="2605"/>
+        <location filename="../sservice.ui" line="2610"/>
+        <location filename="../sservice.ui" line="2615"/>
+        <location filename="../sservice.ui" line="2620"/>
+        <location filename="../sservice.ui" line="2625"/>
+        <location filename="../sservice.ui" line="2630"/>
+        <location filename="../sservice.ui" line="2635"/>
         <source>New Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sservice.ui" line="2643"/>
+        <location filename="../sservice.ui" line="2640"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
