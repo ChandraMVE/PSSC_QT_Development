@@ -21,6 +21,7 @@ public:
     void setSelectedMenu(int menu);
     void setRunningMenu(int menu);
     int getLanguage();
+    void wmSetupsetSelected(bool); //naveen
 
 signals:
     void MenuClicked(int menu);

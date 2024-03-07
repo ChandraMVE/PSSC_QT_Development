@@ -73,6 +73,7 @@ sCalibration::sCalibration(QWidget *parent) :
 
     ui->twCalibration->removeTab(2);
     ui->twCalibration->removeTab(2);
+    ui->twCalibration->removeTab(2); //naveen
 
     ui->twCalibration->setCurrentIndex(0);
 

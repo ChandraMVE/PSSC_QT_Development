@@ -688,11 +688,15 @@ bool MainWindow::eventFilter(QObject *w, QEvent *e)
     {
        if(ui->listSetupMenu->isVisible())
        {
+//           ui->wMenuBar->wmSetupsetSelected(true); //naveen
            if(w->objectName().contains("MainWindow"))
            {
                ui->listSetupMenu->hide();
            }
        }
+//       else{
+//           ui->wMenuBar->wmSetupsetSelected(false); //naveen
+//       }
 
         if(ui->wMeasuring1->isVisible())
         {

@@ -446,7 +446,7 @@ font: 75 24pt &quot;Roboto Medium&quot;;</string>
   <widget class="QPushButton" name="pbHome">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>180</x>
      <y>740</y>
      <width>167</width>
      <height>80</height>

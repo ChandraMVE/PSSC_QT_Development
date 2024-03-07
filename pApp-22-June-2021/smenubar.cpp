@@ -62,6 +62,14 @@ sMenuBar::~sMenuBar()
     delete ui;
 }
 
+void sMenuBar::wmSetupsetSelected(bool tmp){
+    if(tmp){
+        ui->wmSetup->setSelected(true);
+    }else{
+        ui->wmSetup->setSelected(false);
+    }
+}
+
 void sMenuBar::setSelectedMenu(int menu)
 {
 
@@ -72,7 +80,7 @@ void sMenuBar::setSelectedMenu(int menu)
     ui->wmMemory->setEnabled(true);
     ui->wmMemory->setSelected(false);
     ui->wmSetup->setEnabled(true);
-    ui->wmSetup->setSelected(false);
+    ui->wmSetup->setSelected(false); //naveen
 
     switch (menu)
     {
@@ -123,5 +131,6 @@ void sMenuBar::onMemoryClicked()
 
 void sMenuBar::onSetupClicked()
 {
+//    ui->wmSetup->setSelected(true); //naveen
     emit MenuClicked(M_SETUP);
 }

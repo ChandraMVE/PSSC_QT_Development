@@ -365,7 +365,7 @@ void sGeneralSetup::Show(QString type)
     if(cType == "admin")
     {
         ui->cbUser->setCurrentIndex(M_USER_ADMIN);
-        ui->cbUser->setEnabled(false);
+        ui->cbUser->setEnabled(true);
 
         ui->lblOldPassword->show();
         ui->leOldPassword->show();
@@ -383,7 +383,7 @@ void sGeneralSetup::Show(QString type)
     else if(cType == "service")
     {
         ui->cbUser->setCurrentIndex(M_USER_SERVICE);
-        ui->cbUser->setEnabled(false);
+        ui->cbUser->setEnabled(true);
 
         ui->lblOldPassword->show();
         ui->leOldPassword->show();
