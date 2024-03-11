@@ -379,6 +379,9 @@ void sService::on_pbExit_clicked()
         this->hide();
         emit showHome(false);
     }
+//    else{ //naveen
+//        emit showHome(false);
+//    }
 }
 
 void sService::on_cbTEnable_clicked()

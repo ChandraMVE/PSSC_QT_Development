@@ -694,6 +694,19 @@ bool MainWindow::eventFilter(QObject *w, QEvent *e)
                ui->listSetupMenu->hide();
            }
        }
+//       else if(ui->wUserSetup->isVisible()){
+//           ui->wMenuBar->wmSetupsetSelected(true);
+//       }else if(ui->wGeneralSetup->isVisible()){
+//            ui->wMenuBar->wmSetupsetSelected(true);
+//       }else if(ui->wMethodSetup->isVisible()){
+//            ui->wMenuBar->wmSetupsetSelected(true);
+//       }else if(ui->wServiceSetup->isVisible()){
+//            ui->wMenuBar->wmSetupsetSelected(true);
+//       }else if(ui->wCalibrationSetup->isVisible()){
+//            ui->wMenuBar->wmSetupsetSelected(true);
+//       }else{
+//            ui->wMenuBar->wmSetupsetSelected(false);
+//       }
 //       else{
 //           ui->wMenuBar->wmSetupsetSelected(false); //naveen
 //       }
@@ -4422,6 +4435,7 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
             else
             {
                //ui->wMethodSetup->saveFile();
+//                onShowHome(false); //naveen
             }
         break;
 
