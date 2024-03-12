@@ -1079,7 +1079,7 @@ void sMethodSetup::updateD5188()
 void sMethodSetup::updateFree1()
 {
 
-    if( cSettings.getTemperatureMS(stdFree1.temperature) != ui->leTestTemp->text())
+    if( cSettings.getTemperatureMS(stdFree1.temperature).toDouble() != ui->leTestTemp->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -1155,7 +1155,7 @@ void sMethodSetup::updateFree1()
 void sMethodSetup::updateFree2()
 {
 
-    if( cSettings.getTemperatureMS(stdFree2.temperature) != ui->leTestTemp->text())
+    if( cSettings.getTemperatureMS(stdFree2.temperature).toDouble() != ui->leTestTemp->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -1231,7 +1231,7 @@ void sMethodSetup::updateFree2()
 
 void sMethodSetup::updateFree3()
 {
-    if(cSettings.getTemperatureMS(stdFree3.temperature) != ui->leTestTemp->text())
+    if(cSettings.getTemperatureMS(stdFree3.temperature).toDouble() != ui->leTestTemp->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -1308,7 +1308,7 @@ void sMethodSetup::updateFree3()
 void sMethodSetup::updateFree4()
 {
 
-    if(cSettings.getTemperatureMS(stdFree4.temperature) != ui->leTestTemp->text()) cParasChanged = true;
+    if(cSettings.getTemperatureMS(stdFree4.temperature).toDouble() != ui->leTestTemp->text().toDouble()) cParasChanged = true;
     stdFree4.temperature = cSettings.getTemperatureCelsiusMS(ui->leTestTemp->text().toDouble());
 
     if(stdFree4.aconstant != ui->leConst1->text().toDouble()) cParasChanged = true;
