@@ -11,7 +11,7 @@
 #define DEFAULT_SET_SHAKER_ENABLE       0
 #define DEFAULT_SET_SHAKER_RPM          90
 #define RANGE_SHAKER_RPM_MIN            60
-#define RANGE_SHAKER_RPM_MAX            210
+#define RANGE_SHAKER_RPM_MAX            300
 
 #define DEFAULT_SET_SELECTOR_VALVE      0
 #define DEFAULT_SET_PISTON_POSITION     0.0
