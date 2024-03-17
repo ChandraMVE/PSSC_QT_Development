@@ -162,6 +162,8 @@ private slots:
 
     void on_pbStop_2_clicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sMeasuring *ui;
 

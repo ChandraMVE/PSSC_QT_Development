@@ -75,7 +75,7 @@ sService::sService(QWidget *parent) :
     cVerFW.append(" "); cVerFW.append(FW_DATE); cVerFW.append(" ");
     cVerFW.append(FW_TIME);
 
-    cVerMCU = "MCU: Ver. 00.00.00";
+    cVerMCU = "MCU: Ver. 1.00.00";
 
     ui->wFirmware->setFirmware(cVerFW + "\n" + cVerMCU);
     cDebug = false;

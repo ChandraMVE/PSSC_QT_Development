@@ -59,6 +59,8 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lblAutoCount->hide();
     ui->lblStatus->hide();
     cRunState = false;
+
+    ui->imageCapture->hide();
 }
 
 sMeasuring::~sMeasuring()
@@ -1358,3 +1360,16 @@ void sMeasuring::on_leOperator_returnPressed()
     cPrevOperator = ""; 
 }
 
+
+void sMeasuring::on_imageCapture_clicked()
+{
+    QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+    QString filename = QApplication::applicationDirPath() + QString("/screenshot/screenshot_%1.png").arg(timestamp);
+    QWidget *widget = QApplication::activeWindow();
+    QPixmap pixmap = QPixmap::grabWidget(widget);
+//    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+    ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+    qDebug()<<"path : "<<filename;
+    pixmap.save(QString(filename));
+}

@@ -1230,6 +1230,27 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     <string>Result</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="imageCapture">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>740</y>
+     <width>167</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border: none;
+}
+QPushButton:pressed {
+border: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
