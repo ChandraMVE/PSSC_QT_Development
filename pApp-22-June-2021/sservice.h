@@ -133,6 +133,8 @@ private slots:
     void on_pbStop_clicked();
 
   void onFirmwareClicked();
+  void on_imageCapture_clicked();
+
 private:
     Ui::sService *ui;
     struct SERVICE_SETUP service_setup;

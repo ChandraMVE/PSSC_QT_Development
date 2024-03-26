@@ -102,3 +102,23 @@ void sCleaning::on_pbHome_clicked()
     this->hide();
     emit showHome(false);
 }
+
+void sCleaning::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        //QString filename = QApplication::applicationDirPath() + QString("/screenshot/scleaning_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_scleaning.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }
+}

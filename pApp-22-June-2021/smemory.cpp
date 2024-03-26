@@ -371,3 +371,23 @@ void sMemory::onShowStatusBox(QString title, QString msg, bool show)
 {
     emit showStatusBox(title, msg, show);
 }
+
+void sMemory::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+//        QString filename = QApplication::applicationDirPath() + QString("/screenshot/smemory_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_smemory.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }
+}

@@ -595,6 +595,30 @@ font: 75 16pt &quot;Roboto Medium&quot;;
     <string>Home</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="imageCapture">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>780</y>
+     <width>167</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
+}
+QPushButton:pressed {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

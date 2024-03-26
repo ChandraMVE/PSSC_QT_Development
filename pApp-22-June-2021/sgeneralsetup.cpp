@@ -1,5 +1,6 @@
 #include "sgeneralsetup.h"
 #include "ui_sgeneralsetup.h"
+#include <QDir> //naveen
 
 sGeneralSetup::sGeneralSetup(QWidget *parent) :
     QWidget(parent),
@@ -1026,4 +1027,22 @@ void sGeneralSetup::on_twOther_currentChanged(int index)
     }
 
     ui->twOther->setFocus();
+}
+
+void sGeneralSetup::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        QString filename = QString("/run/media/sda1/screenshot/_%1_sgeneralsetup.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }
 }

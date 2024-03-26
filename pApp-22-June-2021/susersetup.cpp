@@ -1,5 +1,7 @@
 #include "susersetup.h"
 #include "ui_susersetup.h"
+#include <QTime>
+#include <QDir> //naveen
 
 sUserSetup::sUserSetup(QWidget *parent) :
     QWidget(parent),
@@ -236,5 +238,25 @@ void sUserSetup::on_pbExit_clicked()
     {
         this->hide();
         emit showHome(false);
+    }
+}
+
+void sUserSetup::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        //QString filename = QApplication::applicationDirPath() + QString("/screenshot/susersetup_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_susersetup.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
     }
 }

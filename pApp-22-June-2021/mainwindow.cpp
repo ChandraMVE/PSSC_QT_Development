@@ -1477,6 +1477,7 @@ void MainWindow::readSerial(void)
                         QString str = QString::number(cxx)
                                 + "." + QString::number(cyy)
                                 + "." + QString::number(czz);
+                        qDebug()<<"MCU Version from MCU:"<<str;
                         ui->wServiceSetup->setVersion(str);
                     }
                 }

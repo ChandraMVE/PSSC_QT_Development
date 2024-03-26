@@ -1680,3 +1680,25 @@ void sCalibration::on_pbPCSVSet_clicked()
     setWaitACKStatus(true);
     emit sendCommand(cProtocol.sendValvePosition(ui->cbPCSelectorValve->currentIndex()), this);
 }
+
+void sCalibration::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        //QString filename = QApplication::applicationDirPath() + QString("/screenshot/scalibration_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_scalibration.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+//        emit showMsgBox("Screenshot","Screenshot saved!");
+    }else{
+        qDebug()<<"folder doesn't exist";
+//        emit showMsgBox("Screenshot","USB Not Found!");
+    }
+}

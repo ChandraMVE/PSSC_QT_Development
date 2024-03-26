@@ -97,6 +97,8 @@ private slots:
     void onShowMsgBox(QString title, QString msg);
     void onShowStatusBox(QString title, QString msg, bool show);
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sMemory *ui;
 

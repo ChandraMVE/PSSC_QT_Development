@@ -1,5 +1,7 @@
 #include "scheckpass.h"
 #include "ui_scheckpass.h"
+#include <QTime>//naveen
+#include <QDir> //naveen
 
 sCheckPass::sCheckPass(QWidget *parent) :
     QWidget(parent),
@@ -364,4 +366,26 @@ void sCheckPass::on_pbNo_clicked()
 {
     this->hide();
     emit Confirmed(cConfirmType, false, cConfirmMenu);
+}
+
+void sCheckPass::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        //QString filename = QApplication::applicationDirPath() + QString("/screenshot/scheckpass_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_scheckpass.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+//        Show_ErrorMessage("Screenshot","Screenshot saved!");
+    }else{
+        qDebug()<<"folder doesn't exist";
+//        Show_ErrorMessage("Screenshot","USB Not Found!");
+    }
 }

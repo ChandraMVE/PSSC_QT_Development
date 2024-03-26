@@ -4877,7 +4877,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="sQLEExtend" name="lePrHidden">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>210</x>
      <y>830</y>
      <width>121</width>
      <height>51</height>
@@ -4915,6 +4915,30 @@ border-color: rgb(21, 100, 192);
    </property>
    <property name="maxLength">
     <number>15</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="imageCapture">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
+}
+QPushButton:pressed {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

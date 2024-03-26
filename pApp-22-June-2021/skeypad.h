@@ -39,6 +39,8 @@ private slots:
     void on_pbEnterClicked();
     void on_pbSpaceClicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sKeypad *ui;
     QObject *cLocal;

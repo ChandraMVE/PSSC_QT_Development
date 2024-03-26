@@ -1539,3 +1539,23 @@ void sMethodSetup::on_pbExit_clicked()
     exitClicked = true;
     checkExit(M_MEASURING);
 }
+
+void sMethodSetup::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        //QString filename = QApplication::applicationDirPath() + QString("/screenshot/smethodsetup_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_smethodsetup.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }
+}

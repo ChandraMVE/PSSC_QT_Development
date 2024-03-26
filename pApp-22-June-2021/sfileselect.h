@@ -29,6 +29,8 @@ private slots:
 
     void on_pbOK_clicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sFileSelect *ui;
 };

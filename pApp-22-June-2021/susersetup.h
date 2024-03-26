@@ -72,6 +72,8 @@ private slots:
     void on_pbSave_clicked();
     void on_pbExit_clicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sUserSetup *ui;
     QStringList qslGMTSeconds;

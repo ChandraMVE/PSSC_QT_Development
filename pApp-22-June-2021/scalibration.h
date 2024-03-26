@@ -182,6 +182,8 @@ private slots:
 
     void on_pbPCSVSet_clicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sCalibration *ui;
     bool cParasChanged;

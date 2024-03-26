@@ -135,6 +135,8 @@ private slots:
     void on_twDevice_currentChanged(int index);
     void on_twOther_currentChanged(int index);
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sGeneralSetup *ui;
     bool cParasChanged;

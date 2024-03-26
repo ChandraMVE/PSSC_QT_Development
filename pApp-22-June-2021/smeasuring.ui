@@ -1240,12 +1240,15 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton{
-border: none;
+    <string notr="true">QPushButton {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
 }
 QPushButton:pressed {
-border: none;
-}</string>
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
+}
+</string>
    </property>
    <property name="text">
     <string/>

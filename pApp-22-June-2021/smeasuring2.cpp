@@ -1,6 +1,7 @@
 #include "smeasuring2.h"
 #include "ui_smeasuring2.h"
-
+#include <QTime> //naveen
+#include <QDebug> //naveen
 sMeasuring2::sMeasuring2(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::sMeasuring2)
@@ -86,3 +87,16 @@ void sMeasuring2::set3Prs(QString pabs, QString pgas, QString ptot, QString scal
 }
 
 
+
+//void sMeasuring2::on_imageCapture_clicked()
+//{
+//    QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+//    QString filename = QApplication::applicationDirPath() + QString("/screenshot/smeasuring2_%1.png").arg(timestamp);
+//    QWidget *widget = QApplication::activeWindow();
+//    QPixmap pixmap = QPixmap::grabWidget(widget);
+// //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+//    ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+//    qDebug()<<"path : "<<filename;
+//    pixmap.save(QString(filename));
+//}

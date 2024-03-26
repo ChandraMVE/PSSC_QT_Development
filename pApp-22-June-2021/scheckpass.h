@@ -45,6 +45,8 @@ private slots:
     void on_pbYes_clicked();
     void on_pbNo_clicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sCheckPass *ui;
     int cShowMessageType;

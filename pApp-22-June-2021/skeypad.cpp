@@ -1,5 +1,7 @@
 #include "skeypad.h"
 #include "ui_skeypad.h"
+#include <QTime> //naveen
+#include <QDir> //naveen
 
 sKeypad::sKeypad(QWidget *parent) :
     QWidget(parent),
@@ -401,4 +403,24 @@ void sKeypad::on_pbEnterClicked()
 void sKeypad::on_pbSpaceClicked()
 {
     setData(" ");
+}
+
+void sKeypad::on_imageCapture_clicked()
+{
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        //QString filename = QApplication::applicationDirPath() + QString("/screenshot/skeypad_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_skeypad.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        //    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }
 }

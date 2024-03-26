@@ -60,7 +60,7 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lblStatus->hide();
     cRunState = false;
 
-    ui->imageCapture->hide();
+//    ui->imageCapture->hide();
 }
 
 sMeasuring::~sMeasuring()
@@ -1363,13 +1363,19 @@ void sMeasuring::on_leOperator_returnPressed()
 
 void sMeasuring::on_imageCapture_clicked()
 {
-    QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists()) {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
 
-    QString filename = QApplication::applicationDirPath() + QString("/screenshot/screenshot_%1.png").arg(timestamp);
-    QWidget *widget = QApplication::activeWindow();
-    QPixmap pixmap = QPixmap::grabWidget(widget);
-//    QString path = QApplication::applicationDirPath() + "/screenshot/screenshot.png";
-    ui->imageCapture->setFocusPolicy(Qt::NoFocus);
-    qDebug()<<"path : "<<filename;
-    pixmap.save(QString(filename));
+//        QString filename = QApplication::applicationDirPath() + QString("/screenshot/_%1_smeasuring_%1.png").arg(timestamp);
+        QString filename = QString("/run/media/sda1/screenshot/_%1_smeasuring.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }
+
 }

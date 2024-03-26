@@ -35,6 +35,8 @@ private slots:
 
     void on_pbHome_clicked();
 
+    void on_imageCapture_clicked();
+
 private:
     Ui::sCleaning *ui;
     bool cRunState;

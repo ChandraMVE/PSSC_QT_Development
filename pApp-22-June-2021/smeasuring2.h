@@ -25,6 +25,9 @@ public:
     void setVLTm(QString vl, QString pr, QString scale, QString pass);
     void set3Prs(QString pabs, QString pgas, QString ptot, QString scale, QString pass);
 
+private slots:
+//    void on_imageCapture_clicked();
+
 private:
     Ui::sMeasuring2 *ui;
 
