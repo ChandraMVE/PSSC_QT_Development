@@ -312,9 +312,9 @@ QString sSettings::getTemperatureLiveSS(int tm)
     double ttm = calculateTemperature(tm);
     
     if(!cgs->temperature_scale) 
-        return (QString::number(ttm, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt())); 
+        return (QString::number(ttm, 'f', RANGE_CALIB_TEMPERATURE_PRECISION));
     else
-        return (QString::number((ttm *  9/5) + 32, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt())); 
+        return (QString::number((ttm *  9/5) + 32, 'f', RANGE_CALIB_TEMPERATURE_PRECISION));
 }
 
 QString sSettings::getPressureLiveSS(int tm, int pr) 

@@ -763,7 +763,7 @@ QString sCalibration::getTemperatureCS(double tm) const
 
 QString sCalibration::getPressureCS(double pr) const
 {
-    return (QString::number(pr, 'f', 1));
+    return (QString::number(pr, 'f', 2));
 }
 
 int sCalibration::getTemperatureCount(double tm) 
@@ -802,7 +802,7 @@ QString sCalibration::getPressureLive(int pr) const
     sl = dx/dy;
     cc =  cPCPHigh - (sl*cPCPHighCount);
 
-    return (QString::number((sl*pr+cc), 'f', 1));
+    return (QString::number((sl*pr+cc), 'f', 2));
 
 }
 

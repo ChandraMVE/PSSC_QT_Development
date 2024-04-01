@@ -116,6 +116,7 @@ void sUserSetup::saveFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        emit showMsgBox(tr("User Setup"), tr("User Setup Changes Saved!"));
     }
     else
     {

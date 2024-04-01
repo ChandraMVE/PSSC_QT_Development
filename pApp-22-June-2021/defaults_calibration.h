@@ -52,7 +52,8 @@
 #define RANGE_CALIB_PRESSURE_MIN                  -5        
 #define RANGE_CALIB_PRESSURE_MAX                  101.3 + 5
 #define RANGE_CALIB_PRESSURE_DECIMAL_PLACES       2
-#define RANGE_CALIB_PRESSURE_PRECISION            3
+#define RANGE_CALIB_PRESSURE_PRECISION            2
+#define RANGE_CALIB_TEMPERATURE_PRECISION         2
 
 #define RANGE_CALIB_PRESSURE_CORRECTION_MIN                  -99 
 #define RANGE_CALIB_PRESSURE_CORRECTION_MAX                  +99 
