@@ -122,7 +122,6 @@ sCalibration::sCalibration(QWidget *parent) :
 
 
     initAvg();
-
 }
 
 sCalibration::~sCalibration()

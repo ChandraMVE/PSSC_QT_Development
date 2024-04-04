@@ -142,6 +142,7 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     cParasChanged = false;
     cEnSwitch = true;
     exitClicked = false;
+
 }
 
 sMethodSetup::~sMethodSetup()
@@ -341,6 +342,7 @@ void sMethodSetup::saveFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        emit showMsgBox(tr("Method Setup"), tr("Method Changes Saved!"));
     }
     else
     {
@@ -688,6 +690,10 @@ void sMethodSetup::showFree1()
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
 
+    dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                                METHOD_TEMPERATURE_DP);
+
     ui->leTestTemp->setText(cSettings.getTemperatureMS(stdFree1.temperature));
     ui->leConst1->setText(cSettings.getFormulaConstantsAB(stdFree1.aconstant));
     ui->leConst2->setText(cSettings.getFormulaConstantsAB(stdFree1.bconstant));
@@ -738,6 +744,10 @@ void sMethodSetup::showFree2()
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
 
+    dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                                METHOD_TEMPERATURE_DP);
+
     ui->leTestTemp->setText(cSettings.getTemperatureMS(stdFree2.temperature));
     ui->leConst1->setText(cSettings.getFormulaConstantsAB(stdFree2.aconstant));
     ui->leConst2->setText(cSettings.getFormulaConstantsAB(stdFree2.bconstant));
@@ -785,6 +795,10 @@ void sMethodSetup::showFree3()
     ui->twMethodSetup->insertTab(1, cWidgetFreeParas, cStringFreeParas);
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
+
+    dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                                METHOD_TEMPERATURE_DP);
 
     ui->leTestTemp->setText(cSettings.getTemperatureMS(stdFree3.temperature));
     ui->leConst1->setText(cSettings.getFormulaConstantsAB(stdFree3.aconstant));
@@ -834,6 +848,10 @@ void sMethodSetup::showFree4()
     ui->twMethodSetup->insertTab(1, cWidgetFreeParas, cStringFreeParas);
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
+
+    dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                                METHOD_TEMPERATURE_DP);
 
     ui->leTestTemp->setText(cSettings.getTemperatureMS(stdFree4.temperature));
     ui->leConst1->setText(cSettings.getFormulaConstantsAB(stdFree4.aconstant));

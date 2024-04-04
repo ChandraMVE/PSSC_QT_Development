@@ -84,7 +84,6 @@ sMemory::sMemory(QWidget *parent) :
 
     cParasChanged = false;
     cEnSwitch = true;
-
 }
 
 sMemory::~sMemory()

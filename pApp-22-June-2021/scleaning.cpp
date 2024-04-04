@@ -10,7 +10,6 @@ sCleaning::sCleaning(QWidget *parent) :
     ui->pbRun->setEnabled(true);
 
     cRunState = false;
-
 }
 
 sCleaning::~sCleaning()

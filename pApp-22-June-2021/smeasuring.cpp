@@ -60,7 +60,6 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lblStatus->hide();
     cRunState = false;
 
-//    ui->imageCapture->hide();
 }
 
 sMeasuring::~sMeasuring()
@@ -148,10 +147,13 @@ void sMeasuring::onLiveData(int tm, int pr)
     if(ui->lblTemperature->isVisible()) 
     {
         QString str;
+        qDebug()<<"onLiveData from MCU: The Temp "<<tm<<" pressure "<<pr;
         str = cSettings.getTemperatureLiveSS(tm);
         ui->lblTemperature->setText(str);
+        qDebug()<<"On lblTemperature: "<<str;
         str = cSettings.getPressureLiveSS(tm, pr);
         ui->lblPressure->setText(str);
+        qDebug()<<"On lblPressure: "<<str;
     }
 }
 

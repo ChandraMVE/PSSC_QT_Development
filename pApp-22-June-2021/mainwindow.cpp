@@ -3728,6 +3728,8 @@ void MainWindow::handleD6377(void)
                             sendPara(cProtocol.sendTemperature(tc),
                                      12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
 
+                            qDebug()<<"cSettings.getTemperatureCount(37.8) tc: "<<tc;
+
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
                             else

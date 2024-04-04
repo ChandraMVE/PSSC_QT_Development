@@ -495,6 +495,7 @@ bool sGeneralSetup::saveFile()
         cParasChanged = false;
         saveHostnameFile();
         saveNetworkFile();
+        emit showMsgBox(tr("General Setup"), tr("General Setup Changes Saved!"));
         return true;
     }
     else
@@ -530,6 +531,7 @@ void sGeneralSetup::saveNetworkFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        emit showMsgBox(tr("General Setup"), tr("Network Changes Saved!"));
     }
     else
     {
@@ -552,6 +554,7 @@ void sGeneralSetup::saveHostnameFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        emit showMsgBox(tr("General Setup"), tr("Host File Changes Saved!"));
     }
     else
     {

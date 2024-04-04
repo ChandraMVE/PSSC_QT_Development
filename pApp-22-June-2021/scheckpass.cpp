@@ -23,7 +23,6 @@ sCheckPass::sCheckPass(QWidget *parent) :
 
     connect(ui->leUser, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
     connect(ui->lePassword, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
-
 }
 
 sCheckPass::~sCheckPass()
