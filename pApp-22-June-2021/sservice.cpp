@@ -54,6 +54,7 @@ sService::sService(QWidget *parent) :
     cDiagnosticMode = false;
     cHide = false;
     cEnSwitch = true;
+    sServiceSaved = false;
 
     cvp = 0;
     cpp = 0;
@@ -202,11 +203,12 @@ void sService::saveFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
-        emit showMsgBox(tr("Service Setup"), tr("Service Changes Saved!"));
+        sServiceSaved = true;
     }
     else
     {
         cEnSwitch = false;
+        sServiceSaved = false;
         emit showMsgBox(tr("Service Setup"), tr("Error Saving File!"));
     }
 }
@@ -362,6 +364,11 @@ void sService::on_pbSave_clicked()
     setUSBLog();
 
     saveFile();
+
+    if(sServiceSaved){
+        sServiceSaved = false;
+        emit showMsgBox(tr("Service Setup"), tr("Service Changes Saved!"));
+    }
 
     /* 8-July-2022
     {

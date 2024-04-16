@@ -89,6 +89,7 @@ public:
     QString getPressure(double pr) const;
     QString getPressureWS(double pr) const;
     QString getPressureMS(double pr) const;
+    QString getPressureNMS(double pr) const; //naveen
     double getPressurekPaMS(double pr);
 
     double getPressurekPaMM(int tm, int pr); 

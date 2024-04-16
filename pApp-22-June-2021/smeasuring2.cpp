@@ -62,7 +62,15 @@ void sMeasuring2::setVLPr(QString vl, QString pr, QString scale, QString pass)
 
     ui->lblVL->setText(vl);
     ui->lblatPr->setText(pr + " " + scale);
-    ui->lblPassFail->setText(pass);
+    if(pass == "Pass")
+    {
+        ui->lblPassFail->setText(pass);
+        ui->lblPassFail->setStyleSheet("color: rgb(0, 225, 0); font: 75 18pt 'Roboto Medium';");
+    }else
+    {
+        ui->lblPassFail->setText(pass);
+        ui->lblPassFail->setStyleSheet("color: rgb(255, 0, 0); font: 75 18pt 'Roboto Medium';");
+    }
     ui->frVLPr->show();
 }
 
@@ -70,7 +78,15 @@ void sMeasuring2::setVLTm(QString vl, QString tm, QString scale, QString pass)
 {
     ui->lblVL->setText(vl);
     ui->lblatPr->setText(tm + " " + scale);
-    ui->lblPassFail->setText(pass);
+    if(pass == "Pass")
+    {
+        ui->lblPassFail->setText(pass);
+        ui->lblPassFail->setStyleSheet("color: rgb(0, 225, 0); font: 75 18pt 'Roboto Medium';");
+    }else
+    {
+        ui->lblPassFail->setText(pass);
+        ui->lblPassFail->setStyleSheet("color: rgb(255, 0, 0); font: 75 18pt 'Roboto Medium';");
+    }
     ui->frVLPr->show();
 }
 
@@ -80,7 +96,15 @@ void sMeasuring2::set3Prs(QString pabs, QString pgas, QString ptot, QString scal
     ui->lblPgas->setText(pgas);
     ui->lblPtot->setText(ptot);
     ui->lblScale->setText(scale);
-    ui->lblPassFail->setText(pass);
+    if(pass == "Pass")
+    {
+        ui->lblPassFail->setText(pass);
+        ui->lblPassFail->setStyleSheet("color: rgb(0, 225, 0); font: 75 18pt 'Roboto Medium';");
+    }else
+    {
+        ui->lblPassFail->setText(pass);
+        ui->lblPassFail->setStyleSheet("color: rgb(255, 0, 0); font: 75 18pt 'Roboto Medium';");
+    }
 
     ui->fr3Pr->show();
     ui->lblScale->show();

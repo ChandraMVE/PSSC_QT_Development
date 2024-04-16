@@ -240,7 +240,7 @@ font: 75 86pt &quot;Roboto Medium&quot;;</string>
       <string>100.99</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="lblScale">
@@ -297,7 +297,7 @@ font: 75 26pt &quot;Roboto Medium&quot;;</string>
       <string>Triple expansion &lt;B&gt;D5191&lt;/B&gt;&lt;br&gt;Results &lt;B&gt;CARB&lt;/B&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <set>Qt::AlignCenter</set>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

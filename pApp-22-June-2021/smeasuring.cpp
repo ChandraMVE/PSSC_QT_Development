@@ -443,17 +443,17 @@ void sMeasuring::showResultD5191(double prtpx1, double prtpx2, double prtpx3)
 
     if(cstdD5191->formula==0)
     {
-        ui->wResult->setMethod(tr("DVPE <B>D5191</B> Results <B>ASTM</B>"));
+        ui->wResult->setMethod(tr("<B>D5191</B> <B>ASTM</B> Results"));
         formula = "ASTM";
     }
     else if(cstdD5191->formula==1)
     {
-        ui->wResult->setMethod(tr("DVPE <B>D5191</B> Results <B>EPA</B>"));
+        ui->wResult->setMethod(tr("<B>D5191</B> <B>EPA</B> Results"));
         formula = "EPA";
     }
     else if(cstdD5191->formula==2)
     {
-        ui->wResult->setMethod(tr("DVPE <B>D5191</B> Results <B>CARB</B>"));
+        ui->wResult->setMethod(tr("<B>D5191</B> <B>CARB</B> Results"));
         formula = "CARB";
     }
 
@@ -503,7 +503,7 @@ void sMeasuring::showResultD5188(double result)
         else passfail = "Fail";
     }
 
-    ui->wResult->setMethod(tr("V/L <B>D5188</B> Results"));
+    ui->wResult->setMethod(tr("<B>D5188</B> V/L Results"));
     ui->wResult->setResult(cSettings.getTemperatureWS(result), cSettings.getTemperatureScale());
     ui->wResult->setVLPr(cSettings.getVLRatio(cstdD5188->vl_ratio), cSettings.getPressureWS(cstdD5188->pressure), cSettings.getPressureScale(), passfail);
     QString formula = "T V/L"; 
@@ -542,7 +542,7 @@ void sMeasuring::showResultD6377(double result)
         else passfail = "Fail";
     }
 
-    ui->wResult->setMethod(tr("VPCR4 Ptotal <B>D6377</B> Results"));
+    ui->wResult->setMethod(tr("<B>D6377</B> VPCRx Results"));
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->setVLPr(cSettings.getVLRatio(cstdD6377->vl_ratio), cSettings.getTemperatureWS(para_measured), cSettings.getTemperatureScale() , passfail);
 
@@ -599,17 +599,17 @@ void sMeasuring::showResultD6378(double prtpx1, double prtpx2, double prtpx3)
 
     if(cstdD6378->formula==0)
     {
-        ui->wResult->setMethod(tr("Triple expansion <B>D6378</B><br>Results <B>ASTM</B>"));
+        ui->wResult->setMethod(tr("<B>D6378</B> <B>ASTM</B> Results"));
         formula = "ASTM";
     }
     else if(cstdD6378->formula==1)
     {
-        ui->wResult->setMethod(tr("Triple expansion <B>D6378</B><br>Results <B>EPA</B>"));
+        ui->wResult->setMethod(tr("<B>D6378</B> <B>EPA</B> Results"));
         formula = "EPA";
     }
     else if(cstdD6378->formula==2)
     {
-        ui->wResult->setMethod(tr("Triple expansion <B>D6378</B><br>Results <B>CARB</B>"));
+        ui->wResult->setMethod(tr("<B>D6378</B> <B>CARB</B> Results"));
         formula = "CARB";
     }
 
@@ -776,7 +776,7 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
     QString str;
     QString formula;
 
-    str = tr("Free ") + QString::number(fn) + "= " +
+    str = tr("Corr. Formula ") + "= " +
                         cSettings.getFormulaConstantsAB(aconstant) +
                         " x Ptot - " +
                         cSettings.getFormulaConstantsAB(bconstant) +

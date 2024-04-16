@@ -365,7 +365,7 @@ void sMethodSetup::showD5191()
            " x Ptot - " +
            cSettings.getFormulaConstantsAB(qslFormulaD5191bConstant->at(0).toDouble()) +
            " x Pgas - " +
-           cSettings.getPressureMS(qslFormulaD5191cConstant->at(0).toDouble());
+           cSettings.getPressureNMS(qslFormulaD5191cConstant->at(0).toDouble());
 
         qslD5191.insert(0, str);
 
@@ -374,7 +374,7 @@ void sMethodSetup::showD5191()
                    " x Ptot - " +
                    cSettings.getFormulaConstantsAB(qslFormulaD5191bConstant->at(1).toDouble()) +
                    " x Pgas - " +
-                   cSettings.getPressureMS(qslFormulaD5191cConstant->at(1).toDouble());
+                   cSettings.getPressureNMS(qslFormulaD5191cConstant->at(1).toDouble());
 
         qslD5191.insert(1, str);
 
@@ -383,7 +383,7 @@ void sMethodSetup::showD5191()
                    " x Ptot - " +
                    cSettings.getFormulaConstantsAB(qslFormulaD5191bConstant->at(2).toDouble()) +
                    " x Pgas - " +
-                   cSettings.getPressureMS(qslFormulaD5191cConstant->at(2).toDouble());
+                   cSettings.getPressureNMS(qslFormulaD5191cConstant->at(2).toDouble());
 
         qslD5191.insert(2, str);
 
@@ -530,7 +530,7 @@ void sMethodSetup::showD6378()
            " x Ptot - " +
            cSettings.getFormulaConstantsAB(qslFormulaD6378bConstant->at(0).toDouble()) +
            " x Pgas - " +
-           cSettings.getPressureMS(qslFormulaD6378cConstant->at(0).toDouble());
+           cSettings.getPressureNMS(qslFormulaD6378cConstant->at(0).toDouble());
 
         qslD6378.insert(0, str);
 
@@ -539,7 +539,7 @@ void sMethodSetup::showD6378()
                    " x Ptot - " +
                    cSettings.getFormulaConstantsAB(qslFormulaD6378bConstant->at(1).toDouble()) +
                    " x Pgas - " +
-                   cSettings.getPressureMS(qslFormulaD6378cConstant->at(1).toDouble());
+                   cSettings.getPressureNMS(qslFormulaD6378cConstant->at(1).toDouble());
 
         qslD6378.insert(1, str);
 
@@ -548,7 +548,7 @@ void sMethodSetup::showD6378()
                    " x Ptot - " +
                    cSettings.getFormulaConstantsAB(qslFormulaD6378bConstant->at(2).toDouble()) +
                    " x Pgas - " +
-                   cSettings.getPressureMS(qslFormulaD6378cConstant->at(2).toDouble());
+                   cSettings.getPressureNMS(qslFormulaD6378cConstant->at(2).toDouble());
 
         qslD6378.insert(2, str);
 

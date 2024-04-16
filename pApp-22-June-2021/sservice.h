@@ -146,6 +146,7 @@ private:
     bool cDiagnosticMode;
     bool cHide;
     bool cEnSwitch;
+    bool sServiceSaved; //naveen
 
     QBasicTimer timer;
     int cvp;
