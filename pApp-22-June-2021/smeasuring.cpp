@@ -545,6 +545,7 @@ void sMeasuring::showResultD6377(double result)
     ui->wResult->setMethod(tr("<B>D6377</B> VPCRx Results"));
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->setVLPr(cSettings.getVLRatio(cstdD6377->vl_ratio), cSettings.getTemperatureWS(para_measured), cSettings.getTemperatureScale() , passfail);
+    ui->wResult->setShaker(cSettings.getShaker(cstdD6377->shaker_speed));
 
     QString formula = "VPCR4";
 

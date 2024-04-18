@@ -397,6 +397,26 @@ QString sSettings::getPressureMS(double pr) const
 
 QString sSettings::getPressureNMS(double pr) const
 {
+    if(cgs->pressure_scale==0)
+    {
+        return ((QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3))+" kPa");
+    }
+    else if(cgs->pressure_scale==1)
+    {
+        return ((QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3))+" psi");
+    }
+    else if(cgs->pressure_scale==2)
+    {
+        return ((QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3))+" hPa");
+    }
+    else
+    {
+        return ((QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3))+" ATM");
+    }
+}
+
+QString sSettings::getPressureNaMS(double pr) const
+{
     return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3));
 }
 
@@ -485,6 +505,12 @@ QString sSettings::getParaMeasured(QString method, double pm) const
 QString sSettings::getVLRatio(double vl) const
 {
     return (QString::number(vl, 'f', 2));
+}
+
+QString sSettings::getShaker(int sh) const
+{
+    float tmp = sh/60;
+    return (QString::number(tmp,'f',1));
 }
 
 QString sSettings::getFormulaConstantsAB(double constants) const

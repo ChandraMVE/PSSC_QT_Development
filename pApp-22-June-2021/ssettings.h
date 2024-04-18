@@ -90,6 +90,7 @@ public:
     QString getPressureWS(double pr) const;
     QString getPressureMS(double pr) const;
     QString getPressureNMS(double pr) const; //naveen
+    QString getPressureNaMS(double pr) const; //naveen
     double getPressurekPaMS(double pr);
 
     double getPressurekPaMM(int tm, int pr); 
@@ -107,6 +108,7 @@ public:
 
     QString getParaMeasured(QString method, double pm) const;
     QString getVLRatio(double vl) const;
+    QString getShaker(int sh) const;
     QString getFormulaConstantsAB(double constants) const;
 
     bool checkUSBMounted(void);

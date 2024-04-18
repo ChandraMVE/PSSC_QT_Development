@@ -702,7 +702,7 @@ void sMethodSetup::showFree1()
                       cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
                       METHOD_CONSTANT_DP);
 
-    ui->leConst3->setText(cSettings.getPressureNMS(stdFree1.cconstant));
+    ui->leConst3->setText(cSettings.getPressureNaMS(stdFree1.cconstant));
 
     ui->leTPx1->setText(cSettings.getTestTime(stdFree1.tpx1));
     ui->leTPx2->setText(cSettings.getTestTime(stdFree1.tpx2));
@@ -756,7 +756,7 @@ void sMethodSetup::showFree2()
                       cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
                       METHOD_CONSTANT_DP);
 
-    ui->leConst3->setText(cSettings.getPressureNMS(stdFree2.cconstant));
+    ui->leConst3->setText(cSettings.getPressureNaMS(stdFree2.cconstant));
 
     ui->leTPx1->setText(cSettings.getTestTime(stdFree2.tpx1));
     ui->leTPx2->setText(cSettings.getTestTime(stdFree2.tpx2));
@@ -808,7 +808,7 @@ void sMethodSetup::showFree3()
                       cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
                       METHOD_CONSTANT_DP);
 
-    ui->leConst3->setText(cSettings.getPressureNMS(stdFree3.cconstant));
+    ui->leConst3->setText(cSettings.getPressureNaMS(stdFree3.cconstant));
 
     ui->leTPx1->setText(cSettings.getTestTime(stdFree3.tpx1));
     ui->leTPx2->setText(cSettings.getTestTime(stdFree3.tpx2));
@@ -861,7 +861,7 @@ void sMethodSetup::showFree4()
                       cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
                       METHOD_CONSTANT_DP);
 
-    ui->leConst3->setText(cSettings.getPressureNMS(stdFree4.cconstant));
+    ui->leConst3->setText(cSettings.getPressureNaMS(stdFree4.cconstant));
 
     ui->leTPx1->setText(cSettings.getTestTime(stdFree4.tpx1));
     ui->leTPx2->setText(cSettings.getTestTime(stdFree4.tpx2));

@@ -33,6 +33,7 @@ void sMeasuring2::setMethod(QString tmp)
     ui->fr3Pr->hide();
     ui->frVLPr->hide();
     ui->lblFormula->hide();
+    ui->frShaker->hide();
 }
 
 void sMeasuring2::setMethodFormula(QString tmp, QString formula)
@@ -43,6 +44,7 @@ void sMeasuring2::setMethodFormula(QString tmp, QString formula)
     ui->lblFormula->show();
     ui->fr3Pr->hide();
     ui->frVLPr->hide();
+    ui->frShaker->hide();
 }
 
 void sMeasuring2::setResult(QString tmp, QString scale)
@@ -72,6 +74,13 @@ void sMeasuring2::setVLPr(QString vl, QString pr, QString scale, QString pass)
         ui->lblPassFail->setStyleSheet("color: rgb(255, 0, 0); font: 75 18pt 'Roboto Medium';");
     }
     ui->frVLPr->show();
+}
+
+void sMeasuring2::setShaker(QString sh){
+    ui->frVLPr->move(20,300);
+    ui->lblShakerCS->setText(sh);
+    ui->frShaker->move(420,320);
+    ui->frShaker->show();
 }
 
 void sMeasuring2::setVLTm(QString vl, QString tm, QString scale, QString pass)
