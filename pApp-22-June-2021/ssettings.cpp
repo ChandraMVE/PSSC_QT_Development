@@ -397,7 +397,7 @@ QString sSettings::getPressureMS(double pr) const
 
 QString sSettings::getPressureNMS(double pr) const
 {
-    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 2));
+    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3));
 }
 
 double sSettings::getPressurekPaMS(double pr)
@@ -489,7 +489,7 @@ QString sSettings::getVLRatio(double vl) const
 
 QString sSettings::getFormulaConstantsAB(double constants) const
 {
-    return (QString::number(constants, 'f', 2));
+    return (QString::number(constants, 'f', 3));
 }
 
 bool sSettings::checkUSBMounted()

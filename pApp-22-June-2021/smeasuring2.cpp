@@ -7,7 +7,7 @@ sMeasuring2::sMeasuring2(QWidget *parent) :
     ui(new Ui::sMeasuring2)
 {
     ui->setupUi(this);
-    ui->frVLPr->move(20,300);
+//    ui->frVLPr->move(20,300);
     ui->frVLPr->hide();
 }
 

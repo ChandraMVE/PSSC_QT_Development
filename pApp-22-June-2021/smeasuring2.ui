@@ -283,7 +283,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="lblMethod">
      <property name="geometry">
       <rect>
-       <x>145</x>
+       <x>140</x>
        <y>55</y>
        <width>471</width>
        <height>41</height>
