@@ -509,7 +509,7 @@ QString sSettings::getVLRatio(double vl) const
 
 QString sSettings::getShaker(int sh) const
 {
-    float tmp = sh/60;
+    float tmp = sh/(60.0);
     return (QString::number(tmp,'f',1));
 }
 

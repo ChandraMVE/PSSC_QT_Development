@@ -3723,7 +3723,7 @@ void MainWindow::handleD6377(void)
                         {
                             cREqTime = ui->wMethodSetup->stdD6377.time;
 
-                            int tc = cSettings.getTemperatureCount(37.8);
+                            int tc = cSettings.getTemperatureCount(ui->wMethodSetup->stdD6377.temperature);
 
                             sendPara(cProtocol.sendTemperature(tc),
                                      12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
