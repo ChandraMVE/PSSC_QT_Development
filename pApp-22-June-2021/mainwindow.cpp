@@ -3728,10 +3728,10 @@ void MainWindow::handleD6377(void)
                             sendPara(cProtocol.sendTemperature(tc),
                                      12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
 
-                            qDebug()<<"cSettings.getTemperatureCount(37.8) tc: "<<tc;
+                            qDebug()<<"cSettings.getTemperatureCount(ui->wMethodSetup->stdD6377.temperature) tc: "<<tc;
 
                             if(ui->wServiceSetup->getDebug())
-                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(ui->wMethodSetup->stdD6377.temperature));
                             else
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
 
@@ -3755,8 +3755,8 @@ void MainWindow::handleD6377(void)
 
                         double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if( (ctmp >= (37.8 - M_TEMPERATURE_TOLERANCE))
-                            && (ctmp <= (37.8 + M_TEMPERATURE_TOLERANCE)))
+                        if( (ctmp >= (ui->wMethodSetup->stdD6377.temperature - M_TEMPERATURE_TOLERANCE))
+                            && (ctmp <= (ui->wMethodSetup->stdD6377.temperature + M_TEMPERATURE_TOLERANCE)))
                         {
                             cEqTime++;
 
@@ -3776,7 +3776,7 @@ void MainWindow::handleD6377(void)
                             cEqTime = 0;
 
                             if(ui->wServiceSetup->getDebug())
-                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(37.8));
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(ui->wMethodSetup->stdD6377.temperature));
                             else
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
                         }

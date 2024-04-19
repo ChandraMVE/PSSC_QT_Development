@@ -898,7 +898,7 @@ void sMethodSetup::updateD5191()
     }
     stdD5191.formula = ui->cbFormula->currentIndex();
 
-    if( cSettings.getTemperatureMS(stdD5191.temperature) != ui->lePara1->text())
+    if( cSettings.getTemperatureMS(stdD5191.temperature).toDouble() != ui->lePara1->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -945,7 +945,7 @@ void sMethodSetup::updateD5191()
 void sMethodSetup::updateD6377()
 {
 
-    if( cSettings.getTemperatureMS(stdD6377.temperature) != ui->lePara1->text())
+    if( cSettings.getTemperatureMS(stdD6377.temperature).toDouble() != ui->lePara1->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -1004,7 +1004,7 @@ void sMethodSetup::updateD6378()
     }
     stdD6378.formula = ui->cbFormula->currentIndex();
 
-    if( cSettings.getTemperatureMS(stdD6378.temperature) != ui->lePara1->text())
+    if( cSettings.getTemperatureMS(stdD6378.temperature).toDouble() != ui->lePara1->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -1050,7 +1050,7 @@ void sMethodSetup::updateD6378()
 
 void sMethodSetup::updateD5188()
 {
-    if( cSettings.getPressureMS(stdD5188.pressure) != ui->lePara1->text())
+    if( cSettings.getPressureMS(stdD5188.pressure).toDouble() != ui->lePara1->text().toDouble())
     {
         cParasChanged = true;
     }
