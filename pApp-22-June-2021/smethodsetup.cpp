@@ -75,6 +75,9 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     connect(ui->leVLRatio, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->leVLRatio, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
 
+    connect(ui->cbShakerValue, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
+    connect(ui->cbShakerValue, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
+
     connect(ui->lePRPFrom, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->lePRPFrom, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
 
@@ -128,6 +131,10 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     dvVLRatio = new QDoubleValidator(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX, METHOD_VLRATIO_DP, ui->leVLRatio);
     dvVLRatio->setNotation(QDoubleValidator::StandardNotation);
     ui->leVLRatio->setValidator(dvVLRatio);
+
+    dvShaker = new QDoubleValidator(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP, ui->cbShakerValue);
+    dvShaker->setNotation(QDoubleValidator::StandardNotation);
+    ui->cbShakerValue->setValidator(dvShaker);
 
     dvFrom = new QDoubleValidator(-999.0, 999.0, 2, ui->lePRPFrom);
     dvFrom->setNotation(QDoubleValidator::StandardNotation);
@@ -239,6 +246,7 @@ void sMethodSetup::setDefaults()
     stdFree1.tpx2 = DEFAULT_FREE_TPX2;
     stdFree1.tpx3 = DEFAULT_FREE_TPX3;
     stdFree1.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree1.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree1.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree1.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree1.from = DEFAULT_FREE_FROM;
@@ -252,6 +260,7 @@ void sMethodSetup::setDefaults()
     stdFree2.tpx2 = DEFAULT_FREE_TPX2;
     stdFree2.tpx3 = DEFAULT_FREE_TPX3;
     stdFree2.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree2.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree2.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree2.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree2.from = DEFAULT_FREE_FROM;
@@ -265,6 +274,7 @@ void sMethodSetup::setDefaults()
     stdFree3.tpx2 = DEFAULT_FREE_TPX2;
     stdFree3.tpx3 = DEFAULT_FREE_TPX3;
     stdFree3.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree3.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree3.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree3.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree3.from = DEFAULT_FREE_FROM;
@@ -278,6 +288,7 @@ void sMethodSetup::setDefaults()
     stdFree4.tpx2 = DEFAULT_FREE_TPX2;
     stdFree4.tpx3 = DEFAULT_FREE_TPX3;
     stdFree4.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree4.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree4.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree4.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree4.from = DEFAULT_FREE_FROM;
@@ -709,6 +720,11 @@ void sMethodSetup::showFree1()
     ui->leTPx3->setText(cSettings.getTestTime(stdFree1.tpx3));
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree1.vl_ratio));
 
+    ui->cbShakerDisable->setChecked(stdFree1.shaker_disabled);
+    dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree1.shaker_speed));
+    ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
+
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
     dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
@@ -763,6 +779,11 @@ void sMethodSetup::showFree2()
     ui->leTPx3->setText(cSettings.getTestTime(stdFree2.tpx3));
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree2.vl_ratio));
 
+    ui->cbShakerDisable->setChecked(stdFree2.shaker_disabled);
+    dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree2.shaker_speed));
+    ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
+
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
     dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
@@ -814,6 +835,11 @@ void sMethodSetup::showFree3()
     ui->leTPx2->setText(cSettings.getTestTime(stdFree3.tpx2));
     ui->leTPx3->setText(cSettings.getTestTime(stdFree3.tpx3));
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree3.vl_ratio));
+
+    ui->cbShakerDisable->setChecked(stdFree3.shaker_disabled);
+    dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree3.shaker_speed));
+    ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
@@ -867,6 +893,11 @@ void sMethodSetup::showFree4()
     ui->leTPx2->setText(cSettings.getTestTime(stdFree4.tpx2));
     ui->leTPx3->setText(cSettings.getTestTime(stdFree4.tpx3));
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree4.vl_ratio));
+
+    ui->cbShakerDisable->setChecked(stdFree4.shaker_disabled);
+    dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree4.shaker_speed));
+    ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
@@ -1145,6 +1176,18 @@ void sMethodSetup::updateFree1()
     }
     stdFree1.vl_ratio = ui->leVLRatio->text().toDouble();
 
+    if(stdFree1.shaker_disabled != ui->cbShakerDisable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdFree1.shaker_disabled = ui->cbShakerDisable->checkState();
+    qDebug()<<"stdFree1.shaker_disabled from updateFree1: "<<stdFree1.shaker_disabled;
+
+    if(stdFree1.shaker_speed != ui->cbShakerValue->text().toInt()){
+        cParasChanged = true;
+    }
+    stdFree1.shaker_speed = ui->cbShakerValue->text().toInt();
+
     if(stdFree1.passfail_enabled != ui->cbEnable->checkState())
     {
         cParasChanged = true;
@@ -1220,6 +1263,18 @@ void sMethodSetup::updateFree2()
         cParasChanged = true;
     }
     stdFree2.vl_ratio = ui->leVLRatio->text().toDouble();
+
+    if(stdFree2.shaker_disabled != ui->cbShakerDisable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdFree2.shaker_disabled = ui->cbShakerDisable->checkState();
+
+    if(stdFree2.shaker_speed != ui->cbShakerValue->text().toInt())
+    {
+        cParasChanged = true;
+    }
+    stdFree2.shaker_speed = ui->cbShakerValue->text().toInt();
 
     if(stdFree2.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1297,6 +1352,17 @@ void sMethodSetup::updateFree3()
     }
     stdFree3.vl_ratio = ui->leVLRatio->text().toDouble();
 
+    if(stdFree3.shaker_disabled != ui->cbShakerDisable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdFree3.shaker_disabled = ui->cbShakerDisable->checkState();
+
+    if(stdFree3.shaker_speed != ui->cbShakerValue->text().toInt())
+    {
+        cParasChanged = true;
+    }
+    stdFree3.shaker_speed = ui->cbShakerValue->text().toInt();
 
     if(stdFree3.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1349,6 +1415,12 @@ void sMethodSetup::updateFree4()
 
     if(stdFree4.vl_ratio != ui->leVLRatio->text().toDouble()) cParasChanged = true;
     stdFree4.vl_ratio = ui->leVLRatio->text().toDouble();
+
+    if(stdFree4.shaker_disabled != ui->cbShakerDisable->checkState()) cParasChanged = true;
+    stdFree4.shaker_disabled = ui->cbShakerDisable->checkState();
+
+    if(stdFree4.shaker_speed != ui->cbShakerValue->text().toInt()) cParasChanged = true;
+    stdFree4.shaker_speed = ui->cbShakerValue->text().toInt();
 
     if(stdFree4.passfail_enabled != ui->cbEnable->checkState()) cParasChanged = true;
     stdFree4.passfail_enabled = ui->cbEnable->checkState();
@@ -1576,4 +1648,11 @@ void sMethodSetup::on_imageCapture_clicked()
     }else{
         qDebug()<<"folder doesn't exist";
     }
+}
+
+void sMethodSetup::on_cbShakerDisable_clicked()
+{
+    qDebug()<<"ui->cbShakerDisable->isChecked() "<<ui->cbShakerDisable->isChecked();
+    qDebug()<<"stdFree1.shaker_disabled: "<<stdFree1.shaker_disabled;
+    ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 }

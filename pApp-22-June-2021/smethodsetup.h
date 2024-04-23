@@ -79,6 +79,8 @@ struct STD_Free {
     double tpx2;
     double tpx3;
     double vl_ratio;
+    int shaker_disabled;
+    int shaker_speed;
     int passfail_enabled;
     int alarm_enabled;
     double from;
@@ -144,6 +146,8 @@ private slots:
 
     void on_imageCapture_clicked();
 
+    void on_cbShakerDisable_clicked();
+
 private:
     Ui::sMethodSetup *ui;
     QWidget *cWidgetFormula;
@@ -176,6 +180,7 @@ private:
     QDoubleValidator *dvTPx2;
     QDoubleValidator *dvTPx3;
     QDoubleValidator *dvVLRatio;
+    QDoubleValidator *dvShaker;
 
     QDoubleValidator *dvFrom;
     QDoubleValidator *dvTo;

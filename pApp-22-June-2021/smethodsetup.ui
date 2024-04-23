@@ -452,7 +452,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
         <x>20</x>
         <y>120</y>
         <width>709</width>
-        <height>449</height>
+        <height>581</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -531,7 +531,7 @@ QFrame {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tabFormula">
        <attribute name="title">
@@ -543,7 +543,7 @@ QFrame {
           <x>0</x>
           <y>0</y>
           <width>709</width>
-          <height>402</height>
+          <height>534</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -872,7 +872,7 @@ border-color: rgb(21, 100, 192);
           <x>0</x>
           <y>0</y>
           <width>709</width>
-          <height>402</height>
+          <height>534</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1170,7 +1170,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
           <x>0</x>
           <y>0</y>
           <width>709</width>
-          <height>402</height>
+          <height>534</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1568,6 +1568,162 @@ border-color: rgb(21, 100, 192);
           </property>
          </widget>
         </widget>
+        <widget class="QFrame" name="frShakerEnable">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>400</y>
+           <width>660</width>
+           <height>101</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border-width: 2px;
+border-style: solid;
+border-radius: 10px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto&quot;;
+border-color:  rgb(200, 200, 200);
+
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLabel" name="lblTestTemp_3">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>30</y>
+            <width>171</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Shaker Enable</string>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="cbShakerDisable">
+          <property name="geometry">
+           <rect>
+            <x>270</x>
+            <y>30</y>
+            <width>41</width>
+            <height>55</height>
+           </rect>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QCheckBox {
+    spacing: 5px;
+ border: 0px solid #999999;
+
+}
+
+QCheckBox::indicator {
+    width: 41px;
+    height: 41px;
+}
+
+QCheckBox::indicator:unchecked {
+	image: url(:/images/icons/ancheck.png);
+}
+
+QCheckBox::indicator:unchecked:disabled{
+	image: url(:/images/icons/andcheck.png);
+}
+QCheckBox::indicator:checked:disabled{
+	image: url(:/images/icons/adcheck.png);
+}
+
+/*
+QCheckBox::indicator:unchecked:hover {
+    image: url(:/images/checkbox_unchecked_hover.png);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+    image: url(:/images/checkbox_unchecked_pressed.png);
+}
+*/
+
+QCheckBox::indicator:checked {
+    image: url(:/images/icons/acheck.png);
+}
+/*
+QCheckBox::indicator:checked:hover {
+    image: url(:/images/checkbox_checked_hover.png);
+}
+
+QCheckBox::indicator:checked:pressed {
+    image: url(:/images/checkbox_checked_pressed.png);
+}
+*/
+QCheckBox::indicator:indeterminate:hover {
+    image: url(:/images/checkbox_indeterminate_hover.png);
+}
+/*
+QCheckBox::indicator:indeterminate:pressed {
+    image: url(:/images/checkbox_indeterminate_pressed.png);
+}
+*/</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+         <widget class="sQLEExtend" name="cbShakerValue">
+          <property name="geometry">
+           <rect>
+            <x>400</x>
+            <y>30</y>
+            <width>200</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}
+
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="maxLength">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tabPassFail">
@@ -1580,7 +1736,7 @@ border-color: rgb(21, 100, 192);
           <x>0</x>
           <y>0</y>
           <width>709</width>
-          <height>402</height>
+          <height>534</height>
          </rect>
         </property>
         <property name="styleSheet">

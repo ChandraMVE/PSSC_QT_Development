@@ -81,6 +81,7 @@
 #define DEFAULT_FREE_TPX2                   60
 #define DEFAULT_FREE_TPX3                   60
 #define DEFAULT_FREE_VLRATIO                4.0
+#define DEFAULT_FREE_SHAKER_DISABLE         ENABLED
 #define DEFAULT_FREE_PASS_FAIL_ENABLED      ENABLED
 #define DEFAULT_FREE_ALARM_ENABLED          ENABLED
 #define DEFAULT_FREE_FROM                   111.6

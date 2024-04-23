@@ -119,7 +119,10 @@ void sMeasuring2::set3Prs(QString pabs, QString pgas, QString ptot, QString scal
     ui->lblScale->show();
 }
 
-
+void sMeasuring2::setFreeShaker(QString speed){
+    ui->lblShakerCS->setText(speed);
+    ui->frShaker->show();
+}
 
 //void sMeasuring2::on_imageCapture_clicked()
 //{

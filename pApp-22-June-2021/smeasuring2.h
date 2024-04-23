@@ -23,6 +23,7 @@ public:
 
     void setVLPr(QString vl, QString pr, QString scale, QString pass);
     void setShaker(QString sh); //naveen
+    void setFreeShaker(QString speed); //naveen
     void setVLTm(QString vl, QString pr, QString scale, QString pass);
     void set3Prs(QString pabs, QString pgas, QString ptot, QString scale, QString pass);
 

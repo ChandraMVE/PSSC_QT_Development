@@ -669,6 +669,7 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 
     QString passfail;
     double aconstant, bconstant, cconstant;
+    int shakerSpeed;
 
     QString method = ui->cbMethod->currentText();
 
@@ -696,6 +697,10 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
             else passfail = "Fail";
         }
 
+        if(cstdFree1->shaker_disabled){
+            shakerSpeed = cstdFree1->shaker_speed;
+        }
+
         break;
 
         case 2:
@@ -718,6 +723,10 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 
             if( cpr >= from && cpr <= to) passfail = "Pass";
             else passfail = "Fail";
+        }
+
+        if(cstdFree2->shaker_disabled){
+            shakerSpeed = cstdFree2->shaker_speed;
         }
 
         break;
@@ -744,6 +753,10 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
             else passfail = "Fail";
         }
 
+        if(cstdFree3->shaker_disabled){
+            shakerSpeed = cstdFree3->shaker_speed;
+        }
+
         break;
 
         case 4:
@@ -766,6 +779,10 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 
             if( cpr >= from && cpr <= to) passfail = "Pass";
             else passfail = "Fail";
+        }
+
+        if(cstdFree4->shaker_disabled){
+            shakerSpeed = cstdFree4->shaker_speed;
         }
 
         break;
@@ -793,6 +810,7 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), "Pass");
+    ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
 
     ui->twMeasuring->hide();
     ui->wResult->setStatus("");
