@@ -1367,6 +1367,7 @@ void MainWindow::readSerial(void)
                             cCurrentUCError = eVal;
 
                             qDebug()<<"Piston Position: "<<cPistonPosition;
+                            qDebug()<<"Stepper Speed: "<<cStepperSpeed;
                             if(ui->wServiceSetup->isVisible())
                                 ui->wServiceSetup->onLiveData(cValvePosition, cPistonPosition,
                                         cRawATemperature, cRawCTemperature,
@@ -2768,7 +2769,7 @@ void MainWindow::handleFreeShaker(void)
 
                         if((cPistonPosition <= 170+5) && (cPistonPosition >= 170-5))
                         {
-                            int shakerSpeed;
+
                             switch(ui->wMeasuring1->getMethod())
                             {
                                 case M_METHOD_FREE1: shakerSpeed = ui->wMethodSetup->stdFree1.shaker_speed;
@@ -2803,7 +2804,7 @@ void MainWindow::handleFreeShaker(void)
             case 11:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 170+5) && (cPistonPosition >= 170-5))
+                        if((cStepperSpeed <= shakerSpeed+5) && (cStepperSpeed >= shakerSpeed-5))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -3011,22 +3012,37 @@ void MainWindow::handleFreeShaker(void)
                     {
                         cParasUpdated = false;
 
-                        cEqTime++;
-                        if(cEqTime >= 60)
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
                         {
-                            cEqTime = 0;
-//                            cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
-                            sendPara(cProtocol.sendShakerSpeed(0, 0), 17, 60);
+                            cEqTime++;
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cEqTime = 0;
+                                sendPara(cProtocol.sendShakerSpeed(0, 0), 17, 60);
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
                         }
                         else
                         {
+                            cEqTime = 0;
 
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
                         }
+
                         if(!cStageTimeOut)
                         {
-                            setError(M_ERROR_PISTON_POSITION);
+                            setError(M_ERROR_TEMPERATURE);
                         }
                         else cStageTimeOut--;
+
                     }
                     break;
 
@@ -3039,9 +3055,10 @@ void MainWindow::handleFreeShaker(void)
                         if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
                             && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
                         {
-                            cEqTime++;
+//                            cEqTime++;
 
-                            if(cEqTime >= cREqTime)
+//                            if(cEqTime >= cREqTime)
+                            if(1)
                             {
                                 cPrTpx3= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
 

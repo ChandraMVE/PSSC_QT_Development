@@ -810,7 +810,15 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), "Pass");
-    ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
+    if(getMethod() == M_METHOD_FREE1 && cstdFree1->shaker_disabled){
+        ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
+    }else if(getMethod() == M_METHOD_FREE2 && cstdFree2->shaker_disabled){
+        ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
+    }else if(getMethod() == M_METHOD_FREE3 && cstdFree3->shaker_disabled){
+        ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
+    }else if(getMethod() == M_METHOD_FREE4 && cstdFree4->shaker_disabled){
+        ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
+    }
 
     ui->twMeasuring->hide();
     ui->wResult->setStatus("");
