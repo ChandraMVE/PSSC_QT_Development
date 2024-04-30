@@ -28,6 +28,7 @@ struct STD_D5191{
     double time;
     double vl_ratio;
     int passfail_enabled;
+    int single_expansion;
     int alarm_enabled;
     double from;
     double to;

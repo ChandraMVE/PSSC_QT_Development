@@ -43,6 +43,7 @@
 #define DEFAULT_D5191_TIME                  300
 #define DEFAULT_D5191_VL_RATIO              4
 #define DEFAULT_D5191_PASS_FAIL_ENABLED     DISAABLED
+#define DEFAULT_D5191_SINGLE_EXPAN_ENABLED  DISAABLED
 #define DEFAULT_D5191_ALARM_ENABLED         ENABLED
 #define DEFAULT_D5191_FROM                  111.6
 #define DEFAULT_D5191_TO                    114.0
@@ -81,6 +82,7 @@
 #define DEFAULT_FREE_TPX2                   60
 #define DEFAULT_FREE_TPX3                   60
 #define DEFAULT_FREE_VLRATIO                4.0
+#define DEFAULT_FREE_SHAKER_SPEED           90
 #define DEFAULT_FREE_SHAKER_DISABLE         ENABLED
 #define DEFAULT_FREE_PASS_FAIL_ENABLED      ENABLED
 #define DEFAULT_FREE_ALARM_ENABLED          ENABLED

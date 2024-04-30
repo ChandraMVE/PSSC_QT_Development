@@ -144,16 +144,18 @@ QString sMeasuring::getSampleId() const
 
 void sMeasuring::onLiveData(int tm, int pr)
 {
+    QString tmpUnit = cSettings.getTemperatureScale();
+    QString presUnit = cSettings.getPressureScale();
     if(ui->lblTemperature->isVisible()) 
     {
         QString str;
         qDebug()<<"onLiveData from MCU: The Temp "<<tm<<" pressure "<<pr;
         str = cSettings.getTemperatureLiveSS(tm);
-        ui->lblTemperature->setText(str);
-        qDebug()<<"On lblTemperature: "<<str;
+        ui->lblTemperature->setText(str + " " +tmpUnit);
+        qDebug()<<"On lblTemperature: "<<str+ " " +tmpUnit;
         str = cSettings.getPressureLiveSS(tm, pr);
-        ui->lblPressure->setText(str);
-        qDebug()<<"On lblPressure: "<<str;
+        ui->lblPressure->setText(str+" "+presUnit);
+        qDebug()<<"On lblPressure: "<<str+" "+presUnit;
     }
 }
 
@@ -404,6 +406,41 @@ void sMeasuring::saveLastIdsFile()
     {
         emit showMsgBox(tr("Measuring"), tr("Error Saving File!"));
     }
+}
+
+void sMeasuring::showResultD5191Single(double result){
+    QString passfail;
+    QString method = ui->cbMethod->currentText();
+
+    double vlratio = cstdD5191->vl_ratio;
+    double para_measured = cstdD5191->temperature;
+
+    if(cstdD5191->passfail_enabled){
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdD5191->from).toDouble();
+        double to = cSettings.getPressureWS(cstdD5191->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setMethod(tr("<B>D5191</B> Single Expansion"));
+    ui->wResult->setResult(cSettings.getPressureWS(result),cSettings.getPressureScale());
+    ui->wResult->setVLPr(cSettings.getVLRatio(cstdD5191->vl_ratio), cSettings.getTemperatureWS(cstdD5191->temperature), cSettings.getTemperatureScale(), passfail);
+    QString formula = "T V/L";
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(0, 0, 0,
+                    method, formula,
+                    0, 0, 0,
+                    result,
+                    0, vlratio,
+                    para_measured);
 }
 
 void sMeasuring::showResultD5191(double prtpx1, double prtpx2, double prtpx3)

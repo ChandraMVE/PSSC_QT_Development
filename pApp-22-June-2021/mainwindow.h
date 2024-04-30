@@ -49,6 +49,7 @@ public:
     void handleD6377(void);
     void handleOther(void);
     void handleFreeShaker(void);//naveen
+    void handleD5191SingleExpansion(void); //naveen
     void handleDiagnostic(void);
     void handleCalibration(void);
     void handleDiagCommError(void);

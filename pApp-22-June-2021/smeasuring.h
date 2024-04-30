@@ -110,6 +110,7 @@ public:
     void saveLastIdsFile();
 
     void showResultD5191(double prtpx1, double prtpx2, double prtpx3);
+    void showResultD5191Single(double prtpx1); //naveen
     void showResultD6377(double result);
     void showResultD6378(double prtpx1, double prtpx2, double prtpx3);
     void showResultD5188(double result);

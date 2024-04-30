@@ -207,6 +207,7 @@ void sMethodSetup::setDefaults()
     stdD5191.temperature = DEFAULT_D5191_TEMPERATURE;
     stdD5191.time = DEFAULT_D5191_TIME;
     stdD5191.vl_ratio = DEFAULT_D5191_VL_RATIO;
+    stdD5191.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
     stdD5191.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
     stdD5191.alarm_enabled = DEFAULT_D5191_ALARM_ENABLED;
     stdD5191.from = DEFAULT_D5191_FROM;
@@ -246,6 +247,7 @@ void sMethodSetup::setDefaults()
     stdFree1.tpx2 = DEFAULT_FREE_TPX2;
     stdFree1.tpx3 = DEFAULT_FREE_TPX3;
     stdFree1.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree1.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
     stdFree1.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree1.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree1.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -260,6 +262,7 @@ void sMethodSetup::setDefaults()
     stdFree2.tpx2 = DEFAULT_FREE_TPX2;
     stdFree2.tpx3 = DEFAULT_FREE_TPX3;
     stdFree2.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree2.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
     stdFree2.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree2.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree2.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -274,6 +277,7 @@ void sMethodSetup::setDefaults()
     stdFree3.tpx2 = DEFAULT_FREE_TPX2;
     stdFree3.tpx3 = DEFAULT_FREE_TPX3;
     stdFree3.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree3.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
     stdFree3.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree3.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree3.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -288,6 +292,7 @@ void sMethodSetup::setDefaults()
     stdFree4.tpx2 = DEFAULT_FREE_TPX2;
     stdFree4.tpx3 = DEFAULT_FREE_TPX3;
     stdFree4.vl_ratio = DEFAULT_FREE_VLRATIO;
+    stdFree4.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
     stdFree4.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree4.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree4.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -435,6 +440,13 @@ void sMethodSetup::showD5191()
     ui->lePara3->show();
     ui->lblPara3->show();
 
+    ui->cbSingleExpEnable->setChecked(stdD5191.single_expansion);
+    ui->cbSingleExpEnable->move(230, 240);
+    ui->lblPara5->move(20,240);
+
+    ui->cbSingleExpEnable->show();
+    ui->lblPara5->show();
+
     ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
@@ -503,6 +515,8 @@ void sMethodSetup::showD6377()
     ui->lblPara4->show();
     ui->lePara4->show();
 
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
@@ -603,6 +617,8 @@ void sMethodSetup::showD6378()
     ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
@@ -664,6 +680,8 @@ void sMethodSetup::showD5188()
     ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
 
     ui->gbRange->setTitle(tr("\"Pass\" Range T"));
 
@@ -946,6 +964,12 @@ void sMethodSetup::updateD5191()
         cParasChanged = true;
     }
     stdD5191.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdD5191.single_expansion != ui->cbSingleExpEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdD5191.single_expansion = ui->cbSingleExpEnable->checkState();
 
     if(stdD5191.passfail_enabled != ui->cbEnable->checkState())
     {
