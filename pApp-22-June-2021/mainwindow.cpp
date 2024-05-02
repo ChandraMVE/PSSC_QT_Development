@@ -3340,7 +3340,7 @@ void MainWindow::handleD5191SingleExpansion(void)
                                                      cTmTest = ui->wMethodSetup->stdFree4.temperature;
                                 break;
 
-                                default : cREqTime = 180;
+                                default : cREqTime = 240;
                                           cTmTest = 37.80;
                                 break;
                             }
@@ -3375,10 +3375,9 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
 
                         double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
-                        double p1, p2, p3;
 
-                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        if( ( ctmp >= (cTmTest - 0.1 ))
+                            && (ctmp <= (cTmTest + 0.1 )))
                         {
                             cEqTime++;
 

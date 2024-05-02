@@ -17,6 +17,17 @@
 #define METHOD_PRESSURE_MAX          150
 #define METHOD_PRESSURE_DP           1
 
+#define D5191_METHOD_FROM               0.0
+#define D5191_METHOD_TO                 999.9
+#define D6377_METHOD_FROM               0.0
+#define D6377_METHOD_TO                 999.9
+#define D6378_METHOD_FROM               0.0
+#define D6378_METHOD_TO                 999.9
+#define D5188_METHOD_FROM               10.0
+#define D5188_METHOD_TO                 70.0
+#define FREE_METHOD_FROM                0.0
+#define FREE_METHOD_TO                  999.9
+
 #define METHOD_TIME_MIN                 1
 #define METHOD_TIME_MAX                 600
 #define METHOD_TIME_DP                  0
@@ -30,7 +41,7 @@
 #define METHOD_VLRATIO_DP               2
 
 #define METHOD_SHAKER_SPEED_MIN         60
-#define METHOD_SHAKER_SPEED_MAX         210
+#define METHOD_SHAKER_SPEED_MAX         300
 #define METHOD_SHAKER_SPEED_DP          0
 
 #define METHOD_EQUI_TIME_MIN            1

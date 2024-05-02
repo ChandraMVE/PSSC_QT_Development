@@ -453,14 +453,14 @@ void sMethodSetup::showD5191()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                     cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
 
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdD5191.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                     cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
 
     ui->lePRPTo->setText(cSettings.getPressureMS(stdD5191.to));
@@ -520,14 +520,14 @@ void sMethodSetup::showD6377()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                     cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(D6377_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6377_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
 
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdD6377.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                     cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(D6377_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6377_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
 
     ui->lePRPTo->setText(cSettings.getPressureMS(stdD6377.to));
@@ -622,14 +622,14 @@ void sMethodSetup::showD6378()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                     cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
 
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdD6378.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                     cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
 
     ui->lePRPTo->setText(cSettings.getPressureMS(stdD6378.to));
@@ -685,14 +685,14 @@ void sMethodSetup::showD5188()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range T"));
 
-    dvFrom->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
-                     cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getTemperatureMS(D5188_METHOD_FROM).toDouble(),
+                     cSettings.getTemperatureMS(D5188_METHOD_TO).toDouble(),
                      METHOD_TEMPERATURE_DP);
 
     ui->lePRPFrom->setText(cSettings.getTemperatureMS(stdD5188.from));
 
-    dvTo->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
-                     cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getTemperatureMS(D5188_METHOD_FROM).toDouble(),
+                     cSettings.getTemperatureMS(D5188_METHOD_TO).toDouble(),
                      METHOD_TEMPERATURE_DP);
 
     ui->lePRPTo->setText(cSettings.getTemperatureMS(stdD5188.to));
@@ -745,14 +745,14 @@ void sMethodSetup::showFree1()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                       cSettings.getPressureDPMS());
 
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdFree1.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                       cSettings.getPressureDPMS());
 
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree1.to));
@@ -804,13 +804,13 @@ void sMethodSetup::showFree2()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdFree2.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                       cSettings.getPressureDPMS());
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree2.to));
 
@@ -861,13 +861,13 @@ void sMethodSetup::showFree3()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdFree3.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                    cSettings.getPressureDPMS());
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree3.to));
 
@@ -919,13 +919,13 @@ void sMethodSetup::showFree4()
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
-    dvFrom->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvFrom->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                      cSettings.getPressureDPMS());
     ui->lePRPFrom->setText(cSettings.getPressureMS(stdFree4.from));
 
-    dvTo->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
-                      cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
+    dvTo->setRange(cSettings.getPressureMS(FREE_METHOD_FROM).toDouble(),
+                      cSettings.getPressureMS(FREE_METHOD_TO).toDouble(),
                    cSettings.getPressureDPMS());
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree4.to));
 
