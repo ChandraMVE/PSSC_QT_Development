@@ -484,8 +484,20 @@ void sService::onLiveData(int vp, int pp, int atm, int ctm, int pr, int ss, int 
     str.sprintf("%.2f", piston);
     ui->lblPistonPosition->setText(str);
 
-    if(vp >=0 && vp <= 2)
+    if(vp >=0 && vp <= 2){
         ui->lblSelectorValve->setText(ui->cbSelectorValve->itemText(vp));
+
+//        QString selectedText = ui->cbSelectorValve->itemText(vp);
+
+//        qDebug()<<"selectedText: "<<selectedText;
+//        if(selectedText == "In") {
+//            ui->cbSelectorValve->setItemData(1, false, Qt::UserRole - 1);
+//        } else if(selectedText == "Out") {
+//            ui->cbSelectorValve->setItemData(2, false, Qt::UserRole - 1);
+//        } else if(selectedText == "Closed") {
+//            ui->cbSelectorValve->setItemData(0, false, Qt::UserRole - 1);
+//        }
+    }
 
     str.sprintf("%d", ss);
     ui->lblRPM->setText(str);

@@ -168,7 +168,7 @@ private:
     int  cREqTime;
 
     int shakerSpeed; //naveen
-    double p1, p2, p3; //naveen
+    double p1=0, p2=0, p3=0; //naveen
 
     double cTmTest;
     double cPrTpx1;

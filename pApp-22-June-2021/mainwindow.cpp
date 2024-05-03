@@ -3376,8 +3376,8 @@ void MainWindow::handleD5191SingleExpansion(void)
 
                         double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if( ( ctmp >= (cTmTest - 0.1 ))
-                            && (ctmp <= (cTmTest + 0.1 )))
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
                         {
                             cEqTime++;
 
