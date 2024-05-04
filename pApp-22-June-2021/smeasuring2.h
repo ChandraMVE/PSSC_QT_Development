@@ -26,6 +26,7 @@ public:
     void setFreeShaker(QString speed); //naveen
     void setVLTm(QString vl, QString pr, QString scale, QString pass);
     void set3Prs(QString pabs, QString pgas, QString ptot, QString scale, QString pass);
+    void setPtot(QString ptot, QString scale, QString pass); //naveen
 
 private slots:
 //    void on_imageCapture_clicked();

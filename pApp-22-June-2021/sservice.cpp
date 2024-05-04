@@ -837,7 +837,7 @@ void sService::on_pbFWUpdate_clicked()
 
     QFile::remove(fname2);  //24-May-2022
 
-
+    QString methodSetupPath = QApplication::applicationDirPath() + FN_METHOD_SETUP;
 
     if(QFile::copy( fname1, fname2))
     {
@@ -846,8 +846,10 @@ void sService::on_pbFWUpdate_clicked()
 
         QFileInfo fi(fname2);
 
-        if(fi.size())
+        if(fi.size()){
+            QFile::remove(methodSetupPath);
             emit showMsgBox(tr("Service Setup"), tr("Firmware Copied\nRestart Machine to reflect changes!"));
+        }
         else
         {
             if (fi.isFile()) QFile::remove(fname2);

@@ -408,14 +408,45 @@ void sMeasuring::saveLastIdsFile()
     }
 }
 
-void sMeasuring::showResultD5191Single(double result){
-    QString passfail;
-    QString method = ui->cbMethod->currentText();
+void sMeasuring::showResultD5191Single(double prtpx3){
+    double p_tot = 0;
 
+    p_tot = prtpx3;
+
+    double result = 0;
+
+    double ttime = cstdD5191->time;
     double vlratio = cstdD5191->vl_ratio;
     double para_measured = cstdD5191->temperature;
 
-    if(cstdD5191->passfail_enabled){
+    double aconstant = qslFormulaD5191aConstant->at(cstdD5191->formula).toDouble();
+    double bconstant = qslFormulaD5191bConstant->at(cstdD5191->formula).toDouble();
+    double cconstant = qslFormulaD5191cConstant->at(cstdD5191->formula).toDouble();
+
+    result = (aconstant * p_tot) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->cbMethod->currentText();
+
+    if(cstdD5191->formula==0)
+    {
+        ui->wResult->setMethod(tr("<B>D5191</B> <B>ASTM</B> Results"));
+        formula = "ASTM";
+    }
+    else if(cstdD5191->formula==1)
+    {
+        ui->wResult->setMethod(tr("<B>D5191</B> <B>EPA</B> Results"));
+        formula = "EPA";
+    }
+    else if(cstdD5191->formula==2)
+    {
+        ui->wResult->setMethod(tr("<B>D5191</B> <B>CARB</B> Results"));
+        formula = "CARB";
+    }
+
+    if(cstdD5191->passfail_enabled)
+    {
         double cpr = cSettings.getPressureWS(result).toDouble();
         double from = cSettings.getPressureWS(cstdD5191->from).toDouble();
         double to = cSettings.getPressureWS(cstdD5191->to).toDouble();
@@ -424,22 +455,20 @@ void sMeasuring::showResultD5191Single(double result){
         else passfail = "Fail";
     }
 
-    ui->wResult->setMethod(tr("<B>D5191</B> Single Expansion"));
-    ui->wResult->setResult(cSettings.getPressureWS(result),cSettings.getPressureScale());
-    ui->wResult->setVLPr(cSettings.getVLRatio(cstdD5191->vl_ratio), cSettings.getTemperatureWS(cstdD5191->temperature), cSettings.getTemperatureScale(), passfail);
-    QString formula = "T V/L";
-
     ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->setPtot(cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
 
     ui->twMeasuring->hide();
     ui->wResult->setStatus("");
     ui->wResult->show();
 
-    emit saveResult(0, 0, 0,
+    emit saveResult(p_tot, 0, 0,
                     method, formula,
-                    0, 0, 0,
+                    aconstant, bconstant, cconstant,
                     result,
-                    0, vlratio,
+                    ttime, vlratio,
                     para_measured);
 }
 
