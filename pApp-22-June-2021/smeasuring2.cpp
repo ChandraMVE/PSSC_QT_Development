@@ -101,6 +101,9 @@ void sMeasuring2::setVLTm(QString vl, QString tm, QString scale, QString pass)
 
 void sMeasuring2::set3Prs(QString pabs, QString pgas, QString ptot, QString scale, QString pass)
 {
+    ui->label_8->move(30,10);
+    ui->lblPtot->move(30,40);
+
     ui->lblPabs->setText(pabs);
     ui->lblPgas->setText(pgas);
     ui->lblPtot->setText(ptot);
@@ -132,8 +135,8 @@ void sMeasuring2::setPtot(QString ptot, QString scale, QString pass){
     ui->lblPtot->setText(ptot);
     ui->lblScale->setText(scale);
 
-    ui->label_8->move(91,31);
-    ui->lblPtot->move(101,21);
+    ui->label_8->move(200,10);
+    ui->lblPtot->move(200,40);
     if(pass == "Pass")
     {
         ui->lblPassFail->setText(pass);
