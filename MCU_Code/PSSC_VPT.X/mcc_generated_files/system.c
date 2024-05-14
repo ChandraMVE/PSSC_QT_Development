@@ -46,32 +46,32 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
-#include "pwm.h"
 #include "uart1.h"
-#include "tmr1.h"
+#include "uart2.h"
+#include "sccp4_capture.h"
 #include "spi1.h"
+#include "sccp3_capture.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "pwm.h"
+#include "tmr1.h"
 #include "adc1.h"
-#include "sccp4_capture.h"
-#include "sccp3_capture.h"
-#include "uart2.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
-    SCCP4_CAPTURE_Initialize();
+    INTERRUPT_Initialize();
     SCCP3_CAPTURE_Initialize();
+    SCCP4_CAPTURE_Initialize();
     SPI1_Initialize();
     UART1_Initialize();
     PWM_Initialize();
+    UART2_Initialize();
     ADC1_Initialize();
     TMR1_Initialize();
     INTERRUPT_GlobalEnable();
     SYSTEM_CORCONModeOperatingSet(CORCON_MODE_PORVALUES);
-    UART2_Initialize();
 }
 
 /**

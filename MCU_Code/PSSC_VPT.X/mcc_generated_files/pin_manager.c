@@ -72,7 +72,7 @@ void PIN_MANAGER_Initialize (void)
     TRISA = 0x0007;
     TRISB = 0x337D;
     TRISC = 0x09B1;
-    TRISD = 0x9E8F;
+    TRISD = 0x9F8F;
 
     /****************************************************************************
      * Setting the Weak Pull Up and Weak Pull Down SFR(s)
@@ -107,17 +107,16 @@ void PIN_MANAGER_Initialize (void)
      ***************************************************************************/
     __builtin_write_RPCON(0x0000); // unlock PPS
 
-    RPOR19bits.RP70R = 0x0005;    //RD6->SPI1:SDO1
-    RPOR20bits.RP72R = 0x0006;    //RD8->SPI1:SCK1OUT
     RPOR23bits.RP78R = 0x0001;    //RD14->UART1:U1TX
-//    RPINR20bits.SCK1R = 0x0048;    //RD8->SPI1:SCK1OUT
+    RPINR6bits.ICM4R = 0x0042;    //RD2->SCCP4:ICM4
+    RPOR19bits.RP70R = 0x0005;    //RD6->SPI1:SDO1
+    RPINR20bits.SDI1R = 0x0047;    //RD7->SPI1:SDI1
+    RPINR18bits.U1RXR = 0x004F;    //RD15->UART1:U1RX
     RPINR19bits.U2RXR = 0x0043;    //RD3->UART2:U2RX
     RPINR5bits.ICM3R = 0x002D;    //RB13->SCCP3:ICM3
-    RPINR20bits.SDI1R = 0x0047;    //RD7->SPI1:SDI1
-    RPINR6bits.ICM4R = 0x0042;    //RD2->SCCP4:ICM4
-    RPOR18bits.RP69R = 0x0007;    //RD5->SPI1:SS1OUT
+    RPOR20bits.RP72R = 0x0006;    //RD8->SPI1:SCK1OUT
+    RPINR20bits.SCK1R = 0x0048;    //RD8->SPI1:SCK1OUT
     RPOR18bits.RP68R = 0x0003;    //RD4->UART2:U2TX
-    RPINR18bits.U1RXR = 0x004F;    //RD15->UART1:U1RX
 
     __builtin_write_RPCON(0x0800); // lock PPS
 }

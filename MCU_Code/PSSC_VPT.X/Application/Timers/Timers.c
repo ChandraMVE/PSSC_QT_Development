@@ -70,7 +70,7 @@ Resources:
  * @return None
  */
 
-inline void Timers_Initialise(void)
+void Timers_Initialise(void)
 {
   // Timer to schedule the tasks
   TMR1_SetInterruptHandler(&Timers_ISRFunction);

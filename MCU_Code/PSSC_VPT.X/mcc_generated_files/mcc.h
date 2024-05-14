@@ -54,16 +54,16 @@
 #include <stdbool.h>
 #include "watchdog.h"
 #include "reset.h"
-#include "spi1.h"
-#include "sccp4_capture.h"
 #include "uart1.h"
-#include "sccp3_capture.h"
 #include "uart2.h"
-#include "pwm.h"
-#include "adc1.h"
-#include "tmr1.h"
+#include "sccp4_capture.h"
+#include "spi1.h"
+#include "sccp3_capture.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "pwm.h"
+#include "tmr1.h"
+#include "adc1.h"
 
 #ifndef _XTAL_FREQ
 #define _XTAL_FREQ  8000000UL

@@ -15,7 +15,7 @@ extern "C" {
 
 
     
-inline void Timers_Initialise(void);
+void Timers_Initialise(void);
 void Timers_ISRFunction(void);
 
 #ifdef	__cplusplus
