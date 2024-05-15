@@ -843,6 +843,119 @@ void MainWindow::checkInit()
 
         case 3:
                 {
+                    #ifdef Q_OS_WIN32
+                        //cParasUpdated = true;
+                        cParasUpdated = false;
+                    #else
+                        cParasUpdated = false;
+                    #endif
+
+                    double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                    if((cValvePosition == M_VALVE_POSITION_EXHAUST && cPistonPosition == 0) &&
+                       ((ctmp >= (20 - M_INIT_TEMPERATURE_TOLERANCE ))
+                       && (ctmp <= (20 + M_INIT_TEMPERATURE_TOLERANCE ))))
+                    {
+                        sendPara(cProtocol.sendPistonPosition(100), 4, 60);
+                    }
+                    else
+                    {
+                        if(!cStageTimeOut)
+                        {
+
+                            if(cValvePosition != M_VALVE_POSITION_EXHAUST)
+                            {
+                                cTimeOutError |= (1<<M_ERROR_VALVE_MOTOR);
+                            }
+
+                            if(cPistonPosition != 0)
+                            {
+                                cTimeOutError |= (1<<M_ERROR_PISTON_POSITION);
+                            }
+
+                            if((ctmp < (20 - M_INIT_TEMPERATURE_TOLERANCE))
+                                || (ctmp > (20 + M_INIT_TEMPERATURE_TOLERANCE)))
+                            {
+                                cTimeOutError |= (1<<M_ERROR_TEMPERATURE);
+                            }
+
+                            ui->wCheckPass->hide();
+
+                            //cStage  = 0;      //4-July-2022
+                            cInitSuccess = false;
+                            cInitDone = true;
+
+                            //ui->wUserSetup->sendBuzAndVol();
+
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+                            cStageTimeOut = 60*12;
+
+                            //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+
+                        }
+                        else
+                            cStageTimeOut--;
+                    }
+            }
+            break;
+
+    case 4:
+            {
+                double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                if((cValvePosition == M_VALVE_POSITION_EXHAUST && cPistonPosition == 100) &&
+                   ((ctmp >= (20 - M_INIT_TEMPERATURE_TOLERANCE ))
+                   && (ctmp <= (20 + M_INIT_TEMPERATURE_TOLERANCE ))))
+                {
+                    sendPara(cProtocol.sendPistonPosition(0), 5, 60);
+                }
+                else
+                {
+                    if(!cStageTimeOut)
+                    {
+
+                        if(cValvePosition != M_VALVE_POSITION_EXHAUST)
+                        {
+                            cTimeOutError |= (1<<M_ERROR_VALVE_MOTOR);
+                        }
+
+                        if(cPistonPosition != 0)
+                        {
+                            cTimeOutError |= (1<<M_ERROR_PISTON_POSITION);
+                        }
+
+                        if((ctmp < (20 - M_INIT_TEMPERATURE_TOLERANCE))
+                            || (ctmp > (20 + M_INIT_TEMPERATURE_TOLERANCE)))
+                        {
+                            cTimeOutError |= (1<<M_ERROR_TEMPERATURE);
+                        }
+
+                        ui->wCheckPass->hide();
+
+                        //cStage  = 0;      //4-July-2022
+                        cInitSuccess = false;
+                        cInitDone = true;
+
+                        //ui->wUserSetup->sendBuzAndVol();
+
+                        qDebug() << "TMO Reset";
+                        cStage = -1; //0;
+                        cIdleTimeout = 0;
+                        cStageTimeOut = 60*12;
+
+                        //ui->wMeasuring1->setIdleTimer(cIdleTimeout);
+
+                    }
+                    else
+                        cStageTimeOut--;
+                }
+            }
+            break;
+
+        case 5:
+                {
 
                     #ifdef Q_OS_WIN32
                         //cParasUpdated = true;
@@ -857,7 +970,6 @@ void MainWindow::checkInit()
                        ((ctmp >= (20 - M_INIT_TEMPERATURE_TOLERANCE ))
                        && (ctmp <= (20 + M_INIT_TEMPERATURE_TOLERANCE ))))
                     {
-
                         //ui->wUserSetup->sendBuzAndVol();
 
                         onShowMsgBox(tr("Initial"), tr("Initial test done!"));
