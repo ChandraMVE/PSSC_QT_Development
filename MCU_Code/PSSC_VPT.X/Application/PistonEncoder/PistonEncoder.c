@@ -68,7 +68,12 @@ static uint16_t Pulses_Counter;
 static uint32_t Pulse_CountA;
 static uint32_t Pulse_CountB;
 
-
+uint32_t firstEncoder = 0;
+uint32_t Encoder_Count = 0;
+bool PistonMotor_StopFlag = 0;
+bool PistonMotorUp = false;
+bool PistonMotorDown = false;
+bool ZeroPosition = false;
 /**
  * @brief This method Initializes the Encoder Parameters
  * @param dutyCycle
@@ -109,7 +114,7 @@ void PistonEncoder_Handler(void)
         case PISTONENCODER_STATE_RUNNING : 
             if(PistonEncoder.Flags.EnPE == false)
             {
-                PistonEncoder_StopRead();
+//                PistonEncoder_StopRead();
                 PistonEncoder.PEState_Status = PISTONENCODER_STATE_STOP;
             }
             if(PistonEncoder.Flags.EnPE == true)
@@ -136,7 +141,7 @@ void PistonEncoder_Handler(void)
                     if(Pulses_Counter >= MAX_PULSE_TIME)
                     {
                         Pulses_Counter = 0;
-                        PistonEncoder_StopRead();
+//                        PistonEncoder_StopRead();
                         PistonEncoder.Flags.ErrorPE = true;
                         PistonEncoder.PEState_Status = PISTONENCODER_STATE_ERROR;
                         Error_Report(PISTON_ENCODER);
@@ -147,13 +152,13 @@ void PistonEncoder_Handler(void)
             
             if(Error_GetFlag() == true)
             {
-                PistonEncoder_StopRead();
+//                PistonEncoder_StopRead();
                 PistonEncoder.PEState_Status = PISTONENCODER_STATE_ERROR;
             }
         break;
         
         case PISTONENCODER_STATE_STOP : 
-                PistonEncoder_StopRead();
+//                PistonEncoder_StopRead();
                 PistonEncoder.Flags.EnPE = 0;
                 PistonEncoder.PEState_Status = PISTONENCODER_STATE_IDLE;
         break;
@@ -190,6 +195,7 @@ void PistonEncoder_StartRead(void)
   // SCCP to start the read
     SCCP3_CAPTURE_Start();
     SCCP4_CAPTURE_Start();
+//    LED_3_SetLow();
 }
 
 /**
@@ -202,6 +208,7 @@ void PistonEncoder_StartRead(void)
 void PistonEncoder_StopRead(void)
 {
   // SCCP to stop the read
+//    LED_3_SetHigh();
     SCCP3_CAPTURE_Stop();
     SCCP4_CAPTURE_Stop();
 }
@@ -222,17 +229,82 @@ Description:
 void PistonEncoder_ISRFunctionA(void)
 {
   // Set the interrupt flag to execute the scheduler
+//    Pulse_CountA ++;
     Pulse_CountA ++;
+    if(firstEncoder == 0)
+    {
+        firstEncoder = 1;
+    }
+    if(PistonMotorUp && Encoder_Count<=Pulse_CountA){
+        PistonMotor_StopFlag = 1;
+    }
+    else if(PistonMotorDown && Encoder_Count<=Pulse_CountA)
+    {
+        if(ZeroPosition){
+            if(POSITION_PISTON_GetValue() == false){
+                PistonMotor_StopFlag = 1;
+            }
+        }
+        else 
+        {
+            PistonMotor_StopFlag = 1;
+        }
+    }
   
 }
 
 void PistonEncoder_ISRFunctionB(void)
 {
   // Set the interrupt flag to execute the scheduler
-    Pulse_CountB ++;
+//        Pulse_CountB ++;
+        Pulse_CountA ++;
+        if(firstEncoder == 0)
+        {
+            firstEncoder = 2;
+        }
+        if(PistonMotorUp && Encoder_Count<=Pulse_CountA){
+            PistonMotor_StopFlag = 1;
+        }
+        else if(PistonMotorDown && Encoder_Count<=Pulse_CountA)
+        {
+            if(ZeroPosition){
+                if(POSITION_PISTON_GetValue() == false){
+                    PistonMotor_StopFlag = 1;
+                }
+            }
+            else 
+            {
+                PistonMotor_StopFlag = 1;
+            }
+        }
+//    }
   
 }
 
+bool ReturnPistonMotor_StopFlag(void)
+{
+    return PistonMotor_StopFlag;
+}
+
+void SetPistonMotor_StopFlag(bool flagSet)
+{
+    PistonMotor_StopFlag = flagSet;
+    PistonMotorUp = false;
+    PistonMotorDown = false;
+    Pulse_CountA = 0;
+    firstEncoder = 0;
+    PistonEncoder_StartRead();
+}
+
+bool PistonMotor_InitialiseToZero()
+{
+    return ZeroPosition;
+}
+
+void PistonMotor_SetInitialisedToZero(bool zeroPositionFlag)
+{
+    ZeroPosition = zeroPositionFlag;
+}
 /*
 ================================================================================
 Method name:  Send Pulse value Function
@@ -246,11 +318,44 @@ Description:
 
 */
 
+void PistonEncoder_ExpectedCount(bool directionFlag,uint32_t count)
+{
+    if(count > 35023)
+    {
+        PistonMotor_StopFlag = 1;
+    }
+    else
+    {
+        Encoder_Count = count;
+    }
+    if(directionFlag)
+    {
+        PistonMotorUp = true;
+        PistonMotorDown = false;
+    }
+    else
+    {
+        PistonMotorDown = true;
+        PistonMotorUp = false;
+    }
+}
+
 uint32_t PistonEncoder_GetCountA(void)
 {
   // return the Encoder A pulses count
-    return(Pulse_CountA);
-  
+    return(Pulse_CountA); 
+}
+
+bool PistonMotor_UpOrDown(void)
+{
+    if(PistonMotorUp)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 uint32_t PistonEncoder_GetCountB(void)
@@ -258,6 +363,16 @@ uint32_t PistonEncoder_GetCountB(void)
   // return the Encoder A pulses count
     return(Pulse_CountB);
   
+}
+
+void PistonEncoder_ClearCountFirstCount(void)
+{
+    firstEncoder = 0;
+}
+
+int PistonEncoder_FirstEncoder(void)
+{
+    return firstEncoder;
 }
 
 /**

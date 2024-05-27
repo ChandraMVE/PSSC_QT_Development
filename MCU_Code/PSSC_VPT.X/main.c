@@ -120,12 +120,16 @@ int main(void)
     
     LED_2_SetDigitalOutput();
     LED_2_SetLow();
+//    LED_3_SetHigh();
     tCounter = 0;
     Flag_Complete = 0;
     
     while (1)
     {
+//        PistonMotor_ChangedPosition();
         // Add your application code
+        PistonMotor_RunningState();
+        PistonMotor_ChangedPosition();
         if ( scheduler.flags.interruptFLG) 
         {
             scheduler.flags.interruptFLG = 0;
@@ -146,6 +150,7 @@ int main(void)
                 if(tCounter > 50)
                 {
                     LED_2_Toggle();
+//                    LED_3_Toggle();
                     tCounter = 0;
                 }
             }

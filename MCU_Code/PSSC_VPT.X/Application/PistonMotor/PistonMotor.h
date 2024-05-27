@@ -66,12 +66,14 @@ struct {
                                 0.0                                 \
                             }    
     
-#define CONVERSION_CONSTANT         6764                // 16 Lines(32Pulses), Two Pulse Counter(Encoder A,B), 14 gear motor 1 ml = 7.5489 rev of screw
+#define CONVERSION_CONSTANT         6671                // 16 Lines(32Pulses), Two Pulse Counter(Encoder A,B), 14 gear motor 1 ml = 7.5489 rev of screw
                                                 // (((16*2)*2)*14)*7.5489
-#define PM_MAX_POSITION             5.25f
+//#define PM_MAX_POSITION             5.25f
+#define PM_MAX_POSITION             35023
 #define CURRENT_LIMIT_COUNT         1000
 #define PISTON_DUTY_PERIOD          0X1F3F              // 1KHz frequency
 #define PISTON_DEFAULT_DUTY_CYCLE   0X15DF              // 70% duty cycle value for 1KHz frequency
+#define PISTON_DYNAMIC_DUTY_CYCLE   0X95F              // 70% duty cycle value for 1KHz frequency
 #define MAX_DEBOUNCE_COUNT          3
 #define MAX_PM_WAIT_TIME            600     //50ms * 600 = 30 seconds wait time to detect initial position after shaker motor is turned ON
 
@@ -87,6 +89,10 @@ bool PistonMotor_GetStatus(void);
 void PistonMotor_Stop(void);
 void PistonMotor_CheckError(void);
 void PistonMotor_HesLedStatus(void);
+void PistonMotor_ChangedPosition(void);
+void PistonMotor_RunningState(void);
+void PistonMotor_SetDutyCycle(void);
+
 
 // EXTERN VARIABLES
 extern PISTONMOTOR_STYP PistonMotor;

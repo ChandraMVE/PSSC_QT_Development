@@ -114,6 +114,7 @@ uint16_t wData = 0;
 volatile uint32_t tempWord = 0;
 
 float fData = 0;
+    
 
     switch ( Serial.RxStatus) 
     {

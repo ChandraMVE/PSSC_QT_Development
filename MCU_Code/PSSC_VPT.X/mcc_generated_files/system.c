@@ -46,16 +46,16 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
-#include "uart1.h"
-#include "uart2.h"
-#include "sccp4_capture.h"
-#include "spi1.h"
-#include "sccp3_capture.h"
 #include "interrupt_manager.h"
 #include "traps.h"
+#include "sccp3_capture.h"
+#include "sccp4_capture.h"
+#include "spi1.h"
+#include "uart2.h"
+#include "uart1.h"
+#include "adc1.h"
 #include "pwm.h"
 #include "tmr1.h"
-#include "adc1.h"
 
 void SYSTEM_Initialize(void)
 {

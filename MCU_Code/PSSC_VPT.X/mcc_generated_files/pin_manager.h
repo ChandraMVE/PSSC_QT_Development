@@ -786,6 +786,152 @@
 #define MICRO_STEP2_SetDigitalOutput() (_TRISA4 = 0)
 /**
   @Summary
+    Sets the GPIO pin, RB10, high using LATB10.
+
+  @Description
+    Sets the GPIO pin, RB10, high using LATB10.
+
+  @Preconditions
+    The RB10 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB10 high (1)
+    POSITION_PISTON_SetHigh();
+    </code>
+
+*/
+#define POSITION_PISTON_SetHigh()          (_LATB10 = 1)
+/**
+  @Summary
+    Sets the GPIO pin, RB10, low using LATB10.
+
+  @Description
+    Sets the GPIO pin, RB10, low using LATB10.
+
+  @Preconditions
+    The RB10 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB10 low (0)
+    POSITION_PISTON_SetLow();
+    </code>
+
+*/
+#define POSITION_PISTON_SetLow()           (_LATB10 = 0)
+/**
+  @Summary
+    Toggles the GPIO pin, RB10, using LATB10.
+
+  @Description
+    Toggles the GPIO pin, RB10, using LATB10.
+
+  @Preconditions
+    The RB10 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB10
+    POSITION_PISTON_Toggle();
+    </code>
+
+*/
+#define POSITION_PISTON_Toggle()           (_LATB10 ^= 1)
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB10.
+
+  @Description
+    Reads the value of the GPIO pin, RB10.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB10
+    postValue = POSITION_PISTON_GetValue();
+    </code>
+
+*/
+#define POSITION_PISTON_GetValue()         _RB10
+/**
+  @Summary
+    Configures the GPIO pin, RB10, as an input.
+
+  @Description
+    Configures the GPIO pin, RB10, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB10 as an input
+    POSITION_PISTON_SetDigitalInput();
+    </code>
+
+*/
+#define POSITION_PISTON_SetDigitalInput()  (_TRISB10 = 1)
+/**
+  @Summary
+    Configures the GPIO pin, RB10, as an output.
+
+  @Description
+    Configures the GPIO pin, RB10, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB10 as an output
+    POSITION_PISTON_SetDigitalOutput();
+    </code>
+
+*/
+#define POSITION_PISTON_SetDigitalOutput() (_TRISB10 = 0)
+/**
+  @Summary
     Sets the GPIO pin, RB12, high using LATB12.
 
   @Description

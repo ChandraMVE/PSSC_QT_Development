@@ -74,6 +74,14 @@ bool PistonEncoder_GetEnableFlag(void);
 void PistonEncoder_SetErrorFlag(bool flagSet);
 bool PistonEncoder_GetErrorFlag(void);
 uint16_t PistonEncoder_GetCounter(void);
+void PistonEncoder_ClearCountFirstCount(void);
+int PistonEncoder_FirstEncoder(void);
+void PistonEncoder_ExpectedCount(bool directionFlag,uint32_t);
+bool ReturnPistonMotor_StopFlag();
+void SetPistonMotor_StopFlag(bool flagSet);
+bool PistonMotor_InitialiseToZero(void);
+void PistonMotor_SetInitialisedToZero(bool zeroPositionFlag);
+bool PistonMotor_UpOrDown(void);
 
 // EXTERN VARIABLES
 extern PISTONENCODER_STYP PistonEncoder;

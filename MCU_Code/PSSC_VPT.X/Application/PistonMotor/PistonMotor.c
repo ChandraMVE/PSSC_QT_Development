@@ -69,10 +69,13 @@ static uint16_t PM_DutyCycle;
 static uint16_t PM_DeadtimeLow;
 static uint16_t PM_DeadtimeHigh;
 static uint32_t Total_Pulses;
+static uint32_t Dynamic_Total_Pulses;
 static uint16_t PMDebounce_Counter;
 static uint16_t PMErr_Counter;
 
 static float Previous_Position;
+
+uint32_t A_Pulses = 0;
 
 /**
  * @brief This function initializes the piston motor parameters 
@@ -87,6 +90,7 @@ void PistonMotor_Initialise(void)
     PISTONMTR_EN_SetLow();
     PISTON_HES_LED_SetHigh();
     Total_Pulses = 0;
+    Dynamic_Total_Pulses = 0;
     Previous_Position = 0.0;
     PWM_GeneratorDisable(PWM_GENERATOR_1);
     PM_Period = PISTON_DUTY_PERIOD;
@@ -101,6 +105,8 @@ void PistonMotor_Initialise(void)
     PistonMotor.Flags.ErrorRun = false;
     PMDebounce_Counter = 0;
     PMErr_Counter = 0;
+//    PistonEncoder_ClearCountOfAB_1();
+    PistonEncoder_ClearCountFirstCount();
 }
  
 /**
@@ -113,6 +119,7 @@ void PistonMotor_Handler(void)
 {
     PistonMotor_HesLedStatus();
     PistonMotor_CheckError();
+    PistonMotor_ChangedPosition();
     switch(PistonMotor.PMState_Status)
     {
         case PISTONMOTOR_STATE_IDLE : 
@@ -121,16 +128,27 @@ void PistonMotor_Handler(void)
             {
                 PistonEncoder_SetEnableFlag(true);
                 //if piston motor set position is greater than current position move motor upside
-                if(PistonMotor.Set_Position > PistonMotor.Current_Position)
+                if((PistonMotor.Set_Position / CONVERSION_CONSTANT) > (PistonMotor.Current_Position / CONVERSION_CONSTANT))
                 {
                     PistonMotor.Flags.EnPM = true;
+                    PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
+                    PistonEncoder_ExpectedCount(true, (PistonMotor.Set_Position - PistonMotor.Current_Position));
                     PistonMotor_Up();
                     PistonMotor.Flags.PMStatus = true;
                 }
                 //if piston motor set position is smaller than current position move motor downside
-                else if(PistonMotor.Set_Position < PistonMotor.Current_Position)
+                else if((PistonMotor.Set_Position / CONVERSION_CONSTANT) < (PistonMotor.Current_Position / CONVERSION_CONSTANT))
                 {
                     PistonMotor.Flags.EnPM = true;
+                    PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
+                    if(PistonMotor.Set_Position == 0.0f)
+                    {
+                        PistonEncoder_ExpectedCount(false, PistonMotor.Current_Position);
+                    }
+                    else
+                    {
+                        PistonEncoder_ExpectedCount(false, PistonMotor.Current_Position - PistonMotor.Set_Position);
+                    }
                     PistonMotor_Down();
                     PistonMotor.Flags.PMStatus = false;
                 }
@@ -165,6 +183,7 @@ void PistonMotor_Handler(void)
                 {
                     PistonMotor.Flags.PMCheck = true;
                     PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
+                    PistonMotor_SetInitialisedToZero(true);
                     PistonMotor_Down();
                     PMDebounce_Counter = 0;
                 }
@@ -210,78 +229,79 @@ void PistonMotor_Handler(void)
             if(PistonMotor.Flags.EnPM == true)
             {
                 Total_Pulses = PistonEncoder_GetCountA() + PistonEncoder_GetCountB();
-                PistonMotor.Current_Position = (float) Total_Pulses / CONVERSION_CONSTANT;
+//                PistonMotor.Current_Position = (float) Total_Pulses / CONVERSION_CONSTANT;
+                PistonMotor.Current_Position = (float) Total_Pulses;
                 if(PistonMotor.Flags.PMStatus == true)
                 {
                     PistonMotor.Current_Position = PistonMotor.Current_Position + Previous_Position;
-                    if(PistonMotor.Set_Position <= PistonMotor.Current_Position)
-                    {
-                        if(PistonMotor.Set_Position == 0.0f)
-                        {
-                            if((POSITION_PISTON_GetValue() == false) && (PistonMotor.Current_Position <= 0.0f))
-                            {
-                                PMDebounce_Counter++;
-                                if(PMDebounce_Counter >= MAX_DEBOUNCE_COUNT)
-                                {
-                                    PMDebounce_Counter = 0;
-                                    PistonMotor_Stop();
-                                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
-                                    PistonMotor.Current_Position = PistonMotor.Set_Position;
-                                }
-//                                PistonMotor_Stop();
-//                                PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
-//                                PistonMotor.Current_Position = PistonMotor.Set_Position;
-                            }
-                            else
-                            {
-                                PMDebounce_Counter = 0;
-                            }
-                        }
-                        else
-                        {
-                            PistonMotor_Stop();
-                            PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
-                            PistonMotor.Current_Position = PistonMotor.Set_Position;
-                        }
-                    }
+//                    if(PistonMotor.Set_Position <= PistonMotor.Current_Position)
+//                    {
+//                        if(PistonMotor.Set_Position == 0.0f)
+//                        {
+//                            if((POSITION_PISTON_GetValue() == false) && (PistonMotor.Current_Position <= 0.0f))
+//                            {
+//                                PMDebounce_Counter++;
+//                                if(PMDebounce_Counter >= MAX_DEBOUNCE_COUNT)
+//                                {
+//                                    PMDebounce_Counter = 0;
+//                                    PistonMotor_Stop();
+//                                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+//                                    PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                                }
+////                                PistonMotor_Stop();
+////                                PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+////                                PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                            }
+//                            else
+//                            {
+//                                PMDebounce_Counter = 0;
+//                            }
+//                        }
+//                        else
+//                        {
+//                            PistonMotor_Stop();
+//                            PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+//                            PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                        }
+//                    }
                 }
                 else
                 {
                     PistonMotor.Current_Position = Previous_Position - PistonMotor.Current_Position;
-                    if(PistonMotor.Set_Position >= PistonMotor.Current_Position)
-                    {
-                        if(!PistonMotor.Set_Position)
-                        {
-                            if((POSITION_PISTON_GetValue() == false) && (PistonMotor.Current_Position <= 0.0f))
-                            {
-                                PMDebounce_Counter++;
-                                if(PMDebounce_Counter >= MAX_DEBOUNCE_COUNT)
-                                {
-                                    PMDebounce_Counter = 0;
-                                    PistonMotor_Stop();
-                                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
-                                    PistonMotor.Current_Position = PistonMotor.Set_Position;
-                                }
-//                                PistonMotor_Stop();
-//                                PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
-//                                PistonMotor.Current_Position = PistonMotor.Set_Position;
-                            }
-                            else
-                            {
-                                PMDebounce_Counter = 0;
-                            }
-                        }
-                        else
-                        {
-                            PistonMotor_Stop();
-                            PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
-                            PistonMotor.Current_Position = PistonMotor.Set_Position;
-                        }
-                    }
-                    else
-                    {
-                        PMDebounce_Counter = 0;
-                    }
+//                    if(PistonMotor.Set_Position >= PistonMotor.Current_Position)
+//                    {
+//                        if(!PistonMotor.Set_Position)
+//                        {
+//                            if((POSITION_PISTON_GetValue() == false) && (PistonMotor.Current_Position <= 0.0f))
+//                            {
+//                                PMDebounce_Counter++;
+//                                if(PMDebounce_Counter >= MAX_DEBOUNCE_COUNT)
+//                                {
+//                                    PMDebounce_Counter = 0;
+//                                    PistonMotor_Stop();
+//                                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+//                                    PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                                }
+////                                PistonMotor_Stop();
+////                                PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+////                                PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                            }
+//                            else
+//                            {
+//                                PMDebounce_Counter = 0;
+//                            }
+//                        }
+//                        else
+//                        {
+//                            PistonMotor_Stop();
+//                            PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+//                            PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                        }
+//                    }
+//                    else
+//                    {
+//                        PMDebounce_Counter = 0;
+//                    }
                 }
                 if(PistonMotor.Current_Position > PM_MAX_POSITION)
                 {
@@ -424,18 +444,23 @@ void PistonMotor_UpdatePostion(bool flagSet, float fPosition)
 {
     PistonMotor.Flags.EnPM = flagSet;
     PistonMotor.Flags.EditedSet = flagSet;
-    PistonMotor.Set_Position = fPosition;
+    PistonMotor.Set_Position = fPosition * CONVERSION_CONSTANT;
+}
+
+void PistonMotor_SetDutyCycle(void)
+{
+    PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
 }
 
 float PistonMotor_GetPostion(void)
 {
 //    return(PistonMotor.Set_Position);
-    return(PistonMotor.Current_Position);
+    return ((PistonMotor.Current_Position)/CONVERSION_CONSTANT);
 }
 
 float PistonMotor_GetSetPostion(void)
 {
-    return(PistonMotor.Set_Position);
+    return((PistonMotor.Set_Position)/CONVERSION_CONSTANT);
 //    return(PistonMotor.Current_Position);
 }
 
@@ -472,4 +497,70 @@ void PistonMotor_HesLedStatus(void)
     {
         PISTON_HES_LED_SetHigh();
     }
+}
+
+void PistonMotor_ChangedPosition(void)
+{
+    if((!(PistonEncoder_GetCountA() == 0)) && (PistonMotor.Flags.EnPM == false))
+    {
+        if(PistonEncoder_FirstEncoder() == 1)
+        {
+            PistonMotor.Flags.EnPM = true;
+            PistonMotor_SetDutyCycle();
+            PistonEncoder_ExpectedCount(true, PistonEncoder_GetCountA());
+            PistonMotor_Up();
+            PistonMotor.Flags.PMStatus = true;
+        }
+        else if(PistonEncoder_FirstEncoder() == 2)
+        {
+            PistonMotor.Flags.EnPM = true;
+            PistonMotor_SetDutyCycle();
+            PistonEncoder_ExpectedCount(false, PistonEncoder_GetCountA());
+            PistonMotor_Down();
+            PistonMotor.Flags.PMStatus = false;
+        }
+    }
+}
+
+void PistonMotor_RunningState(void){
+    if(ReturnPistonMotor_StopFlag() && !(PistonMotor_InitialiseToZero()))
+    {
+        if(!PistonMotor_UpOrDown())
+        {
+            if(PistonMotor.Set_Position == 0.0f)
+            {
+                if(POSITION_PISTON_GetValue() == false)
+                {
+                    A_Pulses = PistonEncoder_GetCountA();
+                    PistonMotor_Stop();
+                    PistonEncoder_StopRead();
+                    SetPistonMotor_StopFlag(false);
+//                        A_Pulses = PistonEncoder_GetCountA();
+                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+                    PistonMotor.Current_Position = PistonMotor.Set_Position;
+                }
+            }
+            else
+            {
+                A_Pulses = PistonEncoder_GetCountA();
+                PistonMotor_Stop();
+                PistonEncoder_StopRead();
+                SetPistonMotor_StopFlag(false);
+//                    A_Pulses = PistonEncoder_GetCountA();
+                PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+                PistonMotor.Current_Position = PistonMotor.Set_Position;
+            }
+        }
+        else
+        {
+            A_Pulses = PistonEncoder_GetCountA();
+            PistonMotor_Stop();
+            PistonEncoder_StopRead();
+            SetPistonMotor_StopFlag(false);
+//                A_Pulses = PistonEncoder_GetCountA();
+            PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
+            PistonMotor.Current_Position = PistonMotor.Set_Position;
+        }
+    }
+
 }
