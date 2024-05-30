@@ -4395,7 +4395,9 @@ void MainWindow::handleD5188(void)
                 {
                     cParasUpdated = false;
 
-                    if(1)
+                    int D5188_Shaker_speed = ui->wMethodSetup->stdD5188.shaker_speed;
+
+                    if((cStepperSpeed <= D5188_Shaker_speed+5) && (cStepperSpeed >= D5188_Shaker_speed-5))
                     {
                         //NNNNN
 
@@ -4725,7 +4727,9 @@ void MainWindow::handleD6377(void)
                     {
                         cParasUpdated = false;
 
-                        if(1)
+                        int D6377_Shaker_Speed = ui->wMethodSetup->stdD6377.shaker_speed;
+
+                        if((cStepperSpeed <= D6377_Shaker_Speed+5) && (cStepperSpeed >= D6377_Shaker_Speed-5))
                         {
                             cREqTime = ui->wMethodSetup->stdD6377.time;
 
