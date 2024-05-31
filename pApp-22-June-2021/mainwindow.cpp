@@ -326,6 +326,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lblDate->setText(cDateTime.toString(qslShowDateFormat.at(ui->wGeneralSetup->general_setup.date_format)));
     ui->lblTime->setText(cDateTime.toString(qslShowTimeFormat.at(ui->wGeneralSetup->general_setup.time_format)));
 
+    ui->wCleaning->hide();
+    rinsing = false;
+
 }
 
 MainWindow::~MainWindow()
@@ -1674,7 +1677,12 @@ void MainWindow::timerEvent(QTimerEvent *e)
                 {
                     cWaitForACK = false;
 
-                    if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
+                    if(rinsing)
+                    {
+                        rinsing = false;
+                        handleRinsing();
+                    }
+                    else if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
                     {
                         handleD5188();
 
@@ -1704,7 +1712,12 @@ void MainWindow::timerEvent(QTimerEvent *e)
             }
             else
             {
-                if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
+                if(rinsing)
+                {
+                    rinsing = false;
+                    handleRinsing();
+                }
+                else if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
                     handleD5188();
                 else if(ui->wMeasuring1->getMethod() == M_METHOD_D6377)
                         handleD6377();
@@ -1843,6 +1856,7 @@ void MainWindow::onRunClicked(int state, bool init)
         }
         break;
 
+        case MS_RINSING_STOP:
         case MS_TEST_STOP:
 
             qDebug() << "TMO Reset";
@@ -1865,13 +1879,14 @@ void MainWindow::onRunClicked(int state, bool init)
 
         if(cInitSuccess)
         {
-            ui->wCleaning->setRunning(true);
-            ui->wMenuBar->setRunningMenu(M_CLEANING);
+            ui->wMeasuring1->setRunning(true);
+            ui->wMenuBar->setRunningMenu(M_MEASURING);
 
             cRinseCycles = 0; 
             ui->wCleaning->updateStatus(cRinseCycles + 1, ui->wUserSetup->user_setup.rinse_cycle + 1);
 
-            cAccessWidget = ui->wCleaning;
+            rinsing = true;
+            cAccessWidget = ui->wMeasuring1;
             cAccessWidget->setWaitACKStatus(true);
 
             sendPara(cProtocol.sendMeasuringStart(0, tc), 2, 60*12);
@@ -1884,7 +1899,7 @@ void MainWindow::onRunClicked(int state, bool init)
 
         break;
 
-        case MS_RINSING_STOP:
+        /*case MS_RINSING_STOP:
 
             qDebug() << "TMO Reset";
             cIdleTimeout = 0;
@@ -1898,7 +1913,7 @@ void MainWindow::onRunClicked(int state, bool init)
             cAccessWidget->setWaitACKStatus(true);
             sendPara(cProtocol.sendMeasuring(0, tc), -2, 60*12);
 
-        break;
+        break;*/
 
         case MS_DIAGNOSTIC_RUN:
 
@@ -5024,25 +5039,29 @@ void MainWindow::onMenuClicked(int menu)
    //18-Apr-2023 if(!ui->wMeasuring1->isVisible() && menu != M_MEASURING) return;
     if(ui->wCheckPass->isVisible() || ui->wError->isVisible()) return;
 
-    switch (cMenu) {
+    switch (menu) {
 
         case M_MEASURING:
+            if(ui->wUserSetup->isVisible()) ui->wUserSetup->hide();
             if(ui->wMemory->isVisible()) ui->wMemory->hide();
         break;
 
         case M_CLEANING:
+            if(ui->wMeasuring1->isVisible()) ui->wMeasuring1->hide();
             if(ui->wMemory->isVisible()) ui->wMemory->hide();
         break;
 
         case M_MEMORY:
+            if(ui->wMeasuring1->isVisible()) ui->wMeasuring1->hide();
+            if(ui->wUserSetup->isVisible()) ui->wUserSetup->hide();
             if(ui->wMemory->isVisible() && !ui->wMemory->isSwitchEnabled(menu)) return;
         break;
 
         case M_SETUP:
 
-            if(ui->wMemory->isVisible()) ui->wMemory->hide();
+//            if(ui->wMemory->isVisible()) ui->wMemory->hide();
 
-            if(ui->wUserSetup->isVisible() && !ui->wUserSetup->isSwitchEnabled(menu)) return;
+//            if(ui->wUserSetup->isVisible() && !ui->wUserSetup->isSwitchEnabled(menu)) return;
             if(ui->wGeneralSetup->isVisible() && !ui->wGeneralSetup->isSwitchEnabled(menu)) return;
             if(ui->wMethodSetup->isVisible() && !ui->wMethodSetup->isSwitchEnabled(menu)) return;
             if(ui->wServiceSetup->isVisible() && !ui->wServiceSetup->isSwitchEnabled(menu)) return;
@@ -5063,7 +5082,7 @@ void MainWindow::onMenuClicked(int menu)
         ui->listSetupMenu->hide();
     }
 
-    if(cMenu < M_MEMORY) ui->listSetupMenu->move(558,60+120);
+    if(cMenu < M_CLEANING) ui->listSetupMenu->move(558,60+120);
     else if(cMenu == M_MEMORY) ui->listSetupMenu->move(558,60+40);
     else ui->listSetupMenu->move(558,60);
 
@@ -5096,18 +5115,23 @@ void MainWindow::onMenuClicked(int menu)
          break;
 
     case M_CLEANING:
-         ui->wCleaning->Show();
+//         ui->wCleaning->Show();
+        ui->wUserSetup->show();
+        ui->fTitle->hide();
+        ui->wMenuBar->move(0, 10);
          ui->wMenuBar->setSelectedMenu(menu);
          //--------------- 8-May-2023 added below
           //if(cWaitForACK)
           {
-             cAccessWidget = ui->wCleaning;
+//             cAccessWidget = ui->wCleaning;
+            cAccessWidget = ui->wCleaning;
              cAccessWidget->setWaitACKStatus(cWaitForACK);
           }
          //--------------------
 
          cMenu = menu;
-         cWidget = ui->wCleaning;
+//         cWidget = ui->wCleaning;
+         cWidget = ui->wUserSetup;
          break;
 
     case M_MEMORY:

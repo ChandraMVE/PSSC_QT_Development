@@ -1474,3 +1474,8 @@ void sMeasuring::on_imageCapture_clicked()
     }
 
 }
+
+void sMeasuring::on_pbRinse_clicked()
+{
+    emit runClicked(MS_RINSING_RUN, false);
+}

@@ -238,7 +238,7 @@
       <x>560</x>
       <y>300</y>
       <width>191</width>
-      <height>241</height>
+      <height>201</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -274,11 +274,6 @@ QListWidget::item::hover {
    color:  rgb(255, 255, 255);
 }</string>
     </property>
-    <item>
-     <property name="text">
-      <string>User</string>
-     </property>
-    </item>
     <item>
      <property name="text">
       <string>General</string>

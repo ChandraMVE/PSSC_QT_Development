@@ -14,7 +14,8 @@ sMenuBar::sMenuBar(QWidget *parent) :
     ui->wmMeasuring->setEnabled(true);
     ui->wmMeasuring->setSelected(false);
 
-    QString rins=(getLanguage()==0)?"Rinsing":(getLanguage()==1)?"Enjuague":(getLanguage()==2)?"Spülen":"Rinçage";
+//    QString rins=(getLanguage()==0)?"Rinsing":(getLanguage()==1)?"Enjuague":(getLanguage()==2)?"Spülen":"Rinçage";
+    QString rins = "User";
     ui->wmCleaning->setText(rins);
     ui->wmCleaning->setEnabled(true);
     ui->wmCleaning->setSelected(false);

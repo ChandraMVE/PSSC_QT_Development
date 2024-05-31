@@ -169,6 +169,7 @@ private:
 
     int shakerSpeed; //naveen
     double p1=0, p2=0, p3=0; //naveen
+    bool rinsing;
 
     double cTmTest;
     double cPrTpx1;
