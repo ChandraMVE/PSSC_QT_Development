@@ -9,13 +9,13 @@ sUserSetup::sUserSetup(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QListView *view1 = new QListView(ui->cbGMT);
-    view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
-                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
-                        QListView::item{height: 41px}");
+//    QListView *view1 = new QListView(ui->cbGMT);
+//    view1->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+//                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+//                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+//                        QListView::item{height: 41px}");
 
-    ui->cbGMT->setView(view1);
+//    ui->cbGMT->setView(view1);
 
     QListView *view2 = new QListView(ui->cbRinseCycles);
     view2->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
@@ -43,11 +43,6 @@ void sUserSetup::Show()
     cHide = false;
 }
 
-int sUserSetup::getGMTSeconds()
-{
-    return ((1800*user_setup.gmt)-43200);
-}
-
 void sUserSetup::sendBuzAndVol()
 {
     /*QString str = "#Q" + QString::number(user_setup.error_buzzer_enable ? 1:0) +
@@ -68,9 +63,9 @@ QString sUserSetup::getBuzAndVol()
 
 void sUserSetup::setDefaults()
 {
+    user_setup.alarm_buzzer_enable = DEFAULT_ALARM_BUZZER_ENABLE;
     user_setup.alarm_vol = DEFAULT_USER_ALARM_VOL;
     user_setup.error_buzzer_enable = DEFAULT_ERROR_BUZZER_ENABLE;
-    user_setup.gmt = DEFAULT_USER_GMT;
     user_setup.rinse_cycle = DEFAULT_RINSE_CYCLES;
     user_setup.auto_print = DEFAULT_AUTO_PRINT_ENABLE;
 
@@ -101,6 +96,7 @@ bool sUserSetup::readFile()
         cParasChanged = true;
         return false;
     }
+    qDebug()<<"user_setup.alarm_buzzer_enable: "<<user_setup.alarm_buzzer_enable;
 }
 
 void sUserSetup::saveFile()
@@ -127,9 +123,10 @@ void sUserSetup::saveFile()
 
 void sUserSetup::showUserSetup()
 {
+    qDebug()<<"user_setup.alarm_buzzer_enable: "<<user_setup.alarm_buzzer_enable;
+    ui->cbABEnable->setChecked(user_setup.alarm_buzzer_enable);
     ui->hsAlarmVolme->setValue(user_setup.alarm_vol);
     ui->cbEBEnable->setChecked(user_setup.error_buzzer_enable);
-    ui->cbGMT->setCurrentIndex(user_setup.gmt);
     ui->cbRinseCycles->setCurrentIndex(user_setup.rinse_cycle);
     ui->cbAutoPrintEnable->setChecked(user_setup.auto_print);
 
@@ -142,6 +139,8 @@ void sUserSetup::updateUserSetup()
    //qDebug() << "updateUserSetup";
 
    // cParasChanged = false;
+    if(user_setup.alarm_buzzer_enable != ui->cbABEnable->checkState()) cParasChanged = true;
+    user_setup.alarm_buzzer_enable = ui->cbABEnable->checkState();
 
     if(user_setup.alarm_vol != ui->hsAlarmVolme->value()) cParasChanged = true;
     user_setup.alarm_vol = ui->hsAlarmVolme->value();
@@ -149,8 +148,8 @@ void sUserSetup::updateUserSetup()
     if(user_setup.error_buzzer_enable != ui->cbEBEnable->checkState()) cParasChanged = true;
     user_setup.error_buzzer_enable = ui->cbEBEnable->checkState();
 
-    if(user_setup.gmt != ui->cbGMT->currentIndex()) cParasChanged = true;
-    user_setup.gmt = ui->cbGMT->currentIndex();
+//    if(user_setup.gmt != ui->cbGMT->currentIndex()) cParasChanged = true;
+//    user_setup.gmt = ui->cbGMT->currentIndex();
 
     if(user_setup.rinse_cycle != ui->cbRinseCycles->currentIndex()) cParasChanged = true;
     user_setup.rinse_cycle = ui->cbRinseCycles->currentIndex();

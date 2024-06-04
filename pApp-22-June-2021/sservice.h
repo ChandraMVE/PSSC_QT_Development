@@ -163,6 +163,8 @@ private:
     bool cDebug;
     QString cVerFW, cVerMCU;
 
+//    QDoubleValidator *rpmValidator;
+
 };
 
 #endif // SSERVICE_H

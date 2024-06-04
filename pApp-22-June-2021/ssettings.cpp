@@ -184,7 +184,7 @@ QString sSettings::saveDateTime(QString tmp) const
 QDateTime sSettings::getCurrentDateTime() const
 {
     QDateTime cdt;
-    cdt = QDateTime::currentDateTime().addSecs(cus->gmt);
+    cdt = QDateTime::currentDateTime().addSecs(cgs->gmt);
     return cdt;
 }
 
@@ -484,7 +484,7 @@ QString sSettings::getTestTime(double ttime) const
 
 QString sSettings::getShakerSpeed(double ss) const
 {
-    return (QString::number(ss, 'f', 0));
+    return (QString::number(ss, 'f', 1));
 }
 
 QString sSettings::getTestTime(QString method, double ttime) const

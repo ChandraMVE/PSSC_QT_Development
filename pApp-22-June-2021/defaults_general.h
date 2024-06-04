@@ -3,6 +3,7 @@
 
 #define DEFAULT_DATE_FORMAT             0
 #define DEFAULT_TIME_FORMAT             0
+#define DEFAULT_USER_GMT                0
 #define DEFAULT_COMPANY                "PSSC"
 #define DEFAULT_LOCATION                "USA"
 #define DEFAULT_UNIT_ID                 "TEST0001"

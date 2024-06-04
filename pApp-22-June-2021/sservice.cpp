@@ -32,7 +32,7 @@ sService::sService(QWidget *parent) :
     tempValidator->setNotation(QDoubleValidator::StandardNotation);
     ui->leTemperature->setValidator(tempValidator);
 
-    QDoubleValidator* rpmValidator = new QDoubleValidator(RANGE_SHAKER_RPM_MIN, RANGE_SHAKER_RPM_MAX, 0, ui->leRPM);
+    QDoubleValidator *rpmValidator = new QDoubleValidator(RANGE_SHAKER_RPM_MIN, RANGE_SHAKER_RPM_MAX, 1, ui->leRPM);
     rpmValidator ->setNotation(QDoubleValidator::StandardNotation);
     ui->leRPM->setValidator(rpmValidator);
 
@@ -300,7 +300,8 @@ void sService::showServiceSetup()
     ui->leRPM->setReadOnly(!ui->cbSMEnable->isChecked());
     ui->pbRPMSet->setEnabled(ui->cbSMEnable->isChecked());
 
-    str.sprintf("%d", DEFAULT_SET_SHAKER_RPM);
+//    rpmValidator->setRange(RANGE_SHAKER_RPM_MIN, RANGE_SHAKER_RPM_MAX, 1);
+    str.sprintf("%.1lf", (DEFAULT_SET_SHAKER_RPM));
     ui->leRPM->clear();
     ui->leRPM->insert(str);
 
@@ -464,7 +465,7 @@ void sService::on_pbRPMSet_clicked()
     if(ui->leRPM->hasAcceptableInput())
     {
         setWaitACKStatus(true);
-        int tmp = ui->leRPM->text().toDouble();
+        int tmp = (ui->leRPM->text().toDouble() * (60));
         emit sendCommand(cProtocol.sendShakerSpeed(1, tmp), this);
     }
 }
@@ -499,7 +500,7 @@ void sService::onLiveData(int vp, int pp, int atm, int ctm, int pr, int ss, int 
 //        }
     }
 
-    str.sprintf("%d", ss);
+    str.sprintf("%.1lf", (double)(ss/(60.0)));
     ui->lblRPM->setText(str);
 }
 
@@ -838,6 +839,8 @@ void sService::on_pbFWUpdate_clicked()
     QFile::remove(fname2);  //24-May-2022
 
     QString methodSetupPath = QApplication::applicationDirPath() + FN_METHOD_SETUP;
+    QString generalSetupPath = QApplication::applicationDirPath() + FN_GENERAL_SETUP;
+    QString userSetupPath = QApplication::applicationDirPath() + FN_USER_SETUP;
 
     if(QFile::copy( fname1, fname2))
     {
@@ -848,6 +851,8 @@ void sService::on_pbFWUpdate_clicked()
 
         if(fi.size()){
             QFile::remove(methodSetupPath);
+            QFile::remove(generalSetupPath);
+            QFile::remove(userSetupPath);
             emit showMsgBox(tr("Service Setup"), tr("Firmware Copied\nRestart Machine to reflect changes!"));
         }
         else

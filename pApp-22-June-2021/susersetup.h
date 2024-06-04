@@ -12,22 +12,22 @@
 #include "saccesswidget.h"
 
 struct USER_SETUP {
+    int alarm_buzzer_enable;
     int alarm_vol;
     int error_buzzer_enable;
-    int gmt;
     int rinse_cycle;
     int auto_print;
 
     friend QDataStream &operator<< (QDataStream &out, const USER_SETUP &tmp)
     {
-        out << tmp.alarm_vol << tmp.error_buzzer_enable << tmp.gmt << tmp.rinse_cycle << tmp.auto_print;
+        out << tmp.alarm_buzzer_enable << tmp.alarm_vol << tmp.error_buzzer_enable << tmp.rinse_cycle << tmp.auto_print;
 
         return out;
     }
 
     friend QDataStream &operator>> (QDataStream &in, USER_SETUP &tmp)
     {
-        in >> tmp.alarm_vol >> tmp.error_buzzer_enable >> tmp.gmt >> tmp.rinse_cycle >> tmp.auto_print;
+        in >> tmp.alarm_buzzer_enable >> tmp.alarm_vol >> tmp.error_buzzer_enable >> tmp.rinse_cycle >> tmp.auto_print;
 
         return in;
     }
@@ -46,7 +46,6 @@ public:
     explicit sUserSetup(QWidget *parent = 0);
     ~sUserSetup();
     void Show();
-    int getGMTSeconds(void);
     void sendBuzAndVol(void);
     QString getBuzAndVol(void);
 

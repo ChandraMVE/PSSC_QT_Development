@@ -40,9 +40,9 @@
 #define METHOD_VLRATIO_MAX              20
 #define METHOD_VLRATIO_DP               2
 
-#define METHOD_SHAKER_SPEED_MIN         60
-#define METHOD_SHAKER_SPEED_MAX         300
-#define METHOD_SHAKER_SPEED_DP          0
+#define METHOD_SHAKER_SPEED_MIN         1.0
+#define METHOD_SHAKER_SPEED_MAX         5.0
+#define METHOD_SHAKER_SPEED_DP          1
 
 #define METHOD_EQUI_TIME_MIN            1
 #define METHOD_EQUI_TIME_MAX            600
@@ -62,7 +62,7 @@
 #define DEFAULT_D6377_TEMPERATURE           37.8
 #define DEFAULT_D6377_TIME                  300
 #define DEFAULT_D6377_VL_RATIO              4
-#define DEFAULT_D6377_SHAKER_SPEED          90
+#define DEFAULT_D6377_SHAKER_SPEED          1.5
 #define DEFAULT_D6377_PASS_FAIL_ENABLED     ENABLED
 #define DEFAULT_D6377_ALARM_ENABLED         ENABLED
 #define DEFAULT_D6377_FROM                  111.6
@@ -79,7 +79,7 @@
 
 #define DEFAULT_D5188_PRESSURE              101.3
 #define DEFAULT_D5188_VL_RATIO              20
-#define DEFAULT_D5188_SHAKER_SPEED          90
+#define DEFAULT_D5188_SHAKER_SPEED          1.5
 #define DEFAULT_D5188_PASS_FAIL_ENABLED     ENABLED
 #define DEFAULT_D5188_ALARM_ENABLED         ENABLED
 #define DEFAULT_D5188_FROM                  35.3
@@ -93,7 +93,7 @@
 #define DEFAULT_FREE_TPX2                   60
 #define DEFAULT_FREE_TPX3                   60
 #define DEFAULT_FREE_VLRATIO                4.0
-#define DEFAULT_FREE_SHAKER_SPEED           90
+#define DEFAULT_FREE_SHAKER_SPEED           1.5
 #define DEFAULT_FREE_SHAKER_DISABLE         ENABLED
 #define DEFAULT_FREE_PASS_FAIL_ENABLED      ENABLED
 #define DEFAULT_FREE_ALARM_ENABLED          ENABLED

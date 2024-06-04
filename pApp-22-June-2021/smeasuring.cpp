@@ -909,11 +909,13 @@ void sMeasuring::setRunState(bool rs)
 {
     if(rs)
     {
+        ui->pbRinse->setEnabled(false);
         ui->pbRun->setEnabled(false);
         ui->pbStop->setEnabled(true);
     }
     else
     {
+        ui->pbRinse->setEnabled(true);
         ui->pbRun->setEnabled(true);
         ui->pbStop->setEnabled(false);
     }

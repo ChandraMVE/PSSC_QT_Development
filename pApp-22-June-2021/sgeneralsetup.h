@@ -43,6 +43,8 @@ struct GENERAL_SETUP {
     QString admin_password;
     QString service_password;
 
+    int gmt;
+
     friend QDataStream &operator<< (QDataStream &out, const GENERAL_SETUP &tmp)
     {
         out << tmp.date_format << tmp.time_format << tmp.language << tmp.pressure_scale << tmp.temperature_scale
@@ -52,7 +54,7 @@ struct GENERAL_SETUP {
             << tmp.page_size << tmp.report_format
             << tmp.network_name << tmp.network_enable
             << tmp.ip_address << tmp.ip_mask << tmp.ip_gateway << tmp.ip_dns
-            << tmp.admin_password << tmp.service_password;
+            << tmp.admin_password << tmp.service_password << tmp.gmt ;
 
         return out;
     }
@@ -66,7 +68,7 @@ struct GENERAL_SETUP {
            >> tmp.page_size >> tmp.report_format
            >> tmp.network_name >> tmp.network_enable
            >> tmp.ip_address >> tmp.ip_mask >> tmp.ip_gateway >> tmp.ip_dns
-           >> tmp.admin_password >> tmp.service_password;
+           >> tmp.admin_password >> tmp.service_password >> tmp.gmt ;
 
         return in;
     }
@@ -112,6 +114,8 @@ public:
     void SaveRTC();
     void SavePassword();
     bool isSwitchEnabled(int tmp);
+
+    int getGMTSeconds(void); //naveen
 
 signals:
     void showKeypad( QObject *, int, bool);

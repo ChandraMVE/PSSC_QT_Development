@@ -161,6 +161,14 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
 
     ui->cbAMPM->setView(view21);
 
+    QListView *view22 = new QListView(ui->cbGMT);
+    view22->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbGMT->setView(view22);
+
 
     setDefaults();
 
@@ -423,6 +431,7 @@ void sGeneralSetup::setDefaults()
 {
     general_setup.date_format = DEFAULT_DATE_FORMAT;
     general_setup.time_format = DEFAULT_TIME_FORMAT;
+    general_setup.gmt = DEFAULT_USER_GMT;
     general_setup.company =  DEFAULT_COMPANY;
     general_setup.location =  DEFAULT_LOCATION;
     general_setup.unit_id =  DEFAULT_UNIT_ID;
@@ -605,6 +614,8 @@ void sGeneralSetup::showGeneralSetup()
 
     ui->twGeneralSetup->setFocus();
 
+    ui->cbGMT->setCurrentIndex(general_setup.gmt);
+
 }
 
 void sGeneralSetup::updateGeneralSetup()
@@ -679,6 +690,9 @@ void sGeneralSetup::updateGeneralSetup()
 
     if(general_setup.ip_dns != ui->leDNS->text()) cParasChanged = true;
     general_setup.ip_dns = ui->leDNS->text();
+
+    if(general_setup.gmt != ui->cbGMT->currentIndex()) cParasChanged = true;
+    general_setup.gmt = ui->cbGMT->currentIndex();
 
 }
 
@@ -884,6 +898,11 @@ void sGeneralSetup::SaveRTC()
                 emit showMsgBox(tr("General Setup"), tr("Date Time Updated!"));
         }
     }
+    updateGeneralSetup();
+    if(cParasChanged)
+    {
+        saveFile();
+    }
 }
 
 void sGeneralSetup::SavePassword()
@@ -1048,4 +1067,9 @@ void sGeneralSetup::on_imageCapture_clicked()
     }else{
         qDebug()<<"folder doesn't exist";
     }
+}
+
+int sGeneralSetup::getGMTSeconds()
+{
+    return ((1800*general_setup.gmt)-43200);
 }

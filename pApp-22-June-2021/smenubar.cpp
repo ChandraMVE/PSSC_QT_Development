@@ -81,7 +81,7 @@ void sMenuBar::setSelectedMenu(int menu)
     ui->wmMemory->setEnabled(true);
     ui->wmMemory->setSelected(false);
     ui->wmSetup->setEnabled(true);
-    ui->wmSetup->setSelected(false); //naveen
+    ui->wmSetup->setSelected(false);
 
     switch (menu)
     {

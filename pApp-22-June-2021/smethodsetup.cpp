@@ -216,7 +216,7 @@ void sMethodSetup::setDefaults()
     stdD6377.temperature = DEFAULT_D6377_TEMPERATURE;
     stdD6377.time = DEFAULT_D6377_TIME;
     stdD6377.vl_ratio = DEFAULT_D6377_VL_RATIO;
-    stdD6377.shaker_speed = DEFAULT_D5188_SHAKER_SPEED;
+    stdD6377.shaker_speed = DEFAULT_D5188_SHAKER_SPEED * (60);
     stdD6377.passfail_enabled = DEFAULT_D6377_PASS_FAIL_ENABLED;
     stdD6377.alarm_enabled = DEFAULT_D6377_ALARM_ENABLED;
     stdD6377.from = DEFAULT_D6377_FROM;
@@ -233,7 +233,7 @@ void sMethodSetup::setDefaults()
 
     stdD5188.pressure = DEFAULT_D5188_PRESSURE;
     stdD5188.vl_ratio = DEFAULT_D5188_VL_RATIO;
-    stdD5188.shaker_speed = DEFAULT_D5188_SHAKER_SPEED;
+    stdD5188.shaker_speed = DEFAULT_D5188_SHAKER_SPEED * (60);
     stdD5188.passfail_enabled = DEFAULT_D5188_PASS_FAIL_ENABLED;
     stdD5188.alarm_enabled = DEFAULT_D5188_ALARM_ENABLED;
     stdD5188.from = DEFAULT_D5188_FROM;
@@ -247,7 +247,7 @@ void sMethodSetup::setDefaults()
     stdFree1.tpx2 = DEFAULT_FREE_TPX2;
     stdFree1.tpx3 = DEFAULT_FREE_TPX3;
     stdFree1.vl_ratio = DEFAULT_FREE_VLRATIO;
-    stdFree1.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
+    stdFree1.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree1.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree1.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree1.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -262,7 +262,7 @@ void sMethodSetup::setDefaults()
     stdFree2.tpx2 = DEFAULT_FREE_TPX2;
     stdFree2.tpx3 = DEFAULT_FREE_TPX3;
     stdFree2.vl_ratio = DEFAULT_FREE_VLRATIO;
-    stdFree2.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
+    stdFree2.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree2.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree2.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree2.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -277,7 +277,7 @@ void sMethodSetup::setDefaults()
     stdFree3.tpx2 = DEFAULT_FREE_TPX2;
     stdFree3.tpx3 = DEFAULT_FREE_TPX3;
     stdFree3.vl_ratio = DEFAULT_FREE_VLRATIO;
-    stdFree3.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
+    stdFree3.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree3.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree3.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree3.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -292,7 +292,7 @@ void sMethodSetup::setDefaults()
     stdFree4.tpx2 = DEFAULT_FREE_TPX2;
     stdFree4.tpx3 = DEFAULT_FREE_TPX3;
     stdFree4.vl_ratio = DEFAULT_FREE_VLRATIO;
-    stdFree4.shaker_speed = DEFAULT_FREE_SHAKER_SPEED;
+    stdFree4.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree4.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree4.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
     stdFree4.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
@@ -509,8 +509,11 @@ void sMethodSetup::showD6377()
     ui->lblPara3->show();
     ui->frPara1->resize(660,350);
     
+    qDebug()<<"stdD6377.shaker_speed: "<<stdD6377.shaker_speed;
+    double D6377ShakerSpeed = (double)(stdD6377.shaker_speed/(60.0));
+    qDebug()<<"D6377ShakerSpeed: "<<D6377ShakerSpeed;
     dvPara4->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
-    ui->lePara4->setText(cSettings.getShakerSpeed(stdD6377.shaker_speed));
+    ui->lePara4->setText(cSettings.getShakerSpeed(D6377ShakerSpeed));
 
     ui->lblPara4->show();
     ui->lePara4->show();
@@ -671,8 +674,9 @@ void sMethodSetup::showD5188()
     ui->lePara3->setReadOnly(false);
     ui->lblPara3->setText(tr("Shaker Speed"));
 
+    double D5188ShakerSpeed = (double)(stdD5188.shaker_speed/60.0);
     dvPara3->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
-    ui->lePara3->setText(cSettings.getShakerSpeed(stdD5188.shaker_speed));
+    ui->lePara3->setText(cSettings.getShakerSpeed(D5188ShakerSpeed));
 
     ui->lblPara3->show();
     ui->lePara3->show();
@@ -739,8 +743,9 @@ void sMethodSetup::showFree1()
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree1.vl_ratio));
 
     ui->cbShakerDisable->setChecked(stdFree1.shaker_disabled);
+    double Free1ShakerSpeed = (double)(stdFree1.shaker_speed/60.0);
     dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
-    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree1.shaker_speed));
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(Free1ShakerSpeed));
     ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
@@ -798,8 +803,9 @@ void sMethodSetup::showFree2()
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree2.vl_ratio));
 
     ui->cbShakerDisable->setChecked(stdFree2.shaker_disabled);
+    double Free2ShakerSpeed = (double)(stdFree2.shaker_speed/(60.0));
     dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
-    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree2.shaker_speed));
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(Free2ShakerSpeed));
     ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
@@ -855,8 +861,9 @@ void sMethodSetup::showFree3()
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree3.vl_ratio));
 
     ui->cbShakerDisable->setChecked(stdFree3.shaker_disabled);
+    double Free3ShakerSpeed = (double)(stdFree3.shaker_speed/60.0);
     dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
-    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree3.shaker_speed));
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(Free3ShakerSpeed));
     ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
@@ -913,8 +920,9 @@ void sMethodSetup::showFree4()
     ui->leVLRatio->setText(cSettings.getVLRatio(stdFree4.vl_ratio));
 
     ui->cbShakerDisable->setChecked(stdFree4.shaker_disabled);
+    double Free4ShakerSpeed = (double)(stdFree4.shaker_speed/60.0);
     dvShaker->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
-    ui->cbShakerValue->setText(cSettings.getShakerSpeed(stdFree4.shaker_speed));
+    ui->cbShakerValue->setText(cSettings.getShakerSpeed(Free4ShakerSpeed));
     ui->cbShakerValue->setReadOnly(!ui->cbShakerDisable->isChecked());
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
@@ -1018,11 +1026,13 @@ void sMethodSetup::updateD6377()
     }
     stdD6377.vl_ratio = ui->lePara3->text().toDouble();
 
-    if(stdD6377.shaker_speed != ui->lePara4->text().toInt())
+//    if(stdD6377.shaker_speed != ui->lePara4->text().toInt())
+    if((double)(stdD6377.shaker_speed) != (ui->lePara4->text().toDouble()*(60.0)))
     {
         cParasChanged = true;
     }
-    stdD6377.shaker_speed = ui->lePara4->text().toInt();
+//    stdD6377.shaker_speed = ui->lePara4->text().toInt();
+    stdD6377.shaker_speed = (ui->lePara4->text().toDouble()*(60.0));
 
     if(stdD6377.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1117,11 +1127,11 @@ void sMethodSetup::updateD5188()
     }
     stdD5188.vl_ratio = ui->lePara2->text().toDouble();
 
-    if(stdD5188.shaker_speed != ui->lePara3->text().toInt())
+    if((double)(stdD5188.shaker_speed) != (ui->lePara3->text().toDouble() * (60)))
     {
         cParasChanged = true;
     }
-    stdD5188.shaker_speed = ui->lePara3->text().toInt();
+    stdD5188.shaker_speed = (ui->lePara3->text().toDouble()/(60.0));
 
     if(stdD5188.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1207,10 +1217,10 @@ void sMethodSetup::updateFree1()
     stdFree1.shaker_disabled = ui->cbShakerDisable->checkState();
     qDebug()<<"stdFree1.shaker_disabled from updateFree1: "<<stdFree1.shaker_disabled;
 
-    if(stdFree1.shaker_speed != ui->cbShakerValue->text().toInt()){
+    if((double)(stdFree1.shaker_speed) != (ui->cbShakerValue->text().toDouble() * (60))){
         cParasChanged = true;
     }
-    stdFree1.shaker_speed = ui->cbShakerValue->text().toInt();
+    stdFree1.shaker_speed = (ui->cbShakerValue->text().toDouble() * (60));
 
     if(stdFree1.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1294,11 +1304,11 @@ void sMethodSetup::updateFree2()
     }
     stdFree2.shaker_disabled = ui->cbShakerDisable->checkState();
 
-    if(stdFree2.shaker_speed != ui->cbShakerValue->text().toInt())
+    if((double)(stdFree2.shaker_speed) != (ui->cbShakerValue->text().toDouble() * 60))
     {
         cParasChanged = true;
     }
-    stdFree2.shaker_speed = ui->cbShakerValue->text().toInt();
+    stdFree2.shaker_speed = ui->cbShakerValue->text().toDouble() * 60;
 
     if(stdFree2.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1382,11 +1392,11 @@ void sMethodSetup::updateFree3()
     }
     stdFree3.shaker_disabled = ui->cbShakerDisable->checkState();
 
-    if(stdFree3.shaker_speed != ui->cbShakerValue->text().toInt())
+    if((double)(stdFree3.shaker_speed) != (ui->cbShakerValue->text().toDouble() * 60))
     {
         cParasChanged = true;
     }
-    stdFree3.shaker_speed = ui->cbShakerValue->text().toInt();
+    stdFree3.shaker_speed = (ui->cbShakerValue->text().toDouble() * 60);
 
     if(stdFree3.passfail_enabled != ui->cbEnable->checkState())
     {
@@ -1443,8 +1453,8 @@ void sMethodSetup::updateFree4()
     if(stdFree4.shaker_disabled != ui->cbShakerDisable->checkState()) cParasChanged = true;
     stdFree4.shaker_disabled = ui->cbShakerDisable->checkState();
 
-    if(stdFree4.shaker_speed != ui->cbShakerValue->text().toInt()) cParasChanged = true;
-    stdFree4.shaker_speed = ui->cbShakerValue->text().toInt();
+    if((double)(stdFree4.shaker_speed) != (ui->cbShakerValue->text().toDouble() * 60)) cParasChanged = true;
+    stdFree4.shaker_speed = (ui->cbShakerValue->text().toDouble() * 60);
 
     if(stdFree4.passfail_enabled != ui->cbEnable->checkState()) cParasChanged = true;
     stdFree4.passfail_enabled = ui->cbEnable->checkState();

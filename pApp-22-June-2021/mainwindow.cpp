@@ -321,7 +321,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(serial, SIGNAL(error(QSerialPort::SerialPortError)), this, SLOT(handleErrorSerial(QSerialPort::SerialPortError)));
     connect(serial, SIGNAL(readyRead()), this, SLOT(readSerial()));
 
-    cDateTime = QDateTime::currentDateTime().addSecs(ui->wUserSetup->getGMTSeconds()); 
+    cDateTime = QDateTime::currentDateTime().addSecs(ui->wGeneralSetup->getGMTSeconds());
 
     ui->lblDate->setText(cDateTime.toString(qslShowDateFormat.at(ui->wGeneralSetup->general_setup.date_format)));
     ui->lblTime->setText(cDateTime.toString(qslShowTimeFormat.at(ui->wGeneralSetup->general_setup.time_format)));
@@ -1314,7 +1314,8 @@ void MainWindow::handleRinsing()
                         }
                         else
                         {
-                            if(ui->wCleaning->isVisible())
+//                            if(ui->wCleaning->isVisible())
+                            if(rinsing)
                             {
                                 //cStage = 0;
 
@@ -1322,9 +1323,11 @@ void MainWindow::handleRinsing()
                                 qDebug() << "TMO Reset";
                                 cStage = -2; //0;
                                 cIdleTimeout = 0;
+                                rinsing = false;
 
-                                ui->wCleaning->setRunning(false); //18-Apr-2023
-                                ui->wMenuBar->setSelectedMenu(M_CLEANING); //18-Apr-2023
+                                ui->wMeasuring1->setRunning(false);
+//                                ui->wCleaning->setRunning(false); //18-Apr-2023
+                                ui->wMenuBar->setSelectedMenu(M_MEASURING); //18-Apr-2023
                             }
                             
                             else
@@ -1679,7 +1682,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
                     if(rinsing)
                     {
-                        rinsing = false;
+//                        rinsing = false;
                         handleRinsing();
                     }
                     else if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
@@ -1714,7 +1717,7 @@ void MainWindow::timerEvent(QTimerEvent *e)
             {
                 if(rinsing)
                 {
-                    rinsing = false;
+//                    rinsing = false;
                     handleRinsing();
                 }
                 else if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
@@ -1879,13 +1882,13 @@ void MainWindow::onRunClicked(int state, bool init)
 
         if(cInitSuccess)
         {
+            rinsing = true;
             ui->wMeasuring1->setRunning(true);
             ui->wMenuBar->setRunningMenu(M_MEASURING);
 
             cRinseCycles = 0; 
             ui->wCleaning->updateStatus(cRinseCycles + 1, ui->wUserSetup->user_setup.rinse_cycle + 1);
 
-            rinsing = true;
             cAccessWidget = ui->wMeasuring1;
             cAccessWidget->setWaitACKStatus(true);
 
@@ -5116,6 +5119,7 @@ void MainWindow::onMenuClicked(int menu)
 
     case M_CLEANING:
 //         ui->wCleaning->Show();
+        ui->wUserSetup->Show();
         ui->wUserSetup->show();
         ui->fTitle->hide();
         ui->wMenuBar->move(0, 10);
