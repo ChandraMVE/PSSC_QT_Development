@@ -73,7 +73,8 @@ struct {
 #define CURRENT_LIMIT_COUNT         1000
 #define PISTON_DUTY_PERIOD          0X1F3F              // 1KHz frequency
 #define PISTON_DEFAULT_DUTY_CYCLE   0X15DF              // 70% duty cycle value for 1KHz frequency
-#define PISTON_DYNAMIC_DUTY_CYCLE   0X95F              // 70% duty cycle value for 1KHz frequency
+#define PISTON_DEFAULT_DUTY_CYCLE_1 0XF9F              // 50% duty cycle value for 1KHz frequency
+#define PISTON_DYNAMIC_DUTY_CYCLE   0X95F              // 30% duty cycle value for 1KHz frequency
 #define MAX_DEBOUNCE_COUNT          3
 #define MAX_PM_WAIT_TIME            600     //50ms * 600 = 30 seconds wait time to detect initial position after shaker motor is turned ON
 

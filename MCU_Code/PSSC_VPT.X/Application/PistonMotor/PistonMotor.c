@@ -76,6 +76,8 @@ static uint16_t PMErr_Counter;
 static float Previous_Position;
 
 uint32_t A_Pulses = 0;
+uint32_t A = 0;
+uint32_t DownCount = 0;
 
 /**
  * @brief This function initializes the piston motor parameters 
@@ -144,10 +146,12 @@ void PistonMotor_Handler(void)
                     if(PistonMotor.Set_Position == 0.0f)
                     {
                         PistonEncoder_ExpectedCount(false, PistonMotor.Current_Position);
+                        DownCount = PistonMotor.Current_Position;
                     }
                     else
                     {
                         PistonEncoder_ExpectedCount(false, PistonMotor.Current_Position - PistonMotor.Set_Position);
+                        DownCount = PistonMotor.Current_Position - PistonMotor.Set_Position;
                     }
                     PistonMotor_Down();
                     PistonMotor.Flags.PMStatus = false;
@@ -233,6 +237,12 @@ void PistonMotor_Handler(void)
                 PistonMotor.Current_Position = (float) Total_Pulses;
                 if(PistonMotor.Flags.PMStatus == true)
                 {
+                    if(Total_Pulses >= PistonMotor.Set_Position/2)
+                    {
+                        PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
+                        PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
+                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
+                    }
                     PistonMotor.Current_Position = PistonMotor.Current_Position + Previous_Position;
 //                    if(PistonMotor.Set_Position <= PistonMotor.Current_Position)
 //                    {
@@ -267,6 +277,12 @@ void PistonMotor_Handler(void)
                 }
                 else
                 {
+                    if(Total_Pulses >= (DownCount/2))
+                    {
+                        PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
+                        PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
+                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
+                    }
                     PistonMotor.Current_Position = Previous_Position - PistonMotor.Current_Position;
 //                    if(PistonMotor.Set_Position >= PistonMotor.Current_Position)
 //                    {
@@ -507,7 +523,7 @@ void PistonMotor_ChangedPosition(void)
         {
             PistonMotor.Flags.EnPM = true;
             PistonMotor_SetDutyCycle();
-            PistonEncoder_ExpectedCount(true, PistonEncoder_GetCountA());
+            PistonEncoder_ExpectedCount(true, (PistonEncoder_GetCountA()));
             PistonMotor_Up();
             PistonMotor.Flags.PMStatus = true;
         }
@@ -515,7 +531,7 @@ void PistonMotor_ChangedPosition(void)
         {
             PistonMotor.Flags.EnPM = true;
             PistonMotor_SetDutyCycle();
-            PistonEncoder_ExpectedCount(false, PistonEncoder_GetCountA());
+            PistonEncoder_ExpectedCount(false, (PistonEncoder_GetCountA()));
             PistonMotor_Down();
             PistonMotor.Flags.PMStatus = false;
         }
@@ -534,10 +550,15 @@ void PistonMotor_RunningState(void){
                     A_Pulses = PistonEncoder_GetCountA();
                     PistonMotor_Stop();
                     PistonEncoder_StopRead();
+                    PistonMotor.Flags.EnPM = false;
+                    for(int i=0;i<10;i++){
+                        A++;
+                    }
+                    A = 0;
                     SetPistonMotor_StopFlag(false);
-//                        A_Pulses = PistonEncoder_GetCountA();
                     PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
                     PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                    PistonEncoder_StopRead();
                 }
             }
             else
@@ -545,10 +566,15 @@ void PistonMotor_RunningState(void){
                 A_Pulses = PistonEncoder_GetCountA();
                 PistonMotor_Stop();
                 PistonEncoder_StopRead();
+                PistonMotor.Flags.EnPM = false;
+                for(int i=0;i<10;i++){
+                    A++;
+                }
+                A = 0;
                 SetPistonMotor_StopFlag(false);
-//                    A_Pulses = PistonEncoder_GetCountA();
                 PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
                 PistonMotor.Current_Position = PistonMotor.Set_Position;
+//                PistonEncoder_StopRead();
             }
         }
         else
@@ -556,10 +582,15 @@ void PistonMotor_RunningState(void){
             A_Pulses = PistonEncoder_GetCountA();
             PistonMotor_Stop();
             PistonEncoder_StopRead();
+            PistonMotor.Flags.EnPM = false;
+            for(int i=0;i<10;i++){
+                A++;
+            }
+            A = 0;
             SetPistonMotor_StopFlag(false);
-//                A_Pulses = PistonEncoder_GetCountA();
             PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
             PistonMotor.Current_Position = PistonMotor.Set_Position;
+//            PistonEncoder_StopRead();
         }
     }
 
