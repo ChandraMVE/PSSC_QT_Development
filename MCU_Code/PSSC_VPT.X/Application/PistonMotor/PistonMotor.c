@@ -78,6 +78,7 @@ static float Previous_Position;
 uint32_t A_Pulses = 0;
 uint32_t A = 0;
 uint32_t DownCount = 0;
+uint32_t UpCount = 0;
 
 /**
  * @brief This function initializes the piston motor parameters 
@@ -135,6 +136,7 @@ void PistonMotor_Handler(void)
                     PistonMotor.Flags.EnPM = true;
                     PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
                     PistonEncoder_ExpectedCount(true, (PistonMotor.Set_Position - PistonMotor.Current_Position));
+                    UpCount = (PistonMotor.Set_Position - PistonMotor.Current_Position);
                     PistonMotor_Up();
                     PistonMotor.Flags.PMStatus = true;
                 }
@@ -237,7 +239,7 @@ void PistonMotor_Handler(void)
                 PistonMotor.Current_Position = (float) Total_Pulses;
                 if(PistonMotor.Flags.PMStatus == true)
                 {
-                    if(Total_Pulses >= PistonMotor.Set_Position/2)
+                    if(Total_Pulses >= (UpCount/2))
                     {
                         PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
