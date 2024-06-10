@@ -164,11 +164,9 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     QListView *view22 = new QListView(ui->cbGMT);
     view22->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
 
     ui->cbGMT->setView(view22);
-
 
     setDefaults();
 
@@ -269,6 +267,8 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     ui->leIPMask->setValidator(ipValidator);
     ui->leGateway->setValidator(ipValidator);
     ui->leDNS->setValidator(ipValidator);
+
+    DateTimeDisplay = true;
 }
 
 sGeneralSetup::~sGeneralSetup()
@@ -691,7 +691,11 @@ void sGeneralSetup::updateGeneralSetup()
     if(general_setup.ip_dns != ui->leDNS->text()) cParasChanged = true;
     general_setup.ip_dns = ui->leDNS->text();
 
-    if(general_setup.gmt != ui->cbGMT->currentIndex()) cParasChanged = true;
+    if(general_setup.gmt != ui->cbGMT->currentIndex())
+    {
+        DateTimeDisplay = true;
+        cParasChanged = true;
+    }
     general_setup.gmt = ui->cbGMT->currentIndex();
 
 }
@@ -834,12 +838,14 @@ void sGeneralSetup::on_pbExit_clicked()
     if(cParasChanged)
     {
         cEnSwitch = false;
+        DateTimeDisplay = true;
         emit getConfirmation(M_CONFIRM_GENERAL, M_MEASURING);
     }
 
     if(!cParasChanged)
     {
         this->hide();
+        DateTimeDisplay = true;
         emit showHome(false);
     }
 
@@ -860,27 +866,40 @@ void sGeneralSetup::SaveRTC()
 {
 
     QString str;
+    QDateTime dt ;
 
-    str.sprintf("%d/%02d/%02d %02d:%02d ",
-                ui->cbYear->currentText().toInt(),
-                ui->cbDay->currentText().toInt(),
-                ui->cbMonth->currentText().toInt(),
-                ui->cbHour->currentText().toInt(),
-                ui->cbMinute->currentText().toInt());
+    if(general_setup.gmt == ui->cbGMT->currentIndex())
+    {
+        str.sprintf("%d/%02d/%02d %02d:%02d ",
+                    ui->cbYear->currentText().toInt(),
+                    ui->cbDay->currentText().toInt(),
+                    ui->cbMonth->currentText().toInt(),
+                    ui->cbHour->currentText().toInt(),
+                    ui->cbMinute->currentText().toInt());
 
-    str = str + ui->cbAMPM->currentText();
+        str = str + ui->cbAMPM->currentText();
 
-    QDateTime dt = QDateTime::fromString(str, "yyyy/dd/MM hh:mm AP");
+        dt = QDateTime::fromString(str, "yyyy/dd/MM hh:mm AP");
+    }else{
+        int differ = ((-1)*getGMTSeconds()) + (getCurrentGMTSeconds());
+        qDebug()<<"Differ: "<<differ;
+        dt = QDateTime::currentDateTime().addSecs(differ);
+        qDebug()<<"dt: "<<dt;
+    }
 
     if(!dt.isValid())
         emit showMsgBox(tr("General Setup"), tr("Select Valid Date!"));
     else
     {
 
+//        QDateTime adjustedDateTime = dt.addSecs(getGMTSeconds());
+
         QString string = dt.toString("\"yyyyMMdd hh:mm\"");
+//        QString string = adjustedDateTime.toString("\"yyyyMMdd hh:mm\"");
         QString dateTimeString ("date -s ");
         dateTimeString.append(string);
 
+        qDebug()<<"dateTimeString: "<<dateTimeString;
         int systemDateTimeStatus= system(dateTimeString.toStdString().c_str());
 
         if (systemDateTimeStatus == -1)
@@ -903,6 +922,7 @@ void sGeneralSetup::SaveRTC()
     {
         saveFile();
     }
+    DateTimeDisplay = true;
 }
 
 void sGeneralSetup::SavePassword()
@@ -1017,12 +1037,46 @@ void sGeneralSetup::on_twDevice_currentChanged(int index)
 
 }
 
+bool sGeneralSetup::getTabDateTimeVisible()
+{
+    return ui->tabDateTime->isVisible();
+}
+void sGeneralSetup::call_on_twOther_currentChanged(int tmp)
+{
+    if(general_setup.gmt != ui->cbGMT->currentIndex())
+    {
+        DateTimeDisplay = false;
+        editDateTime(false);
+        on_twOther_currentChanged(tmp);
+    }
+    else if(DateTimeDisplay)
+    {
+        DateTimeDisplay = false;
+        editDateTime(false);
+        on_twOther_currentChanged(tmp);
+    }
+    else{
+        editDateTime(true);
+    }
+}
+
+void sGeneralSetup::editDateTime(bool tmp){
+    ui->cbDay->setEnabled(tmp);
+    ui->cbMonth->setEnabled(tmp);
+    ui->cbYear->setEnabled(tmp);
+    ui->cbAMPM->setEnabled(tmp);
+    ui->cbHour->setEnabled(tmp);
+    ui->cbMinute->setEnabled(tmp);
+}
+
 void sGeneralSetup::on_twOther_currentChanged(int index)
 {
     if(!index)
     {
         QDateTime cdt = QDateTime::currentDateTime();
+//        QDateTime cdt = QDateTime::currentDateTime().addSecs(getGMTSeconds());
 
+        qDebug()<<"cdt from on_twOther_currentChanged: "<<cdt;
         ui->cbYear->setCurrentIndex(cdt.date().year() - 2021);
         ui->cbDay->setCurrentIndex(cdt.date().day() - 1);
         ui->cbMonth->setCurrentIndex(cdt.date().month() - 1);
@@ -1037,8 +1091,7 @@ void sGeneralSetup::on_twOther_currentChanged(int index)
             ui->cbHour->setCurrentIndex(cdt.time().hour()-1);
             ui->cbAMPM->setCurrentIndex(0);
         }
-
-        ui->cbMinute->setCurrentIndex(cdt.time().minute()-1);
+        ui->cbMinute->setCurrentIndex(cdt.time().minute());
 
     }
     else
@@ -1069,7 +1122,183 @@ void sGeneralSetup::on_imageCapture_clicked()
     }
 }
 
+/*int sGeneralSetup::getGMTSeconds()
+{
+    int totalSeconds, currentSeconds;
+    qDebug()<<"general_setup.gmt: "<<general_setup.gmt;
+    QString str = ui->cbGMT->itemText(general_setup.gmt);
+    QString currentStr = ui->cbGMT->currentText();
+    qDebug()<<"general_setup.gmt text: "<<str;
+    qDebug()<<"ui->cbGMT->currentText(): "<<ui->cbGMT->currentText();
+    QStringList a = str.split(" ");
+    QStringList Ca = currentStr.split(" ");
+//    qDebug()<<"a[0]: "<<a[0];
+//    qDebug()<<"a[1]: "<<a[1];
+    QString tim = a[1];
+    QString cTim = Ca[1];
+    if(str.contains("-")){
+        if(tim.contains(":")){
+//            if(currentStr.contains("-"))
+//            {
+                if(cTim.contains(":")){
+                    QStringList chm = cTim.split(":");
+                    currentSeconds = (1800*((chm[0].toInt()*2) + 1));
+                }else{
+                    int cahour = cTim.toInt();
+                    currentSeconds = (1800*((cahour*2)));
+                }
+//            }
+            QStringList hm = tim.split(":");
+            totalSeconds = ((1800*(-(hm[0].toInt()*2) + 1))) + currentSeconds;
+        }
+        else
+        {
+            if(cTim.contains(":")){
+                QStringList chm = cTim.split(":");
+                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
+            }else{
+                int cahour = cTim.toInt();
+                currentSeconds = (1800*((cahour*2)));
+            }
+            int ahour = tim.toInt();
+            totalSeconds = (1800*(-(ahour*2))) + currentSeconds;
+        }
+        qDebug()<<"contains -";
+    }else if(str.contains("+")){
+        qDebug()<<"contains +";
+        if(tim.contains(":")){
+            if(cTim.contains(":")){
+                QStringList chm = cTim.split(":");
+                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
+            }else{
+                int cahour = cTim.toInt();
+                currentSeconds = (1800*((cahour*2)));
+            }
+            QStringList hm = tim.split(":");
+            totalSeconds = (1800*(-(hm[0].toInt()*2) + 1)) + currentSeconds;
+        }
+        else
+        {
+            if(cTim.contains(":")){
+                QStringList chm = cTim.split(":");
+                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
+            }else{
+                int cahour = cTim.toInt();
+                currentSeconds = (1800*((cahour*2)));
+            }
+            int ahour = tim.toInt();
+            totalSeconds = (1800*(-(ahour*2))) + currentSeconds;
+        }
+    }else{
+        qDebug()<<"it is zero";
+        if(tim.contains(":")){
+            if(cTim.contains(":")){
+                QStringList chm = cTim.split(":");
+                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
+            }else{
+                int cahour = cTim.toInt();
+                currentSeconds = (1800*((cahour*2)));
+            }
+            QStringList hm = tim.split(":");
+            totalSeconds = (1800*((hm[0].toInt()*2) + 1)) + currentSeconds;
+        }
+        else
+        {
+            if(cTim.contains(":")){
+                QStringList chm = cTim.split(":");
+                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
+            }else{
+                int cahour = cTim.toInt();
+                currentSeconds = (1800*((cahour*2)));
+            }
+            int ahour = tim.toInt();
+            totalSeconds = (1800*(ahour*2)) + currentSeconds;
+        }
+    }
+    return totalSeconds;
+//    return ((1800*general_setup.gmt)-43200);
+}*/
+
 int sGeneralSetup::getGMTSeconds()
 {
-    return ((1800*general_setup.gmt)-43200);
+    int totalSeconds = 0;
+    qDebug() << "general_setup.gmt: " << general_setup.gmt;
+    QString str = ui->cbGMT->itemText(general_setup.gmt);
+//    QString str = ui->cbGMT->currentText();
+//    QString currentStr = ui->cbGMT->currentText();
+    qDebug() << "general_setup.gmt text: " << str;
+//    qDebug() << "ui->cbGMT->currentText(): " << ui->cbGMT->currentText();
+
+    QStringList a = str.split(" ");
+//    QStringList Ca = currentStr.split(" ");
+    QString tim = a[1];
+//    QString cTim = Ca[1];
+    auto calculateSeconds = [](const QString& time) -> int {
+        if (time.contains(":")) {
+            QStringList hm = time.split(":");
+            int hours = hm[0].toInt();
+            int minutes = hm[1].toInt();
+            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
+            if(hours>0)
+            {
+                return (hours * 3600) + (minutes * 60);
+            }else{
+                return (-1)*(((-1)*(hours * 3600)) + (minutes * 60));
+            }
+        } else {
+            int hours = time.toInt();
+            return hours * 3600;
+        }
+    };
+
+    totalSeconds = calculateSeconds(tim);
+//    currentSeconds = calculateSeconds(cTim);
+
+//    if (a[0] == "GMT-") {
+//        totalSeconds = -totalSeconds;
+//    }
+
+    qDebug() << "totalSeconds: " << totalSeconds;
+//    qDebug() << "currentSeconds: " << currentSeconds;
+//    return totalSeconds + currentSeconds;
+    return totalSeconds;
 }
+
+int sGeneralSetup::getCurrentGMTSeconds(void){
+    int totalSeconds = 0;
+    qDebug() << "general_setup.gmt: " << general_setup.gmt;
+//    QString str = ui->cbGMT->itemText(general_setup.gmt);
+    QString str = ui->cbGMT->currentText();
+    qDebug() << "general_setup.gmt text: " << str;
+
+    QStringList a = str.split(" ");
+    QString tim = a[1];
+    auto calculateSeconds = [](const QString& time) -> int {
+        if (time.contains(":")) {
+            QStringList hm = time.split(":");
+            int hours = hm[0].toInt();
+            int minutes = hm[1].toInt();
+            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
+            if(hours>0)
+            {
+                return (hours * 3600) + (minutes * 60);
+            }else{
+                return (-1)*(((-1)*(hours * 3600)) + (minutes * 60));
+            }
+        } else {
+            int hours = time.toInt();
+            return hours * 3600;
+        }
+    };
+
+    totalSeconds = calculateSeconds(tim);
+//    currentSeconds = calculateSeconds(cTim);
+
+//    if (a[0] == "GMT-") {
+//        totalSeconds = -totalSeconds;
+//    }
+
+    qDebug() << "totalSeconds: " << totalSeconds;
+    return totalSeconds;
+}
+

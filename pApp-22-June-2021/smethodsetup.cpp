@@ -209,7 +209,7 @@ void sMethodSetup::setDefaults()
     stdD5191.vl_ratio = DEFAULT_D5191_VL_RATIO;
     stdD5191.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
     stdD5191.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
-    stdD5191.alarm_enabled = DEFAULT_D5191_ALARM_ENABLED;
+//    stdD5191.alarm_enabled = DEFAULT_D5191_ALARM_ENABLED;
     stdD5191.from = DEFAULT_D5191_FROM;
     stdD5191.to = DEFAULT_D5191_TO;
 
@@ -218,7 +218,7 @@ void sMethodSetup::setDefaults()
     stdD6377.vl_ratio = DEFAULT_D6377_VL_RATIO;
     stdD6377.shaker_speed = DEFAULT_D5188_SHAKER_SPEED * (60);
     stdD6377.passfail_enabled = DEFAULT_D6377_PASS_FAIL_ENABLED;
-    stdD6377.alarm_enabled = DEFAULT_D6377_ALARM_ENABLED;
+//    stdD6377.alarm_enabled = DEFAULT_D6377_ALARM_ENABLED;
     stdD6377.from = DEFAULT_D6377_FROM;
     stdD6377.to = DEFAULT_D6377_TO;
 
@@ -227,7 +227,7 @@ void sMethodSetup::setDefaults()
     stdD6378.time = DEFAULT_D6378_TIME;
     stdD6378.vl_ratio = DEFAULT_D6378_VL_RATIO;
     stdD6378.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
-    stdD6378.alarm_enabled = DEFAULT_D6378_ALARM_ENABLED;
+//    stdD6378.alarm_enabled = DEFAULT_D6378_ALARM_ENABLED;
     stdD6378.from = DEFAULT_D6378_FROM;
     stdD6378.to = DEFAULT_D6378_TO;
 
@@ -235,7 +235,7 @@ void sMethodSetup::setDefaults()
     stdD5188.vl_ratio = DEFAULT_D5188_VL_RATIO;
     stdD5188.shaker_speed = DEFAULT_D5188_SHAKER_SPEED * (60);
     stdD5188.passfail_enabled = DEFAULT_D5188_PASS_FAIL_ENABLED;
-    stdD5188.alarm_enabled = DEFAULT_D5188_ALARM_ENABLED;
+//    stdD5188.alarm_enabled = DEFAULT_D5188_ALARM_ENABLED;
     stdD5188.from = DEFAULT_D5188_FROM;
     stdD5188.to = DEFAULT_D5188_TO;
 
@@ -250,7 +250,7 @@ void sMethodSetup::setDefaults()
     stdFree1.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree1.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree1.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
-    stdFree1.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
+//    stdFree1.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree1.from = DEFAULT_FREE_FROM;
     stdFree1.to = DEFAULT_FREE_TO;
 
@@ -265,7 +265,7 @@ void sMethodSetup::setDefaults()
     stdFree2.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree2.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree2.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
-    stdFree2.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
+//    stdFree2.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree2.from = DEFAULT_FREE_FROM;
     stdFree2.to = DEFAULT_FREE_TO;
 
@@ -280,7 +280,7 @@ void sMethodSetup::setDefaults()
     stdFree3.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree3.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree3.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
-    stdFree3.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
+//    stdFree3.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree3.from = DEFAULT_FREE_FROM;
     stdFree3.to = DEFAULT_FREE_TO;
 
@@ -295,7 +295,7 @@ void sMethodSetup::setDefaults()
     stdFree4.shaker_speed = DEFAULT_FREE_SHAKER_SPEED * (60);
     stdFree4.shaker_disabled = DEFAULT_FREE_SHAKER_DISABLE;
     stdFree4.passfail_enabled = DEFAULT_FREE_PASS_FAIL_ENABLED;
-    stdFree4.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
+//    stdFree4.alarm_enabled = DEFAULT_FREE_ALARM_ENABLED;
     stdFree4.from = DEFAULT_FREE_FROM;
     stdFree4.to = DEFAULT_FREE_TO;
 
@@ -466,11 +466,11 @@ void sMethodSetup::showD5191()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdD5191.to));
 
     ui->cbEnable->setChecked(stdD5191.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdD5191.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdD5191.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -536,11 +536,11 @@ void sMethodSetup::showD6377()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdD6377.to));
 
     ui->cbEnable->setChecked(stdD6377.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdD6377.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdD6377.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -638,11 +638,11 @@ void sMethodSetup::showD6378()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdD6378.to));
 
     ui->cbEnable->setChecked(stdD6378.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdD6378.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdD6378.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -702,11 +702,11 @@ void sMethodSetup::showD5188()
     ui->lePRPTo->setText(cSettings.getTemperatureMS(stdD5188.to));
 
     ui->cbEnable->setChecked(stdD5188.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdD5188.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdD5188.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -763,11 +763,11 @@ void sMethodSetup::showFree1()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree1.to));
 
     ui->cbEnable->setChecked(stdFree1.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdFree1.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdFree1.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -821,11 +821,11 @@ void sMethodSetup::showFree2()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree2.to));
 
     ui->cbEnable->setChecked(stdFree2.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdFree2.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdFree2.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 }
 
 void sMethodSetup::showFree3()
@@ -879,11 +879,11 @@ void sMethodSetup::showFree3()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree3.to));
 
     ui->cbEnable->setChecked(stdFree3.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdFree3.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdFree3.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -938,11 +938,11 @@ void sMethodSetup::showFree4()
     ui->lePRPTo->setText(cSettings.getPressureMS(stdFree4.to));
 
     ui->cbEnable->setChecked(stdFree4.passfail_enabled);
-    ui->cbAlarmEnable->setChecked(stdFree4.alarm_enabled);
+//    ui->cbAlarmEnable->setChecked(stdFree4.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
 
 }
 
@@ -985,11 +985,11 @@ void sMethodSetup::updateD5191()
     }
     stdD5191.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdD5191.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdD5191.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdD5191.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdD5191.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdD5191.from) != ui->lePRPFrom->text())
     {
@@ -1040,11 +1040,11 @@ void sMethodSetup::updateD6377()
     }
     stdD6377.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdD6377.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdD6377.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdD6377.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdD6377.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdD6377.from) != ui->lePRPFrom->text())
     {
@@ -1093,11 +1093,11 @@ void sMethodSetup::updateD6378()
     }
     stdD6378.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdD6378.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdD6378.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdD6378.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdD6378.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdD6378.from) != ui->lePRPFrom->text())
     {
@@ -1139,11 +1139,11 @@ void sMethodSetup::updateD5188()
     }
     stdD5188.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdD5188.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdD5188.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdD5188.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdD5188.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getTemperatureMS(stdD5188.from) != ui->lePRPFrom->text())
     {
@@ -1228,11 +1228,11 @@ void sMethodSetup::updateFree1()
     }
     stdFree1.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdFree1.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdFree1.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdFree1.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdFree1.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdFree1.from) != ui->lePRPFrom->text())
     {
@@ -1316,11 +1316,11 @@ void sMethodSetup::updateFree2()
     }
     stdFree2.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdFree2.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdFree2.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdFree2.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdFree2.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdFree2.from) != ui->lePRPFrom->text())
     {
@@ -1404,11 +1404,11 @@ void sMethodSetup::updateFree3()
     }
     stdFree3.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdFree3.alarm_enabled != ui->cbAlarmEnable->checkState())
-    {
-        cParasChanged = true;
-    }
-    stdFree3.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdFree3.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdFree3.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdFree3.from) != ui->lePRPFrom->text())
     {
@@ -1459,8 +1459,8 @@ void sMethodSetup::updateFree4()
     if(stdFree4.passfail_enabled != ui->cbEnable->checkState()) cParasChanged = true;
     stdFree4.passfail_enabled = ui->cbEnable->checkState();
 
-    if(stdFree4.alarm_enabled != ui->cbAlarmEnable->checkState()) cParasChanged = true;
-    stdFree4.alarm_enabled = ui->cbAlarmEnable->checkState();
+//    if(stdFree4.alarm_enabled != ui->cbAlarmEnable->checkState()) cParasChanged = true;
+//    stdFree4.alarm_enabled = ui->cbAlarmEnable->checkState();
 
     if(cSettings.getPressureMS(stdFree4.from) != ui->lePRPFrom->text()) cParasChanged = true;
     stdFree4.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
@@ -1560,7 +1560,7 @@ void sMethodSetup::on_cbEnable_clicked()
 {
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
-    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
  }
 
 void sMethodSetup::onShowKeypad(int tmp)

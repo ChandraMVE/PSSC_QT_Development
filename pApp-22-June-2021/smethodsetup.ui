@@ -531,7 +531,7 @@ QFrame {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tabFormula">
        <attribute name="title">
@@ -928,7 +928,7 @@ border-color:  rgb(200, 200, 200);
           </property>
           <property name="styleSheet">
            <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
           </property>
           <property name="text">
            <string>Temperature</string>
@@ -1313,7 +1313,7 @@ border-color:  rgb(200, 200, 200);
           </property>
           <property name="styleSheet">
            <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
           </property>
           <property name="text">
            <string>Test Temperature</string>
@@ -2025,91 +2025,6 @@ QGroupBox::title {
          <property name="title">
           <string/>
          </property>
-         <widget class="QCheckBox" name="cbAlarmEnable">
-          <property name="geometry">
-           <rect>
-            <x>530</x>
-            <y>50</y>
-            <width>41</width>
-            <height>55</height>
-           </rect>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QCheckBox {
-    spacing: 5px;
- border: 0px solid #999999;
-
-}
-
-QCheckBox::indicator {
-    width: 41px;
-    height: 41px;
-}
-
-QCheckBox::indicator:unchecked {
-	image: url(:/images/icons/ancheck.png);
-}
-
-QCheckBox::indicator:unchecked:disabled{
-	image: url(:/images/icons/andcheck.png);
-}
-QCheckBox::indicator:checked:disabled{
-	image: url(:/images/icons/adcheck.png);
-}
-
-/*
-QCheckBox::indicator:unchecked:hover {
-    image: url(:/images/checkbox_unchecked_hover.png);
-}
-
-QCheckBox::indicator:unchecked:pressed {
-    image: url(:/images/checkbox_unchecked_pressed.png);
-}
-*/
-QCheckBox::indicator:checked {
-    image: url(:/images/icons/acheck.png);
-}
-/*
-QCheckBox::indicator:checked:hover {
-    image: url(:/images/checkbox_checked_hover.png);
-}
-
-QCheckBox::indicator:checked:pressed {
-    image: url(:/images/checkbox_checked_pressed.png);
-}
-
-QCheckBox::indicator:indeterminate:hover {
-    image: url(:/images/checkbox_indeterminate_hover.png);
-}
-/*
-QCheckBox::indicator:indeterminate:pressed {
-    image: url(:/images/checkbox_indeterminate_pressed.png);
-}
-*/</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_50">
-          <property name="geometry">
-           <rect>
-            <x>340</x>
-            <y>55</y>
-            <width>181</width>
-            <height>41</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border-width: 0px;</string>
-          </property>
-          <property name="text">
-           <string>Alarm Enable</string>
-          </property>
-         </widget>
          <widget class="QCheckBox" name="cbEnable">
           <property name="geometry">
            <rect>

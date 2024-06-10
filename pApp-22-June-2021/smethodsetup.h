@@ -29,7 +29,7 @@ struct STD_D5191{
     double vl_ratio;
     int passfail_enabled;
     int single_expansion;
-    int alarm_enabled;
+//    int alarm_enabled;
     double from;
     double to;
 };// stdD5191;
@@ -40,7 +40,7 @@ struct STD_D6377 {
     double vl_ratio;
     int shaker_speed;
     int passfail_enabled;
-    int alarm_enabled;
+//    int alarm_enabled;
     double from;
     double to;
 };
@@ -56,7 +56,7 @@ struct STD_D6378 {
     double time;
     double vl_ratio;
     int passfail_enabled;
-    int alarm_enabled;
+//    int alarm_enabled;
     double from;
     double to;
 };
@@ -66,7 +66,7 @@ struct STD_D5188 {
     double vl_ratio;
     int shaker_speed;
     int passfail_enabled;
-    int alarm_enabled;
+//    int alarm_enabled;
     double from;
     double to;
 };
@@ -83,7 +83,7 @@ struct STD_Free {
     int shaker_disabled;
     int shaker_speed;
     int passfail_enabled;
-    int alarm_enabled;
+//    int alarm_enabled;
     double from;
     double to;
 };

@@ -246,7 +246,7 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>160</y>
+        <y>300</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -281,7 +281,7 @@ border-color:  rgb(200, 200, 200);
 font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>Alarm Volume</string>
+        <string>System Volume</string>
        </property>
       </widget>
       <widget class="QSlider" name="hsAlarmVolme">
@@ -349,7 +349,7 @@ QSlider::sub-page:horizontal {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>305</y>
+        <y>160</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -445,7 +445,7 @@ QCheckBox::indicator:indeterminate:pressed {
 font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>Error Buzzer Enable</string>
+        <string>Error Alarm</string>
        </property>
       </widget>
      </widget>
@@ -453,7 +453,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>450</y>
+        <y>440</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -665,7 +665,7 @@ QScrollBar::down-arrow:vertical {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>594</y>
+        <y>580</y>
         <width>709</width>
         <height>101</height>
        </rect>
@@ -865,7 +865,7 @@ QCheckBox::indicator:indeterminate:pressed {
 font: 75 18pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>Alarm Buzzer Enable</string>
+        <string>Test Complete Alarm</string>
        </property>
       </widget>
      </widget>

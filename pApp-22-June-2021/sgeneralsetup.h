@@ -115,7 +115,11 @@ public:
     void SavePassword();
     bool isSwitchEnabled(int tmp);
 
-    int getGMTSeconds(void); //naveen
+    int getGMTSeconds(void);
+    bool getTabDateTimeVisible(); //naveen
+    void call_on_twOther_currentChanged(int tmp); //naveen
+    void editDateTime(bool tmp); //naveen
+    int getCurrentGMTSeconds(void);
 
 signals:
     void showKeypad( QObject *, int, bool);
@@ -149,6 +153,7 @@ private:
     int cPrevDeviceTab;
     int cPrevOtherTab;
     bool cEnSwitch;
+    bool DateTimeDisplay;
 
 public:
     struct GENERAL_SETUP general_setup;

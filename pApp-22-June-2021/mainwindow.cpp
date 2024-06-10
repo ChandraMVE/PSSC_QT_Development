@@ -325,7 +325,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->lblDate->setText(cDateTime.toString(qslShowDateFormat.at(ui->wGeneralSetup->general_setup.date_format)));
     ui->lblTime->setText(cDateTime.toString(qslShowTimeFormat.at(ui->wGeneralSetup->general_setup.time_format)));
-
     ui->wCleaning->hide();
     rinsing = false;
 
@@ -974,6 +973,9 @@ void MainWindow::checkInit()
                        && (ctmp <= (20 + M_INIT_TEMPERATURE_TOLERANCE ))))
                     {
                         //ui->wUserSetup->sendBuzAndVol();
+//                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable){
+//                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+//                        }
 
                         onShowMsgBox(tr("Initial"), tr("Initial test done!"));
                         cInitSuccess = true;
@@ -1617,6 +1619,15 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
     ui->lblDate->setText(cDateTime.toString(cSettings.getDateFormat()));
     ui->lblTime->setText(cDateTime.toString(cSettings.getTimeFormat()));
+    /*cDateTime = QDateTime::currentDateTime().addSecs(ui->wGeneralSetup->getGMTSeconds());
+
+    ui->lblDate->setText(cDateTime.toString(qslShowDateFormat.at(ui->wGeneralSetup->general_setup.date_format)));
+    ui->lblTime->setText(cDateTime.toString(qslShowTimeFormat.at(ui->wGeneralSetup->general_setup.time_format)));*/
+
+    if(ui->wGeneralSetup->getTabDateTimeVisible())
+    {
+        ui->wGeneralSetup->call_on_twOther_currentChanged(false);
+    }
 
     //QString str = "T:" + QString::number(cStage).rightJustified(2, '0');
     //ui->label_2->setText(str);
@@ -2715,32 +2726,38 @@ void MainWindow::handleOther(void)
                                 switch(ui->wMeasuring1->getMethod())
                                 {
                                     case M_METHOD_D5191:
-                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_D6378:
-                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE1:
-                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE2:
-                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE3:
-                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE4:
-                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
                                 }
@@ -3271,22 +3288,26 @@ void MainWindow::handleFreeShaker(void)
                                 switch(ui->wMeasuring1->getMethod())
                                 {
                                     case M_METHOD_FREE1:
-                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE2:
-                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE3:
-                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE4:
-                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
                                 }
@@ -3585,32 +3606,38 @@ void MainWindow::handleD5191SingleExpansion(void)
                                 switch(ui->wMeasuring1->getMethod())
                                 {
                                     case M_METHOD_D5191:
-                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_D6378:
-                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE1:
-                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE2:
-                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE3:
-                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
 
                                     case M_METHOD_FREE4:
-                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+//                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
+                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
                                             onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                                     break;
                                 }
@@ -4533,7 +4560,8 @@ void MainWindow::handleD5188(void)
                             }
                             else cStageTimeOut--;
 
-                            if(ui->wMethodSetup->stdD5188.alarm_enabled && cStageTimeOut == 58)
+//                            if(ui->wMethodSetup->stdD5188.alarm_enabled && cStageTimeOut == 58)
+                            if(ui->wUserSetup->user_setup.alarm_buzzer_enable && cStageTimeOut == 58)
                                 onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                         }
                     }
@@ -4874,7 +4902,8 @@ void MainWindow::handleD6377(void)
                             }
                             else cStageTimeOut--;
 
-                            if(ui->wMethodSetup->stdD6377.alarm_enabled && cStageTimeOut == 58)
+//                            if(ui->wMethodSetup->stdD6377.alarm_enabled && cStageTimeOut == 58)
+                            if(ui->wUserSetup->user_setup.alarm_buzzer_enable && cStageTimeOut == 58)
                                 onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                         }
                     }
