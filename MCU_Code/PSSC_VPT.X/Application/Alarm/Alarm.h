@@ -69,7 +69,9 @@ struct {
 #define MAX_ON_TIME         20          // 500ms Handler time * 20 = 10 secs ON time
 #define MAX_PATTERN_TIME    4           // 500ms * 4 = 2Sec ON/OFF time
 #define ALARM_DUTY_PERIOD          0X07CF              // 1KHz frequency
-#define ALARM_DEFAULT_DUTY_CYCLE   0X03E7              // 10% duty cycle value for 1KHz frequency
+#define ERROR_DUTY_PERIOD          0X029A              // 3KHz frequency
+#define ALARM_DEFAULT_DUTY_CYCLE   0X03F7              // 50% duty cycle value for 1KHz frequency
+#define ERROR_DEFAULT_DUTY_CYCLE   0X014D              // 50% duty cycle value for 3KHz frequency
     
 void Alarm_Initialise(void);
 void Alarm_Handler(void);

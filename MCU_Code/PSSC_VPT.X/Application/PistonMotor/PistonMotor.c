@@ -77,7 +77,9 @@ static float Previous_Position;
 
 uint32_t A_Pulses = 0;
 uint32_t A = 0;
+uint32_t DownCount3By4 = 0;
 uint32_t DownCount = 0;
+uint32_t UpCount3By4 = 0;
 uint32_t UpCount = 0;
 
 /**
@@ -137,6 +139,10 @@ void PistonMotor_Handler(void)
                     PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
                     PistonEncoder_ExpectedCount(true, (PistonMotor.Set_Position - PistonMotor.Current_Position));
                     UpCount = (PistonMotor.Set_Position - PistonMotor.Current_Position);
+                    if(PistonMotor.Set_Position == (0.25*CONVERSION_CONSTANT))
+                    {
+                        PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
+                    }
                     PistonMotor_Up();
                     PistonMotor.Flags.PMStatus = true;
                 }
@@ -239,7 +245,8 @@ void PistonMotor_Handler(void)
                 PistonMotor.Current_Position = (float) Total_Pulses;
                 if(PistonMotor.Flags.PMStatus == true)
                 {
-                    if(Total_Pulses >= (UpCount/2))
+                    UpCount3By4  = ((UpCount/2) + (UpCount/3));
+                    if(Total_Pulses >= (UpCount3By4))
                     {
                         PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
@@ -279,7 +286,8 @@ void PistonMotor_Handler(void)
                 }
                 else
                 {
-                    if(Total_Pulses >= (DownCount/2))
+                    DownCount3By4  = ((DownCount/2) + (DownCount/3));
+                    if(Total_Pulses >= (DownCount3By4))
                     {
                         PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);

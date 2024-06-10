@@ -205,6 +205,8 @@ void Alarm_UpdateAlarm(bool flagSet)
 {
     Alarm.Flags.Alarm_En = flagSet;
     Alarm.Flags.Alarm_Status = flagSet;
+    Alarm_Period = ALARM_DUTY_PERIOD;
+    Alarm_DutyCycle = ALARM_DEFAULT_DUTY_CYCLE;
 }
 
 /**
@@ -218,6 +220,8 @@ void Alarm_UpdateError(bool flagSet)
     {
         Alarm.Flags.Error_En = flagSet;
         Alarm.Flags.Alarm_Status = flagSet;
+        Alarm_Period = ERROR_DUTY_PERIOD;
+        Alarm_DutyCycle = ERROR_DEFAULT_DUTY_CYCLE;
     }
 }
 
