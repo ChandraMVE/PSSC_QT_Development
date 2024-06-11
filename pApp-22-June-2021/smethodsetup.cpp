@@ -1131,7 +1131,7 @@ void sMethodSetup::updateD5188()
     {
         cParasChanged = true;
     }
-    stdD5188.shaker_speed = (ui->lePara3->text().toDouble()/(60.0));
+    stdD5188.shaker_speed = (ui->lePara3->text().toDouble()*(60.0));
 
     if(stdD5188.passfail_enabled != ui->cbEnable->checkState())
     {
