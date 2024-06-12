@@ -50,6 +50,7 @@
 
 
 #define DEFAULT_D5191_FORMULA               0
+#define DEFAULT_D5191_INJECT_TMP            20.0
 #define DEFAULT_D5191_TEMPERATURE           37.8
 #define DEFAULT_D5191_TIME                  300
 #define DEFAULT_D5191_VL_RATIO              4
@@ -59,6 +60,7 @@
 #define DEFAULT_D5191_FROM                  111.6
 #define DEFAULT_D5191_TO                    114.0
 
+#define DEFAULT_D6377_INJECT_TMP            20.0
 #define DEFAULT_D6377_TEMPERATURE           37.8
 #define DEFAULT_D6377_TIME                  300
 #define DEFAULT_D6377_VL_RATIO              4
@@ -69,6 +71,7 @@
 #define DEFAULT_D6377_TO                    114.0
 
 #define DEFAULT_D6378_FORMULA               0
+#define DEFAULT_D6378_INJECT_TMP            20.0
 #define DEFAULT_D6378_TEMPERATURE           37.8
 #define DEFAULT_D6378_TIME                  300
 #define DEFAULT_D6378_VL_RATIO              4
@@ -88,6 +91,7 @@
 #define DEFAULT_FREE_A_CONSTANT             1.000
 #define DEFAULT_FREE_B_CONSTANT             0.500
 #define DEFAULT_FREE_C_CONSTANT             0.000
+#define DEFAULT_FREE_INJECT_TMP            20.0
 #define DEFAULT_FREE_TEMPERATURE            37.8
 #define DEFAULT_FREE_TPX1                   180
 #define DEFAULT_FREE_TPX2                   60

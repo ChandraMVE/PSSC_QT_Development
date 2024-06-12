@@ -48,6 +48,9 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     connect(ui->leConst3, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->leConst3, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
 
+    connect(ui->leInjectPara6, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
+    connect(ui->leInjectPara6, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
+
     connect(ui->lePara1, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->lePara1, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
 
@@ -59,6 +62,9 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
 
     connect(ui->lePara4, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->lePara4, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
+
+    connect(ui->leInjectTemp, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
+    connect(ui->leInjectTemp, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
 
     connect(ui->leTestTemp, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->leTestTemp, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
@@ -96,6 +102,10 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     dvcConst->setNotation(QDoubleValidator::StandardNotation);
     ui->leConst3->setValidator(dvcConst);
 
+    dvInjectPara6 = new QDoubleValidator(-999.0, 999.0, 3, ui->leInjectPara6);
+    dvInjectPara6->setNotation(QDoubleValidator::StandardNotation);
+    ui->leInjectPara6->setValidator(dvInjectPara6);
+
     dvPara1 = new QDoubleValidator(-999.0, 999.0, 3, ui->lePara1);
     dvPara1->setNotation(QDoubleValidator::StandardNotation);
     ui->lePara1->setValidator(dvPara1);
@@ -111,6 +121,10 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     dvPara4 = new QDoubleValidator(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP, ui->lePara4);
     dvPara4->setNotation(QDoubleValidator::StandardNotation);
     ui->lePara4->setValidator(dvPara4);
+
+    dvInjectTemperature = new QDoubleValidator(METHOD_TEMPERATURE_MIN, METHOD_TEMPERATURE_MAX, METHOD_TEMPERATURE_DP, ui->leInjectTemp);
+    dvInjectTemperature->setNotation(QDoubleValidator::StandardNotation);
+    ui->leInjectTemp->setValidator(dvInjectTemperature);
 
     dvTestTemperature = new QDoubleValidator(METHOD_TEMPERATURE_MIN, METHOD_TEMPERATURE_MAX, METHOD_TEMPERATURE_DP, ui->leTestTemp);
     dvTestTemperature->setNotation(QDoubleValidator::StandardNotation);
@@ -204,6 +218,7 @@ void sMethodSetup::Show()
 void sMethodSetup::setDefaults()
 {
     stdD5191.formula = DEFAULT_D5191_FORMULA;
+//    stdD5191.InjectTemp = DEFAULT_D5191_INJECT_TMP;
     stdD5191.temperature = DEFAULT_D5191_TEMPERATURE;
     stdD5191.time = DEFAULT_D5191_TIME;
     stdD5191.vl_ratio = DEFAULT_D5191_VL_RATIO;
@@ -213,6 +228,7 @@ void sMethodSetup::setDefaults()
     stdD5191.from = DEFAULT_D5191_FROM;
     stdD5191.to = DEFAULT_D5191_TO;
 
+    stdD6377.InjectTemp = DEFAULT_D6377_INJECT_TMP;
     stdD6377.temperature = DEFAULT_D6377_TEMPERATURE;
     stdD6377.time = DEFAULT_D6377_TIME;
     stdD6377.vl_ratio = DEFAULT_D6377_VL_RATIO;
@@ -223,6 +239,7 @@ void sMethodSetup::setDefaults()
     stdD6377.to = DEFAULT_D6377_TO;
 
     stdD6378.formula = DEFAULT_D6378_FORMULA;
+//    stdD6378.InjectTemp = DEFAULT_D6378_INJECT_TMP;
     stdD6378.temperature = DEFAULT_D6378_TEMPERATURE;
     stdD6378.time = DEFAULT_D6378_TIME;
     stdD6378.vl_ratio = DEFAULT_D6378_VL_RATIO;
@@ -242,6 +259,7 @@ void sMethodSetup::setDefaults()
     stdFree1.aconstant = DEFAULT_FREE_A_CONSTANT;
     stdFree1.bconstant = DEFAULT_FREE_B_CONSTANT;
     stdFree1.cconstant = DEFAULT_FREE_C_CONSTANT;
+    stdFree1.InjectTemp = DEFAULT_FREE_INJECT_TMP;
     stdFree1.temperature = DEFAULT_FREE_TEMPERATURE;
     stdFree1.tpx1 = DEFAULT_FREE_TPX1;
     stdFree1.tpx2 = DEFAULT_FREE_TPX2;
@@ -257,6 +275,7 @@ void sMethodSetup::setDefaults()
     stdFree2.aconstant = DEFAULT_FREE_A_CONSTANT;
     stdFree2.bconstant = DEFAULT_FREE_B_CONSTANT;
     stdFree2.cconstant = DEFAULT_FREE_C_CONSTANT;
+    stdFree2.InjectTemp = DEFAULT_FREE_INJECT_TMP;
     stdFree2.temperature = DEFAULT_FREE_TEMPERATURE;
     stdFree2.tpx1 = DEFAULT_FREE_TPX1;
     stdFree2.tpx2 = DEFAULT_FREE_TPX2;
@@ -272,6 +291,7 @@ void sMethodSetup::setDefaults()
     stdFree3.aconstant = DEFAULT_FREE_A_CONSTANT;
     stdFree3.bconstant = DEFAULT_FREE_B_CONSTANT;
     stdFree3.cconstant = DEFAULT_FREE_C_CONSTANT;
+    stdFree3.InjectTemp = DEFAULT_FREE_INJECT_TMP;
     stdFree3.temperature = DEFAULT_FREE_TEMPERATURE;
     stdFree3.tpx1 = DEFAULT_FREE_TPX1;
     stdFree3.tpx2 = DEFAULT_FREE_TPX2;
@@ -287,6 +307,7 @@ void sMethodSetup::setDefaults()
     stdFree4.aconstant = DEFAULT_FREE_A_CONSTANT;
     stdFree4.bconstant = DEFAULT_FREE_B_CONSTANT;
     stdFree4.cconstant = DEFAULT_FREE_C_CONSTANT;
+    stdFree4.InjectTemp = DEFAULT_FREE_INJECT_TMP;
     stdFree4.temperature = DEFAULT_FREE_TEMPERATURE;
     stdFree4.tpx1 = DEFAULT_FREE_TPX1;
     stdFree4.tpx2 = DEFAULT_FREE_TPX2;
@@ -416,37 +437,45 @@ void sMethodSetup::showD5191()
     ui->twMethodSetup->setCurrentIndex(0);
 
     ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
 
     dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                       cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
                       METHOD_TEMPERATURE_DP);
 
     ui->lePara1->setText(cSettings.getTemperatureMS(stdD5191.temperature));
+    ui->lePara1->move(230,20);
 
     ui->lePara1->setReadOnly(true);
     ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
     dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
                       METHOD_TIME_DP);
     ui->lePara2->setText(cSettings.getTestTime(stdD5191.time));
+    ui->lePara2->move(230,90);
 
     ui->lePara2->setReadOnly(true);
     ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
 
     dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
                       METHOD_VLRATIO_DP);
 
     ui->lePara3->setText(cSettings.getVLRatio(stdD5191.vl_ratio));
+    ui->lePara3->move(230,160);
     ui->lePara3->setReadOnly(true);
     ui->lePara3->show();
     ui->lblPara3->show();
 
     ui->cbSingleExpEnable->setChecked(stdD5191.single_expansion);
-    ui->cbSingleExpEnable->move(230, 240);
-    ui->lblPara5->move(20,240);
+    ui->cbSingleExpEnable->move(230, 230);
+    ui->lblPara5->move(20,230);
 
     ui->cbSingleExpEnable->show();
     ui->lblPara5->show();
 
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
     ui->frPara1->resize(660,350);
     ui->lblPara4->hide();
     ui->lePara4->hide();
@@ -482,32 +511,45 @@ void sMethodSetup::showD6377()
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
 
-    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->setText(tr("Measuring Temp."));
+    ui->lblPara1->move(20,90);
+
+    dvInjectPara6->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                            cSettings.getTemperatureMS(stdD6377.temperature).toDouble(),
+                            METHOD_TEMPERATURE_DP);
+    ui->leInjectPara6->setText(cSettings.getTemperatureMS(stdD6377.InjectTemp));
+    ui->lblPara1_2->move(20,20);
+    ui->leInjectPara6->move(230,20);
 
     dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                       cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
                       METHOD_TEMPERATURE_DP);
 
     ui->lePara1->setText(cSettings.getTemperatureMS(stdD6377.temperature));
+    ui->lePara1->move(230,90);
 
     ui->lePara1->setReadOnly(false); 
     ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,160);
     dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
                       METHOD_TIME_DP);
     ui->lePara2->setText(cSettings.getTestTime(stdD6377.time));
+    ui->lePara2->move(230,160);
 
     ui->lePara2->setReadOnly(false);
     ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,230);
 
     dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
                       METHOD_VLRATIO_DP);
 
     ui->lePara3->setText(cSettings.getVLRatio(stdD6377.vl_ratio));
+    ui->lePara3->move(230,230);
     ui->lePara3->setReadOnly(false);
 
     ui->lePara3->show();
     ui->lblPara3->show();
-    ui->frPara1->resize(660,350);
+    ui->frPara1->resize(660,420);
     
     qDebug()<<"stdD6377.shaker_speed: "<<stdD6377.shaker_speed;
     double D6377ShakerSpeed = (double)(stdD6377.shaker_speed/(60.0));
@@ -517,6 +559,9 @@ void sMethodSetup::showD6377()
 
     ui->lblPara4->show();
     ui->lePara4->show();
+
+    ui->lblPara1_2->show();
+    ui->leInjectPara6->show();
 
     ui->lblPara5->hide();
     ui->cbSingleExpEnable->hide();
@@ -592,36 +637,44 @@ void sMethodSetup::showD6378()
     ui->twMethodSetup->setCurrentIndex(0);
 
     ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
 
     dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                       cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
                       METHOD_TEMPERATURE_DP);
 
     ui->lePara1->setText(cSettings.getTemperatureMS(stdD6378.temperature));
+    ui->lePara1->move(230,20);
 
     ui->lePara1->setReadOnly(true);
     ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
 
     dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
                       METHOD_TIME_DP);
     ui->lePara2->setText(cSettings.getTestTime(stdD6378.time));
+    ui->lePara2->move(230,90);
     ui->lePara2->setReadOnly(true);
     ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
 
     dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
                       METHOD_VLRATIO_DP);
 
     ui->lePara3->setText(cSettings.getVLRatio(stdD6378.vl_ratio));
+    ui->lePara3->move(230,160);
     ui->lePara3->setReadOnly(true);
 
     ui->lblPara3->show();
     ui->lePara3->show();
 
-    ui->frPara1->resize(660,350);
+    ui->frPara1->resize(660,250);
     ui->lblPara4->hide();
     ui->lePara4->hide();
     ui->lblPara5->hide();
     ui->cbSingleExpEnable->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
 
     ui->gbRange->setTitle(tr("\"Pass\" Range P"));
 
@@ -649,12 +702,15 @@ void sMethodSetup::showD6378()
 void sMethodSetup::showD5188()
 {
     ui->gbConstants->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
     ui->twMethodSetup->clear();
     ui->twMethodSetup->insertTab(0, cWidgetStdParas, cStringStdParas);
     ui->twMethodSetup->insertTab(1, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
 
     ui->lblPara1->setText(tr("Pressure"));
+    ui->lblPara1->move(20,20);
 
     dvPara1->setRange(cSettings.getPressureMS(METHOD_PRESSURE_MIN).toDouble(),
                       cSettings.getPressureMS(METHOD_PRESSURE_MAX).toDouble(),
@@ -663,16 +719,21 @@ void sMethodSetup::showD5188()
     ui->lePara1->setText(cSettings.getPressureMS(stdD5188.pressure));
 
     ui->lePara1->setReadOnly(true);
+    ui->lePara1->move(230,20);
 
     dvPara2->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
                       METHOD_VLRATIO_DP);
 
     ui->lblPara2->setText(tr("V/L Ratio"));
+    ui->lblPara2->move(20,90);
     ui->lePara2->setText(cSettings.getVLRatio(stdD5188.vl_ratio));
     ui->lePara2->setReadOnly(true);
+    ui->lePara2->move(230,90);
 
     ui->lePara3->setReadOnly(false);
+    ui->lePara3->move(230,160);
     ui->lblPara3->setText(tr("Shaker Speed"));
+    ui->lblPara3->move(20,160);
 
     double D5188ShakerSpeed = (double)(stdD5188.shaker_speed/60.0);
     dvPara3->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
@@ -681,7 +742,7 @@ void sMethodSetup::showD5188()
     ui->lblPara3->show();
     ui->lePara3->show();
 
-    ui->frPara1->resize(660,350);
+    ui->frPara1->resize(660,250);
     ui->lblPara4->hide();
     ui->lePara4->hide();
     ui->lblPara5->hide();
@@ -722,6 +783,11 @@ void sMethodSetup::showFree1()
     ui->twMethodSetup->insertTab(1, cWidgetFreeParas, cStringFreeParas);
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
+
+    dvInjectTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                  cSettings.getTemperatureMS(stdFree1.temperature).toDouble(),
+                                  METHOD_TEMPERATURE_DP);
+    ui->leInjectTemp->setText(cSettings.getTemperatureMS(stdFree1.InjectTemp));
 
     dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                                 cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
@@ -783,6 +849,11 @@ void sMethodSetup::showFree2()
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
 
+    dvInjectTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                  cSettings.getTemperatureMS(stdFree2.temperature).toDouble(),
+                                  METHOD_TEMPERATURE_DP);
+    ui->leInjectTemp->setText(cSettings.getTemperatureMS(stdFree2.InjectTemp));
+
     dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                                 cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
                                 METHOD_TEMPERATURE_DP);
@@ -840,6 +911,11 @@ void sMethodSetup::showFree3()
     ui->twMethodSetup->insertTab(1, cWidgetFreeParas, cStringFreeParas);
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
+
+    dvInjectTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                  cSettings.getTemperatureMS(stdFree3.temperature).toDouble(),
+                                  METHOD_TEMPERATURE_DP);
+    ui->leInjectTemp->setText(cSettings.getTemperatureMS(stdFree3.InjectTemp));
 
     dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                                 cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
@@ -900,6 +976,11 @@ void sMethodSetup::showFree4()
     ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
     ui->twMethodSetup->setCurrentIndex(0);
 
+    dvInjectTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                                  cSettings.getTemperatureMS(stdFree4.temperature).toDouble(),
+                                  METHOD_TEMPERATURE_DP);
+    ui->leInjectTemp->setText(cSettings.getTemperatureMS(stdFree4.InjectTemp));
+
     dvTestTemperature->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                                 cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
                                 METHOD_TEMPERATURE_DP);
@@ -955,6 +1036,11 @@ void sMethodSetup::updateD5191()
     }
     stdD5191.formula = ui->cbFormula->currentIndex();
 
+//    if( cSettings.getTemperatureMS(stdD5191.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble()){
+//        cParasChanged = true;
+//    }
+//    stdD5191.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
     if( cSettings.getTemperatureMS(stdD5191.temperature).toDouble() != ui->lePara1->text().toDouble())
     {
         cParasChanged = true;
@@ -1007,6 +1093,12 @@ void sMethodSetup::updateD5191()
 
 void sMethodSetup::updateD6377()
 {
+
+    if( cSettings.getTemperatureMS(stdD6377.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdD6377.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
 
     if( cSettings.getTemperatureMS(stdD6377.temperature).toDouble() != ui->lePara1->text().toDouble())
     {
@@ -1068,6 +1160,12 @@ void sMethodSetup::updateD6378()
         cParasChanged = true;
     }
     stdD6378.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdD6378.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdD6378.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
 
     if( cSettings.getTemperatureMS(stdD6378.temperature).toDouble() != ui->lePara1->text().toDouble())
     {
@@ -1162,6 +1260,12 @@ void sMethodSetup::updateD5188()
 void sMethodSetup::updateFree1()
 {
 
+    if( cSettings.getTemperatureMS(stdFree1.InjectTemp).toDouble() != ui->leInjectTemp->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdFree1.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectTemp->text().toDouble());
+
     if( cSettings.getTemperatureMS(stdFree1.temperature).toDouble() != ui->leTestTemp->text().toDouble())
     {
         cParasChanged = true;
@@ -1249,6 +1353,11 @@ void sMethodSetup::updateFree1()
 
 void sMethodSetup::updateFree2()
 {
+    if( cSettings.getTemperatureMS(stdFree2.InjectTemp).toDouble() != ui->leInjectTemp->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdFree2.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectTemp->text().toDouble());
 
     if( cSettings.getTemperatureMS(stdFree2.temperature).toDouble() != ui->leTestTemp->text().toDouble())
     {
@@ -1338,6 +1447,12 @@ void sMethodSetup::updateFree2()
 
 void sMethodSetup::updateFree3()
 {
+    if( cSettings.getTemperatureMS(stdFree3.InjectTemp).toDouble() != ui->leInjectTemp->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdFree3.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectTemp->text().toDouble());
+
     if(cSettings.getTemperatureMS(stdFree3.temperature).toDouble() != ui->leTestTemp->text().toDouble())
     {
         cParasChanged = true;
@@ -1425,6 +1540,8 @@ void sMethodSetup::updateFree3()
 
 void sMethodSetup::updateFree4()
 {
+    if( cSettings.getTemperatureMS(stdFree4.InjectTemp).toDouble() != ui->leInjectTemp->text().toDouble()) cParasChanged = true;
+    stdFree4.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectTemp->text().toDouble());
 
     if(cSettings.getTemperatureMS(stdFree4.temperature).toDouble() != ui->leTestTemp->text().toDouble()) cParasChanged = true;
     stdFree4.temperature = cSettings.getTemperatureCelsiusMS(ui->leTestTemp->text().toDouble());

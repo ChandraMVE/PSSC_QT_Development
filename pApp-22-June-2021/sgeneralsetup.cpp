@@ -1081,7 +1081,6 @@ void sGeneralSetup::on_twOther_currentChanged(int index)
         ui->cbDay->setCurrentIndex(cdt.date().day() - 1);
         ui->cbMonth->setCurrentIndex(cdt.date().month() - 1);
 
-        qDebug()<<"cdt.time().hour(): "<<cdt.time().hour();
         if(cdt.time().hour()>12)
         {
             ui->cbHour->setCurrentIndex(cdt.time().hour()-13);

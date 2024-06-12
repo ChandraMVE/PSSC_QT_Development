@@ -962,6 +962,10 @@ void sMeasuring::ontextChanged(QString tmp)
 
 }
 
+void sMeasuring::setLblMessage(QString tmp){
+    ui->lblMessage->setText(tmp);
+}
+
 void sMeasuring::setRunning(bool state)
 {
     cRunState = state;

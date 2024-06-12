@@ -119,6 +119,7 @@ public:
     void setRunState(bool rs);
     bool checkValidInputs(void);
     void setRunning(bool);
+    void setLblMessage(QString tmp); //naveen
 
     void setWaitACKStatus(bool tmp);
     bool getWaitACKStatus(void);

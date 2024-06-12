@@ -531,7 +531,7 @@ QFrame {
 </string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tabFormula">
        <attribute name="title">
@@ -898,7 +898,7 @@ border-color:  rgb(190, 190, 190);</string>
            <x>20</x>
            <y>20</y>
            <width>660</width>
-           <height>381</height>
+           <height>421</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -921,8 +921,8 @@ border-color:  rgb(200, 200, 200);
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>30</y>
-            <width>171</width>
+            <y>90</y>
+            <width>191</width>
             <height>50</height>
            </rect>
           </property>
@@ -931,14 +931,14 @@ border-color:  rgb(200, 200, 200);
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
           </property>
           <property name="text">
-           <string>Temperature</string>
+           <string>Measuring Temp.</string>
           </property>
          </widget>
          <widget class="QLabel" name="lblPara3">
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>170</y>
+            <y>230</y>
             <width>171</width>
             <height>50</height>
            </rect>
@@ -955,7 +955,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>100</y>
+            <y>160</y>
             <width>171</width>
             <height>50</height>
            </rect>
@@ -972,7 +972,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
           <property name="geometry">
            <rect>
             <x>230</x>
-            <y>30</y>
+            <y>90</y>
             <width>310</width>
             <height>50</height>
            </rect>
@@ -1015,7 +1015,7 @@ border-color: rgb(21, 100, 192);
           <property name="geometry">
            <rect>
             <x>230</x>
-            <y>100</y>
+            <y>160</y>
             <width>310</width>
             <height>50</height>
            </rect>
@@ -1058,7 +1058,7 @@ border-color: rgb(21, 100, 192);
           <property name="geometry">
            <rect>
             <x>230</x>
-            <y>170</y>
+            <y>230</y>
             <width>310</width>
             <height>50</height>
            </rect>
@@ -1101,7 +1101,7 @@ border-color: rgb(21, 100, 192);
           <property name="geometry">
            <rect>
             <x>230</x>
-            <y>240</y>
+            <y>300</y>
             <width>310</width>
             <height>50</height>
            </rect>
@@ -1144,7 +1144,7 @@ border-color: rgb(21, 100, 192);
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>240</y>
+            <y>300</y>
             <width>171</width>
             <height>50</height>
            </rect>
@@ -1161,7 +1161,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
           <property name="geometry">
            <rect>
             <x>240</x>
-            <y>310</y>
+            <y>360</y>
             <width>41</width>
             <height>55</height>
            </rect>
@@ -1231,7 +1231,7 @@ QCheckBox::indicator:indeterminate:pressed {
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>310</y>
+            <y>360</y>
             <width>191</width>
             <height>50</height>
            </rect>
@@ -1242,6 +1242,66 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
           </property>
           <property name="text">
            <string>Single Expansion</string>
+          </property>
+         </widget>
+         <widget class="sQLEExtend" name="leInjectPara6">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>310</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}
+
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="maxLength">
+           <number>15</number>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblPara1_2">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>20</y>
+            <width>171</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Injection Temp.</string>
           </property>
          </widget>
         </widget>
@@ -1283,7 +1343,7 @@ border-color:  rgb(190, 190, 190);</string>
            <x>20</x>
            <y>20</y>
            <width>660</width>
-           <height>101</height>
+           <height>141</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1306,7 +1366,7 @@ border-color:  rgb(200, 200, 200);
           <property name="geometry">
            <rect>
             <x>20</x>
-            <y>30</y>
+            <y>80</y>
             <width>281</width>
             <height>50</height>
            </rect>
@@ -1316,14 +1376,14 @@ border-color:  rgb(200, 200, 200);
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
           </property>
           <property name="text">
-           <string>Test Temperature</string>
+           <string>Measuring Temperature</string>
           </property>
          </widget>
          <widget class="sQLEExtend" name="leTestTemp">
           <property name="geometry">
            <rect>
             <x>320</x>
-            <y>30</y>
+            <y>80</y>
             <width>200</width>
             <height>50</height>
            </rect>
@@ -1362,12 +1422,72 @@ border-color: rgb(21, 100, 192);
            <number>15</number>
           </property>
          </widget>
+         <widget class="sQLEExtend" name="leInjectTemp">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>10</y>
+            <width>200</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}
+
+</string>
+          </property>
+          <property name="text">
+           <string>15</string>
+          </property>
+          <property name="maxLength">
+           <number>15</number>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lblTestTemp_4">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>20</y>
+            <width>281</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Injection Temperature</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QGroupBox" name="gbEquiTiming_2">
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>130</y>
+           <y>170</y>
            <width>660</width>
            <height>131</height>
           </rect>
@@ -1573,9 +1693,9 @@ border-color: rgb(21, 100, 192);
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>280</y>
+           <y>330</y>
            <width>660</width>
-           <height>101</height>
+           <height>171</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -1614,7 +1734,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
          <widget class="sQLEExtend" name="leVLRatio">
           <property name="geometry">
            <rect>
-            <x>200</x>
+            <x>140</x>
             <y>30</y>
             <width>200</width>
             <height>50</height>
@@ -1654,54 +1774,54 @@ border-color: rgb(21, 100, 192);
            <number>15</number>
           </property>
          </widget>
-        </widget>
-        <widget class="QFrame" name="frShakerEnable">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>400</y>
-           <width>660</width>
-           <height>101</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-width: 2px;
-border-style: solid;
-border-radius: 10px;
-color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto&quot;;
-border-color:  rgb(200, 200, 200);
-
-</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <widget class="QLabel" name="lblTestTemp_3">
+         <widget class="sQLEExtend" name="cbShakerValue">
           <property name="geometry">
            <rect>
-            <x>20</x>
-            <y>30</y>
-            <width>171</width>
+            <x>440</x>
+            <y>100</y>
+            <width>200</width>
             <height>50</height>
            </rect>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
+          </property>
           <property name="styleSheet">
-           <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+           <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}
+
+</string>
           </property>
           <property name="text">
-           <string>Shaker Enable</string>
+           <string/>
+          </property>
+          <property name="maxLength">
+           <number>15</number>
           </property>
          </widget>
          <widget class="QCheckBox" name="cbShakerDisable">
           <property name="geometry">
            <rect>
-            <x>270</x>
-            <y>30</y>
+            <x>190</x>
+            <y>100</y>
             <width>41</width>
             <height>55</height>
            </rect>
@@ -1767,47 +1887,38 @@ QCheckBox::indicator:indeterminate:pressed {
            <string/>
           </property>
          </widget>
-         <widget class="sQLEExtend" name="cbShakerValue">
+         <widget class="QLabel" name="lblTestTemp_3">
           <property name="geometry">
            <rect>
-            <x>400</x>
-            <y>30</y>
-            <width>200</width>
+            <x>10</x>
+            <y>100</y>
+            <width>171</width>
             <height>50</height>
            </rect>
           </property>
-          <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
           <property name="styleSheet">
-           <string notr="true">QLineEdit { 
-	padding: 1px 18px 1px 10px;
-	background-color: rgb(255,255,255);
-	border-width: 2px;
-	border-color: rgb(21, 100, 192);
-	border-style: solid;
-	border-radius: 15;
-	color: rgb(0, 0, 0);
-	font: 75 16pt &quot;Roboto Medium&quot;;
-}
-
-QLineEdit:read-only {
-	background-color: rgb(245,245,245);
-}
-QLineEdit[error=true] {
-border-color: red;
-}
-QLineEdit[error=false] {
-border-color: rgb(21, 100, 192);
-}
-
-</string>
+           <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
           </property>
           <property name="text">
-           <string/>
+           <string>Shaker Enable</string>
           </property>
-          <property name="maxLength">
-           <number>15</number>
+         </widget>
+         <widget class="QLabel" name="lblTestTemp_5">
+          <property name="geometry">
+           <rect>
+            <x>260</x>
+            <y>100</y>
+            <width>171</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+          </property>
+          <property name="text">
+           <string>Shaker Speed</string>
           </property>
          </widget>
         </widget>

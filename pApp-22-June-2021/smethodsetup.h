@@ -24,6 +24,7 @@ struct STD_D5191{
     double bconstant;
     double cconstant;
 
+//    double InjectTemp;
     double temperature;
     double time;
     double vl_ratio;
@@ -35,6 +36,7 @@ struct STD_D5191{
 };// stdD5191;
 
 struct STD_D6377 {
+    double InjectTemp;
     double temperature;
     double time;
     double vl_ratio;
@@ -52,6 +54,7 @@ struct STD_D6378 {
     double bconstant;
     double cconstant;
 
+//    double InjectTemp;
     double temperature;
     double time;
     double vl_ratio;
@@ -75,6 +78,7 @@ struct STD_Free {
     double aconstant;
     double bconstant;
     double cconstant;
+    double InjectTemp;
     double temperature;
     double tpx1;
     double tpx2;
@@ -171,11 +175,13 @@ private:
     QDoubleValidator *dvbConst;
     QDoubleValidator *dvcConst;
 
+    QDoubleValidator *dvInjectPara6;
     QDoubleValidator *dvPara1;
     QDoubleValidator *dvPara2;
     QDoubleValidator *dvPara3;
     QDoubleValidator *dvPara4;
 
+    QDoubleValidator *dvInjectTemperature;
     QDoubleValidator *dvTestTemperature;
     QDoubleValidator *dvTPx1;
     QDoubleValidator *dvTPx2;
