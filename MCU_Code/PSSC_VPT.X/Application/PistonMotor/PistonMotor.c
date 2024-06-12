@@ -561,7 +561,7 @@ void PistonMotor_RunningState(void){
                     PistonMotor_Stop();
                     PistonEncoder_StopRead();
                     PistonMotor.Flags.EnPM = false;
-                    for(int i=0;i<10;i++){
+                    for(int i=0;i<500;i++){
                         A++;
                     }
                     A = 0;
@@ -577,7 +577,7 @@ void PistonMotor_RunningState(void){
                 PistonMotor_Stop();
                 PistonEncoder_StopRead();
                 PistonMotor.Flags.EnPM = false;
-                for(int i=0;i<10;i++){
+                for(int i=0;i<500;i++){
                     A++;
                 }
                 A = 0;
@@ -593,7 +593,7 @@ void PistonMotor_RunningState(void){
             PistonMotor_Stop();
             PistonEncoder_StopRead();
             PistonMotor.Flags.EnPM = false;
-            for(int i=0;i<10;i++){
+            for(int i=0;i<500;i++){
                 A++;
             }
             A = 0;
