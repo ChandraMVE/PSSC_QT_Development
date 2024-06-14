@@ -72,6 +72,7 @@ static uint32_t Temp_DefaultVal;
 static uint8_t TEC_ErrDebounce;
 
 static float fPower = 0.0f;
+int HeatingColling = 0;
 
 static PIDCONTROL_STYP PidControl;
 /**
@@ -521,12 +522,14 @@ void TECControl_Handler(void)
 void TECControl_Heating(void)
 {
     PWM_GeneratorDisable(PWM_GENERATOR_6);                              // turn on PWM generator
-    PG6IOCONLbits.SWAP = false;                                         // PWMxH output will be connected to PWMxH output pin
-    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
-    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
-    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
-    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
-    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator
+    //need to introduce 1 second delay here
+    HeatingColling = 1;
+//    PG6IOCONLbits.SWAP = false;                                         // PWMxH output will be connected to PWMxH output pin
+//    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
+//    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
+//    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
+//    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
+//    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator
 }
 
 /**
@@ -537,6 +540,28 @@ void TECControl_Heating(void)
 void TECControl_Cooling(void)
 {
     PWM_GeneratorDisable(PWM_GENERATOR_6);                              // turn off PWM generator
+    //need to introduce 1 second delay here
+    HeatingColling = 2;
+//    PG6IOCONLbits.SWAP = true;                                          // PWMxH output will be connected to PWMxL output pin
+//    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
+//    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
+//    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
+//    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
+//    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator    
+}
+
+void TECControl_Stop(void)
+{
+    PWM_GeneratorDisable(PWM_GENERATOR_6);              // turn off PWM generator
+}
+
+int TECControl_ReturnHeatingColling(void){
+    return HeatingColling;
+}
+
+void TECControl_CollingViaMain(void)
+{
+    HeatingColling = 0;
     PG6IOCONLbits.SWAP = true;                                          // PWMxH output will be connected to PWMxL output pin
     PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
     PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
@@ -545,9 +570,16 @@ void TECControl_Cooling(void)
     PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator    
 }
 
-void TECControl_Stop(void)
+void TECControl_HeatingViaMain(void)
 {
-    PWM_GeneratorDisable(PWM_GENERATOR_6);              // turn off PWM generator
+    HeatingColling = 0;
+    PG6IOCONLbits.SWAP = false;                                         // PWMxH output will be connected to PWMxH output pin
+    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
+    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
+    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
+    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
+    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator
+
 }
 
 /**

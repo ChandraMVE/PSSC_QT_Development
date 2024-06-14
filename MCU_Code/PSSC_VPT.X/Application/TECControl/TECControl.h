@@ -154,7 +154,9 @@ void PIDControl_Initialise(void);
 void PIDControl_Calculation(void);
 void PIDControl_ReverseCalculation(void);
 void TECControl_SetTempDiff(int32_t tempVal);
-
+int TECControl_ReturnHeatingColling(void);
+void TECControl_CollingViaMain(void);
+void TECControl_HeatingViaMain(void);
 
 // EXTERN VARIABLES
 extern TECCONTROL_STYP TECControl;

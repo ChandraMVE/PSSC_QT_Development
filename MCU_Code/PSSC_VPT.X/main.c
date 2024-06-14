@@ -66,6 +66,8 @@
 #include "Error.h"
 
 static uint16_t tCounter;
+static uint16_t EncoderCounter;
+static uint16_t TECHeatingCollingCounter;
 bool Flag_Complete;
 /*
                          Main application
@@ -123,6 +125,8 @@ int main(void)
 //    LED_3_SetHigh();
     tCounter = 0;
     Flag_Complete = 0;
+    EncoderCounter = 0;
+    TECHeatingCollingCounter = 0;
     
     while (1)
     {
@@ -136,6 +140,33 @@ int main(void)
             scheduler.run();
 
             tCounter++;
+            
+            if(TECControl_ReturnHeatingColling() == 1){
+                TECHeatingCollingCounter++;
+                if(TECHeatingCollingCounter > 5000)
+                {
+                    TECHeatingCollingCounter = 0;
+                    TECControl_HeatingViaMain();
+                }
+            } else if(TECControl_ReturnHeatingColling() == 2){
+                TECHeatingCollingCounter++;
+                if(TECHeatingCollingCounter > 5000)
+                {
+                    TECHeatingCollingCounter = 0;
+                    TECControl_CollingViaMain();
+                }
+            }
+            
+//            if(PistonMotor_ClearAndStartEncoder()){
+//                EncoderCounter++;
+//                if(EncoderCounter == 2000)
+//                {
+//                    EncoderCounter = 0;
+//                    SetPistonMotor_StopFlag(false);
+//                    PistonMotor_SetUpDownToStartEncoder();
+//                }
+//            }
+            
             if(!Flag_Complete)
             {
                 if(tCounter > 2000)

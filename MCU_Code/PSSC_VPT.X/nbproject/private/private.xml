@@ -24,11 +24,14 @@
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/TECControl.c</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/ValveMotor/ValveMotor.c</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/Timers/Timers.c</file>
+            <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/Alarm/Alarm.h</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/TemperatureControl/TemperatureControl.c</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/PistonMotor/PistonMotor.c</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/ADCRead/ADCRead.c</file>
+            <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/mcc_generated_files/spi1.c</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/Alarm/Alarm.c</file>
             <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/Application/PistonMotor/PistonMotor.h</file>
+            <file>file:/D:/Office/PSSC_MCU/PSSC_VPT.X/mcc_generated_files/spi1.h</file>
         </group>
     </open-files>
 </project-private>
