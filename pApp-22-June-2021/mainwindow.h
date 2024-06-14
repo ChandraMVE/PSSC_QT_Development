@@ -45,6 +45,7 @@ public:
     void checkInit(void);
     void handleError(void);
     void handleRinsing(void);
+    void handleInjectRinsing(void);
     void handleD5188(void);
     void handleD6377(void);
     void handleOther(void);
