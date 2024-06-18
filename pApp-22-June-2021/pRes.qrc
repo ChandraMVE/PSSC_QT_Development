@@ -22,7 +22,7 @@
         <file>icons/tvncheck.png</file>
         <file>cursors/pointer.png</file>
         <file>cursors/textselection.png</file>
-        <file>logo/splash.bmp</file>
+        <file>logo/splash.jpg</file>
     </qresource>
     <qresource prefix="/">
         <file>languages/pApp_de.qm</file>

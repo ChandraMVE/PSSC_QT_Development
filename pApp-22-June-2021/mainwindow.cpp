@@ -3624,7 +3624,7 @@ void MainWindow::handleFreeShaker(void)
                                           18, 60*12);
 
                                 if(ui->wServiceSetup->getDebug())
-                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(tc));
                                 else
                                     ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
 
@@ -5260,14 +5260,15 @@ void MainWindow::handleD6377(void)
                             sendPara(cProtocol.sendShakerSpeed( 0, 0), 14, 60);
                             cStrringErrorCount = 0;
                         }
-                        else
+                        else {
                             ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(60-cEqTime) + " Sec");
 
-                        if(!cStageTimeOut)
-                        {
-                            setError(M_ERROR_TEMPERATURE);
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_TEMPERATURE);
+                            }
+                            else cStageTimeOut--;
                         }
-                        else cStageTimeOut--;
 
                     }
 
