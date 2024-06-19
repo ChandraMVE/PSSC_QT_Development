@@ -252,9 +252,15 @@ void PistonMotor_Handler(void)
                 if(PistonMotor.Flags.PMStatus == true)
                 {
                     UpCount3By4  = ((UpCount/2) + (UpCount/3));
-                    if(Total_Pulses >= (UpCount3By4))
+                    if((Total_Pulses >= (UpCount/2)) && (Total_Pulses < (UpCount3By4)))
                     {
                         PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
+                        PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
+                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
+                    }
+                    if(Total_Pulses >= (UpCount3By4))
+                    {
+                        PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
                         PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
                     }
@@ -293,9 +299,15 @@ void PistonMotor_Handler(void)
                 else
                 {
                     DownCount3By4  = ((DownCount/2) + (DownCount/3));
-                    if(Total_Pulses >= (DownCount3By4))
+                    if((Total_Pulses >= (DownCount/2)) && (Total_Pulses < (DownCount3By4)))
                     {
                         PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
+                        PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
+                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
+                    }
+                    if(Total_Pulses >= (DownCount3By4))
+                    {
+                        PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
                         PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
                     }
