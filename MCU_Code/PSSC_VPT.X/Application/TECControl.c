@@ -70,9 +70,10 @@ static uint16_t TEC_OverCounter;
 static int32_t DiffVal;
 static uint32_t Temp_DefaultVal;
 static uint8_t TEC_ErrDebounce;
+static uint16_t TECCounter;
+bool TempUpdated = false;
 
 static float fPower = 0.0f;
-int HeatingColling = 0;
 
 static PIDCONTROL_STYP PidControl;
 /**
@@ -230,13 +231,31 @@ void TECControl_Handler(void)
                                 PidControl.Kd_Term = 155.5f;
                                 Events_SetTecFan(false);
                             }
+                            TEC_DutyCycle = 0X018F;
                             TECControl_Heating();
                             TECControl.Flags.TECStatus = true;
                             TECControl.TECState_Status = TEC_TEMP_STATE_RUNNING;
                         }
                         else
                         {
-                            TEC_DutyCycle = 0X0C7F;
+                            if(TempUpdated){
+                                TempUpdated = false;
+                                TEC_DutyCycle = 0X018F;
+                            } else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+//                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+//                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                                }
+                            }
+//                            TEC_DutyCycle = 0X018F; //0X0C7F;
                             TECControl_Cooling();
                         }
                     }
@@ -259,6 +278,7 @@ void TECControl_Handler(void)
                                 PidControl.Ki_Term = 0.345f;
                                 PidControl.Kd_Term = 100.5f;
                             }
+                            TEC_DutyCycle = 0X018F;
                             Events_SetTecFan(true);
                             TECControl_Cooling();
                             TECControl.Flags.TECStatus = false;
@@ -335,7 +355,19 @@ void TECControl_Handler(void)
                     (TECControl.Flags.TECCheck == true) && (TECControl.Flags.TECEn == false) &&         \
                     (TECControl.Flags.TECStatus == false) && (TECControl.Flags.TECDisable == false))
             {
-                TEC_DutyCycle = 0X0C7F;
+//                TEC_DutyCycle = 0X0C7F;
+                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                {
+                    TECCounter++;
+                    if(TECCounter >= 10){
+                        TEC_DutyCycle += 0X018F;
+                        TECCounter = 0;
+                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                    }
+                }else{
+                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                }
             }
             else if ((TECControl.Flags.TECCheck == true) && (TECControl.Flags.TECEn == false) &&        \
                     (Error_GetFlag() == false))
@@ -347,6 +379,7 @@ void TECControl_Handler(void)
             if((TECControl.Flags.TECCheck == false) && (TECControl.Flags.TECDisable == false) \
                     && (TECControl.ErrorFlags.TECTemp == false) && (TECControl.Flags.TECEn == false))
             {
+//                TEC_DutyCycle = 0X018F;
                 if(TECControl.Set_Value > (TECControl.TempCurrent_Value + MAX_TEMP_TOLERENCE_COUNT))
                 {
                     TEC_DutyCycle = 0X018F;
@@ -357,7 +390,7 @@ void TECControl_Handler(void)
                 }
                 else if(TECControl.Set_Value < (TECControl.TempCurrent_Value - MAX_TEMP_TOLERENCE_COUNT))
                 {
-                    TEC_DutyCycle = 0X0F9F;//0X18FF;
+                    TEC_DutyCycle = 0X018F; //0X0F9F;//0X18FF;
                     Events_SetTecFan(true);
                     TECControl_Cooling();
                     TECControl.Flags.TECStatus = false;
@@ -392,18 +425,66 @@ void TECControl_Handler(void)
                         
                         if(TECControl.Set_Value > TECControl.Current_Value)
                         {
-                            PIDControl_Calculation();
+                            if( TECControl.TempCurrent_Value > (TECControl.Set_Value - MAX_TEMP_TOLERENCE_COUNT))
+                            {
+                                PIDControl_Calculation();
+                            }else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    PIDControl_Calculation();
+                                }
+                            }
                         }
                     }
                     else
                     {
-                        PIDControl_Calculation();
+                        if( TECControl.TempCurrent_Value > (TECControl.Set_Value - MAX_TEMP_TOLERENCE_COUNT))
+                        {
+                            PIDControl_Calculation();
+                        }else{
+                            if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                            {
+                                TECCounter++;
+                                if(TECCounter >= 10){
+                                    TEC_DutyCycle += 0X018F;
+                                    TECCounter = 0;
+                                    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                    PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                }
+                            }else{
+                                PIDControl_Calculation();
+                            }
+                        }
                     }
                 }
                 else
                 {
                     TECControl.Current_Value = TECControl.TempCurrent_Value;
-                    PIDControl_ReverseCalculation();
+                    if( TECControl.TempCurrent_Value < (TECControl.Set_Value + MAX_TEMP_TOLERENCE_COUNT))
+                    {
+                        PIDControl_Calculation();
+                    }else{
+                        if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                        {
+                            TECCounter++;
+                            if(TECCounter >= 10){
+                                TEC_DutyCycle += 0X018F;
+                                TECCounter = 0;
+                                PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                            }
+                        }else{
+                            PIDControl_ReverseCalculation();
+                        }
+                    }
                 }
             }
             else
@@ -522,14 +603,12 @@ void TECControl_Handler(void)
 void TECControl_Heating(void)
 {
     PWM_GeneratorDisable(PWM_GENERATOR_6);                              // turn on PWM generator
-    //need to introduce 1 second delay here
-    HeatingColling = 1;
-//    PG6IOCONLbits.SWAP = false;                                         // PWMxH output will be connected to PWMxH output pin
-//    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
-//    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
-//    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
-//    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
-//    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator
+    PG6IOCONLbits.SWAP = false;                                         // PWMxH output will be connected to PWMxH output pin
+    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
+    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
+    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
+    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
+    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator
 }
 
 /**
@@ -540,28 +619,6 @@ void TECControl_Heating(void)
 void TECControl_Cooling(void)
 {
     PWM_GeneratorDisable(PWM_GENERATOR_6);                              // turn off PWM generator
-    //need to introduce 1 second delay here
-    HeatingColling = 2;
-//    PG6IOCONLbits.SWAP = true;                                          // PWMxH output will be connected to PWMxL output pin
-//    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
-//    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
-//    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
-//    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
-//    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator    
-}
-
-void TECControl_Stop(void)
-{
-    PWM_GeneratorDisable(PWM_GENERATOR_6);              // turn off PWM generator
-}
-
-int TECControl_ReturnHeatingColling(void){
-    return HeatingColling;
-}
-
-void TECControl_CollingViaMain(void)
-{
-    HeatingColling = 0;
     PG6IOCONLbits.SWAP = true;                                          // PWMxH output will be connected to PWMxL output pin
     PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
     PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
@@ -570,16 +627,9 @@ void TECControl_CollingViaMain(void)
     PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator    
 }
 
-void TECControl_HeatingViaMain(void)
+void TECControl_Stop(void)
 {
-    HeatingColling = 0;
-    PG6IOCONLbits.SWAP = false;                                         // PWMxH output will be connected to PWMxH output pin
-    PWM_PeriodSet(PWM_GENERATOR_6, TEC_Period);                  // Set Period (n = 6392 => 1 / (n * 10 us) = 10 kHz )
-    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);           // Set Duty Cycle (n = 3196 => n / PGxPER = 50 %)
-    PWM_DeadTimeLowSet(PWM_GENERATOR_6, TEC_DeadtimeLow);       // Set Falling Edge Dead Time (n = 05 => n * 10 us = 50 us)
-    PWM_DeadTimeHighSet(PWM_GENERATOR_6, TEC_DeadtimeHigh);     // Set Rising Edge Dead Time (n = 10 => n * 10 us = 100 us)
-    PWM_GeneratorEnable(PWM_GENERATOR_6);                               // turn on PWM generator
-
+    PWM_GeneratorDisable(PWM_GENERATOR_6);              // turn off PWM generator
 }
 
 /**
@@ -604,6 +654,7 @@ void TECControl_UpdateTemp(bool flagSet, bool flagControl, uint32_t dutyValue)
             TECControl.Set_Value = dutyValue;
         }
 #else
+        TempUpdated = true;
         TECControl.Set_Value = dutyValue;
 #endif
     }

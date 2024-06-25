@@ -81,9 +81,6 @@ uint32_t DownCount3By4 = 0;
 uint32_t DownCount = 0;
 uint32_t UpCount3By4 = 0;
 uint32_t UpCount = 0;
-bool Up = false;
-bool Down = false;
-bool ToStartEncoder = false;
 
 /**
  * @brief This function initializes the piston motor parameters 
@@ -146,7 +143,6 @@ void PistonMotor_Handler(void)
                     {
                         PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
                     }
-                    Up = true;
                     PistonMotor_Up();
                     PistonMotor.Flags.PMStatus = true;
                 }
@@ -165,7 +161,6 @@ void PistonMotor_Handler(void)
                         PistonEncoder_ExpectedCount(false, PistonMotor.Current_Position - PistonMotor.Set_Position);
                         DownCount = PistonMotor.Current_Position - PistonMotor.Set_Position;
                     }
-                    Down = true;
                     PistonMotor_Down();
                     PistonMotor.Flags.PMStatus = false;
                 }
@@ -201,7 +196,6 @@ void PistonMotor_Handler(void)
                     PistonMotor.Flags.PMCheck = true;
                     PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
                     PistonMotor_SetInitialisedToZero(true);
-                    Down = true;
                     PistonMotor_Down();
                     PMDebounce_Counter = 0;
                 }
@@ -252,15 +246,9 @@ void PistonMotor_Handler(void)
                 if(PistonMotor.Flags.PMStatus == true)
                 {
                     UpCount3By4  = ((UpCount/2) + (UpCount/3));
-                    if((Total_Pulses >= (UpCount/2)) && (Total_Pulses < (UpCount3By4)))
-                    {
-                        PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
-                        PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
-                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
-                    }
                     if(Total_Pulses >= (UpCount3By4))
                     {
-                        PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
+                        PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
                         PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
                     }
@@ -299,15 +287,9 @@ void PistonMotor_Handler(void)
                 else
                 {
                     DownCount3By4  = ((DownCount/2) + (DownCount/3));
-                    if((Total_Pulses >= (DownCount/2)) && (Total_Pulses < (DownCount3By4)))
-                    {
-                        PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
-                        PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
-                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
-                    }
                     if(Total_Pulses >= (DownCount3By4))
                     {
-                        PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
+                        PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE_1;
                         PWM_DutyCycleSet(PWM_GENERATOR_1, PM_DutyCycle);
                         PWM_SoftwareUpdateRequest(PWM_GENERATOR_1);
                     }
@@ -579,7 +561,6 @@ void PistonMotor_RunningState(void){
                     PistonMotor_Stop();
                     PistonEncoder_StopRead();
                     PistonMotor.Flags.EnPM = false;
-                    ToStartEncoder = true;
                     for(int i=0;i<500;i++){
                         A++;
                     }
@@ -601,7 +582,6 @@ void PistonMotor_RunningState(void){
                 }
                 A = 0;
                 SetPistonMotor_StopFlag(false);
-                ToStartEncoder = true;
                 PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
                 PistonMotor.Current_Position = PistonMotor.Set_Position;
 //                PistonEncoder_StopRead();
@@ -618,22 +598,10 @@ void PistonMotor_RunningState(void){
             }
             A = 0;
             SetPistonMotor_StopFlag(false);
-            ToStartEncoder = true;
             PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
             PistonMotor.Current_Position = PistonMotor.Set_Position;
 //            PistonEncoder_StopRead();
         }
     }
 
-}
-
-bool PistonMotor_ClearAndStartEncoder(void){
-    return (ToStartEncoder && (Up || Down));
-}
-
-void PistonMotor_SetUpDownToStartEncoder(void)
-{
-    ToStartEncoder = false;
-    Up = false;
-    Down = false;
 }

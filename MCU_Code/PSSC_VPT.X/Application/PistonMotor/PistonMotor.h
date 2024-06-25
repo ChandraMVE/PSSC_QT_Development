@@ -93,8 +93,7 @@ void PistonMotor_HesLedStatus(void);
 void PistonMotor_ChangedPosition(void);
 void PistonMotor_RunningState(void);
 void PistonMotor_SetDutyCycle(void);
-bool PistonMotor_ClearAndStartEncoder(void);
-void PistonMotor_SetUpDownToStartEncoder(void);
+
 
 // EXTERN VARIABLES
 extern PISTONMOTOR_STYP PistonMotor;
