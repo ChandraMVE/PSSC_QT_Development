@@ -72,6 +72,7 @@ static uint32_t Total_Pulses;
 static uint32_t Dynamic_Total_Pulses;
 static uint16_t PMDebounce_Counter;
 static uint16_t PMErr_Counter;
+bool PMDelay_Counter;
 
 static float Previous_Position;
 
@@ -81,6 +82,7 @@ uint32_t DownCount3By4 = 0;
 uint32_t DownCount = 0;
 uint32_t UpCount3By4 = 0;
 uint32_t UpCount = 0;
+bool motorStopped = false;
 
 /**
  * @brief This function initializes the piston motor parameters 
@@ -110,6 +112,7 @@ void PistonMotor_Initialise(void)
     PistonMotor.Flags.ErrorRun = false;
     PMDebounce_Counter = 0;
     PMErr_Counter = 0;
+    PMDelay_Counter = false;
 //    PistonEncoder_ClearCountOfAB_1();
     PistonEncoder_ClearCountFirstCount();
 }
@@ -124,7 +127,7 @@ void PistonMotor_Handler(void)
 {
     PistonMotor_HesLedStatus();
     PistonMotor_CheckError();
-    PistonMotor_ChangedPosition();
+//    PistonMotor_ChangedPosition();
     switch(PistonMotor.PMState_Status)
     {
         case PISTONMOTOR_STATE_IDLE : 
@@ -471,6 +474,8 @@ void PistonMotor_UpdatePostion(bool flagSet, float fPosition)
     PistonMotor.Flags.EnPM = flagSet;
     PistonMotor.Flags.EditedSet = flagSet;
     PistonMotor.Set_Position = fPosition * CONVERSION_CONSTANT;
+    motorStopped = false;
+    PMDelay_Counter = false;
 }
 
 void PistonMotor_SetDutyCycle(void)
@@ -560,6 +565,7 @@ void PistonMotor_RunningState(void){
                     A_Pulses = PistonEncoder_GetCountA();
                     PistonMotor_Stop();
                     PistonEncoder_StopRead();
+                    motorStopped = true;
                     PistonMotor.Flags.EnPM = false;
                     for(int i=0;i<500;i++){
                         A++;
@@ -576,6 +582,7 @@ void PistonMotor_RunningState(void){
                 A_Pulses = PistonEncoder_GetCountA();
                 PistonMotor_Stop();
                 PistonEncoder_StopRead();
+                motorStopped = true;
                 PistonMotor.Flags.EnPM = false;
                 for(int i=0;i<500;i++){
                     A++;
@@ -592,6 +599,7 @@ void PistonMotor_RunningState(void){
             A_Pulses = PistonEncoder_GetCountA();
             PistonMotor_Stop();
             PistonEncoder_StopRead();
+            motorStopped = true;
             PistonMotor.Flags.EnPM = false;
             for(int i=0;i<500;i++){
                 A++;
@@ -604,4 +612,17 @@ void PistonMotor_RunningState(void){
         }
     }
 
+}
+
+bool PistonMotor_MotorStopped(void){
+    return motorStopped;
+}
+
+void PistonMotor_SetPMDelay_Counter(void){
+    PMDelay_Counter = true;
+    PistonEncoder_SetCountA();
+}
+
+bool PistonMotor_PMDelay_Counter(void){
+    return PMDelay_Counter;
 }

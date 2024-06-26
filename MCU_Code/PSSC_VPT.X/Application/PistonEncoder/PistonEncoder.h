@@ -66,6 +66,7 @@ void PistonEncoder_StopRead(void);
 void PistonEncoder_ISRFunctionA(void);
 void PistonEncoder_ISRFunctionB(void);
 uint32_t PistonEncoder_GetCountA(void);
+void PistonEncoder_SetCountA(void);
 uint32_t PistonEncoder_GetCountB(void);
 void PistonEncoder_CheckInitialPosition(void);
 bool PistonEncoder_GetInitialPosition(void);

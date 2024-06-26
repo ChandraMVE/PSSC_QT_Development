@@ -66,6 +66,7 @@
 #include "Error.h"
 
 static uint16_t tCounter;
+static uint16_t PMCounter;
 bool Flag_Complete;
 /*
                          Main application
@@ -123,18 +124,36 @@ int main(void)
 //    LED_3_SetHigh();
     tCounter = 0;
     Flag_Complete = 0;
+    PMCounter = 0;
     
     while (1)
     {
 //        PistonMotor_ChangedPosition();
         // Add your application code
         PistonMotor_RunningState();
-        PistonMotor_ChangedPosition();
+        if(PistonMotor_MotorStopped()){
+            if(PistonMotor_PMDelay_Counter() == true){
+                PistonMotor_ChangedPosition();
+            }
+        }
+//                PistonMotor_ChangedPosition();
         if ( scheduler.flags.interruptFLG) 
         {
             scheduler.flags.interruptFLG = 0;
             scheduler.run();
 
+            if(PistonMotor_MotorStopped()){
+                if(PistonMotor_PMDelay_Counter() == false){
+//                    SetPistonMotor_StopFlag(false);
+                    PMCounter++;
+                    if(PMCounter >= 100){
+                        PMCounter = 0;
+//                        SetPistonMotor_StopFlag(false);
+//                        PistonEncoder_SetCountA();
+                        PistonMotor_SetPMDelay_Counter();
+                    }
+                }
+            }
             tCounter++;
             if(!Flag_Complete)
             {

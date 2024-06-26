@@ -346,6 +346,10 @@ uint32_t PistonEncoder_GetCountA(void)
     return(Pulse_CountA); 
 }
 
+void PistonEncoder_SetCountA(void){
+    Pulse_CountA = 0;
+}
+
 bool PistonMotor_UpOrDown(void)
 {
     if(PistonMotorUp)

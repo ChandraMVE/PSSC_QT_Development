@@ -93,6 +93,9 @@ void PistonMotor_HesLedStatus(void);
 void PistonMotor_ChangedPosition(void);
 void PistonMotor_RunningState(void);
 void PistonMotor_SetDutyCycle(void);
+bool PistonMotor_MotorStopped(void);
+bool PistonMotor_PMDelay_Counter(void);
+void PistonMotor_SetPMDelay_Counter(void);
 
 
 // EXTERN VARIABLES
