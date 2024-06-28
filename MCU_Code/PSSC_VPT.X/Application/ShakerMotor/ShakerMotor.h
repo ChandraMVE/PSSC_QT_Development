@@ -94,6 +94,7 @@ uint16_t ShakerMotor_GetCounter(void);
 bool ShakerMotor_GetPulseErrCheck(void);
 void ShakerMotor_SetPulseErrCheck(bool setFlag);
 uint16_t ShakerMotor_ErrCounter(void);
+void ShakerMotor_SoftStartFunction(void);
 
 // EXTERN VARIABLES
 extern SHAKERMOTOR_STYP ShakerMotor;

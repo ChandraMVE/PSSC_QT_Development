@@ -136,7 +136,7 @@ int main(void)
                 PistonMotor_ChangedPosition();
             }
         }
-//                PistonMotor_ChangedPosition();
+        ShakerMotor_SoftStartFunction();
         if ( scheduler.flags.interruptFLG) 
         {
             scheduler.flags.interruptFLG = 0;

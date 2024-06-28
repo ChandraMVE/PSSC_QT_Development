@@ -72,6 +72,7 @@ static uint16_t SM_TempSpeed;
 static uint16_t SM_TempPrevSpeed;
 static uint16_t SM_TempSpeedVal;
 bool SMFLAG_PulseErrCheck;
+bool softStart = false;
 
 /**
  * @brief This method Initialises the Shaker motor variables
@@ -162,6 +163,7 @@ void ShakerMotor_Handler(void)
                     Err_Debounce_Counter = 0;
                     SMFLAG_PulseErrCheck = false;
                     ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_SOFTSTART;
+                    softStart = true;
                 }
             }
             else
@@ -295,22 +297,25 @@ void ShakerMotor_Handler(void)
         break;
         
         case SHAKERMOTOR_STATE_SOFTSTART :
-            Debounce_Counter++;
-            if(Debounce_Counter >= SPEED_DEBOUNCE_COUNT)
-            {
-                Debounce_Counter = 0;
-                SM_TempSpeed += STEP_SPEED;
-                ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
-                ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
-                PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
-                PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
-                PWM_SoftwareUpdateRequest(PWM_GENERATOR_8);
-                if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
-                {
-                    ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
-                    ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
-                }
-            }
+            softStart = true;
+//            Debounce_Counter++;
+//            if(Debounce_Counter >= SPEED_DEBOUNCE_COUNT)
+//            if(Debounce_Counter >= 3)
+//            {
+//                Debounce_Counter = 0;
+//                SM_TempSpeed += STEP_SPEED;
+////                ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
+//                ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
+//                ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
+//                PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
+//                PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
+//                PWM_SoftwareUpdateRequest(PWM_GENERATOR_8);
+//                if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
+//                {
+//                    ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
+//                    ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
+//                }
+//            }
         break;    
         
         case SHAKERMOTOR_STATE_RUNNING : 
@@ -393,6 +398,22 @@ void ShakerMotor_Handler(void)
         default : 
             PWM_GeneratorDisable(PWM_GENERATOR_8);                      // turn off PWM generator
         break;
+    }
+}
+
+void ShakerMotor_SoftStartFunction(void){
+    if(softStart){
+        ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
+        ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
+        PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
+        PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
+        PWM_SoftwareUpdateRequest(PWM_GENERATOR_8);
+        if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
+        {
+            ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
+            ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
+            softStart = false;
+        }
     }
 }
 
