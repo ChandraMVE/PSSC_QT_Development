@@ -142,7 +142,7 @@ void PistonMotor_Handler(void)
                     PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
                     PistonEncoder_ExpectedCount(true, (PistonMotor.Set_Position - PistonMotor.Current_Position));
                     UpCount = (PistonMotor.Set_Position - PistonMotor.Current_Position);
-                    if(PistonMotor.Set_Position == (0.25*CONVERSION_CONSTANT))
+                    if(PistonMotor.Set_Position <= ((0.50)*CONVERSION_CONSTANT))
                     {
                         PM_DutyCycle = PISTON_DYNAMIC_DUTY_CYCLE;
                     }
@@ -486,12 +486,12 @@ void PistonMotor_SetDutyCycle(void)
 float PistonMotor_GetPostion(void)
 {
 //    return(PistonMotor.Set_Position);
-    return ((PistonMotor.Current_Position)/CONVERSION_CONSTANT);
+    return (((PistonMotor.Current_Position)/CONVERSION_CONSTANT)+0.005);
 }
 
 float PistonMotor_GetSetPostion(void)
 {
-    return((PistonMotor.Set_Position)/CONVERSION_CONSTANT);
+    return(((PistonMotor.Set_Position)/CONVERSION_CONSTANT));
 //    return(PistonMotor.Current_Position);
 }
 
