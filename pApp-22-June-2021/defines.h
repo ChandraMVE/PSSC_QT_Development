@@ -164,11 +164,12 @@
 #define FN_TCALIBRATION_SETUP       "/cdata/calibtm.txt"
 #define FN_PCALIBRATION_SETUP       "/cdata/calibpr.txt"
 #define FN_UPDATE_FIRMWARE          "/cdata/newfirmware"
+#define FN_METHOD_VOLUME_SETUP      "/cdata/calibMethodVolume.txt"
 
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App: Ver. 1.05.34"
+#define FW_VERSION  "App: Ver. 1.05.73"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

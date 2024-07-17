@@ -151,6 +151,9 @@ void sMeasuring2::setPtot(QString ptot, QString scale, QString pass){
 }
 
 void sMeasuring2::setFreeShaker(QString speed){
+    ui->frShaker->move(250, 430);
+    ui->label_15->move(10,0);
+    ui->lblShakerCS->move(140,0);
     ui->lblShakerCS->setText(speed);
     ui->frShaker->show();
 }

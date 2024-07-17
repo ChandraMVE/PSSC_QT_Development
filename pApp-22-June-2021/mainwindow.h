@@ -18,7 +18,25 @@
 
 #include "define_strings.h"
 
+/*struct METHOD_VOLUME_METH{
+    double StageVolume;
+    double FirstVolume;
+    double SecondVolume;
+    double ThirdVOlume;
+};
 
+struct METHOD_VOLUME_MD5191{
+    double StageVolume;
+    double FirstVolume;
+    double SecondVolume;
+    double ThirdVOlume;
+    int single_expansion;
+};
+
+struct METHOD_VOLUMES_Main {
+    METHOD_VOLUME_METH MainD6377, MainD6378, MainD5188, MainFree1, MainFree2, MainFree3, MainFree4;
+    METHOD_VOLUME_MD5191 MainD5191;
+};*/
 
 namespace Ui {
 class MainWindow;
@@ -98,6 +116,8 @@ private slots:
     void onShowMsgBox(QString title, QString msg);
     void onShowStatusBox(QString title, QString msg, bool show);
     void onConfirmed(int, bool, int);
+    void onD6377VlRatio(double vl);
+//    void onMethodVolumesDefault(struct METHOD_VOLUMES_Main methodVol);
 
     void on_pushButton_clicked();
 
@@ -167,6 +187,7 @@ private:
 
     int  cEqTime;
     int  cREqTime;
+    int  cVolume;
 
     int shakerSpeed; //naveen
     double p1=0, p2=0, p3=0; //naveen

@@ -64,6 +64,26 @@ struct CALIB_PRESSURE {
 
 };
 
+struct METHOD_VOLUME_CALIB{
+    double StageVolume;
+    double FirstVolume;
+    double SecondVolume;
+    double ThirdVOlume;
+};
+
+struct METHOD_VOLUME_CALIBD5191{
+    double StageVolume;
+    double FirstVolume;
+    double SecondVolume;
+    double ThirdVOlume;
+//    int single_expansion;
+};
+
+//struct METHOD_VOLUMES_CALIB {
+//    METHOD_VOLUME_CALIB cClaibD6377, cClaibD6378, cClaibD5188, cClaibFree1, cClaibFree2, cClaibFree3, cClaibFree4;
+//    METHOD_VOLUME_CALIBD5191 cClaibD5191;
+//};
+
 
 class sCalibration : public QWidget, public sAccessWidget
 {
@@ -75,9 +95,15 @@ public:
     void Show();
     void setDefaults(void);
     bool readFile();
+    bool readMethodVolumeFile();
     bool saveFile();
+    bool saveMethodVolumeFile();
 
     void showTemperatureCalib();
+    void setMethods(const QStringList tmp);
+    void showMethodVolume();
+    void MethodSingleExpansion();
+    void MethodTripleExpansion();
     void updateTemperatureCalib();
     void showPressureCalib();
     void updatePressureCalib();
@@ -121,6 +147,28 @@ public:
     bool getHideAfterACK();
     bool isSwitchEnabled(int tmp);
     void checkExit(int tmp);
+    void MethodVolumeDefault();
+//    void MethodVolumeSetDefualt(METHOD_VOLUMES_CALIB mvc);
+    void showVolumeSinExpD5191();
+    void showVolumeD5191();
+    void showVolumeD6377();
+    void showVolumeD6378();
+    void showVolumeD5188();
+    void showVolumeFree1();
+    void showVolumeFree2();
+    void showVolumeFree3();
+    void showVolumeFree4();
+
+    void updateVolumeSinExpD5191();
+    void updateVolumeD5191();
+    void updateVolumeD6377();
+    void updateVolumeD6378();
+    void updateVolumeD5188();
+    void updateVolumeFree1();
+    void updateVolumeFree2();
+    void updateVolumeFree3();
+    void updateVolumeFree4();
+    void on_D6377_Vl_ration(double vl, bool init);
 
 signals:
     void showKeypad(QObject *, int, bool);
@@ -184,9 +232,32 @@ private slots:
 
     void on_imageCapture_clicked();
 
+    void on_cbMethod_currentIndexChanged(int index);
+
+    void on_volumeStageP_clicked();
+
+    void on_volumeStageN_clicked();
+
+    void on_volumeFirstP_clicked();
+
+    void on_volumeFirstN_clicked();
+
+    void on_volumeSecondP_clicked();
+
+    void on_volumeSecondN_clicked();
+
+    void on_volumeThirdP_clicked();
+
+    void on_volumeThirdN_clicked();
+
+    void on_cbSingleExpEnable_clicked();
+
 private:
     Ui::sCalibration *ui;
     bool cParasChanged;
+    bool cParaMethodVolumeChanged;
+    int cPrevMethod;
+    bool D6377Vl_updated;
 
     QWidget *cWidgetPressure;
     QString cStringPressure;
@@ -196,6 +267,9 @@ private:
 
     QWidget *cWidgetPrLinearzation;
     QString cStringPrLinearzation;
+
+    QWidget *cWidgetMethodVolume;
+    QString cStringMethodVolume;
 
     int cTemperatureCount;
     int cPressureCount;
@@ -230,6 +304,9 @@ public:
 public:
     struct CALIB_TEMPERATURE cCalibTm;
     struct CALIB_PRESSURE cCalibPr;
+    struct METHOD_VOLUME_CALIB cCalibD6377, cCalibD6378, cCalibD5188, cCalibFree1, cCalibFree2, cCalibFree3, cCalibFree4;
+    struct METHOD_VOLUME_CALIBD5191 cCalibD5191, cCalibSingleD5191;
+//    struct METHOD_VOLUMES_CALIB MethodVolumeCal;
 
 };
 

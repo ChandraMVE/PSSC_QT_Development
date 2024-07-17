@@ -176,6 +176,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->wMethodSetup->setFree4(qslFormulaFree4);
     ui->wMethodSetup->hide();
 
+    ui->wCalibrationSetup->setMethods(qslMethods);
+
     if(!ui->wMethodSetup->readFile())
     {
         if(errlist.isEmpty()) errlist.append("Method Setup");
@@ -206,6 +208,15 @@ MainWindow::MainWindow(QWidget *parent) :
         else errlist.append(", Calibration Setup");
         ui->wCalibrationSetup->saveFile();
     }
+
+    if(!ui->wCalibrationSetup->readMethodVolumeFile()){
+        if(errlist.isEmpty()) errlist.append("Calibration Setup");
+        else errlist.append(", Method Calibration Setup");
+        qDebug()<<"Method Adjust file";
+        ui->wCalibrationSetup->saveMethodVolumeFile();
+        ui->wCalibrationSetup->on_D6377_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
+    }
+    qDebug()<<"value of from mainwindow constructor (ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
 
     ui->listSetupMenu->hide();
 
@@ -250,6 +261,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wUserSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wGeneralSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wMethodSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
+    connect(ui->wMethodSetup, SIGNAL(D6377_VlRatio(double)), this, SLOT(onD6377VlRatio(double)));
+//    connect(ui->wMethodSetup, SIGNAL(methodVolumesDefault(METHOD_VOLUMES)), this, SLOT(onMethodVolumesDefault(METHOD_VOLUMES_Main)));
     connect(ui->wCalibrationSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
 
     connect(ui->wServiceSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
@@ -2708,7 +2721,31 @@ void MainWindow::handleOther(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            sendPara(cProtocol.sendPistonPosition(100), 8, 60);
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
+                                break;
+
+                                default : cVolume = 100;
+                                break;
+                            }
+
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 8, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
@@ -2730,7 +2767,7 @@ void MainWindow::handleOther(void)
             case 8:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 105) && (cPistonPosition >= 95))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
                                      9, 60);
@@ -2755,7 +2792,30 @@ void MainWindow::handleOther(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            sendPara(cProtocol.sendPistonPosition(170), 10, 60);
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100);
+                                break;
+
+                                default : cVolume = 170;
+                                break;
+                            }
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 10, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
@@ -2776,7 +2836,7 @@ void MainWindow::handleOther(void)
             case 10:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 170+5) && (cPistonPosition >= 170-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -2899,7 +2959,30 @@ void MainWindow::handleOther(void)
                             if(cEqTime >= cREqTime)
                             {
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-                                sendPara(cProtocol.sendPistonPosition(250), 13, 60);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100);
+                                    break;
+
+                                    default : cVolume = 250;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 13, 60);
 
                                 if(ui->wServiceSetup->getDebug())
                                     ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
@@ -2932,7 +3015,7 @@ void MainWindow::handleOther(void)
                 {
                     cParasUpdated = false;
 
-                    if((cPistonPosition <= 250+5) && (cPistonPosition >= 250-5))
+                    if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                     {
                         switch(ui->wMeasuring1->getMethod())
                         {
@@ -2981,7 +3064,30 @@ void MainWindow::handleOther(void)
                             if(cEqTime >= cREqTime)
                             {
                                 cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-                                sendPara(cProtocol.sendPistonPosition(500), 15, 60);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100);
+                                    break;
+
+                                    default : cVolume = 500;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 15, 60);
 
                                 if(ui->wServiceSetup->getDebug())
                                     ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
@@ -3013,7 +3119,7 @@ void MainWindow::handleOther(void)
                     {
                         cParasUpdated = false;
 
-                        if((cPistonPosition <= 500+5) && (cPistonPosition >= 500-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -3278,7 +3384,30 @@ void MainWindow::handleFreeShaker(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            sendPara(cProtocol.sendPistonPosition(100), 8, 60);
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
+                                break;
+
+                                default : cVolume = 100;
+                                break;
+                            }
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 8, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
@@ -3300,7 +3429,7 @@ void MainWindow::handleFreeShaker(void)
             case 8:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 105) && (cPistonPosition >= 95))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
                                      9, 60);
@@ -3325,7 +3454,30 @@ void MainWindow::handleFreeShaker(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            sendPara(cProtocol.sendPistonPosition(170), 10, 60);
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100);
+                                break;
+
+                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100);
+                                break;
+
+                                default : cVolume = 170;
+                                break;
+                            }
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 10, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
@@ -3347,7 +3499,7 @@ void MainWindow::handleFreeShaker(void)
                     {
                         cParasUpdated = false;
 
-                        if((cPistonPosition <= 170+5) && (cPistonPosition >= 170-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
 
                             switch(ui->wMeasuring1->getMethod())
@@ -3508,7 +3660,30 @@ void MainWindow::handleFreeShaker(void)
                             if(cEqTime >= cREqTime)
                             {
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-                                sendPara(cProtocol.sendPistonPosition(250), 14, 60);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100);
+                                    break;
+
+                                    default : cVolume = 250;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 14, 60);
 
                                 if(ui->wServiceSetup->getDebug())
                                     ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
@@ -3541,7 +3716,7 @@ void MainWindow::handleFreeShaker(void)
                 {
                     cParasUpdated = false;
 
-                    if((cPistonPosition <= 250+5) && (cPistonPosition >= 250-5))
+                    if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                     {
                         switch(ui->wMeasuring1->getMethod())
                         {
@@ -3590,7 +3765,30 @@ void MainWindow::handleFreeShaker(void)
                             if(cEqTime >= cREqTime)
                             {
                                 cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
-                                sendPara(cProtocol.sendPistonPosition(500), 16, 60);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100);
+                                    break;
+
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100);
+                                    break;
+
+                                    default : cVolume = 500;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 16, 60);
 
                                 if(ui->wServiceSetup->getDebug())
                                     ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
@@ -3622,7 +3820,7 @@ void MainWindow::handleFreeShaker(void)
                     {
                         cParasUpdated = false;
 
-                        if((cPistonPosition <= 500+5) && (cPistonPosition >= 500-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -3910,7 +4108,8 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            sendPara(cProtocol.sendPistonPosition(100), 8, 60);
+                            cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.StageVolume)*100);
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 8, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
@@ -3932,7 +4131,7 @@ void MainWindow::handleD5191SingleExpansion(void)
             case 8:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 105) && (cPistonPosition >= 95))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
                                      9, 60);
@@ -3957,7 +4156,8 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            sendPara(cProtocol.sendPistonPosition(500), 10, 60);
+                            cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume)*100);
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 10, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
@@ -3978,7 +4178,7 @@ void MainWindow::handleD5191SingleExpansion(void)
             case 10:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 500+5) && (cPistonPosition >= 500-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -4918,7 +5118,8 @@ void MainWindow::handleD5188(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            sendPara(cProtocol.sendPistonPosition(25), 8, 60);
+                            cVolume = qRound((ui->wCalibrationSetup->cCalibD5188.StageVolume)*100);
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 8, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_25_ML);
@@ -4940,7 +5141,7 @@ void MainWindow::handleD5188(void)
             case 8:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 25+5) && (cPistonPosition >= 25-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
                                      9, 60);
@@ -4965,7 +5166,8 @@ void MainWindow::handleD5188(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            sendPara(cProtocol.sendPistonPosition(525), 10, 60);
+                            cVolume = qRound((ui->wCalibrationSetup->cCalibD5188.FirstVolume)*100);
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 10, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_25_ML);
@@ -4985,7 +5187,7 @@ void MainWindow::handleD5188(void)
             case 10:
                     {
                         cParasUpdated = false;
-                        if((cPistonPosition <= 525+5) && (cPistonPosition >= 525-5))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD5188.shaker_speed), 11, 60);
                             cStrringErrorCount = 0;
@@ -5246,7 +5448,8 @@ void MainWindow::handleD6377(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            sendPara(cProtocol.sendPistonPosition(100), 8, 60);
+                            int stageVol = (int)((ui->wCalibrationSetup->cCalibD6377.StageVolume)*100);
+                            sendPara(cProtocol.sendPistonPosition(stageVol), 8, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
@@ -5269,7 +5472,9 @@ void MainWindow::handleD6377(void)
                     {
                         cParasUpdated = false;
 
-                        if((cPistonPosition <= 100+M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= 100-M_PISTON_POSITION_TOLERANCE))
+                        int stageVol = (int)((ui->wCalibrationSetup->cCalibD6377.StageVolume)*100);
+
+                        if((cPistonPosition <= stageVol+M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= stageVol-M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
                                      9, 60);
@@ -5294,7 +5499,13 @@ void MainWindow::handleD6377(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            int vl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
+//                            int vl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
+//                            int vl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
+//                            int vl = static_cast<int>(std::round((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100));
+                            int vl = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100);
+                            qDebug()<<"(ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
+                            qDebug()<<"(int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100): "<<(int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
+                            qDebug()<<"vl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100); value: "<<vl;
                             sendPara(cProtocol.sendPistonPosition(vl), 10, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -5317,7 +5528,8 @@ void MainWindow::handleD6377(void)
                     {
                         cParasUpdated = false;
 
-                        int cvl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
+//                        int cvl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
+                        int cvl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
 
                         if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
                         {
@@ -6178,10 +6390,12 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
              if(tmp)
              {
                 ui->wCalibrationSetup->saveFile();
+                ui->wCalibrationSetup->saveMethodVolumeFile();
              }
              else
              {
                 ui->wCalibrationSetup->readFile();
+                ui->wCalibrationSetup->readMethodVolumeFile();
              }
         break;
 
@@ -6234,6 +6448,54 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
     }
 }
 
+/*void MainWindow::onMethodVolumesDefault(METHOD_VOLUMES_Main methodVol){
+    METHOD_VOLUMES_CALIB abc;
+
+    abc.cClaibD5191.StageVolume = methodVol.MainD5188.StageVolume;
+    abc.cClaibD5191.FirstVolume = methodVol.MainD5188.FirstVolume;
+    abc.cClaibD5191.SecondVolume = methodVol.MainD5188.SecondVolume;
+    abc.cClaibD5191.ThirdVOlume = methodVol.MainD5188.ThirdVOlume;
+    abc.cClaibD5191.single_expansion = methodVol.MainD5191.single_expansion;
+
+    abc.cClaibD6377.StageVolume = methodVol.MainD6377.StageVolume;
+    abc.cClaibD6377.FirstVolume = methodVol.MainD6377.FirstVolume;
+    abc.cClaibD6377.SecondVolume = methodVol.MainD6377.SecondVolume;
+    abc.cClaibD6377.ThirdVOlume = methodVol.MainD6377.ThirdVOlume;
+
+    abc.cClaibD6378.StageVolume = methodVol.MainD6378.StageVolume;
+    abc.cClaibD6378.FirstVolume = methodVol.MainD6378.FirstVolume;
+    abc.cClaibD6378.SecondVolume = methodVol.MainD6378.SecondVolume;
+    abc.cClaibD6378.ThirdVOlume = methodVol.MainD6378.ThirdVOlume;
+
+    abc.cClaibD5188.StageVolume = methodVol.MainD5188.StageVolume;
+    abc.cClaibD5188.FirstVolume = methodVol.MainD5188.FirstVolume;
+    abc.cClaibD5188.SecondVolume = methodVol.MainD5188.SecondVolume;
+    abc.cClaibD5188.ThirdVOlume = methodVol.MainD5188.ThirdVOlume;
+
+    abc.cClaibFree1.StageVolume = methodVol.MainFree1.StageVolume;
+    abc.cClaibFree1.FirstVolume = methodVol.MainFree1.FirstVolume;
+    abc.cClaibFree1.SecondVolume = methodVol.MainFree1.SecondVolume;
+    abc.cClaibFree1.ThirdVOlume = methodVol.MainFree1.ThirdVOlume;
+
+    abc.cClaibFree2.StageVolume = methodVol.MainFree2.StageVolume;
+    abc.cClaibFree2.FirstVolume = methodVol.MainFree2.FirstVolume;
+    abc.cClaibFree2.SecondVolume = methodVol.MainFree2.SecondVolume;
+    abc.cClaibFree2.ThirdVOlume = methodVol.MainFree2.ThirdVOlume;
+
+    abc.cClaibFree3.StageVolume = methodVol.MainFree3.StageVolume;
+    abc.cClaibFree3.FirstVolume = methodVol.MainFree3.FirstVolume;
+    abc.cClaibFree3.SecondVolume = methodVol.MainFree3.SecondVolume;
+    abc.cClaibFree3.ThirdVOlume = methodVol.MainFree3.ThirdVOlume;
+
+    abc.cClaibFree4.StageVolume = methodVol.MainFree4.StageVolume;
+    abc.cClaibFree4.FirstVolume = methodVol.MainFree4.FirstVolume;
+    abc.cClaibFree4.SecondVolume = methodVol.MainFree4.SecondVolume;
+    abc.cClaibFree4.ThirdVOlume = methodVol.MainFree4.ThirdVOlume;
+
+    ui->wCalibrationSetup->MethodVolumeSetDefualt(abc);
+}
+*/
+
 void MainWindow::on_pushButton_clicked()
 {
     cACKReceived = false;
@@ -6271,4 +6533,9 @@ void MainWindow::on_pushButton_4_clicked()
 {
     if(cCurrentUCError) cCurrentUCError = 0;
     else cCurrentUCError = 1;
+}
+
+void MainWindow::onD6377VlRatio(double vl){
+    qDebug()<<"Updating D6377 vl_ratio";
+    ui->wCalibrationSetup->on_D6377_Vl_ration(vl, false);
 }

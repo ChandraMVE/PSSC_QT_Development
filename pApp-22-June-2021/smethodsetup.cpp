@@ -320,6 +320,49 @@ void sMethodSetup::setDefaults()
     stdFree4.from = DEFAULT_FREE_FROM;
     stdFree4.to = DEFAULT_FREE_TO;
 
+    /*methodVolumes.MD5191.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MD5191.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MD5191.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MD5191.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+    methodVolumes.MD5191.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
+
+    methodVolumes.MD6377.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MD6377.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MD6377.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MD6377.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    methodVolumes.MD6378.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MD6378.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MD6378.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MD6378.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    methodVolumes.MD5188.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MD5188.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MD5188.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MD5188.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    methodVolumes.MFree1.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MFree1.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MFree1.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MFree1.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    methodVolumes.MFree2.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MFree2.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MFree2.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MFree2.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    methodVolumes.MFree3.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MFree3.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MFree3.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MFree3.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    methodVolumes.MFree4.StageVolume = DEFAULT_STAGE_VOLUME;
+    methodVolumes.MFree4.FirstVolume = DEFAULT_FIRST_VOLUME;
+    methodVolumes.MFree4.SecondVolume = DEFAULT_SECOND_VOLUME;
+    methodVolumes.MFree4.ThirdVOlume = DEFAULT_THIRD_VOLUME;
+
+    emit methodVolumesDefault(methodVolumes);*/
+
     cParasChanged = true;
 }
 
@@ -1117,6 +1160,7 @@ void sMethodSetup::updateD6377()
         cParasChanged = true;
     }
     stdD6377.vl_ratio = ui->lePara3->text().toDouble();
+    emit D6377_VlRatio(((stdD6377.vl_ratio * 100)+100));
 
 //    if(stdD6377.shaker_speed != ui->lePara4->text().toInt())
     if((double)(stdD6377.shaker_speed) != (ui->lePara4->text().toDouble()*(60.0)))

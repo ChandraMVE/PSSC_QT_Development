@@ -92,6 +92,26 @@ struct STD_Free {
     double to;
 };
 
+/*struct METHOD_VOLUME_MET{
+    double StageVolume;
+    double FirstVolume;
+    double SecondVolume;
+    double ThirdVOlume;
+};
+
+struct METHOD_VOLUME_D5191{
+    double StageVolume;
+    double FirstVolume;
+    double SecondVolume;
+    double ThirdVOlume;
+    int single_expansion;
+};
+
+struct METHOD_VOLUMES {
+    METHOD_VOLUME_MET MD6377, MD6378, MD5188, MFree1, MFree2, MFree3, MFree4;
+    METHOD_VOLUME_D5191 MD5191;
+};*/
+
 class sMethodSetup : public QWidget
 {
     Q_OBJECT
@@ -139,6 +159,8 @@ signals:
     void showHome(bool);
     void getConfirmation(int, int);
     void showMsgBox(QString title, QString msg);
+    void D6377_VlRatio(double);
+//    void methodVolumesDefault(struct METHOD_VOLUMES methodVol);
 
 private slots:
     void on_cbMethod_currentIndexChanged(int index);
@@ -199,6 +221,8 @@ public:
     struct STD_D6378 stdD6378;
     struct STD_D5188 stdD5188;
     struct STD_Free stdFree1, stdFree2, stdFree3, stdFree4;
+//    struct METHOD_VOLUMES methodVolumes;
+//    struct METHOD_VOLUMES_Main methodVolumes;
 
     QStringList qslD5191;
     QStringList qslD6378;

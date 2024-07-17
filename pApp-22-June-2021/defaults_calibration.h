@@ -66,5 +66,16 @@
 #define AVG_TYPE_TEMPERATURE    1
 #define AVG_TYPE_PRESSURE       2
 
+#define DEFAULT_MIN_VOLUME                  0.25
+#define DEFAULT_STAGE_VOLUME                1.00
+#define DEFAULT_FIRST_VOLUME                1.70
+#define DEFAULT_SECOND_VOLUME               2.50
+#define DEFAULT_THIRD_VOLUME                5.00
+#define DEFAULT_MAX_VOLUME                  5.25
+#define DISAABLED                           0 //false
+#define DEFAULT_D5191_SINGLE_EXPAN_ENABLED  DISAABLED
+
+#define RANGE_CALIB_VOLUME_MIN              0.00
+#define RANGE_CALIB_VOLUME_MAX              5.25
 
 #endif // DEFAULTS_CALIBRATION_H
