@@ -70,7 +70,7 @@ struct {
                                                 // (((16*2)*2)*14)*7.5489
 //#define PM_MAX_POSITION             5.25f
 //#define PM_MAX_POSITION             35023
-#define PM_MAX_POSITION             35691
+#define PM_MAX_POSITION             37030
 #define CURRENT_LIMIT_COUNT         1000
 #define PISTON_DUTY_PERIOD          0X1F3F              // 1KHz frequency
 #define PISTON_DEFAULT_DUTY_CYCLE   0X15DF              // 70% duty cycle value for 1KHz frequency

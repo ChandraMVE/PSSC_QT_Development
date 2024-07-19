@@ -297,25 +297,25 @@ void ShakerMotor_Handler(void)
         break;
         
         case SHAKERMOTOR_STATE_SOFTSTART :
-            softStart = true;
-//            Debounce_Counter++;
-//            if(Debounce_Counter >= SPEED_DEBOUNCE_COUNT)
+//            softStart = true;
+            Debounce_Counter++;
+            if(Debounce_Counter >= SPEED_DEBOUNCE_COUNT)
 //            if(Debounce_Counter >= 3)
-//            {
-//                Debounce_Counter = 0;
-//                SM_TempSpeed += STEP_SPEED;
-////                ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
+            {
+                Debounce_Counter = 0;
+                SM_TempSpeed += STEP_SPEED;
+                ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
 //                ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
-//                ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
-//                PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
-//                PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
-//                PWM_SoftwareUpdateRequest(PWM_GENERATOR_8);
-//                if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
-//                {
-//                    ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
-//                    ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
-//                }
-//            }
+                ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
+                PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
+                PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
+                PWM_SoftwareUpdateRequest(PWM_GENERATOR_8);
+                if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
+                {
+                    ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
+                    ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
+                }
+            }
         break;    
         
         case SHAKERMOTOR_STATE_RUNNING : 
