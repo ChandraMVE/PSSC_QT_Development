@@ -158,6 +158,7 @@ public:
     void showVolumeFree2();
     void showVolumeFree3();
     void showVolumeFree4();
+    void updateVolumeCalib();
 
     void updateVolumeSinExpD5191();
     void updateVolumeD5191();
@@ -169,6 +170,9 @@ public:
     void updateVolumeFree3();
     void updateVolumeFree4();
     void on_D6377_Vl_ration(double vl, bool init);
+    bool getcParaMethodVolumeChanged();
+    void sendTemcommand();
+    void updateD6377Range(double D6377Range);
 
 signals:
     void showKeypad(QObject *, int, bool);
@@ -296,6 +300,7 @@ private:
     int cPrevTab;
     bool cHide;
     bool cEnSwitch;
+    double D6377vl_Range;
 
 public:
     int IS_ADMIN_USER;

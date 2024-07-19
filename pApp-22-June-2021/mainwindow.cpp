@@ -218,6 +218,8 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     qDebug()<<"value of from mainwindow constructor (ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
 
+    ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+
     ui->listSetupMenu->hide();
 
     ui->wKeypad->resize(768, 1024);
@@ -6371,7 +6373,15 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
 
              if(tmp)
              {
-                ui->wCalibrationSetup->readFile();
+                 if(ui->wCalibrationSetup->getcParaMethodVolumeChanged()){
+                     ui->wCalibrationSetup->readFile();
+                     ui->wCalibrationSetup->readMethodVolumeFile();
+                     ui->wCalibrationSetup->sendTemcommand();
+                 }else{
+                    ui->wCalibrationSetup->readFile();
+                    ui->wCalibrationSetup->readMethodVolumeFile();
+                 }
+
                 //2-May-2023 added below
                 ui->wCalibrationSetup->hide();
                 //onShowHome(false);

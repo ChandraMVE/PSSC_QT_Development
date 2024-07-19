@@ -59,6 +59,7 @@ sCalibration::sCalibration(QWidget *parent) :
     ui->lePrHidden->hide();
 
     cParasChanged = false;
+    cParaMethodVolumeChanged = false;
 
     ui->grOffset->hide();
 
@@ -89,6 +90,7 @@ sCalibration::sCalibration(QWidget *parent) :
     setDefaults();
     MethodVolumeDefault();
     cParasChanged = false;
+    cParaMethodVolumeChanged = false;
     cEnSwitch = true;
     D6377Vl_updated = false;
 
@@ -124,6 +126,8 @@ sCalibration::sCalibration(QWidget *parent) :
     cPrAutoCalibIndex = 0;
 
     cPrevTab = -1;
+
+    D6377vl_Range = 0.0;
 
 
     initAvg();
@@ -524,8 +528,6 @@ void sCalibration::showVolumeSinExpD5191(){
     ui->leVolume2->hide();
     ui->volumeSecondP->hide();
     ui->volumeSecondN->hide();
-    ui->label3->hide();
-    ui->label4->hide();
 
     ui->lblPara4->hide();
     ui->leVolume3->hide();
@@ -565,9 +567,6 @@ void sCalibration::showVolumeD5191(){
     ui->volumeSecondP->show();
     ui->volumeSecondN->show();
 
-    ui->label3->show();
-    ui->label4->show();
-
     ui->lblPara4->show();
     ui->leVolume3->show();
     ui->volumeThirdP->show();
@@ -604,9 +603,6 @@ void sCalibration::showVolumeD6377(){
     ui->leVolume2->hide();
     ui->volumeSecondP->hide();
     ui->volumeSecondN->hide();
-
-    ui->label3->hide();
-    ui->label4->hide();
 
     ui->lblPara4->hide();
     ui->leVolume3->hide();
@@ -645,9 +641,6 @@ void sCalibration::showVolumeD6378(){
     ui->volumeSecondP->show();
     ui->volumeSecondN->show();
 
-    ui->label3->show();
-    ui->label4->show();
-
     ui->lblPara4->show();
     ui->leVolume3->show();
     ui->volumeThirdP->show();
@@ -685,9 +678,6 @@ void sCalibration::showVolumeD5188(){
     ui->volumeSecondP->hide();
     ui->volumeSecondN->hide();
 
-    ui->label3->hide();
-    ui->label4->hide();
-
     ui->lblPara4->hide();
     ui->leVolume3->hide();
     ui->volumeThirdP->hide();
@@ -719,9 +709,6 @@ void sCalibration::showVolumeFree1(){
     ui->leVolume1->show();
     ui->volumeFirstP->show();
     ui->volumeFirstN->show();
-
-    ui->label3->show();
-    ui->label4->show();
 
     ui->lblPara3->show();
     ui->leVolume2->show();
@@ -765,9 +752,6 @@ void sCalibration::showVolumeFree2(){
     ui->volumeSecondP->show();
     ui->volumeSecondN->show();
 
-    ui->label3->show();
-    ui->label4->show();
-
     ui->lblPara4->show();
     ui->leVolume3->show();
     ui->volumeThirdP->show();
@@ -805,9 +789,6 @@ void sCalibration::showVolumeFree3(){
     ui->volumeSecondP->show();
     ui->volumeSecondN->show();
 
-    ui->label3->show();
-    ui->label4->show();
-
     ui->lblPara4->show();
     ui->leVolume3->show();
     ui->volumeThirdP->show();
@@ -844,9 +825,6 @@ void sCalibration::showVolumeFree4(){
     ui->leVolume2->show();
     ui->volumeSecondP->show();
     ui->volumeSecondN->show();
-
-    ui->label3->show();
-    ui->label4->show();
 
     ui->lblPara4->show();
     ui->leVolume3->show();
@@ -2017,11 +1995,54 @@ void sCalibration::on_pbSave_clicked()
 
 }
 
+void sCalibration::updateVolumeCalib(){
+    if(cPrevMethod == ui->cbMethod->currentIndex())
+    {
+        switch (cPrevMethod) {
+
+            case M_METHOD_D5191:
+                    {
+                        if(ui->cbSingleExpEnable->checkState() == 0)
+                            updateVolumeD5191();
+                        else
+                            updateVolumeSinExpD5191();
+                    }
+            break;
+            case M_METHOD_D6377: updateVolumeD6377(); break;
+            case M_METHOD_D6378: updateVolumeD6378(); break;
+            case M_METHOD_D5188: updateVolumeD5188(); break;
+
+            case M_METHOD_FREE1: updateVolumeFree1(); break;
+            case M_METHOD_FREE2: updateVolumeFree2(); break;
+            case M_METHOD_FREE3: updateVolumeFree3(); break;
+            case M_METHOD_FREE4: updateVolumeFree4(); break;
+        }
+    }
+
+    if(cParaMethodVolumeChanged){
+        cParasChanged = true;
+    }
+}
+
+bool sCalibration::getcParaMethodVolumeChanged(){
+    return cParaMethodVolumeChanged;
+}
+
+void sCalibration::sendTemcommand(){
+    if(!cParaMethodVolumeChanged)
+    {
+        int tc = getTemperatureCount(20);
+        emit sendCommand(cProtocol.sendMeasuring(0, tc), this);
+    }
+}
+
 void sCalibration::checkExit(int tmp)
 {
     updateTemperatureCalib();
 
     updatePressureCalib();
+
+    updateVolumeCalib();
 
     if(ui->pbExit->text() == tr("Back"))
     {
@@ -2075,6 +2096,13 @@ void sCalibration::checkExit(int tmp)
             setWaitACKStatus(false);
         }
 
+    }
+    else if(ui->twCalibration->currentWidget() == cWidgetMethodVolume){
+        qDebug()<<"cWidgetMethodVolume";
+
+        if(cParasChanged){
+            emit getConfirmation(M_CONFIRM_CALIBRATION, tmp);
+        }
     }
     else //Exit
     {
@@ -2368,7 +2396,14 @@ void sCalibration::on_twCalibration_currentChanged(int index)
             {
                 switch (cPrevMethod) {
 
-                    case M_METHOD_D5191: updateVolumeD5191(); break;
+                    case M_METHOD_D5191:
+                            {
+                                if(ui->cbSingleExpEnable->checkState() == 0)
+                                    updateVolumeD5191();
+                                else
+                                    updateVolumeSinExpD5191();
+                            }
+                    break;
                     case M_METHOD_D6377: updateVolumeD6377(); break;
                     case M_METHOD_D6378: updateVolumeD6378(); break;
                     case M_METHOD_D5188: updateVolumeD5188(); break;
@@ -2566,36 +2601,32 @@ void sCalibration::on_volumeStageP_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0) && (currentVal < 0.55))
                 {
                     currentVal += 0.01;
                 }
@@ -2603,36 +2634,32 @@ void sCalibration::on_volumeStageP_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.StageVolume += 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 0.7) && (currentVal < 1.30))
                 {
                     currentVal += 0.01;
                 }
@@ -2647,36 +2674,32 @@ void sCalibration::on_volumeStageN_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0) && (currentVal <= 0.55))
                 {
                     currentVal -= 0.01;
                 }
@@ -2684,36 +2707,32 @@ void sCalibration::on_volumeStageN_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.StageVolume -= 0.01;
                 currentVal = ui->leVolume->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 0.7) && (currentVal <= 1.30))
                 {
                     currentVal -= 0.01;
                 }
@@ -2728,36 +2747,40 @@ void sCalibration::on_volumeFirstP_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
-                {
-                    currentVal += 0.01;
+                if(ui->cbSingleExpEnable->checkState() == 0){
+                    if((currentVal >= 1.40) && (currentVal < 2.00))
+                    {
+                        currentVal += 0.01;
+                    }
+                }
+                else{
+                    if((currentVal >= 4.70) && (currentVal < 5.30))
+                    {
+                        currentVal += 0.01;
+                    }
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= (D6377vl_Range - 0.30)) && (currentVal < (D6377vl_Range + 0.30)))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 1.40) && (currentVal < 2.00))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 4.95) && (currentVal < 5.55))
                 {
                     currentVal += 0.01;
                 }
@@ -2765,36 +2788,32 @@ void sCalibration::on_volumeFirstP_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 1.40) && (currentVal < 2.00))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 1.40) && (currentVal < 2.00))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 1.40) && (currentVal < 2.00))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.FirstVolume += 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 1.40) && (currentVal < 2.00))
                 {
                     currentVal += 0.01;
                 }
@@ -2809,36 +2828,40 @@ void sCalibration::on_volumeFirstN_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
-                {
-                    currentVal -= 0.01;
+                if(ui->cbSingleExpEnable->checkState() == 0){
+                    if((currentVal > 1.40) && (currentVal <= 2.00))
+                    {
+                        currentVal -= 0.01;
+                    }
+                }
+                else{
+                    if((currentVal > 4.70) && (currentVal <= 5.30))
+                    {
+                        currentVal -= 0.01;
+                    }
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > (D6377vl_Range - 0.30)) && (currentVal <= (D6377vl_Range + 0.30)))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 1.40) && (currentVal <= 2.00))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 4.95) && (currentVal <= 5.55))
                 {
                     currentVal -= 0.01;
                 }
@@ -2846,36 +2869,32 @@ void sCalibration::on_volumeFirstN_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 1.40) && (currentVal <= 2.00))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 1.40) && (currentVal <= 2.00))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 1.40) && (currentVal <= 2.00))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume1->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.FirstVolume -= 0.01;
                 currentVal = ui->leVolume1->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 1.40) && (currentVal <= 2.00))
                 {
                     currentVal -= 0.01;
                 }
@@ -2890,16 +2909,22 @@ void sCalibration::on_volumeSecondP_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
-                {
-                    currentVal += 0.01;
+                if(ui->cbSingleExpEnable->checkState() == 0){
+                    if((currentVal >= 2.20) && (currentVal < 2.80))
+                    {
+                        currentVal += 0.01;
+                    }
+                }
+                else{
+                    if((currentVal >= 0) && (currentVal < 5.35))
+                    {
+                        currentVal += 0.01;
+                    }
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
                 if((currentVal >= 0) && (currentVal < 5.35))
                 {
@@ -2908,16 +2933,14 @@ void sCalibration::on_volumeSecondP_clicked()
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 2.20) && (currentVal < 2.80))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
                 if((currentVal >= 0) && (currentVal < 5.35))
                 {
@@ -2927,36 +2950,32 @@ void sCalibration::on_volumeSecondP_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 2.20) && (currentVal < 2.80))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 2.20) && (currentVal < 2.80))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 2.20) && (currentVal < 2.80))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.SecondVolume += 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 2.20) && (currentVal < 2.80))
                 {
                     currentVal += 0.01;
                 }
@@ -2971,16 +2990,22 @@ void sCalibration::on_volumeSecondN_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
-                {
-                    currentVal -= 0.01;
+                if(ui->cbSingleExpEnable->checkState() == 0){
+                    if((currentVal > 2.20) && (currentVal <= 2.80))
+                    {
+                        currentVal -= 0.01;
+                    }
+                }
+                else{
+                    if((currentVal > 0) && (currentVal <= 5.35))
+                    {
+                        currentVal -= 0.01;
+                    }
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
                 if((currentVal > 0) && (currentVal <= 5.35))
                 {
@@ -2989,16 +3014,14 @@ void sCalibration::on_volumeSecondN_clicked()
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 2.20) && (currentVal <= 2.80))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
                 if((currentVal > 0) && (currentVal <= 5.35))
                 {
@@ -3008,36 +3031,32 @@ void sCalibration::on_volumeSecondN_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 2.20) && (currentVal <= 2.80))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 2.20) && (currentVal <= 2.80))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 2.20) && (currentVal <= 2.80))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume2->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.SecondVolume -= 0.01;
                 currentVal = ui->leVolume2->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 2.20) && (currentVal <= 2.80))
                 {
                     currentVal -= 0.01;
                 }
@@ -3052,16 +3071,22 @@ void sCalibration::on_volumeThirdP_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
-                {
-                    currentVal += 0.01;
+                if(ui->cbSingleExpEnable->checkState() == 0){
+                    if((currentVal >= 4.70) && (currentVal < 5.30))
+                    {
+                        currentVal += 0.01;
+                    }
+                }
+                else{
+                    if((currentVal >= 0) && (currentVal < 5.35))
+                    {
+                        currentVal += 0.01;
+                    }
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
                 if((currentVal >= 0) && (currentVal < 5.35))
                 {
@@ -3070,16 +3095,14 @@ void sCalibration::on_volumeThirdP_clicked()
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 4.7) && (currentVal < 5.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
                 if((currentVal >= 0) && (currentVal < 5.35))
                 {
@@ -3089,36 +3112,32 @@ void sCalibration::on_volumeThirdP_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 4.7) && (currentVal < 5.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 4.7) && (currentVal < 5.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 4.7) && (currentVal < 5.30))
                 {
                     currentVal += 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.ThirdVOlume += 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal >= 0) && (currentVal < 5.35))
+                if((currentVal >= 4.7) && (currentVal < 5.30))
                 {
                     currentVal += 0.01;
                 }
@@ -3133,16 +3152,22 @@ void sCalibration::on_volumeThirdN_clicked()
     double currentVal;
     switch(tmp){
         case M_METHOD_D5191:
-//                cCalibD5191.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
-                {
-                    currentVal -= 0.01;
+                if(ui->cbSingleExpEnable->checkState() == 0){
+                    if((currentVal > 4.70) && (currentVal <= 5.35))
+                    {
+                        currentVal -= 0.01;
+                    }
+                }
+                else{
+                    if((currentVal > 0) && (currentVal <= 5.35))
+                    {
+                        currentVal -= 0.01;
+                    }
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6377:
-//                cCalibD6377.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
                 if((currentVal > 0) && (currentVal <= 5.35))
                 {
@@ -3151,16 +3176,14 @@ void sCalibration::on_volumeThirdN_clicked()
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_D6378:
-//                cCalibD6378.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 4.70) && (currentVal <= 5.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_D5188:
-//                cCalibD5188.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
                 if((currentVal > 0) && (currentVal <= 5.35))
                 {
@@ -3170,36 +3193,32 @@ void sCalibration::on_volumeThirdN_clicked()
             break;
 
         case M_METHOD_FREE1:
-//                cCalibFree1.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 4.70) && (currentVal <= 5.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE2:
-//                cCalibFree2.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 4.70) && (currentVal <= 5.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE3:
-//                cCalibFree3.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 4.70) && (currentVal <= 5.30))
                 {
                     currentVal -= 0.01;
                 }
                 ui->leVolume3->setText(QString::number(currentVal));
             break;
         case M_METHOD_FREE4:
-//                cCalibFree4.ThirdVOlume -= 0.01;
                 currentVal = ui->leVolume3->text().toDouble();
-                if((currentVal > 0) && (currentVal <= 5.35))
+                if((currentVal > 4.70) && (currentVal <= 5.30))
                 {
                     currentVal -= 0.01;
                 }
@@ -3232,9 +3251,17 @@ void sCalibration::on_D6377_Vl_ration(double vl, bool init){
     if(init){
         cCalibD6377.StageVolume = DEFAULT_STAGE_VOLUME;
         cCalibD6377.FirstVolume = (vl/100);
+        D6377vl_Range = (vl/100);
+        qDebug()<<"D6377vl_Range: "<<D6377vl_Range;
     }else{
         cCalibD6377.FirstVolume = (vl/100);
+        D6377vl_Range = (vl/100);
+        qDebug()<<"D6377vl_Range: "<<D6377vl_Range;
     }
     D6377Vl_updated = true;
     saveMethodVolumeFile();
+}
+
+void sCalibration::updateD6377Range(double D6377Range){
+    D6377vl_Range = D6377Range;
 }

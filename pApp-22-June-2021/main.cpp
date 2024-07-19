@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     QPixmap cursor_pixmap = QPixmap(":images/cursors/pointer.png");  
-    QCursor cursor_default = QCursor(cursor_pixmap, 19, 0); 
+    QCursor cursor_default = QCursor(cursor_pixmap, 19, 0);
     a.setOverrideCursor(cursor_default);
 
     w.hide();

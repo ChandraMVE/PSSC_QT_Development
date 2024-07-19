@@ -5138,7 +5138,7 @@ border-color:  rgb(200, 200, 200);
         <rect>
          <x>20</x>
          <y>90</y>
-         <width>191</width>
+         <width>241</width>
          <height>50</height>
         </rect>
        </property>
@@ -5147,7 +5147,7 @@ border-color:  rgb(200, 200, 200);
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>1st Expansion</string>
+        <string>Volume Adj 1st Exp</string>
        </property>
       </widget>
       <widget class="QLabel" name="lblPara4">
@@ -5155,7 +5155,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         <rect>
          <x>20</x>
          <y>230</y>
-         <width>171</width>
+         <width>241</width>
          <height>50</height>
         </rect>
        </property>
@@ -5164,7 +5164,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>3rd Expansion</string>
+        <string>Volume Adj 3rd Exp</string>
        </property>
       </widget>
       <widget class="QLabel" name="lblPara3">
@@ -5172,7 +5172,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         <rect>
          <x>20</x>
          <y>160</y>
-         <width>171</width>
+         <width>241</width>
          <height>50</height>
         </rect>
        </property>
@@ -5181,13 +5181,13 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>2nd Expansion</string>
+        <string>Volume Adj 2nd Exp</string>
        </property>
       </widget>
       <widget class="sQLEExtend" name="leVolume1">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>430</x>
          <y>90</y>
          <width>111</width>
          <height>50</height>
@@ -5230,51 +5230,8 @@ border-color: rgb(21, 100, 192);
       <widget class="sQLEExtend" name="leVolume2">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>430</x>
          <y>160</y>
-         <width>111</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QLineEdit { 
-	padding: 1px 18px 1px 10px;
-	background-color: rgb(255,255,255);
-	border-width: 2px;
-	border-color: rgb(21, 100, 192);
-	border-style: solid;
-	border-radius: 15;
-	color: rgb(0, 0, 0);
-	font: 75 16pt &quot;Roboto Medium&quot;;
-}
-
-QLineEdit:read-only {
-	background-color: rgb(245,245,245);
-}
-QLineEdit[error=true] {
-border-color: red;
-}
-QLineEdit[error=false] {
-border-color: rgb(21, 100, 192);
-}
-
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="maxLength">
-        <number>15</number>
-       </property>
-      </widget>
-      <widget class="sQLEExtend" name="leVolume3">
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>230</y>
          <width>111</width>
          <height>50</height>
         </rect>
@@ -5403,7 +5360,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <widget class="sQLEExtend" name="leVolume">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>430</x>
          <y>20</y>
          <width>111</width>
          <height>50</height>
@@ -5448,7 +5405,7 @@ border-color: rgb(21, 100, 192);
         <rect>
          <x>20</x>
          <y>20</y>
-         <width>171</width>
+         <width>241</width>
          <height>50</height>
         </rect>
        </property>
@@ -5457,13 +5414,13 @@ border-color: rgb(21, 100, 192);
 font: 75 16pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="text">
-        <string>Stage Volume</string>
+        <string>Stage Volume Adj</string>
        </property>
       </widget>
       <widget class="QPushButton" name="volumeStageP">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>570</x>
          <y>20</y>
          <width>61</width>
          <height>50</height>
@@ -5524,7 +5481,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeFirstP">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>570</x>
          <y>90</y>
          <width>61</width>
          <height>50</height>
@@ -5585,7 +5542,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeSecondP">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>570</x>
          <y>160</y>
          <width>61</width>
          <height>50</height>
@@ -5646,7 +5603,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeThirdP">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>570</x>
          <y>230</y>
          <width>61</width>
          <height>50</height>
@@ -5707,7 +5664,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeStageN">
        <property name="geometry">
         <rect>
-         <x>610</x>
+         <x>340</x>
          <y>20</y>
          <width>61</width>
          <height>50</height>
@@ -5767,7 +5724,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeFirstN">
        <property name="geometry">
         <rect>
-         <x>610</x>
+         <x>340</x>
          <y>90</y>
          <width>61</width>
          <height>50</height>
@@ -5827,7 +5784,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeSecondN">
        <property name="geometry">
         <rect>
-         <x>610</x>
+         <x>340</x>
          <y>160</y>
          <width>61</width>
          <height>50</height>
@@ -5887,7 +5844,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="volumeThirdN">
        <property name="geometry">
         <rect>
-         <x>610</x>
+         <x>340</x>
          <y>230</y>
          <width>61</width>
          <height>50</height>
@@ -5944,84 +5901,47 @@ font: 75 16pt &quot;Roboto Medium&quot;;
         <string>-</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label1">
+      <widget class="sQLEExtend" name="leVolume3">
        <property name="geometry">
         <rect>
-         <x>470</x>
-         <y>20</y>
-         <width>131</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Adjustment</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label2">
-       <property name="geometry">
-        <rect>
-         <x>470</x>
-         <y>90</y>
-         <width>131</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Adjustment</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label3">
-       <property name="geometry">
-        <rect>
-         <x>470</x>
-         <y>160</y>
-         <width>131</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Adjustment</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label4">
-       <property name="geometry">
-        <rect>
-         <x>470</x>
+         <x>430</x>
          <y>230</y>
-         <width>131</width>
+         <width>111</width>
          <height>50</height>
         </rect>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+        <string notr="true">QLineEdit { 
+	padding: 1px 18px 1px 10px;
+	background-color: rgb(255,255,255);
+	border-width: 2px;
+	border-color: rgb(21, 100, 192);
+	border-style: solid;
+	border-radius: 15;
+	color: rgb(0, 0, 0);
+	font: 75 16pt &quot;Roboto Medium&quot;;
+}
+
+QLineEdit:read-only {
+	background-color: rgb(245,245,245);
+}
+QLineEdit[error=true] {
+border-color: red;
+}
+QLineEdit[error=false] {
+border-color: rgb(21, 100, 192);
+}
+
+</string>
        </property>
        <property name="text">
-        <string>Adjustment</string>
+        <string/>
        </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
+       <property name="maxLength">
+        <number>15</number>
        </property>
       </widget>
      </widget>
