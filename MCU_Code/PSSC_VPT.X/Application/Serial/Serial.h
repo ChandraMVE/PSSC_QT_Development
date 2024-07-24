@@ -74,7 +74,7 @@ typedef struct {
 
 #define MAJOR_SW_VERSION        0
 #define MINOR_SW_VERSION        1
-#define TEST_SW_VERSION         48
+#define TEST_SW_VERSION         50
 
 
 //  CLASS METHOD PROTOTYPES

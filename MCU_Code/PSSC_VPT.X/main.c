@@ -67,7 +67,11 @@
 
 static uint16_t tCounter;
 static uint16_t PMCounter;
+static uint16_t SMCounter;
+static uint16_t SMTimeInSecond;
 bool Flag_Complete;
+bool SMCounterFlag;
+bool SMRampUpFlag;
 /*
                          Main application
  */
@@ -125,6 +129,10 @@ int main(void)
     tCounter = 0;
     Flag_Complete = 0;
     PMCounter = 0;
+    SMCounter = 0;
+    SMCounterFlag = 0;
+    SMTimeInSecond = 0;
+    SMRampUpFlag = 0;
     
     while (1)
     {
@@ -136,12 +144,38 @@ int main(void)
                 PistonMotor_ChangedPosition();
             }
         }
-//        ShakerMotor_SoftStartFunction();
+        if((SMRampUpFlag)){
+            ShakerMotor_SoftStartFunction();
+            if(ShakerMotor.SMState_Status == SHAKERMOTOR_STATE_RUNNING){
+                SMRampUpFlag = false;
+            }
+        }
+        if((POSITION_SHAKER_GetValue() == false)){
+            SMCounterFlag = 0;
+        }else{
+            SMCounterFlag = 1;
+        }
         if ( scheduler.flags.interruptFLG) 
         {
             scheduler.flags.interruptFLG = 0;
             scheduler.run();
 
+            if(SMCounterFlag){
+                SMCounter++;
+                if((SMCounter % 1000) == 0){
+                    SMTimeInSecond++;
+                }
+                if((SMCounter == 4600)){
+                    SMRampUpFlag = true;
+                }
+                if(SMCounter >= 50000){
+                    SMCounter = 0;
+                }
+            }else{
+                SMCounter = 0;
+                SMTimeInSecond = 0;
+            }
+            
             if(PistonMotor_MotorStopped()){
                 if(PistonMotor_PMDelay_Counter() == false){
 //                    SetPistonMotor_StopFlag(false);
