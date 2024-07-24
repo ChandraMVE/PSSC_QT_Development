@@ -73,8 +73,7 @@ static uint16_t SM_TempPrevSpeed;
 static uint16_t SM_TempSpeedVal;
 bool SMFLAG_PulseErrCheck;
 bool softStart = false;
-static uint8_t  Debounce_CounterFor270;
-
+bool HalfStep = false;
 /**
  * @brief This method Initialises the Shaker motor variables
  * @param Nothing
@@ -106,7 +105,7 @@ void ShakerMotor_Initialise(void)
     SM_TempSpeedVal = 0;
     SMFLAG_PulseErrCheck = false;
     ShakerMotor_Stop();
-    Debounce_CounterFor270 = 0;
+
 }
        
 /**
@@ -138,10 +137,8 @@ void ShakerMotor_Handler(void)
             {
                 SM_Period = 0XD054;
                 SM_DutyCycle = 0X682A;
-                MICRO_STEP1_SetHigh();
-//                MICRO_STEP1_SetLow();
+                MICRO_STEP1_SetLow();
                 MICRO_STEP2_SetHigh();
-//                MICRO_STEP2_SetLow();
                 ShakerMotor.Flags.SMCheck = true;
                 ShakerMotor_Drive();
                 Check_Counter = 0;
@@ -150,32 +147,24 @@ void ShakerMotor_Handler(void)
             if(((ShakerMotor.Flags.SMEn == true) && (POSITION_SHAKER_GetValue() == false) && \
                     (ShakerMotor.Flags.SMCheck == true) && (Alarm_GetStatus() == false)))
             {
-                ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_SOFTSTART;
-//                softStart = true;
-                /*Debounce_Counter++;
+                Debounce_Counter++;
                 if(Debounce_Counter >= MAX_DEBOUNCE_COUNT)
                 {
                     Debounce_Counter = 0;
                     Check_Counter = 0;
-                    MICRO_STEP1_SetLow();
-                    MICRO_STEP2_SetLow();
-//                    MICRO_STEP1_SetHigh();
-//    //                MICRO_STEP1_SetLow();
-//                    MICRO_STEP2_SetHigh();
-//    //                MICRO_STEP2_SetLow();
+//                    MICRO_STEP1_SetLow();
+//                    MICRO_STEP2_SetLow();
                     ShakerMotor.Flags.SMCheck = false;
                     ShakerMotor.Flags.SMEdited = true;
-//                    SM_TempSpeed = INIT_SPEED;
+                    SM_TempSpeed = INIT_SPEED;
                     SM_TempPrevSpeed = 0;
-                    SM_Period = 0XD054;
-                    SM_DutyCycle = 0X682A;
-//                    ShakerMotor_CalculateSpeed(SM_TempSpeed);
+                    ShakerMotor_CalculateSpeed(SM_TempSpeed);
                     ShakerMotor_Drive();
                     Err_Debounce_Counter = 0;
                     SMFLAG_PulseErrCheck = false;
                     ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_SOFTSTART;
                     softStart = true;
-                }*/
+                }
             }
             else
             {
@@ -308,39 +297,39 @@ void ShakerMotor_Handler(void)
         break;
         
         case SHAKERMOTOR_STATE_SOFTSTART :
-            softStart = true;
-//            ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
-            /*Debounce_Counter++;
-//            if(Debounce_Counter >= SPEED_DEBOUNCE_COUNT)
-            if(Debounce_Counter >= 3)
+//            softStart = true;
+            Debounce_Counter++;
+            if(Debounce_Counter >= SPEED_DEBOUNCE_COUNT)
+//            if(Debounce_Counter >= 3)
             {
                 Debounce_Counter = 0;
                 SM_TempSpeed += STEP_SPEED;
-//                ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
+                ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
 //                ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
-                Debounce_CounterFor270++;
-                if(Debounce_CounterFor270 == 1){
-                    ShakerMotor.Current_Speed = (ShakerMotor.Set_Speed / 3);
-                }else if(Debounce_CounterFor270 == 2){
-                    ShakerMotor.Current_Speed = (ShakerMotor.Set_Speed / 2);
-                }else if (Debounce_CounterFor270 == 3){
-                    ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
-                }
                 ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
                 PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
                 PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
                 PWM_SoftwareUpdateRequest(PWM_GENERATOR_8);
-//                if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
-                if(Debounce_CounterFor270 >= 4)
+                if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
                 {
-                    Debounce_CounterFor270 = 0;
+                    MICRO_STEP1_SetHigh();
+                    MICRO_STEP2_SetLow();
+                    HalfStep = true;
                     ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
                     ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
                 }
-            }*/
+            }
         break;    
         
         case SHAKERMOTOR_STATE_RUNNING : 
+            if(HalfStep){
+                Debounce_Counter++;
+                if(Debounce_Counter >= 25){
+                    MICRO_STEP1_SetLow();
+                    MICRO_STEP2_SetLow();
+                    HalfStep = false;
+                }
+            }
             if(ShakerMotor.Flags.SMEn == false)
             {
                 ShakerMotor_Stop();
@@ -425,9 +414,7 @@ void ShakerMotor_Handler(void)
 
 void ShakerMotor_SoftStartFunction(void){
     if(softStart){
-        SM_TempSpeed += STEP_SPEED;
-        ShakerMotor.Current_Speed = SM_TempPrevSpeed + SM_TempSpeed;
-//        ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
+        ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
         ShakerMotor_CalculateSpeed(ShakerMotor.Current_Speed);
         PWM_PeriodSet(PWM_GENERATOR_8, SM_Period);
         PWM_DutyCycleSet(PWM_GENERATOR_8, SM_DutyCycle);
@@ -435,8 +422,6 @@ void ShakerMotor_SoftStartFunction(void){
         if(ShakerMotor.Current_Speed >= ShakerMotor.Set_Speed)
         {
             ShakerMotor.Current_Speed = ShakerMotor.Set_Speed;
-            MICRO_STEP1_SetLow();
-            MICRO_STEP2_SetLow();
             ShakerMotor.SMState_Status = SHAKERMOTOR_STATE_RUNNING;
             softStart = false;
         }
