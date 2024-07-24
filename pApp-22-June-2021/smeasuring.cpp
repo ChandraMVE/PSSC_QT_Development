@@ -60,6 +60,8 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lblStatus->hide();
     cRunState = false;
 
+    ui->imageCapture->hide();
+
 }
 
 sMeasuring::~sMeasuring()

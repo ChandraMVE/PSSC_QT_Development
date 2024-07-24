@@ -129,6 +129,7 @@ sCalibration::sCalibration(QWidget *parent) :
 
     D6377vl_Range = 0.0;
 
+    ui->imageCapture->hide();
 
     initAvg();
 }

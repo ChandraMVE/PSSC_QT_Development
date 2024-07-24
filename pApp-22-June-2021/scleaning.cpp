@@ -10,6 +10,8 @@ sCleaning::sCleaning(QWidget *parent) :
     ui->pbRun->setEnabled(true);
 
     cRunState = false;
+
+    ui->imageCapture->hide();
 }
 
 sCleaning::~sCleaning()

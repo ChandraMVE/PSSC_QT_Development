@@ -164,6 +164,8 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     cEnSwitch = true;
     exitClicked = false;
 
+    ui->imageCapture->hide();
+
 }
 
 sMethodSetup::~sMethodSetup()

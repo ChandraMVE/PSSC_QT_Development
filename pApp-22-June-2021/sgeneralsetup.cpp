@@ -255,7 +255,7 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
 
     QRegularExpressionValidator *ipValidator = new QRegularExpressionValidator(IpRegex, this);
 
-    QRegularExpression passRegex ("[^<>'\"/;`?,{}@!~&:|\^]{0,20}$");
+    QRegularExpression passRegex ("[^<>'\"/;`?,{}@!~&:|\^ ]{1,20}$");
 
     QRegularExpressionValidator *passValidator = new QRegularExpressionValidator(passRegex, this);
 
@@ -269,6 +269,8 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     ui->leDNS->setValidator(ipValidator);
 
     DateTimeDisplay = true;
+
+    ui->imageCapture->hide();
 }
 
 sGeneralSetup::~sGeneralSetup()

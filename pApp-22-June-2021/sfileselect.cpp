@@ -10,6 +10,8 @@ sFileSelect::sFileSelect(QWidget *parent) :
 
     ui->frMessage->move(40,200);
     ui->frMessage->hide();
+
+    ui->imageCapture->hide();
 }
 
 sFileSelect::~sFileSelect()

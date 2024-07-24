@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDebug>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -105,6 +106,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->wMeasuring1->readOperatorsFile();
     ui->wMeasuring1->readSampleIdsFile();
     ui->wMeasuring1->Show();
+    ui->imageCapture->resize(167,41);
+    ui->imageCapture->move(20,880);
+    ui->imageCapture->show();
 
     ui->wMeasuring2->resize(768, 876);
     ui->wMeasuring2->move(0, 180);
@@ -342,6 +346,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lblTime->setText(cDateTime.toString(qslShowTimeFormat.at(ui->wGeneralSetup->general_setup.time_format)));
     ui->wCleaning->hide();
     rinsing = false;
+
+    connect(ui->imageCapture, &QPushButton::clicked, this, &MainWindow::on_imageCapture_clicked);
 
 }
 
@@ -5943,6 +5949,9 @@ void MainWindow::onMenuClicked(int menu)
     switch (menu) {
 
     case M_MEASURING:
+        ui->imageCapture->resize(167,41);
+        ui->imageCapture->move(20,880);
+        ui->imageCapture->show();
          ui->wMeasuring1->Show();
          ui->wMenuBar->setSelectedMenu(menu);
 
@@ -5970,6 +5979,10 @@ void MainWindow::onMenuClicked(int menu)
 
     case M_CLEANING:
 //         ui->wCleaning->Show();
+        ui->imageCapture->resize(167,80);
+        ui->imageCapture->move(20,920);
+        ui->imageCapture->show();
+
         ui->wUserSetup->Show();
         ui->wUserSetup->show();
         ui->fTitle->hide();
@@ -5994,6 +6007,10 @@ void MainWindow::onMenuClicked(int menu)
         if(cWidget) cWidget->hide();
         ui->fTitle->hide();
         ui->wMenuBar->move(0, 10);
+
+        ui->imageCapture->resize(167,41);
+        ui->imageCapture->move(20,878);
+        ui->imageCapture->show();
 
          ui->wMemory->Show();
          ui->wMenuBar->setSelectedMenu(menu); //18-Apr-2023
@@ -6060,6 +6077,10 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
             {
                 ui->wCheckPass->hide();
 
+                ui->imageCapture->resize(167,80);
+                ui->imageCapture->move(20,920);
+                ui->imageCapture->show();
+
                 switch(rMenu)
                 {
 
@@ -6101,6 +6122,10 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
             !QString::compare(rPwd, "p", Qt::CaseSensitive))))
 
         {
+            ui->imageCapture->resize(167,80);
+            ui->imageCapture->move(20,920);
+            ui->imageCapture->show();
+
             ui->wCheckPass->hide();
 
             if(cWidget) cWidget->hide();
@@ -6120,6 +6145,10 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                 (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
                  !QString::compare(rPwd, "p", Qt::CaseSensitive))))
         {
+            ui->imageCapture->resize(167,80);
+            ui->imageCapture->move(20,920);
+            ui->imageCapture->show();
+
             ui->wCheckPass->hide();
 
             if(cWidget) cWidget->hide();
@@ -6140,6 +6169,10 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                 (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
                  !QString::compare(rPwd, "p", Qt::CaseSensitive))))
         {
+            ui->imageCapture->resize(167,80);
+            ui->imageCapture->move(20,920);
+            ui->imageCapture->show();
+
             ui->wCheckPass->hide();
             ui->wServiceSetup->setDebug();
 
@@ -6548,4 +6581,73 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::onD6377VlRatio(double vl){
     qDebug()<<"Updating D6377 vl_ratio";
     ui->wCalibrationSetup->on_D6377_Vl_ration(vl, false);
+}
+
+void MainWindow::on_imageCapture_clicked()
+{
+    /*qDebug()<<"image capture clicked";
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+
+        QString filename = QString("/run/media/sda1/screenshot/screenshot_%1.png").arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug()<<"path : "<<filename;
+        pixmap.save(QString(filename));
+        QString originalStyleSheet = this->styleSheet();
+        this->setStyleSheet("background-color: rgb(21, 100, 192);");
+
+        QTimer::singleShot(50, this, [=]() {
+            this->setStyleSheet(originalStyleSheet);
+        });
+    }else{
+        qDebug()<<"folder doesn't exist";
+    }*/
+
+    qDebug() << "image capture clicked";
+    QDir usbRootDir("/run/media/sda1/");
+    if (usbRootDir.exists())
+    {
+        QString screenshotDirPath = "/run/media/sda1/screenshot";
+        QDir screenshotDir(screenshotDirPath);
+        if (!screenshotDir.exists())
+        {
+            if (screenshotDir.mkpath(screenshotDirPath))
+            {
+                qDebug() << "Screenshot folder created successfully.";
+            }
+            else
+            {
+                qDebug() << "Failed to create screenshot folder.";
+                return; // Exit the function if the folder could not be created
+            }
+        }
+        QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+        QString filename = QString("%1/screenshot_%2.png").arg(screenshotDirPath).arg(timestamp);
+        QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+        ui->imageCapture->setFocusPolicy(Qt::NoFocus);
+        qDebug() << "path : " << filename;
+        if (pixmap.save(filename))
+        {
+            qDebug() << "Screenshot saved successfully.";
+            QString originalStyleSheet = this->styleSheet();
+            this->setStyleSheet("background-color: rgb(21, 100, 192);");
+
+            QTimer::singleShot(50, this, [=]() {
+                this->setStyleSheet(originalStyleSheet);
+            });
+        }
+        else
+        {
+            qDebug() << "Failed to save screenshot.";
+        }
+    }
+    else
+    {
+        qDebug() << "Pendrive doesn't exist";
+    }
 }

@@ -108,6 +108,8 @@ sKeypad::sKeypad(QWidget *parent) :
     ui->frNumSpecial->hide();
     ui->frNum->hide();
     ui->frOtherAlpha->hide();
+
+    ui->imageCapture->hide();
 }
 
 sKeypad::~sKeypad()

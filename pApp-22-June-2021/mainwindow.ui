@@ -397,6 +397,39 @@ QListWidget::item::hover {
      <string>Error 1</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="imageCapture">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>810</y>
+      <width>167</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">/*QPushButton {
+    border: none;
+    outline: none;*//* Ensures no outline is displayed */
+/*}
+QPushButton:pressed {
+    border: none;
+    outline: none;*/ /* Ensures no outline is displayed */
+/*}*/
+QPushButton {
+    border: none;
+    outline: none;/* Ensures no outline is displayed */
+}
+
+QPushButton:pressed {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>wMenuBar</zorder>
    <zorder>fTitle</zorder>
    <zorder>wMeasuring1</zorder>
@@ -417,6 +450,7 @@ QListWidget::item::hover {
    <zorder>pushButton</zorder>
    <zorder>pushButton_3</zorder>
    <zorder>pushButton_4</zorder>
+   <zorder>imageCapture</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

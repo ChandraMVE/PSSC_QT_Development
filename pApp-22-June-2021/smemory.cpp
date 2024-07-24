@@ -84,6 +84,8 @@ sMemory::sMemory(QWidget *parent) :
 
     cParasChanged = false;
     cEnSwitch = true;
+
+    ui->imageCapture->hide();
 }
 
 sMemory::~sMemory()

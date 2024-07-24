@@ -19,7 +19,7 @@ void sQLEExtend::mousePressEvent(QMouseEvent *event)
 {
     if(!this->isReadOnly())
     {
-        cTimer->start(2000);
+        cTimer->start(10);
         cKeydown = 1;
     }
 

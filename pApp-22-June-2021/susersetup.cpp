@@ -29,6 +29,8 @@ sUserSetup::sUserSetup(QWidget *parent) :
     cParasChanged = false;
     cHide = false;
     cEnSwitch = true;
+
+    ui->imageCapture->hide();
 }
 
 sUserSetup::~sUserSetup()

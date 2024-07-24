@@ -80,6 +80,8 @@ sService::sService(QWidget *parent) :
 
     ui->wFirmware->setFirmware(cVerFW + "\n" + cVerMCU);
     cDebug = false;
+
+    ui->imageCapture->hide();
 }
 
 sService::~sService()
