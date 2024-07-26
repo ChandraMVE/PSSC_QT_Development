@@ -429,8 +429,8 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
         QString output = process.readAllStandardOutput();
         QString err = process.readAllStandardError();
 
-//        if(output.contains("Product=SP712"))
-        if(output.contains("Product=POS PRINTER"))
+        if(output.contains("Product=SP712"))
+//        if(output.contains("Product=POS PRINTER"))
         {
 
              if(CreatePrintSpool(precords)) //success

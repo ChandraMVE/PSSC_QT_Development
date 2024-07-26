@@ -219,6 +219,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug()<<"Method Adjust file";
         ui->wCalibrationSetup->saveMethodVolumeFile();
         ui->wCalibrationSetup->on_D6377_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
+        ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
     }
     qDebug()<<"value of from mainwindow constructor (ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
 
@@ -6097,6 +6098,7 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                                             else {
                                                 ui->wCalibrationSetup->IS_ADMIN_USER=0;
                                             }
+                                            ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
                                             ui->wCalibrationSetup->Show();
                                             cMenu = M_SETUP;
                                             cWidget = ui->wCalibrationSetup;
@@ -6581,6 +6583,7 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::onD6377VlRatio(double vl){
     qDebug()<<"Updating D6377 vl_ratio";
     ui->wCalibrationSetup->on_D6377_Vl_ration(vl, false);
+    ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
 }
 
 void MainWindow::on_imageCapture_clicked()

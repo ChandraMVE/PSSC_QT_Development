@@ -255,9 +255,9 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
 
     QRegularExpressionValidator *ipValidator = new QRegularExpressionValidator(IpRegex, this);
 
-    QRegularExpression passRegex ("[^<>'\"/;`?,{}@!~&:|\^ ]{1,20}$");
+    QRegularExpression passRegex ("[^<>'\"/;`?,{}@!~&:|\^]{1,20}$");
 
-    QRegularExpressionValidator *passValidator = new QRegularExpressionValidator(passRegex, this);
+    passValidator = new QRegularExpressionValidator(passRegex, this);
 
     ui->leOldPassword->setValidator(passValidator);
     ui->leNewPassword->setValidator(passValidator);
@@ -378,6 +378,9 @@ void sGeneralSetup::Show(QString type)
         ui->cbUser->setCurrentIndex(M_USER_ADMIN);
         ui->cbUser->setEnabled(true);
 
+        QRegularExpression adminPassRegex("[^<>'\"/;`?,{}@!~&:|\^ ]{1,20}$");
+        passValidator = new QRegularExpressionValidator(adminPassRegex, this);
+
         ui->lblOldPassword->show();
         ui->leOldPassword->show();
 
@@ -396,6 +399,9 @@ void sGeneralSetup::Show(QString type)
         ui->cbUser->setCurrentIndex(M_USER_SERVICE);
         ui->cbUser->setEnabled(true);
 
+        QRegularExpression adminPassRegex("[^<>'\"/;`?,{}@!~&:|\^]{1,20}$");
+        passValidator = new QRegularExpressionValidator(adminPassRegex, this);
+
         ui->lblOldPassword->show();
         ui->leOldPassword->show();
 
@@ -413,6 +419,9 @@ void sGeneralSetup::Show(QString type)
     {
         ui->cbUser->setCurrentIndex(M_USER_ADMIN);
         ui->cbUser->setEnabled(true);
+
+        QRegularExpression adminPassRegex("[^<>'\"/;`?,{}@!~&:|\^]{1,20}$");
+        passValidator = new QRegularExpressionValidator(adminPassRegex, this);
 
         ui->lblOldPassword->hide();
         ui->leOldPassword->hide();

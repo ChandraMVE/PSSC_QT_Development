@@ -154,6 +154,7 @@ private:
     int cPrevOtherTab;
     bool cEnSwitch;
     bool DateTimeDisplay;
+    QRegularExpressionValidator *passValidator;
 
 public:
     struct GENERAL_SETUP general_setup;

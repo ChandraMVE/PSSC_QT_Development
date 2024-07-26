@@ -127,7 +127,7 @@ sCalibration::sCalibration(QWidget *parent) :
 
     cPrevTab = -1;
 
-    D6377vl_Range = 0.0;
+    D6377vl_Range = 5.0;
 
     ui->imageCapture->hide();
 
@@ -2104,6 +2104,19 @@ void sCalibration::checkExit(int tmp)
         if(cParasChanged){
             emit getConfirmation(M_CONFIRM_CALIBRATION, tmp);
         }
+
+        if(!cParasChanged)
+        {
+            hideAfterACK(true);
+            int tc = getTemperatureCount(20);
+            emit sendCommand(cProtocol.sendMeasuring(0, tc), this);
+        }
+
+        if(!cParasChanged)
+        {
+            this->hide();
+            emit showHome(false);
+        }
     }
     else //Exit
     {
@@ -2765,6 +2778,7 @@ void sCalibration::on_volumeFirstP_clicked()
             break;
         case M_METHOD_D6377:
                 currentVal = ui->leVolume1->text().toDouble();
+                qDebug()<<"D6377vl_Range value: "<<D6377vl_Range;
                 if((currentVal >= (D6377vl_Range - 0.30)) && (currentVal < (D6377vl_Range + 0.30)))
                 {
                     currentVal += 0.01;
@@ -2846,6 +2860,7 @@ void sCalibration::on_volumeFirstN_clicked()
             break;
         case M_METHOD_D6377:
                 currentVal = ui->leVolume1->text().toDouble();
+                qDebug()<<"D6377vl_Range value: "<<D6377vl_Range;
                 if((currentVal > (D6377vl_Range - 0.30)) && (currentVal <= (D6377vl_Range + 0.30)))
                 {
                     currentVal -= 0.01;
@@ -3264,5 +3279,5 @@ void sCalibration::on_D6377_Vl_ration(double vl, bool init){
 }
 
 void sCalibration::updateD6377Range(double D6377Range){
-    D6377vl_Range = D6377Range;
+    D6377vl_Range = (D6377Range/100);
 }
