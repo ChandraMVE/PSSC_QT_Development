@@ -136,6 +136,9 @@ int main(void)
                 PistonMotor_ChangedPosition();
             }
         }
+        if(ShakerMotor_CheckStops()){
+            ShakerMotor_StopFunction();
+        }
 //        ShakerMotor_SoftStartFunction();
         if ( scheduler.flags.interruptFLG) 
         {
