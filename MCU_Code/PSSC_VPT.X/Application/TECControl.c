@@ -380,7 +380,7 @@ void TECControl_Handler(void)
                     && (TECControl.ErrorFlags.TECTemp == false) && (TECControl.Flags.TECEn == false))
             {
 //                TEC_DutyCycle = 0X018F;
-                if(TECControl.Set_Value > (TECControl.TempCurrent_Value + MAX_TEMP_TOLERENCE_COUNT))
+                if(TECControl.Set_Value > (TECControl.TempCurrent_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
                 {
                     TEC_DutyCycle = 0X018F;
                     TECControl_Heating();
@@ -388,7 +388,7 @@ void TECControl_Handler(void)
                     TECControl.Flags.TECCheck = true;
 //                    TECControl.Set_Value = 67250;
                 }
-                else if(TECControl.Set_Value < (TECControl.TempCurrent_Value - MAX_TEMP_TOLERENCE_COUNT))
+                else if(TECControl.Set_Value < (TECControl.TempCurrent_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
                 {
                     TEC_DutyCycle = 0X018F; //0X0F9F;//0X18FF;
                     Events_SetTecFan(true);
@@ -425,7 +425,7 @@ void TECControl_Handler(void)
                         
                         if(TECControl.Set_Value > TECControl.Current_Value)
                         {
-                            if( TECControl.TempCurrent_Value > (TECControl.Set_Value - MAX_TEMP_TOLERENCE_COUNT))
+                            if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
                             {
                                 PIDControl_Calculation();
                             }else{
@@ -446,7 +446,7 @@ void TECControl_Handler(void)
                     }
                     else
                     {
-                        if( TECControl.TempCurrent_Value > (TECControl.Set_Value - MAX_TEMP_TOLERENCE_COUNT))
+                        if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
                         {
                             PIDControl_Calculation();
                         }else{
@@ -468,9 +468,9 @@ void TECControl_Handler(void)
                 else
                 {
                     TECControl.Current_Value = TECControl.TempCurrent_Value;
-                    if( TECControl.TempCurrent_Value < (TECControl.Set_Value + MAX_TEMP_TOLERENCE_COUNT))
+                    if( TECControl.TempCurrent_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
                     {
-                        PIDControl_Calculation();
+                        PIDControl_ReverseCalculation();
                     }else{
                         if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
                         {
