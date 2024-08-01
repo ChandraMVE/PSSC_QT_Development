@@ -6637,11 +6637,11 @@ void MainWindow::on_imageCapture_clicked()
         if (pixmap.save(filename))
         {
             qDebug() << "Screenshot saved successfully.";
-            QString originalStyleSheet = this->styleSheet();
+//            QString originalStyleSheet = this->styleSheet();
             this->setStyleSheet("background-color: rgb(21, 100, 192);");
 
             QTimer::singleShot(50, this, [=]() {
-                this->setStyleSheet(originalStyleSheet);
+                this->setStyleSheet("background-color: rgb(255, 255, 255);");
             });
         }
         else
