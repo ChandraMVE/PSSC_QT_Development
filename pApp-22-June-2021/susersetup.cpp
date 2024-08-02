@@ -29,6 +29,7 @@ sUserSetup::sUserSetup(QWidget *parent) :
     cParasChanged = false;
     cHide = false;
     cEnSwitch = true;
+    UserSetUpFilesSaved = false;
 
     ui->imageCapture->hide();
 }
@@ -114,11 +115,13 @@ void sUserSetup::saveFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        UserSetUpFilesSaved = true;
         emit showMsgBox(tr("User Setup"), tr("User Setup Changes Saved!"));
     }
     else
     {
         cEnSwitch = false;
+        UserSetUpFilesSaved = false;
         emit showMsgBox(tr("User Setup"), tr("Error Saving File!"));
     }
 }

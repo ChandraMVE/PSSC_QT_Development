@@ -163,6 +163,7 @@ sMethodSetup::sMethodSetup(QWidget *parent) :
     cParasChanged = false;
     cEnSwitch = true;
     exitClicked = false;
+    MethodSetUpFilesSaved = false;
 
     ui->imageCapture->hide();
 
@@ -424,11 +425,13 @@ void sMethodSetup::saveFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        MethodSetUpFilesSaved = true;
         emit showMsgBox(tr("Method Setup"), tr("Method Changes Saved!"));
     }
     else
     {
         cEnSwitch = false;
+        MethodSetUpFilesSaved = false;
         emit showMsgBox(tr("Method Setup"), tr("Error Saving File!"));
     }
 

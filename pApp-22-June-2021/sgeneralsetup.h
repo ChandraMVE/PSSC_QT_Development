@@ -121,6 +121,8 @@ public:
     void editDateTime(bool tmp); //naveen
     int getCurrentGMTSeconds(void);
 
+    bool GeneralSetUpFilesSaved;
+
 signals:
     void showKeypad( QObject *, int, bool);
     void showHome(bool);

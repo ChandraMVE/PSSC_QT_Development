@@ -151,13 +151,13 @@ void sMeasuring::onLiveData(int tm, int pr)
     if(ui->lblTemperature->isVisible()) 
     {
         QString str;
-        qDebug()<<"onLiveData from MCU: The Temp "<<tm<<" pressure "<<pr;
+//        qDebug()<<"onLiveData from MCU: The Temp "<<tm<<" pressure "<<pr;
         str = cSettings.getTemperatureLiveSS(tm);
         ui->lblTemperature->setText(str + " " +tmpUnit);
-        qDebug()<<"On lblTemperature: "<<str+ " " +tmpUnit;
+//        qDebug()<<"On lblTemperature: "<<str+ " " +tmpUnit;
         str = cSettings.getPressureLiveSS(tm, pr);
         ui->lblPressure->setText(str+" "+presUnit);
-        qDebug()<<"On lblPressure: "<<str+" "+presUnit;
+//        qDebug()<<"On lblPressure: "<<str+" "+presUnit;
     }
 }
 

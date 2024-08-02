@@ -209,6 +209,8 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     cPrevOtherTab = -1;
     cEnSwitch = true;
 
+    GeneralSetUpFilesSaved = false;
+
     ui->cbDay->clear();
     for(int tmp=1; tmp <=31; tmp++)
         ui->cbDay->addItem(QString::number(tmp));
@@ -513,6 +515,7 @@ bool sGeneralSetup::saveFile()
         save << general_setup;
         out.close();
         cParasChanged = false;
+        GeneralSetUpFilesSaved = true;
         saveHostnameFile();
         saveNetworkFile();
         emit showMsgBox(tr("General Setup"), tr("General Setup Changes Saved!"));
@@ -1233,11 +1236,11 @@ void sGeneralSetup::on_imageCapture_clicked()
 int sGeneralSetup::getGMTSeconds()
 {
     int totalSeconds = 0;
-    qDebug() << "general_setup.gmt: " << general_setup.gmt;
+//    qDebug() << "general_setup.gmt: " << general_setup.gmt;
     QString str = ui->cbGMT->itemText(general_setup.gmt);
 //    QString str = ui->cbGMT->currentText();
 //    QString currentStr = ui->cbGMT->currentText();
-    qDebug() << "general_setup.gmt text: " << str;
+//    qDebug() << "general_setup.gmt text: " << str;
 //    qDebug() << "ui->cbGMT->currentText(): " << ui->cbGMT->currentText();
 
     QStringList a = str.split(" ");
@@ -1249,7 +1252,7 @@ int sGeneralSetup::getGMTSeconds()
             QStringList hm = time.split(":");
             int hours = hm[0].toInt();
             int minutes = hm[1].toInt();
-            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
+//            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
             if(hours>0)
             {
                 return (hours * 3600) + (minutes * 60);
@@ -1269,7 +1272,7 @@ int sGeneralSetup::getGMTSeconds()
 //        totalSeconds = -totalSeconds;
 //    }
 
-    qDebug() << "totalSeconds: " << totalSeconds;
+//    qDebug() << "totalSeconds: " << totalSeconds;
 //    qDebug() << "currentSeconds: " << currentSeconds;
 //    return totalSeconds + currentSeconds;
     return totalSeconds;
@@ -1277,7 +1280,7 @@ int sGeneralSetup::getGMTSeconds()
 
 int sGeneralSetup::getCurrentGMTSeconds(void){
     int totalSeconds = 0;
-    qDebug() << "general_setup.gmt: " << general_setup.gmt;
+//    qDebug() << "general_setup.gmt: " << general_setup.gmt;
 //    QString str = ui->cbGMT->itemText(general_setup.gmt);
     QString str = ui->cbGMT->currentText();
     qDebug() << "general_setup.gmt text: " << str;
@@ -1289,7 +1292,7 @@ int sGeneralSetup::getCurrentGMTSeconds(void){
             QStringList hm = time.split(":");
             int hours = hm[0].toInt();
             int minutes = hm[1].toInt();
-            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
+//            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
             if(hours>0)
             {
                 return (hours * 3600) + (minutes * 60);
@@ -1309,7 +1312,7 @@ int sGeneralSetup::getCurrentGMTSeconds(void){
 //        totalSeconds = -totalSeconds;
 //    }
 
-    qDebug() << "totalSeconds: " << totalSeconds;
+//    qDebug() << "totalSeconds: " << totalSeconds;
     return totalSeconds;
 }
 

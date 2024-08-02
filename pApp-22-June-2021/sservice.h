@@ -75,10 +75,14 @@ public:
     void incrementCount(void);
     void onLiveData(int vp, int pp, int atm, int ctm, int pr, int ss, int err);
     void onLogData(int vp, int pp, int atm, int ctm, int pr, int ss, int err);
+    void onInternalLogData(int vp, int pp, int atm, int ctm, int pr, int ss, int err);
     void setFileSelected(QString fs);
     bool getUSBLogEnabled(void);
     bool getContinuousRunEnabled(void);
     bool logData();
+    bool internalLogData();
+    void internalLog();
+    void commandLog(QString str);
     bool isDiagnosticMode(void);
     void addStatus(QString tmp);
     void updateStatus(QString tmp);
@@ -92,6 +96,11 @@ public:
     void setDebug();
     int getDebug();
     void setVersion(QString tmp);
+    bool logPathEnabled();
+    QString FWVersion();
+
+    int IS_ADMIN_USER_Service;
+    bool ServiceSetUpFilesSaved;
 
 protected:
     void timerEvent(QTimerEvent *e);
@@ -135,6 +144,8 @@ private slots:
   void onFirmwareClicked();
   void on_imageCapture_clicked();
 
+  void on_pbTransfer_clicked();
+
 private:
     Ui::sService *ui;
     struct SERVICE_SETUP service_setup;
@@ -142,6 +153,7 @@ private:
     int cPrevTab;
     sSettings cSettings;
     int cLogStage;
+    int cInternalLogStage;
     int cUsbLogTimeout;
     bool cDiagnosticMode;
     bool cHide;
@@ -158,7 +170,10 @@ private:
     int cerr;
 
     bool cLiveDataUpdated;
+    bool cLiveInternalDataUpdate;
+    bool logPath;
     QFile *cLogFile;
+    QFile *logFileToAppend;
     sProtocol cProtocol;
     bool cDebug;
     QString cVerFW, cVerMCU;

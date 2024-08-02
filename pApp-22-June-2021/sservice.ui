@@ -2377,9 +2377,9 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>23</y>
+        <y>117</y>
         <width>709</width>
-        <height>675</height>
+        <height>581</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -2648,6 +2648,115 @@ QTableView::item {
         <string>Date Time</string>
        </property>
       </column>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>701</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+    border: 2px solid  rgb(200, 200, 200);
+    border-radius: 10px;
+    margin-top: 16px; /* leave space at the top for the title */
+    padding : 0px;
+
+}
+
+QGroupBox::title {
+    subcontrol-origin: padding;
+    subcontrol-position: top left ; /* position at the top center */
+    left : 20px;
+    top : -15px;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>30</y>
+         <width>241</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-width: 0px;</string>
+       </property>
+       <property name="text">
+        <string>Internal Log Transfer</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pbTransfer">
+       <property name="geometry">
+        <rect>
+         <x>350</x>
+         <y>30</y>
+         <width>101</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::ClickFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(51, 204, 0);
+border-width: 2px;
+border-color: rgb(51, 204, 0);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(204, 244, 198);
+border-width: 2px;
+border-color: rgb(127, 143, 127);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(255, 255, 255);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+border-width: 2px;
+border-color: rgb(21, 100, 192);
+border-style: solid;
+border-radius: 10;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto Medium&quot;;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Transfer</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>

@@ -142,12 +142,25 @@
 #define M_COMMUNICATION_TIME_OUT    10 
 #define M_IDLE_TIME_OUT             60*5
 
+//these are for log files
+#define MEMORY_FILES                0
+#define USER_SETUP_FILES            1
+#define GENERAL_SETUP_FILES         2
+#define METHOD_SETUP_FILES          3
+#define SERVICE_SETUP_FILES         4
+#define CALIBRATION_SETUP_FILES     5
+#define VOLUME_ADJUSTMENT_FILES     6
+//till this
+
 #define FF_FIRMWARE_FOLDER          "/run/media/sda1/RVPPro_Firmware/"
 #define FF_USB                      "/run/media/sda1/"
 #define USB_PRINTER                 "/dev/usb/lp0"
 #define USB_LOG_FOLDER              "/run/media/sda1/RVPPro_Log/"
 #define HOST_FILE_NAME              "/etc/hostname"
 #define NETWORK_FILE_NAME           "/etc/systemd/network/wired.network"
+#define INTERNAL_LOG1               "/log/internal1.txt"
+#define INTERNAL_LOG2               "/log/internal2.txt"
+#define USB_INTERNAL_LOG            "/run/media/sda1/RVPPro_Internal_Log/"
 
 #define FN_SAMPLE_ID                "/tdata/sampleids.txt"
 #define FN_OPERATORS                "/tdata/operators.txt"
@@ -169,7 +182,7 @@
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App: Ver. 1.05.95"
+#define FW_VERSION  "App: Ver. 1.05.109"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

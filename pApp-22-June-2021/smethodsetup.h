@@ -154,6 +154,8 @@ public:
     bool isSwitchEnabled(int tmp);
     void checkExit(int tmp);
 
+    bool MethodSetUpFilesSaved;
+
 signals:
     void showKeypad( QObject *, int, bool);
     void showHome(bool);

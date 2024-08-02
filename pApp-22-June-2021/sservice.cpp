@@ -49,12 +49,15 @@ sService::sService(QWidget *parent) :
     cUsbLogTimeout = USB_LOG_TIMEOUT;
 
     cLiveDataUpdated = false;
+    cLiveInternalDataUpdate = false;
     cLogFile = NULL;
+    logFileToAppend = NULL;
 
     cDiagnosticMode = false;
     cHide = false;
     cEnSwitch = true;
     sServiceSaved = false;
+    ServiceSetUpFilesSaved = false;
 
     cvp = 0;
     cpp = 0;
@@ -82,11 +85,19 @@ sService::sService(QWidget *parent) :
     cDebug = false;
 
     ui->imageCapture->hide();
+
+    cInternalLogStage = 1;
+//    internalLogData();
+    logPath = false;
 }
 
 sService::~sService()
 {
     delete ui;
+}
+
+QString sService::FWVersion(){
+    return cVerFW;
 }
 
 void sService::Show()
@@ -99,6 +110,18 @@ void sService::Show()
     ui->pbStop->setEnabled(false);
     ui->lwStatus->clear();
     ui->pbSave->hide();
+
+    if(IS_ADMIN_USER_Service){
+        ui->groupBox_13->show();
+        ui->twErrorLog->move(20,117);
+        ui->twErrorLog->resize(709,581);
+        qDebug()<<"resized: ui->twErrorLog->move(20,117); ui->twErrorLog->resize(709,581);";
+    }else{
+        ui->groupBox_13->hide();
+        ui->twErrorLog->move(20,23);
+        ui->twErrorLog->resize(709,675);
+        qDebug()<<"resized: ui->twErrorLog->move(20,23); ui->twErrorLog->resize(709,675);";
+    }
 
     showServiceSetup();
 
@@ -206,11 +229,13 @@ void sService::saveFile()
         cParasChanged = false;
         cEnSwitch = true;
         sServiceSaved = true;
+        ServiceSetUpFilesSaved = true;
     }
     else
     {
         cEnSwitch = false;
         sServiceSaved = false;
+        ServiceSetUpFilesSaved = false;
         emit showMsgBox(tr("Service Setup"), tr("Error Saving File!"));
     }
 }
@@ -518,6 +543,17 @@ void sService::onLogData(int vp, int pp, int atm, int ctm, int pr, int ss, int e
     cLiveDataUpdated = true;
 }
 
+void sService::onInternalLogData(int vp, int pp, int atm, int ctm, int pr, int ss, int err){
+    cvp = vp;
+    cpp = pp;
+    catm = atm;
+    cctm = ctm;
+    cpr = pr;
+    css = ss;
+    cerr = err;
+    cLiveInternalDataUpdate = true;
+}
+
 void sService::setFileSelected(QString fs)
 {
     ui->lblFileSelected->setText(fs);
@@ -582,6 +618,186 @@ bool sService::logData()
         return false;
 		
     return true;
+}
+
+void sService::internalLog(){
+    qDebug()<<"cInternalLogStage: "<<cInternalLogStage;
+    switch(cInternalLogStage){
+    case 1: if(internalLogData()){
+            cInternalLogStage = 2;
+        }
+        break;
+
+    case 2: if(logFileToAppend){
+                if(cLiveInternalDataUpdate)
+                {
+                    cLiveInternalDataUpdate = false;
+
+                    QString cdt = cSettings.getCurrentDateTime().toString("dd/MM/yyyy hh:mm:ss");
+
+                    QTextStream cTextStream(logFileToAppend);
+
+                    cTextStream << " " << cSettings.getDate(cdt) << " "
+                                << cSettings.getTime(cdt) << ":"
+                                << " Tm:" << cSettings.getTemperatureLive(cctm)
+                                << ", Pr:" << cSettings.getPressureLive(cctm, cpr)
+                                << ", Valve:" << ui->cbSelectorValve->itemText(cvp)
+                                << ", PP:" << QString::number(cpp/100.0, 'f', 2)
+                                << ", SS:" << QString::number(css);
+
+                    cTextStream << endl;
+                }
+            }else{
+                logFileToAppend->close();
+                cInternalLogStage = 1;
+            }
+        break;
+    }
+}
+
+void sService::commandLog(QString str){
+//    qDebug()<<"commandLog(QString str) Selected log file to append: " << logFileToAppend->fileName();
+    if(logFileToAppend){
+//        qDebug()<<"commandLog logFileToAppend is true";
+//        qDebug()<<"commandLog(QString str) Selected log file to append: " << logFileToAppend->fileName();
+//        if(cLiveInternalDataUpdate)
+//        {
+//            cLiveInternalDataUpdate = false;
+
+            QString cdt = cSettings.getCurrentDateTime().toString("dd/MM/yyyy hh:mm:ss");
+
+            QTextStream cTextStream(logFileToAppend);
+
+            cTextStream << " " << cSettings.getDate(cdt) << " "
+                        << cSettings.getTime(cdt) << ":"
+                        << str;
+//            cTextStream << " " << str;
+
+            cTextStream << endl;
+
+            qDebug()<<"str is updated";
+//        }
+    }else{
+        qDebug()<<"logFileToAppend is false";
+        logFileToAppend->close();
+        cInternalLogStage = 1;
+        logPath = false;
+    }
+}
+
+bool sService::internalLogData(){
+//    qDebug()<<"In internalLogData()";
+    QString logFile1 = QApplication::applicationDirPath() + INTERNAL_LOG1;
+    QString logFile2 = QApplication::applicationDirPath() + INTERNAL_LOG2;
+    QFile file1(logFile1);
+    QFile file2(logFile2);
+
+    auto getFileSizeInMB = [](QFile &file) -> qint64 {
+        if (file.exists()) {
+            return file.size() / (1024 * 1024); // Convert size to MB
+        }
+        return 0;
+    };
+
+//    qDebug()<<"Before checking the LogFile1 exits";
+    if (!file1.exists()) {
+        QDir().mkpath(QFileInfo(logFile1).absolutePath());
+        if (!file1.open(QIODevice::WriteOnly)) {
+            qDebug()<<"Error Creating Log File!";
+            emit showMsgBox(tr("Service Setup"), tr("Error Creating Log File!"));
+            return false;
+        }
+        file1.close();
+//        qDebug()<<"Log File is created";
+    }
+
+//    qDebug()<<"Before checking the LogFile2 exits";
+    if (!file2.exists()) {
+        QDir().mkpath(QFileInfo(logFile2).absolutePath());
+        if (!file2.open(QIODevice::WriteOnly)) {
+            emit showMsgBox(tr("Service Setup"), tr("Error Creating Log File!"));
+            return false;
+        }
+        file2.close();
+//        qDebug()<<"Log File is created";
+    }
+
+    qint64 sizeFile1 = getFileSizeInMB(file1);
+    qint64 sizeFile2 = getFileSizeInMB(file2);
+/*
+//    qDebug()<<"sizeof file1: "<<sizeFile1;
+//    qDebug()<<"sizeof file2: "<<sizeFile2;
+
+//    logFileToAppend = nullptr;
+
+    if (sizeFile1 < 40) {
+//        logFileToAppend = &file1;
+        logFileToAppend = new QFile(logFile1);
+    } else if (sizeFile2 < 40) {
+//        logFileToAppend = &file2;
+        logFileToAppend = new QFile(logFile2);
+    } else {
+        if((sizeFile1 <= sizeFile2)){
+            logFileToAppend = new QFile(logFile1);
+//            &file1 : &file2;
+        }else{
+            logFileToAppend = new QFile(logFile2);
+        }
+    }*/
+
+    if (sizeFile1 == 0 && sizeFile2 == 0) {
+        logFileToAppend = new QFile(logFile1);
+    } else if (sizeFile2 > 0 && sizeFile2 < 40) {
+        logFileToAppend = new QFile(logFile2);
+    } else if (sizeFile1 > 0 && sizeFile1 < 40) {
+        logFileToAppend = new QFile(logFile1);
+    } else {
+        if ((sizeFile1 <= sizeFile2)) {
+            logFileToAppend = new QFile(logFile1);
+        } else {
+            logFileToAppend = new QFile(logFile2);
+        }
+    }
+
+    qDebug() << "Selected log file to append: " << logFileToAppend->fileName();
+    logPath = true;
+
+    if (logFileToAppend->open(QIODevice::Append | QIODevice::Text)) {
+        cInternalLogStage = 2;
+    }else{
+        emit showMsgBox(tr("Service Setup"), tr("Error Opening Log File!"));
+    }
+
+    /*if (!logFileToAppend->open(QIODevice::Append | QIODevice::Text)) {
+//        qDebug()<<"Error Opening Log File! for appending";
+        emit showMsgBox(tr("Service Setup"), tr("Error Opening Log File!"));
+        return false;
+    }
+//    qDebug() << "Opened to append";
+
+    QTextStream out(logFileToAppend);
+//    qDebug() << "trying to append";
+
+    out << " "  << " Log data here..." << endl;
+    qDebug() << "Log data written to file";
+
+    logFileToAppend->close();
+    qDebug() << "Log file closed";*/
+
+    // Handle deletion of the other file if current file exceeds 30MB
+    if (getFileSizeInMB(*logFileToAppend) > 30) {
+        QFile *otherFile = (logFileToAppend == &file1) ? &file2 : &file1;
+        if (otherFile->exists()) {
+            otherFile->remove();
+        }
+    }
+
+    return true;
+
+}
+
+bool sService::logPathEnabled(){
+    return logPath;
 }
 
 bool sService::isDiagnosticMode()
@@ -973,5 +1189,57 @@ void sService::on_imageCapture_clicked()
         pixmap.save(QString(filename));
     }else{
         qDebug()<<"folder doesn't exist";
+    }
+}
+
+void sService::on_pbTransfer_clicked()
+{
+    if(cSettings.checkUSBMounted())
+    {
+        if(!cSettings.checkFolderExists(USB_INTERNAL_LOG))
+        {
+
+#ifdef Q_OS_WIN32
+            QDir dir("c:/");
+#else
+            QDir dir("/");
+#endif
+
+            if (!dir.mkpath(USB_INTERNAL_LOG)) {
+                emit showMsgBox(tr("Service Setup"), tr("Error Creating Log Folder!"));
+                return;
+            }
+        }
+        if(cSettings.checkFolderExists(USB_INTERNAL_LOG))
+        {
+            emit showStatusBox(tr("Service Setup"), tr("Transferring..."), true);
+
+            QEventLoop delay;
+            QTimer::singleShot(1000,&delay,&QEventLoop::quit);
+            delay.exec();
+
+            int result = system("cp -rf /home/root/pApp_RVP_Upgrade/log/ /run/media/sda1/RVPPro_Internal_Log/");
+            if (result == -1) {
+                emit showMsgBox(tr("Service Setup"), tr("Error Copying Logs!"));
+                return;
+            }
+
+//            system("sleep 3");
+
+            result = system("sync");
+            if (result == -1) {
+                emit showMsgBox(tr("Service Setup"), tr("Error Synchronizing Filesystem!"));
+                return;
+            }
+
+            emit showMsgBox(tr("Service Setup"), tr("Transfer Complete!"));
+
+        }
+        else
+        {
+            emit showMsgBox(tr("Service Setup"), tr("Error Creating Log Folder!"));
+        }
+    }else{
+        emit showMsgBox(tr("Service Setup"), tr("No USB Pen Drive Found!\nReconnect USB Pen Drive & try again!"));
     }
 }

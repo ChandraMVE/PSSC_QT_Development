@@ -60,6 +60,8 @@ sCalibration::sCalibration(QWidget *parent) :
 
     cParasChanged = false;
     cParaMethodVolumeChanged = false;
+    VolumeCalibSetUpFilesSaved = false;
+    CalibSetUpFilesSaved = false;
 
     ui->grOffset->hide();
 
@@ -315,10 +317,10 @@ void sCalibration::MethodVolumeDefault()
     cCalibFree4.SecondVolume = DEFAULT_SECOND_VOLUME;
     cCalibFree4.ThirdVOlume = DEFAULT_THIRD_VOLUME;
 
-    qDebug()<<"cCalibD6377.StageVolume"<<cCalibD6377.StageVolume;
-    qDebug()<<"cCalibD6377.FirstVolume"<<cCalibD6377.FirstVolume;
-    qDebug()<<"cCalibD5188.StageVolume"<<cCalibD5188.StageVolume;
-    qDebug()<<"cCalibD5188.FirstVolume"<<cCalibD5188.FirstVolume;
+//    qDebug()<<"cCalibD6377.StageVolume"<<cCalibD6377.StageVolume;
+//    qDebug()<<"cCalibD6377.FirstVolume"<<cCalibD6377.FirstVolume;
+//    qDebug()<<"cCalibD5188.StageVolume"<<cCalibD5188.StageVolume;
+//    qDebug()<<"cCalibD5188.FirstVolume"<<cCalibD5188.FirstVolume;
 
 
 }
@@ -425,6 +427,7 @@ bool sCalibration::saveMethodVolumeFile()
         out.close();
         cParaMethodVolumeChanged = false;
         cEnSwitch = true;
+        VolumeCalibSetUpFilesSaved = true;
         if(D6377Vl_updated){
             D6377Vl_updated = false;
         }else{
@@ -435,6 +438,7 @@ bool sCalibration::saveMethodVolumeFile()
     else
     {
         cEnSwitch = false;
+        VolumeCalibSetUpFilesSaved = false;
         emit showMsgBox(tr("Calibration Setup"), tr("Error Saving File!"));
     }
 
@@ -460,11 +464,13 @@ bool sCalibration::saveFile()
         out.close();
         cParasChanged = false;
         cEnSwitch = true;
+        CalibSetUpFilesSaved = true;
         return true;
     }
     else
     {
         cEnSwitch = false;
+        CalibSetUpFilesSaved = false;
         emit showMsgBox(tr("Calibration Setup"), tr("Error Saving File!"));
         return false;
     }
@@ -1931,25 +1937,6 @@ void sCalibration::onShowKeypad(int tmp)
 
 void sCalibration::on_pbSave_clicked()
 {
-    updateTemperatureCalib();
-    updatePressureCalib();
-
-    if(saveFile())
-    {
-        if(ui->twCalibration->currentWidget() == ui->tabTemperature)
-        {
-            emit showMsgBox(tr("Calibration Setup"), tr("Temperature Calibration Saved!"));
-        }
-        else if(ui->twCalibration->currentWidget() == cWidgetPressure)
-        {
-            emit showMsgBox(tr("Calibration Setup"), tr("Pressure Calibration Saved!"));
-        }
-        else if(ui->twCalibration->currentWidget() == cWidgetPrLinear)
-        {
-            emit showMsgBox(tr("Calibration Setup"), tr("Linear Table Saved!"));
-        }
-    }
-
     if(ui->twCalibration->currentWidget() == ui->tabMethodVolume)
     {
         if(cPrevMethod == ui->cbMethod->currentIndex())
@@ -1980,18 +1967,37 @@ void sCalibration::on_pbSave_clicked()
                 emit showMsgBox(tr("Calibration Setup"), tr("Volume Adjustment Saved!"));
             }
         }
-    }
+    } else {
+        updateTemperatureCalib();
+        updatePressureCalib();
 
-    if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
-    {
-        ui->twCalibration->setEnabled(false); 
-        ui->twCalibration->removeTab(1);
-        ui->twCalibration->insertTab(1, cWidgetPressure, cStringPressure);
-        ui->twCalibration->setEnabled(true);
-        ui->twCalibration->setCurrentIndex(1);
+        if(saveFile())
+        {
+            if(ui->twCalibration->currentWidget() == ui->tabTemperature)
+            {
+                emit showMsgBox(tr("Calibration Setup"), tr("Temperature Calibration Saved!"));
+            }
+            else if(ui->twCalibration->currentWidget() == cWidgetPressure)
+            {
+                emit showMsgBox(tr("Calibration Setup"), tr("Pressure Calibration Saved!"));
+            }
+            else if(ui->twCalibration->currentWidget() == cWidgetPrLinear)
+            {
+                emit showMsgBox(tr("Calibration Setup"), tr("Linear Table Saved!"));
+            }
+        }
 
-        ui->pbSave->show();
-        ui->pbExit->setText(tr("Home"));
+        if(ui->twCalibration->currentWidget() == cWidgetPrLinearzation)
+        {
+            ui->twCalibration->setEnabled(false);
+            ui->twCalibration->removeTab(1);
+            ui->twCalibration->insertTab(1, cWidgetPressure, cStringPressure);
+            ui->twCalibration->setEnabled(true);
+            ui->twCalibration->setCurrentIndex(1);
+
+            ui->pbSave->show();
+            ui->pbExit->setText(tr("Home"));
+        }
     }
 
 }

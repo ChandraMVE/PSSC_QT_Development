@@ -18,26 +18,6 @@
 
 #include "define_strings.h"
 
-/*struct METHOD_VOLUME_METH{
-    double StageVolume;
-    double FirstVolume;
-    double SecondVolume;
-    double ThirdVOlume;
-};
-
-struct METHOD_VOLUME_MD5191{
-    double StageVolume;
-    double FirstVolume;
-    double SecondVolume;
-    double ThirdVOlume;
-    int single_expansion;
-};
-
-struct METHOD_VOLUMES_Main {
-    METHOD_VOLUME_METH MainD6377, MainD6378, MainD5188, MainFree1, MainFree2, MainFree3, MainFree4;
-    METHOD_VOLUME_MD5191 MainD5191;
-};*/
-
 namespace Ui {
 class MainWindow;
 }
@@ -79,6 +59,7 @@ public:
     void startLogging(void);
     void showError(void);
     void abortCurrentTask();
+    void readSaveLogFile(int tmp, bool readSuccessfully);
 
 protected:
     void changeEvent(QEvent*);

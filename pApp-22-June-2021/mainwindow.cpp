@@ -128,6 +128,8 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         errlist.append("Memory Setup");
         ui->wMemory->saveFile();
+    }else{
+        readSaveLogFile(MEMORY_FILES, true);
     }
 
     ui->wMemory->readTests();
@@ -140,6 +142,25 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         errlist.append("User Setup");
         ui->wUserSetup->saveFile();
+        QString str = " UserSetUp file is not present and values setted to default ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(USER_SETUP_FILES, false);
+    }else{
+        QString str = " UserSetUp file is read successfully from mainwindow ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(USER_SETUP_FILES, true);
     }
 
     ui->wGeneralSetup->resize(768, 876+92-10);
@@ -167,6 +188,25 @@ MainWindow::MainWindow(QWidget *parent) :
         if(errlist.isEmpty()) errlist.append("General Setup");
         else errlist.append(", General Setup");
         ui->wGeneralSetup->saveFile();
+        QString str = " General Setup is not present and values setted to default ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(GENERAL_SETUP_FILES, false);
+    }else{
+        QString str = " General Setup is read successfully from mainwindow ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(GENERAL_SETUP_FILES, true);
     }
 
     ui->wMethodSetup->resize(768, 876+92-10);
@@ -187,6 +227,25 @@ MainWindow::MainWindow(QWidget *parent) :
         if(errlist.isEmpty()) errlist.append("Method Setup");
         else errlist.append(", Method Setup");
         ui->wMethodSetup->saveFile();
+        QString str = " Method Setup is not present and values setted to default ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(METHOD_SETUP_FILES, false);
+    }else{
+        QString str = " Method Setup is read successfully from mainwindow ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(METHOD_SETUP_FILES, true);
     }
 
     ui->wServiceSetup->resize(768, 876+92-10);
@@ -211,6 +270,25 @@ MainWindow::MainWindow(QWidget *parent) :
         if(errlist.isEmpty()) errlist.append("Calibration Setup");
         else errlist.append(", Calibration Setup");
         ui->wCalibrationSetup->saveFile();
+        QString str = " Calibration Setup is not present and values setted to default ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(CALIBRATION_SETUP_FILES, false);
+    }else{
+        QString str = " Calibration Setup is read successfully from mainwindow ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(CALIBRATION_SETUP_FILES, true);
     }
 
     if(!ui->wCalibrationSetup->readMethodVolumeFile()){
@@ -220,8 +298,27 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wCalibrationSetup->saveMethodVolumeFile();
         ui->wCalibrationSetup->on_D6377_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
         ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+        QString str = " Method Calibration Setup is not present and values setted to default ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(VOLUME_ADJUSTMENT_FILES, false);
+    }else{
+        QString str = " Method Calibration Setup is read successfully from mainwindow ";
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
+        readSaveLogFile(VOLUME_ADJUSTMENT_FILES, true);
     }
-    qDebug()<<"value of from mainwindow constructor (ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
+//    qDebug()<<"value of from mainwindow constructor (ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
 
     ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
 
@@ -751,6 +848,677 @@ int MainWindow::setLanguage()
     else
     {
        return 0;
+    }
+}
+
+void MainWindow::readSaveLogFile(int tmp, bool readSuccessfully){
+    QString str;
+    switch(tmp){
+    case MEMORY_FILES:{
+            if(readSuccessfully){
+//                str =
+            }else{
+
+            }
+
+        }
+        break;
+
+    case USER_SETUP_FILES:{
+            if(readSuccessfully){
+                str =" user_setup.alarm_buzzer_enable: "+ QString::number(ui->wUserSetup->user_setup.alarm_buzzer_enable) + \
+                        ", user_setup.alarm_vol: " + QString::number(ui->wUserSetup->user_setup.alarm_vol) + \
+                        ", \n\t\t\t user_setup.error_buzzer_enable: " + QString::number(ui->wUserSetup->user_setup.error_buzzer_enable) + \
+                        ", user_setup.rinse_cycle: " + QString::number(ui->wUserSetup->user_setup.rinse_cycle) + \
+                        ", user_setup.auto_print: " + QString::number(ui->wUserSetup->user_setup.auto_print) + \
+                        "\"\n";
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }else{
+                str =" user_setup.alarm_buzzer_enable: "+ QString::number(ui->wUserSetup->user_setup.alarm_buzzer_enable) + \
+                        ", user_setup.alarm_vol: " + QString::number(ui->wUserSetup->user_setup.alarm_vol) + \
+                        ", \n\t\t\t user_setup.error_buzzer_enable: " + QString::number(ui->wUserSetup->user_setup.error_buzzer_enable) + \
+                        ", user_setup.rinse_cycle: " + QString::number(ui->wUserSetup->user_setup.rinse_cycle) + \
+                        ", user_setup.auto_print: " + QString::number(ui->wUserSetup->user_setup.auto_print) + \
+                        "\"\n";
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }
+        }
+        break;
+
+    case GENERAL_SETUP_FILES:{
+            if(readSuccessfully){
+                str =" 1- \"" + ui->wGeneralSetup->general_setup.admin_password + \
+                        "\", 2- \"" + QString::number(ui->wGeneralSetup->general_setup.auto_measuring_cycle) + \
+                        "\", 3- \"" + QString::number(ui->wGeneralSetup->general_setup.baud) + \
+                        "\", 4- \"" + ui->wGeneralSetup->general_setup.company + \
+                        "\", 5- \"" + QString::number(ui->wGeneralSetup->general_setup.data_bits) + \
+                        "\", 6- \"" + QString::number(ui->wGeneralSetup->general_setup.date_format) + \
+                        "\", 7- \"" + QString::number(ui->wGeneralSetup->general_setup.emulation) + \
+                        "\", 8- \"" + QString::number(ui->wGeneralSetup->general_setup.flow) + \
+                        "\", 9- \"" + QString::number(ui->wGeneralSetup->general_setup.gmt) + \
+                        "\", 10- \"" + ui->wGeneralSetup->general_setup.ip_address + \
+                        "\", 11- \"" + ui->wGeneralSetup->general_setup.ip_dns + \
+                        "\", 12- \"" + ui->wGeneralSetup->general_setup.ip_gateway + \
+                        "\",  \n\t\t\t 13- \"" + ui->wGeneralSetup->general_setup.ip_mask + \
+                        "\", 14- \"" + QString::number(ui->wGeneralSetup->general_setup.language) + \
+                        "\", 15- \"" + ui->wGeneralSetup->general_setup.location + \
+                        "\", 16- \"" + QString::number(ui->wGeneralSetup->general_setup.network_enable) + \
+                        "\", 17- \"" + ui->wGeneralSetup->general_setup.network_name + \
+                        "\", 18- \"" + QString::number(ui->wGeneralSetup->general_setup.page_size) + \
+                        "\", 19- \"" + QString::number(ui->wGeneralSetup->general_setup.parity) + \
+                        "\", 20- \"" + QString::number(ui->wGeneralSetup->general_setup.pressure_scale) + \
+                        "\", 21- \"" + QString::number(ui->wGeneralSetup->general_setup.report_format) + \
+                        "\", 22- \"" + ui->wGeneralSetup->general_setup.service_password + \
+                        "\", 23- \"" + QString::number(ui->wGeneralSetup->general_setup.stop_bits) + \
+                        "\", 24-\" " + QString::number(ui->wGeneralSetup->general_setup.temperature_scale) + \
+                        "\", 25- \"" + QString::number(ui->wGeneralSetup->general_setup.time_format) + \
+                        "\", 26- \"" + ui->wGeneralSetup->general_setup.unit_id + \
+                        "\"\n";
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }else{
+                str =" 1- \"" + ui->wGeneralSetup->general_setup.admin_password + \
+                        "\", 2- \"" + QString::number(ui->wGeneralSetup->general_setup.auto_measuring_cycle) + \
+                        "\", 3- \"" + QString::number(ui->wGeneralSetup->general_setup.baud) + \
+                        "\", 4- \"" + ui->wGeneralSetup->general_setup.company + \
+                        "\", 5- \"" + QString::number(ui->wGeneralSetup->general_setup.data_bits) + \
+                        "\", 6- \"" + QString::number(ui->wGeneralSetup->general_setup.date_format) + \
+                        "\", 7- \"" + QString::number(ui->wGeneralSetup->general_setup.emulation) + \
+                        "\", 8- \"" + QString::number(ui->wGeneralSetup->general_setup.flow) + \
+                        "\", 9- \"" + QString::number(ui->wGeneralSetup->general_setup.gmt) + \
+                        "\", 10- \"" + ui->wGeneralSetup->general_setup.ip_address + \
+                        "\", 11- \"" + ui->wGeneralSetup->general_setup.ip_dns + \
+                        "\", 12- \"" + ui->wGeneralSetup->general_setup.ip_gateway + \
+                        "\",  \n\t\t\t 13- \"" + ui->wGeneralSetup->general_setup.ip_mask + \
+                        "\", 14- \"" + QString::number(ui->wGeneralSetup->general_setup.language) + \
+                        "\", 15- \"" + ui->wGeneralSetup->general_setup.location + \
+                        "\", 16- \"" + QString::number(ui->wGeneralSetup->general_setup.network_enable) + \
+                        "\", 17- \"" + ui->wGeneralSetup->general_setup.network_name + \
+                        "\", 18- \"" + QString::number(ui->wGeneralSetup->general_setup.page_size) + \
+                        "\", 19- \"" + QString::number(ui->wGeneralSetup->general_setup.parity) + \
+                        "\", 20- \"" + QString::number(ui->wGeneralSetup->general_setup.pressure_scale) + \
+                        "\", 21- \"" + QString::number(ui->wGeneralSetup->general_setup.report_format) + \
+                        "\", 22- \"" + ui->wGeneralSetup->general_setup.service_password + \
+                        "\", 23- \"" + QString::number(ui->wGeneralSetup->general_setup.stop_bits) + \
+                        "\", 24-\" " + QString::number(ui->wGeneralSetup->general_setup.temperature_scale) + \
+                        "\", 25- \"" + QString::number(ui->wGeneralSetup->general_setup.time_format) + \
+                        "\", 26- \"" + ui->wGeneralSetup->general_setup.unit_id + \
+                        "\"\n";
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }
+        }
+        break;
+
+    case METHOD_SETUP_FILES:{
+            if(readSuccessfully){
+                str = " D5188.from - \"" + QString::number(ui->wMethodSetup->stdD5188.from) + \
+                        "\", D5188.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5188.passfail_enabled) + \
+                        "\", D5188.pressure - \"" + QString::number(ui->wMethodSetup->stdD5188.pressure) + \
+                        "\", D5188.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD5188.shaker_speed) + \
+                        "\", D5188.to - \"" + QString::number(ui->wMethodSetup->stdD5188.to) + \
+                        "\", D5188.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD5188.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D5191.aconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.aconstant) + \
+                        "\", D5191.bconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.bconstant) + \
+                        "\", D5191.cconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.cconstant) + \
+                        "\", D5191.formula - \"" + QString::number(ui->wMethodSetup->stdD5191.formula) + \
+                        "\", D5191.from - \"" + QString::number(ui->wMethodSetup->stdD5191.from) + \
+                        "\", D5191.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5191.passfail_enabled) + \
+                        "\", \n\t\t\t D5191.single_expansion - \"" + QString::number(ui->wMethodSetup->stdD5191.single_expansion) + \
+                        "\", D5191.temperature - \"" + QString::number(ui->wMethodSetup->stdD5191.temperature) + \
+                        "\", D5191.time - \"" + QString::number(ui->wMethodSetup->stdD5191.time) + \
+                        "\", D5191.to - \"" + QString::number(ui->wMethodSetup->stdD5191.to) + \
+                        "\", D5191.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdD5191.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D6377.from - \"" + QString::number(ui->wMethodSetup->stdD6377.from) + \
+                        "\", D6377.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdD6377.InjectTemp) + \
+                        "\", D6377.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD6377.passfail_enabled) + \
+                        "\", D6377.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD6377.shaker_speed) + \
+                        "\", D6377.temperature - \"" + QString::number(ui->wMethodSetup->stdD6377.temperature) + \
+                        "\", \n\t\t\t D6377.time - \"" + QString::number(ui->wMethodSetup->stdD6377.time) + \
+                        "\", D6377.to - \"" + QString::number(ui->wMethodSetup->stdD6377.to) + \
+                        "\", D6377.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdD6377.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D6378.aconstant - \"" + QString::number(ui->wMethodSetup->stdD6378.aconstant) + \
+                        "\", D6378.bconstant - \"" + QString::number(ui->wMethodSetup->stdD6378.bconstant) + \
+                        "\", D6378.cconstant - \"" + QString::number(ui->wMethodSetup->stdD6378.cconstant) + \
+                        "\", D6378.formula - \"" + QString::number(ui->wMethodSetup->stdD6378.formula) + \
+                        "\", D6378.from - \"" + QString::number(ui->wMethodSetup->stdD6378.from) + \
+                        "\", D6378.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD6378.passfail_enabled) + \
+                        "\", \n\t\t\t D6378.temperature - \"" + QString::number(ui->wMethodSetup->stdD6378.temperature) + \
+                        "\", D6378.time - \"" + QString::number(ui->wMethodSetup->stdD6378.time) + \
+                        "\", D6378.to - \"" + QString::number(ui->wMethodSetup->stdD6378.to) + \
+                        "\", D6378.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD6378.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free1.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree1.aconstant) + \
+                        "\", Free1.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree1.bconstant) + \
+                        "\", Free1.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree1.cconstant) + \
+                        "\", Free1.from - \"" + QString::number(ui->wMethodSetup->stdFree1.from) + \
+                        "\", Free1.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree1.InjectTemp) + \
+                        "\", Free1.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree1.passfail_enabled) + \
+                        "\", Free1.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree1.shaker_disabled) + \
+                        "\", \n\t\t\t Free1.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree1.shaker_speed) + \
+                        "\", Free1.temperature - \"" + QString::number(ui->wMethodSetup->stdFree1.temperature) + \
+                        "\", Free1.to - \"" + QString::number(ui->wMethodSetup->stdFree1.to) + \
+                        "\", Free1.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree1.tpx1) + \
+                        "\", Free1.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree1.tpx2) + \
+                        "\", Free1.tpx3- \"" + QString::number(ui->wMethodSetup->stdFree1.tpx3) + \
+                        "\", Free1.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree1.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free2.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree2.aconstant) + \
+                        "\", Free2.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree2.bconstant) + \
+                        "\", Free2.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree2.cconstant) + \
+                        "\", Free2.from - \"" + QString::number(ui->wMethodSetup->stdFree2.from) + \
+                        "\", Free2.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree2.InjectTemp) + \
+                        "\", Free2.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree2.passfail_enabled) + \
+                        "\", Free2.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree2.shaker_disabled) + \
+                        "\", \n\t\t\t Free2.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree2.shaker_speed) + \
+                        "\", Free2.temperature - \"" + QString::number(ui->wMethodSetup->stdFree2.temperature) + \
+                        "\", Free2.to - \"" + QString::number(ui->wMethodSetup->stdFree2.to) + \
+                        "\", Free2.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree2.tpx1) + \
+                        "\", Free2.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree2.tpx2) + \
+                        "\", Free2.tpx3 - \"" + QString::number(ui->wMethodSetup->stdFree2.tpx3) + \
+                        "\", Free2.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree2.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free3.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree3.aconstant) + \
+                        "\", Free3.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree3.bconstant) + \
+                        "\", Free3.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree3.cconstant) + \
+                        "\", Free3.from - \"" + QString::number(ui->wMethodSetup->stdFree3.from) + \
+                        "\", Free3.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree3.InjectTemp) + \
+                        "\", Free3.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree3.passfail_enabled) + \
+                        "\", Free3.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree3.shaker_disabled) + \
+                        "\", \n\t\t\t Free3.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree3.shaker_speed) + \
+                        "\", Free3.temperature - \"" + QString::number(ui->wMethodSetup->stdFree3.temperature) + \
+                        "\", Free3.to - \"" + QString::number(ui->wMethodSetup->stdFree3.to) + \
+                        "\", Free3.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree3.tpx1) + \
+                        "\", Free3.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree3.tpx2) + \
+                        "\", Free3.tpx3 - \"" + QString::number(ui->wMethodSetup->stdFree3.tpx3) + \
+                        "\", Free3.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree3.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free4.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree4.aconstant) + \
+                        "\", Free4.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree4.bconstant) + \
+                        "\", Free4.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree4.cconstant) + \
+                        "\", Free4.from - \"" + QString::number(ui->wMethodSetup->stdFree4.from) + \
+                        "\", Free4.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree4.InjectTemp) + \
+                        "\", Free4.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree4.passfail_enabled) + \
+                        "\", Free4.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree4.shaker_disabled) + \
+                        "\", \n\t\t\t Free4.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree4.shaker_speed) + \
+                        "\", Free4.temperature - \"" + QString::number(ui->wMethodSetup->stdFree4.temperature) + \
+                        "\", Free4.to - \"" + QString::number(ui->wMethodSetup->stdFree4.to) + \
+                        "\", Free4.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree4.tpx1) + \
+                        "\", Free4.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree4.tpx2) + \
+                        "\", Free4.tpx3 - \"" + QString::number(ui->wMethodSetup->stdFree4.tpx3) + \
+                        "\", Free4.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree4.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+            }else{
+
+                str = " D5188.from - \"" + QString::number(ui->wMethodSetup->stdD5188.from) + \
+                        "\", D5188.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5188.passfail_enabled) + \
+                        "\", D5188.pressure - \"" + QString::number(ui->wMethodSetup->stdD5188.pressure) + \
+                        "\", D5188.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD5188.shaker_speed) + \
+                        "\", D5188.to - \"" + QString::number(ui->wMethodSetup->stdD5188.to) + \
+                        "\", D5188.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD5188.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D5191.aconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.aconstant) + \
+                        "\", D5191.bconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.bconstant) + \
+                        "\", D5191.cconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.cconstant) + \
+                        "\", D5191.formula - \"" + QString::number(ui->wMethodSetup->stdD5191.formula) + \
+                        "\", D5191.from - \"" + QString::number(ui->wMethodSetup->stdD5191.from) + \
+                        "\", D5191.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5191.passfail_enabled) + \
+                        "\", \n\t\t\t D5191.single_expansion - \"" + QString::number(ui->wMethodSetup->stdD5191.single_expansion) + \
+                        "\", D5191.temperature - \"" + QString::number(ui->wMethodSetup->stdD5191.temperature) + \
+                        "\", D5191.time - \"" + QString::number(ui->wMethodSetup->stdD5191.time) + \
+                        "\", D5191.to - \"" + QString::number(ui->wMethodSetup->stdD5191.to) + \
+                        "\", D5191.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdD5191.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D6377.from - \"" + QString::number(ui->wMethodSetup->stdD6377.from) + \
+                        "\", D6377.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdD6377.InjectTemp) + \
+                        "\", D6377.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD6377.passfail_enabled) + \
+                        "\", D6377.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD6377.shaker_speed) + \
+                        "\", D6377.temperature - \"" + QString::number(ui->wMethodSetup->stdD6377.temperature) + \
+                        "\", \n\t\t\t D6377.time - \"" + QString::number(ui->wMethodSetup->stdD6377.time) + \
+                        "\", D6377.to - \"" + QString::number(ui->wMethodSetup->stdD6377.to) + \
+                        "\", D6377.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdD6377.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D6378.aconstant - \"" + QString::number(ui->wMethodSetup->stdD6378.aconstant) + \
+                        "\", D6378.bconstant - \"" + QString::number(ui->wMethodSetup->stdD6378.bconstant) + \
+                        "\", D6378.cconstant - \"" + QString::number(ui->wMethodSetup->stdD6378.cconstant) + \
+                        "\", D6378.formula - \"" + QString::number(ui->wMethodSetup->stdD6378.formula) + \
+                        "\", D6378.from - \"" + QString::number(ui->wMethodSetup->stdD6378.from) + \
+                        "\", D6378.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD6378.passfail_enabled) + \
+                        "\", \n\t\t\t D6378.temperature - \"" + QString::number(ui->wMethodSetup->stdD6378.temperature) + \
+                        "\", D6378.time - \"" + QString::number(ui->wMethodSetup->stdD6378.time) + \
+                        "\", D6378.to - \"" + QString::number(ui->wMethodSetup->stdD6378.to) + \
+                        "\", D6378.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD6378.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free1.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree1.aconstant) + \
+                        "\", Free1.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree1.bconstant) + \
+                        "\", Free1.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree1.cconstant) + \
+                        "\", Free1.from - \"" + QString::number(ui->wMethodSetup->stdFree1.from) + \
+                        "\", Free1.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree1.InjectTemp) + \
+                        "\", Free1.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree1.passfail_enabled) + \
+                        "\", Free1.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree1.shaker_disabled) + \
+                        "\", \n\t\t\t Free1.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree1.shaker_speed) + \
+                        "\", Free1.temperature - \"" + QString::number(ui->wMethodSetup->stdFree1.temperature) + \
+                        "\", Free1.to - \"" + QString::number(ui->wMethodSetup->stdFree1.to) + \
+                        "\", Free1.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree1.tpx1) + \
+                        "\", Free1.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree1.tpx2) + \
+                        "\", Free1.tpx3- \"" + QString::number(ui->wMethodSetup->stdFree1.tpx3) + \
+                        "\", Free1.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree1.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free2.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree2.aconstant) + \
+                        "\", Free2.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree2.bconstant) + \
+                        "\", Free2.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree2.cconstant) + \
+                        "\", Free2.from - \"" + QString::number(ui->wMethodSetup->stdFree2.from) + \
+                        "\", Free2.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree2.InjectTemp) + \
+                        "\", Free2.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree2.passfail_enabled) + \
+                        "\", Free2.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree2.shaker_disabled) + \
+                        "\", \n\t\t\t Free2.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree2.shaker_speed) + \
+                        "\", Free2.temperature - \"" + QString::number(ui->wMethodSetup->stdFree2.temperature) + \
+                        "\", Free2.to - \"" + QString::number(ui->wMethodSetup->stdFree2.to) + \
+                        "\", Free2.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree2.tpx1) + \
+                        "\", Free2.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree2.tpx2) + \
+                        "\", Free2.tpx3 - \"" + QString::number(ui->wMethodSetup->stdFree2.tpx3) + \
+                        "\", Free2.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree2.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free3.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree3.aconstant) + \
+                        "\", Free3.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree3.bconstant) + \
+                        "\", Free3.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree3.cconstant) + \
+                        "\", Free3.from - \"" + QString::number(ui->wMethodSetup->stdFree3.from) + \
+                        "\", Free3.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree3.InjectTemp) + \
+                        "\", Free3.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree3.passfail_enabled) + \
+                        "\", Free3.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree3.shaker_disabled) + \
+                        "\", \n\t\t\t Free3.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree3.shaker_speed) + \
+                        "\", Free3.temperature - \"" + QString::number(ui->wMethodSetup->stdFree3.temperature) + \
+                        "\", Free3.to - \"" + QString::number(ui->wMethodSetup->stdFree3.to) + \
+                        "\", Free3.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree3.tpx1) + \
+                        "\", Free3.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree3.tpx2) + \
+                        "\", Free3.tpx3 - \"" + QString::number(ui->wMethodSetup->stdFree3.tpx3) + \
+                        "\", Free3.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree3.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " Free4.aconstant - \"" + QString::number(ui->wMethodSetup->stdFree4.aconstant) + \
+                        "\", Free4.bconstant - \"" + QString::number(ui->wMethodSetup->stdFree4.bconstant) + \
+                        "\", Free4.cconstant - \"" + QString::number(ui->wMethodSetup->stdFree4.cconstant) + \
+                        "\", Free4.from - \"" + QString::number(ui->wMethodSetup->stdFree4.from) + \
+                        "\", Free4.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdFree4.InjectTemp) + \
+                        "\", Free4.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdFree4.passfail_enabled) + \
+                        "\", Free4.shaker_disabled - \"" + QString::number(ui->wMethodSetup->stdFree4.shaker_disabled) + \
+                        "\", \n\t\t\t Free4.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdFree4.shaker_speed) + \
+                        "\", Free4.temperature - \"" + QString::number(ui->wMethodSetup->stdFree4.temperature) + \
+                        "\", Free4.to - \"" + QString::number(ui->wMethodSetup->stdFree4.to) + \
+                        "\", Free4.tpx1 - \"" + QString::number(ui->wMethodSetup->stdFree4.tpx1) + \
+                        "\", Free4.tpx2 - \"" + QString::number(ui->wMethodSetup->stdFree4.tpx2) + \
+                        "\", Free4.tpx3 - \"" + QString::number(ui->wMethodSetup->stdFree4.tpx3) + \
+                        "\", Free4.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdFree4.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }
+        }
+        break;
+
+    case CALIBRATION_SETUP_FILES:{
+            if(readSuccessfully){
+                str = " CalibTm.constant: " + QString::number(ui->wCalibrationSetup->cCalibTm.constant) + \
+                        " CalibTm.method: " + QString::number(ui->wCalibrationSetup->cCalibTm.method) + \
+                        " CalibTm.slope: " + QString::number(ui->wCalibrationSetup->cCalibTm.slope) + \
+                        " CalibTm.tgain: " + QString::number(ui->wCalibrationSetup->cCalibTm.tgain) + \
+                        " CalibTm.thigh: " + QString::number(ui->wCalibrationSetup->cCalibTm.thigh) + \
+                        " CalibTm.thigh_count: " + QString::number(ui->wCalibrationSetup->cCalibTm.thigh_count) + \
+                        " \n\t\t\t CalibTm.tlow: " + QString::number(ui->wCalibrationSetup->cCalibTm.tlow) + \
+                        " CalibTm.tlow_count: " + QString::number(ui->wCalibrationSetup->cCalibTm.tlow_count) + \
+                        " CalibTm.toffset: " + QString::number(ui->wCalibrationSetup->cCalibTm.toffset) + \
+                        " CalibTm.tzero: " + QString::number(ui->wCalibrationSetup->cCalibTm.tzero);
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " CalibPr.constant20: " + QString::number(ui->wCalibrationSetup->cCalibPr.constant20) + \
+                        " CalibPr.pgain: " + QString::number(ui->wCalibrationSetup->cCalibPr.pgain) + \
+                        " CalibPr.phigh: " + QString::number(ui->wCalibrationSetup->cCalibPr.phigh) + \
+                        " CalibPr.phigh_count: " + QString::number(ui->wCalibrationSetup->cCalibPr.phigh_count) + \
+                        " CalibPr.plow: " + QString::number(ui->wCalibrationSetup->cCalibPr.plow) + \
+                        " CalibPr.plow_count: " + QString::number(ui->wCalibrationSetup->cCalibPr.plow_count) + \
+                        " \n\t\t\t CalibPr.poffset: " + QString::number(ui->wCalibrationSetup->cCalibPr.poffset) + \
+                        " CalibPr.prl_high: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_high) + \
+                        " CalibPr.prl_index: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_index) + \
+                        " CalibPr.prl_low: " +QString::number( ui->wCalibrationSetup->cCalibPr.prl_low) + \
+                        " CalibPr.pzero: " + QString::number(ui->wCalibrationSetup->cCalibPr.pzero) + \
+                        " CalibPr.slope20: " + QString::number(ui->wCalibrationSetup->cCalibPr.slope20);
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = "";
+                for(int i=0;i<19;i++){
+                    str += " \n\t\t\t CalibPr.prl_enabled[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_enabled[i]) + \
+                           " CalibPr.prl_temperature[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_temperature[i]) + \
+                           " CalibPr.prl_low_correction[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_low_correction[i]) + \
+                           " CalibPr.prl_high_correction[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_high_correction[i]) + \
+                            " CalibPr.prl_slope[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_slope[i]) + \
+                            " CalibPr.prl_constant[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_constant[i]);
+                }
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+            }else{
+                str = " CalibTm.constant: " + QString::number(ui->wCalibrationSetup->cCalibTm.constant) + \
+                        " CalibTm.method: " + QString::number(ui->wCalibrationSetup->cCalibTm.method) + \
+                        " CalibTm.slope: " + QString::number(ui->wCalibrationSetup->cCalibTm.slope) + \
+                        " CalibTm.tgain: " + QString::number(ui->wCalibrationSetup->cCalibTm.tgain) + \
+                        " CalibTm.thigh: " + QString::number(ui->wCalibrationSetup->cCalibTm.thigh) + \
+                        " CalibTm.thigh_count: " + QString::number(ui->wCalibrationSetup->cCalibTm.thigh_count) + \
+                        " \n\t\t\t CalibTm.tlow: " + QString::number(ui->wCalibrationSetup->cCalibTm.tlow) + \
+                        " CalibTm.tlow_count: " + QString::number(ui->wCalibrationSetup->cCalibTm.tlow_count) + \
+                        " CalibTm.toffset: " + QString::number(ui->wCalibrationSetup->cCalibTm.toffset) + \
+                        " CalibTm.tzero: " + QString::number(ui->wCalibrationSetup->cCalibTm.tzero);
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " CalibPr.constant20: " + QString::number(ui->wCalibrationSetup->cCalibPr.constant20) + \
+                        " CalibPr.pgain: " + QString::number(ui->wCalibrationSetup->cCalibPr.pgain) + \
+                        " CalibPr.phigh: " + QString::number(ui->wCalibrationSetup->cCalibPr.phigh) + \
+                        " CalibPr.phigh_count: " + QString::number(ui->wCalibrationSetup->cCalibPr.phigh_count) + \
+                        " CalibPr.plow: " + QString::number(ui->wCalibrationSetup->cCalibPr.plow) + \
+                        " CalibPr.plow_count: " + QString::number(ui->wCalibrationSetup->cCalibPr.plow_count) + \
+                        " \n\t\t\t CalibPr.poffset: " + QString::number(ui->wCalibrationSetup->cCalibPr.poffset) + \
+                        " CalibPr.prl_high: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_high) + \
+                        " CalibPr.prl_index: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_index) + \
+                        " CalibPr.prl_low: " +QString::number( ui->wCalibrationSetup->cCalibPr.prl_low) + \
+                        " CalibPr.pzero: " + QString::number(ui->wCalibrationSetup->cCalibPr.pzero) + \
+                        " CalibPr.slope20: " + QString::number(ui->wCalibrationSetup->cCalibPr.slope20);
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = "";
+                for(int i=0;i<19;i++){
+                    str += " \n\t\t\t CalibPr.prl_enabled[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_enabled[i]) + \
+                           " CalibPr.prl_temperature[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_temperature[i]) + \
+                           " CalibPr.prl_low_correction[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_low_correction[i]) + \
+                           " CalibPr.prl_high_correction[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_high_correction[i]) + \
+                            " CalibPr.prl_slope[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_slope[i]) + \
+                            " CalibPr.prl_constant[" + QString::number(i) + "]: " + QString::number(ui->wCalibrationSetup->cCalibPr.prl_constant[i]);
+                }
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+
+            }
+        }
+        break;
+
+    case VOLUME_ADJUSTMENT_FILES:{
+            if(readSuccessfully){
+                str = " D5188.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5188.StageVolume) + \
+                        " D5188.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5188.FirstVolume) + \
+                        " \n\t\t\t D5191.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.StageVolume) + \
+                        " D5191.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.FirstVolume) + \
+                        " D5191.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.SecondVolume)  + \
+                        " D5191.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.ThirdVOlume) + \
+                        " \n\t\t\t SingleD5191.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibSingleD5191.StageVolume) + \
+                        " SingleD5191.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume) + \
+                        " \n\t\t\t D6377.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6377.StageVolume) + \
+                        " D6377.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6377.FirstVolume) + \
+                        " \n\t\t\t D6378.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.StageVolume) + \
+                        " D6378.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.FirstVolume) + \
+                        " D6378.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.SecondVolume) + \
+                        " D6378.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.ThirdVOlume) + \
+                        " \n\t\t\t Free1.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.StageVolume) + \
+                        " Free1.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.FirstVolume) + \
+                        " Free1.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.SecondVolume) + \
+                        " Free1.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.ThirdVOlume) + \
+                        " \n\t\t\t Free2.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.StageVolume) + \
+                        " Free2.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.FirstVolume) + \
+                        " Free2.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.SecondVolume) + \
+                        " Free2.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.ThirdVOlume) + \
+                        " \n\t\t\t Free3.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.StageVolume) + \
+                        " Free3.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.FirstVolume) + \
+                        " Free3.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.SecondVolume) + \
+                        " Free3.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.ThirdVOlume) + \
+                        " \n\t\t\t Free4.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.StageVolume) + \
+                        " Free4.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.FirstVolume) + \
+                        " Free4.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.SecondVolume) + \
+                        " Free4.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.ThirdVOlume);
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }else{
+                str = " D5188.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5188.StageVolume) + \
+                        " D5188.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5188.FirstVolume) + \
+                        " \n\t\t\t D5191.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.StageVolume) + \
+                        " D5191.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.FirstVolume) + \
+                        " D5191.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.SecondVolume)  + \
+                        " D5191.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibD5191.ThirdVOlume) + \
+                        " \n\t\t\t SingleD5191.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibSingleD5191.StageVolume) + \
+                        " SingleD5191.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume) + \
+                        " \n\t\t\t D6377.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6377.StageVolume) + \
+                        " D6377.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6377.FirstVolume) + \
+                        " \n\t\t\t D6378.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.StageVolume) + \
+                        " D6378.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.FirstVolume) + \
+                        " D6378.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.SecondVolume) + \
+                        " D6378.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibD6378.ThirdVOlume) + \
+                        " \n\t\t\t Free1.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.StageVolume) + \
+                        " Free1.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.FirstVolume) + \
+                        " Free1.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.SecondVolume) + \
+                        " Free1.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree1.ThirdVOlume) + \
+                        " \n\t\t\t Free2.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.StageVolume) + \
+                        " Free2.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.FirstVolume) + \
+                        " Free2.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.SecondVolume) + \
+                        " Free2.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree2.ThirdVOlume) + \
+                        " \n\t\t\t Free3.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.StageVolume) + \
+                        " Free3.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.FirstVolume) + \
+                        " Free3.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.SecondVolume) + \
+                        " Free3.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree3.ThirdVOlume) + \
+                        " \n\t\t\t Free4.StageVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.StageVolume) + \
+                        " Free4.FirstVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.FirstVolume) + \
+                        " Free4.SecondVolume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.SecondVolume) + \
+                        " Free4.ThirdVOlume: " + QString::number(ui->wCalibrationSetup->cCalibFree4.ThirdVOlume);
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }
+        }
+        break;
     }
 }
 
@@ -1773,8 +2541,8 @@ void MainWindow::readSerial(void)
                             cStepperSpeed = hVal;
                             cCurrentUCError = eVal;
 
-                            qDebug()<<"Piston Position: "<<cPistonPosition;
-                            qDebug()<<"Stepper Speed: "<<cStepperSpeed;
+//                            qDebug()<<"Piston Position: "<<cPistonPosition;
+//                            qDebug()<<"Stepper Speed: "<<cStepperSpeed;
                             ui->wMeasuring1->onLiveData(cRawCTemperature, cRawCPressure);
                             if(ui->wServiceSetup->isVisible())
                                 ui->wServiceSetup->onLiveData(cValvePosition, cPistonPosition,
@@ -1792,6 +2560,165 @@ void MainWindow::readSerial(void)
                                 ui->wServiceSetup->onLogData(cValvePosition, cPistonPosition,
                                         cRawATemperature, cRawCTemperature,
                                         cRawCPressure, cStepperSpeed, cCurrentUCError);
+
+//                            ui->wServiceSetup->onInternalLogData(cValvePosition, cPistonPosition,
+//                                                                 cRawATemperature, cRawCTemperature,
+//                                                                 cRawCPressure, cStepperSpeed, cCurrentUCError);
+                            QString str = " Tm:" + cSettings.getTemperatureLive(cRawCTemperature)
+                                          + ", Pr:" + cSettings.getPressureLive(cRawCTemperature, cRawCPressure)
+                                          + ", Valve:" + QString::number(cValvePosition)
+                                          + ", PP:" + QString::number(cPistonPosition/100.0, 'f', 2)
+                                          + ", SS:" + QString::number(cStepperSpeed);
+                            QString logMethod;
+                            QString currentTab;
+
+                            if(ui->wMeasuring1->isVisible())
+                            {
+                                currentTab = "Measuring Tab ";
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                case M_METHOD_D5191: logMethod = "D5191 ";
+                                    break;
+
+                                case M_METHOD_D6377: logMethod = "D6377 ";
+                                    break;
+
+                                case M_METHOD_D6378: logMethod = "D6378 ";
+                                    break;
+
+                                case M_METHOD_D5188: logMethod = "D5188 ";
+                                    break;
+
+                                case M_METHOD_FREE1: logMethod = "Free1 ";
+                                    break;
+
+                                case M_METHOD_FREE2: logMethod = "Free2 ";
+                                    break;
+
+                                case M_METHOD_FREE3: logMethod = "Free3 ";
+                                    break;
+
+                                case M_METHOD_FREE4: logMethod = "Free4 ";
+                                    break;
+
+                                default: logMethod = " ";
+                                    break;
+                                }
+                            }
+                            else if(ui->wUserSetup->isVisible()){
+                                if(ui->wUserSetup->UserSetUpFilesSaved){
+                                    QString tmpstr = " USER setup file is saved ";
+
+                                    if(ui->wServiceSetup->logPathEnabled())
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    else if(ui->wServiceSetup->internalLogData())
+                                    {
+                                        qDebug()<<"First Time";
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    }
+
+                                    ui->wUserSetup->UserSetUpFilesSaved = false;
+                                    readSaveLogFile(USER_SETUP_FILES, false);
+                                }
+                                logMethod = "";
+                                currentTab = "User Tab ";
+                            }else if(ui->wMemory->isVisible()){
+                                logMethod = "";
+                                currentTab = "Memory Tab ";
+                            }else if(ui->wGeneralSetup->isVisible()){
+                                if(ui->wGeneralSetup->GeneralSetUpFilesSaved){
+                                    QString tmpstr = " GENERAL setup file is saved ";
+
+                                    if(ui->wServiceSetup->logPathEnabled())
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    else if(ui->wServiceSetup->internalLogData())
+                                    {
+                                        qDebug()<<"First Time";
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    }
+                                    ui->wGeneralSetup->GeneralSetUpFilesSaved = false;
+                                    readSaveLogFile(GENERAL_SETUP_FILES, false);
+                                }
+                                logMethod = "";
+                                currentTab = "General SetUp Tab ";
+                            }else if(ui->wMethodSetup->isVisible()){
+                                if(ui->wMethodSetup->MethodSetUpFilesSaved){
+                                    QString tmpstr = " METHOD setup file is saved ";
+
+                                    if(ui->wServiceSetup->logPathEnabled())
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    else if(ui->wServiceSetup->internalLogData())
+                                    {
+                                        qDebug()<<"First Time";
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    }
+
+                                    ui->wMethodSetup->MethodSetUpFilesSaved = false;
+                                    readSaveLogFile(METHOD_SETUP_FILES, false);
+                                }
+                                logMethod = "";
+                                currentTab = "Method SetUp Tab ";
+                            }else if(ui->wServiceSetup->isVisible()){
+                                if(ui->wServiceSetup->ServiceSetUpFilesSaved){
+                                    QString tmpstr = " SERVICE setup file is saved ";
+
+                                    if(ui->wServiceSetup->logPathEnabled())
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    else if(ui->wServiceSetup->internalLogData())
+                                    {
+                                        qDebug()<<"First Time";
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    }
+
+                                    ui->wServiceSetup->ServiceSetUpFilesSaved = false;
+                                    readSaveLogFile(SERVICE_SETUP_FILES, false);
+                                }
+                                logMethod = "";
+                                currentTab = "Service Tab ";
+                            }else if(ui->wCalibrationSetup->isVisible()){
+                                if(ui->wCalibrationSetup->CalibSetUpFilesSaved)
+                                {
+                                    QString tmpstr = " CALIBRATION setup file is saved ";
+
+                                    if(ui->wServiceSetup->logPathEnabled())
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    else if(ui->wServiceSetup->internalLogData())
+                                    {
+                                        qDebug()<<"First Time";
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    }
+                                    if(ui->wCalibrationSetup->CalibSetUpFilesSaved){
+                                        ui->wCalibrationSetup->CalibSetUpFilesSaved = false;
+                                        readSaveLogFile(CALIBRATION_SETUP_FILES, false);
+                                    }
+                                } else if(ui->wCalibrationSetup->VolumeCalibSetUpFilesSaved){
+                                    QString tmpstr = " METHOD CALIBRATION setup file is saved ";
+
+                                    if(ui->wServiceSetup->logPathEnabled())
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    else if(ui->wServiceSetup->internalLogData())
+                                    {
+                                        qDebug()<<"First Time";
+                                        ui->wServiceSetup->commandLog(tmpstr);
+                                    }
+                                    if(ui->wCalibrationSetup->VolumeCalibSetUpFilesSaved){
+                                        ui->wCalibrationSetup->VolumeCalibSetUpFilesSaved = false;
+                                        readSaveLogFile(VOLUME_ADJUSTMENT_FILES, false);
+                                    }
+                                }
+                                logMethod = "";
+                                currentTab = " Calibration Tab ";
+                            }else {
+                                logMethod = "";
+                                currentTab = "";
+                            }
+                            if(ui->wServiceSetup->logPathEnabled())
+                                ui->wServiceSetup->commandLog(currentTab + logMethod + str);
+                            else if(ui->wServiceSetup->internalLogData())
+                            {
+                                qDebug()<<"First Time";
+                                ui->wServiceSetup->commandLog(str);
+                            }
 
 
                             if(zVal == 6)
@@ -1822,11 +2749,31 @@ void MainWindow::readSerial(void)
                         cACKReceived = true;
                         cNACKReceived = false;
                         cUACKReceived = true;
+
+                        QString str = "cACKReceived: "+ QString::number(cACKReceived) + " cNACKReceived: " + QString::number(cNACKReceived) + " cUACKReceived: "+ QString::number(cUACKReceived);
+
+                        if(ui->wServiceSetup->logPathEnabled())
+                            ui->wServiceSetup->commandLog(str);
+                        else if(ui->wServiceSetup->internalLogData())
+                        {
+                            qDebug()<<"First Time";
+                            ui->wServiceSetup->commandLog(str);
+                        }
                     }
                     else if(rdata[2] == '2' && rdata[3] == '1') //nack
                     {
                         cACKReceived = false;
                         cNACKReceived = true;
+
+                        QString str = "cACKReceived: "+ QString::number(cACKReceived) + " cNACKReceived: " + QString::number(cNACKReceived);
+
+                        if(ui->wServiceSetup->logPathEnabled())
+                            ui->wServiceSetup->commandLog(str);
+                        else if(ui->wServiceSetup->internalLogData())
+                        {
+                            qDebug()<<"First Time";
+                            ui->wServiceSetup->commandLog(str);
+                        }
                     }
                 }
                 else if(rdata[1] == 'V')
@@ -1872,6 +2819,15 @@ void MainWindow::readSerial(void)
                                 + "." + QString::number(czz);
                         qDebug()<<"MCU Version from MCU:"<<str;
                         ui->wServiceSetup->setVersion(str);
+
+                        QString Vstr = ui->wServiceSetup->FWVersion() + "MCU Version from MCU: "+ str;
+                        if(ui->wServiceSetup->logPathEnabled())
+                            ui->wServiceSetup->commandLog(Vstr);
+                        else if(ui->wServiceSetup->internalLogData())
+                        {
+                            qDebug()<<"First Time";
+                            ui->wServiceSetup->commandLog(Vstr);
+                        }
                     }
                 }
 
@@ -2396,6 +3352,59 @@ void MainWindow::onSendCommand(QString cmd)
 
     qDebug() << "onSendCommand:" << cmd;
 
+    QString str = "onSendCommand:" + cmd;
+
+    QString logMethod;
+    QString currentTab;
+
+    if(ui->wMeasuring1->isVisible())
+    {
+        switch(ui->wMeasuring1->getMethod())
+        {
+        case M_METHOD_D5191: logMethod = "D5191 ";
+            break;
+
+        case M_METHOD_D6377: logMethod = "D6377 ";
+            break;
+
+        case M_METHOD_D6378: logMethod = "D6378 ";
+            break;
+
+        case M_METHOD_D5188: logMethod = "D5188 ";
+            break;
+
+        case M_METHOD_FREE1: logMethod = "Free1 ";
+            break;
+
+        case M_METHOD_FREE2: logMethod = "Free2 ";
+            break;
+
+        case M_METHOD_FREE3: logMethod = "Free3 ";
+            break;
+
+        case M_METHOD_FREE4: logMethod = "Free4 ";
+            break;
+
+        default: logMethod = " ";
+            break;
+        }
+    }
+    if(ui->wUserSetup->isVisible())
+        currentTab = "User Tab ";
+    if(ui->wMemory->isVisible())
+        currentTab = "Memory Tab ";
+    if(ui->wGeneralSetup->isVisible())
+        currentTab = "General SetUp Tab ";
+    if(ui->wMethodSetup->isVisible())
+        currentTab = "Method SetUp Tab ";
+    if(ui->wServiceSetup->isVisible())
+        currentTab = "Service Tab ";
+    if(ui->wCalibrationSetup->isVisible())
+        currentTab = "Calibration Tab ";
+
+    if(ui->wServiceSetup->logPathEnabled())
+        ui->wServiceSetup->commandLog(currentTab + logMethod + str);
+
     //QString str = "S:" + QString::number(cStage).rightJustified(2, '0');
     //ui->label_2->setText(str);
 
@@ -2415,6 +3424,58 @@ void MainWindow::onSendCommand(QString cmd, sAccessWidget *sa)
 
     qDebug() << "onSendCommand SA:" << cmd;
 
+    QString str = "onSendCommand SA:" + cmd;
+
+    QString logMethod;
+    QString currentTab;
+
+    if(ui->wMeasuring1->isVisible())
+    {
+        switch(ui->wMeasuring1->getMethod())
+        {
+        case M_METHOD_D5191: logMethod = "D5191 ";
+            break;
+
+        case M_METHOD_D6377: logMethod = "D6377 ";
+            break;
+
+        case M_METHOD_D6378: logMethod = "D6378 ";
+            break;
+
+        case M_METHOD_D5188: logMethod = "D5188 ";
+            break;
+
+        case M_METHOD_FREE1: logMethod = "Free1 ";
+            break;
+
+        case M_METHOD_FREE2: logMethod = "Free2 ";
+            break;
+
+        case M_METHOD_FREE3: logMethod = "Free3 ";
+            break;
+
+        case M_METHOD_FREE4: logMethod = "Free4 ";
+            break;
+
+        default: logMethod = " ";
+            break;
+        }
+    }
+    if(ui->wUserSetup->isVisible())
+        currentTab = "User Tab ";
+    if(ui->wMemory->isVisible())
+        currentTab = "Memory Tab ";
+    if(ui->wGeneralSetup->isVisible())
+        currentTab = "General SetUp Tab ";
+    if(ui->wMethodSetup->isVisible())
+        currentTab = "Method SetUp Tab ";
+    if(ui->wServiceSetup->isVisible())
+        currentTab = "Service Tab ";
+    if(ui->wCalibrationSetup->isVisible())
+        currentTab = "Calibration Tab ";
+
+    if(ui->wServiceSetup->logPathEnabled())
+        ui->wServiceSetup->commandLog((currentTab + logMethod + str));
     //ui->label_2->setText("S:" + cmd);
 
     //QString str = "S:" + QString::number(cStage).rightJustified(2, '0');
@@ -2447,6 +3508,63 @@ void MainWindow::sendPara(QString tmp, int stage, int timeout)
 
         qDebug() << "sendPara:" << tmp << "cStage:" << stage << "T:" << timeout;
 
+        QString str = "sendPara:" + tmp + "cStage:" + QString::number(stage) + "T:" + QString::number(timeout);
+
+        QString logMethod;
+        QString currentTab;
+
+        if(ui->wMeasuring1->isVisible())
+        {
+            switch(ui->wMeasuring1->getMethod())
+            {
+            case M_METHOD_D5191: logMethod = "D5191 ";
+                break;
+
+            case M_METHOD_D6377: logMethod = "D6377 ";
+                break;
+
+            case M_METHOD_D6378: logMethod = "D6378 ";
+                break;
+
+            case M_METHOD_D5188: logMethod = "D5188 ";
+                break;
+
+            case M_METHOD_FREE1: logMethod = "Free1 ";
+                break;
+
+            case M_METHOD_FREE2: logMethod = "Free2 ";
+                break;
+
+            case M_METHOD_FREE3: logMethod = "Free3 ";
+                break;
+
+            case M_METHOD_FREE4: logMethod = "Free4 ";
+                break;
+
+            default: logMethod = " ";
+                break;
+            }
+        }
+        if(ui->wUserSetup->isVisible())
+            currentTab = "User Tab ";
+        if(ui->wMemory->isVisible())
+            currentTab = "Memory Tab ";
+        if(ui->wGeneralSetup->isVisible())
+            currentTab = "General SetUp Tab ";
+        if(ui->wMethodSetup->isVisible())
+            currentTab = "Method SetUp Tab ";
+        if(ui->wServiceSetup->isVisible())
+            currentTab = "Service Tab ";
+        if(ui->wCalibrationSetup->isVisible())
+            currentTab = "Calibration Tab ";
+
+        if(ui->wServiceSetup->logPathEnabled())
+            ui->wServiceSetup->commandLog(currentTab + logMethod + str);
+        else if(ui->wServiceSetup->internalLogData())
+        {
+            qDebug()<<"First Time";
+            ui->wServiceSetup->commandLog(str);
+        }
         //QString str = "P:" + QString::number(cStage).rightJustified(2, '0');
         //ui->label_2->setText(str);
 
@@ -6086,6 +7204,12 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                 {
 
                     case M_PWD_SERVICE: if(cWidget) cWidget->hide();
+                                        if(rUser == "admin") {
+                                            ui->wServiceSetup->IS_ADMIN_USER_Service=1;
+                                        }
+                                        else {
+                                            ui->wServiceSetup->IS_ADMIN_USER_Service=0;
+                                        }
                                         ui->wServiceSetup->Show();
                                         cMenu = M_SETUP;
                                         cWidget = ui->wServiceSetup;
@@ -6313,6 +7437,7 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
             {
                ui->wUserSetup->readFile();
                ui->wUserSetup->hide();
+               readSaveLogFile(USER_SETUP_FILES, true);
                //onShowHome(false);
                onMenuClicked(cmenu);
             }
@@ -6345,8 +7470,13 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
 
         case M_CONFIRM_GENERAL_SWITCH:
 
-             if(tmp) ui->wGeneralSetup->saveFile();
-             else ui->wGeneralSetup->readFile();
+             if(tmp) {
+                 ui->wGeneralSetup->saveFile();
+                 readSaveLogFile(GENERAL_SETUP_FILES, false);
+             } else {
+                 ui->wGeneralSetup->readFile();
+                 readSaveLogFile(GENERAL_SETUP_FILES, true);
+             }
 
         break;
 
@@ -6371,10 +7501,12 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
              if(tmp)
              {
                 ui->wMethodSetup->saveFile();
+                readSaveLogFile(METHOD_SETUP_FILES, false);
              }
              else
              {
                 ui->wMethodSetup->readFile();
+                readSaveLogFile(METHOD_SETUP_FILES, true);
              }
         break;
 
@@ -6436,11 +7568,17 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
              {
                 ui->wCalibrationSetup->saveFile();
                 ui->wCalibrationSetup->saveMethodVolumeFile();
+
+                readSaveLogFile(CALIBRATION_SETUP_FILES, false);
+                readSaveLogFile(VOLUME_ADJUSTMENT_FILES, false);
              }
              else
              {
                 ui->wCalibrationSetup->readFile();
                 ui->wCalibrationSetup->readMethodVolumeFile();
+
+                readSaveLogFile(CALIBRATION_SETUP_FILES, true);
+                readSaveLogFile(VOLUME_ADJUSTMENT_FILES, true);
              }
         break;
 
@@ -6492,54 +7630,6 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
         break;
     }
 }
-
-/*void MainWindow::onMethodVolumesDefault(METHOD_VOLUMES_Main methodVol){
-    METHOD_VOLUMES_CALIB abc;
-
-    abc.cClaibD5191.StageVolume = methodVol.MainD5188.StageVolume;
-    abc.cClaibD5191.FirstVolume = methodVol.MainD5188.FirstVolume;
-    abc.cClaibD5191.SecondVolume = methodVol.MainD5188.SecondVolume;
-    abc.cClaibD5191.ThirdVOlume = methodVol.MainD5188.ThirdVOlume;
-    abc.cClaibD5191.single_expansion = methodVol.MainD5191.single_expansion;
-
-    abc.cClaibD6377.StageVolume = methodVol.MainD6377.StageVolume;
-    abc.cClaibD6377.FirstVolume = methodVol.MainD6377.FirstVolume;
-    abc.cClaibD6377.SecondVolume = methodVol.MainD6377.SecondVolume;
-    abc.cClaibD6377.ThirdVOlume = methodVol.MainD6377.ThirdVOlume;
-
-    abc.cClaibD6378.StageVolume = methodVol.MainD6378.StageVolume;
-    abc.cClaibD6378.FirstVolume = methodVol.MainD6378.FirstVolume;
-    abc.cClaibD6378.SecondVolume = methodVol.MainD6378.SecondVolume;
-    abc.cClaibD6378.ThirdVOlume = methodVol.MainD6378.ThirdVOlume;
-
-    abc.cClaibD5188.StageVolume = methodVol.MainD5188.StageVolume;
-    abc.cClaibD5188.FirstVolume = methodVol.MainD5188.FirstVolume;
-    abc.cClaibD5188.SecondVolume = methodVol.MainD5188.SecondVolume;
-    abc.cClaibD5188.ThirdVOlume = methodVol.MainD5188.ThirdVOlume;
-
-    abc.cClaibFree1.StageVolume = methodVol.MainFree1.StageVolume;
-    abc.cClaibFree1.FirstVolume = methodVol.MainFree1.FirstVolume;
-    abc.cClaibFree1.SecondVolume = methodVol.MainFree1.SecondVolume;
-    abc.cClaibFree1.ThirdVOlume = methodVol.MainFree1.ThirdVOlume;
-
-    abc.cClaibFree2.StageVolume = methodVol.MainFree2.StageVolume;
-    abc.cClaibFree2.FirstVolume = methodVol.MainFree2.FirstVolume;
-    abc.cClaibFree2.SecondVolume = methodVol.MainFree2.SecondVolume;
-    abc.cClaibFree2.ThirdVOlume = methodVol.MainFree2.ThirdVOlume;
-
-    abc.cClaibFree3.StageVolume = methodVol.MainFree3.StageVolume;
-    abc.cClaibFree3.FirstVolume = methodVol.MainFree3.FirstVolume;
-    abc.cClaibFree3.SecondVolume = methodVol.MainFree3.SecondVolume;
-    abc.cClaibFree3.ThirdVOlume = methodVol.MainFree3.ThirdVOlume;
-
-    abc.cClaibFree4.StageVolume = methodVol.MainFree4.StageVolume;
-    abc.cClaibFree4.FirstVolume = methodVol.MainFree4.FirstVolume;
-    abc.cClaibFree4.SecondVolume = methodVol.MainFree4.SecondVolume;
-    abc.cClaibFree4.ThirdVOlume = methodVol.MainFree4.ThirdVOlume;
-
-    ui->wCalibrationSetup->MethodVolumeSetDefualt(abc);
-}
-*/
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -6637,11 +7727,11 @@ void MainWindow::on_imageCapture_clicked()
         if (pixmap.save(filename))
         {
             qDebug() << "Screenshot saved successfully.";
-//            QString originalStyleSheet = this->styleSheet();
+            QString originalStyleSheet = this->styleSheet();
             this->setStyleSheet("background-color: rgb(21, 100, 192);");
 
             QTimer::singleShot(50, this, [=]() {
-                this->setStyleSheet("background-color: rgb(255, 255, 255);");
+                this->setStyleSheet(originalStyleSheet);
             });
         }
         else

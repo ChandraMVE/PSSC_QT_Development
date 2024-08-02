@@ -305,6 +305,8 @@ private:
 public:
     int IS_ADMIN_USER;
     int IsLanguage;
+    bool VolumeCalibSetUpFilesSaved;
+    bool CalibSetUpFilesSaved;
 
 public:
     struct CALIB_TEMPERATURE cCalibTm;

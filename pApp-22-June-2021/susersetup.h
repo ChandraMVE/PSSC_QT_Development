@@ -61,6 +61,8 @@ public:
     bool getHideAfterACK();
     bool isSwitchEnabled(int tmp);
 
+    bool UserSetUpFilesSaved;
+
 signals:
     void showHome(bool);
     void getConfirmation(int, int);
