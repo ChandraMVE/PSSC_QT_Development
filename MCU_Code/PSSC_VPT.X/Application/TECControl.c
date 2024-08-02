@@ -231,7 +231,24 @@ void TECControl_Handler(void)
                                 PidControl.Kd_Term = 155.5f;
                                 Events_SetTecFan(false);
                             }
-                            TEC_DutyCycle = 0X018F;
+//                            TEC_DutyCycle = 0X018F;
+                            if(TempUpdated){
+                                TempUpdated = false;
+                                TEC_DutyCycle = 0X018F;
+                            } else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+//                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+//                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                                }
+                            }
                             TECControl_Heating();
                             TECControl.Flags.TECStatus = true;
                             TECControl.TECState_Status = TEC_TEMP_STATE_RUNNING;
@@ -280,13 +297,47 @@ void TECControl_Handler(void)
                             }
                             TEC_DutyCycle = 0X018F;
                             Events_SetTecFan(true);
+                            if(TempUpdated){
+                                TempUpdated = false;
+                                TEC_DutyCycle = 0X018F;
+                            } else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+//                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+//                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                                }
+                            }
                             TECControl_Cooling();
                             TECControl.Flags.TECStatus = false;
                             TECControl.TECState_Status = TEC_TEMP_STATE_RUNNING;
                         }
                         else
                         {
-                            TEC_DutyCycle = 0X0C7F;
+//                            TEC_DutyCycle = 0X0C7F;
+                            if(TempUpdated){
+                                TempUpdated = false;
+                                TEC_DutyCycle = 0X018F;
+                            } else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+//                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+//                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                                }
+                            }
                             TECControl_Heating();
                         }
                     }
@@ -413,13 +464,47 @@ void TECControl_Handler(void)
                         {
                             TEC_OverCounter = 0;
                             //TECControl_Stop();
-                            TEC_DutyCycle = 0X018F;
+//                            TEC_DutyCycle = 0X018F;
+                            if(TempUpdated){
+                                TempUpdated = false;
+                                TEC_DutyCycle = 0X018F;
+                            } else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+//                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+//                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                                }
+                            }
                             TECControl_Cooling();
                         }
                         else if((TECControl.Set_Value > TECControl.Current_Value) && (TEC_OverCounter > MAXOVER_TIME))
                         {
                             TEC_OverCounter = 0;
                             //TECControl_Stop();
+                            if(TempUpdated){
+                                TempUpdated = false;
+                                TEC_DutyCycle = 0X018F;
+                            } else{
+                                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                                {
+                                    TECCounter++;
+                                    if(TECCounter >= 10){
+                                        TEC_DutyCycle += 0X018F;
+                                        TECCounter = 0;
+//                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+//                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
+                                }
+                            }
                             TECControl_Heating();
                         }
                         
@@ -534,12 +619,46 @@ void TECControl_Handler(void)
                         PidControl.Ki_Term = 0.065f;
                         PidControl.Kd_Term = 4.25f;
                     }
-                    PIDControl_Calculation();
+//                    PIDControl_Calculation();
+                    if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    {
+                        PIDControl_Calculation();
+                    }else{
+                        if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                        {
+                            TECCounter++;
+                            if(TECCounter >= 10){
+                                TEC_DutyCycle += 0X018F;
+                                TECCounter = 0;
+                                PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                            }
+                        }else{
+                            PIDControl_Calculation();
+                        }
+                    }
                 }
                 else
                 {
                     TECControl.Current_Value = TECControl.PressCurrent_Value;
-                    PIDControl_ReverseCalculation();
+//                    PIDControl_ReverseCalculation();
+                    if( TECControl.TempCurrent_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    {
+                        PIDControl_ReverseCalculation();
+                    }else{
+                        if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                        {
+                            TECCounter++;
+                            if(TECCounter >= 10){
+                                TEC_DutyCycle += 0X018F;
+                                TECCounter = 0;
+                                PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                            }
+                        }else{
+                            PIDControl_ReverseCalculation();
+                        }
+                    }
                 }
             }
             else
