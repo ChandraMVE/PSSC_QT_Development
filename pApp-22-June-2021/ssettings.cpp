@@ -382,7 +382,7 @@ QString sSettings::getTemperatureScale() const
 
 QString sSettings::getPressure(double pr) const
 {
-    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', qslPressureDP->at(cgs->pressure_scale).toInt())) + " " + qslPressureScale->at(cgs->pressure_scale);
+    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3)) + " " + qslPressureScale->at(cgs->pressure_scale);
 }
 
 QString sSettings::getPressureWS(double pr) const

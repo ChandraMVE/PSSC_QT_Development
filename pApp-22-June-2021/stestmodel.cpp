@@ -304,7 +304,8 @@ bool sTestModel::TransferRecords(QString fname)
 
     //fname = QApplication::applicationDirPath() + "/" + fname;
 
-    fname = FF_USB + fname;
+//    fname = FF_USB + fname;
+    fname = QApplication::applicationDirPath() + "/tdata/" + fname;
 
     qDebug() << "fname:" << fname;
 
@@ -372,6 +373,31 @@ bool sTestModel::TransferRecords(QString fname)
         }
 
         out.close();
+
+        int result = system("sync");
+        if (result == -1) {
+            emit showMsgBox(tr("Service Setup"), tr("Error Synchronizing Filesystem!"));
+            return false;
+        }
+
+        QString command = "cp " + fname + " /run/media/sda1/";
+
+        result = system(command.toStdString().c_str()); // Convert QString to std::string first, then to const char*
+//        int result = system("cp /home/root/" + fname + " /run/media/sda1/");
+        if (result == -1) {
+            emit showMsgBox(tr("Service Setup"), tr("Error Copying Logs!"));
+            return false;
+        }
+
+//            system("sleep 3");
+
+        result = system("sync");
+        if (result == -1) {
+            emit showMsgBox(tr("Service Setup"), tr("Error Synchronizing Filesystem!"));
+            return false;
+        }
+
+        QFile::remove(fname);
 
         return true;
     }

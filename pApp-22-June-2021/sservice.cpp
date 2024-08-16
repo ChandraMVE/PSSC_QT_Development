@@ -86,6 +86,7 @@ sService::sService(QWidget *parent) :
 
     ui->imageCapture->hide();
 
+    cLogCount = 0;
     cInternalLogStage = 1;
 //    internalLogData();
     logPath = false;
@@ -967,8 +968,13 @@ void sService::timerEvent(QTimerEvent *e)
             case 0: break;
             case 1: if(!logData())
                     {
-                        emit showMsgBox(tr("Service Setup"), tr("To USB Log, No USB Pen Drive Found!\nReconnect USB Pen Drive & try again!"));
-                        cLogStage = 2;
+                        cLogCount++;
+                        if(cLogCount > 3)
+                        {
+                            cLogCount = 0;
+                            emit showMsgBox(tr("Service Setup"), tr("To USB Log, No USB Pen Drive Found!\nReconnect USB Pen Drive & try again!"));
+                            cLogStage = 2;
+                        }
                     }
                     else
                         cLogStage = 3;

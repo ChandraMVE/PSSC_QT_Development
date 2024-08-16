@@ -7603,8 +7603,9 @@ void MainWindow::onConfirmed(int ctype, bool tmp, int cmenu)
 
                     fdate.replace(QString("/"), QString("_"));
                     ftime.replace(":", "_");
+                    ftime.replace(" ", "_");
 
-                    fname =  fdate + " " + ftime + " " +
+                    fname =  fdate + "_" + ftime + "_" +
                             ui->wGeneralSetup->general_setup.unit_id
                             + ".csv";
 
@@ -7727,11 +7728,12 @@ void MainWindow::on_imageCapture_clicked()
         if (pixmap.save(filename))
         {
             qDebug() << "Screenshot saved successfully.";
-            QString originalStyleSheet = this->styleSheet();
+//            QString originalStyleSheet = this->styleSheet();
             this->setStyleSheet("background-color: rgb(21, 100, 192);");
 
             QTimer::singleShot(50, this, [=]() {
-                this->setStyleSheet(originalStyleSheet);
+//                this->setStyleSheet(originalStyleSheet);
+                this->setStyleSheet("background-color: rgb(255, 255, 255);");
             });
         }
         else

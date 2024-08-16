@@ -153,6 +153,7 @@ private:
     int cPrevTab;
     sSettings cSettings;
     int cLogStage;
+    int cLogCount;
     int cInternalLogStage;
     int cUsbLogTimeout;
     bool cDiagnosticMode;
