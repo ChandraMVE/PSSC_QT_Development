@@ -175,25 +175,27 @@ QTabBar::tab {
 
     border: 1px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
     padding: 2px;
     height:41px;
-   	width: 230px;
+   	width: 243.5px;
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
 border-style: solid;
 
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 20pt &quot;Roboto Medium&quot;;
 	color: rgb(0, 0, 0);
+background-color: rgb(110, 210, 255);
 	
 
 }
 
 QTabBar::tab:selected {
-	background-color: rgb(190, 190, 190);
+		/*background-color: rgb(190, 190, 190);*/
+	background-color: rgb(255, 255, 255);
     border-color: #9B9B9B;
     border-bottom-color: #C2C7CB; /* same as pane color */
  border: 0px
@@ -204,7 +206,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="usesScrollButtons">
     <bool>true</bool>
@@ -228,7 +230,7 @@ border: 2px solid #C4C4C3;
 border-bottom-color: #C2C7CB; /* same as the pane color */
 border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
-border-top-right-radius: 30px;
+/*border-top-right-radius: 30px;*/
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 border-color:  rgb(190, 190, 190);
@@ -267,7 +269,7 @@ border-color:  rgb(190, 190, 190);
       <property name="styleSheet">
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -423,7 +425,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="styleSheet">
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -608,7 +610,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="styleSheet">
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -781,7 +783,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="styleSheet">
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -937,7 +939,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="styleSheet">
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -1083,7 +1085,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="styleSheet">
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -1424,7 +1426,7 @@ QTabBar::tab {
 
     padding: 2px;
     height:41px;
-   width: 330px;
+   width: 369px;
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
@@ -1432,12 +1434,14 @@ border-style: solid;
 
 font: 75 16pt &quot;Roboto Medium&quot;;
 	color: rgb(0, 0, 0);
+background-color: rgb(110, 210, 255);
 	
 
 }
 
 QTabBar::tab:selected {
-	background-color: rgb(190, 190, 190);
+		/*background-color: rgb(190, 190, 190);*/
+	background-color: rgb(255, 255, 255);
     border-color: #9B9B9B;
     border-bottom-color: #C2C7CB; /* same as pane color */
  border: 0px
@@ -1466,7 +1470,7 @@ QTabBar::tab:selected {
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
+/*    border-top-right-radius: 30px;*/
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 border-color:  rgb(190, 190, 190);
@@ -2848,7 +2852,7 @@ QScrollBar::down-arrow:vertical {
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
+/*    border-top-right-radius: 30px;*/
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 border-color:  rgb(190, 190, 190);
@@ -3344,12 +3348,12 @@ QTabBar::tab {
 
     border: 1px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
     padding: 2px;
     height:41px;
-   width: 330px;
+   width: 369px;
 
 border-width: 1px;
 border-color: rgb(21, 100, 192);
@@ -3357,12 +3361,14 @@ border-style: solid;
 
 font: 75 16pt &quot;Roboto Medium&quot;;
 	color: rgb(0, 0, 0);
+background-color: rgb(110, 210, 255);
 	
 
 }
 
 QTabBar::tab:selected {
-	background-color: rgb(190, 190, 190);
+		/*background-color: rgb(190, 190, 190);*/
+	background-color: rgb(255, 255, 255);
     border-color: #9B9B9B;
     border-bottom-color: #C2C7CB; /* same as pane color */
  border: 0px
@@ -3391,7 +3397,7 @@ QTabBar::tab:selected {
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
+/*    border-top-right-radius: 30px;*/
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 border-color:  rgb(190, 190, 190);
@@ -5109,7 +5115,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
+/*    border-top-right-radius: 30px;*/
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 border-color:  rgb(190, 190, 190);
@@ -5177,7 +5183,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
           <rect>
            <x>280</x>
            <y>130</y>
-           <width>310</width>
+           <width>321</width>
            <height>50</height>
           </rect>
          </property>
@@ -5262,7 +5268,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
          <property name="styleSheet">
           <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -5389,7 +5395,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
           <rect>
            <x>280</x>
            <y>330</y>
-           <width>310</width>
+           <width>321</width>
            <height>50</height>
           </rect>
          </property>
@@ -5438,7 +5444,7 @@ border-color: rgb(21, 100, 192);
           <rect>
            <x>280</x>
            <y>230</y>
-           <width>310</width>
+           <width>321</width>
            <height>50</height>
           </rect>
          </property>

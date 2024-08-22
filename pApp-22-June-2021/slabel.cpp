@@ -28,22 +28,18 @@ void slabel::setSelected(bool tmp)
 {
     if(tmp)
         ui->label->setStyleSheet(
-        "QLabel { background-color: rgb(21, 100, 192); \
-        border-width: 2px; \
-        border-color: rgb(51, 204, 255);\
+        "QLabel { background-color: rgb(241, 241, 241); \
         border-style: solid;\
-        border-radius: 10;\
-        color: rgb(255, 255, 255);\
-        font: 75 16pt \"Roboto Medium\"; }");
+        border-radius: 20;\
+        color: rgb(0, 0, 0);\
+        font: 100 20pt \"Roboto Medium\"; }");
     else
         ui->label->setStyleSheet(
-        "QLabel { background-color: rgb(241, 241, 241); \
-        border-width: 2px; \
-        border-color: rgb(21, 100, 192); \
+        "QLabel { background-color: rgb(21, 100, 192); \
         border-style: solid;\
-        border-radius: 10;\
-        color: rgb(0, 0, 0);\
-        font: 75 16pt \"Roboto Medium\"; }");
+        border-radius: 20;\
+        color: rgb(255, 255, 255);\
+        font: 100 20pt \"Roboto Medium\"; }");
 
 }
 

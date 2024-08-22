@@ -41,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
    /*
     * Language Setting
     */
-
    QString path = QApplication::applicationDirPath();
 
    qDebug()<<"Path Checking: "<<path;

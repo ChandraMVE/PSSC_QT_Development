@@ -9,23 +9,23 @@ sMenuBar::sMenuBar(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString measu = (getLanguage()==0)?"Measuring":(getLanguage()==1)?"Medición":(getLanguage()==2)?"Messung":"Mesure";
+    QString measu = (getLanguage()==0)?"MEASURE":(getLanguage()==1)?"Medición":(getLanguage()==2)?"Messung":"Mesure";
     ui->wmMeasuring->setText(measu);
     ui->wmMeasuring->setEnabled(true);
     ui->wmMeasuring->setSelected(false);
 
 //    QString rins=(getLanguage()==0)?"Rinsing":(getLanguage()==1)?"Enjuague":(getLanguage()==2)?"Spülen":"Rinçage";
-    QString rins = "User";
+    QString rins = "USER";
     ui->wmCleaning->setText(rins);
     ui->wmCleaning->setEnabled(true);
     ui->wmCleaning->setSelected(false);
 
-    QString mem=(getLanguage()==0)?"Memory":(getLanguage()==1)?"Memoria":(getLanguage()==2)?"Erinnerung":"Mémoire";
+    QString mem=(getLanguage()==0)?"MEMORY":(getLanguage()==1)?"Memoria":(getLanguage()==2)?"Erinnerung":"Mémoire";
     ui->wmMemory->setText(mem);
     ui->wmMemory->setEnabled(true);
     ui->wmMemory->setSelected(false);
 
-    QString setu=(getLanguage()==0)?"Setup":(getLanguage()==1)?"Preparar":(getLanguage()==2)?"Installieren":"Installer";
+    QString setu=(getLanguage()==0)?"SETUP":(getLanguage()==1)?"Preparar":(getLanguage()==2)?"Installieren":"Installer";
     ui->wmSetup->setText(setu);
     ui->wmSetup->setEnabled(true);
     ui->wmSetup->setSelected(false);

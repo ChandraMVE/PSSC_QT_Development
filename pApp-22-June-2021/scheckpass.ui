@@ -309,7 +309,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QFrame" name="frMessage">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>40</x>
      <y>410</y>
      <width>660</width>
      <height>231</height>
