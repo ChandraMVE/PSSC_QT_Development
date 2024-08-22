@@ -78,7 +78,7 @@ struct {
 #define ALPHA_VERSION       0
 #define BETA_VERSION        1
 #define VALVE_DUTY_PERIOD               0X1F3F              // 1KHz frequency
-#define VALVE_DUTY_PERCENTAGE           0x14                //40% duty cycle                        //0x0A                // 20% duty cycle
+#define VALVE_DUTY_PERCENTAGE           0x14                //40% duty cycle                        //0x0A -- 10% duty cycle               //0x14 -- 20% duty cycle
 #define VALVE_DEFAULT_DUTY_CYCLE        ((VALVE_DUTY_PERIOD / 100) * VALVE_DUTY_PERCENTAGE)              // duty cycle value for 1KHz frequency
 #define MAX_POSITION_DETECTION_TIME     300                 // 100ms * 300 = 30 seconds
 #define VM_MIN_TEMP_COUNT_MOTOR         (uint32_t)64000               // 25 deg count

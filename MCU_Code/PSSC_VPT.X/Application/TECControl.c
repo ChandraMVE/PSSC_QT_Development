@@ -405,6 +405,7 @@ void TECControl_Handler(void)
                         PidControl.Ki_Term = 0.125f;
                         PidControl.Kd_Term = 15.5f;
                     }
+                    TEC_DutyCycle = 0X018F;
                     TECControl_Heating();
                     TECControl.Flags.TECStatus = true;
                 }
@@ -667,7 +668,7 @@ void TECControl_Handler(void)
                         PidControl.Kd_Term = 4.25f;
                     }
 //                    PIDControl_Calculation();
-                    if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    if( TECControl.Current_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
                     {
                         PIDControl_Calculation();
                     }else{
@@ -689,7 +690,7 @@ void TECControl_Handler(void)
                 {
                     TECControl.Current_Value = TECControl.PressCurrent_Value;
 //                    PIDControl_ReverseCalculation();
-                    if( TECControl.TempCurrent_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    if( TECControl.Current_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
                     {
                         PIDControl_ReverseCalculation();
                     }else{
