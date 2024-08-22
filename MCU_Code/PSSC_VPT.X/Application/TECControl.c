@@ -668,7 +668,7 @@ void TECControl_Handler(void)
                         PidControl.Kd_Term = 4.25f;
                     }
 //                    PIDControl_Calculation();
-                    if( TECControl.Current_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    if( TECControl.Current_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 3)))
                     {
                         PIDControl_Calculation();
                     }else{
@@ -676,10 +676,18 @@ void TECControl_Handler(void)
                         {
                             TECCounter++;
                             if(TECCounter >= 10){
-                                TEC_DutyCycle += 0X018F;
+                                if(TEC_DutyCycle == 0X031E){
+                                    if(TECControl.TempCurrent_Value > (64000)){
+                                        TEC_DutyCycle += 0X018F;
+                                        PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                        PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                    }
+                                }else{
+                                    TEC_DutyCycle += 0X018F;
+                                    PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
+                                    PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
+                                }
                                 TECCounter = 0;
-                                PWM_DutyCycleSet(PWM_GENERATOR_6, TEC_DutyCycle);
-                                PWM_SoftwareUpdateRequest(PWM_GENERATOR_6);
                             }
                         }else{
                             PIDControl_Calculation();
@@ -690,7 +698,7 @@ void TECControl_Handler(void)
                 {
                     TECControl.Current_Value = TECControl.PressCurrent_Value;
 //                    PIDControl_ReverseCalculation();
-                    if( TECControl.Current_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    if( TECControl.Current_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 3)))
                     {
                         PIDControl_ReverseCalculation();
                     }else{
