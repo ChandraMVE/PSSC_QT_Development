@@ -572,6 +572,10 @@ bool sService::getUSBLogEnabled()
     return service_setup.data_log_usb; 
 }
 
+void sService::resetDataLog(){
+    service_setup.data_log_usb = DEFAULT_SET_DATA_LOG_USB;
+}
+
 bool sService::getContinuousRunEnabled()
 {
     return service_setup.continuous_enable;
@@ -975,6 +979,7 @@ void sService::timerEvent(QTimerEvent *e)
                         {
                             cLogCount = 0;
                             if(!sInitDone){
+                                USBNotFound = false;
                                 emit showMsgBox(tr("Service Setup"), tr("To USB Log, No USB Pen Drive Found!\nReconnect USB Pen Drive & try again!"));
                             }else{
                                 USBNotFound = true;

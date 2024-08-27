@@ -1775,14 +1775,27 @@ void MainWindow::checkInit()
 
                         if(ui->wServiceSetup->getUSBLogEnabled()){
                             if(ui->wServiceSetup->USBNotFound){
-                                onShowMsgBox(tr("Initial"), tr("Initial test done without USB!"));
+                                onShowMsgBox(tr("Initial"), tr("Initialization is Successful\nUSB not found, USB Log is disabled"));
+                                ui->wServiceSetup->sInitDone = false;
+                                ui->wServiceSetup->USBNotFound = false;
+                                ui->wServiceSetup->resetDataLog();
+                            }else{
+                                onShowStatusBox(tr("Initial"), tr("Initialization is successful"),true);
+                                QEventLoop delay;
+                                QTimer::singleShot(1000,&delay,&QEventLoop::quit);
+                                delay.exec();
+                                onShowStatusBox(tr("Initial"), tr("Initialization is successful"),false);
                                 ui->wServiceSetup->sInitDone = false;
                                 ui->wServiceSetup->USBNotFound = false;
                             }
                         }
                         else
                         {
-                            onShowMsgBox(tr("Initial"), tr("Initial test done!"));
+                            onShowStatusBox(tr("Initial"), tr("Initialization is successful"),true);
+                            QEventLoop delay;
+                            QTimer::singleShot(1000,&delay,&QEventLoop::quit);
+                            delay.exec();
+                            onShowStatusBox(tr("Initial"), tr("Initialization is successful"),false);
                         }
                         cInitSuccess = true;
                         cInitDone = true;

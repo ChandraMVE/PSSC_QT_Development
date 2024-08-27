@@ -103,6 +103,7 @@ public:
     bool ServiceSetUpFilesSaved;
     bool sInitDone;
     bool USBNotFound;
+    void resetDataLog();
 
 protected:
     void timerEvent(QTimerEvent *e);
