@@ -22,7 +22,7 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->cbMethod->setView(view);
 
     ui->wResult->resize(ui->twMeasuring->width(), ui->twMeasuring->height());
-    ui->wResult->move(ui->twMeasuring->x(), ui->twMeasuring->y());
+    ui->wResult->move((ui->twMeasuring->x()-10), (ui->twMeasuring->y()));
     ui->wResult->setStatus("");
     ui->wResult->hide();
 

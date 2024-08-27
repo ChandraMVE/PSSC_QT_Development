@@ -1680,6 +1680,7 @@ void MainWindow::checkInit()
                             //cStage  = 0;      //4-July-2022
                             cInitSuccess = false;
                             cInitDone = true;
+                            ui->wServiceSetup->sInitDone = false;
 
                             //ui->wUserSetup->sendBuzAndVol();
 
@@ -1733,6 +1734,7 @@ void MainWindow::checkInit()
                         //cStage  = 0;      //4-July-2022
                         cInitSuccess = false;
                         cInitDone = true;
+                        ui->wServiceSetup->sInitDone = false;
 
                         //ui->wUserSetup->sendBuzAndVol();
 
@@ -1771,9 +1773,20 @@ void MainWindow::checkInit()
 //                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
 //                        }
 
-                        onShowMsgBox(tr("Initial"), tr("Initial test done!"));
+                        if(ui->wServiceSetup->getUSBLogEnabled()){
+                            if(ui->wServiceSetup->USBNotFound){
+                                onShowMsgBox(tr("Initial"), tr("Initial test done without USB!"));
+                                ui->wServiceSetup->sInitDone = false;
+                                ui->wServiceSetup->USBNotFound = false;
+                            }
+                        }
+                        else
+                        {
+                            onShowMsgBox(tr("Initial"), tr("Initial test done!"));
+                        }
                         cInitSuccess = true;
                         cInitDone = true;
+                        ui->wServiceSetup->sInitDone = false;
 
                         qDebug() << "TMO Reset";
 
@@ -1810,6 +1823,7 @@ void MainWindow::checkInit()
                             //cStage  = 0;      //4-July-2022
                             cInitSuccess = false;
                             cInitDone = true;
+                            ui->wServiceSetup->sInitDone = false;
 
                             //ui->wUserSetup->sendBuzAndVol();
 
@@ -6224,6 +6238,7 @@ void MainWindow::showCommError(int tmp)
         {
             cInitSuccess = false;
             cInitDone = true;
+            ui->wServiceSetup->sInitDone = false;
 
             ui->wCheckPass->hide();
 
@@ -6375,6 +6390,15 @@ void MainWindow::handleD5188(void)
                         //cPrTpx1 = cSettings.getTemperatureCelsius(cRawCTemperature);
 
                         sendPara(cProtocol.sendPressure(cPrCount), 12, 60*30);
+
+                        QString str = QString::number(cPrCount);
+                        if(ui->wServiceSetup->logPathEnabled())
+                            ui->wServiceSetup->commandLog((str));
+                        else if(ui->wServiceSetup->internalLogData())
+                        {
+                            qDebug()<<"First Time";
+                            ui->wServiceSetup->commandLog(str);
+                        }
 
                         if(ui->wServiceSetup->getDebug())
                             ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_PRESSURE_STABILIZE + cSettings.getPressure(101.3));
@@ -7405,6 +7429,7 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
         {
             cInitSuccess = false;
             cInitDone = true;
+            ui->wServiceSetup->sInitDone = false;
 
             ui->wCheckPass->hide();
 

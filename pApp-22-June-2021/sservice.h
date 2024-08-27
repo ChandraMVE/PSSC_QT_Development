@@ -101,6 +101,8 @@ public:
 
     int IS_ADMIN_USER_Service;
     bool ServiceSetUpFilesSaved;
+    bool sInitDone;
+    bool USBNotFound;
 
 protected:
     void timerEvent(QTimerEvent *e);
