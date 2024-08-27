@@ -23,9 +23,11 @@ MainWindow::MainWindow(QWidget *parent) :
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
 #else
-   view->setGeometry(0,0,768,1024);
+//   view->setGeometry(0,0,780,1034);
+    view->setGeometry(0,0,768,1024);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setFrameStyle(QFrame::NoFrame);
 #endif
 
     QGraphicsProxyWidget *proxy = scene->addWidget(this);
@@ -41,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent) :
    /*
     * Language Setting
     */
+//   if (qgetenv("QT_FONT_DPI").isEmpty()) {
+//       qputenv("QT_FONT_DPI", "96");
+//   }
    QString path = QApplication::applicationDirPath();
 
    qDebug()<<"Path Checking: "<<path;
@@ -96,17 +101,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wError, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wError, SIGNAL(Confirmed(int, bool, int)), this, SLOT(onConfirmed(int, bool, int)));
 
-    ui->wMenuBar->resize(768, 86);
+    ui->wMenuBar->resize(768, 96);
     ui->wMenuBar->move(0,92);
 
     ui->wMeasuring1->resize(768, 876);
-    ui->wMeasuring1->move(0, 180);
+    ui->wMeasuring1->move(0, 189);
     ui->wMeasuring1->setMethods(qslMethods);
     ui->wMeasuring1->readOperatorsFile();
     ui->wMeasuring1->readSampleIdsFile();
     ui->wMeasuring1->Show();
     ui->imageCapture->resize(167,41);
-    ui->imageCapture->move(20,880);
+    ui->imageCapture->move(20,889);
     ui->imageCapture->show();
 
     ui->wMeasuring2->resize(768, 876);
@@ -3083,6 +3088,10 @@ void MainWindow::onRunClicked(int state, bool init)
 
         if(cInitSuccess)
         {
+            ui->imageCapture->resize(167,41);
+            ui->imageCapture->move(20,889);
+            ui->imageCapture->show();
+
             if(init)
             {
                 cAutoCycles = 0;
@@ -3403,6 +3412,11 @@ void MainWindow::onSendCommand(QString cmd)
 
     if(ui->wServiceSetup->logPathEnabled())
         ui->wServiceSetup->commandLog(currentTab + logMethod + str);
+    else if(ui->wServiceSetup->internalLogData())
+    {
+        qDebug()<<"First Time";
+        ui->wServiceSetup->commandLog(str);
+    }
 
     //QString str = "S:" + QString::number(cStage).rightJustified(2, '0');
     //ui->label_2->setText(str);
@@ -3475,6 +3489,11 @@ void MainWindow::onSendCommand(QString cmd, sAccessWidget *sa)
 
     if(ui->wServiceSetup->logPathEnabled())
         ui->wServiceSetup->commandLog((currentTab + logMethod + str));
+    else if(ui->wServiceSetup->internalLogData())
+    {
+        qDebug()<<"First Time";
+        ui->wServiceSetup->commandLog(str);
+    }
     //ui->label_2->setText("S:" + cmd);
 
     //QString str = "S:" + QString::number(cStage).rightJustified(2, '0');
@@ -4292,6 +4311,10 @@ void MainWindow::handleOther(void)
 
                                 ui->wMeasuring1->setStatus("");
 
+                                ui->imageCapture->resize(167,25);
+                                ui->imageCapture->move(20,900);
+                                ui->imageCapture->show();
+
                                 if(ui->wMeasuring1->getMethod() == M_METHOD_D5191)
                                     ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
                                 else if(ui->wMeasuring1->getMethod() == M_METHOD_D6378)
@@ -5032,6 +5055,10 @@ void MainWindow::handleFreeShaker(void)
 
                                 ui->wMeasuring1->setStatus("");
 
+                                ui->imageCapture->resize(167,25);
+                                ui->imageCapture->move(20,900);
+                                ui->imageCapture->show();
+
                                 if(ui->wMeasuring1->getMethod() == M_METHOD_D5191)
                                     ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
                                 else if(ui->wMeasuring1->getMethod() == M_METHOD_D6378)
@@ -5434,6 +5461,10 @@ void MainWindow::handleD5191SingleExpansion(void)
                             if(cEqTime >= cREqTime)
                             {
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                                ui->imageCapture->resize(167,25);
+                                ui->imageCapture->move(20,900);
+                                ui->imageCapture->show();
 
                                 ui->wMeasuring1->showResultD5191Single(cPrTpx1);
                                 ui->wServiceSetup->incrementCount();
@@ -6376,6 +6407,14 @@ void MainWindow::handleD5188(void)
                     {
                         if(dtpr1 < (101.3 - 0.3))
                         {
+                            QString str = QString::number(cPrCount);
+                            if(ui->wServiceSetup->logPathEnabled())
+                                ui->wServiceSetup->commandLog((str));
+                            else if(ui->wServiceSetup->internalLogData())
+                            {
+                                qDebug()<<"First Time";
+                                ui->wServiceSetup->commandLog(str);
+                            }
                             cPrCount = cRawCPressure+50;
                             onSendCommand(cProtocol.sendPressure(cPrCount));
                             cREqTime = 0;
@@ -6383,6 +6422,14 @@ void MainWindow::handleD5188(void)
                         }
                         else if(dtpr1 > (101.3 + 0.3))
                         {
+                            QString str = QString::number(cPrCount);
+                            if(ui->wServiceSetup->logPathEnabled())
+                                ui->wServiceSetup->commandLog((str));
+                            else if(ui->wServiceSetup->internalLogData())
+                            {
+                                qDebug()<<"First Time";
+                                ui->wServiceSetup->commandLog(str);
+                            }
                             cPrCount = cRawCPressure-50;
                             onSendCommand(cProtocol.sendPressure(cPrCount));
                             cREqTime = 0;
@@ -6408,6 +6455,10 @@ void MainWindow::handleD5188(void)
                             if(cREqTime >=3)
                             {
                                 ui->wMeasuring1->setStatus("");
+
+                                ui->imageCapture->resize(167,25);
+                                ui->imageCapture->move(20,900);
+                                ui->imageCapture->show();
 
                                 ui->wMeasuring1->showResultD5188(cSettings.getTemperatureCelsius(cRawCTemperature));
                                 ui->wServiceSetup->incrementCount();
@@ -6803,6 +6854,10 @@ void MainWindow::handleD6377(void)
 
                             ui->wMeasuring1->setStatus("");
 
+                            ui->imageCapture->resize(167,25);
+                            ui->imageCapture->move(20,900);
+                            ui->imageCapture->show();
+
                             ui->wMeasuring1->showResultD6377(cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure));
                             ui->wServiceSetup->incrementCount();
 
@@ -7068,7 +7123,7 @@ void MainWindow::onMenuClicked(int menu)
 
     case M_MEASURING:
         ui->imageCapture->resize(167,41);
-        ui->imageCapture->move(20,880);
+        ui->imageCapture->move(20,881);
         ui->imageCapture->show();
          ui->wMeasuring1->Show();
          ui->wMenuBar->setSelectedMenu(menu);
@@ -7126,8 +7181,8 @@ void MainWindow::onMenuClicked(int menu)
         ui->fTitle->hide();
         ui->wMenuBar->move(0, 10);
 
-        ui->imageCapture->resize(167,41);
-        ui->imageCapture->move(20,878);
+        ui->imageCapture->resize(167,35);
+        ui->imageCapture->move(20,880);
         ui->imageCapture->show();
 
          ui->wMemory->Show();
@@ -7732,7 +7787,7 @@ void MainWindow::on_imageCapture_clicked()
 
             QTimer::singleShot(50, this, [=]() {
 //                this->setStyleSheet(originalStyleSheet);
-                this->setStyleSheet("background-color: rgb(255, 255, 255);");
+                this->setStyleSheet("background-color: rgb(0, 160, 255);");
             });
         }
         else

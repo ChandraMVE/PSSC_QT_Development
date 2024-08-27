@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>768</width>
-    <height>127</height>
+    <width>778</width>
+    <height>159</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>768</width>
-     <height>101</height>
+     <width>778</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="frameShape">
@@ -32,7 +32,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>5</y>
+      <y>20</y>
       <width>167</width>
       <height>74</height>
      </rect>
@@ -42,7 +42,7 @@
     <property name="geometry">
      <rect>
       <x>207</x>
-      <y>5</y>
+      <y>20</y>
       <width>167</width>
       <height>74</height>
      </rect>
@@ -52,7 +52,7 @@
     <property name="geometry">
      <rect>
       <x>394</x>
-      <y>5</y>
+      <y>20</y>
       <width>167</width>
       <height>74</height>
      </rect>
@@ -62,7 +62,7 @@
     <property name="geometry">
      <rect>
       <x>581</x>
-      <y>5</y>
+      <y>20</y>
       <width>167</width>
       <height>74</height>
      </rect>
@@ -73,8 +73,8 @@
      <rect>
       <x>0</x>
       <y>19</y>
-      <width>768</width>
-      <height>81</height>
+      <width>778</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">

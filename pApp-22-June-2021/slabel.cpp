@@ -47,10 +47,8 @@ void slabel::setRunning()
 {
     enabled = false;
     ui->label->setStyleSheet("QLabel {background-color: rgb(21, 100, 192);\
-    border-width: 2px;\
-    border-color: rgb(51, 204, 255);\
     border-style: solid;\
-    border-radius: 10;\
+    border-radius: 20;\
     color: rgb(255, 255, 255);\
     font: 75 16pt \"Roboto Medium\"; }");
 }

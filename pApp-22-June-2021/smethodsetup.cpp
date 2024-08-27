@@ -492,7 +492,7 @@ void sMethodSetup::showD5191()
                       METHOD_TEMPERATURE_DP);
 
     ui->lePara1->setText(cSettings.getTemperatureMS(stdD5191.temperature));
-    ui->lePara1->move(230,20);
+    ui->lePara1->move(310,20);
 
     ui->lePara1->setReadOnly(true);
     ui->lblPara2->setText(tr("Time"));
@@ -500,7 +500,7 @@ void sMethodSetup::showD5191()
     dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
                       METHOD_TIME_DP);
     ui->lePara2->setText(cSettings.getTestTime(stdD5191.time));
-    ui->lePara2->move(230,90);
+    ui->lePara2->move(310,90);
 
     ui->lePara2->setReadOnly(true);
     ui->lblPara3->setText(tr("V/L Ratio"));
@@ -510,13 +510,13 @@ void sMethodSetup::showD5191()
                       METHOD_VLRATIO_DP);
 
     ui->lePara3->setText(cSettings.getVLRatio(stdD5191.vl_ratio));
-    ui->lePara3->move(230,160);
+    ui->lePara3->move(310,160);
     ui->lePara3->setReadOnly(true);
     ui->lePara3->show();
     ui->lblPara3->show();
 
     ui->cbSingleExpEnable->setChecked(stdD5191.single_expansion);
-    ui->cbSingleExpEnable->move(230, 230);
+    ui->cbSingleExpEnable->move(445, 230);
     ui->lblPara5->move(20,230);
 
     ui->cbSingleExpEnable->show();
@@ -567,14 +567,14 @@ void sMethodSetup::showD6377()
                             METHOD_TEMPERATURE_DP);
     ui->leInjectPara6->setText(cSettings.getTemperatureMS(stdD6377.InjectTemp));
     ui->lblPara1_2->move(20,20);
-    ui->leInjectPara6->move(230,20);
+    ui->leInjectPara6->move(310,20);
 
     dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
                       cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
                       METHOD_TEMPERATURE_DP);
 
     ui->lePara1->setText(cSettings.getTemperatureMS(stdD6377.temperature));
-    ui->lePara1->move(230,90);
+    ui->lePara1->move(310,90);
 
     ui->lePara1->setReadOnly(false); 
     ui->lblPara2->setText(tr("Time"));
@@ -582,7 +582,7 @@ void sMethodSetup::showD6377()
     dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
                       METHOD_TIME_DP);
     ui->lePara2->setText(cSettings.getTestTime(stdD6377.time));
-    ui->lePara2->move(230,160);
+    ui->lePara2->move(310,160);
 
     ui->lePara2->setReadOnly(false);
     ui->lblPara3->setText(tr("V/L Ratio"));
@@ -592,7 +592,7 @@ void sMethodSetup::showD6377()
                       METHOD_VLRATIO_DP);
 
     ui->lePara3->setText(cSettings.getVLRatio(stdD6377.vl_ratio));
-    ui->lePara3->move(230,230);
+    ui->lePara3->move(310,230);
     ui->lePara3->setReadOnly(false);
 
     ui->lePara3->show();
@@ -692,7 +692,7 @@ void sMethodSetup::showD6378()
                       METHOD_TEMPERATURE_DP);
 
     ui->lePara1->setText(cSettings.getTemperatureMS(stdD6378.temperature));
-    ui->lePara1->move(230,20);
+    ui->lePara1->move(310,20);
 
     ui->lePara1->setReadOnly(true);
     ui->lblPara2->setText(tr("Time"));
@@ -701,7 +701,7 @@ void sMethodSetup::showD6378()
     dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
                       METHOD_TIME_DP);
     ui->lePara2->setText(cSettings.getTestTime(stdD6378.time));
-    ui->lePara2->move(230,90);
+    ui->lePara2->move(310,90);
     ui->lePara2->setReadOnly(true);
     ui->lblPara3->setText(tr("V/L Ratio"));
     ui->lblPara3->move(20,160);
@@ -710,7 +710,7 @@ void sMethodSetup::showD6378()
                       METHOD_VLRATIO_DP);
 
     ui->lePara3->setText(cSettings.getVLRatio(stdD6378.vl_ratio));
-    ui->lePara3->move(230,160);
+    ui->lePara3->move(310,160);
     ui->lePara3->setReadOnly(true);
 
     ui->lblPara3->show();
@@ -767,7 +767,7 @@ void sMethodSetup::showD5188()
     ui->lePara1->setText(cSettings.getPressureMS(stdD5188.pressure));
 
     ui->lePara1->setReadOnly(true);
-    ui->lePara1->move(230,20);
+    ui->lePara1->move(310,20);
 
     dvPara2->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
                       METHOD_VLRATIO_DP);
@@ -776,10 +776,10 @@ void sMethodSetup::showD5188()
     ui->lblPara2->move(20,90);
     ui->lePara2->setText(cSettings.getVLRatio(stdD5188.vl_ratio));
     ui->lePara2->setReadOnly(true);
-    ui->lePara2->move(230,90);
+    ui->lePara2->move(310,90);
 
     ui->lePara3->setReadOnly(false);
-    ui->lePara3->move(230,160);
+    ui->lePara3->move(310,160);
     ui->lblPara3->setText(tr("Shaker Speed"));
     ui->lblPara3->move(20,160);
 

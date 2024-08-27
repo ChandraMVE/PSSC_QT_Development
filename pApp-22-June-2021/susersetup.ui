@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>365</x>
-     <y>820</y>
+     <y>829</y>
      <width>167</width>
-     <height>80</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -27,49 +27,49 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-background-color: rgb(51, 204, 0);
+background-color: rgb(120, 200, 90);
 border-width: 2px;
-border-color: rgb(51, 204, 0);
+border-color: rgb(120, 200, 90);
 border-style: solid;
-border-radius: 10;
-color: rgb(255, 255, 255);
-font: 75 16pt &quot;Roboto Medium&quot;;
+border-radius: 20;
+color: rgb(0, 0, 0);
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(204, 244, 198);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(127, 143, 127);
+border-color: rgb(190, 190, 190);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
 border-width: 2px;
 border-color: rgb(24, 163, 3);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(255, 255, 255);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
 border-width: 2px;
 border-color: rgb(24, 163, 3);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
 border-width: 2px;
-border-color: rgb(21, 100, 192);
+border-color: rgb(241, 241, 241);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 </string>
    </property>
@@ -81,9 +81,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>560</x>
-     <y>820</y>
+     <y>829</y>
      <width>167</width>
-     <height>80</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -91,143 +91,96 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-background-color: red;
+background-color: rgb(240,90,40);
 border-width: 2px;
-border-color: red;
+border-color: rgb(240,90,40);
 border-style: solid;
-border-radius: 10;
-color: rgb(255, 255, 255);
-font: 75 16pt &quot;Roboto Medium&quot;;
+border-radius: 20;
+color: rgb(0, 0, 0);
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(255, 174, 171);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(127, 143, 127);
+border-color: rgb(190, 190, 190);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(194, 54, 11);
 border-width: 2px;
 border-color: rgb(194, 54, 11);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(255, 255, 255);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
 border-width: 2px;
 border-color: rgb(24, 163, 3);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
 border-width: 2px;
-border-color: rgb(21, 100, 192);
+border-color: rgb(241, 241, 241);
 border-style: solid;
-border-radius: 10;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 18pt &quot;Roboto Medium&quot;;
 }</string>
    </property>
    <property name="text">
     <string>Home</string>
    </property>
   </widget>
-  <widget class="QTabWidget" name="GeneralSetupTab">
+  <widget class="QPushButton" name="imageCapture">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>749</width>
-     <height>770</height>
+     <x>20</x>
+     <y>820</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTabWidget::pane { /* The tab widget frame */
-    position: absolute;
-
-	color: rgb(0, 0, 0);
-	font: 75 20pt &quot;Roboto Medium&quot;;
-
-	 border: 0px solid #C4C4C3;
-    border-bottom-color: #C2C7CB; /* same as the pane color */
-    border-bottom-left-radius: 30px;
-   border-bottom-right-radius: 30px;
-    border-top-right-radius: 30px;
-
-
-
+    <string notr="true">QPushButton {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
 }
-
-QTabWidget::tab-bar {
-    alignment: left;
-
-}
-
-/* Style the tab using the tab sub-control. Note that
-    it reads QTabBar _not_ QTabWidget */
-QTabBar::tab {
-
-    border: 1px solid #C4C4C3;
-    border-bottom-color: #C2C7CB; /* same as the pane color */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-
-    padding: 2px;
-    height:41px;
-   width: 170px;
-
-border-width: 1px;
-border-color: rgb(21, 100, 192);
-border-style: solid;
-
-font: 75 16pt &quot;Roboto Medium&quot;;
-	color: rgb(0, 0, 0);
-	
-
-}
-
-QTabBar::tab:selected, QTabBar::tab:hover {
-	background-color: rgb(190, 190, 190);
-}
-
-QTabBar::tab:selected {
-    border-color: #9B9B9B;
-    border-bottom-color: #C2C7CB; /* same as pane color */
- border: 0px
+QPushButton:pressed {
+    border: none;
+    outline: none; /* Ensures no outline is displayed */
 }
 </string>
    </property>
-   <property name="currentIndex">
-    <number>0</number>
+   <property name="text">
+    <string/>
    </property>
-   <widget class="QWidget" name="tab_4">
-    <attribute name="title">
-     <string>User</string>
-    </attribute>
-    <widget class="QFrame" name="frame_7">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>749</width>
-       <height>725</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
+  </widget>
+  <widget class="QFrame" name="frame_7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>14</y>
+     <width>749</width>
+     <height>781</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(241, 241, 241);
 	 border: 2px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
+	border-top-left-radius: 30px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
 border-color:  rgb(190, 190, 190);
@@ -235,69 +188,69 @@ border-color:  rgb(190, 190, 190);
 
 
 </string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QFrame" name="frame_4">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>300</y>
-        <width>709</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-width: 2px;
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>340</y>
+      <width>709</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 2px;
 border-style: solid;
-border-radius: 10px;
+border-radius: 20px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 border-color:  rgb(200, 200, 200);
 
 </string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QLabel" name="label_10">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>40</y>
-         <width>211</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-width: 0px;
 font: 75 18pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>System Volume</string>
-       </property>
-      </widget>
-      <widget class="QSlider" name="hsAlarmVolme">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>30</y>
-         <width>241</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QSlider::horizontal {
+     </property>
+     <property name="text">
+      <string>System Volume</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="hsAlarmVolme">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>30</y>
+       <width>241</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QSlider::horizontal {
     border: 0px solid #999999;
 }
 
@@ -324,66 +277,66 @@ QSlider::sub-page:horizontal {
 
 
 </string>
-       </property>
-       <property name="maximum">
-        <number>3</number>
-       </property>
-       <property name="pageStep">
-        <number>1</number>
-       </property>
-       <property name="sliderPosition">
-        <number>1</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="invertedAppearance">
-        <bool>false</bool>
-       </property>
-       <property name="invertedControls">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame_6">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>160</y>
-        <width>709</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-width: 2px;
+     </property>
+     <property name="maximum">
+      <number>3</number>
+     </property>
+     <property name="pageStep">
+      <number>1</number>
+     </property>
+     <property name="sliderPosition">
+      <number>1</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="invertedAppearance">
+      <bool>false</bool>
+     </property>
+     <property name="invertedControls">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_6">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>709</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 2px;
 border-style: solid;
-border-radius: 10px;
+border-radius: 20px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 border-color:  rgb(200, 200, 200);
 
 </string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QCheckBox" name="cbEBEnable">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>30</y>
-         <width>41</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QCheckBox {
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QCheckBox" name="cbEBEnable">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox {
     spacing: 5px;
  border: 0px solid #999999;
 
@@ -426,97 +379,97 @@ QCheckBox::indicator:indeterminate:pressed {
     image: url(:/images/checkbox_indeterminate_pressed.png);
 }
 */</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_16">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>258</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>258</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-width: 0px;
 font: 75 18pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Error Alarm</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame_8">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>440</y>
-        <width>709</width>
-        <height>121</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">border-width: 2px;
+     </property>
+     <property name="text">
+      <string>Error Alarm</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_8">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>490</y>
+      <width>709</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 2px;
 border-style: solid;
-border-radius: 10px;
+border-radius: 20px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 border-color:  rgb(200, 200, 200);
 
 </string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>201</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>35</y>
+       <width>201</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-width: 0px;
 font: 75 18pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Number of Rinse
+     </property>
+     <property name="text">
+      <string>Number of Rinse
 Cycles</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="cbRinseCycles">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>20</y>
-         <width>310</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Roboto Medium</family>
-         <pointsize>16</pointsize>
-         <weight>9</weight>
-         <italic>false</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QComboBox {
+     </property>
+    </widget>
+    <widget class="QComboBox" name="cbRinseCycles">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>35</y>
+       <width>310</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Roboto Medium</family>
+       <pointsize>16</pointsize>
+       <weight>9</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 1px 18px 1px 3px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
@@ -607,294 +560,268 @@ QScrollBar::down-arrow:vertical {
       background:  rgb(241, 241, 241);
  }
 </string>
-       </property>
-       <property name="maxVisibleItems">
-        <number>5</number>
-       </property>
-       <property name="frame">
-        <bool>true</bool>
-       </property>
-       <item>
-        <property name="text">
-         <string>1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>3</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>5</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>6</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>7</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>8</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>9</string>
-        </property>
-       </item>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame_9">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>580</y>
-        <width>709</width>
-        <height>101</height>
-       </rect>
+     </property>
+     <property name="maxVisibleItems">
+      <number>5</number>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
       </property>
-      <property name="styleSheet">
-       <string notr="true">border-width: 2px;
-border-style: solid;
-border-radius: 10px;
-color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto&quot;;
-border-color:  rgb(200, 200, 200);
-
-</string>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
       </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
       </property>
-      <widget class="QCheckBox" name="cbAutoPrintEnable">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>30</y>
-         <width>41</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QCheckBox {
-    spacing: 5px;
- border: 0px solid #999999;
-
-}
-
-QCheckBox::indicator {
-    width: 41px;
-    height: 41px;
-}
-
-QCheckBox::indicator:unchecked {
-	image: url(:/images/icons/ancheck.png);
-}
-/*
-QCheckBox::indicator:unchecked:hover {
-    image: url(:/images/checkbox_unchecked_hover.png);
-}
-
-QCheckBox::indicator:unchecked:pressed {
-    image: url(:/images/checkbox_unchecked_pressed.png);
-}
-*/
-QCheckBox::indicator:checked {
-    image: url(:/images/icons/acheck.png);
-}
-/*
-QCheckBox::indicator:checked:hover {
-    image: url(:/images/checkbox_checked_hover.png);
-}
-
-QCheckBox::indicator:checked:pressed {
-    image: url(:/images/checkbox_checked_pressed.png);
-}
-*/
-QCheckBox::indicator:indeterminate:hover {
-    image: url(:/images/checkbox_indeterminate_hover.png);
-}
-/*
-QCheckBox::indicator:indeterminate:pressed {
-    image: url(:/images/checkbox_indeterminate_pressed.png);
-}
-*/</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_17">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>211</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Auto Print</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame_10">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>709</width>
-        <height>121</height>
-       </rect>
+     </item>
+     <item>
+      <property name="text">
+       <string>5</string>
       </property>
-      <property name="styleSheet">
-       <string notr="true">border-width: 2px;
-border-style: solid;
-border-radius: 10px;
-color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto&quot;;
-border-color:  rgb(200, 200, 200);
-
-</string>
+     </item>
+     <item>
+      <property name="text">
+       <string>6</string>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+     </item>
+     <item>
+      <property name="text">
+       <string>7</string>
       </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+     </item>
+     <item>
+      <property name="text">
+       <string>8</string>
       </property>
-      <widget class="QCheckBox" name="cbABEnable">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>30</y>
-         <width>41</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QCheckBox {
-    spacing: 5px;
- border: 0px solid #999999;
-
-}
-
-QCheckBox::indicator {
-    width: 41px;
-    height: 41px;
-}
-
-QCheckBox::indicator:unchecked {
-	image: url(:/images/icons/ancheck.png);
-}
-/*
-QCheckBox::indicator:unchecked:hover {
-    image: url(:/images/checkbox_unchecked_hover.png);
-}
-
-QCheckBox::indicator:unchecked:pressed {
-    image: url(:/images/checkbox_unchecked_pressed.png);
-}
-*/
-QCheckBox::indicator:checked {
-    image: url(:/images/icons/acheck.png);
-}
-/*
-QCheckBox::indicator:checked:hover {
-    image: url(:/images/checkbox_checked_hover.png);
-}
-
-QCheckBox::indicator:checked:pressed {
-    image: url(:/images/checkbox_checked_pressed.png);
-}
-*/
-QCheckBox::indicator:indeterminate:hover {
-    image: url(:/images/checkbox_indeterminate_hover.png);
-}
-/*
-QCheckBox::indicator:indeterminate:pressed {
-    image: url(:/images/checkbox_indeterminate_pressed.png);
-}
-*/</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_18">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>30</y>
-         <width>258</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
-       </property>
-       <property name="text">
-        <string>Test Complete Alarm</string>
-       </property>
-      </widget>
-     </widget>
+     </item>
+     <item>
+      <property name="text">
+       <string>9</string>
+      </property>
+     </item>
     </widget>
    </widget>
-  </widget>
-  <widget class="QPushButton" name="imageCapture">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>820</y>
-     <width>167</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    border: none;
-    outline: none; /* Ensures no outline is displayed */
-}
-QPushButton:pressed {
-    border: none;
-    outline: none; /* Ensures no outline is displayed */
-}
+   <widget class="QFrame" name="frame_9">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>640</y>
+      <width>709</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 2px;
+border-style: solid;
+border-radius: 20px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto&quot;;
+border-color:  rgb(200, 200, 200);
+
 </string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QCheckBox" name="cbAutoPrintEnable">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>30</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox {
+    spacing: 5px;
+ border: 0px solid #999999;
+
+}
+
+QCheckBox::indicator {
+    width: 41px;
+    height: 41px;
+}
+
+QCheckBox::indicator:unchecked {
+	image: url(:/images/icons/ancheck.png);
+}
+/*
+QCheckBox::indicator:unchecked:hover {
+    image: url(:/images/checkbox_unchecked_hover.png);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+    image: url(:/images/checkbox_unchecked_pressed.png);
+}
+*/
+QCheckBox::indicator:checked {
+    image: url(:/images/icons/acheck.png);
+}
+/*
+QCheckBox::indicator:checked:hover {
+    image: url(:/images/checkbox_checked_hover.png);
+}
+
+QCheckBox::indicator:checked:pressed {
+    image: url(:/images/checkbox_checked_pressed.png);
+}
+*/
+QCheckBox::indicator:indeterminate:hover {
+    image: url(:/images/checkbox_indeterminate_hover.png);
+}
+/*
+QCheckBox::indicator:indeterminate:pressed {
+    image: url(:/images/checkbox_indeterminate_pressed.png);
+}
+*/</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-width: 0px;
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Auto Print</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_10">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>709</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-width: 2px;
+border-style: solid;
+border-radius: 20px;
+color: rgb(0, 0, 0);
+font: 75 16pt &quot;Roboto&quot;;
+border-color:  rgb(200, 200, 200);
+
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QCheckBox" name="cbABEnable">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>40</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::ClickFocus</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox {
+    spacing: 5px;
+ border: 0px solid #999999;
+
+}
+
+QCheckBox::indicator {
+    width: 41px;
+    height: 41px;
+}
+
+QCheckBox::indicator:unchecked {
+	image: url(:/images/icons/ancheck.png);
+}
+/*
+QCheckBox::indicator:unchecked:hover {
+    image: url(:/images/checkbox_unchecked_hover.png);
+}
+
+QCheckBox::indicator:unchecked:pressed {
+    image: url(:/images/checkbox_unchecked_pressed.png);
+}
+*/
+QCheckBox::indicator:checked {
+    image: url(:/images/icons/acheck.png);
+}
+/*
+QCheckBox::indicator:checked:hover {
+    image: url(:/images/checkbox_checked_hover.png);
+}
+
+QCheckBox::indicator:checked:pressed {
+    image: url(:/images/checkbox_checked_pressed.png);
+}
+*/
+QCheckBox::indicator:indeterminate:hover {
+    image: url(:/images/checkbox_indeterminate_hover.png);
+}
+/*
+QCheckBox::indicator:indeterminate:pressed {
+    image: url(:/images/checkbox_indeterminate_pressed.png);
+}
+*/</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>40</y>
+       <width>258</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-width: 0px;
+font: 75 18pt &quot;Roboto Medium&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Test Complete Alarm</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -10,9 +10,15 @@ int main(int argc, char *argv[])
     QSplashScreen *pSplash = new QSplashScreen();
     pSplash->move(0, 0);
 
+//   if (qgetenv("QT_FONT_DPI").isEmpty()) {
+//       qputenv("QT_FONT_DPI", "96");
+//   }
+
     pSplash->setPixmap(QPixmap(":images/logo/splash.jpg"));
 
     MainWindow w;
+
+//    w.setWindowFlag(Qt::FramelessWindowHint);
 
     QPixmap cursor_pixmap = QPixmap(":images/cursors/pointer.png");  
     QCursor cursor_default = QCursor(cursor_pixmap, 19, 0);
