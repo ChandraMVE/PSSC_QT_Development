@@ -50,7 +50,7 @@ void slabel::setRunning()
     border-style: solid;\
     border-radius: 20;\
     color: rgb(255, 255, 255);\
-    font: 75 16pt \"Roboto Medium\"; }");
+    font: 100 20pt \"Roboto Medium\"; }");
 }
 
 void slabel::setFirmware(QString caption)
