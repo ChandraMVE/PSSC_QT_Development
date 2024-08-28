@@ -62,6 +62,8 @@ void sMeasuring2::setStatus(QString tmp)
 void sMeasuring2::setVLPr(QString vl, QString pr, QString scale, QString pass)
 {
 
+    ui->frVLPr->move(105,315);
+
     ui->lblVL->setText(vl);
     ui->lblatPr->setText(pr + " " + scale);
     if(pass == "Pass")
@@ -85,6 +87,7 @@ void sMeasuring2::setShaker(QString sh){
 
 void sMeasuring2::setVLTm(QString vl, QString tm, QString scale, QString pass)
 {
+    ui->frVLPr->move(105,315);
     ui->lblVL->setText(vl);
     ui->lblatPr->setText(tm + " " + scale);
     if(pass == "Pass")
@@ -101,7 +104,7 @@ void sMeasuring2::setVLTm(QString vl, QString tm, QString scale, QString pass)
 
 void sMeasuring2::set3Prs(QString pabs, QString pgas, QString ptot, QString scale, QString pass)
 {
-    ui->label_8->move(30,10);
+    ui->label_8->move(30,0);
     ui->lblPtot->move(30,40);
 
     ui->lblPabs->setText(pabs);
@@ -135,7 +138,7 @@ void sMeasuring2::setPtot(QString ptot, QString scale, QString pass){
     ui->lblPtot->setText(ptot);
     ui->lblScale->setText(scale);
 
-    ui->label_8->move(200,10);
+    ui->label_8->move(200,0);
     ui->lblPtot->move(200,40);
     if(pass == "Pass")
     {

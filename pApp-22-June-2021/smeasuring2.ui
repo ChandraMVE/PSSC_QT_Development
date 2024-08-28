@@ -69,7 +69,7 @@ font: 75 16pt &quot;Roboto&quot;;
     <widget class="QFrame" name="fr3Pr">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>105</x>
        <y>335</y>
        <width>511</width>
        <height>80</height>
@@ -280,7 +280,7 @@ font: 75 26pt &quot;Roboto Medium&quot;;</string>
     <widget class="QFrame" name="frVLPr">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>105</x>
        <y>315</y>
        <width>491</width>
        <height>80</height>
