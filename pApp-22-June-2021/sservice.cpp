@@ -14,8 +14,8 @@ sService::sService(QWidget *parent) :
 
     ui->cbSelectorValve->setView(view);
 
-    ui->twErrorLog->setColumnWidth(0, 567);
-    ui->twErrorLog->setColumnWidth(1, 165+300);
+    ui->twErrorLog->setColumnWidth(0, 350);
+    ui->twErrorLog->setColumnWidth(1, 345);
 
     connect(ui->wFirmware, SIGNAL(clicked()), this, SLOT(onFirmwareClicked()));
 
@@ -119,11 +119,15 @@ void sService::Show()
         ui->twErrorLog->move(20,117);
         ui->twErrorLog->resize(709,581);
         qDebug()<<"resized: ui->twErrorLog->move(20,117); ui->twErrorLog->resize(709,581);";
+        ui->twErrorLog->setColumnWidth(0, 330);
+        ui->twErrorLog->setColumnWidth(1, 323);
     }else{
         ui->groupBox_13->hide();
         ui->twErrorLog->move(20,23);
         ui->twErrorLog->resize(709,675);
         qDebug()<<"resized: ui->twErrorLog->move(20,23); ui->twErrorLog->resize(709,675);";
+        ui->twErrorLog->setColumnWidth(0, 350);
+        ui->twErrorLog->setColumnWidth(1, 345);
     }
 
     showServiceSetup();

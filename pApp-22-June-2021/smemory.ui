@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>820</y>
+     <y>830</y>
      <width>167</width>
      <height>71</height>
     </rect>
@@ -84,7 +84,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>820</y>
+     <y>830</y>
      <width>167</width>
      <height>71</height>
     </rect>
@@ -148,7 +148,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>820</y>
+     <y>830</y>
      <width>167</width>
      <height>71</height>
     </rect>
@@ -212,7 +212,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>25</y>
      <width>749</width>
      <height>781</height>
     </rect>
@@ -276,13 +276,13 @@ QTabBar::tab:selected {
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>10</y>
+       <y>0</y>
        <width>749</width>
-       <height>761</height>
+       <height>781</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
+      <string notr="true">background-color: rgb(0, 160, 255);
 border-width: 0px;
 border-color: rgb(21, 100, 192);
 border-style: solid;
@@ -299,10 +299,10 @@ font: 75 16pt &quot;Roboto&quot;;</string>
      <widget class="QTableView" name="wTableView">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>24</y>
-        <width>709</width>
-        <height>661</height>
+        <x>0</x>
+        <y>0</y>
+        <width>749</width>
+        <height>781</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -318,15 +318,22 @@ font: 75 16pt &quot;Roboto&quot;;</string>
        <string notr="true">QTableView {
    color: rgb(0, 0, 0);
    Background-color : white;
-   alternate-background-color: rgb(245,245,245);
+   alternate-background-color: rgb(255,255,255);
    Selection-color: white; /* The text color of the selected area*/
    Selection-background-color:  rgb(21, 100, 192);
-   border: 0px groove gray;
-   border-radius: 20px;
+   border: 0px groove white;
+   border-radius: 18px;
+/*	border-top: 15px solid rgb(190, 190, 190);
+	border-top-color: rgb(190, 190, 190);*/
    padding: 2px 4px;
    font: 75 16pt &quot;Roboto Medium&quot;;
+	padding-right-top:25px;
    padding:5px;
    outline: 0px;
+}
+
+QTableView::item:first-row { 
+	border: none; 
 }
 
 QHeaderView::section {
@@ -338,15 +345,16 @@ QHeaderView::section {
 }
 
 QScrollBar:horizontal {
-    background:  rgb(230,230,230);
+    background:  rgb(255,255,255);
     height:41px;
     margin: 0px 50px 0 50px;
-    border-top: 2px solid  rgb(182, 182, 182);
+    border-top: 2px solid rgb(21, 100, 192);
+    border-bottom: 2px solid rgb(21, 100, 192);
     border-radius: 0px;
 }
 
 QScrollBar::handle:horizontal {
-    background:  rgb(182, 182, 182);
+    background:  rgb(21, 100, 192);
     min-width: 20px;
 }
 
@@ -385,15 +393,16 @@ QScrollBar::right-arrow:horizontal {
 /*  vertical */
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
-     background:  rgb(230,230,230);
+     background:  rgb(255,255,255);
      width: 41px;
 	 margin: 50px 0 50px 0;
-     border-left: 2px solid  rgb(182, 182, 182);
+     border-left: 2px solid  rgb(21, 100, 192);
+border-right: 2px solid  rgb(21, 100, 192);
      border-radius: 0px;
  }
 
  QScrollBar::handle:vertical {
-     background:  rgb(182, 182, 182);
+     background:  rgb(21, 100, 192);
      min-height: 20px;
  }
 
@@ -456,9 +465,9 @@ QTableView::item {
      <widget class="QTableView" name="wTableViewHeader">
       <property name="geometry">
        <rect>
-        <x>21</x>
-        <y>30</y>
-        <width>661</width>
+        <x>0</x>
+        <y>5</y>
+        <width>703</width>
         <height>51</height>
        </rect>
       </property>
@@ -476,13 +485,17 @@ QTableView::item {
    Selection-color: white; /* The text color of the selected area*/
    Selection-background-color:   rgb(190, 190, 190);
    border: 0px groove gray;
-   border-radius: 10px;
+   border-radius: 0px;
+/*	border-left: 5px;*/
    /*padding: 2px 4px;*/
    font: 75 16pt &quot;Roboto Medium&quot;;
    outline: 0;
    margin-left: 4px;
    gridline-color: gray;
+}
 
+QTableView::item:first-row { 
+	border: none; 
 }
 
 QHeaderView {
@@ -491,17 +504,19 @@ QHeaderView {
     border: 0px solid #6c6c6c;
     height: 35px;
     font: 75 16pt &quot;Roboto Medium&quot;;
-	border-radius: 10px;
+	border-radius: 0px;
+	border-left: 5px;
 }
 
 QHeaderView::section {
 	background-color: rgb(182, 182, 182);
     color: white;
-    border-left: 1px solid #6c6c6c;
-    border-right: 1px solid #6c6c6c;
+    border-left: 0px solid #6c6c6c;
+    border-right: 0px solid #6c6c6c;
     height: 35px;
     font: 75 16pt &quot;Roboto Medium&quot;;
-	border-radius: 5px;
+	border-radius: 0px;
+	border-left: 5px;
 }
 
 QTableView::item {
@@ -510,8 +525,9 @@ QTableView::item {
     border: 0px solid #6c6c6c;
     height: 52px;
     font: 75 16pt &quot;Roboto Medium&quot;;
-	border-radius: 5px;
+	border-radius: 15px;
 	padding-left: 10px;
+	border-left: 5px;
 }
 
 </string>
@@ -536,7 +552,7 @@ QTableView::item {
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>820</y>
+     <y>830</y>
      <width>167</width>
      <height>71</height>
     </rect>

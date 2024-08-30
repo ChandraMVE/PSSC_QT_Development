@@ -58,7 +58,8 @@ sMemory::sMemory(QWidget *parent) :
     ui->wTableViewHeader->show();
     ui->wTableViewHeader->setSelectionMode(QAbstractItemView::NoSelection);
 
-    ui->wTableViewHeader->setColumnWidth(0, T_SEL_COL_WIDTH); 
+//    ui->wTableViewHeader->setColumnWidth(0, T_SEL_COL_WIDTH + 10);
+    ui->wTableViewHeader->setColumnWidth(0, T_SEL_COL_WIDTH);
     ui->wTableViewHeader->setColumnWidth(1, T_OPERATOR_COL_WIDTH); 
     ui->wTableViewHeader->setColumnWidth(2, T_SAMPLE_ID_COL_WIDTH); 
     ui->wTableViewHeader->setColumnWidth(3, T_DATE_COL_WIDTH); 

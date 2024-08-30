@@ -83,7 +83,7 @@ sCalibration::sCalibration(QWidget *parent) :
 
     ui->twCalibration->setCurrentIndex(0);
 
-    ui->tvPressure->setColumnWidth(0, 119);
+    ui->tvPressure->setColumnWidth(0, 125);
     ui->tvPressure->setColumnWidth(1, 142);
     ui->tvPressure->setColumnWidth(2, 142);
     ui->tvPressure->setColumnWidth(3, 142);

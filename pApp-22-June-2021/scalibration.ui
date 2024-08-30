@@ -143,9 +143,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>25</y>
      <width>749</width>
-     <height>790</height>
+     <height>781</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -210,7 +210,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tabTemperature">
     <attribute name="title">
@@ -222,12 +222,12 @@ QTabBar::tab:selected {
        <x>0</x>
        <y>0</y>
        <width>749</width>
-       <height>741</height>
+       <height>731</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
-	 border: 2px solid #C4C4C3;
+      <string notr="true">background-color: rgb(255, 255, 255);
+	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
@@ -315,7 +315,7 @@ QGroupBox::title {
 }
 
 QLineEdit:read-only {
-	background-color: rgb(190, 190, 190);
+	background-color: rgb(241, 241, 241);
 }
 QLineEdit[error=true] {
 border-color: red;
@@ -768,7 +768,7 @@ border-color: rgb(21, 100, 192);
        <property name="styleSheet">
         <string notr="true">
    padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
@@ -835,7 +835,7 @@ border-color: rgb(21, 100, 192);
        <property name="styleSheet">
         <string notr="true">
    padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
@@ -861,6 +861,9 @@ border-color: rgb(21, 100, 192);
          <height>2</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid #C4C4C3;</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -873,6 +876,9 @@ border-color: rgb(21, 100, 192);
          <width>709</width>
          <height>2</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid #C4C4C3;</string>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -891,13 +897,17 @@ border-color: rgb(21, 100, 192);
         <enum>Qt::ClickFocus</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(21, 100, 192);
-border-style: solid;
-border-radius: 15px;
-color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+        <string notr="true">
+   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
+   border-width: 2px;
+   border-color: rgb(21, 100, 192);
+   border-style: solid;
+   border-radius: 15px;
+   color: rgb(0, 0, 0);
+   font: 75 16pt &quot;Roboto Medium&quot;;
+
+</string>
        </property>
        <property name="text">
         <string>0.00</string>
@@ -1294,7 +1304,7 @@ QGroupBox::title {
        <property name="styleSheet">
         <string notr="true">
    padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
@@ -1328,8 +1338,8 @@ QGroupBox::title {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
-	 border: 2px solid #C4C4C3;
+      <string notr="true">background-color: rgb(255, 255, 255);
+	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
@@ -1566,7 +1576,7 @@ QCheckBox::indicator:indeterminate:pressed {
 }
 
 QLineEdit:read-only {
-	background-color: rgb(190, 190, 190);
+	background-color: rgb(241, 241, 241);
 }
 QLineEdit[error=true] {
 border-color: red;
@@ -1849,6 +1859,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
          <height>2</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid #C4C4C3;</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -1993,16 +2006,14 @@ border-color: rgb(21, 100, 192);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-   padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+        <string notr="true">   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-
 </string>
        </property>
        <property name="text">
@@ -2021,6 +2032,9 @@ border-color: rgb(21, 100, 192);
          <height>2</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid #C4C4C3;</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -2028,23 +2042,21 @@ border-color: rgb(21, 100, 192);
       <widget class="QLabel" name="lblPCZero">
        <property name="geometry">
         <rect>
-         <x>285</x>
+         <x>280</x>
          <y>240</y>
          <width>151</width>
          <height>51</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-   padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+        <string notr="true">   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-
 </string>
        </property>
        <property name="text">
@@ -2083,16 +2095,14 @@ border-color: rgb(21, 100, 192);
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-   padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+        <string notr="true">   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-
 </string>
        </property>
        <property name="text">
@@ -2245,6 +2255,9 @@ QScrollBar::down-arrow:vertical {
          <height>2</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">border: 2px solid #C4C4C3;</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -2352,16 +2365,14 @@ QGroupBox::title {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-   padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+        <string notr="true">   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
    border-color: rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-
 </string>
        </property>
        <property name="text">
@@ -2399,9 +2410,9 @@ QGroupBox::title {
        <property name="styleSheet">
         <string notr="true">
    padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
-   border-color: rgb(21, 100, 192);
+   border-color:rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
@@ -2449,8 +2460,8 @@ QGroupBox::title {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
-	 border: 2px solid #C4C4C3;
+      <string notr="true">background-color: rgb(255, 255, 255);
+	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
@@ -2497,7 +2508,7 @@ border-color:  rgb(190, 190, 190);
        <string notr="true">QTableView {
    color: rgb(0, 0, 0);
    Background-color : white;
-   alternate-background-color: rgb(245,245,245);
+   alternate-background-color: rgb(255,255,255);
    Selection-color: white; /* The text color of the selected area*/
    Selection-background-color:  rgb(21, 100, 192);
    border: 0px groove gray;
@@ -3224,8 +3235,8 @@ Pressure</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
-	 border: 2px solid #C4C4C3;
+      <string notr="true">background-color: rgb(255, 255, 255);
+	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
@@ -3256,7 +3267,7 @@ border-color:  rgb(190, 190, 190);
       <property name="styleSheet">
        <string notr="true">QGroupBox {
     border: 2px solid  rgb(200, 200, 200);
-    border-radius: 10px;
+    border-radius: 15px;
     margin-top: 16px; /* leave space at the top for the title */
     padding : 0px;
 
@@ -3298,16 +3309,14 @@ QGroupBox::title {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-   padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+        <string notr="true">   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
-   border-color: rgb(21, 100, 192);
+   border-color:rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-
 </string>
        </property>
        <property name="text">
@@ -3324,16 +3333,14 @@ QGroupBox::title {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-   padding: 2px 5px 1px 10px;
-   background-color: rgb(190, 190, 190);
+        <string notr="true">   padding: 2px 5px 1px 10px;
+   background-color: rgb(241, 241, 241);
    border-width: 2px;
-   border-color: rgb(21, 100, 192);
+   border-color:rgb(21, 100, 192);
    border-style: solid;
    border-radius: 15px;
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-
 </string>
        </property>
        <property name="text">
@@ -3364,6 +3371,9 @@ QGroupBox::title {
          <width>709</width>
          <height>2</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"> border: 2px solid #C4C4C3;</string>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -3548,8 +3558,8 @@ font: 75 18pt &quot;Roboto Medium&quot;;
       <widget class="QPushButton" name="pbPCTableShow">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>256</y>
+         <x>470</x>
+         <y>250</y>
          <width>167</width>
          <height>51</height>
         </rect>
@@ -3613,7 +3623,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
         <rect>
          <x>20</x>
          <y>256</y>
-         <width>211</width>
+         <width>321</width>
          <height>51</height>
         </rect>
        </property>
@@ -3621,7 +3631,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
         <string notr="true">border-width: 0px;</string>
        </property>
        <property name="text">
-        <string>Linearization Table</string>
+        <string>Show Linearization Table</string>
        </property>
       </widget>
       <widget class="QComboBox" name="cbPCTFirst">
@@ -4092,11 +4102,11 @@ QScrollBar::down-arrow:vertical {
         <string notr="true">QTableView {
    color: rgb(0, 0, 0);
    Background-color : white;
-   alternate-background-color: rgb(245,245,245);
+   alternate-background-color: rgb(255,255,255);
    Selection-color: white; /* The text color of the selected area*/
    Selection-background-color:  rgb(21, 100, 192);
    border: 0px groove gray;
-   border-radius: 10px;
+   border-radius: 15px;
    padding: 2px 4px;
    font: 75 16pt &quot;Roboto Medium&quot;;
    padding:5px;
@@ -4104,34 +4114,38 @@ QScrollBar::down-arrow:vertical {
 }
 
 QHeaderView {
-	background-color: rgb(182, 182, 182);
+	background-color: rgb(241, 241, 241);
     color: white;
     border: 0px solid #6c6c6c;
     height: 60px;
     font: 75 16pt &quot;Roboto Medium&quot;;
-	border-radius: 10px;
+   border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	   border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 0px;
 }
 
 QHeaderView::section {
-	background-color: rgb(182, 182, 182);
-    color: white;
+	background-color: rgb(241, 241, 241);
+    color: black;
     border-left: 1px solid #6c6c6c;
     border-right: 1px solid #6c6c6c;
     height: 60px;
     font: 75 16pt &quot;Roboto Medium&quot;;
-	border-radius: 5px;
+   border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 }
 
 QScrollBar::horizontal {
     background:  rgb(230,230,230);
     height:41px;
     margin: 0px 50px 0 50px;
-    border-top: 2px solid  rgb(182, 182, 182);
+    border-top: 2px solid  rgb(0, 160, 255);
     border-radius: 0px;
 }
 
 QScrollBar::handle:horizontal {
-    background:  rgb(182, 182, 182);
+    background: rgb(0, 160, 255);
     min-width: 20px;
 }
 
@@ -4160,7 +4174,7 @@ QScrollBar:left-arrow:horizontal  {
 QScrollBar::right-arrow:horizontal {
    width: 50px;
    height: 41px;
-   background-image: url(:/images/icons/crightarrow.png);
+   background-image: url(:/images/icons/downarrow.png);
 }
 
  QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
@@ -4170,15 +4184,16 @@ QScrollBar::right-arrow:horizontal {
 /*  vertical */
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
-     background:  rgb(230,230,230);
+     background:  rgb(255,255,255);
      width: 41px;
 	 margin: 50px 0 50px 0;
-     border-left: 2px solid  rgb(182, 182, 182);
+     border-left: 2px solid  rgb(21, 100, 192);
+	border-right: 2px solid  rgb(21, 100, 192);
      border-radius: 0px;
  }
 
  QScrollBar::handle:vertical {
-     background:  rgb(182, 182, 182);
+     background: rgb(21, 100, 192);
      min-height: 20px;
  }
 
@@ -4823,6 +4838,9 @@ font: 75 14pt &quot;Roboto Medium&quot;;</string>
          <height>2</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true"> border: 2px solid #C4C4C3;</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -4963,8 +4981,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(241, 241, 241);
-	 border: 2px solid #C4C4C3;
+      <string notr="true">background-color: rgb(255, 255, 255);
+	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
 border-bottom-right-radius: 30px;
@@ -4995,7 +5013,7 @@ border-color:  rgb(190, 190, 190);
       <property name="styleSheet">
        <string notr="true">border-width: 2px;
 border-style: solid;
-border-radius: 10px;
+border-radius: 15px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 border-color:  rgb(200, 200, 200);
@@ -5196,7 +5214,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="styleSheet">
        <string notr="true">border-width: 2px;
 border-style: solid;
-border-radius: 10px;
+border-radius: 15px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 border-color:  rgb(200, 200, 200);
@@ -5349,7 +5367,7 @@ border-color: rgb(21, 100, 192);
       <widget class="QCheckBox" name="cbSingleExpEnable">
        <property name="geometry">
         <rect>
-         <x>240</x>
+         <x>460</x>
          <y>300</y>
          <width>41</width>
          <height>55</height>
@@ -5504,9 +5522,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(120, 200, 90);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(120, 200, 90);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5515,16 +5533,16 @@ font: 75 18pt &quot;Roboto Medium&quot;;
 QPushButton:disabled { 
 background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color:rgb(190, 190, 190);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(24, 163, 3);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(24, 163, 3);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5547,8 +5565,7 @@ border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
-}
-</string>
+}</string>
        </property>
        <property name="text">
         <string>+</string>
@@ -5565,9 +5582,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(120, 200, 90);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(120, 200, 90);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5576,16 +5593,16 @@ font: 75 18pt &quot;Roboto Medium&quot;;
 QPushButton:disabled { 
 background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color:rgb(190, 190, 190);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(24, 163, 3);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(24, 163, 3);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5608,8 +5625,7 @@ border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
-}
-</string>
+}</string>
        </property>
        <property name="text">
         <string>+</string>
@@ -5626,9 +5642,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(120, 200, 90);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(120, 200, 90);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5637,16 +5653,16 @@ font: 75 18pt &quot;Roboto Medium&quot;;
 QPushButton:disabled { 
 background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color:rgb(190, 190, 190);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(24, 163, 3);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(24, 163, 3);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5669,8 +5685,7 @@ border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
-}
-</string>
+}</string>
        </property>
        <property name="text">
         <string>+</string>
@@ -5687,9 +5702,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(120, 200, 90);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(120, 200, 90);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5698,16 +5713,16 @@ font: 75 18pt &quot;Roboto Medium&quot;;
 QPushButton:disabled { 
 background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color:rgb(190, 190, 190);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(24, 163, 3);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(24, 163, 3);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5730,8 +5745,7 @@ border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
-}
-</string>
+}</string>
        </property>
        <property name="text">
         <string>+</string>
@@ -5748,9 +5762,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(240,90,40);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(240,90,40);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5766,9 +5780,9 @@ color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(194, 194, 194);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5808,9 +5822,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(240,90,40);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(240,90,40);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5826,9 +5840,9 @@ color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(194, 194, 194);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5868,9 +5882,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(240,90,40);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(240,90,40);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5886,9 +5900,9 @@ color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(194, 194, 194);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);
@@ -5928,9 +5942,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-background-color: rgb(240,90,40);
+background-color: rgb(241,241,241);
 border-width: 2px;
-border-color: rgb(240,90,40);
+border-color: rgb(190,190,190);
 border-style: solid;
 border-radius: 15;
 color: rgb(0, 0, 0);
@@ -5946,9 +5960,9 @@ color: rgb(0, 0, 0);
 font: 75 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
+background-color: rgb(190, 190, 190);
 border-width: 2px;
-border-color: rgb(194, 194, 194);
+border-color: rgb(190, 190, 190);
 border-style: solid;
 border-radius: 15;
 color: rgb(255, 255, 255);

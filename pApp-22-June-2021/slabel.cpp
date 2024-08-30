@@ -62,7 +62,7 @@ void slabel::setFirmware(QString caption)
     ui->label->move(0,0);
 
     ui->label->setStyleSheet(
-    "QLabel { background-color: rgb(241, 241, 241); \
+    "QLabel { background-color: rgb(255, 255, 255); \
     border-width: 0px; \
     border-color: rgb(51, 204, 255);\
     border-style: solid;\

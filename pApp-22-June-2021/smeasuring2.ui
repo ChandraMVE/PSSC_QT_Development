@@ -23,8 +23,9 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(241, 241, 241);
+    <string notr="true">/*background-color: rgb(241, 241, 241);*/
 /*background-color: rgb(110, 210, 255);*/
+background-color: rgb(0, 160, 255);
 border-width: 0px;
 border-color: rgb(21, 100, 192);
 border-style: solid;
@@ -54,7 +55,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
 border-width: 0px;
 border-color: rgb(21, 100, 192);
 border-style: solid;
-border-radius: 30;
+border-radius: 45;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto&quot;;
 
@@ -100,6 +101,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
       <property name="text">
        <string>99999.9</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
@@ -116,6 +120,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="text">
        <string>Pgas</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="lblPgas">
@@ -134,6 +141,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
       <property name="text">
        <string>10000.9</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="lblPtot">
       <property name="geometry">
@@ -150,6 +160,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="text">
        <string>10000.9</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label_10">
@@ -168,6 +181,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       <property name="text">
        <string>Pabs</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label_8">
       <property name="geometry">
@@ -184,6 +200,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="text">
        <string>Ptot</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -221,14 +240,14 @@ font: 75 86pt &quot;Roboto Medium&quot;;</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>255</y>
-       <width>51</width>
-       <height>31</height>
+       <y>235</y>
+       <width>91</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Black&quot;;</string>
+font: 75 24pt &quot;Roboto Black&quot;;</string>
      </property>
      <property name="text">
       <string>ATM</string>
@@ -257,7 +276,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="lblMethod">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>120</x>
        <y>55</y>
        <width>491</width>
        <height>41</height>
@@ -268,7 +287,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
 font: 75 26pt &quot;Roboto Medium&quot;;</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Triple expansion&lt;/span&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;D5191&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Results CARB&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Triple expansionD5191&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Results CARB&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -440,40 +459,45 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       </property>
      </widget>
     </widget>
-   </widget>
-   <widget class="QLabel" name="lblSampleId">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>15</y>
-      <width>451</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
-    </property>
-    <property name="text">
-     <string>WWWWWWWWWWWWWWWWWWWW</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>15</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
-    </property>
-    <property name="text">
-     <string>Sample Id:</string>
-    </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>0</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/*color: rgb(0, 0, 0);*/
+font: 75 12pt &quot;Roboto Medium&quot;;
+color: rgb(0,0,0);</string>
+     </property>
+     <property name="text">
+      <string>Sample Id:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblSampleId">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>0</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">/*color: rgb(0, 0, 0);*/
+font: 75 12pt &quot;Roboto Medium&quot;;
+color: rgb(0,0,0);</string>
+     </property>
+     <property name="text">
+      <string>WWWWWWWWWWWW</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="lblStatus">
     <property name="geometry">
@@ -495,7 +519,8 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+font: 75 20pt &quot;Roboto Medium&quot;;
+color: rgb(255,255,255);</string>
     </property>
     <property name="text">
      <string>Temperature Stabilizing @ 37.8 C</string>

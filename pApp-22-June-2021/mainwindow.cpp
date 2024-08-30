@@ -1782,7 +1782,7 @@ void MainWindow::checkInit()
                             }else{
                                 onShowStatusBox(tr("Initial"), tr("Initialization is successful"),true);
                                 QEventLoop delay;
-                                QTimer::singleShot(1000,&delay,&QEventLoop::quit);
+                                QTimer::singleShot(3000,&delay,&QEventLoop::quit);
                                 delay.exec();
                                 onShowStatusBox(tr("Initial"), tr("Initialization is successful"),false);
                                 ui->wServiceSetup->sInitDone = false;
@@ -2702,10 +2702,12 @@ void MainWindow::readSerial(void)
 //                                                                 cRawATemperature, cRawCTemperature,
 //                                                                 cRawCPressure, cStepperSpeed, cCurrentUCError);
                             QString str = " Tm:" + cSettings.getTemperatureLive(cRawCTemperature)
-                                          + ", Pr:" + cSettings.getPressureLive(cRawCTemperature, cRawCPressure)
+                                          + ", Pr:" + cSettings.getPressureLiveSS(cRawCTemperature, cRawCPressure)
                                           + ", Valve:" + QString::number(cValvePosition)
                                           + ", PP:" + QString::number(cPistonPosition/100.0, 'f', 2)
-                                          + ", SS:" + QString::number(cStepperSpeed);
+                                          + ", SS:" + QString::number(cStepperSpeed)
+                                          + ", ADC T: " + QString::number(cRawCTemperature)
+                                          + ", ADC P: " + QString::number(cRawCPressure);
                             QString logMethod;
                             QString currentTab;
 
@@ -6543,11 +6545,20 @@ void MainWindow::handleD5188(void)
 
                     double dtpr1 = cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
 
+                    QString str = "dtpr1: " + QString::number(dtpr1);
+                    if(ui->wServiceSetup->logPathEnabled())
+                        ui->wServiceSetup->commandLog((str));
+                    else if(ui->wServiceSetup->internalLogData())
+                    {
+                        qDebug()<<"First Time";
+                        ui->wServiceSetup->commandLog(str);
+                    }
+
                     if((cRawCPressure >= cPrCount-50) && (cRawCPressure <= cPrCount+50))
                     {
                         if(dtpr1 < (101.3 - 0.3))
                         {
-                            QString str = QString::number(cPrCount);
+                            str = "before sending cPrCount from (dtpr1 < (101.3 - 0.3)): " + QString::number(cPrCount);
                             if(ui->wServiceSetup->logPathEnabled())
                                 ui->wServiceSetup->commandLog((str));
                             else if(ui->wServiceSetup->internalLogData())
@@ -6557,12 +6568,22 @@ void MainWindow::handleD5188(void)
                             }
                             cPrCount = cRawCPressure+50;
                             onSendCommand(cProtocol.sendPressure(cPrCount));
+
+                            str = "after sending cPrCount from (dtpr1 < (101.3 - 0.3)): " + QString::number(cPrCount);
+                            if(ui->wServiceSetup->logPathEnabled())
+                                ui->wServiceSetup->commandLog((str));
+                            else if(ui->wServiceSetup->internalLogData())
+                            {
+                                qDebug()<<"First Time";
+                                ui->wServiceSetup->commandLog(str);
+                            }
+
                             cREqTime = 0;
                             cEqTime = 0;
                         }
                         else if(dtpr1 > (101.3 + 0.3))
                         {
-                            QString str = QString::number(cPrCount);
+                            str = "before sending cPrCount from (dtpr1 > (101.3 + 0.3)): " + QString::number(cPrCount);
                             if(ui->wServiceSetup->logPathEnabled())
                                 ui->wServiceSetup->commandLog((str));
                             else if(ui->wServiceSetup->internalLogData())
@@ -6572,6 +6593,17 @@ void MainWindow::handleD5188(void)
                             }
                             cPrCount = cRawCPressure-50;
                             onSendCommand(cProtocol.sendPressure(cPrCount));
+
+
+                            str = "after sending cPrCount from (dtpr1 > (101.3 + 0.3)): " + QString::number(cPrCount);
+                            if(ui->wServiceSetup->logPathEnabled())
+                                ui->wServiceSetup->commandLog((str));
+                            else if(ui->wServiceSetup->internalLogData())
+                            {
+                                qDebug()<<"First Time";
+                                ui->wServiceSetup->commandLog(str);
+                            }
+
                             cREqTime = 0;
                             cEqTime = 0;
                         }
@@ -7321,8 +7353,8 @@ void MainWindow::onMenuClicked(int menu)
         ui->fTitle->hide();
         ui->wMenuBar->move(0, 10);
 
-        ui->imageCapture->resize(167,35);
-        ui->imageCapture->move(20,880);
+        ui->imageCapture->resize(167,22);
+        ui->imageCapture->move(30,905);
         ui->imageCapture->show();
 
          ui->wMemory->Show();

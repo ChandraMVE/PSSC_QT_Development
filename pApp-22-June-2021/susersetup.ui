@@ -168,13 +168,13 @@ QPushButton:pressed {
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>14</y>
+     <y>25</y>
      <width>749</width>
      <height>781</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(241, 241, 241);
+    <string notr="true">background-color: rgb(255, 255, 255);
 	 border: 2px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
