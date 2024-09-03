@@ -2064,9 +2064,19 @@ void MainWindow::handleRinsing()
                         #else
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_IN), 4, 60);
                         #endif
-                            if(ui->wMeasuring1->isVisible())
+                            if(ui->wMeasuring1->isVisible()){
                                 if(ui->wServiceSetup->getDebug())
                                     ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_IN);
+                                else
+                                {
+                                    QString str = tr("Rinsing of cell: ")
+                                    + tr("Current Cycle:") + QString::number(cRinseCycles + 1)
+                                    + "/"
+                                    + QString::number(ui->wUserSetup->user_setup.rinse_cycle + 1);
+
+                                    ui->wMeasuring1->setStatus(str);
+                                }
+                            }
                     }
                     else
                     {
@@ -2378,6 +2388,15 @@ void MainWindow::handleInjectRinsing()
                         {
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_IN);
+                            else
+                            {
+                                QString str = tr("Rinsing of cell: ")
+                                + tr("Current Cycle:") + QString::number(cRinseCycles + 1)
+                                + "/"
+                                + QString::number(ui->wUserSetup->user_setup.rinse_cycle + 1);
+
+                                ui->wMeasuring1->setStatus(str);
+                            }
                         }
                     }
                     else

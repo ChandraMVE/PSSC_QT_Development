@@ -521,6 +521,7 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
                     }
 
                     while( cPrinterError ==2)
+//                    while(1)
                     {
                         QCoreApplication::processEvents();
 
@@ -564,6 +565,7 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
                         cSettings.removeTmpFiles();
 
                         if(cPrinterError==2)
+//                        if(1)
                         {
                             if(precords) emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
                             else emit showStatusBox(tr("Test Result Print"), tr("Printing done!"), false);
@@ -575,6 +577,137 @@ bool sTestModel::PrintRecords(bool precords, struct TestStruct *test)
                     }
 
                 } 
+
+             }
+             else
+             {
+                if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Spooling!"));
+                else emit showMsgBox(tr("Test Result Print"), tr("Error Spooling!"));
+                 return false;
+             }
+
+        }
+        else if(output.contains("Product=POS PRINTER"))
+        {
+
+             if(CreatePrintSpool(precords)) //success
+             {
+                pfile = new QFile("/dev/usb/lp0");
+
+                if(!pfile->open(QFile::ReadWrite | QFile::Unbuffered | QFile::Text))
+                {
+
+                }
+
+                m_fd = pfile->handle();
+
+                auto flags = fcntl(m_fd, F_GETFL, 0);
+                if(flags == -1)
+                {
+
+                }
+
+                flags = fcntl(m_fd, F_SETFL, flags | O_NONBLOCK);
+                if(flags == -1)
+                {
+
+                }
+
+                if(m_fd < 0)
+                {
+                    if(precords) emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
+                    else emit showMsgBox(tr("Test Result Print"), tr("Printer not found!"));
+                   //emit showMsgBox(tr("Memory Print"), tr("Printer not found!"));
+
+                   return false;
+                }
+                else
+                {
+                    cPrinterError = 0;
+
+                    m_notifier = new QSocketNotifier(m_fd, QSocketNotifier::Read, this);
+                    connect(m_notifier, SIGNAL(activated(int)), this, SLOT(readPrintStatus()));
+
+                    QString fname = QApplication::applicationDirPath() + "/tmp/print.txt";
+
+                    QFile file(fname);
+                    file.open(QIODevice::ReadOnly);
+
+                    {
+                        QElapsedTimer timeout;
+                        timeout.start();
+
+                        while(timeout.elapsed() < 3000) QCoreApplication::processEvents();
+
+                        if((cPrinterError==1) || timeout.elapsed()>3000)
+                        {
+                            if(precords) emit showMsgBox(tr("Memory Print"), tr("Error Printing!"));
+                            else emit showMsgBox(tr("Test Result Print"), tr("Error Printing!"));
+                        }
+                        else
+                        {
+                            if(precords) emit showStatusBox(tr("Memory Print"), tr("Printing..."), true);
+                            else emit showStatusBox(tr("Test Result Print"), tr("Printing..."), true);
+                        }
+                    }
+
+//                    while( cPrinterError ==2)
+                    while(1)
+                    {
+                        QCoreApplication::processEvents();
+
+                        if(!file.atEnd())
+                        {
+                            extern int errno ;
+                            char file_data[2];
+                            int ret=0;
+
+                            file.read(file_data, 1);
+
+                            while(((ret = ::write(m_fd, file_data, 1)) < 0) && errno == EAGAIN)
+                                QCoreApplication::processEvents();
+
+                            if(ret <0)
+                            {
+                                if(precords) emit showMsgBox(tr("Memory Print"), tr("Error 1 Printing!"));
+                                else emit showMsgBox(tr("Test Result Print"), tr("Error 1 Printing!"));
+
+                                cPrinterError=1;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            file.close();
+                            break;
+                        }
+                    }
+
+                    {
+
+                        pfile->flush();
+                        pfile->close();
+
+                        disconnect(m_notifier, SIGNAL(activated(int)), this, SLOT(readPrintStatus()));
+
+                        delete(m_notifier);
+                        delete(pfile);
+
+                        cSettings.removeTmpFiles();
+
+//                        if(cPrinterError==2)
+                        if(1)
+                        {
+                            if(precords) emit showMsgBox(tr("Memory Print"), tr("Printing done!"));
+                            else emit showStatusBox(tr("Test Result Print"), tr("Printing done!"), false);
+
+                            return true;
+                        }
+                        else
+                            return false;
+                    }
+
+                }
 
              }
              else
