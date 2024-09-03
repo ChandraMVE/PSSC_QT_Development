@@ -70,8 +70,8 @@ static uint16_t TEC_OverCounter;
 static int32_t DiffVal;
 static uint32_t Temp_DefaultVal;
 static uint8_t TEC_ErrDebounce;
-static uint16_t TECCounter;
-bool TempUpdated = false;
+//static uint16_t TECCounter;
+//bool TempUpdated = false;
 
 static float fPower = 0.0f;
 
@@ -232,7 +232,7 @@ void TECControl_Handler(void)
                                 Events_SetTecFan(false);
                             }
 //                            TEC_DutyCycle = 0X018F;
-                            if(TempUpdated){
+                            /*if(TempUpdated){
                                 TempUpdated = false;
                                 TEC_DutyCycle = 0X018F;
                             } else{
@@ -257,14 +257,14 @@ void TECControl_Handler(void)
                                 }else{
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
-                            }
+                            }*/
                             TECControl_Heating();
                             TECControl.Flags.TECStatus = true;
                             TECControl.TECState_Status = TEC_TEMP_STATE_RUNNING;
                         }
                         else
                         {
-                            if(TempUpdated){
+                            /*if(TempUpdated){
                                 TempUpdated = false;
                                 TEC_DutyCycle = 0X018F;
                             } else{
@@ -280,8 +280,9 @@ void TECControl_Handler(void)
                                 }else{
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
-                            }
+                            }*/
 //                            TEC_DutyCycle = 0X018F; //0X0C7F;
+                            TEC_DutyCycle = 0X0C7F;
                             TECControl_Cooling();
                         }
                     }
@@ -304,9 +305,9 @@ void TECControl_Handler(void)
                                 PidControl.Ki_Term = 0.345f;
                                 PidControl.Kd_Term = 100.5f;
                             }
-                            TEC_DutyCycle = 0X018F;
+//                            TEC_DutyCycle = 0X018F;
                             Events_SetTecFan(true);
-                            if(TempUpdated){
+                            /*if(TempUpdated){
                                 TempUpdated = false;
                                 TEC_DutyCycle = 0X018F;
                             } else{
@@ -322,7 +323,7 @@ void TECControl_Handler(void)
                                 }else{
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
-                            }
+                            }*/
                             TECControl_Cooling();
                             TECControl.Flags.TECStatus = false;
                             TECControl.TECState_Status = TEC_TEMP_STATE_RUNNING;
@@ -330,7 +331,7 @@ void TECControl_Handler(void)
                         else
                         {
 //                            TEC_DutyCycle = 0X0C7F;
-                            if(TempUpdated){
+                            /*if(TempUpdated){
                                 TempUpdated = false;
                                 TEC_DutyCycle = 0X018F;
                             } else{
@@ -355,7 +356,8 @@ void TECControl_Handler(void)
                                 }else{
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
-                            }
+                            }*/
+                            TEC_DutyCycle = 0X0C7F;
                             TECControl_Heating();
                         }
                     }
@@ -405,7 +407,7 @@ void TECControl_Handler(void)
                         PidControl.Ki_Term = 0.125f;
                         PidControl.Kd_Term = 15.5f;
                     }
-                    TEC_DutyCycle = 0X018F;
+//                    TEC_DutyCycle = 0X018F;
                     TECControl_Heating();
                     TECControl.Flags.TECStatus = true;
                 }
@@ -425,8 +427,8 @@ void TECControl_Handler(void)
                     (TECControl.Flags.TECCheck == true) && (TECControl.Flags.TECEn == false) &&         \
                     (TECControl.Flags.TECStatus == false) && (TECControl.Flags.TECDisable == false))
             {
-//                TEC_DutyCycle = 0X0C7F;
-                if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
+                TEC_DutyCycle = 0X0C7F;
+                /*if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
                 {
                     TECCounter++;
                     if(TECCounter >= 10){
@@ -437,7 +439,7 @@ void TECControl_Handler(void)
                     }
                 }else{
                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
-                }
+                }*/
             }
             else if ((TECControl.Flags.TECCheck == true) && (TECControl.Flags.TECEn == false) &&        \
                     (Error_GetFlag() == false))
@@ -450,7 +452,7 @@ void TECControl_Handler(void)
                     && (TECControl.ErrorFlags.TECTemp == false) && (TECControl.Flags.TECEn == false))
             {
 //                TEC_DutyCycle = 0X018F;
-                if(TECControl.Set_Value > (TECControl.TempCurrent_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                if(TECControl.Set_Value > (TECControl.TempCurrent_Value + (MAX_TEMP_TOLERENCE_COUNT)))
                 {
                     TEC_DutyCycle = 0X018F;
                     TECControl_Heating();
@@ -458,9 +460,10 @@ void TECControl_Handler(void)
                     TECControl.Flags.TECCheck = true;
 //                    TECControl.Set_Value = 67250;
                 }
-                else if(TECControl.Set_Value < (TECControl.TempCurrent_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                else if(TECControl.Set_Value < (TECControl.TempCurrent_Value - (MAX_TEMP_TOLERENCE_COUNT)))
                 {
-                    TEC_DutyCycle = 0X018F; //0X0F9F;//0X18FF;
+//                    TEC_DutyCycle = 0X018F; //0X0F9F;//0X18FF;
+                    TEC_DutyCycle = 0X0F9F;
                     Events_SetTecFan(true);
                     TECControl_Cooling();
                     TECControl.Flags.TECStatus = false;
@@ -484,7 +487,7 @@ void TECControl_Handler(void)
                             TEC_OverCounter = 0;
                             //TECControl_Stop();
 //                            TEC_DutyCycle = 0X018F;
-                            if(TempUpdated){
+                            /*if(TempUpdated){
                                 TempUpdated = false;
                                 TEC_DutyCycle = 0X018F;
                             } else{
@@ -500,14 +503,15 @@ void TECControl_Handler(void)
                                 }else{
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
-                            }
+                            }*/
+                            TEC_DutyCycle = 0X018F;
                             TECControl_Cooling();
                         }
                         else if((TECControl.Set_Value > TECControl.Current_Value) && (TEC_OverCounter > MAXOVER_TIME))
                         {
                             TEC_OverCounter = 0;
                             //TECControl_Stop();
-                            if(TempUpdated){
+                            /*if(TempUpdated){
                                 TempUpdated = false;
                                 TEC_DutyCycle = 0X018F;
                             } else{
@@ -532,13 +536,13 @@ void TECControl_Handler(void)
                                 }else{
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
-                            }
+                            }*/
                             TECControl_Heating();
                         }
                         
                         if(TECControl.Set_Value > TECControl.Current_Value)
                         {
-                            if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                            /*if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
                             {
                                 PIDControl_Calculation();
                             }else{
@@ -564,12 +568,13 @@ void TECControl_Handler(void)
                                 }else{
                                     PIDControl_Calculation();
                                 }
-                            }
+                            }*/
+                            PIDControl_Calculation();
                         }
                     }
                     else
                     {
-                        if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                        /*if( TECControl.TempCurrent_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 2)))
                         {
                             PIDControl_Calculation();
                         }else{
@@ -595,13 +600,14 @@ void TECControl_Handler(void)
                             }else{
                                 PIDControl_Calculation();
                             }
-                        }
+                        }*/
+                        PIDControl_Calculation();
                     }
                 }
                 else
                 {
                     TECControl.Current_Value = TECControl.TempCurrent_Value;
-                    if( TECControl.TempCurrent_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
+                    /*if( TECControl.TempCurrent_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 2)))
                     {
                         PIDControl_ReverseCalculation();
                     }else{
@@ -617,7 +623,8 @@ void TECControl_Handler(void)
                         }else{
                             PIDControl_ReverseCalculation();
                         }
-                    }
+                    }*/
+                    PIDControl_ReverseCalculation();
                 }
             }
             else
@@ -668,7 +675,7 @@ void TECControl_Handler(void)
                         PidControl.Kd_Term = 4.25f;
                     }
 //                    PIDControl_Calculation();
-                    if( TECControl.Current_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 3)))
+                    /*if( TECControl.Current_Value > (TECControl.Set_Value - (MAX_TEMP_TOLERENCE_COUNT * 3)))
                     {
                         PIDControl_Calculation();
                     }else{
@@ -692,13 +699,14 @@ void TECControl_Handler(void)
                         }else{
                             PIDControl_Calculation();
                         }
-                    }
+                    }*/
+                    PIDControl_Calculation();
                 }
                 else
                 {
                     TECControl.Current_Value = TECControl.PressCurrent_Value;
-//                    PIDControl_ReverseCalculation();
-                    if( TECControl.Current_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 3)))
+                    PIDControl_ReverseCalculation();
+                    /*if( TECControl.Current_Value < (TECControl.Set_Value + (MAX_TEMP_TOLERENCE_COUNT * 3)))
                     {
                         PIDControl_ReverseCalculation();
                     }else{
@@ -714,7 +722,7 @@ void TECControl_Handler(void)
                         }else{
                             PIDControl_ReverseCalculation();
                         }
-                    }
+                    }*/
                 }
             }
             else
@@ -829,7 +837,7 @@ void TECControl_UpdateTemp(bool flagSet, bool flagControl, uint32_t dutyValue)
             TECControl.Set_Value = dutyValue;
         }
 #else
-        TempUpdated = true;
+//        TempUpdated = true;
         TECControl.Set_Value = dutyValue;
 #endif
     }

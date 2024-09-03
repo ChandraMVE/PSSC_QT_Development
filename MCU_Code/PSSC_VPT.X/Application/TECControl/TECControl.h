@@ -133,7 +133,7 @@ struct {
 #define HEAT_COOL_TEMP_COUNT            51000
 #define TECCONTROL_DUTY_PERIOD          0X1F3F              // 1KHz frequency
 #define TECCONTROL_DEFAULT_DUTY_CYCLE   0X031F              // 10% duty cycle value for 1KHz frequency
-#define TECCONTROL_halfDutyPeriod       0X0F9F              // 50% duty cycle value for 1KHz frequency
+//#define TECCONTROL_halfDutyPeriod       0X0F9F              // 50% duty cycle value for 1KHz frequency
 
 #define MAX_ERR_DEBOUNCE        5
 
