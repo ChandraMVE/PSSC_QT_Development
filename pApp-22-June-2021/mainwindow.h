@@ -64,6 +64,7 @@ public:
 protected:
     void changeEvent(QEvent*);
     void timerEvent(QTimerEvent *e);
+//    void mouseMoveEvent(QMouseEvent *event) override;
 
 private slots:
     void onLoad();
@@ -171,6 +172,7 @@ private:
     int  cEqTime;
     int  cREqTime;
     int  cVolume;
+    int deltaVolume;
 
     int shakerSpeed; //naveen
     double p1=0, p2=0, p3=0; //naveen
@@ -184,6 +186,8 @@ private:
 
     bool cDiagTestSuccess;
     bool cDiagErrorHandle;
+
+//    QPoint lastMousePos;
 
 public:
     QStringList qslDateFormat;

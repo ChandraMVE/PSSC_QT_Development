@@ -81,6 +81,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
+//    lastMousePos = QCursor::pos();
+//    setMouseTracking(true);
+
     ui->wCalibrationSetup->IsLanguage = setLanguage();
     setLists();
     setMeasuring();
@@ -457,6 +460,31 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+/*void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    QPoint currentMousePos = event->globalPos();
+
+    // Calculate the movement direction
+    QPoint delta = currentMousePos - lastMousePos;
+
+    QPoint newCursorPos = QCursor::pos();
+
+    if (delta.y() < 0)  // Mouse moved up
+        newCursorPos.setX(newCursorPos.x() - 1);  // Move left
+    if (delta.x() > 0)  // Mouse moved right
+        newCursorPos.setY(newCursorPos.y() - 1);  // Move up
+    if (delta.y() > 0)  // Mouse moved down
+        newCursorPos.setX(newCursorPos.x() + 1);  // Move right
+    if (delta.x() < 0)  // Mouse moved left
+        newCursorPos.setY(newCursorPos.y() + 1);  // Move down
+
+    // Update the cursor position
+    QCursor::setPos(newCursorPos);
+
+    // Update last mouse position
+    lastMousePos = currentMousePos;
+}*/
 
 void MainWindow::onLoad()
 {
@@ -4023,24 +4051,31 @@ void MainWindow::handleOther(void)
                             switch(ui->wMeasuring1->getMethod())
                             {
                                 case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                                     deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                                     deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
+                                                     deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
+                                                     deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
+                                                     deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
+                                                     deltaVolume = 100 - cVolume;
                                 break;
 
                                 default : cVolume = 100;
+                                          deltaVolume = 100 - cVolume;
                                 break;
                             }
 
@@ -4093,25 +4128,32 @@ void MainWindow::handleOther(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100);
+                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100);
+                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100);
+                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100);
+                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100);
+                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100);
+                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = (170-cVolume);
                                 break;
 
-                                default : cVolume = 170;
+                                default : cVolume = 170 - deltaVolume;
+                                            deltaVolume = (170-cVolume);
                                 break;
                             }
                             sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
@@ -4260,25 +4302,32 @@ void MainWindow::handleOther(void)
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100);
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100);
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100);
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100);
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100);
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100);
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = (250-cVolume);
                                     break;
 
-                                    default : cVolume = 250;
+                                    default : cVolume = 250 - deltaVolume;
+                                            deltaVolume = (250-cVolume);
                                     break;
                                 }
                                 sendPara(cProtocol.sendPistonPosition(cVolume), 14, 60);
@@ -4365,25 +4414,32 @@ void MainWindow::handleOther(void)
                                 cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100);
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100);
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100);
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100);
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100);
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100);
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = (500-cVolume);
                                     break;
 
-                                    default : cVolume = 500;
+                                    default : cVolume = 500 - deltaVolume;
+                                            deltaVolume = (500-cVolume);
                                     break;
                                 }
                                 sendPara(cProtocol.sendPistonPosition(cVolume), 16, 60);
@@ -4690,24 +4746,31 @@ void MainWindow::handleFreeShaker(void)
                             switch(ui->wMeasuring1->getMethod())
                             {
                                 case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                                    deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                                    deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
+                                                    deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
+                                                    deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
+                                                    deltaVolume = 100 - cVolume;
                                 break;
 
                                 case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
+                                                    deltaVolume = 100 - cVolume;
                                 break;
 
                                 default : cVolume = 100;
+                                        deltaVolume = 100 - cVolume;
                                 break;
                             }
                             sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
@@ -4759,25 +4822,32 @@ void MainWindow::handleFreeShaker(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100);
+                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100);
+                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100);
+                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100) - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100);
+                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100) - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100);
+                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100) - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
 
-                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100);
+                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100) - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
 
-                                default : cVolume = 170;
+                                default : cVolume = 170 - deltaVolume;
+                                deltaVolume = (170-cVolume);
                                 break;
                             }
                             sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
@@ -4965,25 +5035,32 @@ void MainWindow::handleFreeShaker(void)
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100);
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100);
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100);
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100) - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100);
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100) - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100);
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100) - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100);
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100) - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
 
-                                    default : cVolume = 250;
+                                    default : cVolume = 250 - deltaVolume;
+                                    deltaVolume = (250-cVolume);
                                     break;
                                 }
                                 sendPara(cProtocol.sendPistonPosition(cVolume), 15, 60);
@@ -5070,25 +5147,32 @@ void MainWindow::handleFreeShaker(void)
                                 cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100);
+                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100);
+                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100);
+                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100) - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100);
+                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100) - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100);
+                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100) - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100);
+                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100) - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
 
-                                    default : cVolume = 500;
+                                    default : cVolume = 500 - deltaVolume;
+                                    deltaVolume = (500-cVolume);
                                     break;
                                 }
                                 sendPara(cProtocol.sendPistonPosition(cVolume), 17, 60);
@@ -5413,6 +5497,7 @@ void MainWindow::handleD5191SingleExpansion(void)
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
                             cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.StageVolume)*100);
+                            deltaVolume = 100 - cVolume;
                             sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -5460,7 +5545,7 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume)*100);
+                            cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume)*100) - deltaVolume;
                             sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -6428,6 +6513,7 @@ void MainWindow::handleD5188(void)
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
                             cVolume = qRound((ui->wCalibrationSetup->cCalibD5188.StageVolume)*100);
+                            deltaVolume = 25 - cVolume;
                             sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -6475,7 +6561,7 @@ void MainWindow::handleD5188(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            cVolume = qRound((ui->wCalibrationSetup->cCalibD5188.FirstVolume)*100);
+                            cVolume = qRound((ui->wCalibrationSetup->cCalibD5188.FirstVolume)*100) - deltaVolume;
                             sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -6817,6 +6903,7 @@ void MainWindow::handleD6377(void)
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
                             int stageVol = (int)((ui->wCalibrationSetup->cCalibD6377.StageVolume)*100);
+                            deltaVolume = 100 - stageVol;
                             sendPara(cProtocol.sendPistonPosition(stageVol), 9, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -6870,7 +6957,8 @@ void MainWindow::handleD6377(void)
 //                            int vl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
 //                            int vl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
 //                            int vl = static_cast<int>(std::round((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100));
-                            int vl = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100);
+                            int vl = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100) - deltaVolume;
+                            deltaVolume = 500 - vl;
                             qDebug()<<"(ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
                             qDebug()<<"(int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100): "<<(int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
                             qDebug()<<"vl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100); value: "<<vl;
@@ -6897,7 +6985,7 @@ void MainWindow::handleD6377(void)
                         cParasUpdated = false;
 
 //                        int cvl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
-                        int cvl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
+                        int cvl = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100) - deltaVolume;
 
                         if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
                         {
@@ -7207,6 +7295,17 @@ bool MainWindow::onSaveResult(double p_tot, double p_gas, double p_abs,
                               double ttime, double vlratio,
                               double para_measured)
 {
+    QString str = "p_tot: " + QString::number(p_tot) + " p_gas: " + QString::number(p_gas) + " p_abs: " + QString::number(p_abs) + " method: " + method +
+            " formula: " + formula + " aconst: " + QString::number(aconst) + " bconst: " + QString::number(bconst) + " cconst: " + QString::number(cconst) + " result: " + QString::number(result) +
+            " ttime: " + QString::number(ttime) + " vlratio: " + QString::number(vlratio) + " para_measured: " + QString::number(para_measured);
+
+    if(ui->wServiceSetup->logPathEnabled())
+        ui->wServiceSetup->commandLog((str));
+    else if(ui->wServiceSetup->internalLogData())
+    {
+        qDebug()<<"First Time";
+        ui->wServiceSetup->commandLog(str);
+    }
 
     QString noperator = ui->wMeasuring1->getOperator();
     QString sampleID = ui->wMeasuring1->getSampleId();
