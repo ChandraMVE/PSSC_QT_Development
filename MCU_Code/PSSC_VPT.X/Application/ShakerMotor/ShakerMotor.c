@@ -138,7 +138,8 @@ void ShakerMotor_Handler(void)
             {
                 SM_Period = 0XD054;
                 SM_DutyCycle = 0X682A;
-                MICRO_STEP1_SetLow();
+//                MICRO_STEP1_SetLow();
+                MICRO_STEP1_SetHigh();
                 MICRO_STEP2_SetHigh();
                 ShakerMotor.Flags.SMCheck = true;
                 ShakerMotor_Drive();
@@ -155,6 +156,8 @@ void ShakerMotor_Handler(void)
                     Check_Counter = 0;
 //                    MICRO_STEP1_SetLow();
 //                    MICRO_STEP2_SetLow();
+                    MICRO_STEP1_SetHigh();
+                    MICRO_STEP2_SetHigh();
                     ShakerMotor.Flags.SMCheck = false;
                     ShakerMotor.Flags.SMEdited = true;
                     SM_TempSpeed = INIT_SPEED;
@@ -526,7 +529,7 @@ void ShakerMotor_CalculateSpeed(uint16_t wSpeed)
 {
     uint16_t cycleControl;
     
-    uint32_t adjustedSpeed = wSpeed * 4;
+    uint32_t adjustedSpeed = wSpeed * 8;
     
     cycleControl = (uint16_t) (CLOCK_SystemFrequencyGet() /  (adjustedSpeed / STEP_SIZE)) - 1;
     SM_Period = cycleControl;
