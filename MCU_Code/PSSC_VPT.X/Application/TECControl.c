@@ -87,7 +87,7 @@ void TECControl_Initialise(void)
     PWM_GeneratorDisable(PWM_GENERATOR_6);
     TECControl.TECState_Status = TEC_STATE_IDLE;
     TEC_Period = TECCONTROL_DUTY_PERIOD;
-    TEC_DutyCycle = TECCONTROL_DEFAULT_DUTY_CYCLE;
+    TEC_DutyCycle = TECCONTROL_DEFAULT_DUTY_CYCLE / (0X2);
     TEC_DeadtimeLow = 0X05;
     TEC_DeadtimeHigh = 0X0A;
     TEC_OverCounter = 0;
@@ -282,7 +282,7 @@ void TECControl_Handler(void)
                                 }
                             }*/
 //                            TEC_DutyCycle = 0X018F; //0X0C7F;
-                            TEC_DutyCycle = 0X0C7F;
+                            TEC_DutyCycle = 0X0C7F / (0X2);
                             TECControl_Cooling();
                         }
                     }
@@ -357,7 +357,7 @@ void TECControl_Handler(void)
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
                             }*/
-                            TEC_DutyCycle = 0X0C7F;
+                            TEC_DutyCycle = 0X0C7F / (0X2);
                             TECControl_Heating();
                         }
                     }
@@ -421,13 +421,13 @@ void TECControl_Handler(void)
                     (TECControl.Flags.TECCheck == true) && (TECControl.Flags.TECEn == false) &&         \
                     (TECControl.Flags.TECStatus == true) && (TECControl.Flags.TECDisable == false))
             {
-                TEC_DutyCycle = 0X018F;
+                TEC_DutyCycle = 0X018F / (0X2);
             }
             else if((TECControl.Set_Value < (TECControl.TempCurrent_Value - TEMP_TOLERENCE_COUNT)) &&   \
                     (TECControl.Flags.TECCheck == true) && (TECControl.Flags.TECEn == false) &&         \
                     (TECControl.Flags.TECStatus == false) && (TECControl.Flags.TECDisable == false))
             {
-                TEC_DutyCycle = 0X0C7F;
+                TEC_DutyCycle = 0X0C7F / (0X2);
                 /*if(TEC_DutyCycle < TECCONTROL_halfDutyPeriod)
                 {
                     TECCounter++;
@@ -454,7 +454,7 @@ void TECControl_Handler(void)
 //                TEC_DutyCycle = 0X018F;
                 if(TECControl.Set_Value > (TECControl.TempCurrent_Value + (MAX_TEMP_TOLERENCE_COUNT)))
                 {
-                    TEC_DutyCycle = 0X018F;
+                    TEC_DutyCycle = 0X018F / (0X2);
                     TECControl_Heating();
                     TECControl.Flags.TECStatus = true;
                     TECControl.Flags.TECCheck = true;
@@ -463,7 +463,7 @@ void TECControl_Handler(void)
                 else if(TECControl.Set_Value < (TECControl.TempCurrent_Value - (MAX_TEMP_TOLERENCE_COUNT)))
                 {
 //                    TEC_DutyCycle = 0X018F; //0X0F9F;//0X18FF;
-                    TEC_DutyCycle = 0X0F9F;
+                    TEC_DutyCycle = 0X0F9F / (0X2);
                     Events_SetTecFan(true);
                     TECControl_Cooling();
                     TECControl.Flags.TECStatus = false;
@@ -504,7 +504,7 @@ void TECControl_Handler(void)
                                     TEC_DutyCycle = TECCONTROL_halfDutyPeriod;
                                 }
                             }*/
-                            TEC_DutyCycle = 0X018F;
+                            TEC_DutyCycle = 0X018F / (0X2);
                             TECControl_Cooling();
                         }
                         else if((TECControl.Set_Value > TECControl.Current_Value) && (TEC_OverCounter > MAXOVER_TIME))
