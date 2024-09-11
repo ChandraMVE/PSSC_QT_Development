@@ -20,6 +20,13 @@ int main(int argc, char *argv[])
 
     QPixmap cursor_pixmap = QPixmap(":images/cursors/pointer.png");  
     QCursor cursor_default = QCursor(cursor_pixmap, 19, 0);
+//    QPoint cursorPos = QCursor::pos();
+//    QString previousXY = "Previous X: " + QString::number(cursorPos.x()) + "Previous Y: " +  QString::number(cursorPos.y());
+//    w.internalLogSaving(previousXY);
+//    int x = cursorPos.x();
+//    int y = cursorPos.y();
+//    QCursor::setPos(y, x);
+
     a.setOverrideCursor(cursor_default);
 
     w.hide();

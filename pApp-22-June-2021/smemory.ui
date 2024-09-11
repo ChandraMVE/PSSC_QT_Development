@@ -320,7 +320,7 @@ font: 75 16pt &quot;Roboto&quot;;</string>
    Background-color : white;
    alternate-background-color: rgb(255,255,255);
    Selection-color: white; /* The text color of the selected area*/
-   Selection-background-color:  rgb(21, 100, 192);
+   Selection-background-color: rgb(21, 100, 192);
    border: 0px groove white;
    border-radius: 18px;
 /*	border-top: 15px solid rgb(190, 190, 190);
@@ -332,12 +332,12 @@ font: 75 16pt &quot;Roboto&quot;;</string>
    outline: 0px;
 }
 
-QTableView::item:first-row { 
+/*QTableView::item:first-row { 
 	border: none; 
-}
+}*/
 
 QHeaderView::section {
-	background-color: white; /* red  rgb(182, 182, 182); */
+	background-color: white;  /*red  rgb(182, 182, 182); */
     color: white;
     border: 1px solid #6c6c6c;
     height: 50px;
@@ -494,9 +494,9 @@ QTableView::item {
    gridline-color: gray;
 }
 
-QTableView::item:first-row { 
+/*QTableView::item:first-row { 
 	border: none; 
-}
+}*/
 
 QHeaderView {
 	background-color: rgb(182, 182, 182);

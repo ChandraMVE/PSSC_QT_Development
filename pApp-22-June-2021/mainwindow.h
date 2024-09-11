@@ -60,11 +60,21 @@ public:
     void showError(void);
     void abortCurrentTask();
     void readSaveLogFile(int tmp, bool readSuccessfully);
+    void internalLogSaving(QString tmp);
 
 protected:
     void changeEvent(QEvent*);
     void timerEvent(QTimerEvent *e);
 //    void mouseMoveEvent(QMouseEvent *event) override;
+    /*void mouseMoveEvent(QMouseEvent *event) override {
+            QPoint currentPos = event->pos();
+            QPoint globalPos = mapToGlobal(currentPos);
+            // Calculate the direction adjustment
+            QPoint adjustedMovement = calculateAdjustedMovement(event);
+
+            // Move the cursor to the adjusted position
+            QCursor::setPos(globalPos + adjustedMovement);
+        }*/
 
 private slots:
     void onLoad();
@@ -188,6 +198,26 @@ private:
     bool cDiagErrorHandle;
 
 //    QPoint lastMousePos;
+    /*QPoint lastPos;
+    QPoint calculateAdjustedMovement(QMouseEvent *event) {
+        QPoint movement = event->pos() - lastPos;
+
+        // Adjust the movement directions according to your specific case
+        int adjustedX = 0;
+        int adjustedY = 0;
+        // Scenario mappings as described:
+        // 1. If mouse moves Up (negative Y movement), cursor moves Left
+        if (movement.y() < 0) adjustedX = -movement.y();
+        // 2. If mouse moves Right (positive X movement), cursor moves Up
+        if (movement.x() > 0) adjustedY = -movement.x();
+        // 3. If mouse moves Down (positive Y movement), cursor moves Right
+        if (movement.y() > 0) adjustedX = movement.y();
+        // 4. If mouse moves Left (negative X movement), cursor moves Down
+        if (movement.x() < 0) adjustedY = -movement.x();
+
+        lastPos = event->pos();
+        return QPoint(adjustedX, adjustedY);
+    }*/
 
 public:
     QStringList qslDateFormat;

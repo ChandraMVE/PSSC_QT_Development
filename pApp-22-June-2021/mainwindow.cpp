@@ -461,28 +461,35 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::internalLogSaving(QString tmp){
+    if(ui->wServiceSetup->logPathEnabled())
+        ui->wServiceSetup->commandLog(tmp);
+    else if(ui->wServiceSetup->internalLogData())
+    {
+        qDebug()<<"First Time";
+        ui->wServiceSetup->commandLog(tmp);
+    }
+}
+
 /*void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
     QPoint currentMousePos = event->globalPos();
 
-    // Calculate the movement direction
     QPoint delta = currentMousePos - lastMousePos;
 
     QPoint newCursorPos = QCursor::pos();
 
-    if (delta.y() < 0)  // Mouse moved up
-        newCursorPos.setX(newCursorPos.x() - 1);  // Move left
-    if (delta.x() > 0)  // Mouse moved right
-        newCursorPos.setY(newCursorPos.y() - 1);  // Move up
-    if (delta.y() > 0)  // Mouse moved down
-        newCursorPos.setX(newCursorPos.x() + 1);  // Move right
-    if (delta.x() < 0)  // Mouse moved left
-        newCursorPos.setY(newCursorPos.y() + 1);  // Move down
+    if (delta.y() < 0)
+        newCursorPos.setX(newCursorPos.x() - 1);
+    if (delta.x() > 0)
+        newCursorPos.setY(newCursorPos.y() - 1);
+    if (delta.y() > 0)
+        newCursorPos.setX(newCursorPos.x() + 1);
+    if (delta.x() < 0)
+        newCursorPos.setY(newCursorPos.y() + 1);
 
-    // Update the cursor position
     QCursor::setPos(newCursorPos);
 
-    // Update last mouse position
     lastMousePos = currentMousePos;
 }*/
 
@@ -1821,7 +1828,7 @@ void MainWindow::checkInit()
                         {
                             onShowStatusBox(tr("Initial"), tr("Initialization is successful"),true);
                             QEventLoop delay;
-                            QTimer::singleShot(1000,&delay,&QEventLoop::quit);
+                            QTimer::singleShot(3000,&delay,&QEventLoop::quit);
                             delay.exec();
                             onShowStatusBox(tr("Initial"), tr("Initialization is successful"),false);
                         }
@@ -2753,6 +2760,7 @@ void MainWindow::readSerial(void)
                                           + ", Valve:" + QString::number(cValvePosition)
                                           + ", PP:" + QString::number(cPistonPosition/100.0, 'f', 2)
                                           + ", SS:" + QString::number(cStepperSpeed)
+                                          + ", Error" + QString::number(cCurrentUCError)
                                           + ", ADC T: " + QString::number(cRawCTemperature)
                                           + ", ADC P: " + QString::number(cRawCPressure);
                             QString logMethod;
