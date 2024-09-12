@@ -7,7 +7,19 @@ sMeasuring::sMeasuring(QWidget *parent) :
 {
     ui->setupUi(this);
 
+#ifndef Q_OS_WIN32
     ui->pbStop_2->hide();
+#endif
+
+
+
+    QListView *view = new QListView(ui->cbMethod);
+    view->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+                        QListView::item{height: 41px}");
+
+    ui->cbMethod->setView(view);
 
     ui->wResult->resize(ui->twMeasuring->width(), ui->twMeasuring->height());
     ui->wResult->move(ui->twMeasuring->x(), ui->twMeasuring->y());
@@ -43,10 +55,10 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lwSampleId->resize(271, 171);
     ui->lwOperator->resize(271, 171);
 
-    ui->lblMessage->resize(471, 171);
+    ui->lblMessage->resize(680,141);
     ui->lblAutoCount->hide();
     ui->lblStatus->hide();
-
+    cRunState = false;
 }
 
 sMeasuring::~sMeasuring()
@@ -69,7 +81,7 @@ void sMeasuring::Show()
 
     ui->lwOperator->hide();
     ui->lwSampleId->hide();
-    ui->cbMethod->setCurrentIndex(0);
+    //ui->cbMethod->setCurrentIndex(0);
 
     this->show();
 
@@ -96,6 +108,20 @@ void sMeasuring::setAutoCount(int current, int total)
     ui->lblAutoCount->setText(str);
     ui->lblAutoCount->show();
 }
+
+/*
+void sMeasuring::setIdleTimer(int tmp)
+{
+    tmp = M_IDLE_TIME_OUT - tmp;
+
+    if(tmp)
+    {
+        QString str = QString::number(tmp);
+        ui->lblIdleTimer->setText(str);
+    }
+    else ui->lblIdleTimer->setText("");
+}
+*/
 
 void sMeasuring::setStatus(QString tmp)
 {
@@ -342,6 +368,11 @@ void sMeasuring::readLastIdsFile()
             ui->leSampleId->setText(last_ids.sample_id);
         }
 
+        if(last_ids.test_id.length())
+        {
+            ui->cbMethod->setCurrentText(last_ids.test_id);
+        }
+
         in.close();
     }
 
@@ -359,6 +390,7 @@ void sMeasuring::saveLastIdsFile()
 
         last_ids.operator_name = ui->leOperator->text();
         last_ids.sample_id = ui->leSampleId->text();
+        last_ids.test_id = ui->cbMethod->currentText();
 
         save << last_ids;
 
@@ -833,6 +865,8 @@ void sMeasuring::ontextChanged(QString tmp)
 
 void sMeasuring::setRunning(bool state)
 {
+    cRunState = state;
+
     switch(state)
     {
         case 0: 
@@ -850,7 +884,7 @@ void sMeasuring::setRunning(bool state)
                 setRunState(!checkValidInputs());
 
                 ui->lblMessage->setText(tr("Select new parameters OR\nPress Run to Start"));
-                ui->lblMessage->resize(471, 171);
+                ui->lblMessage->resize(680,70);
                 ui->lblAutoCount->hide();
                 ui->lblStatus->hide();
                 ui->lblStatus->setText("");
@@ -867,7 +901,7 @@ void sMeasuring::setRunning(bool state)
                 setRunState(true);
 
                 ui->lblMessage->setText(tr("Measurement in progress"));
-                ui->lblMessage->resize(471, 71);
+                ui->lblMessage->resize(680, 70);
                 ui->lblAutoCount->hide(); 
                 ui->lblStatus->show();
 
@@ -877,6 +911,26 @@ void sMeasuring::setRunning(bool state)
     }
 
 
+}
+
+void sMeasuring::setWaitACKStatus(bool tmp)
+{
+    if(!cRunState) ui->pbRun->setEnabled(!tmp);
+}
+
+bool sMeasuring::getWaitACKStatus()
+{
+    return true;
+}
+
+void sMeasuring::hideAfterACK(bool tmp)
+{
+
+}
+
+bool sMeasuring::getHideAfterACK()
+{
+    return false;
 }
 
 void sMeasuring::on_pbRun_clicked()
@@ -889,8 +943,8 @@ void sMeasuring::on_pbStop_clicked()
 
     setRunning(0); 
     emit runClicked(MS_TEST_STOP, false);
-
 }
+
 
 void sMeasuring::on_pbStop_2_clicked()
 {
@@ -1138,6 +1192,7 @@ void sMeasuring::on_pbStop_2_clicked()
         break;
     }
 
+    /*
     for(int tmp =0; tmp <990; tmp++)
     {
 
@@ -1149,7 +1204,9 @@ void sMeasuring::on_pbStop_2_clicked()
                         ttime, vlratio,
                         para_measured);
     }
+    */
 }
+
 
 void sMeasuring::on_pbSampleId_clicked()
 {

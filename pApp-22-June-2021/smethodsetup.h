@@ -124,11 +124,13 @@ public:
     void updateFree2(void);
     void updateFree3(void);
     void updateFree4(void);
+    bool isSwitchEnabled(int tmp);
+    void checkExit(int tmp);
 
 signals:
     void showKeypad( QObject *, int, bool);
     void showHome(bool);
-    void getConfirmation(int);
+    void getConfirmation(int, int);
     void showMsgBox(QString title, QString msg);
 
 private slots:
@@ -155,6 +157,7 @@ private:
     QString cStringPassFail;
     int cPrevMethod;
     bool cParasChanged;
+    bool cEnSwitch;
 
     QDoubleValidator *dvaConst;
     QDoubleValidator *dvbConst;

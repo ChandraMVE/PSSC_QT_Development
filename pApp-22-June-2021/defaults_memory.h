@@ -1,6 +1,5 @@
 #ifndef DEFAULTS_MEMORY_H
 #define DEFAULTS_MEMORY_H
-
 #define DEFAULT_SEL_HEADER_SELECT           0
 #define DEFAULT_SEL_HEADER_OPERATOR         1
 #define DEFAULT_SEL_HEADER_SAMPLE_D         1

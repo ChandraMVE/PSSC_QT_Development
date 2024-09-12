@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>652</height>
+    <width>768</width>
+    <height>846</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,10 +19,10 @@
   <widget class="QPushButton" name="pbStop">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>590</y>
-     <width>125</width>
-     <height>44</height>
+     <x>553</x>
+     <y>740</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -82,10 +82,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QPushButton" name="pbRun">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>590</y>
-     <width>125</width>
-     <height>44</height>
+     <x>365</x>
+     <y>740</y>
+     <width>167</width>
+     <height>80</height>
     </rect>
    </property>
    <property name="focusPolicy">
@@ -146,20 +146,20 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="sMeasuring2" name="wResult" native="true">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>590</y>
-     <width>71</width>
-     <height>41</height>
+     <x>300</x>
+     <y>762</y>
+     <width>40</width>
+     <height>50</height>
     </rect>
    </property>
   </widget>
   <widget class="QTabWidget" name="twMeasuring">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>581</width>
-     <height>561</height>
+     <x>20</x>
+     <y>0</y>
+     <width>749</width>
+     <height>700</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -221,9 +221,9 @@ QTabBar::tab:selected {
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>581</width>
-       <height>561</height>
+       <y>6</y>
+       <width>730</width>
+       <height>700</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -244,8 +244,8 @@ font: 75 16pt &quot;Roboto&quot;;</string>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>65</x>
-        <y>25</y>
+        <x>120</x>
+        <y>30</y>
         <width>141</width>
         <height>41</height>
        </rect>
@@ -261,7 +261,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>65</x>
+        <x>120</x>
         <y>88</y>
         <width>141</width>
         <height>61</height>
@@ -281,7 +281,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>65</x>
+        <x>120</x>
         <y>157</y>
         <width>141</width>
         <height>61</height>
@@ -301,10 +301,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbMethod">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>25</y>
-        <width>271</width>
-        <height>41</height>
+        <width>316</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="font">
@@ -364,7 +364,6 @@ QComboBox QAbstractItemView {
    selection-background-color:  rgb(21, 100, 192);
    selection-color: rgb(255, 255, 255);
 }
-
 /*  vertical */
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
@@ -411,6 +410,12 @@ QScrollBar::down-arrow:vertical {
       background: none;
  }
 </string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>16</width>
+        <height>16</height>
+       </size>
       </property>
       <property name="frame">
        <bool>true</bool>
@@ -459,10 +464,10 @@ QScrollBar::down-arrow:vertical {
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>29</x>
+        <x>30</x>
         <y>245</y>
-        <width>531</width>
-        <height>291</height>
+        <width>680</width>
+        <height>430</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -488,8 +493,8 @@ font: 75 16pt &quot;Roboto&quot;;
        <rect>
         <x>20</x>
         <y>255</y>
-        <width>528</width>
-        <height>291</height>
+        <width>680</width>
+        <height>430</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -512,9 +517,9 @@ font: 75 16pt &quot;Roboto&quot;;
       <widget class="QLabel" name="lblMessage">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>20</y>
-         <width>471</width>
+         <x>0</x>
+         <y>100</y>
+         <width>680</width>
          <height>71</height>
         </rect>
        </property>
@@ -528,8 +533,16 @@ font: 75 16pt &quot;Roboto&quot;;
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 24pt &quot;Roboto Medium&quot;;</string>
+        <string notr="true">QFrame, QLabel {
+   font: 75 24pt &quot;Roboto Medium&quot;;
+   border-width:0px;
+   border-radius: 0px;
+   border-color: rgb(255, 255, 255);
+}
+</string>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
        </property>
        <property name="text">
         <string>Select new parameters OR
@@ -545,67 +558,74 @@ Press Run to Start</string>
       <widget class="QFrame" name="frLiveData">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>200</y>
-         <width>491</width>
-         <height>81</height>
+         <x>10</x>
+         <y>280</y>
+         <width>571</width>
+         <height>121</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;</string>
+        <string notr="true">QFrame, QLabel {
+   border-width:0px;
+   border-radius: 0px;
+   border-color: rgb(255, 255, 255);
+}</string>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
        <widget class="QLabel" name="lblTemperature">
         <property name="geometry">
          <rect>
-          <x>270</x>
-          <y>40</y>
-          <width>191</width>
-          <height>31</height>
+          <x>424</x>
+          <y>48</y>
+          <width>211</width>
+          <height>70</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-         <string>37.12</string>
+         <string>--.--</string>
         </property>
        </widget>
        <widget class="QLabel" name="lblPressure">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>40</y>
-          <width>191</width>
-          <height>31</height>
+          <x>144</x>
+          <y>48</y>
+          <width>211</width>
+          <height>70</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(75, 225, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 80 23pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
-         <string>100.05</string>
+         <string>---.--</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_10">
         <property name="geometry">
          <rect>
-          <x>260</x>
-          <y>5</y>
-          <width>201</width>
-          <height>31</height>
+          <x>390</x>
+          <y>10</y>
+          <width>211</width>
+          <height>50</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 80 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Temperature</string>
@@ -614,15 +634,15 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>5</y>
-          <width>201</width>
-          <height>31</height>
+          <x>134</x>
+          <y>10</y>
+          <width>211</width>
+          <height>50</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(77, 155, 232);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
+font: 80 20pt &quot;Roboto Medium&quot;;</string>
         </property>
         <property name="text">
          <string>Pressure</string>
@@ -632,9 +652,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
       <widget class="QLabel" name="lblAutoCount">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>95</y>
-         <width>471</width>
+         <x>0</x>
+         <y>180</y>
+         <width>680</width>
          <height>41</height>
         </rect>
        </property>
@@ -648,8 +668,14 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+        <string notr="true">QFrame, QLabel {
+border-width: 0px;
+font: 75 20pt &quot;Roboto Medium&quot;;
+}
+</string>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
        </property>
        <property name="text">
         <string>Auto Repeats: -/-</string>
@@ -664,9 +690,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
       <widget class="QLabel" name="lblStatus">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>140</y>
-         <width>471</width>
+         <x>0</x>
+         <y>230</y>
+         <width>680</width>
          <height>51</height>
         </rect>
        </property>
@@ -680,11 +706,16 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-width: 0px;
-font: 75 20pt &quot;Roboto Medium&quot;;</string>
+        <string notr="true">QLabel {
+border-width: 0px;
+font: 75 20pt &quot;Roboto Medium&quot;;
+}</string>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
        </property>
        <property name="text">
-        <string>Temperature Stabilizing @ 37.8 C</string>
+        <string>Rinsing of cell: Cycle 1/10</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -697,10 +728,10 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="sQLEExtend" name="leSampleId">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>98</y>
-        <width>224</width>
-        <height>41</height>
+        <width>263</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -741,10 +772,10 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbSampleId">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>544</x>
         <y>98</y>
-        <width>47</width>
-        <height>41</height>
+        <width>53</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -772,10 +803,10 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbOperator">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>544</x>
         <y>170</y>
-        <width>47</width>
-        <height>41</height>
+        <width>53</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -803,10 +834,10 @@ border-color: rgb(21, 100, 192);
      <widget class="sQLEExtend" name="leOperator">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>170</y>
-        <width>224</width>
-        <height>41</height>
+        <width>263</width>
+        <height>50</height>
        </rect>
       </property>
       <property name="focusPolicy">
@@ -847,9 +878,9 @@ border-color: rgb(21, 100, 192);
      <widget class="QListWidget" name="lwOperator">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>212</y>
-        <width>271</width>
+        <width>310</width>
         <height>16</height>
        </rect>
       </property>
@@ -874,6 +905,9 @@ QListWidget QAbstractItemView {
    font: 75 16pt &quot;Roboto Medium&quot;;
    border-radius: 5px;
    background-color: rgb(255, 255, 255);
+}
+QListWidget::item {
+ height:41px;
 }
 
 QListWidget::item::selected {
@@ -1000,9 +1034,9 @@ QScrollBar::down-arrow:vertical {
      <widget class="QListWidget" name="lwSampleId">
       <property name="geometry">
        <rect>
-        <x>226</x>
+        <x>281</x>
         <y>140</y>
-        <width>271</width>
+        <width>310</width>
         <height>16</height>
        </rect>
       </property>
@@ -1027,6 +1061,10 @@ QListWidget QAbstractItemView {
    font: 75 16pt &quot;Roboto Medium&quot;;
    border-radius: 5px;
    background-color: rgb(255, 255, 255);
+
+}
+QListWidget::item {
+ height:41px;
 }
 
 QListWidget::item::selected {
@@ -1147,29 +1185,46 @@ QScrollBar::down-arrow:vertical {
        </property>
       </item>
      </widget>
+     <zorder>label</zorder>
+     <zorder>label_2</zorder>
+     <zorder>label_3</zorder>
+     <zorder>cbMethod</zorder>
+     <zorder>frame_2</zorder>
+     <zorder>frame_3</zorder>
+     <zorder>leSampleId</zorder>
+     <zorder>pbOperator</zorder>
+     <zorder>leOperator</zorder>
+     <zorder>lwOperator</zorder>
+     <zorder>lwSampleId</zorder>
+     <zorder>pbSampleId</zorder>
     </widget>
    </widget>
+  </widget>
+  <widget class="QLabel" name="lblIdleTimer">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>740</y>
+     <width>167</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-width: 0px;
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
   <widget class="QPushButton" name="pbStop_2">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>590</y>
-     <width>125</width>
-     <height>44</height>
+     <x>200</x>
+     <y>760</y>
+     <width>71</width>
+     <height>41</height>
     </rect>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:white;
-border-width: 0px;
-border-color: rgb(21, 100, 192);
-border-style: solid;
-border-radius: 10;
-color: rgb(250, 250, 250);
-font: 75 16pt &quot;Roboto Medium&quot;;</string>
    </property>
    <property name="text">
     <string>Result</string>

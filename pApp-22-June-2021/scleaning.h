@@ -3,12 +3,13 @@
 
 #include <QWidget>
 #include <ssettings.h>
+#include "saccesswidget.h"
 
 namespace Ui {
 class sCleaning;
 }
 
-class sCleaning : public QWidget
+class sCleaning : public QWidget, public sAccessWidget
 {
     Q_OBJECT
 
@@ -19,6 +20,10 @@ public:
     void Show(void);
     void setRunning(bool tmp);
     void updateStatus(int current, int total);
+    void setWaitACKStatus(bool tmp);
+    bool getWaitACKStatus(void);
+    void hideAfterACK(bool tmp);
+    bool getHideAfterACK();
 
 signals:
     void showHome(bool);
@@ -30,6 +35,7 @@ private slots:
 
 private:
     Ui::sCleaning *ui;
+    bool cRunState;
 
     sSettings cSettings;
 };

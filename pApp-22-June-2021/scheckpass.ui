@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>873</height>
+    <width>768</width>
+    <height>1300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QFrame" name="frPassword">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>60</x>
      <y>80</y>
-     <width>511</width>
-     <height>281</height>
+     <width>650</width>
+     <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -43,10 +43,10 @@ background-color: rgb(241, 241, 241);
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>135</y>
+      <x>60</x>
+      <y>150</y>
       <width>141</width>
-      <height>41</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -63,10 +63,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="sQLEExtend" name="lePassword">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>135</y>
-      <width>261</width>
-      <height>41</height>
+      <x>230</x>
+      <y>150</y>
+      <width>300</width>
+      <height>42</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -99,7 +99,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>650</width>
       <height>61</height>
      </rect>
     </property>
@@ -126,10 +126,10 @@ border-width:0px;
    <widget class="QPushButton" name="pbConfirm">
     <property name="geometry">
      <rect>
-      <x>185</x>
-      <y>220</y>
-      <width>125</width>
-      <height>44</height>
+      <x>290</x>
+      <y>230</y>
+      <width>121</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -190,10 +190,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <widget class="QPushButton" name="pbCan">
     <property name="geometry">
      <rect>
-      <x>335</x>
-      <y>220</y>
-      <width>125</width>
-      <height>44</height>
+      <x>450</x>
+      <y>230</y>
+      <width>121</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -254,10 +254,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>60</x>
       <y>80</y>
       <width>141</width>
-      <height>41</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -274,10 +274,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    <widget class="sQLEExtend" name="leUser">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>230</x>
       <y>80</y>
-      <width>261</width>
-      <height>41</height>
+      <width>300</width>
+      <height>42</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -309,9 +309,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QFrame" name="frMessage">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>380</y>
-     <width>511</width>
+     <x>60</x>
+     <y>410</y>
+     <width>660</width>
      <height>231</height>
     </rect>
    </property>
@@ -336,8 +336,8 @@ background-color: rgb(241, 241, 241);
    <widget class="QLabel" name="lblMessage">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>80</y>
+      <x>109</x>
+      <y>83</y>
       <width>451</width>
       <height>81</height>
      </rect>
@@ -362,7 +362,7 @@ Enter valid password &amp; try again!</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>
@@ -388,10 +388,10 @@ border-width:0px;
    <widget class="QPushButton" name="pbOK">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>170</y>
-      <width>125</width>
-      <height>44</height>
+      <x>480</x>
+      <y>165</y>
+      <width>121</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -453,9 +453,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;
   <widget class="QFrame" name="frConfirm">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>630</y>
-     <width>511</width>
+     <x>60</x>
+     <y>670</y>
+     <width>660</width>
      <height>231</height>
     </rect>
    </property>
@@ -480,8 +480,8 @@ background-color: rgb(241, 241, 241);
    <widget class="QLabel" name="lblCMessage">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>70</y>
+      <x>97</x>
+      <y>63</y>
       <width>451</width>
       <height>91</height>
      </rect>
@@ -505,7 +505,7 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>511</width>
+      <width>660</width>
       <height>61</height>
      </rect>
     </property>
@@ -531,10 +531,10 @@ border-width:0px;
    <widget class="QPushButton" name="pbYes">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>170</y>
+      <x>330</x>
+      <y>160</y>
       <width>125</width>
-      <height>44</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -595,10 +595,10 @@ font: 75 16pt &quot;Roboto Medium&quot;;
    <widget class="QPushButton" name="pbNo">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>170</y>
+      <x>480</x>
+      <y>160</y>
       <width>125</width>
-      <height>44</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="focusPolicy">

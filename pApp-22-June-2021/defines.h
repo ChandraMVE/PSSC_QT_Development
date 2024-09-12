@@ -1,6 +1,7 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#include <QDebug>
 #define M_MEASURING         1
 #define M_CLEANING          2
 #define M_MEMORY            3
@@ -35,9 +36,10 @@
 #define M_PWD_METHOD            2
 #define M_PWD_SERVICE           3
 #define M_PWD_CALIBRATION       4
-#define M_MEMORY_DELETE         5
-#define M_MEMORY_TRANSFER       6
-#define M_MEMORY_PRINT          7
+#define M_PWD_DEBUG             5   //added this line 7-May-2023 & updated below
+#define M_MEMORY_DELETE         6
+#define M_MEMORY_TRANSFER       7
+#define M_MEMORY_PRINT          8
 
 #define M_PWD_WRONG                 1
 #define M_USER_WRONG                2
@@ -66,6 +68,7 @@
 #define M_CONFIRM_USER                      16
 #define M_CONFIRM_METHOD_SWITCH             17
 #define M_CONFIRM_MEASURE_WITHOUT_SAVING    18
+#define M_MESSAGE_ACKNOWLEDGE               19
 
 #define M_METHOD_D5191      0
 #define M_METHOD_D6377      1
@@ -123,7 +126,7 @@
 #define M_ERROR_TIME_OUT              15
 
 #define M_RINSING_TEMPERATURE_TOLERANCE 1 
-#define M_TEMPERATURE_TOLERANCE         0.1 
+#define M_TEMPERATURE_TOLERANCE         0.2 //3-Oct-2022 
 #define M_INIT_TEMPERATURE_TOLERANCE    0.5
 #define M_PRESSURE_TOLERANCE            0.5 
 
@@ -137,6 +140,7 @@
 #define M_EQUILIBRIUM_TIME_OUT      180
 
 #define M_COMMUNICATION_TIME_OUT    10 
+#define M_IDLE_TIME_OUT             60*5
 
 #define FF_FIRMWARE_FOLDER          "/run/media/sda1/RVPPro_Firmware/"
 #define FF_USB                      "/run/media/sda1/"
@@ -164,7 +168,7 @@
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App. Ver. 0.00"
+#define FW_VERSION  "App: Ver. 0.03"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

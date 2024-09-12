@@ -6,7 +6,7 @@ QT       += core gui serialport printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TEMPLATE = app
-TARGET = pApp-3-May-2022-2
+TARGET = pApp-3-Nov-2022
 INCLUDEPATH += .
 
 # The following define makes your compiler warn you if you use any
@@ -48,6 +48,8 @@ HEADERS += defaults_calibration.h \
            stestmodel.h \
            stestmodelheader.h \
            stestrecord.h \
+           saccesswidget.h \
+           slabel.h \
            susersetup.h
 FORMS += mainwindow.ui \
          scalibration.ui \
@@ -62,6 +64,7 @@ FORMS += mainwindow.ui \
          smenubar.ui \
          smethodsetup.ui \
          sservice.ui \
+         slabel.ui \
          susersetup.ui
 SOURCES += main.cpp \
            mainwindow.cpp \
@@ -83,5 +86,7 @@ SOURCES += main.cpp \
            stestmodel.cpp \
            stestmodelheader.cpp \
            stestrecord.cpp \
+           saccesswidget.cpp \
+           slabel.cpp \
            susersetup.cpp
 RESOURCES += pRes.qrc
