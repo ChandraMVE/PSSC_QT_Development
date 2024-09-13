@@ -65,6 +65,17 @@
 #include "SerialDebug.h"
 #include "Error.h"
 
+typedef enum{
+    ERROR_PRESSURE_IDLE  = 0,
+    ERROR_PISTON_CONTROL,
+    ERROR_PISTON_WAITING,
+    ERROR_VALVE_CONTROL,
+    ERROR_VALVE_WAITING,
+}ERROR_Pressure_State;
+
+ERROR_Pressure_State ErrPreState;
+void Error_PressureCaseStatement(void);
+
 static uint16_t tCounter;
 static uint16_t PMCounter;
 bool Flag_Complete;
@@ -126,14 +137,19 @@ int main(void)
     Flag_Complete = 0;
     PMCounter = 0;
     
+    ErrPreState = ERROR_PRESSURE_IDLE;
+    
     while (1)
     {
 //        PistonMotor_ChangedPosition();
         // Add your application code
+        Error_PressureCaseStatement();
         PistonMotor_RunningState();
         if(PistonMotor_MotorStopped()){
             if(PistonMotor_PMDelay_Counter() == true){
-                PistonMotor_ChangedPosition();
+//                if(Error_PressureOverLoadVariable() == false){
+                    PistonMotor_ChangedPosition();
+//                }
             }
         }
         if(ShakerMotor_CheckStops()){
@@ -182,6 +198,43 @@ int main(void)
 
     }
     return 1; 
+}
+
+void Error_PressureCaseStatement(void){
+    switch(ErrPreState){
+        case ERROR_PRESSURE_IDLE:
+            if(Error_PressureOverLoadVariable() == true){
+                if(PistonMotor_MotorStopped()){
+                    ErrPreState = ERROR_PISTON_CONTROL;
+                }
+            }
+            break;
+            
+        case ERROR_PISTON_CONTROL:
+//            if(PistonMotor_PMDelay_Counter() == true){
+                PistonMotor_UpdatePostion(true, 5.0f); 
+                ErrPreState = ERROR_PISTON_WAITING;
+//            }
+            break;
+            
+        case ERROR_PISTON_WAITING:
+            if(5.0f <= PistonMotor_GetPostion()){
+                ErrPreState = ERROR_VALVE_CONTROL;
+            }
+            break;
+            
+        case ERROR_VALVE_CONTROL:
+            ValveMotor_UpdatePostion(true, VALVE_POSITION_OUTLET);
+            ErrPreState = ERROR_VALVE_WAITING;
+            break;
+            
+        case ERROR_VALVE_WAITING:
+            if(VALVE_POSITION_OUTLET == ValveMotor_GetPostion()){
+                Error_PressureOverLoadVariableReset();
+                ErrPreState = ERROR_PRESSURE_IDLE;
+            }
+            break;
+    }
 }
 /**
  End of File

@@ -167,8 +167,12 @@ void ValveMotor_Handler(void)
                     if((Error_GetFlag() == true) && (TemperatureControl_GetTempADC() < VM_MIN_TEMP_COUNT_MOTOR)    \
                             && (ValveMotor.Current_Position != VALVE_POSITION_OUTLET))
                     {
-                        ValveMotor_AntiClockwise();
-                        ValveMotor.Flags.VMStatus = false;
+                        if(Error_PressureOverLoadVariable() == true){
+                            
+                        }else{
+                            ValveMotor_AntiClockwise();
+                            ValveMotor.Flags.VMStatus = false;
+                        }
                     }
                     else
                     {
@@ -254,8 +258,14 @@ void ValveMotor_Handler(void)
 //            }
             if(Error_GetFlag() == true)
             {
-                ValveMotor_Stop();
-                ValveMotor.VMState_Status = VALVEMOTOR_STATE_ERROR;
+                if(Error_PressureOverLoadVariable() == true){
+//                    if(Error_PressurePistonVariable() == true){
+//                        ValveMotor_UpdatePostion(true, VALVE_POSITION_OUTLET);
+//                    }
+                }else{
+                    ValveMotor_Stop();
+                    ValveMotor.VMState_Status = VALVEMOTOR_STATE_ERROR;
+                }
             }
         break;
         
@@ -298,8 +308,12 @@ void ValveMotor_Handler(void)
 //            }
             if(Error_GetFlag() == true)
             {
-                ValveMotor_Stop();
-                ValveMotor.VMState_Status = VALVEMOTOR_STATE_ERROR;
+                if(Error_PressureOverLoadVariable() == true){
+                    
+                }else{
+                    ValveMotor_Stop();
+                    ValveMotor.VMState_Status = VALVEMOTOR_STATE_ERROR;
+                }
             }
         break;
         

@@ -72,6 +72,7 @@ static uint32_t Temp_DefaultVal;
 static uint8_t TEC_ErrDebounce;
 //static uint16_t TECCounter;
 //bool TempUpdated = false;
+static bool PressureLimitForOnce;
 
 static float fPower = 0.0f;
 
@@ -98,6 +99,7 @@ void TECControl_Initialise(void)
     TECControl.Set_Value = DEAFULT_TEMP_COUNT20;       // 20 degree default adc count (914.268*51.2)(ADC I/P voltage * (262144/5120))
     TECControl.Flags.TECDisable = true;
     PIDControl_Initialise();
+    PressureLimitForOnce = true;
 }
   
 /**
@@ -116,6 +118,23 @@ void TECControl_Handler(void)
     TECControl.PressCurrent_Value = TemperatureControl_GetPressADC();
     TECControl.AmbTemp_Value = ADCRead_GetAmbTemp();
     
+    if(PressureLimitForOnce){
+        if(TECControl.PressCurrent_Value > MAX_PRESS_LIMIT_COUNT)
+        {
+            TEC_ErrDebounce++;
+            if(TEC_ErrDebounce >= MAX_ERR_DEBOUNCE)
+            {
+                Error_PressureOverLoad();
+                TEC_ErrDebounce = 0;
+                TECControl.ErrorFlags.TECPress = true;
+                TECControl.TECState_Status = TEC_STATE_ERROR;
+                TECControl_Stop();
+                Error_Report(PRESSURE_LIMIT);
+                Alarm_UpdateError(TECControl.ErrorFlags.TECPress);
+                PressureLimitForOnce = false;
+            }
+        }
+    }
     //If Cycle is running then only enable the error logging and no error present
     if((Error_GetFlag() == false) && (Error_GetCycleRunSts() == true))
     {
@@ -142,6 +161,7 @@ void TECControl_Handler(void)
                 TECControl.TECState_Status = TEC_STATE_ERROR;
                 TECControl_Stop();
                 Error_Report(PRESSURE_LIMIT);
+                Error_PressureOverLoad();
                 Alarm_UpdateError(TECControl.ErrorFlags.TECPress);
             }
         }

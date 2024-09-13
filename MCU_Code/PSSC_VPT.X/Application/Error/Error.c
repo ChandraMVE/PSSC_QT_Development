@@ -57,6 +57,8 @@ Resources:
 
 
 static bool ErrorFlag_CycleRun;
+static bool ErrorFlag_Pressure;
+static bool ErrorFlag_PistonAt5;
 
 Faults_UTYP Faults; 
         
@@ -68,6 +70,8 @@ Faults_UTYP Faults;
 void Error_Initialise(void)
 {
     ErrorFlag_CycleRun = false;
+    ErrorFlag_Pressure = false;
+    ErrorFlag_PistonAt5 = false;
     Error.Count = 0;
     Faults.FaultCodes = 0;
 }
@@ -313,4 +317,25 @@ bool Error_GetCycleRunSts(void)
 void Error_SetCycleRunSts(bool flagSet)
 {
     ErrorFlag_CycleRun = flagSet;
+}
+
+bool Error_PressureOverLoadVariable(void){
+    return ErrorFlag_Pressure;
+}
+
+void Error_PressureOverLoad(void){
+    ErrorFlag_Pressure = true;
+}
+
+void Error_PressurePiston(void){
+    ErrorFlag_PistonAt5 = true;
+}
+
+bool Error_PressurePistonVariable(void){
+    return ErrorFlag_PistonAt5;
+}
+
+void Error_PressureOverLoadVariableReset(void){
+    ErrorFlag_Pressure = false;
+    ErrorFlag_PistonAt5 = false;
 }

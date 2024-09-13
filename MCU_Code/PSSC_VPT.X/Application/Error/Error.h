@@ -88,6 +88,11 @@ void Error_UpdateStatus(bool flagSet, uint16_t ecode);
 void ErrorDebug_UpdateStatus(bool flagSet, uint16_t ecode);
 bool Error_GetCycleRunSts(void);
 void Error_SetCycleRunSts(bool flagSet);
+void Error_PressureOverLoad(void);
+void Error_PressureOverLoadVariableReset(void);
+bool Error_PressureOverLoadVariable(void);
+void Error_PressurePiston(void);
+bool Error_PressurePistonVariable(void);
 
 // EXTERN VARIABLES
 extern Error_STYP Error;

@@ -181,13 +181,16 @@ void PistonMotor_Handler(void)
                     (PistonMotor.Flags.EditedPM == false) && (PistonMotor.Flags.PMCheck == true)) || \
                     (Error_GetFlag() == true))
             {
-                if(Error_GetFlag() == false)
+                if(!(Error_PressureOverLoadVariable() == true))
                 {
-                    PistonMotor.Current_Position = 0.0f;
+                    if(Error_GetFlag() == false)
+                    {
+                        PistonMotor.Current_Position = 0.0f;
+                    }
+                    PistonMotor.Flags.PMCheck = false;
+                    Previous_Position = 0.0f;
+                    PistonMotor_Stop();
                 }
-                PistonMotor.Flags.PMCheck = false;
-                Previous_Position = 0.0f;
-                PistonMotor_Stop();
             }
             //if piston motor is not at bottom position after power on turn on the motor
             if((PistonMotor.Flags.EnPM == false) && (POSITION_PISTON_GetValue() == true)        \
@@ -198,7 +201,11 @@ void PistonMotor_Handler(void)
                 {
                     PistonMotor.Flags.PMCheck = true;
                     PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
-                    PistonMotor_SetInitialisedToZero(true);
+//                    if(Error_PressureOverLoadVariable() == true){
+//                        PistonMotor_SetInitialisedToZero(false);
+//                    }else{
+                        PistonMotor_SetInitialisedToZero(false);
+//                    }
                     PistonMotor_Down();
                     PMDebounce_Counter = 0;
                 }
@@ -234,8 +241,13 @@ void PistonMotor_Handler(void)
             
             if(Error_GetFlag() == true)
             {
-                PistonMotor_Stop();
-                PistonMotor.PMState_Status = PISTONMOTOR_STATE_ERROR;
+                if(Error_PressureOverLoadVariable() == true){
+                    
+                }else{
+                    PistonMotor_Stop();
+                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_ERROR;
+                }
+//                PistonMotor.PMState_Status = PISTONMOTOR_STATE_ERROR;
             }
             
         break;
@@ -384,8 +396,13 @@ void PistonMotor_Handler(void)
             }
             if(Error_GetFlag() == true)
             {
-                PistonMotor_Stop();
-                PistonMotor.PMState_Status = PISTONMOTOR_STATE_ERROR;
+                if(Error_PressureOverLoadVariable() == true){
+//                    PistonMotor_UpdatePostion(true,5.0f);
+                }else{
+                    PistonMotor_Stop();
+                    PistonMotor.PMState_Status = PISTONMOTOR_STATE_ERROR;
+                }
+//                PistonMotor.PMState_Status = PISTONMOTOR_STATE_ERROR;
             }
         break;
         
@@ -399,14 +416,24 @@ void PistonMotor_Handler(void)
         break;
         
         case PISTONMOTOR_STATE_ERROR : 
-            PistonMotor.Flags.EnPM = false;
-            PistonMotor.Flags.EditedSet = false;
-            PistonMotor.Flags.EditedPM = false;
-            PistonMotor_Stop();
-            PistonMotor.Set_Position = 0.0f;
-            if(Error_GetFlag() == false)
-            {
-                if(VALVE_POSITION_OUTLET == ValveMotor_GetPostion())
+            if(Error_PressureOverLoadVariable() == true){
+                PistonMotor.Flags.EnPM = true;
+                PistonMotor.Flags.EditedSet = true;
+//                PistonMotor_UpdatePostion(true, 5.0f);
+//                PistonMotor.Set_Position = 5.0 * CONVERSION_CONSTANT;
+//                PM_DutyCycle = PISTON_DEFAULT_DUTY_CYCLE;
+//                PistonEncoder_ExpectedCount(true, (PistonMotor.Set_Position - PistonMotor.Current_Position));
+//                UpCount = (PistonMotor.Set_Position - PistonMotor.Current_Position);
+//                PistonMotor_Up();
+//                PistonMotor.Flags.PMStatus = true;
+                PistonMotor.PMState_Status = PISTONMOTOR_STATE_IDLE;
+            }else{
+                PistonMotor.Flags.EnPM = false;
+                PistonMotor.Flags.EditedSet = false;
+                PistonMotor.Flags.EditedPM = false;
+                PistonMotor_Stop();
+                PistonMotor.Set_Position = 0.0f;
+                if(Error_GetFlag() == false)
                 {
                     PistonMotor.Flags.ErrorPM = false;
                     PistonMotor.PMState_Status = PISTONMOTOR_STATE_STOP;
