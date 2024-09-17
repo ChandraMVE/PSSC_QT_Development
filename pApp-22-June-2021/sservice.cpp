@@ -679,7 +679,7 @@ void sService::commandLog(QString str){
 
             QTextStream cTextStream(logFileToAppend);
 
-            cTextStream << " " << cSettings.getDate(cdt) << " "
+            cTextStream << " " << cSettings.getDate(cdt) << " / "
                         << cSettings.getTime(cdt) << ":"
                         << str;
 //            cTextStream << " " << str;

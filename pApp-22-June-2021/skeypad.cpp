@@ -98,7 +98,7 @@ sKeypad::sKeypad(QWidget *parent) :
     connect(ui->pbNcancel, SIGNAL(clicked()), this, SLOT(on_pbCancelClicked()));
     connect(ui->pbNenter, SIGNAL(clicked()), this, SLOT(on_pbEnterClicked()));
 
-    ui->frEnglishAlpha->move(0, 380);
+    ui->frEnglishAlpha->move(10, 380);
 
     ui->frNumSpecial->move(ui->frEnglishAlpha->x(), ui->frEnglishAlpha->y());
     ui->frNum->move(ui->frEnglishAlpha->x()+130, ui->frEnglishAlpha->y());

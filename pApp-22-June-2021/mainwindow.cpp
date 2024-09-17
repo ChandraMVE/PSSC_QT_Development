@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QDebug>
 #include <QTimer>
+#include <QScreen>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -6248,7 +6249,7 @@ void MainWindow::handleDiagnostic()
                         cDiagTestSuccess = false;
 
                     if(cDiagTestSuccess)
-                        ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Successsfully Completed!"));
+                        ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Successfully Completed!"));
                     else
                         ui->wServiceSetup->addStatus(tr("Diagnostic Cycle Failed!"));
 
@@ -8129,15 +8130,37 @@ void MainWindow::on_imageCapture_clicked()
             else
             {
                 qDebug() << "Failed to create screenshot folder.";
-                return; // Exit the function if the folder could not be created
+                return;
             }
         }
+
+        /*QDir internalScreenshotDir(QApplication::applicationDirPath() + "/screenshot/");
+        if(!internalScreenshotDir.exists()){
+            if(!(internalScreenshotDir.mkpath(QApplication::applicationDirPath() + "/screenshot/"))){
+                qDebug() << "Failed to create internal screenshot folder.";
+                return;
+            }
+        }*/
         QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
+//        QString filename = QApplication::applicationDirPath() + QString("/screenshot/screenshot_%1.png").arg(timestamp);
         QString filename = QString("%1/screenshot_%2.png").arg(screenshotDirPath).arg(timestamp);
+        /*QWidget *widget = QApplication::activeWindow();
+        QPixmap pixmap = QPixmap::grabWidget(widget);*/
         QWidget *widget = QApplication::activeWindow();
-        QPixmap pixmap = QPixmap::grabWidget(widget);
+        QScreen *screen = QGuiApplication::primaryScreen();
+        QPixmap pixmap = screen->grabWindow(widget->winId());
         ui->imageCapture->setFocusPolicy(Qt::NoFocus);
         qDebug() << "path : " << filename;
+        /*QString command = "cp " + filename + " " + screenshotDirPath;
+
+        int result = system(command.toStdString().c_str());
+        if (result == -1) {
+            return;
+        }
+        result = system("sync");
+        if (result == -1) {
+            return;
+        }*/
         if (pixmap.save(filename))
         {
             qDebug() << "Screenshot saved successfully.";
@@ -8153,6 +8176,8 @@ void MainWindow::on_imageCapture_clicked()
         {
             qDebug() << "Failed to save screenshot.";
         }
+
+//        QFile::remove(filename);
     }
     else
     {

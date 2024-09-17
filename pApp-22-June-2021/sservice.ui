@@ -155,56 +155,65 @@ font: 75 18pt &quot;Roboto Medium&quot;;
    <property name="styleSheet">
     <string notr="true">QTabWidget::pane { /* The tab widget frame */
     position: absolute;
+
 	color: rgb(0, 0, 0);
 	font: 75 16pt &quot;Roboto Medium&quot;;
 
-   border: 0px solid #C4C4C3;
-   border-bottom-color: #C2C7CB; /* same as the pane color */
-   border-bottom-left-radius: 30px;
+	 border: 0px solid #C4C4C3;
+    border-bottom-color: #C2C7CB; /* same as the pane color */
+    border-bottom-left-radius: 30px;
    border-bottom-right-radius: 30px;
-   border-top-right-radius: 30px;
+    border-top-right-radius: 30px;
+/*	outline: none;*/
+
 
 }
 
 QTabWidget::tab-bar {
     alignment: left;
-
+	outline: none;
 }
 
 /* Style the tab using the tab sub-control. Note that
     it reads QTabBar _not_ QTabWidget */
 QTabBar::tab {
 
-    border: 1px solid #C4C4C3;
+    border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
     padding: 2px;
     height:41px;
-   width: 183px; /*180*/
+   width: 181px;
 
-border-width: 0px;
-border-color: rgb(21, 100, 192);
+border-width: 0.5px;
+border-color: rgb(0, 160, 255);
 border-style: solid;
 
-font: 75 16pt &quot;Roboto Medium&quot;;
+font: 75 20pt &quot;Roboto Medium&quot;;
 /*	color: rgb(0, 0, 0);*/
-	color: rgb(255, 255, 255);
-	background-color: rgb(110, 210, 255);
+color: rgb(255, 255, 255);
+background-color: rgb(110, 210, 255);
+	outline: none;
+
 }
 
 QTabBar::tab:selected {
+		/*background-color: rgb(190, 190, 190);*/
+border-width: 0.5px;
 	background-color: rgb(255, 255, 255);
     border-color: rgb(255, 255, 255);
-    border-bottom-color: #C2C7CB; /* same as pane color */
- border: 0px;
+    border-bottom-color: rgb(255, 255, 255); /* same as pane color */
+/* border: 0px;*/
 color: rgb(0, 0, 0);
+	outline: none;
+/*	border: none;*/
 }
 </string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -244,7 +253,7 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>118</y>
+        <y>126</y>
         <width>709</width>
         <height>120</height>
        </rect>
@@ -476,7 +485,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>376</y>
+        <y>393</y>
         <width>709</width>
         <height>170</height>
        </rect>
@@ -737,7 +746,7 @@ QCheckBox::indicator:indeterminate:pressed {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>561</y>
+        <y>580</y>
         <width>709</width>
         <height>120</height>
        </rect>
@@ -995,7 +1004,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>5</y>
+        <y>15</y>
         <width>709</width>
         <height>100</height>
        </rect>
@@ -1112,7 +1121,7 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>246</y>
+        <y>259</y>
         <width>709</width>
         <height>120</height>
        </rect>
@@ -1331,7 +1340,7 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>425</y>
+        <y>450</y>
         <width>709</width>
         <height>200</height>
        </rect>
@@ -1526,7 +1535,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>5</y>
+        <y>0</y>
         <width>709</width>
         <height>121</height>
        </rect>
@@ -1637,7 +1646,7 @@ QGroupBox::title {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>131</y>
+        <y>134</y>
         <width>709</width>
         <height>181</height>
        </rect>
@@ -1816,7 +1825,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>373</x>
-        <y>319</y>
+        <y>330</y>
         <width>354</width>
         <height>101</height>
        </rect>
@@ -1922,7 +1931,7 @@ QCheckBox::indicator:indeterminate:pressed {
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>319</y>
+        <y>330</y>
         <width>354</width>
         <height>101</height>
        </rect>
@@ -2230,9 +2239,9 @@ font: 75 18pt &quot;Roboto Medium&quot;;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>143</y>
+        <y>152</y>
         <width>709</width>
-        <height>560</height>
+        <height>551</height>
        </rect>
       </property>
       <property name="focusPolicy">

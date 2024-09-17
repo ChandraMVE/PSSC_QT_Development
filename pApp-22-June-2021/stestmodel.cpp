@@ -1976,13 +1976,13 @@ bool sTestModel::CreatePrintSpool(bool precords)
 
                     if(cHeaderModel->getData(2)) save << tr("Sample Id: ") << nRecord.sample_id << endl;
 
-                    if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.getResult(nRecord.method, nRecord.result) << endl;
+                    if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.printGetResult(nRecord.method, nRecord.result) << endl;
 
                     if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
                     {
-                        save << tr("Ptot: ") << cSettings.getPressure(nRecord.method, nRecord.p_tot) << endl;
-                        save << tr("Pgas: ") << cSettings.getPressure(nRecord.method, nRecord.p_gas) << endl;
-                        save << tr("Pabs: ") << cSettings.getPressure(nRecord.method, nRecord.p_abs) << endl;
+                        save << tr("Ptot: ") << cSettings.printGetPressure(nRecord.method, nRecord.p_tot) << endl;
+                        save << tr("Pgas: ") << cSettings.printGetPressure(nRecord.method, nRecord.p_gas) << endl;
+                        save << tr("Pabs: ") << cSettings.printGetPressure(nRecord.method, nRecord.p_abs) << endl;
                     }
 
                     if(cHeaderModel->getData(13))
@@ -2027,13 +2027,13 @@ bool sTestModel::CreatePrintSpool(bool precords)
 
             if(cHeaderModel->getData(2)) save << tr("Sample Id: ") << cPrintRecord->sample_id << endl;
 
-            if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.getResult(cPrintRecord->method, cPrintRecord->result) << endl;
+            if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.printGetResult(cPrintRecord->method, cPrintRecord->result) << endl;
 
             if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188")
             {
-                save << tr("Ptot: ") << cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_tot) << endl;
-                save << tr("Pgas: ") << cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_gas) << endl;
-                save << tr("Pabs: ") << cSettings.getPressure(cPrintRecord->method, cPrintRecord->p_abs) << endl;
+                save << tr("Ptot: ") << cSettings.printGetPressure(cPrintRecord->method, cPrintRecord->p_tot) << endl;
+                save << tr("Pgas: ") << cSettings.printGetPressure(cPrintRecord->method, cPrintRecord->p_gas) << endl;
+                save << tr("Pabs: ") << cSettings.printGetPressure(cPrintRecord->method, cPrintRecord->p_abs) << endl;
             }
 
             if(cHeaderModel->getData(13))

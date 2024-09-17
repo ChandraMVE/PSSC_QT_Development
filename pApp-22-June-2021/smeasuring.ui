@@ -245,7 +245,7 @@ font: 75 16pt &quot;Roboto&quot;;</string>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>91</x>
         <y>30</y>
         <width>141</width>
         <height>41</height>
@@ -262,7 +262,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>91</x>
         <y>88</y>
         <width>141</width>
         <height>61</height>
@@ -282,7 +282,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>91</x>
         <y>157</y>
         <width>141</width>
         <height>61</height>
@@ -302,9 +302,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbMethod">
       <property name="geometry">
        <rect>
-        <x>281</x>
+        <x>271</x>
         <y>25</y>
-        <width>316</width>
+        <width>354</width>
         <height>50</height>
        </rect>
       </property>
@@ -324,12 +324,13 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
        <string notr="true">QComboBox {
    border: 2px solid  rgb(21, 100, 192);
    border-radius: 15px;
-   padding: 1px 18px 1px 3px;
+/*   padding: 1px 18px 1px 3px;*/
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-   padding-left: 15px;
-
+  padding-left: 15px;
+	outline: none;
+margin: 0;
 }
 
 QComboBox:on {
@@ -342,11 +343,12 @@ QComboBox::drop-down {
     subcontrol-position: top right;
     width: 50px;
     border-left-width: 2px;
-    border-left-color: darkgray;
+    border-left-color: rgb(21, 100, 192);
     border-left-style: solid;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     border-color: rgb(21, 100, 192);
+	background: transparent;
 }
 
 QComboBox::down-arrow {
@@ -361,15 +363,17 @@ QComboBox::down-arrow:on {
 QComboBox QAbstractItemView {
    border: 2px solid rgb(21, 100, 192);
    font: 75 16pt &quot;Roboto Medium&quot;;
-   border-radius: 5px;
+   border-radius: 8px;
    background-color: rgb(255, 255, 255);
    selection-background-color:  rgb(21, 100, 192);
    selection-color: rgb(255, 255, 255);
+	outline: none;
+margin: 0;
 }
 /*  vertical */
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
-     background:  rgb(230,230,230);
+     background:  rgb(0, 160, 255);
      width: 42px;
 	 margin: 45px 0 45px 0;
      border-left: 2px solid  rgb(182, 182, 182);
@@ -382,7 +386,7 @@ QScrollBar:vertical {
 
  QScrollBar::add-line:vertical {
      border: 0px solid grey;
-     background:  rgb(230,230,230);
+     background:  rgb(0, 160, 255);
      height: 45px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
@@ -390,7 +394,7 @@ QScrollBar:vertical {
 
  QScrollBar::sub-line:vertical {
      border: 0px solid grey;
-     background:  rgb(230,230,230);
+     background:  rgb(0, 160, 255);
      height: 45px;
      subcontrol-position: top;
      subcontrol-origin: margin;
@@ -740,9 +744,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;
      <widget class="sQLEExtend" name="leSampleId">
       <property name="geometry">
        <rect>
-        <x>281</x>
+        <x>271</x>
         <y>98</y>
-        <width>263</width>
+        <width>301</width>
         <height>50</height>
        </rect>
       </property>
@@ -776,7 +780,7 @@ border-color: rgb(21, 100, 192);
 </string>
       </property>
       <property name="text">
-       <string>WWWWWWWWWWWWWWWWWWWW</string>
+       <string>0123456789ABCDEFGHIJ</string>
       </property>
       <property name="maxLength">
        <number>20</number>
@@ -785,7 +789,7 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbSampleId">
       <property name="geometry">
        <rect>
-        <x>544</x>
+        <x>570</x>
         <y>98</y>
         <width>53</width>
         <height>50</height>
@@ -816,7 +820,7 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbOperator">
       <property name="geometry">
        <rect>
-        <x>544</x>
+        <x>571</x>
         <y>170</y>
         <width>53</width>
         <height>50</height>
@@ -847,9 +851,9 @@ border-color: rgb(21, 100, 192);
      <widget class="sQLEExtend" name="leOperator">
       <property name="geometry">
        <rect>
-        <x>281</x>
+        <x>270</x>
         <y>170</y>
-        <width>263</width>
+        <width>301</width>
         <height>50</height>
        </rect>
       </property>
@@ -892,9 +896,9 @@ border-color: rgb(21, 100, 192);
      <widget class="QListWidget" name="lwOperator">
       <property name="geometry">
        <rect>
-        <x>281</x>
-        <y>212</y>
-        <width>310</width>
+        <x>271</x>
+        <y>218</y>
+        <width>351</width>
         <height>16</height>
        </rect>
       </property>
@@ -907,11 +911,11 @@ border-color: rgb(21, 100, 192);
       <property name="styleSheet">
        <string notr="true">QListWidget {
    border: 2px solid rgb(21, 100, 192);
-   border-radius: 5px;
+   border-radius: 8px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-   border-bottom-right-radius: 15px;
+/*   border-bottom-right-radius: 15px;*/
 }
 
 QListWidget QAbstractItemView {
@@ -1048,9 +1052,9 @@ QScrollBar::down-arrow:vertical {
      <widget class="QListWidget" name="lwSampleId">
       <property name="geometry">
        <rect>
-        <x>281</x>
-        <y>140</y>
-        <width>310</width>
+        <x>271</x>
+        <y>146</y>
+        <width>351</width>
         <height>16</height>
        </rect>
       </property>
@@ -1063,11 +1067,11 @@ QScrollBar::down-arrow:vertical {
       <property name="styleSheet">
        <string notr="true">QListWidget {
    border: 2px solid rgb(21, 100, 192);
-   border-radius: 5px;
+   border-radius: 8px;
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-   border-bottom-right-radius: 15px;
+/*   border-bottom-right-radius: 15px;*/
 }
 
 QListWidget QAbstractItemView {

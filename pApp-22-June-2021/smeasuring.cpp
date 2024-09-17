@@ -14,7 +14,7 @@ sMeasuring::sMeasuring(QWidget *parent) :
 
 
     QListView *view = new QListView(ui->cbMethod);
-    view->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 5px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); }\
+    view->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 8px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); outline: none;}\
                         QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
                         QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
                         QListView::item{height: 41px}");
@@ -52,8 +52,8 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lwSampleId->hide();
     ui->lwOperator->hide();
 
-    ui->lwSampleId->resize(271, 171);
-    ui->lwOperator->resize(271, 171);
+    ui->lwSampleId->resize(350, 171);
+    ui->lwOperator->resize(350, 171);
 
     ui->lblMessage->resize(680,141);
     ui->lblAutoCount->hide();

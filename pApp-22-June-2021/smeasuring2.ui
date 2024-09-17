@@ -483,9 +483,9 @@ color: rgb(0,0,0);</string>
     <widget class="QLabel" name="lblSampleId">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>240</x>
        <y>0</y>
-       <width>211</width>
+       <width>331</width>
        <height>41</height>
       </rect>
      </property>
@@ -495,7 +495,7 @@ font: 75 12pt &quot;Roboto Medium&quot;;
 color: rgb(0,0,0);</string>
      </property>
      <property name="text">
-      <string>WWWWWWWWWWWW</string>
+      <string>WWWWWWWWWWWWWWWWWWWW</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

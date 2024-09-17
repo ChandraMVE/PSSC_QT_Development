@@ -81,12 +81,14 @@ public:
     QString getPressureCS(double tm) const; 
 
     QString getTemperature(double tm) const;
+    QString printGetTemperature(double tm) const;
     QString getTemperatureWS(double tm) const;
     QString getTemperatureMS(double tm) const;
     double  getTemperatureCelsiusMS(double tm);
     QString getTemperatureScale(void) const;
 
     QString getPressure(double pr) const;
+    QString printGetPressure(double pr) const;
     QString getPressureWS(double pr) const;
     QString getPressureMS(double pr) const;
     QString getPressureNMS(double pr) const; //naveen
@@ -100,8 +102,10 @@ public:
     QString getPressureScale(void) const;
 
     QString getPressure(QString method, double pr) const;
+    QString printGetPressure(QString method, double pr) const;
     QString getFormula(QString method, QString formula, double aconst, double bconst, double cconst) const;
     QString getResult(QString method, double result) const;
+    QString printGetResult(QString method, double result) const;
     QString getTestTime(double ttime) const;
     QString getTestTime(QString method, double ttime) const;
     QString getShakerSpeed(double ttime) const;

@@ -343,6 +343,14 @@ QString sSettings::getTemperature(double tm) const
         return (QString::number((tm *  9/5) + 32, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt())) + " F"; 
 }
 
+QString sSettings::printGetTemperature(double tm) const
+{
+    if(!cgs->temperature_scale)
+        return (QString::number(tm, 'f', 1)) + " C";
+    else
+        return (QString::number((tm *  9/5) + 32, 'f', 1)) + " F";
+}
+
 QString sSettings::getTemperatureWS(double tm) const
 {
     if(!cgs->temperature_scale) 
@@ -383,6 +391,11 @@ QString sSettings::getTemperatureScale() const
 QString sSettings::getPressure(double pr) const
 {
     return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3)) + " " + qslPressureScale->at(cgs->pressure_scale);
+}
+
+QString sSettings::printGetPressure(double pr) const
+{
+    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 1)) + " " + qslPressureScale->at(cgs->pressure_scale);
 }
 
 QString sSettings::getPressureWS(double pr) const
@@ -453,6 +466,12 @@ QString sSettings::getPressure(QString method, double pr) const
     else return getPressure(pr);
 }
 
+QString sSettings::printGetPressure(QString method, double pr) const
+{
+    if(method == "D5188" || method == "D6377") return "";
+    else return printGetPressure(pr);
+}
+
 QString sSettings::getFormula(QString method, QString formula, double aconst, double bconst, double cconst) const
 {
     if(method =="D5188" || method =="D6377" )
@@ -475,6 +494,14 @@ QString sSettings::getResult(QString method, double result) const
         return getTemperature(result);
     else
         return getPressure(result);
+}
+
+QString sSettings::printGetResult(QString method, double result) const
+{
+    if(method =="D5188")
+        return printGetTemperature(result);
+    else
+        return printGetPressure(result);
 }
 
 QString sSettings::getTestTime(double ttime) const

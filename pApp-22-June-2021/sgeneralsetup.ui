@@ -255,7 +255,7 @@ border-color:  rgb(190, 190, 190);
      <widget class="QComboBox" name="cbDateFormat">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>30</y>
         <width>310</width>
         <height>50</height>
@@ -394,7 +394,7 @@ QScrollBar::down-arrow:vertical {
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>30</y>
         <width>201</width>
         <height>50</height>
@@ -402,7 +402,7 @@ QScrollBar::down-arrow:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Date</string>
@@ -411,7 +411,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbTimeFormat">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>100</y>
         <width>310</width>
         <height>50</height>
@@ -545,7 +545,7 @@ QScrollBar::down-arrow:vertical {
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>100</y>
         <width>201</width>
         <height>50</height>
@@ -553,7 +553,7 @@ QScrollBar::down-arrow:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Time</string>
@@ -562,7 +562,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>240</y>
         <width>201</width>
         <height>50</height>
@@ -570,7 +570,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Location</string>
@@ -579,7 +579,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>310</y>
         <width>201</width>
         <height>50</height>
@@ -587,7 +587,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Unit Id</string>
@@ -596,7 +596,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbLanguage">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>380</y>
         <width>310</width>
         <height>50</height>
@@ -735,7 +735,7 @@ QScrollBar::down-arrow:vertical {
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>380</y>
         <width>201</width>
         <height>50</height>
@@ -743,7 +743,7 @@ QScrollBar::down-arrow:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Language</string>
@@ -752,7 +752,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>450</y>
         <width>201</width>
         <height>50</height>
@@ -760,7 +760,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Pressure Scale</string>
@@ -769,7 +769,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbPressureScale">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>450</y>
         <width>310</width>
         <height>50</height>
@@ -908,7 +908,7 @@ QScrollBar::down-arrow:vertical {
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>520</y>
         <width>231</width>
         <height>50</height>
@@ -916,7 +916,7 @@ QScrollBar::down-arrow:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Temperature Scale</string>
@@ -925,7 +925,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbTemperatureScale">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>520</y>
         <width>310</width>
         <height>50</height>
@@ -1054,7 +1054,7 @@ QScrollBar::down-arrow:vertical {
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>590</y>
         <width>201</width>
         <height>50</height>
@@ -1062,7 +1062,7 @@ QScrollBar::down-arrow:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Auto Measuring</string>
@@ -1071,7 +1071,7 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbAutoMeasuring">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>590</y>
         <width>310</width>
         <height>50</height>
@@ -1239,7 +1239,7 @@ QScrollBar::down-arrow:vertical {
      <widget class="sQLEExtend" name="leLocation">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>240</y>
         <width>310</width>
         <height>50</height>
@@ -1282,7 +1282,7 @@ border-color: rgb(21, 100, 192);
      <widget class="sQLEExtend" name="leUnitId">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>310</y>
         <width>310</width>
         <height>50</height>
@@ -1325,7 +1325,7 @@ border-color: rgb(21, 100, 192);
      <widget class="sQLEExtend" name="leCompany">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>370</x>
         <y>170</y>
         <width>310</width>
         <height>50</height>
@@ -1368,7 +1368,7 @@ border-color: rgb(21, 100, 192);
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>60</x>
         <y>170</y>
         <width>201</width>
         <height>50</height>
@@ -1376,7 +1376,7 @@ border-color: rgb(21, 100, 192);
       </property>
       <property name="styleSheet">
        <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+/*font: 75 16pt &quot;Roboto Medium&quot;;*/</string>
       </property>
       <property name="text">
        <string>Company</string>
@@ -1674,7 +1674,8 @@ QScrollBar::down-arrow:vertical {
           </rect>
          </property>
          <property name="styleSheet">
-          <string notr="true">border-width: 0px;</string>
+          <string notr="true">border-width: 0px;
+</string>
          </property>
          <property name="text">
           <string>Emulation</string>
@@ -5112,7 +5113,7 @@ QScrollBar::down-arrow:vertical {
         <widget class="QLabel" name="label_20">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>70</x>
            <y>40</y>
            <width>138</width>
            <height>41</height>
@@ -5120,7 +5121,7 @@ QScrollBar::down-arrow:vertical {
          </property>
          <property name="styleSheet">
           <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>Time Zone</string>
@@ -5202,7 +5203,7 @@ QGroupBox::title {
          </property>
          <property name="styleSheet">
           <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>Confirm Password</string>
@@ -5271,7 +5272,7 @@ border-color: rgb(21, 100, 192);
          </property>
          <property name="styleSheet">
           <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>Old Password</string>
@@ -5417,7 +5418,7 @@ QScrollBar::down-arrow:vertical {
          </property>
          <property name="styleSheet">
           <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>New Password</string>
@@ -5532,7 +5533,7 @@ border-color: rgb(21, 100, 192);
          </property>
          <property name="styleSheet">
           <string notr="true">border-width: 0px;
-font: 75 18pt &quot;Roboto Medium&quot;;</string>
+font: 75 16pt &quot;Roboto Medium&quot;;</string>
          </property>
          <property name="text">
           <string>User</string>

@@ -156,53 +156,58 @@ font: 75 18pt &quot;Roboto Medium&quot;;
     position: absolute;
 
 	color: rgb(0, 0, 0);
-	font: 75 18pt &quot;Roboto Medium&quot;;
+	font: 75 16pt &quot;Roboto Medium&quot;;
 
 	 border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
     border-bottom-left-radius: 30px;
    border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
-
+/*	outline: none;*/
 
 
 }
 
 QTabWidget::tab-bar {
     alignment: left;
-
+	outline: none;
 }
 
 /* Style the tab using the tab sub-control. Note that
     it reads QTabBar _not_ QTabWidget */
 QTabBar::tab {
 
-    border: 1px solid #C4C4C3;
+    border: 0px solid #C4C4C3;
     border-bottom-color: #C2C7CB; /* same as the pane color */
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 
     padding: 2px;
     height:41px;
-   width: 170px;
+   width: 180px;
 
-border-width: 0px;
-border-color: rgb(21, 100, 192);
+border-width: 0.5px;
+border-color: rgb(0, 160, 255);
 border-style: solid;
 
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 75 20pt &quot;Roboto Medium&quot;;
 /*	color: rgb(0, 0, 0);*/
-	color: rgb(255, 255, 255);
-	background-color: rgb(110, 210, 255);
+color: rgb(255, 255, 255);
+background-color: rgb(110, 210, 255);
+	outline: none;
 
 }
 
 QTabBar::tab:selected {
+		/*background-color: rgb(190, 190, 190);*/
+border-width: 0.5px;
 	background-color: rgb(255, 255, 255);
-    border-color: #9B9B9B;
-    border-bottom-color: #C2C7CB; /* same as pane color */
-	 border: 0px;
-	color: rgb(0, 0, 0);
+    border-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255); /* same as pane color */
+/* border: 0px;*/
+color: rgb(0, 0, 0);
+	outline: none;
+/*	border: none;*/
 }
 </string>
    </property>
@@ -210,7 +215,7 @@ QTabBar::tab:selected {
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tabTemperature">
     <attribute name="title">
@@ -250,7 +255,7 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>242</y>
+        <y>250</y>
         <width>709</width>
         <height>351</height>
        </rect>
@@ -918,7 +923,7 @@ border-color: rgb(21, 100, 192);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>5</y>
+        <y>10</y>
         <width>709</width>
         <height>110</height>
        </rect>
@@ -1252,7 +1257,7 @@ border-color: rgb(21, 100, 192);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>118</y>
+        <y>130</y>
         <width>709</width>
         <height>110</height>
        </rect>
@@ -5005,7 +5010,7 @@ border-color:  rgb(190, 190, 190);
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>30</y>
         <width>709</width>
         <height>81</height>
        </rect>
