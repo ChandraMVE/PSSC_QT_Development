@@ -118,7 +118,7 @@ void TECControl_Handler(void)
     TECControl.PressCurrent_Value = TemperatureControl_GetPressADC();
     TECControl.AmbTemp_Value = ADCRead_GetAmbTemp();
     
-    if(PressureLimitForOnce){
+    /*if(PressureLimitForOnce){
         if(TECControl.PressCurrent_Value > MAX_PRESS_LIMIT_COUNT)
         {
             TEC_ErrDebounce++;
@@ -134,7 +134,7 @@ void TECControl_Handler(void)
                 PressureLimitForOnce = false;
             }
         }
-    }
+    }*/
     //If Cycle is running then only enable the error logging and no error present
     if((Error_GetFlag() == false) && (Error_GetCycleRunSts() == true))
     {
@@ -161,8 +161,8 @@ void TECControl_Handler(void)
                 TECControl.TECState_Status = TEC_STATE_ERROR;
                 TECControl_Stop();
                 Error_Report(PRESSURE_LIMIT);
-                Error_PressureOverLoad();
                 Alarm_UpdateError(TECControl.ErrorFlags.TECPress);
+                Error_PressureOverLoad();
             }
         }
         if(TECControl.TempCurrent_Value > MAX_TEMP_LIMIT_COUNT)
