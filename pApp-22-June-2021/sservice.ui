@@ -2680,7 +2680,7 @@ QTableView::item {
       </column>
       <column>
        <property name="text">
-        <string>Date Time</string>
+        <string>Date/Time</string>
        </property>
       </column>
      </widget>

@@ -195,6 +195,12 @@ QString sSettings::getTemperatureLive(int tm)
     return (QString::number(ttm, 'f', 2));
 }
 
+QString sSettings::logGetTemperatureLive(int tm){
+    double ttm = calculateTemperature(tm);
+
+    return (QString::number(ttm, 'f', 4));
+}
+
 QString sSettings::getPressureLive(int tm, int pr) 
 {
     double tpr = calculatePressure(tm, pr);
@@ -325,6 +331,12 @@ QString sSettings::getPressureLiveSS(int tm, int pr)
     return (QString::number(tpr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', RANGE_CALIB_PRESSURE_PRECISION));
 }
 
+QString sSettings::logGetPressureLiveSS(int tm, int pr){
+    double tpr = calculatePressure(tm, pr);
+
+    return (QString::number(tpr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 4));
+}
+
 QString sSettings::getTemperatureCS(double tm) const
 {
     return (QString::number(tm, 'f', 2));
@@ -354,9 +366,9 @@ QString sSettings::printGetTemperature(double tm) const
 QString sSettings::getTemperatureWS(double tm) const
 {
     if(!cgs->temperature_scale) 
-        return (QString::number(tm, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt()));
+        return (QString::number(tm, 'f', 2));
     else
-        return (QString::number((tm *  9/5) + 32, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt()));
+        return (QString::number((tm *  9/5) + 32, 'f', 2));
 }
 
 QString sSettings::getTemperatureMS(double tm) const  
@@ -390,17 +402,22 @@ QString sSettings::getTemperatureScale() const
 
 QString sSettings::getPressure(double pr) const
 {
+    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 2)) + " " + qslPressureScale->at(cgs->pressure_scale);
+}
+
+QString sSettings::methodGetPressure(double pr) const
+{
     return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 3)) + " " + qslPressureScale->at(cgs->pressure_scale);
 }
 
 QString sSettings::printGetPressure(double pr) const
 {
-    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 1)) + " " + qslPressureScale->at(cgs->pressure_scale);
+    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 2)) + " " + qslPressureScale->at(cgs->pressure_scale);
 }
 
 QString sSettings::getPressureWS(double pr) const
 {
-    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', qslPressureDP->at(cgs->pressure_scale).toInt()));
+    return (QString::number(pr * qslPressureMultiplier->at(cgs->pressure_scale).toDouble(), 'f', 2));
 }
 
 QString sSettings::getPressureMS(double pr) const
@@ -483,7 +500,7 @@ QString sSettings::getFormula(QString method, QString formula, double aconst, do
                         " x Ptot - " +
                         getFormulaConstantsAB(bconst) +
                         " x Pgas - " +
-                        getPressure(cconst);
+                        methodGetPressure(cconst);
         return str;
     }
 }

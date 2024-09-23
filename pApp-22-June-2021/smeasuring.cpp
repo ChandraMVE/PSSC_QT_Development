@@ -52,8 +52,8 @@ sMeasuring::sMeasuring(QWidget *parent) :
     ui->lwSampleId->hide();
     ui->lwOperator->hide();
 
-    ui->lwSampleId->resize(350, 171);
-    ui->lwOperator->resize(350, 171);
+    ui->lwSampleId->resize(471, 171);
+    ui->lwOperator->resize(471, 171);
 
     ui->lblMessage->resize(680,141);
     ui->lblAutoCount->hide();

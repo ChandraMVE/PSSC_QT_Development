@@ -245,7 +245,7 @@ font: 75 16pt &quot;Roboto&quot;;</string>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>91</x>
+        <x>60</x>
         <y>30</y>
         <width>141</width>
         <height>41</height>
@@ -262,8 +262,8 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>91</x>
-        <y>88</y>
+        <x>60</x>
+        <y>93</y>
         <width>141</width>
         <height>61</height>
        </rect>
@@ -282,8 +282,8 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>91</x>
-        <y>157</y>
+        <x>60</x>
+        <y>164</y>
         <width>141</width>
         <height>61</height>
        </rect>
@@ -302,9 +302,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
      <widget class="QComboBox" name="cbMethod">
       <property name="geometry">
        <rect>
-        <x>271</x>
+        <x>199</x>
         <y>25</y>
-        <width>354</width>
+        <width>474</width>
         <height>50</height>
        </rect>
       </property>
@@ -322,13 +322,14 @@ font: 75 20pt &quot;Roboto Medium&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QComboBox {
+	text-align: center;
    border: 2px solid  rgb(21, 100, 192);
    border-radius: 15px;
 /*   padding: 1px 18px 1px 3px;*/
    background-color: rgb(255, 255, 255);
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
-  padding-left: 15px;
+  padding-left: 175px;
 	outline: none;
 margin: 0;
 }
@@ -744,9 +745,9 @@ font: 75 20pt &quot;Roboto Medium&quot;;
      <widget class="sQLEExtend" name="leSampleId">
       <property name="geometry">
        <rect>
-        <x>271</x>
+        <x>199</x>
         <y>98</y>
-        <width>301</width>
+        <width>421</width>
         <height>50</height>
        </rect>
       </property>
@@ -755,7 +756,7 @@ font: 75 20pt &quot;Roboto Medium&quot;;
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit{
- padding: 1px 18px 1px 3px;
+ /*padding: 1px 18px 1px 3px;*/
 background-color: rgb(255,255,255);
 border-width: 2px;
 border-color: rgb(21, 100, 192);
@@ -764,7 +765,7 @@ border-top-left-radius: 15px;
 border-bottom-left-radius: 15px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
-padding-left: 15px;
+/*padding-left: 15px;*/
    border-right-width: 0px;
 }
 QLineEdit:read-only {
@@ -780,16 +781,19 @@ border-color: rgb(21, 100, 192);
 </string>
       </property>
       <property name="text">
-       <string>0123456789ABCDEFGHIJ</string>
+       <string>WWWWWWWWWWWWWWWWWWWW</string>
       </property>
       <property name="maxLength">
        <number>20</number>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="pbSampleId">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>619</x>
         <y>98</y>
         <width>53</width>
         <height>50</height>
@@ -820,7 +824,7 @@ border-color: rgb(21, 100, 192);
      <widget class="QPushButton" name="pbOperator">
       <property name="geometry">
        <rect>
-        <x>571</x>
+        <x>620</x>
         <y>170</y>
         <width>53</width>
         <height>50</height>
@@ -851,9 +855,9 @@ border-color: rgb(21, 100, 192);
      <widget class="sQLEExtend" name="leOperator">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>199</x>
         <y>170</y>
-        <width>301</width>
+        <width>421</width>
         <height>50</height>
        </rect>
       </property>
@@ -862,7 +866,7 @@ border-color: rgb(21, 100, 192);
       </property>
       <property name="styleSheet">
        <string notr="true">QLineEdit{
- padding: 1px 18px 1px 3px;
+ /*padding: 1px 18px 1px 3px;*/
 background-color: rgb(255,255,255);
 border-width: 2px;
 border-color: rgb(21, 100, 192);
@@ -871,7 +875,7 @@ border-top-left-radius: 15px;
 border-bottom-left-radius: 15px;
 color: rgb(0, 0, 0);
 font: 75 16pt &quot;Roboto Medium&quot;;
-padding-left: 15px;
+/*padding-left: 15px;*/
     border-right-width: 0px;
 }
 QLineEdit:read-only {
@@ -892,13 +896,16 @@ border-color: rgb(21, 100, 192);
       <property name="maxLength">
        <number>20</number>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
      <widget class="QListWidget" name="lwOperator">
       <property name="geometry">
        <rect>
-        <x>271</x>
+        <x>200</x>
         <y>218</y>
-        <width>351</width>
+        <width>471</width>
         <height>16</height>
        </rect>
       </property>
@@ -1052,9 +1059,9 @@ QScrollBar::down-arrow:vertical {
      <widget class="QListWidget" name="lwSampleId">
       <property name="geometry">
        <rect>
-        <x>271</x>
+        <x>200</x>
         <y>146</y>
-        <width>351</width>
+        <width>471</width>
         <height>16</height>
        </rect>
       </property>

@@ -2756,8 +2756,8 @@ void MainWindow::readSerial(void)
 //                            ui->wServiceSetup->onInternalLogData(cValvePosition, cPistonPosition,
 //                                                                 cRawATemperature, cRawCTemperature,
 //                                                                 cRawCPressure, cStepperSpeed, cCurrentUCError);
-                            QString str = " Tm:" + cSettings.getTemperatureLive(cRawCTemperature)
-                                          + ", Pr:" + cSettings.getPressureLiveSS(cRawCTemperature, cRawCPressure)
+                            QString str = " Tm:" + cSettings.logGetTemperatureLive(cRawCTemperature)
+                                          + ", Pr:" + cSettings.logGetPressureLiveSS(cRawCTemperature, cRawCPressure)
                                           + ", Valve:" + QString::number(cValvePosition)
                                           + ", PP:" + QString::number(cPistonPosition/100.0, 'f', 2)
                                           + ", SS:" + QString::number(cStepperSpeed)
@@ -8144,11 +8144,11 @@ void MainWindow::on_imageCapture_clicked()
         QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_hhmmss");
 //        QString filename = QApplication::applicationDirPath() + QString("/screenshot/screenshot_%1.png").arg(timestamp);
         QString filename = QString("%1/screenshot_%2.png").arg(screenshotDirPath).arg(timestamp);
-        /*QWidget *widget = QApplication::activeWindow();
-        QPixmap pixmap = QPixmap::grabWidget(widget);*/
         QWidget *widget = QApplication::activeWindow();
-        QScreen *screen = QGuiApplication::primaryScreen();
-        QPixmap pixmap = screen->grabWindow(widget->winId());
+        QPixmap pixmap = QPixmap::grabWidget(widget);
+//        QWidget *widget = QApplication::activeWindow();
+//        QScreen *screen = QGuiApplication::primaryScreen();
+//        QPixmap pixmap = screen->grabWindow(widget->winId());
         ui->imageCapture->setFocusPolicy(Qt::NoFocus);
         qDebug() << "path : " << filename;
         /*QString command = "cp " + filename + " " + screenshotDirPath;

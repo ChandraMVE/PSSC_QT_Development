@@ -61,6 +61,7 @@ public:
 
 
     QString getTemperatureLive(int tm);
+    QString logGetTemperatureLive(int tm);
     QString getPressureLive(int tm, int pr);
 
     int getTemperatureCount(double tm); 
@@ -76,6 +77,7 @@ public:
 
     QString getTemperatureLiveSS(int tm); 
     QString getPressureLiveSS(int tm, int pr); 
+    QString logGetPressureLiveSS(int tm, int pr);
 
     QString getTemperatureCS(double tm) const; 
     QString getPressureCS(double tm) const; 
@@ -88,6 +90,7 @@ public:
     QString getTemperatureScale(void) const;
 
     QString getPressure(double pr) const;
+    QString methodGetPressure(double pr) const;
     QString printGetPressure(double pr) const;
     QString getPressureWS(double pr) const;
     QString getPressureMS(double pr) const;
