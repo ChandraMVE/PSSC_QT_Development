@@ -60,7 +60,7 @@ QVariant sTestModel::data(const QModelIndex &index, int role) const
                           cTestRecord.tm_aconst, cTestRecord.tm_bconst,
                           cTestRecord.tm_cconst);
     } else if (role == Qt::DisplayRole && index.column() == 10) {
-        return cSettings.getResult(cTestRecord.tm_method, cTestRecord.tm_result);
+        return cSettings.printGetResult(cTestRecord.tm_method, cTestRecord.tm_result);
     } else if (role == Qt::DisplayRole && index.column() == 11) {
         return cSettings.getTestTime(cTestRecord.tm_method, cTestRecord.tm_ttime);
     } else if (role == Qt::DisplayRole && index.column() == 12) {

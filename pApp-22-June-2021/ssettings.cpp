@@ -352,15 +352,15 @@ QString sSettings::getTemperature(double tm) const
     if(!cgs->temperature_scale) 
         return (QString::number(tm, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt())) + " C";
     else
-        return (QString::number((tm *  9/5) + 32, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt())) + " F"; 
+        return (QString::number((tm *  9/5) + 32, 'f', qslTemperatureDP->at(cgs->temperature_scale).toInt())) + " F";
 }
 
 QString sSettings::printGetTemperature(double tm) const
 {
     if(!cgs->temperature_scale)
-        return (QString::number(tm, 'f', 1)) + " C";
+        return (QString::number(tm, 'f', 2)) + " C";
     else
-        return (QString::number((tm *  9/5) + 32, 'f', 1)) + " F";
+        return (QString::number((tm *  9/5) + 32, 'f', 2)) + " F";
 }
 
 QString sSettings::getTemperatureWS(double tm) const
