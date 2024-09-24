@@ -105,6 +105,8 @@ public:
     void deleteOperatorsFile();
     void saveSampleIdsFile();
     void deleteSampleIdsFile();
+    int getcbMethodVisibility();
+    void mkVisibleCbMethod();
 
     void readLastIdsFile();
     void saveLastIdsFile();
@@ -151,6 +153,7 @@ private slots:
     void on_pbSampleId_clicked();
     void onClickSampleId();
     void onClickOperator();
+    void onClickMethod();
 
     void on_leSampleId_textChanged(const QString &arg1);
     void on_lwSampleId_itemClicked(QListWidgetItem *item);
@@ -167,6 +170,10 @@ private slots:
     void on_imageCapture_clicked();
 
     void on_pbRinse_clicked();
+
+    void on_pbMethod_clicked();
+
+    void on_lwMethods_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::sMeasuring *ui;

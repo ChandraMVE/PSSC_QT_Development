@@ -273,6 +273,8 @@ public:
     sAccessWidget *cAccessWidget;
     struct TestStruct *cTest;
 
+    bool sMeasuringCbMethod;
+
 };
 
 #endif // MAINWINDOW_H

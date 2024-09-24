@@ -182,7 +182,7 @@
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App: Ver. 1.05.176"
+#define FW_VERSION  "App: Ver. 1.05.179"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

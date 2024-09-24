@@ -271,6 +271,7 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
     ui->leDNS->setValidator(ipValidator);
 
     DateTimeDisplay = true;
+    languageChanged = false;
 
     ui->imageCapture->hide();
 }
@@ -651,7 +652,10 @@ void sGeneralSetup::updateGeneralSetup()
     if(general_setup.unit_id != ui->leUnitId->text()) cParasChanged = true;
     general_setup.unit_id = ui->leUnitId->text();
 
-    if(general_setup.language != ui->cbLanguage->currentIndex()) cParasChanged = true;
+    if(general_setup.language != ui->cbLanguage->currentIndex()) {
+        cParasChanged = true;
+        languageChanged = true;
+    }
     general_setup.language = ui->cbLanguage->currentIndex();
 
     if(general_setup.pressure_scale != ui->cbPressureScale->currentIndex()) cParasChanged = true;

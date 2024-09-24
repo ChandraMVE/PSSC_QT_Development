@@ -160,6 +160,7 @@ private:
 
 public:
     struct GENERAL_SETUP general_setup;
+    bool languageChanged;
 
 };
 

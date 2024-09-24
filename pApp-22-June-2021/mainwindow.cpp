@@ -453,6 +453,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->wCleaning->hide();
     rinsing = false;
 
+    sMeasuringCbMethod = false;
+
     connect(ui->imageCapture, &QPushButton::clicked, this, &MainWindow::on_imageCapture_clicked);
 
 }
@@ -3053,6 +3055,15 @@ void MainWindow::timerEvent(QTimerEvent *e)
     Q_UNUSED(e);
 
     cDateTime = cSettings.getCurrentDateTime();
+
+//    qDebug() << "ui->wMeasuring1->getcbMethodVisibility() from timer event: " << ui->wMeasuring1->getcbMethodVisibility();
+//    if(ui->wMeasuring1->getcbMethodVisibility()){
+//        sMeasuringCbMethod = true;
+//    }
+
+//    if(sMeasuringCbMethod){
+//        ui->wMeasuring1->mkVisibleCbMethod();
+//    }
 
     ui->lblDate->setText(cDateTime.toString(cSettings.getDateFormat()));
     ui->lblTime->setText(cDateTime.toString(cSettings.getTimeFormat()));
@@ -8116,6 +8127,13 @@ void MainWindow::on_imageCapture_clicked()
     }*/
 
     qDebug() << "image capture clicked";
+
+//    qDebug() << "ui->wMeasuring1->getcbMethodVisibility(): " << ui->wMeasuring1->getcbMethodVisibility();
+//    if(ui->wMeasuring1->getcbMethodVisibility())
+//    if(sMeasuringCbMethod){
+//        ui->wMeasuring1->mkVisibleCbMethod();
+//    }
+
     QDir usbRootDir("/run/media/sda1/");
     if (usbRootDir.exists())
     {

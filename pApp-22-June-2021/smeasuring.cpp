@@ -13,13 +13,13 @@ sMeasuring::sMeasuring(QWidget *parent) :
 
 
 
-    QListView *view = new QListView(ui->cbMethod);
-    view->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 8px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); outline: none;}\
-                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
-                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
-                        QListView::item{height: 41px}");
+//    QListView *view = new QListView(ui->cbMethod);
+//    view->setStyleSheet("QListView { border: 2px solid rgb(21, 100, 192); font: 75 16pt \"Roboto Medium\"; border-radius: 8px; background-color: rgb(255, 255, 255); selection-background-color:  rgb(21, 100, 192); selection-color: rgb(255, 255, 255); outline: none;}\
+//                        QListView::item::selected { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255); }\
+//                        QListView::item::hover { background-color:  rgb(21, 100, 192); color:  rgb(255, 255, 255);}\
+//                        QListView::item{height: 41px}");
 
-    ui->cbMethod->setView(view);
+//    ui->cbMethod->setView(view);
 
     ui->wResult->resize(ui->twMeasuring->width(), ui->twMeasuring->height());
     ui->wResult->move((ui->twMeasuring->x()-10), (ui->twMeasuring->y()));
@@ -28,6 +28,7 @@ sMeasuring::sMeasuring(QWidget *parent) :
 
     connect(ui->leSampleId, SIGNAL(click()), this, SLOT(onClickSampleId()));
     connect(ui->leOperator, SIGNAL(click()), this, SLOT(onClickOperator()));
+    connect(ui->leMethod, SIGNAL(click()), this, SLOT(onClickMethod()));
 
     connect(ui->leSampleId, SIGNAL(textChanged(QString)), this, SLOT(ontextChanged(QString)));
     connect(ui->leSampleId, SIGNAL(showKeypad(int)), this, SLOT(onShowKeypad(int)));
@@ -51,9 +52,23 @@ sMeasuring::sMeasuring(QWidget *parent) :
 
     ui->lwSampleId->hide();
     ui->lwOperator->hide();
+    ui->lwMethods->hide();
+//    ui->pbMethod->setEnabled(false);
+    ui->leMethod->setEnabled(false);
+
+//    ui->cbMethod->hide();
+    /*ui->lwMethods->insertItem(0,"D5191");
+    ui->lwMethods->insertItem(1,"D6377");
+    ui->lwMethods->insertItem(2,"D6378");
+    ui->lwMethods->insertItem(3,"D5188");
+    ui->lwMethods->insertItem(4,"Free 1");
+    ui->lwMethods->insertItem(5,"Free 2");
+    ui->lwMethods->insertItem(6,"Free 3");
+    ui->lwMethods->insertItem(7,"Free 4");*/
 
     ui->lwSampleId->resize(471, 171);
     ui->lwOperator->resize(471, 171);
+    ui->lwMethods->resize(471, 171);
 
     ui->lblMessage->resize(680,141);
     ui->lblAutoCount->hide();
@@ -84,6 +99,9 @@ void sMeasuring::Show()
 
     ui->lwOperator->hide();
     ui->lwSampleId->hide();
+    ui->lwMethods->hide();
+
+//    ui->cbMethod->hide();
     //ui->cbMethod->setCurrentIndex(0);
 
     this->show();
@@ -92,8 +110,11 @@ void sMeasuring::Show()
 
 void sMeasuring::setMethods(const QStringList tmp)
 {
-    ui->cbMethod->clear();
-    ui->cbMethod->insertItems(0, tmp);
+//    ui->cbMethod->clear();
+//    ui->cbMethod->insertItems(0, tmp);
+
+    ui->lwMethods->clear();
+    ui->lwMethods->insertItems(0, tmp);
 }
 
 void sMeasuring::setMessage(QString tmp)
@@ -163,13 +184,16 @@ void sMeasuring::onLiveData(int tm, int pr)
 
 int sMeasuring::getMethod()
 {
-    return ui->cbMethod->currentIndex();
+//    return ui->cbMethod->currentIndex();
+    qDebug()<<"ui->lwMethods->currentIndex().row(): " << ui->lwMethods->currentIndex().row();
+    return ui->lwMethods->currentIndex().row();
 }
 
 void sMeasuring::hideLists()
 {
     if(ui->lwSampleId->isVisible()) ui->lwSampleId->hide();
     if(ui->lwOperator->isVisible()) ui->lwOperator->hide();
+    if(ui->lwMethods->isVisible()) ui->lwMethods->hide();
 }
 
 void sMeasuring::readOperatorsFile()
@@ -378,7 +402,12 @@ void sMeasuring::readLastIdsFile()
 
         if(last_ids.test_id.length())
         {
-            ui->cbMethod->setCurrentText(last_ids.test_id);
+//            ui->cbMethod->setCurrentText(last_ids.test_id);
+            qDebug()<<"last_ids.test_id: "<< last_ids.test_id;
+            QString tmp = last_ids.test_id;
+            int row = (tmp == "D5191")? 0:(tmp == "D6377")?1:(tmp == "D6378")? 2:(tmp == "D5188")?3:(tmp == "Free 1")?4:(tmp == "Free 2")?5:(tmp == "Free 3")?6:7;
+            ui->lwMethods->setCurrentRow(row);
+            ui->leMethod->setText(last_ids.test_id);
         }
 
         in.close();
@@ -398,7 +427,7 @@ void sMeasuring::saveLastIdsFile()
 
         last_ids.operator_name = ui->leOperator->text();
         last_ids.sample_id = ui->leSampleId->text();
-        last_ids.test_id = ui->cbMethod->currentText();
+        last_ids.test_id = ui->leMethod->text();
 
         save << last_ids;
 
@@ -429,7 +458,7 @@ void sMeasuring::showResultD5191Single(double prtpx3){
 
     QString formula;
     QString passfail;
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
 
     if(cstdD5191->formula==0)
     {
@@ -507,7 +536,7 @@ void sMeasuring::showResultD5191(double prtpx1, double prtpx2, double prtpx3)
 
     QString formula;
     QString passfail;
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
 
     if(cstdD5191->formula==0)
     {
@@ -556,7 +585,7 @@ void sMeasuring::showResultD5188(double result)
 {
 
     QString passfail;
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
 
     double vlratio = cstdD5188->vl_ratio;
     double para_measured = cstdD5188->pressure;
@@ -595,7 +624,7 @@ void sMeasuring::showResultD6377(double result)
 {
 
     QString passfail;
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
     double ttime = cstdD6377->time;
     double vlratio = cstdD6377->vl_ratio;
     double para_measured = cstdD6377->temperature;;
@@ -664,7 +693,7 @@ void sMeasuring::showResultD6378(double prtpx1, double prtpx2, double prtpx3)
 
     QString formula;
     QString passfail;
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
 
     if(cstdD6378->formula==0)
     {
@@ -739,7 +768,7 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
     double aconstant, bconstant, cconstant;
     int shakerSpeed;
 
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
 
     switch(fn)
     {
@@ -979,7 +1008,8 @@ void sMeasuring::setRunning(bool state)
                 ui->wResult->hide();
                 ui->twMeasuring->show();
 
-                ui->cbMethod->setEnabled(true);
+//                ui->cbMethod->setEnabled(true);
+                ui->pbMethod->setEnabled(true);
 
                 ui->leSampleId->setEnabled(true);
                 ui->pbSampleId->setEnabled(true);
@@ -997,7 +1027,8 @@ void sMeasuring::setRunning(bool state)
                 break;
 
         case 1: //running
-                ui->cbMethod->setEnabled(false);
+//                ui->cbMethod->setEnabled(false);
+                ui->pbMethod->setEnabled(false);
                 ui->leSampleId->setEnabled(false);
                 ui->pbSampleId->setEnabled(false);
                 ui->leOperator->setEnabled(false);
@@ -1064,7 +1095,7 @@ void sMeasuring::on_pbStop_2_clicked()
     double p_abs = 0;
 
     QString formula = "";
-    QString method = ui->cbMethod->currentText();
+    QString method = ui->leMethod->text();
     QString pass = "";
 
     double aconstant = 0;
@@ -1085,7 +1116,7 @@ void sMeasuring::on_pbStop_2_clicked()
 
     ui->wResult->setSampleId(sampleID);
 
-    switch(ui->cbMethod->currentIndex())
+    switch(getMethod())
     {
         case 0:
 
@@ -1119,7 +1150,7 @@ void sMeasuring::on_pbStop_2_clicked()
         break;
 
         case 1:
-        formula = ui->cbMethod->currentText();
+        formula = ui->leMethod->text();
 
         ttime = cstdD6377->time;
         vlratio = cstdD6377->vl_ratio;
@@ -1393,6 +1424,10 @@ void sMeasuring::onClickOperator()
     ui->lwOperator->hide();
 }
 
+void sMeasuring::onClickMethod(){
+    ui->lwMethods->hide();
+}
+
 void sMeasuring::on_pbOperator_clicked()
 {
     if(ui->lwSampleId->isVisible()) ui->lwSampleId->hide();
@@ -1486,4 +1521,19 @@ void sMeasuring::on_imageCapture_clicked()
 void sMeasuring::on_pbRinse_clicked()
 {
     emit runClicked(MS_RINSING_RUN, false);
+}
+
+void sMeasuring::on_pbMethod_clicked()
+{
+    if(ui->lwOperator->isVisible()) ui->lwOperator->hide();
+    if(ui->lwSampleId->isVisible()) ui->lwSampleId->hide();
+    ui->lwMethods->show();
+}
+
+void sMeasuring::on_lwMethods_itemClicked(QListWidgetItem *item)
+{
+    ui->lwMethods->hide();
+    ui->leMethod->clear();
+    ui->leMethod->setText(ui->lwMethods->currentItem()->text());
+    ui->leMethod->setFocus();
 }
