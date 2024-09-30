@@ -4190,7 +4190,7 @@ void MainWindow::handleOther(void)
                                         deltaVolume = 0;
                                 break;
                             }
-                            sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 12, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
@@ -4266,10 +4266,11 @@ void MainWindow::handleOther(void)
                     {
                         cParasUpdated = false;
 
-                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+//                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+//                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+//                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -4311,7 +4312,7 @@ void MainWindow::handleOther(void)
                         {
                             if(!cStageTimeOut)
                             {
-                                setError(M_ERROR_TEMPERATURE);
+                                setError(M_ERROR_PISTON_POSITION);
                             }
                             else cStageTimeOut--;
                         }
@@ -4955,7 +4956,7 @@ void MainWindow::handleFreeShaker(void)
                                 break;
                             }
 
-                            sendPara(cProtocol.sendShakerSpeed(1, shakerSpeed), 12, 60);
+                            sendPara(cProtocol.sendShakerSpeed(1, shakerSpeed), 13, 60);
                         }
                         else
                         {
@@ -5027,10 +5028,11 @@ void MainWindow::handleFreeShaker(void)
                     {
                         cParasUpdated = false;
 
-                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+//                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+//                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+//                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        if((cStepperSpeed <= shakerSpeed+5) && (cStepperSpeed >= shakerSpeed-5))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -5072,7 +5074,7 @@ void MainWindow::handleFreeShaker(void)
                         {
                             if(!cStageTimeOut)
                             {
-                                setError(M_ERROR_TEMPERATURE);
+                                setError(M_ERROR_SHAKER_MOTOR);
                             }
                             else cStageTimeOut--;
                         }
@@ -5623,7 +5625,7 @@ void MainWindow::handleD5191SingleExpansion(void)
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
                             cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume)*100) - deltaVolume;
-                            sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 12, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
@@ -5700,10 +5702,11 @@ void MainWindow::handleD5191SingleExpansion(void)
                     {
                         cParasUpdated = false;
 
-                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+//                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
-                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+//                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+//                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -5745,7 +5748,7 @@ void MainWindow::handleD5191SingleExpansion(void)
                         {
                             if(!cStageTimeOut)
                             {
-                                setError(M_ERROR_TEMPERATURE);
+                                setError(M_ERROR_PISTON_POSITION);
                             }
                             else cStageTimeOut--;
                         }
@@ -7069,7 +7072,7 @@ void MainWindow::handleD6377(void)
 
                         if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
                         {
-                            sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD6377.shaker_speed), 12, 60);
+                            sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD6377.shaker_speed), 13, 60);
                             cStrringErrorCount = 0;
                         }
                         else
@@ -7125,10 +7128,13 @@ void MainWindow::handleD6377(void)
                     {
                         cParasUpdated = false;
 
-                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+//                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if( (ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE))
-                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE)))
+//                        if( (ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE))
+//                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE)))
+                        int D6377_Shaker_Speed = ui->wMethodSetup->stdD6377.shaker_speed;
+
+                        if((cStepperSpeed <= D6377_Shaker_Speed+5) && (cStepperSpeed >= D6377_Shaker_Speed-5))
                         {
                             cREqTime = ui->wMethodSetup->stdD6377.time;
 
@@ -7151,7 +7157,7 @@ void MainWindow::handleD6377(void)
                         {
                             if(!cStageTimeOut)
                             {
-                                setError(M_ERROR_TEMPERATURE);
+                                setError(M_ERROR_SHAKER_MOTOR);
                             }
                             else cStageTimeOut--;
                         }
