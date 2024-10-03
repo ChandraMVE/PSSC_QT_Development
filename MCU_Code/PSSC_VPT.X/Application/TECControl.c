@@ -872,6 +872,7 @@ void TECControl_UpdateTemp(bool flagSet, bool flagControl, uint32_t dutyValue)
     {
         TECControl.Flags.TECEdited = true;
     }
+    TemperatureControl_UpdateTemp(dutyValue);
 }
 
 uint32_t TECControl_GetValue(void)

@@ -159,6 +159,9 @@ int main(void)
         if ( scheduler.flags.interruptFLG) 
         {
             scheduler.flags.interruptFLG = 0;
+            if(TemperatureControl_TemperatureStable()){
+                TemperatureControl_TimeIncreament();
+            }
             scheduler.run();
 
             if(PistonMotor_MotorStopped()){
