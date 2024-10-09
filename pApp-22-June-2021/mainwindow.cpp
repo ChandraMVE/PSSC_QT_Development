@@ -1561,22 +1561,6 @@ void MainWindow::readSaveLogFile(int tmp, bool readSuccessfully){
 
             }else{
 
-                str = " D5188.from - \"" + QString::number(ui->wMethodSetup->stdD5188.from) + \
-                        "\", D5188.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5188.passfail_enabled) + \
-                        "\", D5188.pressure - \"" + QString::number(ui->wMethodSetup->stdD5188.pressure) + \
-                        "\", D5188.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD5188.shaker_speed) + \
-                        "\", D5188.to - \"" + QString::number(ui->wMethodSetup->stdD5188.to) + \
-                        "\", D5188.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD5188.vl_ratio) + \
-                        "\"\n";
-
-                if(ui->wServiceSetup->logPathEnabled())
-                    ui->wServiceSetup->commandLog(str);
-                else if(ui->wServiceSetup->internalLogData())
-                {
-                    qDebug()<<"First Time";
-                    ui->wServiceSetup->commandLog(str);
-                }
-
                 str = " D5191.aconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.aconstant) + \
                         "\", D5191.bconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.bconstant) + \
                         "\", D5191.cconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.cconstant) + \
@@ -1626,6 +1610,224 @@ void MainWindow::readSaveLogFile(int tmp, bool readSuccessfully){
                         "\", D6378.time - \"" + QString::number(ui->wMethodSetup->stdD6378.time) + \
                         "\", D6378.to - \"" + QString::number(ui->wMethodSetup->stdD6378.to) + \
                         "\", D6378.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD6378.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D5188.from - \"" + QString::number(ui->wMethodSetup->stdD5188.from) + \
+                        "\", D5188.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5188.passfail_enabled) + \
+                        "\", D5188.pressure - \"" + QString::number(ui->wMethodSetup->stdD5188.pressure) + \
+                        "\", D5188.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD5188.shaker_speed) + \
+                        "\", D5188.to - \"" + QString::number(ui->wMethodSetup->stdD5188.to) + \
+                        "\", D5188.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD5188.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " EN_13016_1.aconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.aconstant) + \
+                        "\", EN_13016_1.bconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.bconstant) + \
+                        "\", EN_13016_1.cconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.cconstant) + \
+                        "\", EN_13016_1.formula - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.formula) + \
+                        "\", EN_13016_1.from - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.from) + \
+                        "\", EN_13016_1.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.passfail_enabled) + \
+                        "\", \n\t\t\t EN_13016_1.single_expansion - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.single_expansion) + \
+                        "\", EN_13016_1.temperature - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.temperature) + \
+                        "\", EN_13016_1.time - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.time) + \
+                        "\", EN_13016_1.to - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.to) + \
+                        "\", EN_13016_1.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " EN_13016_2.aconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.aconstant) + \
+                        "\", EN_13016_2.bconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.bconstant) + \
+                        "\", EN_13016_2.cconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.cconstant) + \
+                        "\", EN_13016_2.formula - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.formula) + \
+                        "\", EN_13016_2.from - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.from) + \
+                        "\", EN_13016_2.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.passfail_enabled) + \
+                        "\", \n\t\t\t EN_13016_2.temperature - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.temperature) + \
+                        "\", EN_13016_2.time - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.time) + \
+                        "\", EN_13016_2.to - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.to) + \
+                        "\", EN_13016_2.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " GB_T_8017.aconstant - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.aconstant) + \
+                        "\", GB_T_8017.bconstant - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.bconstant) + \
+                        "\", GB_T_8017.cconstant - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.cconstant) + \
+                        "\", GB_T_8017.formula - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.formula) + \
+                        "\", GB_T_8017.from - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.from) + \
+                        "\", GB_T_8017.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.passfail_enabled) + \
+                        "\", \n\t\t\t GB_T_8017.single_expansion - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.single_expansion) + \
+                        "\", GB_T_8017.temperature - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.temperature) + \
+                        "\", GB_T_8017.time - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.time) + \
+                        "\", GB_T_8017.to - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.to) + \
+                        "\", GB_T_8017.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " IP_394.aconstant - \"" + QString::number(ui->wMethodSetup->stdIP_394.aconstant) + \
+                        "\", IP_394.bconstant - \"" + QString::number(ui->wMethodSetup->stdIP_394.bconstant) + \
+                        "\", IP_394.cconstant - \"" + QString::number(ui->wMethodSetup->stdIP_394.cconstant) + \
+                        "\", IP_394.formula - \"" + QString::number(ui->wMethodSetup->stdIP_394.formula) + \
+                        "\", IP_394.from - \"" + QString::number(ui->wMethodSetup->stdIP_394.from) + \
+                        "\", IP_394.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdIP_394.passfail_enabled) + \
+                        "\", \n\t\t\t IP_394.single_expansion - \"" + QString::number(ui->wMethodSetup->stdIP_394.single_expansion) + \
+                        "\", IP_394.temperature - \"" + QString::number(ui->wMethodSetup->stdIP_394.temperature) + \
+                        "\", IP_394.time - \"" + QString::number(ui->wMethodSetup->stdIP_394.time) + \
+                        "\", IP_394.to - \"" + QString::number(ui->wMethodSetup->stdIP_394.to) + \
+                        "\", IP_394.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdIP_394.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " IP409.aconstant - \"" + QString::number(ui->wMethodSetup->stdIP409.aconstant) + \
+                        "\", IP409.bconstant - \"" + QString::number(ui->wMethodSetup->stdIP409.bconstant) + \
+                        "\", IP409.cconstant - \"" + QString::number(ui->wMethodSetup->stdIP409.cconstant) + \
+                        "\", IP409.formula - \"" + QString::number(ui->wMethodSetup->stdIP409.formula) + \
+                        "\", IP409.from - \"" + QString::number(ui->wMethodSetup->stdIP409.from) + \
+                        "\", IP409.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdIP409.passfail_enabled) + \
+                        "\", \n\t\t\t IP409.temperature - \"" + QString::number(ui->wMethodSetup->stdIP409.temperature) + \
+                        "\", IP409.time - \"" + QString::number(ui->wMethodSetup->stdIP409.time) + \
+                        "\", IP409.to - \"" + QString::number(ui->wMethodSetup->stdIP409.to) + \
+                        "\", IP409.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdIP409.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " IP_481.from - \"" + QString::number(ui->wMethodSetup->stdIP_481.from) + \
+                        "\", IP_481.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdIP_481.InjectTemp) + \
+                        "\", IP_481.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdIP_481.passfail_enabled) + \
+                        "\", IP_481.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdIP_481.shaker_speed) + \
+                        "\", IP_481.temperature - \"" + QString::number(ui->wMethodSetup->stdIP_481.temperature) + \
+                        "\", \n\t\t\t IP_481.time - \"" + QString::number(ui->wMethodSetup->stdIP_481.time) + \
+                        "\", IP_481.to - \"" + QString::number(ui->wMethodSetup->stdIP_481.to) + \
+                        "\", IP_481.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdIP_481.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " JIS_K2258_2.aconstant - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.aconstant) + \
+                        "\", JIS_K2258_2.bconstant - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.bconstant) + \
+                        "\", JIS_K2258_2.cconstant - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.cconstant) + \
+                        "\", JIS_K2258_2.formula - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.formula) + \
+                        "\", JIS_K2258_2.from - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.from) + \
+                        "\", JIS_K2258_2.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.passfail_enabled) + \
+                        "\", \n\t\t\t JIS_K2258_2.temperature - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.temperature) + \
+                        "\", JIS_K2258_2.time - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.time) + \
+                        "\", JIS_K2258_2.to - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.to) + \
+                        "\", JIS_K2258_2.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " SH_T_0769.aconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.aconstant) + \
+                        "\", SH_T_0769.bconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.bconstant) + \
+                        "\", SH_T_0769.cconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.cconstant) + \
+                        "\", SH_T_0769.formula - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.formula) + \
+                        "\", SH_T_0769.from - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.from) + \
+                        "\", SH_T_0769.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.passfail_enabled) + \
+                        "\", \n\t\t\t SH_T_0769.temperature - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.temperature) + \
+                        "\", SH_T_0769.time - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.time) + \
+                        "\", SH_T_0769.to - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.to) + \
+                        "\", SH_T_0769.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " SH_T_0794.aconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.aconstant) + \
+                        "\", SH_T_0794.bconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.bconstant) + \
+                        "\", SH_T_0794.cconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.cconstant) + \
+                        "\", SH_T_0794.formula - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.formula) + \
+                        "\", SH_T_0794.from - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.from) + \
+                        "\", SH_T_0794.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.passfail_enabled) + \
+                        "\", \n\t\t\t SH_T_0794.single_expansion - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.single_expansion) + \
+                        "\", SH_T_0794.temperature - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.temperature) + \
+                        "\", SH_T_0794.time - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.time) + \
+                        "\", SH_T_0794.to - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.to) + \
+                        "\", SH_T_0794.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " SN_T_2932.aconstant - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.aconstant) + \
+                        "\", SN_T_2932.bconstant - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.bconstant) + \
+                        "\", SN_T_2932.cconstant - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.cconstant) + \
+                        "\", SN_T_2932.formula - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.formula) + \
+                        "\", SN_T_2932.from - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.from) + \
+                        "\", SN_T_2932.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.passfail_enabled) + \
+                        "\", \n\t\t\t SN_T_2932.temperature - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.temperature) + \
+                        "\", SN_T_2932.time - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.time) + \
+                        "\", SN_T_2932.to - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.to) + \
+                        "\", SN_T_2932.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.vl_ratio) + \
                         "\"\n";
 
                 if(ui->wServiceSetup->logPathEnabled())
@@ -8803,7 +9005,21 @@ void MainWindow::handleD6377Related(void)
 
                         if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
                         {
-                            sendPara(cProtocol.sendShakerSpeed(1, ui->wMethodSetup->stdD6377.shaker_speed), 13, 60);
+                            int shaker;
+
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6377: shaker = (ui->wMethodSetup->stdD6377.shaker_speed);
+                                break;
+
+                                case M_METHOD_IP_481: shaker = (ui->wMethodSetup->stdIP_481.shaker_speed);
+                                break;
+
+                                default : shaker = 90;
+                                break;
+                            }
+
+                            sendPara(cProtocol.sendShakerSpeed(1, shaker), 13, 60);
                             cStrringErrorCount = 0;
                         }
                         else
@@ -8822,13 +9038,37 @@ void MainWindow::handleD6377Related(void)
                     {
                         cParasUpdated = false;
 
-                        int D6377_Shaker_Speed = ui->wMethodSetup->stdD6377.shaker_speed;
+                        int shaker;
 
-                        if((cStepperSpeed <= D6377_Shaker_Speed+5) && (cStepperSpeed >= D6377_Shaker_Speed-5))
+                        switch(ui->wMeasuring1->getMethod())
                         {
-                            cREqTime = ui->wMethodSetup->stdD6377.time;
+                            case M_METHOD_NEW_D6377: shaker = (ui->wMethodSetup->stdD6377.shaker_speed);
+                            break;
 
-                            cTmTest = ui->wMethodSetup->stdD6377.temperature + 2;
+                            case M_METHOD_IP_481: shaker = (ui->wMethodSetup->stdIP_481.shaker_speed);
+                            break;
+
+                            default : shaker = 90;
+                            break;
+                        }
+
+                        if((cStepperSpeed <= shaker+5) && (cStepperSpeed >= shaker-5))
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6377: cREqTime = ui->wMethodSetup->stdD6377.time;
+                                                        cTmTest = ui->wMethodSetup->stdD6377.temperature + 2;
+                                break;
+
+                                case M_METHOD_IP_481: cREqTime = ui->wMethodSetup->stdIP_481.time;
+                                                        cTmTest = ui->wMethodSetup->stdIP_481.temperature + 2;
+                                break;
+
+                                default : cREqTime = 180;
+                                cTmTest = 37.80 + 2;
+                                break;
+                            }
+
                             int tc = cSettings.getTemperatureCount(cTmTest);
 
                             sendPara(cProtocol.sendTemperature(tc),
@@ -8863,13 +9103,36 @@ void MainWindow::handleD6377Related(void)
 
 //                        if( (ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE))
 //                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE)))
-                        int D6377_Shaker_Speed = ui->wMethodSetup->stdD6377.shaker_speed;
+                        int shaker;
 
-                        if((cStepperSpeed <= D6377_Shaker_Speed+5) && (cStepperSpeed >= D6377_Shaker_Speed-5))
+                        switch(ui->wMeasuring1->getMethod())
                         {
-                            cREqTime = ui->wMethodSetup->stdD6377.time;
+                            case M_METHOD_NEW_D6377: shaker = (ui->wMethodSetup->stdD6377.shaker_speed);
+                            break;
 
-                            cTmTest = ui->wMethodSetup->stdD6377.temperature;
+                            case M_METHOD_IP_481: shaker = (ui->wMethodSetup->stdIP_481.shaker_speed);
+                            break;
+
+                            default : shaker = 90;
+                            break;
+                        }
+
+                        if((cStepperSpeed <= shaker+5) && (cStepperSpeed >= shaker-5))
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6377: cREqTime = ui->wMethodSetup->stdD6377.time;
+                                                        cTmTest = ui->wMethodSetup->stdD6377.temperature;
+                                break;
+
+                                case M_METHOD_IP_481: cREqTime = ui->wMethodSetup->stdIP_481.time;
+                                                        cTmTest = ui->wMethodSetup->stdIP_481.temperature;
+                                break;
+
+                                default : cREqTime = 180;
+                                cTmTest = 37.80;
+                                break;
+                            }
                             int tc = cSettings.getTemperatureCount(cTmTest);
 
                             sendPara(cProtocol.sendTemperature(tc),
@@ -8985,7 +9248,20 @@ void MainWindow::handleD6377Related(void)
                         {
 
                             int tc = cSettings.getTemperatureCount(ui->wMethodSetup->stdD6377.InjectTemp);
-                           sendPara( cProtocol.sendTemperature(tc),
+
+                            double temp;
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
+                                break;
+
+                                case M_METHOD_IP_481: temp = ui->wMethodSetup->stdIP_481.InjectTemp;
+                                break;
+
+                                default : temp = 20.0;
+                                break;
+                            }
+                           sendPara( cProtocol.sendTemperature(temp),
                                      17, 60*12); //180+180);
 
                            if(ui->wServiceSetup->getDebug())

@@ -2308,13 +2308,13 @@ void sMethodSetup::updateD5191()
 //    }
 //    stdD5191.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdD5191.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdD5191.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdD5191.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdD5191.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdD5191.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2370,13 +2370,13 @@ void sMethodSetup::updateD6377()
 //    }
 //    stdD6377.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdD6377.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdD6377.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdD6377.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdD6377.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdD6377.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2429,13 +2429,13 @@ void sMethodSetup::updateD6378()
 //    }
 //    stdD6378.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdD6378.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdD6378.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdD6378.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdD6378.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdD6378.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2491,13 +2491,13 @@ void sMethodSetup::updateEN_13016_1(){
 //    }
 //    stdEN_13016_1.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdEN_13016_1.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdEN_13016_1.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdEN_13016_1.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdEN_13016_1.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdEN_13016_1.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2548,13 +2548,13 @@ void sMethodSetup::updateEN_13016_2(){
 //    }
 //    stdEN_13016_2.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdEN_13016_2.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdEN_13016_2.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdEN_13016_2.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdEN_13016_2.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdEN_13016_2.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2610,13 +2610,13 @@ void sMethodSetup::updateGB_T_8017(){
 //    }
 //    stdGB_T_8017.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdGB_T_8017.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdGB_T_8017.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdGB_T_8017.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdGB_T_8017.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdGB_T_8017.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2672,13 +2672,13 @@ void sMethodSetup::updateIP_394(){
 //    }
 //    stdIP_394.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdIP_394.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdIP_394.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdIP_394.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdIP_394.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdIP_394.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2729,13 +2729,13 @@ void sMethodSetup::updateIP_409(){
 //    }
 //    stdIP409.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdIP409.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdIP409.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdIP409.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdIP409.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdIP409.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2789,13 +2789,13 @@ void sMethodSetup::updateIP_481(){
 //    }
 //    stdIP_481.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdIP_481.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdIP_481.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdIP_481.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdIP_481.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdIP_481.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2846,13 +2846,13 @@ void sMethodSetup::updateJIS_K2258_2(){
 //    }
 //    stdJIS_K2258_2.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdJIS_K2258_2.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdJIS_K2258_2.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdJIS_K2258_2.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdJIS_K2258_2.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdJIS_K2258_2.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2903,13 +2903,13 @@ void sMethodSetup::updateSH_T_0769(){
 //    }
 //    stdSH_T_0769.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdSH_T_0769.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdSH_T_0769.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdSH_T_0769.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdSH_T_0769.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdSH_T_0769.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -2965,13 +2965,13 @@ void sMethodSetup::updateSH_T_0794(){
 //    }
 //    stdSH_T_0794.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdSH_T_0794.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdSH_T_0794.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdSH_T_0794.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdSH_T_0794.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdSH_T_0794.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -3022,13 +3022,13 @@ void sMethodSetup::updateSN_T_2932(){
 //    }
 //    stdSN_T_2932.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdSN_T_2932.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdSN_T_2932.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdSN_T_2932.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdSN_T_2932.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdSN_T_2932.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -3068,13 +3068,13 @@ void sMethodSetup::updateD5188()
 //    }
 //    stdD5188.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getTemperatureMS(stdD5188.from) != ui->lePRPFrom->text())
+    if(cSettings.getTemperatureMS(stdD5188.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdD5188.from = cSettings.getTemperatureCelsiusMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getTemperatureMS(stdD5188.to) != ui->lePRPTo->text())
+    if(cSettings.getTemperatureMS(stdD5188.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -3163,13 +3163,13 @@ void sMethodSetup::updateFree1()
 //    }
 //    stdFree1.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdFree1.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdFree1.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdFree1.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdFree1.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdFree1.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -3256,13 +3256,13 @@ void sMethodSetup::updateFree2()
 //    }
 //    stdFree2.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdFree2.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdFree2.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdFree2.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdFree2.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdFree2.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -3350,13 +3350,13 @@ void sMethodSetup::updateFree3()
 //    }
 //    stdFree3.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdFree3.from) != ui->lePRPFrom->text())
+    if(cSettings.getPressureMS(stdFree3.from).toDouble() != ui->lePRPFrom->text().toDouble())
     {
         cParasChanged = true;
     }
     stdFree3.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdFree3.to) != ui->lePRPTo->text())
+    if(cSettings.getPressureMS(stdFree3.to).toDouble() != ui->lePRPTo->text().toDouble())
     {
         cParasChanged = true;
     }
@@ -3404,10 +3404,10 @@ void sMethodSetup::updateFree4()
 //    if(stdFree4.alarm_enabled != ui->cbAlarmEnable->checkState()) cParasChanged = true;
 //    stdFree4.alarm_enabled = ui->cbAlarmEnable->checkState();
 
-    if(cSettings.getPressureMS(stdFree4.from) != ui->lePRPFrom->text()) cParasChanged = true;
+    if(cSettings.getPressureMS(stdFree4.from).toDouble() != ui->lePRPFrom->text().toDouble()) cParasChanged = true;
     stdFree4.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
 
-    if(cSettings.getPressureMS(stdFree4.to) != ui->lePRPTo->text()) cParasChanged = true;
+    if(cSettings.getPressureMS(stdFree4.to).toDouble() != ui->lePRPTo->text().toDouble()) cParasChanged = true;
     stdFree4.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
 }
 
@@ -3654,6 +3654,7 @@ void sMethodSetup::on_pbSave_clicked()
 
 void sMethodSetup::on_pbExit_clicked()
 {
+    qDebug()<< __FILE__ << __LINE__ <<"cParasChanged: "<<cParasChanged;
     exitClicked = true;
     checkExit(M_MEASURING);
 }
