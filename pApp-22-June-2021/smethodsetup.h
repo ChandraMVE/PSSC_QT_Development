@@ -122,6 +122,16 @@ public:
     void setMethods(const QStringList tmp);
     void setD5191(const QStringList tmp);
     void setD6378(const QStringList tmp);
+    void setEN_13016_1(const QStringList tmp);
+    void setEN_13016_2(const QStringList tmp);
+    void setGB_T_8017(const QStringList tmp);
+    void setIP_394(const QStringList tmp);
+    void setIP_409(const QStringList tmp);
+    void setJIS_K2258_2(const QStringList tmp);
+    void setSH_T_0769(const QStringList tmp);
+    void setSH_T_0794(const QStringList tmp);
+    void setSN_T_2932(const QStringList tmp);
+
     void setFree1(const QStringList tmp);
     void setFree2(const QStringList tmp);
     void setFree3(const QStringList tmp);
@@ -137,6 +147,17 @@ public:
     void showD6378(void);
     void showD5188(void);
 
+    void showEN_13016_1(void);
+    void showEN_13016_2(void);
+    void showGB_T_8017(void);
+    void showIP_394(void);
+    void showIP_409(void);
+    void showIP_481(void);
+    void showJIS_K2258_2(void);
+    void showSH_T_0769(void);
+    void showSH_T_0794(void);
+    void showSN_T_2932(void);
+
     void showFree1(void);
     void showFree2(void);
     void showFree3(void);
@@ -146,6 +167,17 @@ public:
     void updateD6377(void);
     void updateD6378(void);
     void updateD5188(void);
+
+    void updateEN_13016_1(void);
+    void updateEN_13016_2(void);
+    void updateGB_T_8017(void);
+    void updateIP_394(void);
+    void updateIP_409(void);
+    void updateIP_481(void);
+    void updateJIS_K2258_2(void);
+    void updateSH_T_0769(void);
+    void updateSH_T_0794(void);
+    void updateSN_T_2932(void);
 
     void updateFree1(void);
     void updateFree2(void);
@@ -162,6 +194,7 @@ signals:
     void getConfirmation(int, int);
     void showMsgBox(QString title, QString msg);
     void D6377_VlRatio(double);
+    void IP_481_VlRatio(double);
 //    void methodVolumesDefault(struct METHOD_VOLUMES methodVol);
 
 private slots:
@@ -218,25 +251,61 @@ private:
 
 
 public:
-    struct STD_D5191 stdD5191;
-    struct STD_D6377 stdD6377;
-    struct STD_D6378 stdD6378;
+    struct STD_D5191 stdD5191,stdEN_13016_1,stdGB_T_8017,stdIP_394,stdSH_T_0794;
+    struct STD_D6377 stdD6377,stdIP_481;
+    struct STD_D6378 stdD6378,stdEN_13016_2,stdIP409,stdJIS_K2258_2,stdSH_T_0769, stdSN_T_2932;
     struct STD_D5188 stdD5188;
     struct STD_Free stdFree1, stdFree2, stdFree3, stdFree4;
 //    struct METHOD_VOLUMES methodVolumes;
 //    struct METHOD_VOLUMES_Main methodVolumes;
 
-    QStringList qslD5191;
-    QStringList qslD6378;
+    QStringList qslD5191, qslEN_13016_1, qslGB_T_8017, qslIP_394, qslSH_T_0794;
+    QStringList qslD6378, qslEN_13016_2, qslIP_409, qslJIS_K2258_2, qslSH_T_0769, qslSN_T_2932;
     QStringList qslFree1, qslFree2, qslFree3, qslFree4;
 
     QStringList *qslFormulaD5191aConstant;
     QStringList *qslFormulaD5191bConstant;
     QStringList *qslFormulaD5191cConstant;
 
+    QStringList *qslFormulaEN_13016_1aConstant;
+    QStringList *qslFormulaEN_13016_1bConstant;
+    QStringList *qslFormulaEN_13016_1cConstant;
+
+    QStringList *qslFormulaGB_T_8017aConstant;
+    QStringList *qslFormulaGB_T_8017bConstant;
+    QStringList *qslFormulaGB_T_8017cConstant;
+
+    QStringList *qslFormulaIP_394aConstant;
+    QStringList *qslFormulaIP_394bConstant;
+    QStringList *qslFormulaIP_394cConstant;
+
+    QStringList *qslFormulaSH_T_0794aConstant;
+    QStringList *qslFormulaSH_T_0794bConstant;
+    QStringList *qslFormulaSH_T_0794cConstant;
+
     QStringList *qslFormulaD6378aConstant;
     QStringList *qslFormulaD6378bConstant;
     QStringList *qslFormulaD6378cConstant;
+
+    QStringList *qslFormulaEN_13016_2aConstant;
+    QStringList *qslFormulaEN_13016_2bConstant;
+    QStringList *qslFormulaEN_13016_2cConstant;
+
+    QStringList *qslFormulaIP_409aConstant;
+    QStringList *qslFormulaIP_409bConstant;
+    QStringList *qslFormulaIP_409cConstant;
+
+    QStringList *qslFormulaJIS_K2258_2aConstant;
+    QStringList *qslFormulaJIS_K2258_2bConstant;
+    QStringList *qslFormulaJIS_K2258_2cConstant;
+
+    QStringList *qslFormulaSH_T_0769aConstant;
+    QStringList *qslFormulaSH_T_0769bConstant;
+    QStringList *qslFormulaSH_T_0769cConstant;
+
+    QStringList *qslFormulaSN_T_2932aConstant;
+    QStringList *qslFormulaSN_T_2932bConstant;
+    QStringList *qslFormulaSN_T_2932cConstant;
 
     sSettings cSettings;
 

@@ -220,8 +220,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->wMethodSetup->resize(768, 876+92-10);
     ui->wMethodSetup->move(0, 180-92+10);
     ui->wMethodSetup->setMethods(qslMethods);
-    ui->wMethodSetup->setD5191(qslFormulaD5191);
+    ui->wMethodSetup->setD5191(qslFormulaD5191);    
     ui->wMethodSetup->setD6378(qslFormulaD6378);
+
+    ui->wMethodSetup->setEN_13016_1(qslFormulaEN_13016_1);
+    ui->wMethodSetup->setEN_13016_2(qslFormulaEN_13016_2);
+    ui->wMethodSetup->setGB_T_8017(qslFormulaGB_T_8017);
+    ui->wMethodSetup->setIP_394(qslFormulaIP_394);
+    ui->wMethodSetup->setIP_409(qslFormulaIP_409);
+    ui->wMethodSetup->setJIS_K2258_2(qslFormulaJIS_K2258_2);
+    ui->wMethodSetup->setSH_T_0769(qslFormulaDSH_T_0769);
+    ui->wMethodSetup->setSH_T_0794(qslFormulaSH_T_0794);
+    ui->wMethodSetup->setSN_T_2932(qslFormulaSN_T_2932);
+
     ui->wMethodSetup->setFree1(qslFormulaFree1);
     ui->wMethodSetup->setFree2(qslFormulaFree2);
     ui->wMethodSetup->setFree3(qslFormulaFree3);
@@ -306,6 +317,10 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wCalibrationSetup->saveMethodVolumeFile();
         ui->wCalibrationSetup->on_D6377_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
         ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+
+        ui->wCalibrationSetup->on_IP_481_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
+        ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+
         QString str = " Method Calibration Setup is not present and values setted to default ";
         if(ui->wServiceSetup->logPathEnabled())
             ui->wServiceSetup->commandLog(str);
@@ -374,6 +389,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->wGeneralSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wMethodSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
     connect(ui->wMethodSetup, SIGNAL(D6377_VlRatio(double)), this, SLOT(onD6377VlRatio(double)));
+    connect(ui->wMethodSetup, SIGNAL(IP_481_VlRatio(double)), this, SLOT(onIP_481VlRatio(double)));
 //    connect(ui->wMethodSetup, SIGNAL(methodVolumesDefault(METHOD_VOLUMES)), this, SLOT(onMethodVolumesDefault(METHOD_VOLUMES_Main)));
     connect(ui->wCalibrationSetup, SIGNAL(showHome(bool)), this, SLOT(onShowHome(bool)));
 
@@ -782,11 +798,21 @@ void MainWindow::setLists()
     qslMethods.insert(0, "D5191");
     qslMethods.insert(1, "D6377");
     qslMethods.insert(2, "D6378");
-    qslMethods.insert(3, "D5188");
-    qslMethods.insert(4, "Free 1");
-    qslMethods.insert(5, "Free 2");
-    qslMethods.insert(6, "Free 3");
-    qslMethods.insert(7, "Free 4");
+    qslMethods.insert(3, "D1588");
+    qslMethods.insert(4, "EN 13016-1");
+    qslMethods.insert(5, "EN 13016-2");
+    qslMethods.insert(6, "GB/T 8017");
+    qslMethods.insert(7, "IP 394");
+    qslMethods.insert(8, "IP 409");
+    qslMethods.insert(9, "IP 481");
+    qslMethods.insert(10, "JIS K2258-2");
+    qslMethods.insert(11, "SH/T 0769");
+    qslMethods.insert(12, "SH/T 0794");
+    qslMethods.insert(13, "SN/T 2932");
+    qslMethods.insert(14, "Free 1");
+    qslMethods.insert(15, "Free 2");
+    qslMethods.insert(16, "Free 3");
+    qslMethods.insert(17, "Free 4");
 
     qslFormulaD5191aConstant.insert(0, "0.965");
     qslFormulaD5191bConstant.insert(0, "0");
@@ -804,6 +830,70 @@ void MainWindow::setLists()
     qslFormulaD5191.insert(1, "EPA = 0.956 x Ptot - 0.000 x Pgas – 2.39");
     qslFormulaD5191.insert(2, "CARB = 0.972 x Ptot - 0.000 x Pgas – 4.93");
 
+    qslFormulaEN_13016_1aConstant.insert(0, "0.965");
+    qslFormulaEN_13016_1bConstant.insert(0, "0");
+    qslFormulaEN_13016_1cConstant.insert(0, "3.78");
+
+    qslFormulaEN_13016_1aConstant.insert(1, "0.956");
+    qslFormulaEN_13016_1bConstant.insert(1, "0");
+    qslFormulaEN_13016_1cConstant.insert(1, "2.39");
+
+    qslFormulaEN_13016_1aConstant.insert(2, "0.972");
+    qslFormulaEN_13016_1bConstant.insert(2, "0");
+    qslFormulaEN_13016_1cConstant.insert(2, "4.93");
+
+    qslFormulaEN_13016_1.insert(0, "ASTM =  0.965 x Ptot - 0.000 x Pgas – 3.78");
+    qslFormulaEN_13016_1.insert(1, "EPA = 0.956 x Ptot - 0.000 x Pgas – 2.39");
+    qslFormulaEN_13016_1.insert(2, "CARB = 0.972 x Ptot - 0.000 x Pgas – 4.93");
+
+    qslFormulaGB_T_8017aConstant.insert(0, "0.965");
+    qslFormulaGB_T_8017bConstant.insert(0, "0");
+    qslFormulaGB_T_8017cConstant.insert(0, "3.78");
+
+    qslFormulaGB_T_8017aConstant.insert(1, "0.956");
+    qslFormulaGB_T_8017bConstant.insert(1, "0");
+    qslFormulaGB_T_8017cConstant.insert(1, "2.39");
+
+    qslFormulaGB_T_8017aConstant.insert(2, "0.972");
+    qslFormulaGB_T_8017bConstant.insert(2, "0");
+    qslFormulaGB_T_8017cConstant.insert(2, "4.93");
+
+    qslFormulaGB_T_8017.insert(0, "ASTM =  0.965 x Ptot - 0.000 x Pgas – 3.78");
+    qslFormulaGB_T_8017.insert(1, "EPA = 0.956 x Ptot - 0.000 x Pgas – 2.39");
+    qslFormulaGB_T_8017.insert(2, "CARB = 0.972 x Ptot - 0.000 x Pgas – 4.93");
+
+    qslFormulaIP_394aConstant.insert(0, "0.965");
+    qslFormulaIP_394bConstant.insert(0, "0");
+    qslFormulaIP_394cConstant.insert(0, "3.78");
+
+    qslFormulaIP_394aConstant.insert(1, "0.956");
+    qslFormulaIP_394bConstant.insert(1, "0");
+    qslFormulaIP_394cConstant.insert(1, "2.39");
+
+    qslFormulaIP_394aConstant.insert(2, "0.972");
+    qslFormulaIP_394bConstant.insert(2, "0");
+    qslFormulaIP_394cConstant.insert(2, "4.93");
+
+    qslFormulaIP_394.insert(0, "ASTM =  0.965 x Ptot - 0.000 x Pgas – 3.78");
+    qslFormulaIP_394.insert(1, "EPA = 0.956 x Ptot - 0.000 x Pgas – 2.39");
+    qslFormulaIP_394.insert(2, "CARB = 0.972 x Ptot - 0.000 x Pgas – 4.93");
+
+    qslFormulaSH_T_0794aConstant.insert(0, "0.965");
+    qslFormulaSH_T_0794bConstant.insert(0, "0");
+    qslFormulaSH_T_0794cConstant.insert(0, "3.78");
+
+    qslFormulaSH_T_0794aConstant.insert(1, "0.956");
+    qslFormulaSH_T_0794bConstant.insert(1, "0");
+    qslFormulaSH_T_0794cConstant.insert(1, "2.39");
+
+    qslFormulaSH_T_0794aConstant.insert(2, "0.972");
+    qslFormulaSH_T_0794bConstant.insert(2, "0");
+    qslFormulaSH_T_0794cConstant.insert(2, "4.93");
+
+    qslFormulaSH_T_0794.insert(0, "ASTM =  0.965 x Ptot - 0.000 x Pgas – 3.78");
+    qslFormulaSH_T_0794.insert(1, "EPA = 0.956 x Ptot - 0.000 x Pgas – 2.39");
+    qslFormulaSH_T_0794.insert(2, "CARB = 0.972 x Ptot - 0.000 x Pgas – 4.93");
+
     qslFormulaD6378aConstant.insert(0, "1.0");
     qslFormulaD6378bConstant.insert(0, "1.0");
     qslFormulaD6378cConstant.insert(0, "1.005");
@@ -819,6 +909,86 @@ void MainWindow::setLists()
     qslFormulaD6378.insert(0, "ASTM =  1.000 x Ptot - 1.000 x Pgas – 1.005");
     qslFormulaD6378.insert(1, "EPA = 1.000 x Ptot - 1.000 x Pgas – 0.137");
     qslFormulaD6378.insert(2, "CARB = 1.000 x Ptot - 1.000 x Pgas – 1.575");
+
+    qslFormulaEN_13016_2aConstant.insert(0, "1.0");
+    qslFormulaEN_13016_2bConstant.insert(0, "1.0");
+    qslFormulaEN_13016_2cConstant.insert(0, "1.005");
+
+    qslFormulaEN_13016_2aConstant.insert(1, "1.0");
+    qslFormulaEN_13016_2bConstant.insert(1, "1.0");
+    qslFormulaEN_13016_2cConstant.insert(1, "0.137");
+
+    qslFormulaEN_13016_2aConstant.insert(2, "1.0");
+    qslFormulaEN_13016_2bConstant.insert(2, "1.0");
+    qslFormulaEN_13016_2cConstant.insert(2, "1.575");
+
+    qslFormulaEN_13016_2.insert(0, "ASTM =  1.000 x Ptot - 1.000 x Pgas – 1.005");
+    qslFormulaEN_13016_2.insert(1, "EPA = 1.000 x Ptot - 1.000 x Pgas – 0.137");
+    qslFormulaEN_13016_2.insert(2, "CARB = 1.000 x Ptot - 1.000 x Pgas – 1.575");
+
+    qslFormulaIP_409aConstant.insert(0, "1.0");
+    qslFormulaIP_409bConstant.insert(0, "1.0");
+    qslFormulaIP_409cConstant.insert(0, "1.005");
+
+    qslFormulaIP_409aConstant.insert(1, "1.0");
+    qslFormulaIP_409bConstant.insert(1, "1.0");
+    qslFormulaIP_409cConstant.insert(1, "0.137");
+
+    qslFormulaIP_409aConstant.insert(2, "1.0");
+    qslFormulaIP_409bConstant.insert(2, "1.0");
+    qslFormulaIP_409cConstant.insert(2, "1.575");
+
+    qslFormulaIP_409.insert(0, "ASTM =  1.000 x Ptot - 1.000 x Pgas – 1.005");
+    qslFormulaIP_409.insert(1, "EPA = 1.000 x Ptot - 1.000 x Pgas – 0.137");
+    qslFormulaIP_409.insert(2, "CARB = 1.000 x Ptot - 1.000 x Pgas – 1.575");
+
+    qslFormulaJIS_K2258_2aConstant.insert(0, "1.0");
+    qslFormulaJIS_K2258_2bConstant.insert(0, "1.0");
+    qslFormulaJIS_K2258_2cConstant.insert(0, "1.005");
+
+    qslFormulaJIS_K2258_2aConstant.insert(1, "1.0");
+    qslFormulaJIS_K2258_2bConstant.insert(1, "1.0");
+    qslFormulaJIS_K2258_2cConstant.insert(1, "0.137");
+
+    qslFormulaJIS_K2258_2aConstant.insert(2, "1.0");
+    qslFormulaJIS_K2258_2bConstant.insert(2, "1.0");
+    qslFormulaJIS_K2258_2cConstant.insert(2, "1.575");
+
+    qslFormulaJIS_K2258_2.insert(0, "ASTM =  1.000 x Ptot - 1.000 x Pgas – 1.005");
+    qslFormulaJIS_K2258_2.insert(1, "EPA = 1.000 x Ptot - 1.000 x Pgas – 0.137");
+    qslFormulaJIS_K2258_2.insert(2, "CARB = 1.000 x Ptot - 1.000 x Pgas – 1.575");
+
+    qslFormulaSH_T_0769aConstant.insert(0, "1.0");
+    qslFormulaSH_T_0769bConstant.insert(0, "1.0");
+    qslFormulaSH_T_0769cConstant.insert(0, "1.005");
+
+    qslFormulaSH_T_0769aConstant.insert(1, "1.0");
+    qslFormulaSH_T_0769bConstant.insert(1, "1.0");
+    qslFormulaSH_T_0769cConstant.insert(1, "0.137");
+
+    qslFormulaSH_T_0769aConstant.insert(2, "1.0");
+    qslFormulaSH_T_0769bConstant.insert(2, "1.0");
+    qslFormulaSH_T_0769cConstant.insert(2, "1.575");
+
+    qslFormulaDSH_T_0769.insert(0, "ASTM =  1.000 x Ptot - 1.000 x Pgas – 1.005");
+    qslFormulaDSH_T_0769.insert(1, "EPA = 1.000 x Ptot - 1.000 x Pgas – 0.137");
+    qslFormulaDSH_T_0769.insert(2, "CARB = 1.000 x Ptot - 1.000 x Pgas – 1.575");
+
+    qslFormulaSN_T_2932aConstant.insert(0, "1.0");
+    qslFormulaSN_T_2932bConstant.insert(0, "1.0");
+    qslFormulaSN_T_2932cConstant.insert(0, "1.005");
+
+    qslFormulaSN_T_2932aConstant.insert(1, "1.0");
+    qslFormulaSN_T_2932bConstant.insert(1, "1.0");
+    qslFormulaSN_T_2932cConstant.insert(1, "0.137");
+
+    qslFormulaSN_T_2932aConstant.insert(2, "1.0");
+    qslFormulaSN_T_2932bConstant.insert(2, "1.0");
+    qslFormulaSN_T_2932cConstant.insert(2, "1.575");
+
+    qslFormulaSN_T_2932.insert(0, "ASTM =  1.000 x Ptot - 1.000 x Pgas – 1.005");
+    qslFormulaSN_T_2932.insert(1, "EPA = 1.000 x Ptot - 1.000 x Pgas – 0.137");
+    qslFormulaSN_T_2932.insert(2, "CARB = 1.000 x Ptot - 1.000 x Pgas – 1.575");
 
     qslFormulaFree1.insert(0, "Free 1 = a x Ptot – b x Pgas – c");
     qslFormulaFree2.insert(0, "Free 2 = a x Ptot – b x Pgas – c");
@@ -1016,22 +1186,6 @@ void MainWindow::readSaveLogFile(int tmp, bool readSuccessfully){
 
     case METHOD_SETUP_FILES:{
             if(readSuccessfully){
-                str = " D5188.from - \"" + QString::number(ui->wMethodSetup->stdD5188.from) + \
-                        "\", D5188.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5188.passfail_enabled) + \
-                        "\", D5188.pressure - \"" + QString::number(ui->wMethodSetup->stdD5188.pressure) + \
-                        "\", D5188.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD5188.shaker_speed) + \
-                        "\", D5188.to - \"" + QString::number(ui->wMethodSetup->stdD5188.to) + \
-                        "\", D5188.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD5188.vl_ratio) + \
-                        "\"\n";
-
-                if(ui->wServiceSetup->logPathEnabled())
-                    ui->wServiceSetup->commandLog(str);
-                else if(ui->wServiceSetup->internalLogData())
-                {
-                    qDebug()<<"First Time";
-                    ui->wServiceSetup->commandLog(str);
-                }
-
                 str = " D5191.aconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.aconstant) + \
                         "\", D5191.bconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.bconstant) + \
                         "\", D5191.cconstant - \"" + QString::number(ui->wMethodSetup->stdD5191.cconstant) + \
@@ -1081,6 +1235,224 @@ void MainWindow::readSaveLogFile(int tmp, bool readSuccessfully){
                         "\", D6378.time - \"" + QString::number(ui->wMethodSetup->stdD6378.time) + \
                         "\", D6378.to - \"" + QString::number(ui->wMethodSetup->stdD6378.to) + \
                         "\", D6378.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD6378.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " D5188.from - \"" + QString::number(ui->wMethodSetup->stdD5188.from) + \
+                        "\", D5188.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdD5188.passfail_enabled) + \
+                        "\", D5188.pressure - \"" + QString::number(ui->wMethodSetup->stdD5188.pressure) + \
+                        "\", D5188.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdD5188.shaker_speed) + \
+                        "\", D5188.to - \"" + QString::number(ui->wMethodSetup->stdD5188.to) + \
+                        "\", D5188.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdD5188.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " EN_13016_1.aconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.aconstant) + \
+                        "\", EN_13016_1.bconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.bconstant) + \
+                        "\", EN_13016_1.cconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.cconstant) + \
+                        "\", EN_13016_1.formula - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.formula) + \
+                        "\", EN_13016_1.from - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.from) + \
+                        "\", EN_13016_1.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.passfail_enabled) + \
+                        "\", \n\t\t\t EN_13016_1.single_expansion - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.single_expansion) + \
+                        "\", EN_13016_1.temperature - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.temperature) + \
+                        "\", EN_13016_1.time - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.time) + \
+                        "\", EN_13016_1.to - \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.to) + \
+                        "\", EN_13016_1.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdEN_13016_1.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " EN_13016_2.aconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.aconstant) + \
+                        "\", EN_13016_2.bconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.bconstant) + \
+                        "\", EN_13016_2.cconstant - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.cconstant) + \
+                        "\", EN_13016_2.formula - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.formula) + \
+                        "\", EN_13016_2.from - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.from) + \
+                        "\", EN_13016_2.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.passfail_enabled) + \
+                        "\", \n\t\t\t EN_13016_2.temperature - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.temperature) + \
+                        "\", EN_13016_2.time - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.time) + \
+                        "\", EN_13016_2.to - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.to) + \
+                        "\", EN_13016_2.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdEN_13016_2.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " GB_T_8017.aconstant - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.aconstant) + \
+                        "\", GB_T_8017.bconstant - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.bconstant) + \
+                        "\", GB_T_8017.cconstant - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.cconstant) + \
+                        "\", GB_T_8017.formula - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.formula) + \
+                        "\", GB_T_8017.from - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.from) + \
+                        "\", GB_T_8017.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.passfail_enabled) + \
+                        "\", \n\t\t\t GB_T_8017.single_expansion - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.single_expansion) + \
+                        "\", GB_T_8017.temperature - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.temperature) + \
+                        "\", GB_T_8017.time - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.time) + \
+                        "\", GB_T_8017.to - \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.to) + \
+                        "\", GB_T_8017.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdGB_T_8017.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " IP_394.aconstant - \"" + QString::number(ui->wMethodSetup->stdIP_394.aconstant) + \
+                        "\", IP_394.bconstant - \"" + QString::number(ui->wMethodSetup->stdIP_394.bconstant) + \
+                        "\", IP_394.cconstant - \"" + QString::number(ui->wMethodSetup->stdIP_394.cconstant) + \
+                        "\", IP_394.formula - \"" + QString::number(ui->wMethodSetup->stdIP_394.formula) + \
+                        "\", IP_394.from - \"" + QString::number(ui->wMethodSetup->stdIP_394.from) + \
+                        "\", IP_394.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdIP_394.passfail_enabled) + \
+                        "\", \n\t\t\t IP_394.single_expansion - \"" + QString::number(ui->wMethodSetup->stdIP_394.single_expansion) + \
+                        "\", IP_394.temperature - \"" + QString::number(ui->wMethodSetup->stdIP_394.temperature) + \
+                        "\", IP_394.time - \"" + QString::number(ui->wMethodSetup->stdIP_394.time) + \
+                        "\", IP_394.to - \"" + QString::number(ui->wMethodSetup->stdIP_394.to) + \
+                        "\", IP_394.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdIP_394.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " IP409.aconstant - \"" + QString::number(ui->wMethodSetup->stdIP409.aconstant) + \
+                        "\", IP409.bconstant - \"" + QString::number(ui->wMethodSetup->stdIP409.bconstant) + \
+                        "\", IP409.cconstant - \"" + QString::number(ui->wMethodSetup->stdIP409.cconstant) + \
+                        "\", IP409.formula - \"" + QString::number(ui->wMethodSetup->stdIP409.formula) + \
+                        "\", IP409.from - \"" + QString::number(ui->wMethodSetup->stdIP409.from) + \
+                        "\", IP409.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdIP409.passfail_enabled) + \
+                        "\", \n\t\t\t IP409.temperature - \"" + QString::number(ui->wMethodSetup->stdIP409.temperature) + \
+                        "\", IP409.time - \"" + QString::number(ui->wMethodSetup->stdIP409.time) + \
+                        "\", IP409.to - \"" + QString::number(ui->wMethodSetup->stdIP409.to) + \
+                        "\", IP409.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdIP409.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " IP_481.from - \"" + QString::number(ui->wMethodSetup->stdIP_481.from) + \
+                        "\", IP_481.InjectTemp - \"" + QString::number(ui->wMethodSetup->stdIP_481.InjectTemp) + \
+                        "\", IP_481.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdIP_481.passfail_enabled) + \
+                        "\", IP_481.shaker_speed - \"" + QString::number(ui->wMethodSetup->stdIP_481.shaker_speed) + \
+                        "\", IP_481.temperature - \"" + QString::number(ui->wMethodSetup->stdIP_481.temperature) + \
+                        "\", \n\t\t\t IP_481.time - \"" + QString::number(ui->wMethodSetup->stdIP_481.time) + \
+                        "\", IP_481.to - \"" + QString::number(ui->wMethodSetup->stdIP_481.to) + \
+                        "\", IP_481.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdIP_481.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " JIS_K2258_2.aconstant - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.aconstant) + \
+                        "\", JIS_K2258_2.bconstant - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.bconstant) + \
+                        "\", JIS_K2258_2.cconstant - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.cconstant) + \
+                        "\", JIS_K2258_2.formula - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.formula) + \
+                        "\", JIS_K2258_2.from - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.from) + \
+                        "\", JIS_K2258_2.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.passfail_enabled) + \
+                        "\", \n\t\t\t JIS_K2258_2.temperature - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.temperature) + \
+                        "\", JIS_K2258_2.time - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.time) + \
+                        "\", JIS_K2258_2.to - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.to) + \
+                        "\", JIS_K2258_2.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdJIS_K2258_2.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " SH_T_0769.aconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.aconstant) + \
+                        "\", SH_T_0769.bconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.bconstant) + \
+                        "\", SH_T_0769.cconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.cconstant) + \
+                        "\", SH_T_0769.formula - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.formula) + \
+                        "\", SH_T_0769.from - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.from) + \
+                        "\", SH_T_0769.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.passfail_enabled) + \
+                        "\", \n\t\t\t SH_T_0769.temperature - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.temperature) + \
+                        "\", SH_T_0769.time - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.time) + \
+                        "\", SH_T_0769.to - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.to) + \
+                        "\", SH_T_0769.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdSH_T_0769.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " SH_T_0794.aconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.aconstant) + \
+                        "\", SH_T_0794.bconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.bconstant) + \
+                        "\", SH_T_0794.cconstant - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.cconstant) + \
+                        "\", SH_T_0794.formula - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.formula) + \
+                        "\", SH_T_0794.from - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.from) + \
+                        "\", SH_T_0794.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.passfail_enabled) + \
+                        "\", \n\t\t\t SH_T_0794.single_expansion - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.single_expansion) + \
+                        "\", SH_T_0794.temperature - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.temperature) + \
+                        "\", SH_T_0794.time - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.time) + \
+                        "\", SH_T_0794.to - \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.to) + \
+                        "\", SH_T_0794.vl_ratio- \"" + QString::number(ui->wMethodSetup->stdSH_T_0794.vl_ratio) + \
+                        "\"\n";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+
+                str = " SN_T_2932.aconstant - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.aconstant) + \
+                        "\", SN_T_2932.bconstant - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.bconstant) + \
+                        "\", SN_T_2932.cconstant - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.cconstant) + \
+                        "\", SN_T_2932.formula - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.formula) + \
+                        "\", SN_T_2932.from - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.from) + \
+                        "\", SN_T_2932.passfail_enabled - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.passfail_enabled) + \
+                        "\", \n\t\t\t SN_T_2932.temperature - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.temperature) + \
+                        "\", SN_T_2932.time - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.time) + \
+                        "\", SN_T_2932.to - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.to) + \
+                        "\", SN_T_2932.vl_ratio - \"" + QString::number(ui->wMethodSetup->stdSN_T_2932.vl_ratio) + \
                         "\"\n";
 
                 if(ui->wServiceSetup->logPathEnabled())
@@ -1585,6 +1957,16 @@ void MainWindow::setMeasuring()
     ui->wMeasuring1->qslFree3 = &qslFormulaFree3;
     ui->wMeasuring1->qslFree4 = &qslFormulaFree4;
 
+    ui->wMeasuring1->qslEN_13016_1 = &qslFormulaEN_13016_1;
+    ui->wMeasuring1->qslEN_13016_2 = &qslFormulaEN_13016_2;
+    ui->wMeasuring1->qslGB_T_8017 = &qslFormulaGB_T_8017;
+    ui->wMeasuring1->qslIP_394 = &qslFormulaIP_394;
+    ui->wMeasuring1->qslIP_409 = &qslFormulaIP_409;
+    ui->wMeasuring1->qslJIS_K2258_2 = &qslFormulaJIS_K2258_2;
+    ui->wMeasuring1->qslSH_T_0794 = &qslFormulaSH_T_0794;
+    ui->wMeasuring1->qslSH_T_0769 = &qslFormulaDSH_T_0769;
+    ui->wMeasuring1->qslSN_T_2932 = &qslFormulaSN_T_2932;
+
     ui->wMeasuring1->qslFormulaD5191aConstant = &qslFormulaD5191aConstant;
     ui->wMeasuring1->qslFormulaD5191bConstant = &qslFormulaD5191bConstant;
     ui->wMeasuring1->qslFormulaD5191cConstant = &qslFormulaD5191cConstant;
@@ -1592,6 +1974,42 @@ void MainWindow::setMeasuring()
     ui->wMeasuring1->qslFormulaD6378aConstant = &qslFormulaD6378aConstant;
     ui->wMeasuring1->qslFormulaD6378bConstant = &qslFormulaD6378bConstant;
     ui->wMeasuring1->qslFormulaD6378cConstant = &qslFormulaD6378cConstant;
+
+    ui->wMeasuring1->qslFormulaEN_13016_1aConstant = &qslFormulaEN_13016_1aConstant;
+    ui->wMeasuring1->qslFormulaEN_13016_1bConstant = &qslFormulaEN_13016_1bConstant;
+    ui->wMeasuring1->qslFormulaEN_13016_1cConstant = &qslFormulaEN_13016_1cConstant;
+
+    ui->wMeasuring1->qslFormulaGB_T_8017aConstant = &qslFormulaGB_T_8017aConstant;
+    ui->wMeasuring1->qslFormulaGB_T_8017bConstant = &qslFormulaGB_T_8017bConstant;
+    ui->wMeasuring1->qslFormulaGB_T_8017cConstant = &qslFormulaGB_T_8017cConstant;
+
+    ui->wMeasuring1->qslFormulaIP_394aConstant = &qslFormulaIP_394aConstant;
+    ui->wMeasuring1->qslFormulaIP_394bConstant = &qslFormulaIP_394bConstant;
+    ui->wMeasuring1->qslFormulaIP_394cConstant = &qslFormulaIP_394cConstant;
+
+    ui->wMeasuring1->qslFormulaSH_T_0794aConstant = &qslFormulaSH_T_0794aConstant;
+    ui->wMeasuring1->qslFormulaSH_T_0794bConstant = &qslFormulaSH_T_0794bConstant;
+    ui->wMeasuring1->qslFormulaSH_T_0794cConstant = &qslFormulaSH_T_0794cConstant;
+
+    ui->wMeasuring1->qslFormulaEN_13016_2aConstant = &qslFormulaEN_13016_2aConstant;
+    ui->wMeasuring1->qslFormulaEN_13016_2bConstant = &qslFormulaEN_13016_2bConstant;
+    ui->wMeasuring1->qslFormulaEN_13016_2cConstant = &qslFormulaEN_13016_2cConstant;
+
+    ui->wMeasuring1->qslFormulaIP_409aConstant = &qslFormulaIP_409aConstant;
+    ui->wMeasuring1->qslFormulaIP_409bConstant = &qslFormulaIP_409bConstant;
+    ui->wMeasuring1->qslFormulaIP_409cConstant = &qslFormulaIP_409cConstant;
+
+    ui->wMeasuring1->qslFormulaJIS_K2258_2aConstant = &qslFormulaJIS_K2258_2aConstant;
+    ui->wMeasuring1->qslFormulaJIS_K2258_2bConstant = &qslFormulaJIS_K2258_2bConstant;
+    ui->wMeasuring1->qslFormulaJIS_K2258_2cConstant = &qslFormulaJIS_K2258_2cConstant;
+
+    ui->wMeasuring1->qslFormulaSH_T_0769aConstant = &qslFormulaSH_T_0769aConstant;
+    ui->wMeasuring1->qslFormulaSH_T_0769bConstant = &qslFormulaSH_T_0769bConstant;
+    ui->wMeasuring1->qslFormulaSH_T_0769cConstant = &qslFormulaSH_T_0769cConstant;
+
+    ui->wMeasuring1->qslFormulaSN_T_2932aConstant = &qslFormulaSN_T_2932aConstant;
+    ui->wMeasuring1->qslFormulaSN_T_2932bConstant = &qslFormulaSN_T_2932bConstant;
+    ui->wMeasuring1->qslFormulaSN_T_2932cConstant = &qslFormulaSN_T_2932cConstant;
 
     ui->wMeasuring1->qslPressureScale = &qslPressureScale;
     ui->wMeasuring1->qslTemperatureScale = &qslTemperatureScale;
@@ -1604,6 +2022,42 @@ void MainWindow::setMeasuring()
     ui->wMethodSetup->qslFormulaD6378aConstant = &qslFormulaD6378aConstant;
     ui->wMethodSetup->qslFormulaD6378bConstant = &qslFormulaD6378bConstant;
     ui->wMethodSetup->qslFormulaD6378cConstant = &qslFormulaD6378cConstant;
+
+    ui->wMethodSetup->qslFormulaEN_13016_1aConstant = &qslFormulaEN_13016_1aConstant;
+    ui->wMethodSetup->qslFormulaEN_13016_1bConstant = &qslFormulaEN_13016_1bConstant;
+    ui->wMethodSetup->qslFormulaEN_13016_1cConstant = &qslFormulaEN_13016_1cConstant;
+
+    ui->wMethodSetup->qslFormulaGB_T_8017aConstant = &qslFormulaGB_T_8017aConstant;
+    ui->wMethodSetup->qslFormulaGB_T_8017bConstant = &qslFormulaGB_T_8017bConstant;
+    ui->wMethodSetup->qslFormulaGB_T_8017cConstant = &qslFormulaGB_T_8017cConstant;
+
+    ui->wMethodSetup->qslFormulaIP_394aConstant = &qslFormulaIP_394aConstant;
+    ui->wMethodSetup->qslFormulaIP_394bConstant = &qslFormulaIP_394bConstant;
+    ui->wMethodSetup->qslFormulaIP_394cConstant = &qslFormulaIP_394cConstant;
+
+    ui->wMethodSetup->qslFormulaSH_T_0794aConstant = &qslFormulaSH_T_0794aConstant;
+    ui->wMethodSetup->qslFormulaSH_T_0794bConstant = &qslFormulaSH_T_0794bConstant;
+    ui->wMethodSetup->qslFormulaSH_T_0794cConstant = &qslFormulaSH_T_0794cConstant;
+
+    ui->wMethodSetup->qslFormulaEN_13016_2aConstant = &qslFormulaEN_13016_2aConstant;
+    ui->wMethodSetup->qslFormulaEN_13016_2bConstant = &qslFormulaEN_13016_2bConstant;
+    ui->wMethodSetup->qslFormulaEN_13016_2cConstant = &qslFormulaEN_13016_2cConstant;
+
+    ui->wMethodSetup->qslFormulaIP_409aConstant = &qslFormulaIP_409aConstant;
+    ui->wMethodSetup->qslFormulaIP_409bConstant = &qslFormulaIP_409bConstant;
+    ui->wMethodSetup->qslFormulaIP_409cConstant = &qslFormulaIP_409cConstant;
+
+    ui->wMethodSetup->qslFormulaJIS_K2258_2aConstant = &qslFormulaJIS_K2258_2aConstant;
+    ui->wMethodSetup->qslFormulaJIS_K2258_2bConstant = &qslFormulaJIS_K2258_2bConstant;
+    ui->wMethodSetup->qslFormulaJIS_K2258_2cConstant = &qslFormulaJIS_K2258_2cConstant;
+
+    ui->wMethodSetup->qslFormulaSH_T_0769aConstant = &qslFormulaSH_T_0769aConstant;
+    ui->wMethodSetup->qslFormulaSH_T_0769bConstant = &qslFormulaSH_T_0769bConstant;
+    ui->wMethodSetup->qslFormulaSH_T_0769cConstant = &qslFormulaSH_T_0769cConstant;
+
+    ui->wMethodSetup->qslFormulaSN_T_2932aConstant = &qslFormulaSN_T_2932aConstant;
+    ui->wMethodSetup->qslFormulaSN_T_2932bConstant = &qslFormulaSN_T_2932bConstant;
+    ui->wMethodSetup->qslFormulaSN_T_2932cConstant = &qslFormulaSN_T_2932cConstant;
 
     cSettings.setGeneralSetup(&ui->wGeneralSetup->general_setup);
     cSettings.setUserSetup(&ui->wUserSetup->user_setup);
@@ -2341,19 +2795,22 @@ void MainWindow::handleInjectRinsing()
 
                     switch(ui->wMeasuring1->getMethod())
                     {
-                        case M_METHOD_D6377: cTmTest = ui->wMethodSetup->stdD6377.InjectTemp;
+                        case M_METHOD_NEW_D6377: cTmTest = ui->wMethodSetup->stdD6377.InjectTemp;
                         break;
 
-                        case M_METHOD_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
+                        case M_METHOD_IP_481: cTmTest = ui->wMethodSetup->stdIP_481.InjectTemp;
                         break;
 
-                        case M_METHOD_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
+                        case M_METHOD_NEW_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
                         break;
 
-                        case M_METHOD_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
+                        case M_METHOD_NEW_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
                         break;
 
-                        case M_METHOD_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
+                        case M_METHOD_NEW_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
+                        break;
+
+                        case M_METHOD_NEW_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
                         break;
 
                         default : cTmTest = 20.0;
@@ -2553,19 +3010,22 @@ void MainWindow::handleInjectRinsing()
 
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D6377: cTmTest = ui->wMethodSetup->stdD6377.InjectTemp;
+                                    case M_METHOD_NEW_D6377: cTmTest = ui->wMethodSetup->stdD6377.InjectTemp;
                                     break;
 
-                                    case M_METHOD_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
+                                    case M_METHOD_IP_481: cTmTest = ui->wMethodSetup->stdIP_481.InjectTemp;
                                     break;
 
-                                    case M_METHOD_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
+                                    case M_METHOD_NEW_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
                                     break;
 
-                                    case M_METHOD_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
+                                    case M_METHOD_NEW_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
                                     break;
 
-                                    case M_METHOD_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
+                                    case M_METHOD_NEW_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
+                                    break;
+
+                                    case M_METHOD_NEW_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
                                     break;
 
                                     default : cTmTest = 20.0;
@@ -2774,28 +3234,58 @@ void MainWindow::readSerial(void)
                                 currentTab = "Measuring Tab ";
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                case M_METHOD_D5191: logMethod = "D5191 ";
+                                case M_METHOD_NEW_D5191: logMethod = "D5191 ";
                                     break;
 
-                                case M_METHOD_D6377: logMethod = "D6377 ";
+                                case M_METHOD_NEW_D6377: logMethod = "D6377 ";
                                     break;
 
-                                case M_METHOD_D6378: logMethod = "D6378 ";
+                                case M_METHOD_NEW_D6378: logMethod = "D6378 ";
                                     break;
 
-                                case M_METHOD_D5188: logMethod = "D5188 ";
+                                case M_METHOD_NEW_D5188: logMethod = "D5188 ";
                                     break;
 
-                                case M_METHOD_FREE1: logMethod = "Free1 ";
+                                case M_METHOD_EN_13016_1: logMethod = "EN 13016-1 ";
                                     break;
 
-                                case M_METHOD_FREE2: logMethod = "Free2 ";
+                                case M_METHOD_EN_13016_2: logMethod = "EN 13016-2 ";
                                     break;
 
-                                case M_METHOD_FREE3: logMethod = "Free3 ";
+                                case M_METHOD_GB_T_8017: logMethod = "GB/T 8017 ";
                                     break;
 
-                                case M_METHOD_FREE4: logMethod = "Free4 ";
+                                case M_METHOD_IP_394: logMethod = "IP 394 ";
+                                    break;
+
+                                case M_METHOD_IP_409: logMethod = "IP 409 ";
+                                    break;
+
+                                case M_METHOD_IP_481: logMethod = "IP 481 ";
+                                    break;
+
+                                case M_METHOD_JIS_K2258_2: logMethod = "JIS K2258-2 ";
+                                    break;
+
+                                case M_METHOD_SH_T_0769: logMethod = "SH/T 0769 ";
+                                    break;
+
+                                case M_METHOD_SH_T_0794: logMethod = "SH/T 0794 ";
+                                    break;
+
+                                case M_METHOD_SN_T_2932: logMethod = "SN/T 2932 ";
+                                    break;
+
+                                case M_METHOD_NEW_FREE1: logMethod = "Free1 ";
+                                    break;
+
+                                case M_METHOD_NEW_FREE2: logMethod = "Free2 ";
+                                    break;
+
+                                case M_METHOD_NEW_FREE3: logMethod = "Free3 ";
+                                    break;
+
+                                case M_METHOD_NEW_FREE4: logMethod = "Free4 ";
                                     break;
 
                                 default: logMethod = " ";
@@ -3141,35 +3631,51 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
                     if(rinsing)
                     {
-                        if((ui->wMeasuring1->getMethod() == M_METHOD_D5188) || (ui->wMeasuring1->getMethod() == M_METHOD_D5191) || (ui->wMeasuring1->getMethod() == M_METHOD_D6378)){
-                            handleRinsing();
+                        if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6377) || (ui->wMeasuring1->getMethod() == M_METHOD_IP_481) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE1) || \
+                                (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE2) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE3) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE4)){
+                           handleInjectRinsing();
                         }else{
-                            handleInjectRinsing();
+                            handleRinsing();
                         }
                     }
-                    else if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
+                    else if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5188)
                     {
                         handleD5188();
 
-                    }else if(ui->wMeasuring1->getMethod() == M_METHOD_D6377)
+                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6377) || (ui->wMeasuring1->getMethod() == M_METHOD_IP_481))
                     {
-                        handleD6377();
+                        handleD6377Related();
 
-                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE1) && (ui->wMethodSetup->stdFree1.shaker_disabled))
+                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378) || (ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_2) || (ui->wMeasuring1->getMethod() == M_METHOD_IP_409) || \
+                             (ui->wMeasuring1->getMethod() == M_METHOD_JIS_K2258_2) ||(ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0769) || (ui->wMeasuring1->getMethod() == M_METHOD_SN_T_2932))
+                    {
+                        handleD6378RelatedMethods();
+                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE1) && (ui->wMethodSetup->stdFree1.shaker_disabled))
                     {
                         handleFreeShaker();
-                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE2) && (ui->wMethodSetup->stdFree2.shaker_disabled))
+                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE2) && (ui->wMethodSetup->stdFree2.shaker_disabled))
                     {
                         handleFreeShaker();
-                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE3) && (ui->wMethodSetup->stdFree3.shaker_disabled))
+                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE3) && (ui->wMethodSetup->stdFree3.shaker_disabled))
                     {
                         handleFreeShaker();
-                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE4) && (ui->wMethodSetup->stdFree4.shaker_disabled))
+                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE4) && (ui->wMethodSetup->stdFree4.shaker_disabled))
                     {
                         handleFreeShaker();
-                    }else if((ui->wMeasuring1->getMethod() == M_METHOD_D5191) && (ui->wMethodSetup->stdD5191.single_expansion))
+                    }else if(((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191) && (ui->wMethodSetup->stdD5191.single_expansion)) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1) && (ui->wMethodSetup->stdEN_13016_1.single_expansion)) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017) && (ui->wMethodSetup->stdGB_T_8017.single_expansion)) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_IP_394) && (ui->wMethodSetup->stdIP_394.single_expansion)) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0794) && (ui->wMethodSetup->stdSH_T_0794.single_expansion)))
                     {
-                        handleD5191SingleExpansion();
+                        handleD5191RelatedSingleExpansion();
+                    }else if(((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191) && (!(ui->wMethodSetup->stdD5191.single_expansion))) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1) && (!(ui->wMethodSetup->stdEN_13016_1.single_expansion))) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017) && (!(ui->wMethodSetup->stdGB_T_8017.single_expansion))) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_IP_394) && (!(ui->wMethodSetup->stdIP_394.single_expansion))) || \
+                             ((ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0794) && (!(ui->wMethodSetup->stdSH_T_0794.single_expansion))))
+                    {
+                        handleD5191RelatedMethods();
                     }else{
                         handleOther();
                     }
@@ -3179,31 +3685,51 @@ void MainWindow::timerEvent(QTimerEvent *e)
             {
                 if(rinsing)
                 {
-                    if((ui->wMeasuring1->getMethod() == M_METHOD_D5188) || (ui->wMeasuring1->getMethod() == M_METHOD_D5191) || (ui->wMeasuring1->getMethod() == M_METHOD_D6378)){
-                        handleRinsing();
+                    if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6377) || (ui->wMeasuring1->getMethod() == M_METHOD_IP_481) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE1) || \
+                            (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE2) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE3) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE4)){
+                       handleInjectRinsing();
                     }else{
-                        handleInjectRinsing();
+                        handleRinsing();
                     }
                 }
-                else if(ui->wMeasuring1->getMethod() == M_METHOD_D5188)
+                else if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5188)
+                {
                     handleD5188();
-                else if(ui->wMeasuring1->getMethod() == M_METHOD_D6377)
-                        handleD6377();
-                else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE1) && (ui->wMethodSetup->stdFree1.shaker_disabled))
+
+                }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6377) || (ui->wMeasuring1->getMethod() == M_METHOD_IP_481))
+                {
+                    handleD6377Related();
+
+                }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378) || (ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_2) || (ui->wMeasuring1->getMethod() == M_METHOD_IP_409) || \
+                         (ui->wMeasuring1->getMethod() == M_METHOD_JIS_K2258_2) ||(ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0769) || (ui->wMeasuring1->getMethod() == M_METHOD_SN_T_2932))
+                {
+                    handleD6378RelatedMethods();
+                }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE1) && (ui->wMethodSetup->stdFree1.shaker_disabled))
                 {
                     handleFreeShaker();
-                }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE2) && (ui->wMethodSetup->stdFree2.shaker_disabled))
+                }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE2) && (ui->wMethodSetup->stdFree2.shaker_disabled))
                 {
                     handleFreeShaker();
-                }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE3) && (ui->wMethodSetup->stdFree3.shaker_disabled))
+                }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE3) && (ui->wMethodSetup->stdFree3.shaker_disabled))
                 {
                     handleFreeShaker();
-                }else if((ui->wMeasuring1->getMethod() == M_METHOD_FREE4) && (ui->wMethodSetup->stdFree4.shaker_disabled))
+                }else if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_FREE4) && (ui->wMethodSetup->stdFree4.shaker_disabled))
                 {
                     handleFreeShaker();
-                }else if((ui->wMeasuring1->getMethod() == M_METHOD_D5191) && (ui->wMethodSetup->stdD5191.single_expansion))
+                }else if(((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191) && (ui->wMethodSetup->stdD5191.single_expansion)) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1) && (ui->wMethodSetup->stdEN_13016_1.single_expansion)) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017) && (ui->wMethodSetup->stdGB_T_8017.single_expansion)) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_IP_394) && (ui->wMethodSetup->stdIP_394.single_expansion)) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0794) && (ui->wMethodSetup->stdSH_T_0794.single_expansion)))
                 {
-                    handleD5191SingleExpansion();
+                    handleD5191RelatedSingleExpansion();
+                }else if(((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191) && (!(ui->wMethodSetup->stdD5191.single_expansion))) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1) && (!(ui->wMethodSetup->stdEN_13016_1.single_expansion))) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017) && (!(ui->wMethodSetup->stdGB_T_8017.single_expansion))) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_IP_394) && (!(ui->wMethodSetup->stdIP_394.single_expansion))) || \
+                         ((ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0794) && (!(ui->wMethodSetup->stdSH_T_0794.single_expansion))))
+                {
+                    handleD5191RelatedMethods();
                 }else{
                     handleOther();
                 }
@@ -3308,19 +3834,22 @@ void MainWindow::onRunClicked(int state, bool init)
             double temp;
             switch(ui->wMeasuring1->getMethod())
             {
-                case M_METHOD_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
+                case M_METHOD_NEW_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
                 break;
 
-                case M_METHOD_FREE1: temp = ui->wMethodSetup->stdFree1.InjectTemp;
+                case M_METHOD_IP_481: temp = ui->wMethodSetup->stdIP_481.InjectTemp;
                 break;
 
-                case M_METHOD_FREE2: temp = ui->wMethodSetup->stdFree2.InjectTemp;
+                case M_METHOD_NEW_FREE1: temp = ui->wMethodSetup->stdFree1.InjectTemp;
                 break;
 
-                case M_METHOD_FREE3: temp = ui->wMethodSetup->stdFree3.InjectTemp;
+                case M_METHOD_NEW_FREE2: temp = ui->wMethodSetup->stdFree2.InjectTemp;
                 break;
 
-                case M_METHOD_FREE4: temp = ui->wMethodSetup->stdFree4.InjectTemp;
+                case M_METHOD_NEW_FREE3: temp = ui->wMethodSetup->stdFree3.InjectTemp;
+                break;
+
+                case M_METHOD_NEW_FREE4: temp = ui->wMethodSetup->stdFree4.InjectTemp;
                 break;
 
                 default : temp = 20.0;
@@ -3366,19 +3895,22 @@ void MainWindow::onRunClicked(int state, bool init)
             double temp;
             switch(ui->wMeasuring1->getMethod())
             {
-                case M_METHOD_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
+                case M_METHOD_NEW_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
                 break;
 
-                case M_METHOD_FREE1: temp = ui->wMethodSetup->stdFree1.InjectTemp;
+                case M_METHOD_IP_481: temp = ui->wMethodSetup->stdIP_481.InjectTemp;
                 break;
 
-                case M_METHOD_FREE2: temp = ui->wMethodSetup->stdFree2.InjectTemp;
+                case M_METHOD_NEW_FREE1: temp = ui->wMethodSetup->stdFree1.InjectTemp;
                 break;
 
-                case M_METHOD_FREE3: temp = ui->wMethodSetup->stdFree3.InjectTemp;
+                case M_METHOD_NEW_FREE2: temp = ui->wMethodSetup->stdFree2.InjectTemp;
                 break;
 
-                case M_METHOD_FREE4: temp = ui->wMethodSetup->stdFree4.InjectTemp;
+                case M_METHOD_NEW_FREE3: temp = ui->wMethodSetup->stdFree3.InjectTemp;
+                break;
+
+                case M_METHOD_NEW_FREE4: temp = ui->wMethodSetup->stdFree4.InjectTemp;
                 break;
 
                 default : temp = 20.0;
@@ -3399,19 +3931,22 @@ void MainWindow::onRunClicked(int state, bool init)
             double temp;
             switch(ui->wMeasuring1->getMethod())
             {
-                case M_METHOD_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
+                case M_METHOD_NEW_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
                 break;
 
-                case M_METHOD_FREE1: temp = ui->wMethodSetup->stdFree1.InjectTemp;
+                case M_METHOD_IP_481: temp = ui->wMethodSetup->stdIP_481.InjectTemp;
                 break;
 
-                case M_METHOD_FREE2: temp = ui->wMethodSetup->stdFree2.InjectTemp;
+                case M_METHOD_NEW_FREE1: temp = ui->wMethodSetup->stdFree1.InjectTemp;
                 break;
 
-                case M_METHOD_FREE3: temp = ui->wMethodSetup->stdFree3.InjectTemp;
+                case M_METHOD_NEW_FREE2: temp = ui->wMethodSetup->stdFree2.InjectTemp;
                 break;
 
-                case M_METHOD_FREE4: temp = ui->wMethodSetup->stdFree4.InjectTemp;
+                case M_METHOD_NEW_FREE3: temp = ui->wMethodSetup->stdFree3.InjectTemp;
+                break;
+
+                case M_METHOD_NEW_FREE4: temp = ui->wMethodSetup->stdFree4.InjectTemp;
                 break;
 
                 default : temp = 20.0;
@@ -3571,28 +4106,58 @@ void MainWindow::onSendCommand(QString cmd)
     {
         switch(ui->wMeasuring1->getMethod())
         {
-        case M_METHOD_D5191: logMethod = "D5191 ";
+        case M_METHOD_NEW_D5191: logMethod = "D5191 ";
             break;
 
-        case M_METHOD_D6377: logMethod = "D6377 ";
+        case M_METHOD_NEW_D6377: logMethod = "D6377 ";
             break;
 
-        case M_METHOD_D6378: logMethod = "D6378 ";
+        case M_METHOD_NEW_D6378: logMethod = "D6378 ";
             break;
 
-        case M_METHOD_D5188: logMethod = "D5188 ";
+        case M_METHOD_NEW_D5188: logMethod = "D5188 ";
             break;
 
-        case M_METHOD_FREE1: logMethod = "Free1 ";
+        case M_METHOD_EN_13016_1: logMethod = "EN 13016-1 ";
             break;
 
-        case M_METHOD_FREE2: logMethod = "Free2 ";
+        case M_METHOD_EN_13016_2: logMethod = "EN 13016-2 ";
             break;
 
-        case M_METHOD_FREE3: logMethod = "Free3 ";
+        case M_METHOD_GB_T_8017: logMethod = "GB/T 8017 ";
             break;
 
-        case M_METHOD_FREE4: logMethod = "Free4 ";
+        case M_METHOD_IP_394: logMethod = "IP 394 ";
+            break;
+
+        case M_METHOD_IP_409: logMethod = "IP 409 ";
+            break;
+
+        case M_METHOD_IP_481: logMethod = "IP 481 ";
+            break;
+
+        case M_METHOD_JIS_K2258_2: logMethod = "JIS K2258-2 ";
+            break;
+
+        case M_METHOD_SH_T_0769: logMethod = "SH/T 0769 ";
+            break;
+
+        case M_METHOD_SH_T_0794: logMethod = "SH/T 0794 ";
+            break;
+
+        case M_METHOD_SN_T_2932: logMethod = "SN/T 2932 ";
+            break;
+
+        case M_METHOD_NEW_FREE1: logMethod = "Free1 ";
+            break;
+
+        case M_METHOD_NEW_FREE2: logMethod = "Free2 ";
+            break;
+
+        case M_METHOD_NEW_FREE3: logMethod = "Free3 ";
+            break;
+
+        case M_METHOD_NEW_FREE4: logMethod = "Free4 ";
             break;
 
         default: logMethod = " ";
@@ -3648,28 +4213,58 @@ void MainWindow::onSendCommand(QString cmd, sAccessWidget *sa)
     {
         switch(ui->wMeasuring1->getMethod())
         {
-        case M_METHOD_D5191: logMethod = "D5191 ";
+        case M_METHOD_NEW_D5191: logMethod = "D5191 ";
             break;
 
-        case M_METHOD_D6377: logMethod = "D6377 ";
+        case M_METHOD_NEW_D6377: logMethod = "D6377 ";
             break;
 
-        case M_METHOD_D6378: logMethod = "D6378 ";
+        case M_METHOD_NEW_D6378: logMethod = "D6378 ";
             break;
 
-        case M_METHOD_D5188: logMethod = "D5188 ";
+        case M_METHOD_NEW_D5188: logMethod = "D5188 ";
             break;
 
-        case M_METHOD_FREE1: logMethod = "Free1 ";
+        case M_METHOD_EN_13016_1: logMethod = "EN 13016-1 ";
             break;
 
-        case M_METHOD_FREE2: logMethod = "Free2 ";
+        case M_METHOD_EN_13016_2: logMethod = "EN 13016-2 ";
             break;
 
-        case M_METHOD_FREE3: logMethod = "Free3 ";
+        case M_METHOD_GB_T_8017: logMethod = "GB/T 8017 ";
             break;
 
-        case M_METHOD_FREE4: logMethod = "Free4 ";
+        case M_METHOD_IP_394: logMethod = "IP 394 ";
+            break;
+
+        case M_METHOD_IP_409: logMethod = "IP 409 ";
+            break;
+
+        case M_METHOD_IP_481: logMethod = "IP 481 ";
+            break;
+
+        case M_METHOD_JIS_K2258_2: logMethod = "JIS K2258-2 ";
+            break;
+
+        case M_METHOD_SH_T_0769: logMethod = "SH/T 0769 ";
+            break;
+
+        case M_METHOD_SH_T_0794: logMethod = "SH/T 0794 ";
+            break;
+
+        case M_METHOD_SN_T_2932: logMethod = "SN/T 2932 ";
+            break;
+
+        case M_METHOD_NEW_FREE1: logMethod = "Free1 ";
+            break;
+
+        case M_METHOD_NEW_FREE2: logMethod = "Free2 ";
+            break;
+
+        case M_METHOD_NEW_FREE3: logMethod = "Free3 ";
+            break;
+
+        case M_METHOD_NEW_FREE4: logMethod = "Free4 ";
             break;
 
         default: logMethod = " ";
@@ -3737,28 +4332,58 @@ void MainWindow::sendPara(QString tmp, int stage, int timeout)
         {
             switch(ui->wMeasuring1->getMethod())
             {
-            case M_METHOD_D5191: logMethod = "D5191 ";
+            case M_METHOD_NEW_D5191: logMethod = "D5191 ";
                 break;
 
-            case M_METHOD_D6377: logMethod = "D6377 ";
+            case M_METHOD_NEW_D6377: logMethod = "D6377 ";
                 break;
 
-            case M_METHOD_D6378: logMethod = "D6378 ";
+            case M_METHOD_NEW_D6378: logMethod = "D6378 ";
                 break;
 
-            case M_METHOD_D5188: logMethod = "D5188 ";
+            case M_METHOD_NEW_D5188: logMethod = "D5188 ";
                 break;
 
-            case M_METHOD_FREE1: logMethod = "Free1 ";
+            case M_METHOD_EN_13016_1: logMethod = "EN 13016-1 ";
                 break;
 
-            case M_METHOD_FREE2: logMethod = "Free2 ";
+            case M_METHOD_EN_13016_2: logMethod = "EN 13016-2 ";
                 break;
 
-            case M_METHOD_FREE3: logMethod = "Free3 ";
+            case M_METHOD_GB_T_8017: logMethod = "GB/T 8017 ";
                 break;
 
-            case M_METHOD_FREE4: logMethod = "Free4 ";
+            case M_METHOD_IP_394: logMethod = "IP 394 ";
+                break;
+
+            case M_METHOD_IP_409: logMethod = "IP 409 ";
+                break;
+
+            case M_METHOD_IP_481: logMethod = "IP 481 ";
+                break;
+
+            case M_METHOD_JIS_K2258_2: logMethod = "JIS K2258-2 ";
+                break;
+
+            case M_METHOD_SH_T_0769: logMethod = "SH/T 0769 ";
+                break;
+
+            case M_METHOD_SH_T_0794: logMethod = "SH/T 0794 ";
+                break;
+
+            case M_METHOD_SN_T_2932: logMethod = "SN/T 2932 ";
+                break;
+
+            case M_METHOD_NEW_FREE1: logMethod = "Free1 ";
+                break;
+
+            case M_METHOD_NEW_FREE2: logMethod = "Free2 ";
+                break;
+
+            case M_METHOD_NEW_FREE3: logMethod = "Free3 ";
+                break;
+
+            case M_METHOD_NEW_FREE4: logMethod = "Free4 ";
                 break;
 
             default: logMethod = " ";
@@ -4048,11 +4673,585 @@ void MainWindow::abortCurrentTask()
     else cStage = -2;
 }
 
+void MainWindow::handleD5191RelatedMethods()
+{
+    if(cStage <= 7 )
+    {
+        handleRinsing();
+    }
+    else
+    {
+
+        switch(cStage)
+        {
+            case 8:
+                    {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_IN)
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_EN_13016_1: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_1.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_GB_T_8017: cVolume = qRound((ui->wCalibrationSetup->cCalibGB_T_8017.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_394: cVolume = qRound((ui->wCalibrationSetup->cCalibIP_394.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SH_T_0794: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0794.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 100;
+                                            deltaVolume = 0;
+                                break;
+                            }
+
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_FILLING);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 9:
+                    {
+                        cParasUpdated = false;
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
+                                     10, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 10:
+                    {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_CLOSED)
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_EN_13016_1: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_1.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_GB_T_8017: cVolume = qRound((ui->wCalibrationSetup->cCalibGB_T_8017.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_394: cVolume = qRound((ui->wCalibrationSetup->cCalibIP_394.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SH_T_0794: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0794.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 170 - deltaVolume;
+                                        deltaVolume = 0;
+                                break;
+                            }
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 12, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 11:
+                    {
+                        cParasUpdated = false;
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            cREqTime = 180;
+                            cTmTest = 37.80;
+
+                            cTmTest = cTmTest+2;
+
+                            int tc = cSettings.getTemperatureCount(cTmTest);
+
+                            sendPara(cProtocol.sendTemperature(tc),
+                                     12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+            case 12:
+                    {
+                        cParasUpdated = false;
+
+//                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+//                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+//                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            cREqTime = 180;
+                            cTmTest = 37.80;
+
+                            int tc = cSettings.getTemperatureCount(cTmTest);
+
+                            sendPara(cProtocol.sendTemperature(tc),
+                                     13, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+                    break;
+
+            case 13:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            ui->wMeasuring1->setLblMessage(tr("Measurement in progress \n Expansion 1/3"));
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_EN_13016_1: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_1.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_GB_T_8017: cVolume = qRound((ui->wCalibrationSetup->cCalibGB_T_8017.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_IP_394: cVolume = qRound((ui->wCalibrationSetup->cCalibIP_394.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_SH_T_0794: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0794.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    default : cVolume = 250 - deltaVolume;
+                                                deltaVolume = 0;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 14, 60);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 14:
+                {
+                    cParasUpdated = false;
+
+                    if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                    {
+                        cREqTime = 60;
+
+                        cStage = 15;
+                        cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
+
+                        if(ui->wServiceSetup->getDebug())
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                        else
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                        cEqTime = 0;
+                    }
+                    else
+                    {
+                        if(!cStageTimeOut)
+                        {
+                                setError(M_ERROR_PISTON_POSITION);
+                        }
+                        else cStageTimeOut--;
+                    }
+                }
+
+                    break;
+
+            case 15:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            ui->wMeasuring1->setLblMessage(tr("Measurement in progress \n Expansion 2/3"));
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_EN_13016_1: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_1.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_GB_T_8017: cVolume = qRound((ui->wCalibrationSetup->cCalibGB_T_8017.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_IP_394: cVolume = qRound((ui->wCalibrationSetup->cCalibIP_394.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_SH_T_0794: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0794.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    default : cVolume = 500 - deltaVolume;
+                                                deltaVolume = 0;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 16, 60);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 16:
+                    {
+                        cParasUpdated = false;
+
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            cREqTime = 60;
+
+                            cStage = 17;
+                            cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime) + " Sec");
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 17:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            ui->wMeasuring1->setLblMessage(tr("Measurement in progress \n Expansion 3/3"));
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx3= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                                ui->wMeasuring1->setStatus("");
+
+                                ui->imageCapture->resize(167,25);
+                                ui->imageCapture->move(20,900);
+                                ui->imageCapture->show();
+
+                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191)
+                                    ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1)
+                                    ui->wMeasuring1->showResultEN_13016_1(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017)
+                                    ui->wMeasuring1->showResultGB_T_8017(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_IP_394)
+                                    ui->wMeasuring1->showResultIP_394(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else
+                                    ui->wMeasuring1->showResultSH_T_0794(cPrTpx1, cPrTpx2, cPrTpx3);
+
+                                ui->wServiceSetup->incrementCount();
+
+                                cTmTest = 20.0;
+                                int tc = cSettings.getTemperatureCount(cTmTest);
+
+                                sendPara( cProtocol.sendTemperature(tc),
+                                         18, 60*12);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                                else
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 18:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if(((ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE))) && cStageTimeOut <=700)
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
+                                     19, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                    setError(M_ERROR_TEMPERATURE);
+                            }
+                            else cStageTimeOut--;
+
+                            if(cStageTimeOut == 710)
+                            {
+                                if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
+                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                            }
+
+                        }
+                    }
+
+                    break;
+
+            case 19:
+                    {
+                        cParasUpdated = false;
+
+                        if(cValvePosition == M_VALVE_POSITION_EXHAUST)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(0), 20, 60);
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 20:
+                    {
+                        cParasUpdated = false;
+
+                        if(cPistonPosition == 0)
+                        {
+                            //cStage = 0;
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+
+                            if(ui->wServiceSetup->getContinuousRunEnabled())
+                            {
+                                ui->wMeasuring1->hideResult();
+                                onRunClicked(MS_TEST_RUN, false);
+                            }
+                            else
+                            {
+                                cAutoCycles++;
+
+                                if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                                {
+                                    ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
+
+                                    ui->wMeasuring1->hideResult();
+                                    onRunClicked(MS_TEST_RUN, false);
+                                }
+                                else
+                                    ui->wMeasuring1->setStatus("");
+                            }
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+        }
+    }
+}
+
 void MainWindow::handleOther(void)
 {
     if(cStage <= 7 )
     {
-        if((ui->wMeasuring1->getMethod() == M_METHOD_D5188) || (ui->wMeasuring1->getMethod() == M_METHOD_D5191) || (ui->wMeasuring1->getMethod() == M_METHOD_D6378)){
+        if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5188) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378)){
             handleRinsing();
         }else{
             handleInjectRinsing();
@@ -4070,32 +5269,32 @@ void MainWindow::handleOther(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
 //                                                     deltaVolume = 100 - cVolume;
                                                         deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
 //                                                     deltaVolume = 100 - cVolume;
                                                         deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
+                                case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
 //                                                     deltaVolume = 100 - cVolume;
                                                         deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
+                                case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
 //                                                     deltaVolume = 100 - cVolume;
                                                         deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
+                                case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
 //                                                     deltaVolume = 100 - cVolume;
                                                         deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
+                                case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
 //                                                     deltaVolume = 100 - cVolume;
                                                         deltaVolume = 0;
                                 break;
@@ -4155,32 +5354,32 @@ void MainWindow::handleOther(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
 //                                                    deltaVolume = (170-cVolume);
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
 //                                                    deltaVolume = (170-cVolume);
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100) - deltaVolume;
 //                                                    deltaVolume = (170-cVolume);
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100) - deltaVolume;
 //                                                    deltaVolume = (170-cVolume);
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100) - deltaVolume;
 //                                                    deltaVolume = (170-cVolume);
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100) - deltaVolume;
 //                                                    deltaVolume = (170-cVolume);
                                                     deltaVolume = 0;
                                 break;
@@ -4215,19 +5414,19 @@ void MainWindow::handleOther(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
+                                case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree1.temperature;
                                 break;
 
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
+                                case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree2.temperature;
                                 break;
 
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
+                                case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree3.temperature;
                                 break;
 
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
+                                case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree4.temperature;
                                 break;
 
@@ -4274,19 +5473,19 @@ void MainWindow::handleOther(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
+                                case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree1.temperature;
                                 break;
 
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
+                                case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree2.temperature;
                                 break;
 
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
+                                case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree3.temperature;
                                 break;
 
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
+                                case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree4.temperature;
                                 break;
 
@@ -4337,32 +5536,32 @@ void MainWindow::handleOther(void)
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
 //                                                        deltaVolume = (250-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
 //                                                        deltaVolume = (250-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100) - deltaVolume;
 //                                                        deltaVolume = (250-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100) - deltaVolume;
 //                                                        deltaVolume = (250-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100) - deltaVolume;
 //                                                        deltaVolume = (250-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100) - deltaVolume;
 //                                                        deltaVolume = (250-cVolume);
                                                         deltaVolume = 0;
                                     break;
@@ -4409,10 +5608,10 @@ void MainWindow::handleOther(void)
                     {
                         switch(ui->wMeasuring1->getMethod())
                         {
-                            case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx2; break;
-                            case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx2; break;
-                            case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx2; break;
-                            case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx2; break;
+                            case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx2; break;
+                            case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx2; break;
+                            case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx2; break;
+                            case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx2; break;
                             default : cREqTime = 60; break;
                         }
 
@@ -4456,32 +5655,32 @@ void MainWindow::handleOther(void)
                                 cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
 //                                                        deltaVolume = (500-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
 //                                                        deltaVolume = (500-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100) - deltaVolume;
 //                                                        deltaVolume = (500-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100) - deltaVolume;
 //                                                        deltaVolume = (500-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100) - deltaVolume;
 //                                                        deltaVolume = (500-cVolume);
                                                         deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100) - deltaVolume;
 //                                                        deltaVolume = (500-cVolume);
                                                         deltaVolume = 0;
                                     break;
@@ -4527,10 +5726,10 @@ void MainWindow::handleOther(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx3; break;
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx3; break;
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx3; break;
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx3; break;
+                                case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx3; break;
+                                case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx3; break;
+                                case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx3; break;
+                                case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx3; break;
                                 default : cREqTime = 60; break;
                             }
 
@@ -4574,9 +5773,9 @@ void MainWindow::handleOther(void)
                                 ui->imageCapture->move(20,900);
                                 ui->imageCapture->show();
 
-                                if(ui->wMeasuring1->getMethod() == M_METHOD_D5191)
+                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191)
                                     ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
-                                else if(ui->wMeasuring1->getMethod() == M_METHOD_D6378)
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378)
                                     ui->wMeasuring1->showResultD6378(cPrTpx1, cPrTpx2, cPrTpx3);
                                 else
                                     ui->wMeasuring1->showResultFree(cPrTpx1, cPrTpx2, cPrTpx3);
@@ -4585,16 +5784,16 @@ void MainWindow::handleOther(void)
 
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                case M_METHOD_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
+                                case M_METHOD_NEW_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
                                     break;
 
-                                case M_METHOD_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
+                                case M_METHOD_NEW_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
                                     break;
 
-                                case M_METHOD_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
+                                case M_METHOD_NEW_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
                                     break;
 
-                                case M_METHOD_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
+                                case M_METHOD_NEW_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
                                     break;
 
                                 default : cTmTest = 20.0;
@@ -4659,44 +5858,8 @@ void MainWindow::handleOther(void)
 
                             if(cStageTimeOut == 710)
                             {
-                                switch(ui->wMeasuring1->getMethod())
-                                {
-                                    case M_METHOD_D5191:
-//                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_D6378:
-//                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE1:
-//                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE2:
-//                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE3:
-//                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE4:
-//                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-                                }
+                                if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
+                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                             }
 
                         }
@@ -4776,7 +5939,7 @@ void MainWindow::handleFreeShaker(void)
 {
     if(cStage <= 7 )
     {
-        if((ui->wMeasuring1->getMethod() == M_METHOD_D5188) || (ui->wMeasuring1->getMethod() == M_METHOD_D5191) || (ui->wMeasuring1->getMethod() == M_METHOD_D6378)){
+        if((ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5188) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191) || (ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378)){
             handleRinsing();
         }else{
             handleInjectRinsing();
@@ -4794,32 +5957,32 @@ void MainWindow::handleFreeShaker(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.StageVolume)*100);
 //                                                    deltaVolume = 100 - cVolume;
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
 //                                                    deltaVolume = 100 - cVolume;
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
+                                case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.StageVolume)*100);
 //                                                    deltaVolume = 100 - cVolume;
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
+                                case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.StageVolume)*100);
 //                                                    deltaVolume = 100 - cVolume;
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
+                                case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.StageVolume)*100);
 //                                                    deltaVolume = 100 - cVolume;
                                                     deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
+                                case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.StageVolume)*100);
 //                                                    deltaVolume = 100 - cVolume;
                                                     deltaVolume = 0;
                                 break;
@@ -4878,32 +6041,32 @@ void MainWindow::handleFreeShaker(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.FirstVolume)*100) - deltaVolume;
 //                                deltaVolume = (170-cVolume);
                                 deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
 //                                deltaVolume = (170-cVolume);
                                 deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.FirstVolume)*100) - deltaVolume;
 //                                deltaVolume = (170-cVolume);
                                 deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.FirstVolume)*100) - deltaVolume;
 //                                deltaVolume = (170-cVolume);
                                 deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.FirstVolume)*100) - deltaVolume;
 //                                deltaVolume = (170-cVolume);
                                 deltaVolume = 0;
                                 break;
 
-                                case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100) - deltaVolume;
+                                case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.FirstVolume)*100) - deltaVolume;
 //                                deltaVolume = (170-cVolume);
                                 deltaVolume = 0;
                                 break;
@@ -4940,16 +6103,16 @@ void MainWindow::handleFreeShaker(void)
 
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: shakerSpeed = ui->wMethodSetup->stdFree1.shaker_speed;
+                                case M_METHOD_NEW_FREE1: shakerSpeed = ui->wMethodSetup->stdFree1.shaker_speed;
                                 break;
 
-                                case M_METHOD_FREE2: shakerSpeed = ui->wMethodSetup->stdFree2.shaker_speed;
+                                case M_METHOD_NEW_FREE2: shakerSpeed = ui->wMethodSetup->stdFree2.shaker_speed;
                                 break;
 
-                                case M_METHOD_FREE3: shakerSpeed = ui->wMethodSetup->stdFree3.shaker_speed;
+                                case M_METHOD_NEW_FREE3: shakerSpeed = ui->wMethodSetup->stdFree3.shaker_speed;
                                 break;
 
-                                case M_METHOD_FREE4: shakerSpeed = ui->wMethodSetup->stdFree4.shaker_speed;
+                                case M_METHOD_NEW_FREE4: shakerSpeed = ui->wMethodSetup->stdFree4.shaker_speed;
                                 break;
 
                                 default : shakerSpeed = 90;
@@ -4976,19 +6139,19 @@ void MainWindow::handleFreeShaker(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
+                                case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree1.temperature;
                                 break;
 
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
+                                case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree2.temperature;
                                 break;
 
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
+                                case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree3.temperature;
                                 break;
 
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
+                                case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree4.temperature;
                                 break;
 
@@ -5036,19 +6199,19 @@ void MainWindow::handleFreeShaker(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
+                                case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree1.temperature;
                                 break;
 
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
+                                case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree2.temperature;
                                 break;
 
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
+                                case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree3.temperature;
                                 break;
 
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
+                                case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
                                                      cTmTest = ui->wMethodSetup->stdFree4.temperature;
                                 break;
 
@@ -5099,32 +6262,32 @@ void MainWindow::handleFreeShaker(void)
                                 cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.SecondVolume)*100) - deltaVolume;
 //                                    deltaVolume = (250-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
 //                                    deltaVolume = (250-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.SecondVolume)*100) - deltaVolume;
 //                                    deltaVolume = (250-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.SecondVolume)*100) - deltaVolume;
 //                                    deltaVolume = (250-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.SecondVolume)*100) - deltaVolume;
 //                                    deltaVolume = (250-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.SecondVolume)*100) - deltaVolume;
 //                                    deltaVolume = (250-cVolume);
                                     deltaVolume = 0;
                                     break;
@@ -5171,10 +6334,10 @@ void MainWindow::handleFreeShaker(void)
                     {
                         switch(ui->wMeasuring1->getMethod())
                         {
-                            case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx2; break;
-                            case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx2; break;
-                            case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx2; break;
-                            case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx2; break;
+                            case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx2; break;
+                            case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx2; break;
+                            case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx2; break;
+                            case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx2; break;
                             default : cREqTime = 60; break;
                         }
 
@@ -5218,32 +6381,32 @@ void MainWindow::handleFreeShaker(void)
                                 cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                    case M_METHOD_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibD5191.ThirdVOlume)*100) - deltaVolume;
 //                                    deltaVolume = (500-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
 //                                    deltaVolume = (500-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE1: cVolume = qRound((ui->wCalibrationSetup->cCalibFree1.ThirdVOlume)*100) - deltaVolume;
 //                                    deltaVolume = (500-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE2: cVolume = qRound((ui->wCalibrationSetup->cCalibFree2.ThirdVOlume)*100) - deltaVolume;
 //                                    deltaVolume = (500-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE3: cVolume = qRound((ui->wCalibrationSetup->cCalibFree3.ThirdVOlume)*100) - deltaVolume;
 //                                    deltaVolume = (500-cVolume);
                                     deltaVolume = 0;
                                     break;
 
-                                    case M_METHOD_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100) - deltaVolume;
+                                    case M_METHOD_NEW_FREE4: cVolume = qRound((ui->wCalibrationSetup->cCalibFree4.ThirdVOlume)*100) - deltaVolume;
 //                                    deltaVolume = (500-cVolume);
                                     deltaVolume = 0;
                                     break;
@@ -5289,10 +6452,10 @@ void MainWindow::handleFreeShaker(void)
                         {
                             switch(ui->wMeasuring1->getMethod())
                             {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx3; break;
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx3; break;
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx3; break;
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx3; break;
+                                case M_METHOD_NEW_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx3; break;
+                                case M_METHOD_NEW_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx3; break;
+                                case M_METHOD_NEW_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx3; break;
+                                case M_METHOD_NEW_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx3; break;
                                 default : cREqTime = 60; break;
                             }
 
@@ -5372,9 +6535,9 @@ void MainWindow::handleFreeShaker(void)
                                 ui->imageCapture->move(20,900);
                                 ui->imageCapture->show();
 
-                                if(ui->wMeasuring1->getMethod() == M_METHOD_D5191)
+                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191)
                                     ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
-                                else if(ui->wMeasuring1->getMethod() == M_METHOD_D6378)
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378)
                                     ui->wMeasuring1->showResultD6378(cPrTpx1, cPrTpx2, cPrTpx3);
                                 else
                                     ui->wMeasuring1->showResultFree(cPrTpx1, cPrTpx2, cPrTpx3);
@@ -5383,16 +6546,16 @@ void MainWindow::handleFreeShaker(void)
 
                                 switch(ui->wMeasuring1->getMethod())
                                 {
-                                case M_METHOD_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
+                                case M_METHOD_NEW_FREE1: cTmTest = ui->wMethodSetup->stdFree1.InjectTemp;
                                     break;
 
-                                case M_METHOD_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
+                                case M_METHOD_NEW_FREE2: cTmTest = ui->wMethodSetup->stdFree2.InjectTemp;
                                     break;
 
-                                case M_METHOD_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
+                                case M_METHOD_NEW_FREE3: cTmTest = ui->wMethodSetup->stdFree3.InjectTemp;
                                     break;
 
-                                case M_METHOD_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
+                                case M_METHOD_NEW_FREE4: cTmTest = ui->wMethodSetup->stdFree4.InjectTemp;
                                     break;
 
                                 default : cTmTest = 20.0;
@@ -5456,32 +6619,8 @@ void MainWindow::handleFreeShaker(void)
 
                             if(cStageTimeOut == 710)
                             {
-                                switch(ui->wMeasuring1->getMethod())
-                                {
-                                    case M_METHOD_FREE1:
-//                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE2:
-//                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE3:
-//                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE4:
-//                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-                                }
+                                if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
+                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                             }
 
                         }
@@ -5557,7 +6696,7 @@ void MainWindow::handleFreeShaker(void)
     }
 }
 
-void MainWindow::handleD5191SingleExpansion(void)
+void MainWindow::handleD5191RelatedSingleExpansion(void)
 {
     if(cStage <= 7 )
     {
@@ -5574,9 +6713,33 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.StageVolume)*100);
-//                            deltaVolume = 100 - cVolume;
-                            deltaVolume = 0;
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_EN_13016_1: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleEN_13016_1.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_GB_T_8017: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleGB_T_8017.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_394: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleIP_394.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SH_T_0794: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleSH_T_0794.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 100;
+                                            deltaVolume = 0;
+                                break;
+                            }
+
                             sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -5624,7 +6787,33 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-                            cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume)*100) - deltaVolume;
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D5191: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleD5191.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_EN_13016_1: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleEN_13016_1.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_GB_T_8017: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleGB_T_8017.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_394: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleIP_394.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SH_T_0794: cVolume = qRound((ui->wCalibrationSetup->cCalibSingleSH_T_0794.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 170 - deltaVolume;
+                                        deltaVolume = 0;
+                                break;
+                            }
+
                             sendPara(cProtocol.sendPistonPosition(cVolume), 12, 60);
 
                             if(ui->wServiceSetup->getDebug())
@@ -5648,28 +6837,8 @@ void MainWindow::handleD5191SingleExpansion(void)
                         cParasUpdated = false;
                         if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
-                            switch(ui->wMeasuring1->getMethod())
-                            {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree1.temperature;
-                                break;
-
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree2.temperature;
-                                break;
-
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree3.temperature;
-                                break;
-
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree4.temperature;
-                                break;
-
-                                default : cREqTime = 240;
-                                          cTmTest = 37.80;
-                                break;
-                            }
+                            cREqTime = 240;
+                            cTmTest = 37.80;
 
                             cTmTest = cTmTest + 2;
 
@@ -5708,28 +6877,8 @@ void MainWindow::handleD5191SingleExpansion(void)
 //                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
                         if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
-                            switch(ui->wMeasuring1->getMethod())
-                            {
-                                case M_METHOD_FREE1: cREqTime = ui->wMethodSetup->stdFree1.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree1.temperature;
-                                break;
-
-                                case M_METHOD_FREE2: cREqTime = ui->wMethodSetup->stdFree2.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree2.temperature;
-                                break;
-
-                                case M_METHOD_FREE3: cREqTime = ui->wMethodSetup->stdFree3.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree3.temperature;
-                                break;
-
-                                case M_METHOD_FREE4: cREqTime = ui->wMethodSetup->stdFree4.tpx1;
-                                                     cTmTest = ui->wMethodSetup->stdFree4.temperature;
-                                break;
-
-                                default : cREqTime = 240;
-                                          cTmTest = 37.80;
-                                break;
-                            }
+                            cREqTime = 240;
+                            cTmTest = 37.80;
 
                             int tc = cSettings.getTemperatureCount(cTmTest);
 
@@ -5782,7 +6931,17 @@ void MainWindow::handleD5191SingleExpansion(void)
                                 ui->imageCapture->move(20,900);
                                 ui->imageCapture->show();
 
-                                ui->wMeasuring1->showResultD5191Single(cPrTpx1);
+                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191)
+                                    ui->wMeasuring1->showResultD5191Single(cPrTpx1);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1)
+                                    ui->wMeasuring1->showResultEN_13016_1Single(cPrTpx1);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017)
+                                    ui->wMeasuring1->showResultGB_T_8017Single(cPrTpx1);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_IP_394)
+                                    ui->wMeasuring1->showResultIP_394Single(cPrTpx1);
+                                else
+                                    ui->wMeasuring1->showResultSH_T_0794Single(cPrTpx1);
+
                                 ui->wServiceSetup->incrementCount();
 
                                 sendPara( cProtocol.sendTemperature(cSettings.getTemperatureCount(20)),
@@ -5842,44 +7001,8 @@ void MainWindow::handleD5191SingleExpansion(void)
 
                             if(cStageTimeOut == 710)
                             {
-                                switch(ui->wMeasuring1->getMethod())
-                                {
-                                    case M_METHOD_D5191:
-//                                        if(ui->wMethodSetup->stdD5191.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_D6378:
-//                                        if(ui->wMethodSetup->stdD6378.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE1:
-//                                        if(ui->wMethodSetup->stdFree1.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE2:
-//                                        if(ui->wMethodSetup->stdFree2.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE3:
-//                                        if(ui->wMethodSetup->stdFree3.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-
-                                    case M_METHOD_FREE4:
-//                                        if(ui->wMethodSetup->stdFree4.alarm_enabled)
-                                        if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
-                                            onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
-                                    break;
-                                }
+                                if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
+                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
                             }
 
                         }
@@ -5955,6 +7078,598 @@ void MainWindow::handleD5191SingleExpansion(void)
     }
 }
 
+void MainWindow::handleD6378RelatedMethods()
+{
+    if(cStage <= 7 )
+    {
+        handleRinsing();
+    }
+    else
+    {
+
+        switch(cStage)
+        {
+            case 8:
+                    {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_IN)
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_EN_13016_2: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_2.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_409: cVolume = qRound((ui->wCalibrationSetup->cCalibIP409.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_JIS_K2258_2: cVolume = qRound((ui->wCalibrationSetup->cCalibJIS_K2258_2.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SH_T_0769: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0769.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SN_T_2932: cVolume = qRound((ui->wCalibrationSetup->cCalibSN_T_2932.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 100;
+                                            deltaVolume = 0;
+                                break;
+                            }
+
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_FILLING);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 9:
+                    {
+                        cParasUpdated = false;
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
+                                     10, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_CLOSE);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 10:
+                    {
+                        cParasUpdated = false;
+                        if(cValvePosition == M_VALVE_POSITION_CLOSED)
+                        {
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_EN_13016_2: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_2.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_409: cVolume = qRound((ui->wCalibrationSetup->cCalibIP409.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_JIS_K2258_2: cVolume = qRound((ui->wCalibrationSetup->cCalibJIS_K2258_2.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SH_T_0769: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0769.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_SN_T_2932: cVolume = qRound((ui->wCalibrationSetup->cCalibSN_T_2932.FirstVolume)*100) - deltaVolume;
+                                                    deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 170 - deltaVolume;
+                                        deltaVolume = 0;
+                                break;
+                            }
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 12, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_7_ML);
+
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 11:
+                    {
+                        cParasUpdated = false;
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            cREqTime = 180;
+                            cTmTest = 37.80;
+
+                            cTmTest = cTmTest+2;
+
+                            int tc = cSettings.getTemperatureCount(cTmTest);
+
+                            sendPara(cProtocol.sendTemperature(tc),
+                                     12, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+            case 12:
+                    {
+                        cParasUpdated = false;
+
+//                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+//                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+//                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            cREqTime = 180;
+                            cTmTest = 37.80;
+
+                            int tc = cSettings.getTemperatureCount(cTmTest);
+
+                            sendPara(cProtocol.sendTemperature(tc),
+                                     13, cREqTime + M_EQUILIBRIUM_TIME_OUT);
+
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+                    break;
+
+            case 13:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            ui->wMeasuring1->setLblMessage(tr("Measurement in progress \n Expansion 1/3"));
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx1= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_EN_13016_2: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_2.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_IP_409: cVolume = qRound((ui->wCalibrationSetup->cCalibIP409.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_JIS_K2258_2: cVolume = qRound((ui->wCalibrationSetup->cCalibJIS_K2258_2.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_SH_T_0769: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0769.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_SN_T_2932: cVolume = qRound((ui->wCalibrationSetup->cCalibSN_T_2932.SecondVolume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    default : cVolume = 250 - deltaVolume;
+                                                deltaVolume = 0;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 14, 60);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_2_5_ML);
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 14:
+                {
+                    cParasUpdated = false;
+
+                    if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                    {
+                        cREqTime = 60;
+
+                        cStage = 15;
+                        cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
+
+                        if(ui->wServiceSetup->getDebug())
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                        else
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+
+                        cEqTime = 0;
+                    }
+                    else
+                    {
+                        if(!cStageTimeOut)
+                        {
+                                setError(M_ERROR_PISTON_POSITION);
+                        }
+                        else cStageTimeOut--;
+                    }
+                }
+
+                    break;
+
+            case 15:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            ui->wMeasuring1->setLblMessage(tr("Measurement in progress \n Expansion 2/3"));
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx2= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_NEW_D6378: cVolume = qRound((ui->wCalibrationSetup->cCalibD6378.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_EN_13016_2: cVolume = qRound((ui->wCalibrationSetup->cCalibEN_13016_2.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_IP_409: cVolume = qRound((ui->wCalibrationSetup->cCalibIP409.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_JIS_K2258_2: cVolume = qRound((ui->wCalibrationSetup->cCalibJIS_K2258_2.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_SH_T_0769: cVolume = qRound((ui->wCalibrationSetup->cCalibSH_T_0769.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    case M_METHOD_SN_T_2932: cVolume = qRound((ui->wCalibrationSetup->cCalibSN_T_2932.ThirdVOlume)*100) - deltaVolume;
+                                                        deltaVolume = 0;
+                                    break;
+
+                                    default : cVolume = 500 - deltaVolume;
+                                                deltaVolume = 0;
+                                    break;
+                                }
+                                sendPara(cProtocol.sendPistonPosition(cVolume), 16, 60);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_5_ML);
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 16:
+                    {
+                        cParasUpdated = false;
+
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
+                        {
+                            cREqTime = 60;
+
+                            cStage = 17;
+                            cStageTimeOut = cREqTime + M_EQUILIBRIUM_TIME_OUT;
+                            ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime) + " Sec");
+                            cEqTime = 0;
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 17:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if( ( ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE )))
+                        {
+                            cEqTime++;
+
+                            ui->wMeasuring1->setLblMessage(tr("Measurement in progress \n Expansion 3/3"));
+
+                            if(cEqTime >= cREqTime)
+                            {
+                                cPrTpx3= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
+
+                                ui->wMeasuring1->setStatus("");
+
+                                ui->imageCapture->resize(167,25);
+                                ui->imageCapture->move(20,900);
+                                ui->imageCapture->show();
+
+                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6378)
+                                    ui->wMeasuring1->showResultD6378(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_2)
+                                    ui->wMeasuring1->showResultEN_13016_2(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_IP_409)
+                                    ui->wMeasuring1->showResultIP409(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_JIS_K2258_2)
+                                    ui->wMeasuring1->showResultJIS_K2258_2(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0769)
+                                    ui->wMeasuring1->showResultSH_T_0769(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else
+                                    ui->wMeasuring1->showResultFree(cPrTpx1, cPrTpx2, cPrTpx3);
+
+                                ui->wServiceSetup->incrementCount();
+
+                                cTmTest = 20.0;
+
+                                int tc = cSettings.getTemperatureCount(cTmTest);
+
+                                sendPara( cProtocol.sendTemperature(tc),
+                                         18, 60*12);
+
+                                if(ui->wServiceSetup->getDebug())
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                                else
+                                    ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
+
+                            }
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_FOR + QString::number(cREqTime-cEqTime) + " Sec");
+                        }
+                        else
+                        {
+                            cEqTime = 0;
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_WAITING_TEMPERATURE_STABILIZE + cSettings.getTemperature(cTmTest));
+                            else
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_TEMPERATURE_STABILIZING);
+                        }
+
+                        if(!cStageTimeOut)
+                        {
+                            setError(M_ERROR_TEMPERATURE);
+                        }
+                        else cStageTimeOut--;
+
+                    }
+
+                    break;
+
+            case 18:
+                    {
+                        cParasUpdated = false;
+
+                        double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
+
+                        if(((ctmp >= (cTmTest - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (cTmTest + M_TEMPERATURE_TOLERANCE))) && cStageTimeOut <=700)
+                        {
+                            sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
+                                     19, 60);
+
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_VALVE_EXHAUST);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                    setError(M_ERROR_TEMPERATURE);
+                            }
+                            else cStageTimeOut--;
+
+                            if(cStageTimeOut == 710)
+                            {
+                                if(ui->wUserSetup->user_setup.alarm_buzzer_enable)
+                                    onSendCommand(cProtocol.sendAlertBuzzer(M_BUZZER_START));
+                            }
+
+                        }
+                    }
+
+                    break;
+
+            case 19:
+                    {
+                        cParasUpdated = false;
+
+                        if(cValvePosition == M_VALVE_POSITION_EXHAUST)
+                        {
+                            sendPara(cProtocol.sendPistonPosition(0), 20, 60);
+                            if(ui->wServiceSetup->getDebug())
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_0_ML);
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_VALVE_MOTOR);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+
+            case 20:
+                    {
+                        cParasUpdated = false;
+
+                        if(cPistonPosition == 0)
+                        {
+                            //cStage = 0;
+                            qDebug() << "TMO Reset";
+                            cStage = -1; //0;
+                            cIdleTimeout = 0;
+
+                            if(ui->wServiceSetup->getContinuousRunEnabled())
+                            {
+                                ui->wMeasuring1->hideResult();
+                                onRunClicked(MS_TEST_RUN, false);
+                            }
+                            else
+                            {
+                                cAutoCycles++;
+
+                                if(cAutoCycles < ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1)
+                                {
+                                    ui->wMeasuring1->setAutoCount(cAutoCycles + 1, ui->wGeneralSetup->general_setup.auto_measuring_cycle + 1);
+
+                                    ui->wMeasuring1->hideResult();
+                                    onRunClicked(MS_TEST_RUN, false);
+                                }
+                                else
+                                    ui->wMeasuring1->setStatus("");
+                            }
+                        }
+                        else
+                        {
+                            if(!cStageTimeOut)
+                            {
+                                setError(M_ERROR_PISTON_POSITION);
+                            }
+                            else cStageTimeOut--;
+                        }
+                    }
+
+                    break;
+        }
+    }
+}
 
 void MainWindow::handleDiagnostic()
 {
@@ -6966,7 +8681,7 @@ void MainWindow::handleD5188(void)
     }
 }
 
-void MainWindow::handleD6377(void)
+void MainWindow::handleD6377Related(void)
 {
 
     if( cStage <= 7 )
@@ -6983,10 +8698,22 @@ void MainWindow::handleD6377(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_IN)
                         {
-                            int stageVol = (int)((ui->wCalibrationSetup->cCalibD6377.StageVolume)*100);
-//                            deltaVolume = 100 - stageVol;
-                            deltaVolume = 0;
-                            sendPara(cProtocol.sendPistonPosition(stageVol), 9, 60);
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6377: cVolume = qRound((ui->wCalibrationSetup->cCalibD6377.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_481: cVolume = qRound((ui->wCalibrationSetup->cCalibIP_481.StageVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 100;
+                                            deltaVolume = 0;
+                                break;
+                            }
+
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 9, 60);
 
                             if(ui->wServiceSetup->getDebug())
                                 ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON_1_ML);
@@ -7009,9 +8736,7 @@ void MainWindow::handleD6377(void)
                     {
                         cParasUpdated = false;
 
-                        int stageVol = (int)((ui->wCalibrationSetup->cCalibD6377.StageVolume)*100);
-
-                        if((cPistonPosition <= stageVol+M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= stageVol-M_PISTON_POSITION_TOLERANCE))
+                        if((cPistonPosition <= cVolume+M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume-M_PISTON_POSITION_TOLERANCE))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_CLOSED),
                                      10, 60);
@@ -7036,19 +8761,25 @@ void MainWindow::handleD6377(void)
                         cParasUpdated = false;
                         if(cValvePosition == M_VALVE_POSITION_CLOSED)
                         {
-//                            int vl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
-//                            int vl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
-//                            int vl = static_cast<int>(std::round((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100));
-                            int vl = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100) - deltaVolume;
-//                            deltaVolume = 500 - vl;
-                            deltaVolume = 0;
-                            qDebug()<<"(ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
-                            qDebug()<<"(int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100): "<<(int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
-                            qDebug()<<"vl = (int)((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100); value: "<<vl;
-                            sendPara(cProtocol.sendPistonPosition(vl), 11, 60);
+                            switch(ui->wMeasuring1->getMethod())
+                            {
+                                case M_METHOD_NEW_D6377: cVolume = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                case M_METHOD_IP_481: cVolume = qRound((ui->wCalibrationSetup->cCalibIP_481.FirstVolume)*100);
+                                                        deltaVolume = 0;
+                                break;
+
+                                default : cVolume = 500;
+                                            deltaVolume = 0;
+                                break;
+                            }
+
+                            sendPara(cProtocol.sendPistonPosition(cVolume), 11, 60);
 
                             if(ui->wServiceSetup->getDebug())
-                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON + QString::number(vl/100, 'f', 2) + " ml");
+                                ui->wMeasuring1->setStatus(STRING_MEASURING_MOVING_PISTON + QString::number(cVolume/100, 'f', 2) + " ml");
 
                         }
                         else
@@ -7223,7 +8954,10 @@ void MainWindow::handleD6377(void)
                             ui->imageCapture->move(20,900);
                             ui->imageCapture->show();
 
-                            ui->wMeasuring1->showResultD6377(cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure));
+                            if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D6377)
+                                ui->wMeasuring1->showResultD6377(cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure));
+                            else
+                                ui->wMeasuring1->showResultIP_481(cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure));
                             ui->wServiceSetup->incrementCount();
 
                             sendPara(cProtocol.sendShakerSpeed( 0, 0), 16, 60);
@@ -8106,6 +9840,12 @@ void MainWindow::onD6377VlRatio(double vl){
     qDebug()<<"Updating D6377 vl_ratio";
     ui->wCalibrationSetup->on_D6377_Vl_ration(vl, false);
     ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+}
+
+void MainWindow::onIP_481VlRatio(double vl){
+    qDebug()<<"Updating IP_481 vl_ratio";
+    ui->wCalibrationSetup->on_IP_481_Vl_ration(vl, false);
+    ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
 }
 
 void MainWindow::on_imageCapture_clicked()

@@ -1077,9 +1077,9 @@ void sService::on_pbFWUpdate_clicked()
 
     QFile::remove(fname2);  //24-May-2022
 
-//    QString methodSetupPath = QApplication::applicationDirPath() + FN_METHOD_SETUP;
+    QString methodSetupPath = QApplication::applicationDirPath() + FN_METHOD_SETUP;
 //    QString generalSetupPath = QApplication::applicationDirPath() + FN_GENERAL_SETUP;
-//    QString userSetupPath = QApplication::applicationDirPath() + FN_USER_SETUP;
+    QString VolAjusPath = QApplication::applicationDirPath() + FN_METHOD_VOLUME_SETUP;
 
     if(QFile::copy( fname1, fname2))
     {
@@ -1089,9 +1089,9 @@ void sService::on_pbFWUpdate_clicked()
         QFileInfo fi(fname2);
 
         if(fi.size()){
-//            QFile::remove(methodSetupPath);
+            QFile::remove(methodSetupPath);
 //            QFile::remove(generalSetupPath);
-//            QFile::remove(userSetupPath);
+            QFile::remove(VolAjusPath);
             emit showMsgBox(tr("Service Setup"), tr("Firmware Copied\nRestart Machine to reflect changes!"));
         }
         else

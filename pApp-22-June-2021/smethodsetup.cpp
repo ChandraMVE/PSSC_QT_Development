@@ -190,6 +190,52 @@ void sMethodSetup::setD6378(const QStringList tmp)
     qslD6378 = tmp;
 }
 
+void sMethodSetup::setEN_13016_1(const QStringList tmp)
+{
+    qslEN_13016_1 = tmp;
+}
+
+void sMethodSetup::setEN_13016_2(const QStringList tmp)
+{
+    qslEN_13016_2 = tmp;
+}
+
+void sMethodSetup::setGB_T_8017(const QStringList tmp)
+{
+    qslGB_T_8017 = tmp;
+}
+
+void sMethodSetup::setIP_394(const QStringList tmp)
+{
+    qslIP_394 = tmp;
+}
+
+void sMethodSetup::setIP_409(const QStringList tmp)
+{
+    qslIP_409 = tmp;
+}
+
+void sMethodSetup::setJIS_K2258_2(const QStringList tmp)
+{
+    qslJIS_K2258_2 = tmp;
+}
+
+void sMethodSetup::setSH_T_0769(const QStringList tmp)
+{
+    qslSH_T_0769 = tmp;
+}
+
+void sMethodSetup::setSH_T_0794(const QStringList tmp)
+{
+    qslSH_T_0794 = tmp;
+}
+
+void sMethodSetup::setSN_T_2932(const QStringList tmp)
+{
+    qslSN_T_2932 = tmp;
+}
+
+
 void sMethodSetup::setFree1(const QStringList tmp)
 {
     qslFree1 = tmp;
@@ -212,8 +258,8 @@ void sMethodSetup::setFree4(const QStringList tmp)
 
 void sMethodSetup::Show()
 {
-    cPrevMethod = M_METHOD_D5191;
-    ui->cbMethod->setCurrentIndex(M_METHOD_D5191);
+    cPrevMethod = M_METHOD_NEW_D5191;
+    ui->cbMethod->setCurrentIndex(M_METHOD_NEW_D5191);
     showD5191();
     this->show();
 }
@@ -221,15 +267,49 @@ void sMethodSetup::Show()
 void sMethodSetup::setDefaults()
 {
     stdD5191.formula = DEFAULT_D5191_FORMULA;
-//    stdD5191.InjectTemp = DEFAULT_D5191_INJECT_TMP;
     stdD5191.temperature = DEFAULT_D5191_TEMPERATURE;
     stdD5191.time = DEFAULT_D5191_TIME;
     stdD5191.vl_ratio = DEFAULT_D5191_VL_RATIO;
     stdD5191.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
     stdD5191.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
-//    stdD5191.alarm_enabled = DEFAULT_D5191_ALARM_ENABLED;
     stdD5191.from = DEFAULT_D5191_FROM;
     stdD5191.to = DEFAULT_D5191_TO;
+
+    stdEN_13016_1.formula = DEFAULT_D5191_FORMULA;
+    stdEN_13016_1.temperature = DEFAULT_D5191_TEMPERATURE;
+    stdEN_13016_1.time = DEFAULT_D5191_TIME;
+    stdEN_13016_1.vl_ratio = DEFAULT_D5191_VL_RATIO;
+    stdEN_13016_1.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
+    stdEN_13016_1.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
+    stdEN_13016_1.from = DEFAULT_D5191_FROM;
+    stdEN_13016_1.to = DEFAULT_D5191_TO;
+
+    stdGB_T_8017.formula = DEFAULT_D5191_FORMULA;
+    stdGB_T_8017.temperature = DEFAULT_D5191_TEMPERATURE;
+    stdGB_T_8017.time = DEFAULT_D5191_TIME;
+    stdGB_T_8017.vl_ratio = DEFAULT_D5191_VL_RATIO;
+    stdGB_T_8017.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
+    stdGB_T_8017.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
+    stdGB_T_8017.from = DEFAULT_D5191_FROM;
+    stdGB_T_8017.to = DEFAULT_D5191_TO;
+
+    stdIP_394.formula = DEFAULT_D5191_FORMULA;
+    stdIP_394.temperature = DEFAULT_D5191_TEMPERATURE;
+    stdIP_394.time = DEFAULT_D5191_TIME;
+    stdIP_394.vl_ratio = DEFAULT_D5191_VL_RATIO;
+    stdIP_394.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
+    stdIP_394.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
+    stdIP_394.from = DEFAULT_D5191_FROM;
+    stdIP_394.to = DEFAULT_D5191_TO;
+
+    stdSH_T_0794.formula = DEFAULT_D5191_FORMULA;
+    stdSH_T_0794.temperature = DEFAULT_D5191_TEMPERATURE;
+    stdSH_T_0794.time = DEFAULT_D5191_TIME;
+    stdSH_T_0794.vl_ratio = DEFAULT_D5191_VL_RATIO;
+    stdSH_T_0794.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
+    stdSH_T_0794.passfail_enabled = DEFAULT_D5191_PASS_FAIL_ENABLED;
+    stdSH_T_0794.from = DEFAULT_D5191_FROM;
+    stdSH_T_0794.to = DEFAULT_D5191_TO;
 
     stdD6377.InjectTemp = DEFAULT_D6377_INJECT_TMP;
     stdD6377.temperature = DEFAULT_D6377_TEMPERATURE;
@@ -237,19 +317,65 @@ void sMethodSetup::setDefaults()
     stdD6377.vl_ratio = DEFAULT_D6377_VL_RATIO;
     stdD6377.shaker_speed = DEFAULT_D5188_SHAKER_SPEED * (60);
     stdD6377.passfail_enabled = DEFAULT_D6377_PASS_FAIL_ENABLED;
-//    stdD6377.alarm_enabled = DEFAULT_D6377_ALARM_ENABLED;
     stdD6377.from = DEFAULT_D6377_FROM;
     stdD6377.to = DEFAULT_D6377_TO;
 
+    stdIP_481.InjectTemp = DEFAULT_D6377_INJECT_TMP;
+    stdIP_481.temperature = DEFAULT_D6377_TEMPERATURE;
+    stdIP_481.time = DEFAULT_D6377_TIME;
+    stdIP_481.vl_ratio = DEFAULT_D6377_VL_RATIO;
+    stdIP_481.shaker_speed = DEFAULT_D5188_SHAKER_SPEED * (60);
+    stdIP_481.passfail_enabled = DEFAULT_D6377_PASS_FAIL_ENABLED;
+    stdIP_481.from = DEFAULT_D6377_FROM;
+    stdIP_481.to = DEFAULT_D6377_TO;
+
     stdD6378.formula = DEFAULT_D6378_FORMULA;
-//    stdD6378.InjectTemp = DEFAULT_D6378_INJECT_TMP;
     stdD6378.temperature = DEFAULT_D6378_TEMPERATURE;
     stdD6378.time = DEFAULT_D6378_TIME;
     stdD6378.vl_ratio = DEFAULT_D6378_VL_RATIO;
     stdD6378.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
-//    stdD6378.alarm_enabled = DEFAULT_D6378_ALARM_ENABLED;
     stdD6378.from = DEFAULT_D6378_FROM;
     stdD6378.to = DEFAULT_D6378_TO;
+
+    stdEN_13016_2.formula = DEFAULT_D6378_FORMULA;
+    stdEN_13016_2.temperature = DEFAULT_D6378_TEMPERATURE;
+    stdEN_13016_2.time = DEFAULT_D6378_TIME;
+    stdEN_13016_2.vl_ratio = DEFAULT_D6378_VL_RATIO;
+    stdEN_13016_2.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
+    stdEN_13016_2.from = DEFAULT_D6378_FROM;
+    stdEN_13016_2.to = DEFAULT_D6378_TO;
+
+    stdIP409.formula = DEFAULT_D6378_FORMULA;
+    stdIP409.temperature = DEFAULT_D6378_TEMPERATURE;
+    stdIP409.time = DEFAULT_D6378_TIME;
+    stdIP409.vl_ratio = DEFAULT_D6378_VL_RATIO;
+    stdIP409.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
+    stdIP409.from = DEFAULT_D6378_FROM;
+    stdIP409.to = DEFAULT_D6378_TO;
+
+    stdJIS_K2258_2.formula = DEFAULT_D6378_FORMULA;
+    stdJIS_K2258_2.temperature = DEFAULT_D6378_TEMPERATURE;
+    stdJIS_K2258_2.time = DEFAULT_D6378_TIME;
+    stdJIS_K2258_2.vl_ratio = DEFAULT_D6378_VL_RATIO;
+    stdJIS_K2258_2.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
+    stdJIS_K2258_2.from = DEFAULT_D6378_FROM;
+    stdJIS_K2258_2.to = DEFAULT_D6378_TO;
+
+    stdSH_T_0769.formula = DEFAULT_D6378_FORMULA;
+    stdSH_T_0769.temperature = DEFAULT_D6378_TEMPERATURE;
+    stdSH_T_0769.time = DEFAULT_D6378_TIME;
+    stdSH_T_0769.vl_ratio = DEFAULT_D6378_VL_RATIO;
+    stdSH_T_0769.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
+    stdSH_T_0769.from = DEFAULT_D6378_FROM;
+    stdSH_T_0769.to = DEFAULT_D6378_TO;
+
+    stdSN_T_2932.formula = DEFAULT_D6378_FORMULA;
+    stdSN_T_2932.temperature = DEFAULT_D6378_TEMPERATURE;
+    stdSN_T_2932.time = DEFAULT_D6378_TIME;
+    stdSN_T_2932.vl_ratio = DEFAULT_D6378_VL_RATIO;
+    stdSN_T_2932.passfail_enabled = DEFAULT_D6378_PASS_FAIL_ENABLED;
+    stdSN_T_2932.from = DEFAULT_D6378_FROM;
+    stdSN_T_2932.to = DEFAULT_D6378_TO;
 
     stdD5188.pressure = DEFAULT_D5188_PRESSURE;
     stdD5188.vl_ratio = DEFAULT_D5188_VL_RATIO;
@@ -323,49 +449,6 @@ void sMethodSetup::setDefaults()
     stdFree4.from = DEFAULT_FREE_FROM;
     stdFree4.to = DEFAULT_FREE_TO;
 
-    /*methodVolumes.MD5191.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MD5191.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MD5191.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MD5191.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-    methodVolumes.MD5191.single_expansion = DEFAULT_D5191_SINGLE_EXPAN_ENABLED;
-
-    methodVolumes.MD6377.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MD6377.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MD6377.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MD6377.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    methodVolumes.MD6378.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MD6378.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MD6378.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MD6378.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    methodVolumes.MD5188.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MD5188.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MD5188.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MD5188.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    methodVolumes.MFree1.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MFree1.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MFree1.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MFree1.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    methodVolumes.MFree2.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MFree2.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MFree2.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MFree2.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    methodVolumes.MFree3.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MFree3.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MFree3.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MFree3.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    methodVolumes.MFree4.StageVolume = DEFAULT_STAGE_VOLUME;
-    methodVolumes.MFree4.FirstVolume = DEFAULT_FIRST_VOLUME;
-    methodVolumes.MFree4.SecondVolume = DEFAULT_SECOND_VOLUME;
-    methodVolumes.MFree4.ThirdVOlume = DEFAULT_THIRD_VOLUME;
-
-    emit methodVolumesDefault(methodVolumes);*/
-
     cParasChanged = true;
 }
 
@@ -388,6 +471,17 @@ bool sMethodSetup::readFile()
         in.read((char *)&stdFree2, sizeof(stdFree2));
         in.read((char *)&stdFree3, sizeof(stdFree3));
         in.read((char *)&stdFree4, sizeof(stdFree3));
+
+        in.read((char *)&stdEN_13016_1, sizeof(stdEN_13016_1));
+        in.read((char *)&stdEN_13016_2, sizeof(stdEN_13016_2));
+        in.read((char *)&stdGB_T_8017, sizeof(stdGB_T_8017));
+        in.read((char *)&stdIP_394, sizeof(stdIP_394));
+        in.read((char *)&stdIP409, sizeof(stdIP409));
+        in.read((char *)&stdIP_481, sizeof(stdIP_481));
+        in.read((char *)&stdJIS_K2258_2, sizeof(stdJIS_K2258_2));
+        in.read((char *)&stdSH_T_0769, sizeof(stdSH_T_0769));
+        in.read((char *)&stdSH_T_0794, sizeof(stdSH_T_0794));
+        in.read((char *)&stdSN_T_2932, sizeof(stdSN_T_2932));
 
         in.close();
 
@@ -421,6 +515,17 @@ void sMethodSetup::saveFile()
         out.write((char *)&stdFree2, sizeof(stdFree2));
         out.write((char *)&stdFree3, sizeof(stdFree3));
         out.write((char *)&stdFree4, sizeof(stdFree4));
+
+        out.write((char *)&stdEN_13016_1, sizeof(stdEN_13016_1));
+        out.write((char *)&stdEN_13016_2, sizeof(stdEN_13016_2));
+        out.write((char *)&stdGB_T_8017, sizeof(stdGB_T_8017));
+        out.write((char *)&stdIP_394, sizeof(stdIP_394));
+        out.write((char *)&stdIP409, sizeof(stdIP409));
+        out.write((char *)&stdIP_481, sizeof(stdIP_481));
+        out.write((char *)&stdJIS_K2258_2, sizeof(stdJIS_K2258_2));
+        out.write((char *)&stdSH_T_0769, sizeof(stdSH_T_0769));
+        out.write((char *)&stdSH_T_0794, sizeof(stdSH_T_0794));
+        out.write((char *)&stdSN_T_2932, sizeof(stdSN_T_2932));
 
         out.close();
         cParasChanged = false;
@@ -740,6 +845,1084 @@ void sMethodSetup::showD6378()
 
     ui->cbEnable->setChecked(stdD6378.passfail_enabled);
 //    ui->cbAlarmEnable->setChecked(stdD6378.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+
+}
+
+void sMethodSetup::showEN_13016_1(){
+    ui->cbFormula->clear();
+
+    {
+
+        qslEN_13016_1.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaEN_13016_1aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaEN_13016_1bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaEN_13016_1cConstant->at(0).toDouble());
+
+        qslEN_13016_1.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_1aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_1bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaEN_13016_1cConstant->at(1).toDouble());
+
+        qslEN_13016_1.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_1aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_1bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaEN_13016_1cConstant->at(2).toDouble());
+
+        qslEN_13016_1.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslEN_13016_1);
+    ui->cbFormula->setCurrentIndex(stdEN_13016_1.formula);
+
+    ui->gbConstants->hide();
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdEN_13016_1.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdEN_13016_1.time));
+    ui->lePara2->move(310,90);
+
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdEN_13016_1.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+    ui->lePara3->show();
+    ui->lblPara3->show();
+
+    ui->cbSingleExpEnable->setChecked(stdEN_13016_1.single_expansion);
+    ui->cbSingleExpEnable->move(445, 230);
+    ui->lblPara5->move(20,230);
+
+    ui->cbSingleExpEnable->show();
+    ui->lblPara5->show();
+
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+    ui->frPara1->resize(660,350);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdEN_13016_1.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdEN_13016_1.to));
+
+    ui->cbEnable->setChecked(stdEN_13016_1.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdEN_13016_1.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+}
+
+void sMethodSetup::showEN_13016_2(){
+    ui->gbConstants->hide();
+    ui->cbFormula->clear();
+
+    {
+
+        qslEN_13016_2.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaEN_13016_2aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaEN_13016_2bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaEN_13016_2cConstant->at(0).toDouble());
+
+        qslEN_13016_2.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_2aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_2bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaEN_13016_2cConstant->at(1).toDouble());
+
+        qslEN_13016_2.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_2aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaEN_13016_2bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaEN_13016_2cConstant->at(2).toDouble());
+
+        qslEN_13016_2.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslEN_13016_2);
+    ui->cbFormula->setCurrentIndex(stdEN_13016_2.formula);
+
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdEN_13016_2.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdEN_13016_2.time));
+    ui->lePara2->move(310,90);
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdEN_13016_2.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+
+    ui->lblPara3->show();
+    ui->lePara3->show();
+
+    ui->frPara1->resize(660,250);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdEN_13016_2.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdEN_13016_2.to));
+
+    ui->cbEnable->setChecked(stdEN_13016_2.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdEN_13016_2.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+
+}
+
+void sMethodSetup::showGB_T_8017(){
+    ui->cbFormula->clear();
+
+    {
+
+        qslGB_T_8017.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaGB_T_8017aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaGB_T_8017bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaGB_T_8017cConstant->at(0).toDouble());
+
+        qslGB_T_8017.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaGB_T_8017aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaGB_T_8017bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaGB_T_8017cConstant->at(1).toDouble());
+
+        qslGB_T_8017.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaGB_T_8017aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaGB_T_8017bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaGB_T_8017cConstant->at(2).toDouble());
+
+        qslGB_T_8017.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslGB_T_8017);
+    ui->cbFormula->setCurrentIndex(stdGB_T_8017.formula);
+
+    ui->gbConstants->hide();
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdGB_T_8017.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdGB_T_8017.time));
+    ui->lePara2->move(310,90);
+
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdGB_T_8017.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+    ui->lePara3->show();
+    ui->lblPara3->show();
+
+    ui->cbSingleExpEnable->setChecked(stdGB_T_8017.single_expansion);
+    ui->cbSingleExpEnable->move(445, 230);
+    ui->lblPara5->move(20,230);
+
+    ui->cbSingleExpEnable->show();
+    ui->lblPara5->show();
+
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+    ui->frPara1->resize(660,350);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdGB_T_8017.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdGB_T_8017.to));
+
+    ui->cbEnable->setChecked(stdGB_T_8017.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdGB_T_8017.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+}
+
+void sMethodSetup::showIP_394(){
+    ui->cbFormula->clear();
+
+    {
+
+        qslIP_394.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaIP_394aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaIP_394bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaIP_394cConstant->at(0).toDouble());
+
+        qslIP_394.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_394aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_394bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaIP_394cConstant->at(1).toDouble());
+
+        qslIP_394.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_394aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_394bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaIP_394cConstant->at(2).toDouble());
+
+        qslIP_394.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslIP_394);
+    ui->cbFormula->setCurrentIndex(stdIP_394.formula);
+
+    ui->gbConstants->hide();
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdIP_394.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdIP_394.time));
+    ui->lePara2->move(310,90);
+
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdIP_394.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+    ui->lePara3->show();
+    ui->lblPara3->show();
+
+    ui->cbSingleExpEnable->setChecked(stdIP_394.single_expansion);
+    ui->cbSingleExpEnable->move(445, 230);
+    ui->lblPara5->move(20,230);
+
+    ui->cbSingleExpEnable->show();
+    ui->lblPara5->show();
+
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+    ui->frPara1->resize(660,350);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdIP_394.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdIP_394.to));
+
+    ui->cbEnable->setChecked(stdIP_394.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdIP_394.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+}
+
+void sMethodSetup::showIP_409(){
+    ui->gbConstants->hide();
+    ui->cbFormula->clear();
+
+    {
+
+        qslIP_409.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaIP_409aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaIP_409bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaIP_409cConstant->at(0).toDouble());
+
+        qslIP_409.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_409aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_409bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaIP_409cConstant->at(1).toDouble());
+
+        qslIP_409.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_409aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaIP_409bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaIP_409cConstant->at(2).toDouble());
+
+        qslIP_409.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslIP_409);
+    ui->cbFormula->setCurrentIndex(stdIP409.formula);
+
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdIP409.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdIP409.time));
+    ui->lePara2->move(310,90);
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdIP409.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+
+    ui->lblPara3->show();
+    ui->lePara3->show();
+
+    ui->frPara1->resize(660,250);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdIP409.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdIP409.to));
+
+    ui->cbEnable->setChecked(stdIP409.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdIP409.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+
+}
+
+void sMethodSetup::showIP_481(){
+    ui->gbConstants->hide();
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Measuring Temp."));
+    ui->lblPara1->move(20,90);
+
+    dvInjectPara6->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                            cSettings.getTemperatureMS(stdIP_481.temperature).toDouble(),
+                            METHOD_TEMPERATURE_DP);
+    ui->leInjectPara6->setText(cSettings.getTemperatureMS(stdIP_481.InjectTemp));
+    ui->lblPara1_2->move(20,20);
+    ui->leInjectPara6->move(310,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdIP_481.temperature));
+    ui->lePara1->move(310,90);
+
+    ui->lePara1->setReadOnly(false);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,160);
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdIP_481.time));
+    ui->lePara2->move(310,160);
+
+    ui->lePara2->setReadOnly(false);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,230);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdIP_481.vl_ratio));
+    ui->lePara3->move(310,230);
+    ui->lePara3->setReadOnly(false);
+
+    ui->lePara3->show();
+    ui->lblPara3->show();
+    ui->frPara1->resize(660,420);
+
+    qDebug()<<"stdIP_481.shaker_speed: "<<stdIP_481.shaker_speed;
+    double D6377ShakerSpeed = (double)(stdIP_481.shaker_speed/(60.0));
+    qDebug()<<"stdIP_481 ShakerSpeed: "<<D6377ShakerSpeed;
+    dvPara4->setRange(METHOD_SHAKER_SPEED_MIN, METHOD_SHAKER_SPEED_MAX, METHOD_SHAKER_SPEED_DP);
+    ui->lePara4->setText(cSettings.getShakerSpeed(D6377ShakerSpeed));
+
+    ui->lblPara4->show();
+    ui->lePara4->show();
+
+    ui->lblPara1_2->show();
+    ui->leInjectPara6->show();
+
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D6377_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6377_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdIP_481.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D6377_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6377_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdIP_481.to));
+
+    ui->cbEnable->setChecked(stdIP_481.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdIP_481.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+
+}
+
+void sMethodSetup::showJIS_K2258_2(){
+    ui->gbConstants->hide();
+    ui->cbFormula->clear();
+
+    {
+
+        qslJIS_K2258_2.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaJIS_K2258_2aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaJIS_K2258_2bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaJIS_K2258_2cConstant->at(0).toDouble());
+
+        qslJIS_K2258_2.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaJIS_K2258_2aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaJIS_K2258_2bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaJIS_K2258_2cConstant->at(1).toDouble());
+
+        qslJIS_K2258_2.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaJIS_K2258_2aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaJIS_K2258_2bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaJIS_K2258_2cConstant->at(2).toDouble());
+
+        qslJIS_K2258_2.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslJIS_K2258_2);
+    ui->cbFormula->setCurrentIndex(stdJIS_K2258_2.formula);
+
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdJIS_K2258_2.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdJIS_K2258_2.time));
+    ui->lePara2->move(310,90);
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdJIS_K2258_2.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+
+    ui->lblPara3->show();
+    ui->lePara3->show();
+
+    ui->frPara1->resize(660,250);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdJIS_K2258_2.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdJIS_K2258_2.to));
+
+    ui->cbEnable->setChecked(stdJIS_K2258_2.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdJIS_K2258_2.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+
+}
+
+void sMethodSetup::showSH_T_0769(){
+    ui->gbConstants->hide();
+    ui->cbFormula->clear();
+
+    {
+
+        qslSH_T_0769.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaSH_T_0769aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaSH_T_0769bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaSH_T_0769cConstant->at(0).toDouble());
+
+        qslSH_T_0769.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0769aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0769bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaSH_T_0769cConstant->at(1).toDouble());
+
+        qslSH_T_0769.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0769aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0769bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaSH_T_0769cConstant->at(2).toDouble());
+
+        qslSH_T_0769.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslSH_T_0769);
+    ui->cbFormula->setCurrentIndex(stdSH_T_0769.formula);
+
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdSH_T_0769.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdSH_T_0769.time));
+    ui->lePara2->move(310,90);
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdSH_T_0769.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+
+    ui->lblPara3->show();
+    ui->lePara3->show();
+
+    ui->frPara1->resize(660,250);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdSH_T_0769.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdSH_T_0769.to));
+
+    ui->cbEnable->setChecked(stdSH_T_0769.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdSH_T_0769.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+
+}
+
+void sMethodSetup::showSH_T_0794(){
+    ui->cbFormula->clear();
+
+    {
+
+        qslSH_T_0794.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaSH_T_0794aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaSH_T_0794bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaSH_T_0794cConstant->at(0).toDouble());
+
+        qslSH_T_0794.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0794aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0794bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaSH_T_0794cConstant->at(1).toDouble());
+
+        qslSH_T_0794.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0794aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSH_T_0794bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaSH_T_0794cConstant->at(2).toDouble());
+
+        qslSH_T_0794.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslSH_T_0794);
+    ui->cbFormula->setCurrentIndex(stdSH_T_0794.formula);
+
+    ui->gbConstants->hide();
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdSH_T_0794.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdSH_T_0794.time));
+    ui->lePara2->move(310,90);
+
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdSH_T_0794.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+    ui->lePara3->show();
+    ui->lblPara3->show();
+
+    ui->cbSingleExpEnable->setChecked(stdSH_T_0794.single_expansion);
+    ui->cbSingleExpEnable->move(445, 230);
+    ui->lblPara5->move(20,230);
+
+    ui->cbSingleExpEnable->show();
+    ui->lblPara5->show();
+
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+    ui->frPara1->resize(660,350);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdSH_T_0794.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D5191_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D5191_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdSH_T_0794.to));
+
+    ui->cbEnable->setChecked(stdSH_T_0794.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdSH_T_0794.alarm_enabled);
+
+    ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
+    ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
+//    ui->cbAlarmEnable->setEnabled(ui->cbEnable->isChecked());
+}
+
+void sMethodSetup::showSN_T_2932(){
+    ui->gbConstants->hide();
+    ui->cbFormula->clear();
+
+    {
+
+        qslSN_T_2932.clear();
+
+        QString str = "ASTM = " +
+           cSettings.getFormulaConstantsAB(qslFormulaSN_T_2932aConstant->at(0).toDouble()) +
+           " x Ptot - " +
+           cSettings.getFormulaConstantsAB(qslFormulaSN_T_2932bConstant->at(0).toDouble()) +
+           " x Pgas - " +
+           cSettings.getPressureNMS(qslFormulaSN_T_2932cConstant->at(0).toDouble());
+
+        qslSN_T_2932.insert(0, str);
+
+        str = "EPA = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSN_T_2932aConstant->at(1).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSN_T_2932bConstant->at(1).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaSN_T_2932cConstant->at(1).toDouble());
+
+        qslSN_T_2932.insert(1, str);
+
+        str = "CARB = " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSN_T_2932aConstant->at(2).toDouble()) +
+                   " x Ptot - " +
+                   cSettings.getFormulaConstantsAB(qslFormulaSN_T_2932bConstant->at(2).toDouble()) +
+                   " x Pgas - " +
+                   cSettings.getPressureNMS(qslFormulaSN_T_2932cConstant->at(2).toDouble());
+
+        qslSN_T_2932.insert(2, str);
+
+    }
+
+    ui->cbFormula->insertItems(0, qslSN_T_2932);
+    ui->cbFormula->setCurrentIndex(stdSN_T_2932.formula);
+
+    ui->twMethodSetup->clear();
+    ui->twMethodSetup->insertTab(0, cWidgetFormula, cStringFormula);
+    ui->twMethodSetup->insertTab(1, cWidgetStdParas, cStringStdParas);
+    ui->twMethodSetup->insertTab(2, cWidgetPassFail, cStringPassFail);
+    ui->twMethodSetup->setCurrentIndex(0);
+
+    ui->lblPara1->setText(tr("Temperature"));
+    ui->lblPara1->move(20,20);
+
+    dvPara1->setRange(cSettings.getTemperatureMS(METHOD_TEMPERATURE_MIN).toDouble(),
+                      cSettings.getTemperatureMS(METHOD_TEMPERATURE_MAX).toDouble(),
+                      METHOD_TEMPERATURE_DP);
+
+    ui->lePara1->setText(cSettings.getTemperatureMS(stdSN_T_2932.temperature));
+    ui->lePara1->move(310,20);
+
+    ui->lePara1->setReadOnly(true);
+    ui->lblPara2->setText(tr("Time"));
+    ui->lblPara2->move(20,90);
+
+    dvPara2->setRange(METHOD_TIME_MIN, METHOD_TIME_MAX,
+                      METHOD_TIME_DP);
+    ui->lePara2->setText(cSettings.getTestTime(stdSN_T_2932.time));
+    ui->lePara2->move(310,90);
+    ui->lePara2->setReadOnly(true);
+    ui->lblPara3->setText(tr("V/L Ratio"));
+    ui->lblPara3->move(20,160);
+
+    dvPara3->setRange(METHOD_VLRATIO_MIN, METHOD_VLRATIO_MAX,
+                      METHOD_VLRATIO_DP);
+
+    ui->lePara3->setText(cSettings.getVLRatio(stdSN_T_2932.vl_ratio));
+    ui->lePara3->move(310,160);
+    ui->lePara3->setReadOnly(true);
+
+    ui->lblPara3->show();
+    ui->lePara3->show();
+
+    ui->frPara1->resize(660,250);
+    ui->lblPara4->hide();
+    ui->lePara4->hide();
+    ui->lblPara5->hide();
+    ui->cbSingleExpEnable->hide();
+    ui->lblPara1_2->hide();
+    ui->leInjectPara6->hide();
+
+    ui->gbRange->setTitle(tr("\"Pass\" Range P"));
+
+    dvFrom->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPFrom->setText(cSettings.getPressureMS(stdSN_T_2932.from));
+
+    dvTo->setRange(cSettings.getPressureMS(D6378_METHOD_FROM).toDouble(),
+                     cSettings.getPressureMS(D6378_METHOD_TO).toDouble(),
+                     cSettings.getPressureDPMS());
+
+    ui->lePRPTo->setText(cSettings.getPressureMS(stdSN_T_2932.to));
+
+    ui->cbEnable->setChecked(stdSN_T_2932.passfail_enabled);
+//    ui->cbAlarmEnable->setChecked(stdSN_T_2932.alarm_enabled);
 
     ui->lePRPFrom->setReadOnly(!ui->cbEnable->isChecked());
     ui->lePRPTo->setReadOnly(!ui->cbEnable->isChecked());
@@ -1260,6 +2443,599 @@ void sMethodSetup::updateD6378()
 
 }
 
+void sMethodSetup::updateEN_13016_1(){
+    if(stdEN_13016_1.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdEN_13016_1.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble()){
+//        cParasChanged = true;
+//    }
+//    stdEN_13016_1.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdEN_13016_1.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdEN_13016_1.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.time = ui->lePara2->text().toDouble();
+
+    if(stdEN_13016_1.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdEN_13016_1.single_expansion != ui->cbSingleExpEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.single_expansion = ui->cbSingleExpEnable->checkState();
+
+    if(stdEN_13016_1.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdEN_13016_1.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdEN_13016_1.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdEN_13016_1.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdEN_13016_1.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_1.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateEN_13016_2(){
+    if(stdEN_13016_2.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdEN_13016_2.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdEN_13016_2.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdEN_13016_2.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdEN_13016_2.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.time = ui->lePara2->text().toDouble();
+
+    if(stdEN_13016_2.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdEN_13016_2.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdEN_13016_2.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdEN_13016_2.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdEN_13016_2.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdEN_13016_2.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdEN_13016_2.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateGB_T_8017(){
+    if(stdGB_T_8017.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdGB_T_8017.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble()){
+//        cParasChanged = true;
+//    }
+//    stdGB_T_8017.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdGB_T_8017.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdGB_T_8017.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.time = ui->lePara2->text().toDouble();
+
+    if(stdGB_T_8017.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdGB_T_8017.single_expansion != ui->cbSingleExpEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.single_expansion = ui->cbSingleExpEnable->checkState();
+
+    if(stdGB_T_8017.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdGB_T_8017.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdGB_T_8017.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdGB_T_8017.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdGB_T_8017.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdGB_T_8017.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateIP_394(){
+    if(stdIP_394.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdIP_394.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble()){
+//        cParasChanged = true;
+//    }
+//    stdIP_394.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdIP_394.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdIP_394.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.time = ui->lePara2->text().toDouble();
+
+    if(stdIP_394.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdIP_394.single_expansion != ui->cbSingleExpEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.single_expansion = ui->cbSingleExpEnable->checkState();
+
+    if(stdIP_394.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdIP_394.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdIP_394.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdIP_394.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdIP_394.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdIP_394.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateIP_409(){
+    if(stdIP409.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdIP409.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdIP409.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdIP409.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdIP409.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.time = ui->lePara2->text().toDouble();
+
+    if(stdIP409.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdIP409.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdIP409.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdIP409.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdIP409.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdIP409.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdIP409.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateIP_481(){
+    if( cSettings.getTemperatureMS(stdIP_481.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdIP_481.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdIP_481.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.time = ui->lePara2->text().toDouble();
+
+    if(stdIP_481.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.vl_ratio = ui->lePara3->text().toDouble();
+    emit IP_481_VlRatio(((stdIP_481.vl_ratio * 100)+100));
+
+//    if(stdIP_481.shaker_speed != ui->lePara4->text().toInt())
+    if((double)(stdIP_481.shaker_speed) != (ui->lePara4->text().toDouble()*(60.0)))
+    {
+        cParasChanged = true;
+    }
+//    stdIP_481.shaker_speed = ui->lePara4->text().toInt();
+    stdIP_481.shaker_speed = (ui->lePara4->text().toDouble()*(60.0));
+
+    if(stdIP_481.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdIP_481.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdIP_481.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdIP_481.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdIP_481.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdIP_481.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateJIS_K2258_2(){
+    if(stdJIS_K2258_2.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdJIS_K2258_2.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdJIS_K2258_2.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdJIS_K2258_2.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdJIS_K2258_2.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.time = ui->lePara2->text().toDouble();
+
+    if(stdJIS_K2258_2.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdJIS_K2258_2.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdJIS_K2258_2.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdJIS_K2258_2.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdJIS_K2258_2.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdJIS_K2258_2.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdJIS_K2258_2.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateSH_T_0769(){
+    if(stdSH_T_0769.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdSH_T_0769.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdSH_T_0769.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdSH_T_0769.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdSH_T_0769.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.time = ui->lePara2->text().toDouble();
+
+    if(stdSH_T_0769.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdSH_T_0769.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdSH_T_0769.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdSH_T_0769.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdSH_T_0769.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdSH_T_0769.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0769.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateSH_T_0794(){
+    if(stdSH_T_0794.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdSH_T_0794.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble()){
+//        cParasChanged = true;
+//    }
+//    stdSH_T_0794.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdSH_T_0794.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdSH_T_0794.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.time = ui->lePara2->text().toDouble();
+
+    if(stdSH_T_0794.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdSH_T_0794.single_expansion != ui->cbSingleExpEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.single_expansion = ui->cbSingleExpEnable->checkState();
+
+    if(stdSH_T_0794.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdSH_T_0794.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdSH_T_0794.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdSH_T_0794.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdSH_T_0794.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdSH_T_0794.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
+void sMethodSetup::updateSN_T_2932(){
+    if(stdSN_T_2932.formula != ui->cbFormula->currentIndex())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.formula = ui->cbFormula->currentIndex();
+
+//    if( cSettings.getTemperatureMS(stdSN_T_2932.InjectTemp).toDouble() != ui->leInjectPara6->text().toDouble())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdSN_T_2932.InjectTemp = cSettings.getTemperatureCelsiusMS(ui->leInjectPara6->text().toDouble());
+
+    if( cSettings.getTemperatureMS(stdSN_T_2932.temperature).toDouble() != ui->lePara1->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.temperature = cSettings.getTemperatureCelsiusMS(ui->lePara1->text().toDouble());
+
+    if(stdSN_T_2932.time != ui->lePara2->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.time = ui->lePara2->text().toDouble();
+
+    if(stdSN_T_2932.vl_ratio != ui->lePara3->text().toDouble())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.vl_ratio = ui->lePara3->text().toDouble();
+
+    if(stdSN_T_2932.passfail_enabled != ui->cbEnable->checkState())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.passfail_enabled = ui->cbEnable->checkState();
+
+//    if(stdSN_T_2932.alarm_enabled != ui->cbAlarmEnable->checkState())
+//    {
+//        cParasChanged = true;
+//    }
+//    stdSN_T_2932.alarm_enabled = ui->cbAlarmEnable->checkState();
+
+    if(cSettings.getPressureMS(stdSN_T_2932.from) != ui->lePRPFrom->text())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.from = cSettings.getPressurekPaMS(ui->lePRPFrom->text().toDouble());
+
+    if(cSettings.getPressureMS(stdSN_T_2932.to) != ui->lePRPTo->text())
+    {
+        cParasChanged = true;
+    }
+    stdSN_T_2932.to = cSettings.getPressurekPaMS(ui->lePRPTo->text().toDouble());
+
+}
+
 void sMethodSetup::updateD5188()
 {
     if( cSettings.getPressureMS(stdD5188.pressure).toDouble() != ui->lePara1->text().toDouble())
@@ -1647,15 +3423,26 @@ void sMethodSetup::checkExit(int tmp)
     {
         switch (cPrevMethod) {
 
-            case M_METHOD_D5191: updateD5191(); break;
-            case M_METHOD_D6377: updateD6377(); break;
-            case M_METHOD_D6378: updateD6378(); break;
-            case M_METHOD_D5188: updateD5188(); break;
+            case M_METHOD_NEW_D5191: updateD5191(); break;
+            case M_METHOD_NEW_D6377: updateD6377(); break;
+            case M_METHOD_NEW_D6378: updateD6378(); break;
+            case M_METHOD_NEW_D5188: updateD5188(); break;
 
-            case M_METHOD_FREE1: updateFree1(); break;
-            case M_METHOD_FREE2: updateFree2(); break;
-            case M_METHOD_FREE3: updateFree3(); break;
-            case M_METHOD_FREE4: updateFree4(); break;
+            case M_METHOD_EN_13016_1: updateEN_13016_1(); break;
+            case M_METHOD_EN_13016_2: updateEN_13016_2(); break;
+            case M_METHOD_GB_T_8017: updateGB_T_8017(); break;
+            case M_METHOD_IP_394: updateIP_394(); break;
+            case M_METHOD_IP_409: updateIP_409(); break;
+            case M_METHOD_IP_481: updateIP_481(); break;
+            case M_METHOD_JIS_K2258_2: updateJIS_K2258_2(); break;
+            case M_METHOD_SH_T_0769: updateSH_T_0769(); break;
+            case M_METHOD_SH_T_0794: updateSH_T_0794(); break;
+            case M_METHOD_SN_T_2932: updateSN_T_2932(); break;
+
+            case M_METHOD_NEW_FREE1: updateFree1(); break;
+            case M_METHOD_NEW_FREE2: updateFree2(); break;
+            case M_METHOD_NEW_FREE3: updateFree3(); break;
+            case M_METHOD_NEW_FREE4: updateFree4(); break;
         }
     }
 
@@ -1683,22 +3470,42 @@ void sMethodSetup::on_cbMethod_currentIndexChanged(int index)
     {
         switch (cPrevMethod) {
 
-        case M_METHOD_D5191: updateD5191();
+        case M_METHOD_NEW_D5191: updateD5191();
             break;
-            case M_METHOD_D6377: updateD6377();
+            case M_METHOD_NEW_D6377: updateD6377();
             break;
-            case M_METHOD_D6378: updateD6378();
+            case M_METHOD_NEW_D6378: updateD6378();
             break;
-            case M_METHOD_D5188: updateD5188();
+        case M_METHOD_NEW_D5188: updateD5188();
+            break;
+        case M_METHOD_EN_13016_1: updateEN_13016_1();
+            break;
+        case M_METHOD_EN_13016_2: updateEN_13016_2();
+            break;
+        case M_METHOD_GB_T_8017: updateGB_T_8017();
+            break;
+        case M_METHOD_IP_394: updateIP_394();
+            break;
+        case M_METHOD_IP_409: updateIP_409();
+            break;
+        case M_METHOD_IP_481: updateIP_481();
+            break;
+        case M_METHOD_JIS_K2258_2: updateJIS_K2258_2();
+            break;
+        case M_METHOD_SH_T_0769: updateSH_T_0769();
+            break;
+        case M_METHOD_SH_T_0794: updateSH_T_0794();
+            break;
+        case M_METHOD_SN_T_2932: updateSN_T_2932();
             break;
 
-            case M_METHOD_FREE1: updateFree1();
+            case M_METHOD_NEW_FREE1: updateFree1();
             break;
-            case M_METHOD_FREE2: updateFree2();
+            case M_METHOD_NEW_FREE2: updateFree2();
             break;
-            case M_METHOD_FREE3: updateFree3();
+            case M_METHOD_NEW_FREE3: updateFree3();
             break;
-            case M_METHOD_FREE4: updateFree4();
+            case M_METHOD_NEW_FREE4: updateFree4();
             break;
         }
     }
@@ -1710,15 +3517,25 @@ void sMethodSetup::on_cbMethod_currentIndexChanged(int index)
 
     switch(index)
     {
-        case M_METHOD_D5191: showD5191(); break;
-        case M_METHOD_D6377: showD6377(); break;
-        case M_METHOD_D6378: showD6378(); break;
-        case M_METHOD_D5188: showD5188(); break;
+        case M_METHOD_NEW_D5191: showD5191(); break;
+        case M_METHOD_NEW_D6377: showD6377(); break;
+        case M_METHOD_NEW_D6378: showD6378(); break;
+        case M_METHOD_NEW_D5188: showD5188(); break;
+        case M_METHOD_EN_13016_1: showEN_13016_1(); break;
+        case M_METHOD_EN_13016_2: showEN_13016_2(); break;
+        case M_METHOD_GB_T_8017: showGB_T_8017(); break;
+        case M_METHOD_IP_394: showIP_394(); break;
+        case M_METHOD_IP_409: showIP_409(); break;
+        case M_METHOD_IP_481: showIP_481(); break;
+        case M_METHOD_JIS_K2258_2: showJIS_K2258_2(); break;
+        case M_METHOD_SH_T_0769: showSH_T_0769(); break;
+        case M_METHOD_SH_T_0794: showSH_T_0794(); break;
+        case M_METHOD_SN_T_2932: showSN_T_2932(); break;
 
-        case M_METHOD_FREE1: showFree1(); break;
-        case M_METHOD_FREE2: showFree2(); break;
-        case M_METHOD_FREE3: showFree3(); break;
-        case M_METHOD_FREE4: showFree4(); break;
+        case M_METHOD_NEW_FREE1: showFree1(); break;
+        case M_METHOD_NEW_FREE2: showFree2(); break;
+        case M_METHOD_NEW_FREE3: showFree3(); break;
+        case M_METHOD_NEW_FREE4: showFree4(); break;
     }
 }
 
@@ -1809,15 +3626,26 @@ void sMethodSetup::on_pbSave_clicked()
     {
         switch (cPrevMethod) {
 
-            case M_METHOD_D5191: updateD5191(); break;
-            case M_METHOD_D6377: updateD6377(); break;
-            case M_METHOD_D6378: updateD6378(); break;
-            case M_METHOD_D5188: updateD5188(); break;
+            case M_METHOD_NEW_D5191: updateD5191(); break;
+            case M_METHOD_NEW_D6377: updateD6377(); break;
+            case M_METHOD_NEW_D6378: updateD6378(); break;
+            case M_METHOD_NEW_D5188: updateD5188(); break;
 
-            case M_METHOD_FREE1: updateFree1(); break;
-            case M_METHOD_FREE2: updateFree2(); break;
-            case M_METHOD_FREE3: updateFree3(); break;
-            case M_METHOD_FREE4: updateFree4(); break;
+            case M_METHOD_EN_13016_1: updateEN_13016_1(); break;
+            case M_METHOD_EN_13016_2: updateEN_13016_2(); break;
+            case M_METHOD_GB_T_8017: updateGB_T_8017(); break;
+            case M_METHOD_IP_394: updateIP_394(); break;
+            case M_METHOD_IP_409: updateIP_409(); break;
+            case M_METHOD_IP_481: updateIP_481(); break;
+            case M_METHOD_JIS_K2258_2: updateJIS_K2258_2(); break;
+            case M_METHOD_SH_T_0769: updateSH_T_0769(); break;
+            case M_METHOD_SH_T_0794: updateSH_T_0794(); break;
+            case M_METHOD_SN_T_2932: updateSN_T_2932(); break;
+
+            case M_METHOD_NEW_FREE1: updateFree1(); break;
+            case M_METHOD_NEW_FREE2: updateFree2(); break;
+            case M_METHOD_NEW_FREE3: updateFree3(); break;
+            case M_METHOD_NEW_FREE4: updateFree4(); break;
         }
     }
 

@@ -56,16 +56,6 @@ sMeasuring::sMeasuring(QWidget *parent) :
 //    ui->pbMethod->setEnabled(false);
     ui->leMethod->setEnabled(false);
 
-//    ui->cbMethod->hide();
-    /*ui->lwMethods->insertItem(0,"D5191");
-    ui->lwMethods->insertItem(1,"D6377");
-    ui->lwMethods->insertItem(2,"D6378");
-    ui->lwMethods->insertItem(3,"D5188");
-    ui->lwMethods->insertItem(4,"Free 1");
-    ui->lwMethods->insertItem(5,"Free 2");
-    ui->lwMethods->insertItem(6,"Free 3");
-    ui->lwMethods->insertItem(7,"Free 4");*/
-
     ui->lwSampleId->resize(471, 171);
     ui->lwOperator->resize(471, 171);
     ui->lwMethods->resize(471, 171);
@@ -185,8 +175,11 @@ void sMeasuring::onLiveData(int tm, int pr)
 int sMeasuring::getMethod()
 {
 //    return ui->cbMethod->currentIndex();
-    qDebug()<<"ui->lwMethods->currentIndex().row(): " << ui->lwMethods->currentIndex().row();
-    return ui->lwMethods->currentIndex().row();
+//    qDebug()<<"ui->lwMethods->currentIndex().row(): " << ui->lwMethods->currentIndex().row();
+    if(ui->lwMethods->currentIndex().row() == -1)
+        return 0;
+    else
+        return ui->lwMethods->currentIndex().row();
 }
 
 void sMeasuring::hideLists()
@@ -405,12 +398,16 @@ void sMeasuring::readLastIdsFile()
 //            ui->cbMethod->setCurrentText(last_ids.test_id);
             qDebug()<<"last_ids.test_id: "<< last_ids.test_id;
             QString tmp = last_ids.test_id;
-            int row = (tmp == "D5191")? 0:(tmp == "D6377")?1:(tmp == "D6378")? 2:(tmp == "D5188")?3:(tmp == "Free 1")?4:(tmp == "Free 2")?5:(tmp == "Free 3")?6:7;
+            int row = (tmp == "D5191")? 0:(tmp == "D6377")?1:(tmp == "D6378")? 2:(tmp == "D5188")?3:(tmp == "EN 13016-1")? 4:(tmp == "EN 13016-2")?5:(tmp == "GB/T 8017")? 6:(tmp == "IP 394")?7:(tmp == "IP 409")?8:(tmp == "IP 481")?9:(tmp == "JIS K2258-2")?10:(tmp == "SH/T 0769")?11:(tmp == "SH/T 0794")?12:(tmp == "SN/T 2932")?13:(tmp == "Free 1")?14:(tmp == "Free 2")?15:(tmp == "Free 3")?16:17;
             ui->lwMethods->setCurrentRow(row);
             ui->leMethod->setText(last_ids.test_id);
         }
 
         in.close();
+    }
+    else{
+        ui->lwMethods->setCurrentRow(0);
+        ui->leMethod->setText("D5191");
     }
 
 }
@@ -481,6 +478,262 @@ void sMeasuring::showResultD5191Single(double prtpx3){
         double cpr = cSettings.getPressureWS(result).toDouble();
         double from = cSettings.getPressureWS(cstdD5191->from).toDouble();
         double to = cSettings.getPressureWS(cstdD5191->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->setPtot(cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, 0, 0,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultEN_13016_1Single(double prtpx3){
+    double p_tot = 0;
+
+    p_tot = prtpx3;
+
+    double result = 0;
+
+    double ttime = cstdEN_13016_1->time;
+    double vlratio = cstdEN_13016_1->vl_ratio;
+    double para_measured = cstdEN_13016_1->temperature;
+
+    double aconstant = qslFormulaEN_13016_1aConstant->at(cstdEN_13016_1->formula).toDouble();
+    double bconstant = qslFormulaEN_13016_1bConstant->at(cstdEN_13016_1->formula).toDouble();
+    double cconstant = qslFormulaEN_13016_1cConstant->at(cstdEN_13016_1->formula).toDouble();
+
+    result = (aconstant * p_tot) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdEN_13016_1->formula==0)
+    {
+        ui->wResult->setMethod(tr("EN 13016-1 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdEN_13016_1->formula==1)
+    {
+        ui->wResult->setMethod(tr("EN 13016-1 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdEN_13016_1->formula==2)
+    {
+        ui->wResult->setMethod(tr("EN 13016-1 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdEN_13016_1->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdEN_13016_1->from).toDouble();
+        double to = cSettings.getPressureWS(cstdEN_13016_1->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->setPtot(cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, 0, 0,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultGB_T_8017Single(double prtpx3){
+    double p_tot = 0;
+
+    p_tot = prtpx3;
+
+    double result = 0;
+
+    double ttime = cstdGB_T_8017->time;
+    double vlratio = cstdGB_T_8017->vl_ratio;
+    double para_measured = cstdGB_T_8017->temperature;
+
+    double aconstant = qslFormulaGB_T_8017aConstant->at(cstdGB_T_8017->formula).toDouble();
+    double bconstant = qslFormulaGB_T_8017bConstant->at(cstdGB_T_8017->formula).toDouble();
+    double cconstant = qslFormulaGB_T_8017cConstant->at(cstdGB_T_8017->formula).toDouble();
+
+    result = (aconstant * p_tot) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdGB_T_8017->formula==0)
+    {
+        ui->wResult->setMethod(tr("GB/T 8017 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdGB_T_8017->formula==1)
+    {
+        ui->wResult->setMethod(tr("GB/T 8017 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdGB_T_8017->formula==2)
+    {
+        ui->wResult->setMethod(tr("GB/T 8017 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdGB_T_8017->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdGB_T_8017->from).toDouble();
+        double to = cSettings.getPressureWS(cstdGB_T_8017->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->setPtot(cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, 0, 0,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultIP_394Single(double prtpx3){
+    double p_tot = 0;
+
+    p_tot = prtpx3;
+
+    double result = 0;
+
+    double ttime = cstdIP_394->time;
+    double vlratio = cstdIP_394->vl_ratio;
+    double para_measured = cstdIP_394->temperature;
+
+    double aconstant = qslFormulaIP_394aConstant->at(cstdIP_394->formula).toDouble();
+    double bconstant = qslFormulaIP_394bConstant->at(cstdIP_394->formula).toDouble();
+    double cconstant = qslFormulaIP_394cConstant->at(cstdIP_394->formula).toDouble();
+
+    result = (aconstant * p_tot) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdIP_394->formula==0)
+    {
+        ui->wResult->setMethod(tr("IP 394 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdIP_394->formula==1)
+    {
+        ui->wResult->setMethod(tr("IP 394 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdIP_394->formula==2)
+    {
+        ui->wResult->setMethod(tr("IP 394 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdIP_394->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdIP_394->from).toDouble();
+        double to = cSettings.getPressureWS(cstdIP_394->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->setPtot(cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, 0, 0,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultSH_T_0794Single(double prtpx3){
+    double p_tot = 0;
+
+    p_tot = prtpx3;
+
+    double result = 0;
+
+    double ttime = cstdSH_T_0794->time;
+    double vlratio = cstdSH_T_0794->vl_ratio;
+    double para_measured = cstdSH_T_0794->temperature;
+
+    double aconstant = qslFormulaSH_T_0794aConstant->at(cstdSH_T_0794->formula).toDouble();
+    double bconstant = qslFormulaSH_T_0794bConstant->at(cstdSH_T_0794->formula).toDouble();
+    double cconstant = qslFormulaSH_T_0794cConstant->at(cstdSH_T_0794->formula).toDouble();
+
+    result = (aconstant * p_tot) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdSH_T_0794->formula==0)
+    {
+        ui->wResult->setMethod(tr("SH/T 0794 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdSH_T_0794->formula==1)
+    {
+        ui->wResult->setMethod(tr("SH/T 0794 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdSH_T_0794->formula==2)
+    {
+        ui->wResult->setMethod(tr("SH/T 0794 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdSH_T_0794->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdSH_T_0794->from).toDouble();
+        double to = cSettings.getPressureWS(cstdSH_T_0794->to).toDouble();
 
         if( cpr >= from && cpr <= to) passfail = "Pass";
         else passfail = "Fail";
@@ -581,6 +834,315 @@ void sMeasuring::showResultD5191(double prtpx1, double prtpx2, double prtpx3)
                     para_measured);
 }
 
+void sMeasuring::showResultEN_13016_1(double prtpx1, double prtpx2, double prtpx3){
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1 - prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double ttime = cstdEN_13016_1->time;
+    double vlratio = cstdEN_13016_1->vl_ratio;
+    double para_measured = cstdEN_13016_1->temperature;
+
+    double aconstant = qslFormulaEN_13016_1aConstant->at(cstdEN_13016_1->formula).toDouble();
+    double bconstant = qslFormulaEN_13016_1bConstant->at(cstdEN_13016_1->formula).toDouble();
+    double cconstant = qslFormulaEN_13016_1cConstant->at(cstdEN_13016_1->formula).toDouble();
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdEN_13016_1->formula==0)
+    {
+        ui->wResult->setMethod(tr("EN 13016-1 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdEN_13016_1->formula==1)
+    {
+        ui->wResult->setMethod(tr("EN 13016-1 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdEN_13016_1->formula==2)
+    {
+        ui->wResult->setMethod(tr("EN 13016-1 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdEN_13016_1->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdEN_13016_1->from).toDouble();
+        double to = cSettings.getPressureWS(cstdEN_13016_1->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultGB_T_8017(double prtpx1, double prtpx2, double prtpx3){
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1 - prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double ttime = cstdGB_T_8017->time;
+    double vlratio = cstdGB_T_8017->vl_ratio;
+    double para_measured = cstdGB_T_8017->temperature;
+
+    double aconstant = qslFormulaGB_T_8017aConstant->at(cstdGB_T_8017->formula).toDouble();
+    double bconstant = qslFormulaGB_T_8017bConstant->at(cstdGB_T_8017->formula).toDouble();
+    double cconstant = qslFormulaGB_T_8017cConstant->at(cstdGB_T_8017->formula).toDouble();
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdGB_T_8017->formula==0)
+    {
+        ui->wResult->setMethod(tr("GB/T 8017 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdGB_T_8017->formula==1)
+    {
+        ui->wResult->setMethod(tr("GB/T 8017 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdGB_T_8017->formula==2)
+    {
+        ui->wResult->setMethod(tr("GB/T 8017 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdGB_T_8017->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdGB_T_8017->from).toDouble();
+        double to = cSettings.getPressureWS(cstdGB_T_8017->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultIP_394(double prtpx1, double prtpx2, double prtpx3){
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1 - prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double ttime = cstdIP_394->time;
+    double vlratio = cstdIP_394->vl_ratio;
+    double para_measured = cstdIP_394->temperature;
+
+    double aconstant = qslFormulaIP_394aConstant->at(cstdIP_394->formula).toDouble();
+    double bconstant = qslFormulaIP_394bConstant->at(cstdIP_394->formula).toDouble();
+    double cconstant = qslFormulaIP_394cConstant->at(cstdIP_394->formula).toDouble();
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdIP_394->formula==0)
+    {
+        ui->wResult->setMethod(tr("IP 394 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdIP_394->formula==1)
+    {
+        ui->wResult->setMethod(tr("IP 394 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdIP_394->formula==2)
+    {
+        ui->wResult->setMethod(tr("IP 394 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdIP_394->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdIP_394->from).toDouble();
+        double to = cSettings.getPressureWS(cstdIP_394->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultSH_T_0794(double prtpx1, double prtpx2, double prtpx3){
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1 - prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double ttime = cstdSH_T_0794->time;
+    double vlratio = cstdSH_T_0794->vl_ratio;
+    double para_measured = cstdSH_T_0794->temperature;
+
+    double aconstant = qslFormulaSH_T_0794aConstant->at(cstdSH_T_0794->formula).toDouble();
+    double bconstant = qslFormulaSH_T_0794bConstant->at(cstdSH_T_0794->formula).toDouble();
+    double cconstant = qslFormulaSH_T_0794cConstant->at(cstdSH_T_0794->formula).toDouble();
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdSH_T_0794->formula==0)
+    {
+        ui->wResult->setMethod(tr("SH/T 0794 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdSH_T_0794->formula==1)
+    {
+        ui->wResult->setMethod(tr("SH/T 0794 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdSH_T_0794->formula==2)
+    {
+        ui->wResult->setMethod(tr("SH/T 0794 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdSH_T_0794->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdSH_T_0794->from).toDouble();
+        double to = cSettings.getPressureWS(cstdSH_T_0794->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+
 void sMeasuring::showResultD5188(double result)
 {
 
@@ -643,6 +1205,46 @@ void sMeasuring::showResultD6377(double result)
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->setVLPr(cSettings.getVLRatio(cstdD6377->vl_ratio), cSettings.getTemperatureWS(para_measured), cSettings.getTemperatureScale() , passfail);
     ui->wResult->setShaker(cSettings.getShaker(cstdD6377->shaker_speed));
+
+    QString formula = "VPCR4";
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(0, 0, 0,
+                    method, formula,
+                    0, 0, 0,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+
+}
+
+void sMeasuring::showResultIP_481(double result)
+{
+
+    QString passfail;
+    QString method = ui->leMethod->text();
+    double ttime = cstdIP_481->time;
+    double vlratio = cstdIP_481->vl_ratio;
+    double para_measured = cstdIP_481->temperature;;
+
+    if(cstdIP_481->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdIP_481->from).toDouble();
+        double to = cSettings.getPressureWS(cstdIP_481->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setMethod(tr("IP 481 VPCRx Results"));
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->setVLPr(cSettings.getVLRatio(cstdIP_481->vl_ratio), cSettings.getTemperatureWS(para_measured), cSettings.getTemperatureScale() , passfail);
+    ui->wResult->setShaker(cSettings.getShaker(cstdIP_481->shaker_speed));
 
     QString formula = "VPCR4";
 
@@ -738,9 +1340,399 @@ void sMeasuring::showResultD6378(double prtpx1, double prtpx2, double prtpx3)
                     para_measured);
 }
 
+void sMeasuring::showResultEN_13016_2(double prtpx1, double prtpx2, double prtpx3)
+{
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1- prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double aconstant = qslFormulaEN_13016_2aConstant->at(cstdEN_13016_2->formula).toDouble();
+    double bconstant = qslFormulaEN_13016_2bConstant->at(cstdEN_13016_2->formula).toDouble();
+    double cconstant = qslFormulaEN_13016_2cConstant->at(cstdEN_13016_2->formula).toDouble();
+
+    double ttime = cstdEN_13016_2->time;
+    double vlratio = cstdEN_13016_2->vl_ratio;
+    double para_measured = cstdEN_13016_2->temperature;
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdEN_13016_2->formula==0)
+    {
+        ui->wResult->setMethod(tr("EN 13016-2 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdEN_13016_2->formula==1)
+    {
+        ui->wResult->setMethod(tr("EN 13016-2 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdEN_13016_2->formula==2)
+    {
+        ui->wResult->setMethod(tr("EN 13016-2 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdEN_13016_2->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdEN_13016_2->from).toDouble();
+        double to = cSettings.getPressureWS(cstdEN_13016_2->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultIP409(double prtpx1, double prtpx2, double prtpx3)
+{
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1- prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double aconstant = qslFormulaIP_409aConstant->at(cstdIP409->formula).toDouble();
+    double bconstant = qslFormulaIP_409bConstant->at(cstdIP409->formula).toDouble();
+    double cconstant = qslFormulaIP_409cConstant->at(cstdIP409->formula).toDouble();
+
+    double ttime = cstdIP409->time;
+    double vlratio = cstdIP409->vl_ratio;
+    double para_measured = cstdIP409->temperature;
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdIP409->formula==0)
+    {
+        ui->wResult->setMethod(tr("IP 409 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdIP409->formula==1)
+    {
+        ui->wResult->setMethod(tr("IP 409 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdIP409->formula==2)
+    {
+        ui->wResult->setMethod(tr("IP 409 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdIP409->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdIP409->from).toDouble();
+        double to = cSettings.getPressureWS(cstdIP409->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultJIS_K2258_2(double prtpx1, double prtpx2, double prtpx3)
+{
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1- prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double aconstant = qslFormulaJIS_K2258_2aConstant->at(cstdJIS_K2258_2->formula).toDouble();
+    double bconstant = qslFormulaJIS_K2258_2bConstant->at(cstdJIS_K2258_2->formula).toDouble();
+    double cconstant = qslFormulaJIS_K2258_2cConstant->at(cstdJIS_K2258_2->formula).toDouble();
+
+    double ttime = cstdJIS_K2258_2->time;
+    double vlratio = cstdJIS_K2258_2->vl_ratio;
+    double para_measured = cstdJIS_K2258_2->temperature;
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdJIS_K2258_2->formula==0)
+    {
+        ui->wResult->setMethod(tr("JIS K2258-2 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdJIS_K2258_2->formula==1)
+    {
+        ui->wResult->setMethod(tr("JIS K2258-2 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdJIS_K2258_2->formula==2)
+    {
+        ui->wResult->setMethod(tr("JIS K2258-2 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdJIS_K2258_2->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdJIS_K2258_2->from).toDouble();
+        double to = cSettings.getPressureWS(cstdJIS_K2258_2->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultSH_T_0769(double prtpx1, double prtpx2, double prtpx3)
+{
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1- prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double aconstant = qslFormulaSH_T_0769aConstant->at(cstdSH_T_0769->formula).toDouble();
+    double bconstant = qslFormulaSH_T_0769bConstant->at(cstdSH_T_0769->formula).toDouble();
+    double cconstant = qslFormulaSH_T_0769cConstant->at(cstdSH_T_0769->formula).toDouble();
+
+    double ttime = cstdSH_T_0769->time;
+    double vlratio = cstdSH_T_0769->vl_ratio;
+    double para_measured = cstdSH_T_0769->temperature;
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdSH_T_0769->formula==0)
+    {
+        ui->wResult->setMethod(tr("SH/T 0769 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdSH_T_0769->formula==1)
+    {
+        ui->wResult->setMethod(tr("SH/T 0769 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdSH_T_0769->formula==2)
+    {
+        ui->wResult->setMethod(tr("SH/T 0769 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdSH_T_0769->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdSH_T_0769->from).toDouble();
+        double to = cSettings.getPressureWS(cstdSH_T_0769->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
+void sMeasuring::showResultSN_T_2932(double prtpx1, double prtpx2, double prtpx3)
+{
+    double p_tot = 0;
+    double p_gas = 0;
+    double p_abs = 0;
+
+    double v1 = 1.7;
+    double v2 = 2.5;
+    double v3 = 5.0;
+
+    p_tot = prtpx3;
+
+    double tpr = (prtpx1- prtpx3) * (prtpx2- prtpx3);
+    double bpr = (prtpx1 - prtpx3);
+    double bv = ((v3-v1)/(v2-v1))*(prtpx1- prtpx2);
+    double result = 0;
+
+    p_gas = tpr/(bv-bpr);
+
+    p_abs = p_tot - p_gas;
+
+    double aconstant = qslFormulaSN_T_2932aConstant->at(cstdSN_T_2932->formula).toDouble();
+    double bconstant = qslFormulaSN_T_2932bConstant->at(cstdSN_T_2932->formula).toDouble();
+    double cconstant = qslFormulaSN_T_2932cConstant->at(cstdSN_T_2932->formula).toDouble();
+
+    double ttime = cstdSN_T_2932->time;
+    double vlratio = cstdSN_T_2932->vl_ratio;
+    double para_measured = cstdSN_T_2932->temperature;
+
+    result = (aconstant * p_tot) - (bconstant * p_gas) - cconstant;
+
+    QString formula;
+    QString passfail;
+    QString method = ui->leMethod->text();
+
+    if(cstdSN_T_2932->formula==0)
+    {
+        ui->wResult->setMethod(tr("SN/T 2932 ASTM Results"));
+        formula = "ASTM";
+    }
+    else if(cstdSN_T_2932->formula==1)
+    {
+        ui->wResult->setMethod(tr("SN/T 2932 EPA Results"));
+        formula = "EPA";
+    }
+    else if(cstdSN_T_2932->formula==2)
+    {
+        ui->wResult->setMethod(tr("SN/T 2932 CARB Results"));
+        formula = "CARB";
+    }
+
+    if(cstdSN_T_2932->passfail_enabled)
+    {
+        double cpr = cSettings.getPressureWS(result).toDouble();
+        double from = cSettings.getPressureWS(cstdSN_T_2932->from).toDouble();
+        double to = cSettings.getPressureWS(cstdSN_T_2932->to).toDouble();
+
+        if( cpr >= from && cpr <= to) passfail = "Pass";
+        else passfail = "Fail";
+    }
+
+    ui->wResult->setSampleId(ui->leSampleId->text());
+
+    ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
+    ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), passfail);
+
+    ui->twMeasuring->hide();
+    ui->wResult->setStatus("");
+    ui->wResult->show();
+
+    emit saveResult(p_tot, p_gas, p_abs,
+                    method, formula,
+                    aconstant, bconstant, cconstant,
+                    result,
+                    ttime, vlratio,
+                    para_measured);
+}
+
 void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 {
-    int fn = getMethod() - M_METHOD_D5188;
+    int fn = getMethod() - M_METHOD_SN_T_2932;
 
     double ttime;
     double vlratio;
@@ -907,13 +1899,13 @@ void sMeasuring::showResultFree(double prtpx1, double prtpx2, double prtpx3)
 
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->set3Prs(cSettings.getPressureWS(p_abs), cSettings.getPressureWS(p_gas), cSettings.getPressureWS(p_tot), cSettings.getPressureScale(), "Pass");
-    if(getMethod() == M_METHOD_FREE1 && cstdFree1->shaker_disabled){
+    if(getMethod() == M_METHOD_NEW_FREE1 && cstdFree1->shaker_disabled){
         ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
-    }else if(getMethod() == M_METHOD_FREE2 && cstdFree2->shaker_disabled){
+    }else if(getMethod() == M_METHOD_NEW_FREE2 && cstdFree2->shaker_disabled){
         ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
-    }else if(getMethod() == M_METHOD_FREE3 && cstdFree3->shaker_disabled){
+    }else if(getMethod() == M_METHOD_NEW_FREE3 && cstdFree3->shaker_disabled){
         ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
-    }else if(getMethod() == M_METHOD_FREE4 && cstdFree4->shaker_disabled){
+    }else if(getMethod() == M_METHOD_NEW_FREE4 && cstdFree4->shaker_disabled){
         ui->wResult->setFreeShaker(cSettings.getShaker(shakerSpeed));
     }
 

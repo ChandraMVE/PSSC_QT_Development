@@ -1258,7 +1258,7 @@ border-color: rgb(21, 100, 192);
 </string>
       </property>
       <property name="text">
-       <string>D5191</string>
+       <string/>
       </property>
       <property name="maxLength">
        <number>20</number>

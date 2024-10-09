@@ -79,6 +79,25 @@
 #define M_METHOD_FREE3      6
 #define M_METHOD_FREE4      7
 
+#define M_METHOD_NEW_D5191          0
+#define M_METHOD_NEW_D6377          1
+#define M_METHOD_NEW_D6378          2
+#define M_METHOD_NEW_D5188          3
+#define M_METHOD_EN_13016_1         4
+#define M_METHOD_EN_13016_2         5
+#define M_METHOD_GB_T_8017          6
+#define M_METHOD_IP_394             7
+#define M_METHOD_IP_409             8
+#define M_METHOD_IP_481             9
+#define M_METHOD_JIS_K2258_2        10
+#define M_METHOD_SH_T_0769          11
+#define M_METHOD_SH_T_0794          12
+#define M_METHOD_SN_T_2932          13
+#define M_METHOD_NEW_FREE1          14
+#define M_METHOD_NEW_FREE2          15
+#define M_METHOD_NEW_FREE3          16
+#define M_METHOD_NEW_FREE4          17
+
 #define T_SEL_COL_WIDTH             60
 #define T_OPERATOR_COL_WIDTH        180
 #define T_SAMPLE_ID_COL_WIDTH       180
@@ -182,7 +201,7 @@
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App: Ver. 1.05.183"
+#define FW_VERSION  "App: Ver. 1.05.185"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

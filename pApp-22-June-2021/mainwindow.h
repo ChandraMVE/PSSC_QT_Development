@@ -45,10 +45,12 @@ public:
     void handleRinsing(void);
     void handleInjectRinsing(void);
     void handleD5188(void);
-    void handleD6377(void);
+    void handleD6377Related(void);
     void handleOther(void);
-    void handleFreeShaker(void);//naveen
-    void handleD5191SingleExpansion(void); //naveen
+    void handleD5191RelatedMethods(void);
+    void handleD6378RelatedMethods(void);
+    void handleFreeShaker(void);
+    void handleD5191RelatedSingleExpansion(void);
     void handleDiagnostic(void);
     void handleCalibration(void);
     void handleDiagCommError(void);
@@ -109,6 +111,7 @@ private slots:
     void onShowStatusBox(QString title, QString msg, bool show);
     void onConfirmed(int, bool, int);
     void onD6377VlRatio(double vl);
+    void onIP_481VlRatio(double vl);
 //    void onMethodVolumesDefault(struct METHOD_VOLUMES_Main methodVol);
 
     void on_pushButton_clicked();
@@ -250,12 +253,58 @@ public:
     QStringList qslFormulaD5191bConstant;
     QStringList qslFormulaD5191cConstant;
 
+    QStringList qslFormulaEN_13016_1aConstant;
+    QStringList qslFormulaEN_13016_1bConstant;
+    QStringList qslFormulaEN_13016_1cConstant;
+
+    QStringList qslFormulaGB_T_8017aConstant;
+    QStringList qslFormulaGB_T_8017bConstant;
+    QStringList qslFormulaGB_T_8017cConstant;
+
+    QStringList qslFormulaIP_394aConstant;
+    QStringList qslFormulaIP_394bConstant;
+    QStringList qslFormulaIP_394cConstant;
+
+    QStringList qslFormulaSH_T_0794aConstant;
+    QStringList qslFormulaSH_T_0794bConstant;
+    QStringList qslFormulaSH_T_0794cConstant;
+
     QStringList qslFormulaD6378aConstant;
     QStringList qslFormulaD6378bConstant;
     QStringList qslFormulaD6378cConstant;
 
+    QStringList qslFormulaEN_13016_2aConstant;
+    QStringList qslFormulaEN_13016_2bConstant;
+    QStringList qslFormulaEN_13016_2cConstant;
+
+    QStringList qslFormulaIP_409aConstant;
+    QStringList qslFormulaIP_409bConstant;
+    QStringList qslFormulaIP_409cConstant;
+
+    QStringList qslFormulaJIS_K2258_2aConstant;
+    QStringList qslFormulaJIS_K2258_2bConstant;
+    QStringList qslFormulaJIS_K2258_2cConstant;
+
+    QStringList qslFormulaSH_T_0769aConstant;
+    QStringList qslFormulaSH_T_0769bConstant;
+    QStringList qslFormulaSH_T_0769cConstant;
+
+    QStringList qslFormulaSN_T_2932aConstant;
+    QStringList qslFormulaSN_T_2932bConstant;
+    QStringList qslFormulaSN_T_2932cConstant;
+
     QStringList qslFormulaD5191;
     QStringList qslFormulaD6378;
+
+    QStringList qslFormulaEN_13016_1;
+    QStringList qslFormulaEN_13016_2;
+    QStringList qslFormulaGB_T_8017;
+    QStringList qslFormulaIP_394;
+    QStringList qslFormulaIP_409;
+    QStringList qslFormulaJIS_K2258_2;
+    QStringList qslFormulaDSH_T_0769;
+    QStringList qslFormulaSH_T_0794;
+    QStringList qslFormulaSN_T_2932;
 
     QStringList qslUCErrors;
     QStringList qslLogErrors;

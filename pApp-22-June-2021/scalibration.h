@@ -158,6 +158,22 @@ public:
     void showVolumeFree2();
     void showVolumeFree3();
     void showVolumeFree4();
+
+    void showVolumeSinExpEN_13016_1();
+    void showVolumeEN_13016_1();
+    void showVolumeSinExpGB_T_8017();
+    void showVolumeGB_T_8017();
+    void showVolumeSinExpIP_394();
+    void showVolumeIP_394();
+    void showVolumeSinExpSH_T_0794();
+    void showVolumeSH_T_0794();
+    void showVolumeEN_13016_2();
+    void showVolumeIP_409();
+    void showVolumeJIS_K2258_2();
+    void showVolumeSH_T_0769();
+    void showVolumeSN_T_2932();
+    void showVolumeIP_481();
+
     void updateVolumeCalib();
 
     void updateVolumeSinExpD5191();
@@ -165,14 +181,32 @@ public:
     void updateVolumeD6377();
     void updateVolumeD6378();
     void updateVolumeD5188();
+
+    void updateVolumeSinExpEN_13016_1();
+    void updateVolumeEN_13016_1();
+    void updateVolumeSinExpGB_T_8017();
+    void updateVolumeGB_T_8017();
+    void updateVolumeSinExpIP_394();
+    void updateVolumeIP_394();
+    void updateVolumeSinExpSH_T_0794();
+    void updateVolumeSH_T_0794();
+    void updateVolumeEN_13016_2();
+    void updateVolumeIP_409();
+    void updateVolumeJIS_K2258_2();
+    void updateVolumeSH_T_0769();
+    void updateVolumeSN_T_2932();
+    void updateVolumeIP_481();
+
     void updateVolumeFree1();
     void updateVolumeFree2();
     void updateVolumeFree3();
     void updateVolumeFree4();
     void on_D6377_Vl_ration(double vl, bool init);
+    void on_IP_481_Vl_ration(double vl, bool init);
     bool getcParaMethodVolumeChanged();
     void sendTemcommand();
     void updateD6377Range(double D6377Range);
+    void updateIP_481_Range(double D6377Range);
 
 signals:
     void showKeypad(QObject *, int, bool);
@@ -301,6 +335,7 @@ private:
     bool cHide;
     bool cEnSwitch;
     double D6377vl_Range;
+    double IP_481vl_Range;
 
 public:
     int IS_ADMIN_USER;
@@ -311,8 +346,10 @@ public:
 public:
     struct CALIB_TEMPERATURE cCalibTm;
     struct CALIB_PRESSURE cCalibPr;
-    struct METHOD_VOLUME_CALIB cCalibD6377, cCalibD6378, cCalibD5188, cCalibFree1, cCalibFree2, cCalibFree3, cCalibFree4;
+    struct METHOD_VOLUME_CALIB cCalibD6377, cCalibD6378, cCalibD5188, cCalibFree1, cCalibFree2, cCalibFree3, cCalibFree4, cCalibIP_481;
     struct METHOD_VOLUME_CALIBD5191 cCalibD5191, cCalibSingleD5191;
+    struct METHOD_VOLUME_CALIB cCalibSingleEN_13016_1, cCalibEN_13016_1, cCalibSingleGB_T_8017, cCalibGB_T_8017, cCalibSingleIP_394, cCalibIP_394, cCalibSingleSH_T_0794, cCalibSH_T_0794;
+    struct METHOD_VOLUME_CALIB cCalibEN_13016_2, cCalibIP409, cCalibJIS_K2258_2, cCalibSH_T_0769, cCalibSN_T_2932;
 //    struct METHOD_VOLUMES_CALIB MethodVolumeCal;
 
 };

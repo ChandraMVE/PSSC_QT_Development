@@ -215,7 +215,7 @@ color: rgb(0, 0, 0);
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>5</number>
    </property>
    <widget class="QWidget" name="tabTemperature">
     <attribute name="title">
@@ -5089,7 +5089,7 @@ QComboBox::down-arrow:on {
     left: 1px;
 }
 
-QComboBox QAbstractItemView {
+QComboBox::QAbstractItemView {
    border: 2px solid rgb(21, 100, 192);
    font: 75 16pt &quot;Roboto Medium&quot;;
    border-radius: 5px;
@@ -5099,16 +5099,17 @@ QComboBox QAbstractItemView {
 }
 
 /*  vertical */
-QScrollBar:vertical {
+QScrollBar::vertical {
      border: 0px solid  rgb(21, 100, 192);
-     background:  rgb(230,230,230);
+     background:  rgb(255, 255, 255);
      width: 42px;
 	 margin: 45px 0 45px 0;
-     border-left: 2px solid  rgb(182, 182, 182);
+     border-left: 2px solid  rgb(21, 100, 192);
+	  border-right: 2px solid  rgb(21, 100, 192);
  }
 
  QScrollBar::handle:vertical {
-     background:  rgb(182, 182, 182);
+     background:  rgb(21, 100, 192);
      min-height: 20px;
  }
 

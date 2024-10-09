@@ -71,7 +71,6 @@
 #define DEFAULT_D6377_TO                    114.0
 
 #define DEFAULT_D6378_FORMULA               0
-#define DEFAULT_D6378_INJECT_TMP            20.0
 #define DEFAULT_D6378_TEMPERATURE           37.8
 #define DEFAULT_D6378_TIME                  300
 #define DEFAULT_D6378_VL_RATIO              4
