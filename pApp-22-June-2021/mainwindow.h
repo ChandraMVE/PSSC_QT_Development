@@ -62,7 +62,6 @@ public:
     void showError(void);
     void abortCurrentTask();
     void readSaveLogFile(int tmp, bool readSuccessfully);
-    void internalLogSaving(QString tmp);
 
 protected:
     void changeEvent(QEvent*);
@@ -123,6 +122,7 @@ private slots:
     void on_pushButton_4_clicked();
 
     void on_imageCapture_clicked();
+    void internalLogSaving(QString tmp);
 
 signals:
     void liveData(int vp, int pp, int atm, int ctm, int pr, int ss);

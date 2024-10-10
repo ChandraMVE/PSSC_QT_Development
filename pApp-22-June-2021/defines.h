@@ -145,7 +145,7 @@
 #define M_ERROR_TIME_OUT              15
 
 #define M_RINSING_TEMPERATURE_TOLERANCE 1 
-#define M_TEMPERATURE_TOLERANCE         0.1 //3-Oct-2022
+#define M_TEMPERATURE_TOLERANCE         0.1
 #define M_INIT_TEMPERATURE_TOLERANCE    0.5
 #define M_PRESSURE_TOLERANCE            0.5 
 
@@ -201,7 +201,7 @@
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App: Ver. 1.05.186"
+#define FW_VERSION  "App: Ver. 1.05.191"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

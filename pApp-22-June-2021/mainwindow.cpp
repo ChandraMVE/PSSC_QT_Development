@@ -318,8 +318,8 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->wCalibrationSetup->on_D6377_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
         ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
 
-        ui->wCalibrationSetup->on_IP_481_Vl_ration(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100), true);
-        ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+        ui->wCalibrationSetup->on_IP_481_Vl_ration(((ui->wMethodSetup->stdIP_481.vl_ratio * 100)+100), true);
+        ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdIP_481.vl_ratio * 100)+100));
 
         QString str = " Method Calibration Setup is not present and values setted to default ";
         if(ui->wServiceSetup->logPathEnabled())
@@ -344,6 +344,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    qDebug()<<"value of from mainwindow constructor (ui->wCalibrationSetup->cCalibD6377.FirstVolume): "<<(ui->wCalibrationSetup->cCalibD6377.FirstVolume);
 
     ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+    ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdIP_481.vl_ratio * 100)+100));
 
     ui->listSetupMenu->hide();
 
@@ -361,6 +362,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->wMeasuring1, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
     connect(ui->wMeasuring1, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
+    connect(ui->wMeasuring1, SIGNAL(emitInternalLog(QString)), this, SLOT(internalLogSaving(QString)));
     connect(ui->wGeneralSetup, SIGNAL(showKeypad(QObject*,int,bool)), this, SLOT(onShowKeypad(QObject*,int,bool)));
 
     connect(ui->wMethodSetup, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
@@ -2146,6 +2148,17 @@ void MainWindow::setMeasuring()
     ui->wMeasuring1->cstdD6377 = &ui->wMethodSetup->stdD6377;
     ui->wMeasuring1->cstdD6378 = &ui->wMethodSetup->stdD6378;
     ui->wMeasuring1->cstdD5188 = &ui->wMethodSetup->stdD5188;
+
+    ui->wMeasuring1->cstdEN_13016_1 = &ui->wMethodSetup->stdEN_13016_1;
+    ui->wMeasuring1->cstdEN_13016_2 = &ui->wMethodSetup->stdEN_13016_2;
+    ui->wMeasuring1->cstdGB_T_8017 = &ui->wMethodSetup->stdGB_T_8017;
+    ui->wMeasuring1->cstdIP_394 = &ui->wMethodSetup->stdIP_394;
+    ui->wMeasuring1->cstdIP409 = &ui->wMethodSetup->stdIP409;
+    ui->wMeasuring1->cstdIP_481 = &ui->wMethodSetup->stdIP_481;
+    ui->wMeasuring1->cstdJIS_K2258_2 = &ui->wMethodSetup->stdJIS_K2258_2;
+    ui->wMeasuring1->cstdSH_T_0769 = &ui->wMethodSetup->stdSH_T_0769;
+    ui->wMeasuring1->cstdSH_T_0794 = &ui->wMethodSetup->stdSH_T_0794;
+    ui->wMeasuring1->cstdSN_T_2932 = &ui->wMethodSetup->stdSN_T_2932;
 
     ui->wMeasuring1->cstdFree1 = &ui->wMethodSetup->stdFree1;
     ui->wMeasuring1->cstdFree2 = &ui->wMethodSetup->stdFree2;
@@ -5291,6 +5304,15 @@ void MainWindow::handleD5191RelatedMethods()
 
                             if(cEqTime >= cREqTime)
                             {
+                                QString str = "handleD5191RelatedMethods() and line number: 5486, ";
+                                if(ui->wServiceSetup->logPathEnabled())
+                                    ui->wServiceSetup->commandLog(str);
+                                else if(ui->wServiceSetup->internalLogData())
+                                {
+                                    qDebug()<<"First Time";
+                                    ui->wServiceSetup->commandLog(str);
+                                }
+
                                 cPrTpx3= cSettings.getPressurekPaMM(cRawCTemperature, cRawCPressure);
 
                                 ui->wMeasuring1->setStatus("");
@@ -5299,16 +5321,37 @@ void MainWindow::handleD5191RelatedMethods()
                                 ui->imageCapture->move(20,900);
                                 ui->imageCapture->show();
 
-                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191)
-                                    ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
-                                else if(ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1)
-                                    ui->wMeasuring1->showResultEN_13016_1(cPrTpx1, cPrTpx2, cPrTpx3);
-                                else if(ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017)
-                                    ui->wMeasuring1->showResultGB_T_8017(cPrTpx1, cPrTpx2, cPrTpx3);
-                                else if(ui->wMeasuring1->getMethod() == M_METHOD_IP_394)
-                                    ui->wMeasuring1->showResultIP_394(cPrTpx1, cPrTpx2, cPrTpx3);
-                                else
-                                    ui->wMeasuring1->showResultSH_T_0794(cPrTpx1, cPrTpx2, cPrTpx3);
+                                switch(ui->wMeasuring1->getMethod())
+                                {
+                                    case M_METHOD_NEW_D5191: ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
+                                    break;
+
+                                    case M_METHOD_EN_13016_1: ui->wMeasuring1->showResultEN_13016_1(cPrTpx1, cPrTpx2, cPrTpx3);
+                                    break;
+
+                                    case M_METHOD_GB_T_8017: ui->wMeasuring1->showResultGB_T_8017(cPrTpx1, cPrTpx2, cPrTpx3);
+                                    break;
+
+                                    case M_METHOD_IP_394: ui->wMeasuring1->showResultIP_394(cPrTpx1, cPrTpx2, cPrTpx3);
+                                    break;
+
+                                    case M_METHOD_SH_T_0794: ui->wMeasuring1->showResultSH_T_0794(cPrTpx1, cPrTpx2, cPrTpx3);
+                                    break;
+
+                                    default : cStage = 18;
+                                    break;
+                                }
+
+//                                if(ui->wMeasuring1->getMethod() == M_METHOD_NEW_D5191)
+//                                    ui->wMeasuring1->showResultD5191(cPrTpx1, cPrTpx2, cPrTpx3);
+//                                else if(ui->wMeasuring1->getMethod() == M_METHOD_EN_13016_1)
+//                                    ui->wMeasuring1->showResultEN_13016_1(cPrTpx1, cPrTpx2, cPrTpx3);
+//                                else if(ui->wMeasuring1->getMethod() == M_METHOD_GB_T_8017)
+//                                    ui->wMeasuring1->showResultGB_T_8017(cPrTpx1, cPrTpx2, cPrTpx3);
+//                                else if(ui->wMeasuring1->getMethod() == M_METHOD_IP_394)
+//                                    ui->wMeasuring1->showResultIP_394(cPrTpx1, cPrTpx2, cPrTpx3);
+//                                else
+//                                    ui->wMeasuring1->showResultSH_T_0794(cPrTpx1, cPrTpx2, cPrTpx3);
 
                                 ui->wServiceSetup->incrementCount();
 
@@ -9000,10 +9043,7 @@ void MainWindow::handleD6377Related(void)
                     {
                         cParasUpdated = false;
 
-//                        int cvl = (ui->wMethodSetup->stdD6377.vl_ratio * 100) + 100;
-                        int cvl = qRound((ui->wCalibrationSetup->cCalibD6377.FirstVolume) * 100) - deltaVolume;
-
-                        if((cPistonPosition <= cvl + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cvl - M_PISTON_POSITION_TOLERANCE))
+                        if((cPistonPosition <= cVolume + M_PISTON_POSITION_TOLERANCE) && (cPistonPosition >= cVolume - M_PISTON_POSITION_TOLERANCE))
                         {
                             int shaker;
 
@@ -9247,8 +9287,6 @@ void MainWindow::handleD6377Related(void)
                         if((cStepperSpeed == 0) && (cStageTimeOut <=56))
                         {
 
-                            int tc = cSettings.getTemperatureCount(ui->wMethodSetup->stdD6377.InjectTemp);
-
                             double temp;
                             switch(ui->wMeasuring1->getMethod())
                             {
@@ -9261,11 +9299,14 @@ void MainWindow::handleD6377Related(void)
                                 default : temp = 20.0;
                                 break;
                             }
-                           sendPara( cProtocol.sendTemperature(temp),
+
+                            int tc = cSettings.getTemperatureCount(temp);
+
+                           sendPara( cProtocol.sendTemperature(tc),
                                      17, 60*12); //180+180);
 
                            if(ui->wServiceSetup->getDebug())
-                               ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(20));
+                               ui->wMeasuring1->setStatus(STRING_MEASURING_COOLING + cSettings.getTemperature(tc));
                            else
                                ui->wMeasuring1->setStatus(STRING_MEASURING_COOL);
 
@@ -9292,8 +9333,21 @@ void MainWindow::handleD6377Related(void)
 
                         double ctmp = cSettings.getTemperatureCelsius(cRawCTemperature);
 
-                        if((ctmp >= (ui->wMethodSetup->stdD6377.InjectTemp - M_TEMPERATURE_TOLERANCE ))
-                            && (ctmp <= (ui->wMethodSetup->stdD6377.InjectTemp + M_TEMPERATURE_TOLERANCE )))
+                        double temp;
+                        switch(ui->wMeasuring1->getMethod())
+                        {
+                            case M_METHOD_NEW_D6377: temp = ui->wMethodSetup->stdD6377.InjectTemp;
+                            break;
+
+                            case M_METHOD_IP_481: temp = ui->wMethodSetup->stdIP_481.InjectTemp;
+                            break;
+
+                            default : temp = 20.0;
+                            break;
+                        }
+
+                        if((ctmp >= (temp - M_TEMPERATURE_TOLERANCE ))
+                            && (ctmp <= (temp + M_TEMPERATURE_TOLERANCE )))
                         {
                             sendPara(cProtocol.sendValvePosition(M_VALVE_POSITION_EXHAUST),
                                      18, 60);
@@ -9663,6 +9717,7 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                                                 ui->wCalibrationSetup->IS_ADMIN_USER=0;
                                             }
                                             ui->wCalibrationSetup->updateD6377Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+                                            ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdIP_481.vl_ratio * 100)+100));
                                             ui->wCalibrationSetup->Show();
                                             cMenu = M_SETUP;
                                             cWidget = ui->wCalibrationSetup;
@@ -10121,7 +10176,7 @@ void MainWindow::onD6377VlRatio(double vl){
 void MainWindow::onIP_481VlRatio(double vl){
     qDebug()<<"Updating IP_481 vl_ratio";
     ui->wCalibrationSetup->on_IP_481_Vl_ration(vl, false);
-    ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdD6377.vl_ratio * 100)+100));
+    ui->wCalibrationSetup->updateIP_481_Range(((ui->wMethodSetup->stdIP_481.vl_ratio * 100)+100));
 }
 
 void MainWindow::on_imageCapture_clicked()

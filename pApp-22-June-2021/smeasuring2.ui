@@ -462,10 +462,10 @@ font: 75 18pt &quot;Roboto Medium&quot;;</string>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>0</y>
+       <x>26</x>
+       <y>4</y>
        <width>91</width>
-       <height>41</height>
+       <height>33</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -474,16 +474,16 @@ font: 75 12pt &quot;Roboto Medium&quot;;
 color: rgb(0,0,0);</string>
      </property>
      <property name="text">
-      <string> : Sample Id</string>
+      <string>Sample Id: </string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="lblSampleId">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>113</x>
        <y>0</y>
        <width>331</width>
        <height>41</height>
@@ -498,7 +498,7 @@ color: rgb(0,0,0);</string>
       <string>WWWWWWWWWWWWWWWWWWWW</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>

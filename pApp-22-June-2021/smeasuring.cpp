@@ -501,6 +501,7 @@ void sMeasuring::showResultD5191Single(double prtpx3){
 }
 
 void sMeasuring::showResultEN_13016_1Single(double prtpx3){
+     emit emitInternalLog("showResultEN_13016_1Single() ");
     double p_tot = 0;
 
     p_tot = prtpx3;
@@ -523,17 +524,17 @@ void sMeasuring::showResultEN_13016_1Single(double prtpx3){
 
     if(cstdEN_13016_1->formula==0)
     {
-        ui->wResult->setMethod(tr("EN 13016-1 ASTM Results"));
+        ui->wResult->setMethod(tr("EN 13016-1 Results"));
         formula = "ASTM";
     }
     else if(cstdEN_13016_1->formula==1)
     {
-        ui->wResult->setMethod(tr("EN 13016-1 EPA Results"));
+        ui->wResult->setMethod(tr("EN 13016-1 Results"));
         formula = "EPA";
     }
     else if(cstdEN_13016_1->formula==2)
     {
-        ui->wResult->setMethod(tr("EN 13016-1 CARB Results"));
+        ui->wResult->setMethod(tr("EN 13016-1 Results"));
         formula = "CARB";
     }
 
@@ -587,17 +588,17 @@ void sMeasuring::showResultGB_T_8017Single(double prtpx3){
 
     if(cstdGB_T_8017->formula==0)
     {
-        ui->wResult->setMethod(tr("GB/T 8017 ASTM Results"));
+        ui->wResult->setMethod(tr("GB/T 8017 Results"));
         formula = "ASTM";
     }
     else if(cstdGB_T_8017->formula==1)
     {
-        ui->wResult->setMethod(tr("GB/T 8017 EPA Results"));
+        ui->wResult->setMethod(tr("GB/T 8017 Results"));
         formula = "EPA";
     }
     else if(cstdGB_T_8017->formula==2)
     {
-        ui->wResult->setMethod(tr("GB/T 8017 CARB Results"));
+        ui->wResult->setMethod(tr("GB/T 8017 Results"));
         formula = "CARB";
     }
 
@@ -651,17 +652,17 @@ void sMeasuring::showResultIP_394Single(double prtpx3){
 
     if(cstdIP_394->formula==0)
     {
-        ui->wResult->setMethod(tr("IP 394 ASTM Results"));
+        ui->wResult->setMethod(tr("IP 394 Results"));
         formula = "ASTM";
     }
     else if(cstdIP_394->formula==1)
     {
-        ui->wResult->setMethod(tr("IP 394 EPA Results"));
+        ui->wResult->setMethod(tr("IP 394 Results"));
         formula = "EPA";
     }
     else if(cstdIP_394->formula==2)
     {
-        ui->wResult->setMethod(tr("IP 394 CARB Results"));
+        ui->wResult->setMethod(tr("IP 394 Results"));
         formula = "CARB";
     }
 
@@ -715,17 +716,17 @@ void sMeasuring::showResultSH_T_0794Single(double prtpx3){
 
     if(cstdSH_T_0794->formula==0)
     {
-        ui->wResult->setMethod(tr("SH/T 0794 ASTM Results"));
+        ui->wResult->setMethod(tr("SH/T 0794 Results"));
         formula = "ASTM";
     }
     else if(cstdSH_T_0794->formula==1)
     {
-        ui->wResult->setMethod(tr("SH/T 0794 EPA Results"));
+        ui->wResult->setMethod(tr("SH/T 0794 Results"));
         formula = "EPA";
     }
     else if(cstdSH_T_0794->formula==2)
     {
-        ui->wResult->setMethod(tr("SH/T 0794 CARB Results"));
+        ui->wResult->setMethod(tr("SH/T 0794 Results"));
         formula = "CARB";
     }
 
@@ -870,17 +871,17 @@ void sMeasuring::showResultEN_13016_1(double prtpx1, double prtpx2, double prtpx
 
     if(cstdEN_13016_1->formula==0)
     {
-        ui->wResult->setMethod(tr("EN 13016-1 ASTM Results"));
+        ui->wResult->setMethod(tr("EN 13016-1 Results"));
         formula = "ASTM";
     }
     else if(cstdEN_13016_1->formula==1)
     {
-        ui->wResult->setMethod(tr("EN 13016-1 EPA Results"));
+        ui->wResult->setMethod(tr("EN 13016-1 Results"));
         formula = "EPA";
     }
     else if(cstdEN_13016_1->formula==2)
     {
-        ui->wResult->setMethod(tr("EN 13016-1 CARB Results"));
+        ui->wResult->setMethod(tr("EN 13016-1 Results"));
         formula = "CARB";
     }
 
@@ -947,17 +948,17 @@ void sMeasuring::showResultGB_T_8017(double prtpx1, double prtpx2, double prtpx3
 
     if(cstdGB_T_8017->formula==0)
     {
-        ui->wResult->setMethod(tr("GB/T 8017 ASTM Results"));
+        ui->wResult->setMethod(tr("GB/T 8017 Results"));
         formula = "ASTM";
     }
     else if(cstdGB_T_8017->formula==1)
     {
-        ui->wResult->setMethod(tr("GB/T 8017 EPA Results"));
+        ui->wResult->setMethod(tr("GB/T 8017 Results"));
         formula = "EPA";
     }
     else if(cstdGB_T_8017->formula==2)
     {
-        ui->wResult->setMethod(tr("GB/T 8017 CARB Results"));
+        ui->wResult->setMethod(tr("GB/T 8017 Results"));
         formula = "CARB";
     }
 
@@ -1024,17 +1025,17 @@ void sMeasuring::showResultIP_394(double prtpx1, double prtpx2, double prtpx3){
 
     if(cstdIP_394->formula==0)
     {
-        ui->wResult->setMethod(tr("IP 394 ASTM Results"));
+        ui->wResult->setMethod(tr("IP 394 Results"));
         formula = "ASTM";
     }
     else if(cstdIP_394->formula==1)
     {
-        ui->wResult->setMethod(tr("IP 394 EPA Results"));
+        ui->wResult->setMethod(tr("IP 394 Results"));
         formula = "EPA";
     }
     else if(cstdIP_394->formula==2)
     {
-        ui->wResult->setMethod(tr("IP 394 CARB Results"));
+        ui->wResult->setMethod(tr("IP 394 Results"));
         formula = "CARB";
     }
 
@@ -1101,17 +1102,17 @@ void sMeasuring::showResultSH_T_0794(double prtpx1, double prtpx2, double prtpx3
 
     if(cstdSH_T_0794->formula==0)
     {
-        ui->wResult->setMethod(tr("SH/T 0794 ASTM Results"));
+        ui->wResult->setMethod(tr("SH/T 0794 Results"));
         formula = "ASTM";
     }
     else if(cstdSH_T_0794->formula==1)
     {
-        ui->wResult->setMethod(tr("SH/T 0794 EPA Results"));
+        ui->wResult->setMethod(tr("SH/T 0794 Results"));
         formula = "EPA";
     }
     else if(cstdSH_T_0794->formula==2)
     {
-        ui->wResult->setMethod(tr("SH/T 0794 CARB Results"));
+        ui->wResult->setMethod(tr("SH/T 0794 Results"));
         formula = "CARB";
     }
 
@@ -1241,7 +1242,7 @@ void sMeasuring::showResultIP_481(double result)
         else passfail = "Fail";
     }
 
-    ui->wResult->setMethod(tr("IP 481 VPCRx Results"));
+    ui->wResult->setMethod(tr("IP 481 Results"));
     ui->wResult->setResult(cSettings.getPressureWS(result), cSettings.getPressureScale());
     ui->wResult->setVLPr(cSettings.getVLRatio(cstdIP_481->vl_ratio), cSettings.getTemperatureWS(para_measured), cSettings.getTemperatureScale() , passfail);
     ui->wResult->setShaker(cSettings.getShaker(cstdIP_481->shaker_speed));
@@ -1377,17 +1378,17 @@ void sMeasuring::showResultEN_13016_2(double prtpx1, double prtpx2, double prtpx
 
     if(cstdEN_13016_2->formula==0)
     {
-        ui->wResult->setMethod(tr("EN 13016-2 ASTM Results"));
+        ui->wResult->setMethod(tr("EN 13016-2 Results"));
         formula = "ASTM";
     }
     else if(cstdEN_13016_2->formula==1)
     {
-        ui->wResult->setMethod(tr("EN 13016-2 EPA Results"));
+        ui->wResult->setMethod(tr("EN 13016-2 Results"));
         formula = "EPA";
     }
     else if(cstdEN_13016_2->formula==2)
     {
-        ui->wResult->setMethod(tr("EN 13016-2 CARB Results"));
+        ui->wResult->setMethod(tr("EN 13016-2 Results"));
         formula = "CARB";
     }
 
@@ -1455,17 +1456,17 @@ void sMeasuring::showResultIP409(double prtpx1, double prtpx2, double prtpx3)
 
     if(cstdIP409->formula==0)
     {
-        ui->wResult->setMethod(tr("IP 409 ASTM Results"));
+        ui->wResult->setMethod(tr("IP 409 Results"));
         formula = "ASTM";
     }
     else if(cstdIP409->formula==1)
     {
-        ui->wResult->setMethod(tr("IP 409 EPA Results"));
+        ui->wResult->setMethod(tr("IP 409 Results"));
         formula = "EPA";
     }
     else if(cstdIP409->formula==2)
     {
-        ui->wResult->setMethod(tr("IP 409 CARB Results"));
+        ui->wResult->setMethod(tr("IP 409 Results"));
         formula = "CARB";
     }
 
@@ -1533,17 +1534,17 @@ void sMeasuring::showResultJIS_K2258_2(double prtpx1, double prtpx2, double prtp
 
     if(cstdJIS_K2258_2->formula==0)
     {
-        ui->wResult->setMethod(tr("JIS K2258-2 ASTM Results"));
+        ui->wResult->setMethod(tr("JIS K2258-2 Results"));
         formula = "ASTM";
     }
     else if(cstdJIS_K2258_2->formula==1)
     {
-        ui->wResult->setMethod(tr("JIS K2258-2 EPA Results"));
+        ui->wResult->setMethod(tr("JIS K2258-2 Results"));
         formula = "EPA";
     }
     else if(cstdJIS_K2258_2->formula==2)
     {
-        ui->wResult->setMethod(tr("JIS K2258-2 CARB Results"));
+        ui->wResult->setMethod(tr("JIS K2258-2 Results"));
         formula = "CARB";
     }
 
@@ -1611,17 +1612,17 @@ void sMeasuring::showResultSH_T_0769(double prtpx1, double prtpx2, double prtpx3
 
     if(cstdSH_T_0769->formula==0)
     {
-        ui->wResult->setMethod(tr("SH/T 0769 ASTM Results"));
+        ui->wResult->setMethod(tr("SH/T 0769 Results"));
         formula = "ASTM";
     }
     else if(cstdSH_T_0769->formula==1)
     {
-        ui->wResult->setMethod(tr("SH/T 0769 EPA Results"));
+        ui->wResult->setMethod(tr("SH/T 0769 Results"));
         formula = "EPA";
     }
     else if(cstdSH_T_0769->formula==2)
     {
-        ui->wResult->setMethod(tr("SH/T 0769 CARB Results"));
+        ui->wResult->setMethod(tr("SH/T 0769 Results"));
         formula = "CARB";
     }
 
@@ -1689,17 +1690,17 @@ void sMeasuring::showResultSN_T_2932(double prtpx1, double prtpx2, double prtpx3
 
     if(cstdSN_T_2932->formula==0)
     {
-        ui->wResult->setMethod(tr("SN/T 2932 ASTM Results"));
+        ui->wResult->setMethod(tr("SN/T 2932 Results"));
         formula = "ASTM";
     }
     else if(cstdSN_T_2932->formula==1)
     {
-        ui->wResult->setMethod(tr("SN/T 2932 EPA Results"));
+        ui->wResult->setMethod(tr("SN/T 2932 Results"));
         formula = "EPA";
     }
     else if(cstdSN_T_2932->formula==2)
     {
-        ui->wResult->setMethod(tr("SN/T 2932 CARB Results"));
+        ui->wResult->setMethod(tr("SN/T 2932 Results"));
         formula = "CARB";
     }
 

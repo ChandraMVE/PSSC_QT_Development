@@ -139,7 +139,7 @@ void sMeasuring2::setPtot(QString ptot, QString scale, QString pass){
     ui->lblScale->setText(scale);
 
     ui->label_8->move(200,0);
-    ui->lblPtot->move(200,40);
+    ui->lblPtot->move(190,40);
     if(pass == "Pass")
     {
         ui->lblPassFail->setText(pass);

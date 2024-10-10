@@ -160,6 +160,8 @@ signals:
                     double ttime, double vlratio,
                     double para_measured);
 
+    void emitInternalLog(QString str);
+
 
 private slots:
 

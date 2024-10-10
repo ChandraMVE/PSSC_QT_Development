@@ -2346,6 +2346,7 @@ void sMethodSetup::updateD6377()
     if(stdD6377.vl_ratio != ui->lePara3->text().toDouble())
     {
         cParasChanged = true;
+//        emit D6377_VlRatio(((stdD6377.vl_ratio * 100)+100));
     }
     stdD6377.vl_ratio = ui->lePara3->text().toDouble();
     emit D6377_VlRatio(((stdD6377.vl_ratio * 100)+100));
@@ -2765,6 +2766,7 @@ void sMethodSetup::updateIP_481(){
     if(stdIP_481.vl_ratio != ui->lePara3->text().toDouble())
     {
         cParasChanged = true;
+//        emit IP_481_VlRatio(((stdIP_481.vl_ratio * 100)+100));
     }
     stdIP_481.vl_ratio = ui->lePara3->text().toDouble();
     emit IP_481_VlRatio(((stdIP_481.vl_ratio * 100)+100));
@@ -3654,7 +3656,7 @@ void sMethodSetup::on_pbSave_clicked()
 
 void sMethodSetup::on_pbExit_clicked()
 {
-    qDebug()<< __FILE__ << __LINE__ <<"cParasChanged: "<<cParasChanged;
+//    qDebug()<< __FILE__ << __LINE__ <<"cParasChanged: "<<cParasChanged;
     exitClicked = true;
     checkExit(M_MEASURING);
 }
