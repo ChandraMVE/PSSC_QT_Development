@@ -536,21 +536,22 @@ QComboBox QAbstractItemView {
 /*  vertical */
 QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
-     background:  rgb(230,230,230);
+     background:  rgb(255,255,255);
      width: 41px;
 	 margin: 50px 0 50px 0;
-     border-left: 2px solid  rgb(182, 182, 182);
+     border-left: 2px solid  rgb(21, 100, 192);
+     border-right: 2px solid  rgb(21, 100, 192);
      border-radius: 0px;
  }
 
  QScrollBar::handle:vertical {
-     background:  rgb(182, 182, 182);
+     background:  rgb(21, 100, 192);
      min-height: 20px;
  }
 
  QScrollBar::add-line:vertical {
      border: 0px solid grey;
-     background:  rgb(230,230,230);
+     background:  rgb(255,255,255);
      height: 50px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
@@ -577,7 +578,7 @@ QScrollBar::down-arrow:vertical {
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-      background:  rgb(241, 241, 241);
+      background:  rgb(255, 255, 255);
  }
 </string>
      </property>

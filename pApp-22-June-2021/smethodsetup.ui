@@ -350,23 +350,25 @@ QComboBox::down-arrow:on {
     left: 1px;
 }
 
-QComboBox::QAbstractItemView {
+QComboBox QAbstractItemView {
    border: 2px solid rgb(21, 100, 192);
    font: 75 16pt &quot;Roboto Medium&quot;;
    border-radius: 5px;
+   border-bottom-right-radius: 15px;
    background-color: rgb(255, 255, 255);
    selection-background-color:  rgb(21, 100, 192);
    selection-color: rgb(255, 255, 255);
 }
 
 /*  vertical */
-QScrollBar::vertical {
+QScrollBar:vertical {
      border: 0px solid  rgb(21, 100, 192);
      background:  rgb(255,255,255);
-     width: 42px;
-	 margin: 45px 0 45px 0;
+     width: 41px;
+	 margin: 50px 0 50px 0;
      border-left: 2px solid  rgb(21, 100, 192);
-	  border-right: 2px solid  rgb(21, 100, 192);
+     border-right: 2px solid  rgb(21, 100, 192);
+     border-radius: 0px;
  }
 
  QScrollBar::handle:vertical {
@@ -376,8 +378,8 @@ QScrollBar::vertical {
 
  QScrollBar::add-line:vertical {
      border: 0px solid grey;
-     background:  rgb(230,230,230);
-     height: 45px;
+     background:  rgb(255,255,255);
+     height: 50px;
      subcontrol-position: bottom;
      subcontrol-origin: margin;
  }
@@ -385,25 +387,25 @@ QScrollBar::vertical {
  QScrollBar::sub-line:vertical {
      border: 0px solid grey;
      background:  rgb(230,230,230);
-     height: 45px;
+     height: 50px;
      subcontrol-position: top;
      subcontrol-origin: margin;
  }
 
  QScrollBar::up-arrow:vertical {
-     width: 42px;
-     height: 45px;
+     width: 41px;
+     height: 50px;
      background-image: url(:/images/icons/cuparrow.png);
 }
 
 QScrollBar::down-arrow:vertical {
-     width: 42px;
-      height: 45px;
+     width: 41px;
+      height: 50px;
       background-image: url(:/images/icons/cdownarrow.png);
  }
 
  QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-      background: none;
+      background:  rgb(255, 255, 255);
  }
 </string>
        </property>
