@@ -7773,6 +7773,8 @@ void MainWindow::handleD6378RelatedMethods()
                                     ui->wMeasuring1->showResultJIS_K2258_2(cPrTpx1, cPrTpx2, cPrTpx3);
                                 else if(ui->wMeasuring1->getMethod() == M_METHOD_SH_T_0769)
                                     ui->wMeasuring1->showResultSH_T_0769(cPrTpx1, cPrTpx2, cPrTpx3);
+                                else if(ui->wMeasuring1->getMethod() == M_METHOD_SN_T_2932)
+                                    ui->wMeasuring1->showResultSN_T_2932(cPrTpx1, cPrTpx2, cPrTpx3);
                                 else
                                     ui->wMeasuring1->showResultFree(cPrTpx1, cPrTpx2, cPrTpx3);
 
