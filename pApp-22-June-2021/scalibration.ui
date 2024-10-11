@@ -28,48 +28,58 @@
    <property name="styleSheet">
     <string notr="true">QPushButton{
 background-color: rgb(240,90,40);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(240,90,40);
-border-style: solid;
-border-radius: 15;
-color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0,0,0);
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
 background-color: rgb(190, 190, 190);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(190, 190, 190);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+    border: none;
+    outline: none;
+border-radius: 20;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(194, 194, 194);
-border-width: 2px;
-border-color: rgb(194, 194, 194);
-border-style: solid;
-border-radius: 15;
+background-color: rgb(194, 54, 11);
+/*border-width: 2px;
+border-color: rgb(194, 54, 11);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }</string>
    </property>
    <property name="text">
@@ -91,49 +101,60 @@ font: 75 18pt &quot;Roboto Medium&quot;;
    <property name="styleSheet">
     <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
-border-radius: 15;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
-border-radius: 15;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
-}</string>
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+</string>
    </property>
    <property name="text">
     <string>Save</string>
@@ -425,48 +446,58 @@ QCheckBox::indicator:indeterminate:pressed {
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -505,48 +536,58 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -631,48 +672,58 @@ border-color: rgb(21, 100, 192);
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -1141,48 +1192,58 @@ QGroupBox::title {
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -1422,48 +1483,58 @@ QGroupBox::title {
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -1646,48 +1717,58 @@ QGroupBox::title {
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -1742,48 +1823,58 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -1806,48 +1897,58 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -2282,48 +2383,58 @@ QScrollBar::down-arrow:vertical {
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -3415,48 +3526,58 @@ QGroupBox::title {
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 </string>
        </property>
@@ -3479,50 +3600,59 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(240,90,40);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(240,90,40);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
-color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+    border: none;
+    outline: none;
+color: rgb(0,0,0);
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
 background-color: rgb(190, 190, 190);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(190, 190, 190);
-border-style: solid;
+border-style: solid;*/
+    border: none;
+    outline: none;
 border-radius: 15;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
-background-color: rgb(24, 163, 3);
-border-width: 2px;
-border-color: rgb(24, 163, 3);
-border-style: solid;
+background-color: rgb(194, 54, 11);
+/*border-width: 2px;
+border-color: rgb(194, 54, 11);
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
-}
-</string>
+font: 100 18pt &quot;Roboto Medium&quot;;
+}</string>
        </property>
        <property name="text">
         <string>Stop</string>
@@ -3575,49 +3705,60 @@ font: 75 18pt &quot;Roboto Medium&quot;;
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: rgb(120, 200, 90);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(120, 200, 90);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:disabled { 
-background-color: rgb(190, 190, 190);
-border-width: 2px;
-border-color: rgb(190, 190, 190);
-border-style: solid;
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:pressed {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(255, 255, 255);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:down {
 background-color: rgb(24, 163, 3);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(24, 163, 3);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
+font: 100 18pt &quot;Roboto Medium&quot;;
 }
 QPushButton:default {
 background-color: rgb(241, 241, 241);
-border-width: 2px;
+/*border-width: 2px;
 border-color: rgb(241, 241, 241);
-border-style: solid;
+border-style: solid;*/
 border-radius: 15;
+    border: none;
+    outline: none;
 color: rgb(0, 0, 0);
-font: 75 18pt &quot;Roboto Medium&quot;;
-}</string>
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+</string>
        </property>
        <property name="text">
         <string>Show</string>
