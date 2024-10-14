@@ -99,10 +99,6 @@ void TemperatureControl_Handler(void);
 uint32_t TemperatureControl_GetTempADC(void);
 uint32_t TemperatureControl_GetPressADC(void);
 bool TemperatureControl_GetErrorFlag(void);
-void TemperatureControl_UpdateTemp(uint32_t tmp);
-void TemperatureControl_TimeIncreament(void);
-uint32_t TemperatureControl_GetTime(void);
-bool TemperatureControl_TemperatureStable(void);
 
 
 // EXTERN VARIABLES

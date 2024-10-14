@@ -209,7 +209,7 @@ void TECControl_Handler(void)
                             // range of temperature below 42
                             else if(TECControl.Set_Value < CHECK_TEMP_SET_COUNT40)
                             {
-                                PidControl.Kp_Term =  2.445f;          //2.445f;beta    //1.945f;alpha
+                                PidControl.Kp_Term =  1.945f;           //2.445f;          //2.445f;beta    //1.945f;alpha
                                 PidControl.Ki_Term =  0.070f;          //0.070f;        //0.055f;
                                 PidControl.Kd_Term =  27.55f;          //28.55f;        //27.55f;
                                 Events_SetTecFan(false);
@@ -872,7 +872,6 @@ void TECControl_UpdateTemp(bool flagSet, bool flagControl, uint32_t dutyValue)
     {
         TECControl.Flags.TECEdited = true;
     }
-    TemperatureControl_UpdateTemp(dutyValue);
 }
 
 uint32_t TECControl_GetValue(void)
@@ -973,7 +972,7 @@ void PIDControl_Calculation(void)
     PidControl.Previous_Err = PidControl.Current_Err;
     // If target temperature is near reduce the power cycle based on output of
     // change of outlet temperature
-    if(PidControl.Current_Err < 4000U)                                                                // Temperature difference below 3 degree celsius
+    if(PidControl.Current_Err < 6000U)                                                                // Temperature difference below 3 degree celsius
     {
         fPower = fPower + (float) (PidControl.Kd_Term * PidControl.Err_Integration);
     }

@@ -56,12 +56,6 @@ Resources:
 #include "../mcc_generated_files/spi1.h"
 #include "mcc_generated_files/pin_manager.h"
 
-static uint32_t Temp_SetVal;
-static uint32_t TimeIncreament;
-static bool timeTmp;
-static uint32_t isTempInRange;
-static bool TempInRangeVar;
-
 /**
  * @brief This method Initializes the Parameter variables to read the External ADC using SPI communication 
  * @param Nothing
@@ -69,11 +63,6 @@ static bool TempInRangeVar;
  */
 void TemperatureControl_Initialise(void)
 {
-    TimeIncreament = 0;
-    Temp_SetVal = 0;
-    isTempInRange = 0;
-    TempInRangeVar = false;
-    timeTmp = false;
     SS1OUT_SetDigitalOutput();                                      // Slave Select Pin defined as output
     SS1OUT_SetHigh();
     
@@ -158,16 +147,6 @@ void TemperatureControl_Handler(void)
             TemperatureControl.ADC_Count = TemperatureControl.ADC_Count >> 14;                  // to use all the 18 bits received
             TemperatureControl.Temp_Count = TemperatureControl.ADC_Count & 0x3FFFF;
             
-            if(timeTmp){
-                if((TemperatureControl.Temp_Count < (Temp_SetVal - 10)) || (TemperatureControl.Temp_Count > (Temp_SetVal + 10))){
-                    if(TemperatureControl.Buffer_Counter == 0){
-                        TemperatureControl.Temp_Count = TemperatureControl.Temp_Buffer[9];
-                    }else{
-                        TemperatureControl.Temp_Count = TemperatureControl.Temp_Buffer[TemperatureControl.Buffer_Counter - 1];
-                    }
-                }
-            }
-            
             TemperatureControl.ADC_Count = (uint32_t) highData1 << 16;
             TemperatureControl.ADC_Count = TemperatureControl.ADC_Count |  lowData1;
             TemperatureControl.ADC_Count = TemperatureControl.ADC_Count >> 14;                  // to use all the 18 bits received
@@ -181,31 +160,18 @@ void TemperatureControl_Handler(void)
             TemperatureControl.Temp_Buffer[TemperatureControl.Buffer_Counter] = TemperatureControl.Temp_Count;
             TemperatureControl.Press_Buffer[TemperatureControl.Buffer_Counter] = TemperatureControl.Press_Count;
             
-            if((TemperatureControl.Temp_Count > (Temp_SetVal - 140)) && (TemperatureControl.Temp_Count < (Temp_SetVal + 140))){
-                isTempInRange++;
-            }
-            
             TemperatureControl.Buffer_Counter++;
             if(TemperatureControl.Buffer_Counter >= MAX_BUFFSIZE)
             {
-                if(isTempInRange == 10){
-                    TempInRangeVar = true;
-                    isTempInRange = 0;
-                }else{
-                    TempInRangeVar = false;
-                    timeTmp = false;
-                    isTempInRange = 0;
-                }
                 TemperatureControl.Buffer_Counter = 0;
                 TemperatureControl.ADC_Count = 0;
                 TemperatureControl.Press_Count = 0;
-//                TemperatureControl.Flags.Buffer_Ready = true;
+                TemperatureControl.Flags.Buffer_Ready = true;
             }
-//            if(TemperatureControl.Flags.Buffer_Ready)
-            if(1)
+            if(TemperatureControl.Flags.Buffer_Ready)
             {
                 uint8_t temp;
-//                TemperatureControl.Flags.Buffer_Ready = false;
+                TemperatureControl.Flags.Buffer_Ready = false;
                 TemperatureControl.Temp_Count = 0;
                 TemperatureControl.Press_Count = 0;
                 for(temp = 0; temp < MAX_BUFFSIZE; temp++)
@@ -217,10 +183,6 @@ void TemperatureControl_Handler(void)
                 TemperatureControl.Press_Value = TemperatureControl.Press_Count / MAX_BUFFSIZE;
             }
             TemperatureControl.ADC_Status = TEMP_ADC_STATE_READ;
-            
-            TemperatureControl.ADC_Count = 0;
-            TemperatureControl.Press_Count = 0;
-            TemperatureControl.Temp_Count = 0;
 
         break;
         
@@ -246,26 +208,3 @@ bool TemperatureControl_GetErrorFlag(void)
     return (TemperatureControl.Flags.TECError);
 }
 
-void TemperatureControl_UpdateTemp(uint32_t tmp){
-    Temp_SetVal = tmp;
-    TimeIncreament = 0;
-    timeTmp = false;
-}
-
-uint32_t TemperatureControl_GetTime(void){
-    return TimeIncreament;
-}
-
-void TemperatureControl_TimeIncreament(void){
-    if(timeTmp == false){
-        TimeIncreament++;
-    }
-    if( TimeIncreament > 20000){
-        timeTmp = true;
-    }
-}
-
-bool TemperatureControl_TemperatureStable(void){
-//    return timeTmp;
-    return TempInRangeVar;
-}
