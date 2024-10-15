@@ -800,7 +800,7 @@ void MainWindow::setLists()
     qslMethods.insert(0, "D5191");
     qslMethods.insert(1, "D6377");
     qslMethods.insert(2, "D6378");
-    qslMethods.insert(3, "D1588");
+    qslMethods.insert(3, "D5188");
     qslMethods.insert(4, "EN 13016-1");
     qslMethods.insert(5, "EN 13016-2");
     qslMethods.insert(6, "GB/T 8017");
