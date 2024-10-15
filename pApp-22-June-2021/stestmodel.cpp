@@ -1110,7 +1110,7 @@ bool sTestModel::CreateSingleDeskjet(bool precords)
                     cHeaderModel->getData(REPORT_P_GAS)  ||
                     cHeaderModel->getData(REPORT_P_ABS))
                 {
-                    if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                    if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188" && cTestRecord.tm_method != "IP 481")
                     {
                         setBrush(&painter, &brush, row);
 
@@ -1325,7 +1325,7 @@ bool sTestModel::CreateSingleDeskjet(bool precords)
             cHeaderModel->getData(REPORT_P_GAS)  ||
             cHeaderModel->getData(REPORT_P_ABS))
         {
-            if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188")
+            if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188" && cPrintRecord->method != "IP 481")
             {
                 setBrush(&painter, &brush, row);
 
@@ -1798,7 +1798,7 @@ bool sTestModel::CreateMultilineDeskjet()
 
                 QRect rectTitleText(xt+spacing, y+spacing, qilWidth.at(col)+spacing, rowHeight+spacing);
 
-                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188" && cTestRecord.tm_method != "IP 481")
                     painter.drawText(rectTitleText, cSettings.getPressure(nRecord.method, nRecord.p_tot), to_value);
                 else
                     painter.drawText(rectTitleText, "-", to_value);
@@ -1817,7 +1817,7 @@ bool sTestModel::CreateMultilineDeskjet()
 
                 QRect rectTitleText(xt+spacing, y+spacing, qilWidth.at(col)+spacing, rowHeight+spacing);
 
-                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188" && cTestRecord.tm_method != "IP 481")
                     painter.drawText(rectTitleText, cSettings.getPressure(nRecord.method, nRecord.p_gas), to_value);
                 else
                     painter.drawText(rectTitleText, "-", to_value);
@@ -1837,7 +1837,7 @@ bool sTestModel::CreateMultilineDeskjet()
 
                 QRect rectTitleText(xt+spacing, y+spacing, qilWidth.at(col)+spacing, rowHeight+spacing);
 
-                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188" && cTestRecord.tm_method != "IP 481")
                     painter.drawText(rectTitleText, cSettings.getPressure(nRecord.method, nRecord.p_abs), to_value);
                 else
                     painter.drawText(rectTitleText, "-", to_value);
@@ -1978,7 +1978,7 @@ bool sTestModel::CreatePrintSpool(bool precords)
 
                     if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.printGetResult(nRecord.method, nRecord.result) << endl;
 
-                    if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188")
+                    if(cTestRecord.tm_method != "D6377" && cTestRecord.tm_method != "D5188" && cTestRecord.tm_method != "IP 481")
                     {
                         save << tr("Ptot: ") << cSettings.printGetPressure(nRecord.method, nRecord.p_tot) << endl;
                         save << tr("Pgas: ") << cSettings.printGetPressure(nRecord.method, nRecord.p_gas) << endl;
@@ -2029,7 +2029,7 @@ bool sTestModel::CreatePrintSpool(bool precords)
 
             if(cHeaderModel->getData(10)) save << tr("TEST RESULT: ") << cSettings.printGetResult(cPrintRecord->method, cPrintRecord->result) << endl;
 
-            if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188")
+            if(cPrintRecord->method != "D6377" && cPrintRecord->method != "D5188" && cPrintRecord->method != "IP 481")
             {
                 save << tr("Ptot: ") << cSettings.printGetPressure(cPrintRecord->method, cPrintRecord->p_tot) << endl;
                 save << tr("Pgas: ") << cSettings.printGetPressure(cPrintRecord->method, cPrintRecord->p_gas) << endl;

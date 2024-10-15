@@ -479,19 +479,19 @@ QString sSettings::getPressureScale() const
 
 QString sSettings::getPressure(QString method, double pr) const
 {
-    if(method == "D5188" || method == "D6377") return "";
+    if(method == "D5188" || method == "D6377" || method == "IP 481") return "";
     else return getPressure(pr);
 }
 
 QString sSettings::printGetPressure(QString method, double pr) const
 {
-    if(method == "D5188" || method == "D6377") return "";
+    if(method == "D5188" || method == "D6377" || method == "IP 481") return "";
     else return printGetPressure(pr);
 }
 
 QString sSettings::getFormula(QString method, QString formula, double aconst, double bconst, double cconst) const
 {
-    if(method =="D5188" || method =="D6377" )
+    if(method =="D5188" || method =="D6377" || method == "IP 481")
         return formula;
     else
     {
