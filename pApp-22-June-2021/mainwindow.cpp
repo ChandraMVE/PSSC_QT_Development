@@ -620,7 +620,7 @@ void MainWindow::setLists()
         PistonPositionFault = "Piston Position Fault";
         PressureHighFault = "Pressure High Fault";
         TECfailureFault = "TEC failure Fault";
-        ValveMotorFault = "Valve Motor Fault";
+        ValveMotorFault = "Check Sampling Valve Assembly";
         ValveSwitchesFault = "Valve Switches Fault";
         PressureReadingFault = "Pressure reading Fault";
         StiringMotorFault = "Stiring Motor Fault";
@@ -638,7 +638,7 @@ void MainWindow::setLists()
         PistonPositionFault = "Fallo de posición del pistón";
         PressureHighFault = "Fallo de presión alta";
         TECfailureFault = "Fallo TEC Fallo";
-        ValveMotorFault = "Fallo del motor de la válvula";
+        ValveMotorFault = "Comprobar el conjunto de la válvula de muestreo";
         ValveSwitchesFault = "Fallo de los interruptores de válvula";
         PressureReadingFault = "Fallo de lectura de presión";
         StiringMotorFault = "Fallo del motor de agitación";
@@ -656,7 +656,7 @@ void MainWindow::setLists()
         PistonPositionFault = "Kolbenpositionsfehler";
         PressureHighFault = "Fehler „Druck zu hoch“";
         TECfailureFault = "TEC-Fehler Fehler";
-        ValveMotorFault = "Ventilmotorfehler";
+        ValveMotorFault = "Überprüfen Sie die Probenahmeventilbaugruppe";
         ValveSwitchesFault = "Ventilschaltfehler";
         PressureReadingFault = "Druckmessfehler";
         StiringMotorFault = "Störung des Rührmotors";
@@ -674,7 +674,7 @@ void MainWindow::setLists()
         PistonPositionFault = "Défaut de position du piston";
         PressureHighFault = "Défaut de pression élevée";
         TECfailureFault = "Défaillance TEC Défaut";
-        ValveMotorFault = "Défaut du moteur de vanne";
+        ValveMotorFault = "Vérifier l'ensemble de la vanne d'échantillonnage";
         ValveSwitchesFault = "Défaut des interrupteurs de vanne";
         PressureReadingFault = "Défaut de lecture de pression";
         StiringMotorFault = "Défaut du moteur d'agitation";
