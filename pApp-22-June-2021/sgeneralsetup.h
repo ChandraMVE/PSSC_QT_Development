@@ -74,6 +74,25 @@ struct GENERAL_SETUP {
     }
 };
 
+struct newUsers{
+    QString userName;
+    QString userPassword;
+
+    friend QTextStream &operator<< (QTextStream &out, const newUsers &tmp)
+    {
+        out << tmp.userName << tmp.userPassword ;
+
+        return out;
+    }
+
+    friend QTextStream &operator>> (QTextStream &in, newUsers &tmp)
+    {
+        in >> tmp.userName >> tmp.userPassword ;
+
+        return in;
+    }
+
+};
 
 namespace Ui {
 class sGeneralSetup;
@@ -105,6 +124,8 @@ public:
     void setDefaults();
     bool readFile();
     bool saveFile();
+    bool saveUserFile();
+    bool readUserFile();
     void saveNetworkFile();
     void saveHostnameFile();
 
@@ -120,6 +141,8 @@ public:
     void call_on_twOther_currentChanged(int tmp); //naveen
     void editDateTime(bool tmp); //naveen
     int getCurrentGMTSeconds(void);
+    void updateUser();
+    bool userLogin(QString rUser, QString rPwd);
 
     bool GeneralSetUpFilesSaved;
 
@@ -147,6 +170,10 @@ private slots:
 
     void on_imageCapture_clicked();
 
+    void on_pbAdd_clicked();
+
+    void on_pbDelete_clicked();
+
 private:
     Ui::sGeneralSetup *ui;
     bool cParasChanged;
@@ -157,9 +184,12 @@ private:
     bool cEnSwitch;
     bool DateTimeDisplay;
     QRegularExpressionValidator *passValidator;
+    bool newUser;
+    bool newUserPasswordChange;
 
 public:
     struct GENERAL_SETUP general_setup;
+    QList<newUsers> nUsers;
     bool languageChanged;
 
 };

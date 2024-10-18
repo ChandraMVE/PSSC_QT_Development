@@ -9680,15 +9680,16 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
 
     if(rAction==MS_TYPE_CHECK_DATA)
     {
+        qDebug()<< "(ui->wGeneralSetup->userLogin(rUser, rPwd)): " << (ui->wGeneralSetup->userLogin(rUser, rPwd));
         if(rMenu >= M_PWD_SERVICE && rMenu<=M_PWD_CALIBRATION)
         {
-
             if((!QString::compare(rUser, "admin", Qt::CaseSensitive) &&
                 !QString::compare(rPwd, ui->wGeneralSetup->general_setup.admin_password, Qt::CaseSensitive)) ||
                (!QString::compare(rUser, "service", Qt::CaseSensitive) &&
                 !QString::compare(rPwd, ui->wGeneralSetup->general_setup.service_password, Qt::CaseSensitive)) ||
                (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
-                !QString::compare(rPwd, "p", Qt::CaseSensitive)))
+                !QString::compare(rPwd, "p", Qt::CaseSensitive)) ||
+                    (ui->wGeneralSetup->userLogin(rUser, rPwd)))
             {
                 ui->wCheckPass->hide();
 
@@ -9742,7 +9743,8 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
            (!QString::compare(rUser, "service", Qt::CaseSensitive) &&
             !QString::compare(rPwd, ui->wGeneralSetup->general_setup.service_password, Qt::CaseSensitive)) ||
            (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
-            !QString::compare(rPwd, "p", Qt::CaseSensitive))))
+            !QString::compare(rPwd, "p", Qt::CaseSensitive))) ||
+                (ui->wGeneralSetup->userLogin(rUser, rPwd)))
 
         {
             ui->imageCapture->resize(167,80);
@@ -9766,7 +9768,8 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                 (!QString::compare(rUser, "service", Qt::CaseSensitive) &&
                  !QString::compare(rPwd, ui->wGeneralSetup->general_setup.service_password, Qt::CaseSensitive)) ||
                 (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
-                 !QString::compare(rPwd, "p", Qt::CaseSensitive))))
+                 !QString::compare(rPwd, "p", Qt::CaseSensitive))) ||
+                (ui->wGeneralSetup->userLogin(rUser, rPwd)))
         {
             ui->imageCapture->resize(167,80);
             ui->imageCapture->move(20,920);
@@ -9790,7 +9793,8 @@ void MainWindow::onPassDataReceived(QString rUser, QString rPwd, int rAction, in
                 (!QString::compare(rUser, "service", Qt::CaseSensitive) &&
                  !QString::compare(rPwd, ui->wGeneralSetup->general_setup.service_password, Qt::CaseSensitive)) ||
                 (!QString::compare(rUser, "pssc", Qt::CaseSensitive) &&
-                 !QString::compare(rPwd, "p", Qt::CaseSensitive))))
+                 !QString::compare(rPwd, "p", Qt::CaseSensitive))) ||
+                (ui->wGeneralSetup->userLogin(rUser, rPwd)))
         {
             ui->imageCapture->resize(167,80);
             ui->imageCapture->move(20,920);

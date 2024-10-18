@@ -190,6 +190,7 @@
 #define FN_SERIAL_SETUP            "/fdata/serialsetup.txt"
 #define FN_USER_SETUP               "/cdata/usersetup.txt"
 #define FN_GENERAL_SETUP            "/cdata/generalsetup.txt"
+#define FN_NEW_USER_SETUP          "/cdata/newusersetup.txt"
 #define FN_METHOD_SETUP             "/cdata/methodsetup.txt"
 #define FN_MEMORY_SETUP             "/cdata/memorysetup.txt"
 #define FN_SERVICE_SETUP            "/cdata/setupsetup.txt"
@@ -201,7 +202,7 @@
 
 #define STORAGE_DATETIME_FORMAT     "dd/MM/yyyy hh:mm:ss"
 
-#define FW_VERSION  "App: Ver. 1.05.205"
+#define FW_VERSION  "App: Ver. 1.05.206"
 #define FW_DATE  __DATE__
 #define FW_TIME __TIME__
 

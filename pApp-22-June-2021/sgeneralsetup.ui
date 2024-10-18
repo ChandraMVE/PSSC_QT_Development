@@ -3413,7 +3413,7 @@ color: rgb(0, 0, 0);
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabDateTime">
       <attribute name="title">
@@ -5211,8 +5211,8 @@ border-color:  rgb(190, 190, 190);
 
 QGroupBox::title {
     subcontrol-origin: padding;
-    subcontrol-position: top left ; /* position at the top center */
-    left : 20px;
+    subcontrol-position: top center ; /* position at the top center */
+/*    left : 20px;*/
     top : -15px;
 }</string>
         </property>
@@ -5266,9 +5266,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
 QLineEdit:read-only {
 	background-color: rgb(241, 241, 241);
 }
-QLineEdit[error=true] {
+/*QLineEdit[error=true] {
 border-color: red;
-}
+}*/
 QLineEdit[error=false] {
 border-color: rgb(21, 100, 192);
 }
@@ -5335,6 +5335,11 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
    color: rgb(0, 0, 0);
    font: 75 16pt &quot;Roboto Medium&quot;;
    padding-left: 15px;
+}
+
+QComboBox:disabled {
+   background-color: rgb(241, 241, 241);
+   color: rgb(150, 150, 150);  
 }
 
 QComboBox:on {
@@ -5478,9 +5483,9 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
 QLineEdit:read-only {
 	background-color: rgb(241, 241, 241);
 }
-QLineEdit[error=true] {
+/*QLineEdit[error=true] {
 border-color: red;
-}
+}*/
 QLineEdit[error=false] {
 border-color: rgb(21, 100, 192);
 }
@@ -5527,9 +5532,9 @@ border-color: rgb(21, 100, 192);
 QLineEdit:read-only {
 	background-color: rgb(241, 241, 241);
 }
-QLineEdit[error=true] {
+/*QLineEdit[error=true] {
 border-color: red;
-}
+}*/
 QLineEdit[error=false] {
 border-color: rgb(21, 100, 192);
 }
@@ -5566,6 +5571,153 @@ font: 75 16pt &quot;Roboto Medium&quot;;</string>
           <string>User</string>
          </property>
         </widget>
+       </widget>
+       <widget class="QPushButton" name="pbDelete">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>510</y>
+          <width>167</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color: rgb(240,90,40);
+/*border-width: 2px;
+border-color: rgb(240,90,40);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0,0,0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(190, 190, 190);
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);
+border-style: solid;*/
+    border: none;
+    outline: none;
+border-radius: 20;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(194, 54, 11);
+/*border-width: 2px;
+border-color: rgb(194, 54, 11);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(255, 255, 255);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+/*border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+/*border-width: 2px;
+border-color: rgb(241, 241, 241);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}</string>
+        </property>
+        <property name="text">
+         <string>Delete User</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pbAdd">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>510</y>
+          <width>167</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::ClickFocus</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color: rgb(120, 200, 90);
+/*border-width: 2px;
+border-color: rgb(120, 200, 90);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:disabled { 
+background-color: rgb(190, 190, 190);;
+/*border-width: 2px;
+border-color: rgb(190, 190, 190);;
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:pressed {
+background-color: rgb(24, 163, 3);
+/*border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(255, 255, 255);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:down {
+background-color: rgb(24, 163, 3);
+/*border-width: 2px;
+border-color: rgb(24, 163, 3);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+QPushButton:default {
+background-color: rgb(241, 241, 241);
+/*border-width: 2px;
+border-color: rgb(241, 241, 241);
+border-style: solid;*/
+border-radius: 20;
+    border: none;
+    outline: none;
+color: rgb(0, 0, 0);
+font: 100 18pt &quot;Roboto Medium&quot;;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Add User</string>
+        </property>
        </widget>
       </widget>
      </widget>

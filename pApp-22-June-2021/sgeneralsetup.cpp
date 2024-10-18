@@ -272,8 +272,11 @@ sGeneralSetup::sGeneralSetup(QWidget *parent) :
 
     DateTimeDisplay = true;
     languageChanged = false;
+    newUser = false;
 
     ui->imageCapture->hide();
+
+    readUserFile();
 }
 
 sGeneralSetup::~sGeneralSetup()
@@ -396,11 +399,16 @@ void sGeneralSetup::Show(QString type)
         ui->lblConfirmPassword->move(40, 350);
         ui->leConfirmPassword->move(330, 350);
 
+        ui->groupBox_4->setTitle("Users");
+
+        ui->pbAdd->show();
+        ui->pbDelete->show();
+
     }
     else if(cType == "service")
     {
         ui->cbUser->setCurrentIndex(M_USER_SERVICE);
-        ui->cbUser->setEnabled(true);
+        ui->cbUser->setEnabled(false);
 
         QRegularExpression adminPassRegex("[^<>'\"/;`?,{}@!~&:|\^]{1,20}$");
         passValidator = new QRegularExpressionValidator(adminPassRegex, this);
@@ -408,20 +416,25 @@ void sGeneralSetup::Show(QString type)
         ui->lblOldPassword->show();
         ui->leOldPassword->show();
 
-        ui->lblOldPassword->move(40, 110);
-        ui->leOldPassword->move(240, 110);
+        ui->lblOldPassword->move(40, 150);
+        ui->leOldPassword->move(330, 150);
 
-        ui->lblNewPassword->move(40, 170);
-        ui->leNewPassword->move(240, 170);
+        ui->lblNewPassword->move(40, 250);
+        ui->leNewPassword->move(330, 250);
 
-        ui->lblConfirmPassword->move(40, 230);
-        ui->leConfirmPassword->move(240, 230);
+        ui->lblConfirmPassword->move(40, 350);
+        ui->leConfirmPassword->move(330, 350);
+
+        ui->groupBox_4->setTitle("Change Password");
+
+        ui->pbAdd->hide();
+        ui->pbDelete->hide();
 
     }
     else if(cType == "pssc")
     {
         ui->cbUser->setCurrentIndex(M_USER_ADMIN);
-        ui->cbUser->setEnabled(true);
+        ui->cbUser->setEnabled(false);
 
         QRegularExpression adminPassRegex("[^<>'\"/;`?,{}@!~&:|\^]{1,20}$");
         passValidator = new QRegularExpressionValidator(adminPassRegex, this);
@@ -429,12 +442,16 @@ void sGeneralSetup::Show(QString type)
         ui->lblOldPassword->hide();
         ui->leOldPassword->hide();
 
-        ui->lblNewPassword->move(40, 110);
-        ui->leNewPassword->move(240, 110);
+        ui->lblNewPassword->move(40, 150);
+        ui->leNewPassword->move(330, 150);
 
-        ui->lblConfirmPassword->move(40, 170);
-        ui->leConfirmPassword->move(240, 170);
+        ui->lblConfirmPassword->move(40, 250);
+        ui->leConfirmPassword->move(330, 250);
 
+        ui->groupBox_4->setTitle("Change Password");
+
+        ui->pbAdd->hide();
+        ui->pbDelete->hide();
     }
 
     showGeneralSetup();
@@ -526,6 +543,73 @@ bool sGeneralSetup::saveFile()
     {
         cEnSwitch = false;
         emit showMsgBox(tr("General Setup"), tr("Error Saving File!"));
+        return false;
+    }
+}
+
+bool sGeneralSetup::saveUserFile(){
+    QString fname = QApplication::applicationDirPath() + FN_NEW_USER_SETUP;
+
+    qDebug() << "New User Saving to file:" << fname;
+    QFile out(fname);
+
+    if(out.open(QIODevice::WriteOnly))
+    {
+        QTextStream save(&out);
+
+        for(const newUsers &user:nUsers){
+            save << user.userName << "," << user.userPassword << "\n";
+        }
+
+        emit showMsgBox(tr("General Setup"), tr("New User Added!"));
+        return true;
+    }
+    else
+    {
+        cEnSwitch = false;
+        emit showMsgBox(tr("General Setup"), tr("Error Adding New User!"));
+        return false;
+    }
+}
+
+bool sGeneralSetup::readUserFile(){
+    QString fname = QApplication::applicationDirPath() + FN_NEW_USER_SETUP;
+
+    QFile in(fname);
+
+    if(in.open(QIODevice::ReadOnly))
+    {
+
+        QTextStream save(&in);
+        nUsers.clear();
+
+        while(!save.atEnd()){
+            QString line = save.readLine();
+            QStringList userData = line.split(',');
+            if(userData.size() == 2){
+                newUsers user;
+                user.userName = userData[0];
+                user.userPassword = userData[1];
+                nUsers.append(user);
+            }
+        }
+
+        in.close();
+
+        for(const newUsers &user:nUsers){
+            qDebug()<< "user.userName: " <<user.userName << ", user.userPassword: " << user.userPassword << "\n";
+        }
+
+        updateUser();
+
+//        cParasChanged = false;
+//        showGeneralSetup();
+        return true;
+    }
+    else
+    {
+//        setDefaults();
+//        cParasChanged = true;
         return false;
     }
 }
@@ -837,7 +921,82 @@ void sGeneralSetup::on_pbSave_clicked()
 {
 
     if(ui->tabDateTime->isVisible()) SaveRTC();
-    else if(ui->tabPassword->isVisible()) SavePassword();
+    else if(ui->tabPassword->isVisible()) {
+        if(newUser){
+            if(ui->leNewPassword->text() == ui->leConfirmPassword->text()){
+                qDebug()<<"new password and confirm password are same";
+                QString str = ui->leOldPassword->text();
+                bool userPresent = false;
+                for(const newUsers &user:nUsers){
+                    if((!QString::compare(user.userName, str, Qt::CaseSensitive))){
+                        userPresent = true;
+                        break;
+                    }
+                }
+                if(!userPresent)
+                {
+                    newUsers newUs;
+                    newUs.userName = ui->leOldPassword->text();
+                    newUs.userPassword = ui->leConfirmPassword->text();
+
+                    nUsers.append(newUs);
+
+                    qDebug()<<"newUs.userName: " << newUs.userName << ", newUs.userPassword: " <<newUs.userPassword ;
+
+                    saveUserFile();
+
+                    updateUser();
+
+                    newUser = false;
+                    if(ui->pbDelete->text() == "Back"){
+                        ui->lblOldPassword->setText("Old Password");
+                        ui->leOldPassword->clear();
+                        ui->leNewPassword->clear();
+                        ui->leConfirmPassword->clear();
+
+                        ui->pbDelete->setText("Delete User");
+                        ui->leOldPassword->setEchoMode(QLineEdit::Password);
+                        ui->cbUser->setEnabled(true);
+
+                        newUser = false;
+                    }
+                }else{
+                    emit showMsgBox(tr("General Setup"), tr("User already Exists!"));
+                }
+            }
+        }else if(newUserPasswordChange && (!("admin" == ui->cbUser->currentText())) && (!("pssc" == ui->cbUser->currentText())) && (!("service" == ui->cbUser->currentText()))){
+            QString str = ui->cbUser->currentText();
+            for(newUsers &user:nUsers){
+                if((!QString::compare(user.userName, str, Qt::CaseSensitive))){
+                    if((!QString::compare(user.userPassword, ui->leOldPassword->text(), Qt::CaseSensitive)))
+                    {
+                        if(ui->leNewPassword->text() == ui->leConfirmPassword->text())
+                        {
+                            user.userPassword = ui->leConfirmPassword->text();
+
+                            if(saveUserFile()){
+                                emit showMsgBox(tr("General Setup"), tr("User Password Updated!"));
+                            }
+                            updateUser();
+                            int previousIndex = ui->cbUser->findText(str);
+                            ui->cbUser->setCurrentIndex(previousIndex);
+                            break;
+                        }else{
+                            emit showMsgBox(tr("General Setup"),
+                                            tr("New & Confirm Password mismatch!"));
+                            break;
+                        }
+                    }else{
+                        qDebug()<<__LINE__;
+                        emit showMsgBox(tr("General Setup"), tr("Invalid Old Password!"));
+                        break;
+                    }
+                }
+            }
+        }else{
+            SavePassword();
+        }
+    }
     else
     {
         updateGeneralSetup();
@@ -852,6 +1011,9 @@ void sGeneralSetup::on_pbSave_clicked()
 void sGeneralSetup::on_pbExit_clicked()
 {
     updateGeneralSetup();
+
+    newUserPasswordChange = false;
+    newUser = false;
 
     if(cParasChanged)
     {
@@ -947,6 +1109,9 @@ void sGeneralSetup::SavePassword()
 {
     QString user, password;
 
+    qDebug()<<"SavePassword():";
+    qDebug()<<"ui->cbUser->isEnabled(): "<<ui->cbUser->isEnabled();
+
     user = ui->cbUser->currentText();
 
     if(user == "admin") password = general_setup.admin_password;
@@ -954,8 +1119,9 @@ void sGeneralSetup::SavePassword()
 
     if(user == "admin" || user == "service")
     {
-        if(ui->leOldPassword->text() != password && (!ui->cbUser->isEnabled()))
+        if(ui->leOldPassword->text() != password)// && (!ui->cbUser->isEnabled()))
         {
+            qDebug()<<__LINE__;
             emit showMsgBox(tr("General Setup"), tr("Invalid Old Password!"));
          }
         else if(ui->leNewPassword->text() != ui->leConfirmPassword->text())
@@ -966,7 +1132,13 @@ void sGeneralSetup::SavePassword()
         else
         {
             if(user == "admin")
-                general_setup.admin_password = ui->leNewPassword->text();
+                if(ui->leNewPassword->text().isEmpty()){
+                    emit showMsgBox(tr("General Setup"), tr("Admin Password can not be empty!"));
+                    return;
+                }
+                else{
+                    general_setup.admin_password = ui->leNewPassword->text();
+                }
             else
                 if(user == "service")
                     general_setup.service_password = ui->leNewPassword->text();
@@ -1140,123 +1312,18 @@ void sGeneralSetup::on_imageCapture_clicked()
     }
 }
 
-/*int sGeneralSetup::getGMTSeconds()
-{
-    int totalSeconds, currentSeconds;
-    qDebug()<<"general_setup.gmt: "<<general_setup.gmt;
-    QString str = ui->cbGMT->itemText(general_setup.gmt);
-    QString currentStr = ui->cbGMT->currentText();
-    qDebug()<<"general_setup.gmt text: "<<str;
-    qDebug()<<"ui->cbGMT->currentText(): "<<ui->cbGMT->currentText();
-    QStringList a = str.split(" ");
-    QStringList Ca = currentStr.split(" ");
-//    qDebug()<<"a[0]: "<<a[0];
-//    qDebug()<<"a[1]: "<<a[1];
-    QString tim = a[1];
-    QString cTim = Ca[1];
-    if(str.contains("-")){
-        if(tim.contains(":")){
-//            if(currentStr.contains("-"))
-//            {
-                if(cTim.contains(":")){
-                    QStringList chm = cTim.split(":");
-                    currentSeconds = (1800*((chm[0].toInt()*2) + 1));
-                }else{
-                    int cahour = cTim.toInt();
-                    currentSeconds = (1800*((cahour*2)));
-                }
-//            }
-            QStringList hm = tim.split(":");
-            totalSeconds = ((1800*(-(hm[0].toInt()*2) + 1))) + currentSeconds;
-        }
-        else
-        {
-            if(cTim.contains(":")){
-                QStringList chm = cTim.split(":");
-                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
-            }else{
-                int cahour = cTim.toInt();
-                currentSeconds = (1800*((cahour*2)));
-            }
-            int ahour = tim.toInt();
-            totalSeconds = (1800*(-(ahour*2))) + currentSeconds;
-        }
-        qDebug()<<"contains -";
-    }else if(str.contains("+")){
-        qDebug()<<"contains +";
-        if(tim.contains(":")){
-            if(cTim.contains(":")){
-                QStringList chm = cTim.split(":");
-                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
-            }else{
-                int cahour = cTim.toInt();
-                currentSeconds = (1800*((cahour*2)));
-            }
-            QStringList hm = tim.split(":");
-            totalSeconds = (1800*(-(hm[0].toInt()*2) + 1)) + currentSeconds;
-        }
-        else
-        {
-            if(cTim.contains(":")){
-                QStringList chm = cTim.split(":");
-                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
-            }else{
-                int cahour = cTim.toInt();
-                currentSeconds = (1800*((cahour*2)));
-            }
-            int ahour = tim.toInt();
-            totalSeconds = (1800*(-(ahour*2))) + currentSeconds;
-        }
-    }else{
-        qDebug()<<"it is zero";
-        if(tim.contains(":")){
-            if(cTim.contains(":")){
-                QStringList chm = cTim.split(":");
-                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
-            }else{
-                int cahour = cTim.toInt();
-                currentSeconds = (1800*((cahour*2)));
-            }
-            QStringList hm = tim.split(":");
-            totalSeconds = (1800*((hm[0].toInt()*2) + 1)) + currentSeconds;
-        }
-        else
-        {
-            if(cTim.contains(":")){
-                QStringList chm = cTim.split(":");
-                currentSeconds = (1800*((chm[0].toInt()*2) + 1));
-            }else{
-                int cahour = cTim.toInt();
-                currentSeconds = (1800*((cahour*2)));
-            }
-            int ahour = tim.toInt();
-            totalSeconds = (1800*(ahour*2)) + currentSeconds;
-        }
-    }
-    return totalSeconds;
-//    return ((1800*general_setup.gmt)-43200);
-}*/
-
 int sGeneralSetup::getGMTSeconds()
 {
     int totalSeconds = 0;
-//    qDebug() << "general_setup.gmt: " << general_setup.gmt;
     QString str = ui->cbGMT->itemText(general_setup.gmt);
-//    QString str = ui->cbGMT->currentText();
-//    QString currentStr = ui->cbGMT->currentText();
-//    qDebug() << "general_setup.gmt text: " << str;
-//    qDebug() << "ui->cbGMT->currentText(): " << ui->cbGMT->currentText();
 
     QStringList a = str.split(" ");
-//    QStringList Ca = currentStr.split(" ");
     QString tim = a[1];
-//    QString cTim = Ca[1];
     auto calculateSeconds = [](const QString& time) -> int {
         if (time.contains(":")) {
             QStringList hm = time.split(":");
             int hours = hm[0].toInt();
             int minutes = hm[1].toInt();
-//            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
             if(hours>0)
             {
                 return (hours * 3600) + (minutes * 60);
@@ -1270,22 +1337,13 @@ int sGeneralSetup::getGMTSeconds()
     };
 
     totalSeconds = calculateSeconds(tim);
-//    currentSeconds = calculateSeconds(cTim);
 
-//    if (a[0] == "GMT-") {
-//        totalSeconds = -totalSeconds;
-//    }
-
-//    qDebug() << "totalSeconds: " << totalSeconds;
-//    qDebug() << "currentSeconds: " << currentSeconds;
-//    return totalSeconds + currentSeconds;
     return totalSeconds;
 }
 
 int sGeneralSetup::getCurrentGMTSeconds(void){
     int totalSeconds = 0;
-//    qDebug() << "general_setup.gmt: " << general_setup.gmt;
-//    QString str = ui->cbGMT->itemText(general_setup.gmt);
+
     QString str = ui->cbGMT->currentText();
     qDebug() << "general_setup.gmt text: " << str;
 
@@ -1296,7 +1354,7 @@ int sGeneralSetup::getCurrentGMTSeconds(void){
             QStringList hm = time.split(":");
             int hours = hm[0].toInt();
             int minutes = hm[1].toInt();
-//            qDebug()<<"hours: "<<hours<<" minutes: "<<minutes;
+
             if(hours>0)
             {
                 return (hours * 3600) + (minutes * 60);
@@ -1310,13 +1368,115 @@ int sGeneralSetup::getCurrentGMTSeconds(void){
     };
 
     totalSeconds = calculateSeconds(tim);
-//    currentSeconds = calculateSeconds(cTim);
 
-//    if (a[0] == "GMT-") {
-//        totalSeconds = -totalSeconds;
-//    }
-
-//    qDebug() << "totalSeconds: " << totalSeconds;
     return totalSeconds;
 }
 
+void sGeneralSetup::updateUser()
+{
+    ui->cbUser->clear();
+
+    ui->cbUser->addItem("admin");
+    ui->cbUser->addItem("service");
+//    ui->cbUser->addItem("pssc");
+
+    for (const newUsers &user : nUsers) {
+        ui->cbUser->addItem(user.userName);
+    }
+
+    if(nUsers.count() > 9){
+        ui->pbAdd->setEnabled(false);
+    }else{
+        ui->pbAdd->setEnabled(true);
+    }
+}
+
+bool sGeneralSetup::userLogin(QString rUser, QString rPwd)
+{
+    for(const newUsers &user:nUsers){
+        if ((!QString::compare(user.userName, rUser, Qt::CaseSensitive)) && (!QString::compare(user.userPassword, rPwd, Qt::CaseSensitive))) {
+
+            int userIndex = ui->cbUser->findText(user.userName, Qt::MatchExactly);
+            if(userIndex != -1){
+                ui->cbUser->setCurrentIndex(userIndex);
+                ui->cbUser->setEnabled(false);
+                ui->pbAdd->hide();
+                ui->pbDelete->hide();
+                newUserPasswordChange = true;
+            }
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void sGeneralSetup::on_pbAdd_clicked()
+{
+    ui->lblOldPassword->setText("New User");
+    ui->leOldPassword->clear();
+    ui->leNewPassword->clear();
+    ui->leConfirmPassword->clear();
+
+    ui->pbDelete->setText("Back");
+    ui->leOldPassword->setEchoMode(QLineEdit::Normal);
+    ui->cbUser->setEnabled(false);
+
+    newUser = true;
+}
+
+void sGeneralSetup::on_pbDelete_clicked()
+{
+    if(ui->pbDelete->text() == "Back"){
+        ui->lblOldPassword->setText("Old Password");
+        ui->leOldPassword->clear();
+        ui->leNewPassword->clear();
+        ui->leConfirmPassword->clear();
+
+        ui->pbDelete->setText("Delete User");
+        ui->leOldPassword->setEchoMode(QLineEdit::Password);
+        ui->cbUser->setEnabled(true);
+
+        newUser = false;
+    }else if(ui->pbDelete->text() == "Delete User"){
+        if((ui->cbUser->currentText() != "admin") &&
+                (ui->cbUser->currentText() != "service") &&
+                (ui->cbUser->currentText() != "pssc"))
+        {
+            int userIndex = ui->cbUser->currentIndex();
+            if(userIndex != -1)
+            {
+                QString curUser = ui->cbUser->currentText();
+                int i=0;
+                for(const newUsers &user: nUsers){
+                    if((!QString::compare(user.userName, curUser, Qt::CaseSensitive))){
+                        break;
+                    }
+                    i++;
+                }
+//                if()
+                {
+                    nUsers.removeAt(i);
+                    if(saveUserFile()){
+                        emit showMsgBox(tr("General Setup"), tr("User Deleted Successfully!"));
+                        updateUser();
+                    }
+                    qDebug()<<"nUsers.count(): "<<nUsers.count();
+                    if(nUsers.count() > 9){
+                        ui->pbAdd->setEnabled(false);
+                    }else{
+                        ui->pbAdd->setEnabled(true);
+                    }
+                }
+            }
+        }else{
+            emit showMsgBox(tr("General Setup"), tr("Selected User Can't be Deleted!"));
+        }
+    }
+
+    if(nUsers.count() > 9){
+        ui->pbAdd->setEnabled(false);
+    }else{
+        ui->pbAdd->setEnabled(true);
+    }
+}
