@@ -135,6 +135,9 @@ sCalibration::sCalibration(QWidget *parent) :
     ui->imageCapture->hide();
 
     initAvg();
+
+    ui->cbTCTEnable->hide();
+    ui->label_34->hide();
 }
 
 sCalibration::~sCalibration()
@@ -1880,8 +1883,14 @@ void sCalibration::showTemperatureCalib()
     if(!cCalibTm.method) ui->cbTCTEnable->setEnabled(true);
     else ui->cbTCTEnable->setEnabled(false);
 
-    ui->leTCTemperature->setReadOnly(!ui->cbTCTEnable->isChecked());
-    ui->pbTCTSet->setEnabled(ui->cbTCTEnable->isChecked());
+    if(ui->cbTCalibMethod->currentText() == "Method 1"){
+        ui->leTCTemperature->setReadOnly(false);
+        ui->pbTCTSet->setEnabled(true);
+    }
+    else if(ui->cbTCalibMethod->currentText() == "Method 2"){
+        ui->leTCTemperature->setReadOnly(true);
+        ui->pbTCTSet->setEnabled(false);
+    }
 
     ui->leTCTLow->setText(getTemperatureCS(cCalibTm.tlow));
     ui->leTCTHigh->setText(getTemperatureCS(cCalibTm.thigh));
@@ -2160,6 +2169,10 @@ int sCalibration::doAvg(int tmp)
 int sCalibration::getAvg()
 {
     return (cAvgSum / AVG_BUFFER_SIZE);
+}
+
+bool sCalibration::tabTemperatureIsVisible(){
+    return ui->tabTemperature->isVisible();
 }
 
 void sCalibration::updatePressureStatus()
@@ -2651,7 +2664,7 @@ void sCalibration::setWaitACKStatus(bool tmp)
         else
         {
             ui->cbTCTEnable->setEnabled(true);
-            ui->pbTCTSet->setEnabled(ui->cbTCTEnable->isChecked());
+            ui->pbTCTSet->setEnabled(true);
 
             if(cEnSwitch)
             {
@@ -3189,7 +3202,8 @@ void sCalibration::on_pbTCTSet_clicked()
         int tmp = getTemperatureCount(tm);
 
         setWaitACKStatus(true);
-        emit sendCommand(cProtocol.sendTemperature(tmp), this);
+//        emit sendCommand(cProtocol.sendTemperature(tmp), this);
+        emit sendTempCalibCommand(cProtocol.sendTemperature(tmp), this);
     }
 }
 
@@ -3206,10 +3220,26 @@ void sCalibration::on_cbTCTEnable_clicked()
     }
 }
 
+void sCalibration::sendDefaultCommand(){
+    setWaitACKStatus(true);
+    emit sendCommand(cProtocol.sendMeasuringStart(1, 0), this);
+}
+
 void sCalibration::on_cbTCalibMethod_currentIndexChanged(int index)
 {
-    if(!index) ui->cbTCTEnable->setEnabled(true);
-    else ui->cbTCTEnable->setEnabled(false);
+    if(!index) {
+        qDebug()<<"ui->cbTCalibMethod->currentText(): "<<ui->cbTCalibMethod->currentText();
+        ui->cbTCTEnable->setEnabled(true);
+        ui->leTCTemperature->setReadOnly(false);
+        ui->pbTCTSet->setEnabled(true);
+    }
+    else {
+        qDebug()<<"ui->cbTCalibMethod->currentText(): "<<ui->cbTCalibMethod->currentText();
+        ui->cbTCTEnable->setEnabled(false);
+        ui->leTCTemperature->setReadOnly(true);
+        ui->pbTCTSet->setEnabled(false);
+        sendDefaultCommand();
+    }
 }
 
 void sCalibration::ontextChanged(QString tmp)

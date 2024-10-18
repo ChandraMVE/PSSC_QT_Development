@@ -208,12 +208,16 @@ public:
     void updateD6377Range(double D6377Range);
     void updateIP_481_Range(double D6377Range);
 
+    bool tabTemperatureIsVisible();
+    void sendDefaultCommand();
+
 signals:
     void showKeypad(QObject *, int, bool);
     void showHome(bool);
     void getConfirmation(int, int);
     //void sendCommand(QString cmd);
     void sendCommand(QString cmd, sAccessWidget *sa);
+    void sendTempCalibCommand(QString cmd, sAccessWidget *sa);
     void runClicked(int state, bool init);
     void showMsgBox(QString title, QString msg);
     //void showStatusBox(QString title, QString msg, bool show);

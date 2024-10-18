@@ -57,6 +57,7 @@ public:
     void setError(int tmp);
     void checkCommError(void);
     void showCommError(int tmp);
+    void handleTempCalibration(void);
 
     void startLogging(void);
     void showError(void);
@@ -88,7 +89,7 @@ private slots:
 
     void onSendCommand(QString cmd);
     void onSendCommand(QString cmd, sAccessWidget *sa);
-
+    void onTempCalibSendCommand(QString cmd, sAccessWidget *sa);
 
     bool onSaveResult(double p_tot, double p_gas, double p_abs,
                       QString method, QString formula,

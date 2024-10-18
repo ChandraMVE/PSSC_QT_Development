@@ -416,6 +416,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //connect(ui->wCalibrationSetup, SIGNAL(sendCommand(QString)), this, SLOT(onSendCommand(QString)));
     connect(ui->wCalibrationSetup, SIGNAL(sendCommand(QString, sAccessWidget *)), this, SLOT(onSendCommand(QString, sAccessWidget *)));
+    connect(ui->wCalibrationSetup, SIGNAL(sendTempCalibCommand(QString, sAccessWidget *)), this, SLOT(onTempCalibSendCommand(QString, sAccessWidget *)));
     connect(ui->wCalibrationSetup, SIGNAL(runClicked(int, bool)), this, SLOT(onRunClicked(int, bool)));
     connect(ui->wCalibrationSetup, SIGNAL(showMsgBox(QString, QString)), this, SLOT(onShowMsgBox(QString, QString)));
     //connect(ui->wCalibrationSetup, SIGNAL(showStatusBox(QString,QString, bool)), this, SLOT(onShowStatusBox(QString, QString, bool)));
@@ -3991,6 +3992,9 @@ void MainWindow::timerEvent(QTimerEvent *e)
 
         if(ui->wCalibrationSetup->isVisible())
         {
+            if(ui->wCalibrationSetup->tabTemperatureIsVisible()){
+                handleTempCalibration();
+            }
             ui->wCalibrationSetup->updatePressureStatus();
         }
 
@@ -4404,6 +4408,10 @@ void MainWindow::onSendCommand(QString cmd)
     //ui->label_2->setText(str);
 
 
+}
+
+void MainWindow::onTempCalibSendCommand(QString cmd, sAccessWidget *sa){
+    sendPara(cmd, 3, 1200);
 }
 
 void MainWindow::onSendCommand(QString cmd, sAccessWidget *sa)
@@ -8258,6 +8266,45 @@ void MainWindow::handleDiagnostic()
 
     }
 
+}
+
+void MainWindow::handleTempCalibration(){
+    switch(cStage)
+    {
+        case -1:
+        break;
+
+        case 2:
+        {
+            cParasUpdated = false;
+        }
+        break;
+
+        case 3:
+        {
+            cParasUpdated = false;
+
+            if(!cStageTimeOut)
+            {
+                cStage = -1;
+                ui->wCalibrationSetup->sendDefaultCommand();
+            }
+            else {
+                cStageTimeOut--;
+
+                QString str = "handleTempCalibration()";
+
+                if(ui->wServiceSetup->logPathEnabled())
+                    ui->wServiceSetup->commandLog(str);
+                else if(ui->wServiceSetup->internalLogData())
+                {
+                    qDebug()<<"First Time";
+                    ui->wServiceSetup->commandLog(str);
+                }
+            }
+        }
+        break;
+    }
 }
 
 void MainWindow::handleCalibration()
